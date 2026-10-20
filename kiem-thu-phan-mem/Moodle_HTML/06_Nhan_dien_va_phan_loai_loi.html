@@ -1,0 +1,126 @@
+<details open="" style="border: 1px solid #007bff; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #e7f1ff; color: #007bff; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>📘 1. Tổng quan bài học</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <p><strong>BÀI 06 - Nhận diện và phân loại lỗi phần mềm</strong></p>
+        <p><strong>Mục tiêu:</strong>&nbsp;Nhận biết các nhóm lỗi thường gặp, mô tả dấu hiệu và ảnh hưởng của lỗi, đồng thời phân loại lỗi để hỗ trợ kiểm thử, báo cáo và xử lý hiệu quả.</p>
+        <p><strong>Nội dung:</strong></p>
+        <ul>
+            <li><strong>Ý chính 1:</strong> Phân biệt lỗi giao diện/trải nghiệm người dùng với lỗi chức năng.</li>
+            <li><strong>Ý chính 2:</strong> Nhận diện lỗi xác thực dữ liệu đầu vào và lỗi tại các giá trị biên.</li>
+            <li><strong>Ý chính 3:</strong> Nhận diện vấn đề hiệu năng, tải và rò rỉ tài nguyên.</li>
+            <li><strong>Ý chính 4:</strong> Nhận diện rủi ro bảo mật và lỗi tích hợp/hệ thống.</li>
+        </ul>
+        <p><strong>Kết quả cần đạt:</strong>&nbsp;Sinh viên phân loại được một tình huống lỗi theo nhóm phù hợp, mô tả điều kiện tái hiện và giải thích ảnh hưởng tới người dùng hoặc hệ thống.</p>
+    </div>
+</details>
+
+<details style="border: 1px solid #fd7e14; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #fff5eb; color: #fd7e14; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>📚 2. Học liệu chính</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.1. Vì sao cần phân loại lỗi?</h3>
+            <p>Phân loại lỗi giúp nhóm hiểu vấn đề thuộc khu vực nào, chọn cách tái hiện và kiểm thử phù hợp, xác định người cần phối hợp xử lý và đánh giá phạm vi ảnh hưởng. Một lỗi có thể liên quan đến nhiều nhóm; hãy ghi nhận nhóm chính cùng các tác động liên quan thay vì bỏ qua bối cảnh.</p>
+            <p>Khi phát hiện vấn đề, hãy ghi lại môi trường, điều kiện ban đầu, dữ liệu sử dụng, các bước tái hiện, kết quả thực tế, kết quả mong đợi và ảnh hưởng quan sát được.</p>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.2. Lỗi giao diện và trải nghiệm người dùng (UI/UX)</h3>
+            <p>Là vấn đề về cách nội dung hoặc thành phần giao diện được hiển thị và cách người dùng tương tác với sản phẩm.</p>
+            <ul>
+                <li><strong>Hiển thị văn bản:</strong> sai chính tả, mất chữ, tràn khỏi khung, chồng lấn hoặc ngắt dòng không phù hợp.</li>
+                <li><strong>Responsive:</strong> bố cục vỡ hoặc thành phần hiển thị sai khi đổi kích thước màn hình/thiết bị.</li>
+                <li><strong>Căn chỉnh và phong cách:</strong> nút, biểu tượng, hình ảnh lệch vị trí hoặc không nhất quán về màu sắc, font chữ.</li>
+                <li><strong>Trạng thái phần tử:</strong> nút chưa chuyển sang disabled khi không đủ điều kiện, hoặc thiếu phản hồi hover/active cần thiết.</li>
+            </ul>
+            <p><strong>Ví dụ:</strong> Nút “Lưu” bị khuất trên màn hình điện thoại khiến người dùng không hoàn tất thao tác.</p>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.3. Lỗi chức năng (Functional Bugs)</h3>
+            <p>Xảy ra khi hành vi thực tế không đáp ứng yêu cầu hoặc quy tắc nghiệp vụ đã thống nhất.</p>
+            <ul>
+                <li><strong>Lỗi tính toán:</strong> tổng tiền, thuế hoặc chiết khấu được tính sai.</li>
+                <li><strong>Lỗi luồng nghiệp vụ:</strong> có thể bỏ qua bước bắt buộc, chẳng hạn hoàn tất thanh toán mà chưa chọn địa chỉ giao hàng.</li>
+                <li><strong>Lỗi tìm kiếm/lọc:</strong> kết quả không khớp từ khóa hoặc bộ lọc đã chọn.</li>
+                <li><strong>Lỗi phân quyền:</strong> người dùng thực hiện được thao tác không thuộc quyền hạn của mình.</li>
+            </ul>
+            <p><strong>Ví dụ Todo App:</strong> Chọn bộ lọc “Hoàn thành” nhưng danh sách vẫn hiển thị cả công việc chưa hoàn thành.</p>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.4. Lỗi xác thực và dữ liệu đầu vào</h3>
+            <p>Nhóm lỗi này liên quan tới việc sản phẩm tiếp nhận, kiểm tra, chuẩn hóa và phản hồi dữ liệu do người dùng cung cấp.</p>
+            <ul>
+                <li><strong>Thiếu kiểm tra đầu vào:</strong> chấp nhận chuỗi rỗng hoặc dữ liệu sai định dạng khi yêu cầu phải hợp lệ.</li>
+                <li><strong>Giới hạn/giá trị biên:</strong> ứng dụng treo hoặc giao diện lỗi khi dữ liệu vượt giới hạn cho phép.</li>
+                <li><strong>Ký tự đặc biệt và Unicode:</strong> dấu tiếng Việt, emoji hoặc ký tự như <code>&lt;</code>, <code>&gt;</code>, <code>&amp;</code> hiển thị sai hay làm phát sinh lỗi xử lý.</li>
+            </ul>
+            <p><strong>Ví dụ:</strong> Trường tiêu đề cho phép nhập 500 ký tự dù yêu cầu giới hạn 200, làm nút và nội dung trang bị tràn. Cần xác minh cả cách hệ thống từ chối hoặc xử lý dữ liệu vượt giới hạn theo yêu cầu.</p>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.5. Lỗi hiệu năng và tải</h3>
+            <p>Là vấn đề về thời gian phản hồi, mức sử dụng tài nguyên hoặc khả năng phục vụ khi khối lượng dữ liệu hay số người dùng tăng.</p>
+            <ul>
+                <li><strong>Phản hồi chậm:</strong> tải trang hoặc dữ liệu lâu hơn ngưỡng đã thống nhất.</li>
+                <li><strong>Rò rỉ bộ nhớ:</strong> RAM/CPU tăng dần trong quá trình sử dụng và có thể khiến ứng dụng chậm hoặc treo.</li>
+                <li><strong>Quá tải/đồng thời:</strong> hệ thống không phản hồi hoặc gặp lỗi khi nhiều người dùng truy cập cùng lúc.</li>
+            </ul>
+            <p><strong>Ví dụ:</strong> Thao tác lọc danh sách 10.000 ghi chú mất quá lâu. Khi kiểm thử hiệu năng, cần ghi rõ quy mô dữ liệu, môi trường, số lần đo và ngưỡng đánh giá.</p>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.6. Lỗi bảo mật và lỗi tích hợp/hệ thống</h3>
+            <p><strong>Lỗi bảo mật:</strong> điểm yếu có thể làm lộ dữ liệu hoặc cho phép hành động trái phép. Ví dụ gồm xử lý đầu vào không an toàn dẫn tới nguy cơ injection/XSS, lộ mật khẩu/token hoặc API không kiểm tra quyền truy cập đúng cách. Chỉ thực hiện kiểm thử bảo mật trong môi trường và phạm vi được cho phép.</p>
+            <p><strong>Lỗi tích hợp/hệ thống:</strong> phát sinh khi các thành phần hoặc dịch vụ không phối hợp đúng, chẳng hạn API trả mã lỗi 500/404/401, dữ liệu JSON/XML không đúng định dạng, dịch vụ bên thứ ba không phản hồi, cơ sở dữ liệu mất kết nối hoặc dữ liệu không nhất quán sau giao dịch.</p>
+            <p><strong>Ví dụ:</strong> Giao diện báo lưu thành công nhưng dữ liệu không được lưu vào cơ sở dữ liệu. Đây có thể là lỗi tích hợp giữa giao diện, API và DB; cần thu thập thông tin ở từng ranh giới để khoanh vùng.</p>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.7. Mô tả lỗi hữu ích</h3>
+            <ol>
+                <li>Ghi mã lỗi, tiêu đề ngắn và nhóm lỗi chính.</li>
+                <li>Ghi phiên bản, thiết bị/trình duyệt, môi trường và điều kiện ban đầu.</li>
+                <li>Nêu dữ liệu kiểm thử và các bước tái hiện theo thứ tự.</li>
+                <li>Tách biệt kết quả thực tế với kết quả mong đợi dựa trên yêu cầu.</li>
+                <li>Mô tả ảnh hưởng và đính kèm bằng chứng phù hợp (ảnh, log hoặc mã phản hồi).</li>
+            </ol>
+            <p>Phân loại loại lỗi không đồng nghĩa với đánh giá mức độ nghiêm trọng hay độ ưu tiên. Ví dụ, một lỗi UI có thể có ảnh hưởng thấp hoặc nghiêm trọng tùy chức năng bị ảnh hưởng và số người dùng gặp phải.</p>
+        </div>
+    </div>
+</details>
+
+<details style="border: 1px solid #28a745; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #eafaf1; color: #28a745; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>💡 3. Hoạt động &amp; Thực hành trên lớp</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <p style="margin-top: 0;">Thực hành nhận diện và mô tả lỗi dựa trên tình huống:</p>
+        <div style="max-width: 760px; padding: 10px 12px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <p><strong style="color: #28a745;">🧩 Bài tập phân loại</strong></p>
+            <p style="color: #495057;">Phân loại các tình huống: (1) nút “Lưu” bị tràn khỏi màn hình điện thoại; (2) bộ lọc hoàn thành trả về công việc chưa hoàn thành; (3) tiêu đề rỗng vẫn được chấp nhận; (4) tìm kiếm 10.000 bản ghi vượt ngưỡng đã thống nhất; (5) API trả JSON sai cấu trúc; (6) người dùng không có quyền vẫn truy cập được chức năng quản trị.</p>
+        </div>
+        <div style="max-width: 760px; padding: 10px 12px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <p><strong style="color: #28a745;">📝 Viết báo cáo lỗi</strong></p>
+            <p style="color: #495057;">Chọn một tình huống và viết báo cáo gồm tiêu đề, loại lỗi, môi trường, tiền điều kiện, dữ liệu, bước tái hiện, kết quả thực tế, kết quả mong đợi và ảnh hưởng. Không tự đặt kết quả mong đợi nếu yêu cầu chưa xác định; hãy ghi câu hỏi cần làm rõ.</p>
+        </div>
+        <div style="max-width: 760px; padding: 10px 12px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <p><strong style="color: #28a745;">💬 Thảo luận nhóm</strong></p>
+            <p style="color: #495057;">Chọn một lỗi có thể thuộc nhiều nhóm. Nêu nhóm chính, nhóm liên quan và thông tin bổ sung cần thu thập để khoanh vùng nguyên nhân. Phân biệt loại lỗi với mức độ nghiêm trọng.</p>
+        </div>
+    </div>
+</details>
+
+<details style="border: 1px solid #6f42c1; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #f3e5f5; color: #6f42c1; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>🆘 4. Góc trợ giúp và mở rộng</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <p><strong>Gợi ý phân loại:</strong> Xem hành vi quan sát được và yêu cầu liên quan trước; sau đó xác định thành phần có khả năng liên quan. Đừng kết luận nguyên nhân kỹ thuật chỉ từ một triệu chứng.</p>
+        <p><strong>Hỗ trợ tái hiện:</strong> Nếu lỗi không tái hiện được, kiểm tra lại phiên bản, môi trường, dữ liệu, quyền truy cập và thứ tự thao tác; bổ sung log hoặc bằng chứng khi phù hợp.</p>
+        <p><strong>Kiến thức mở rộng:</strong> Tìm hiểu vòng đời lỗi, quy trình phân loại lỗi (bug triage), mức độ nghiêm trọng (severity) và độ ưu tiên xử lý (priority).</p>
+        <p><strong>Lưu ý bảo mật:</strong> Không thử khai thác trên hệ thống thật hoặc ngoài phạm vi được cấp phép. Dùng dữ liệu kiểm thử và môi trường được phê duyệt.</p>
+    </div>
+</details>

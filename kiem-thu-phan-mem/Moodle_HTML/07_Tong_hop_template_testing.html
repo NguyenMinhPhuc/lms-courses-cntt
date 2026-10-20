@@ -1,0 +1,198 @@
+<details open="" style="border: 1px solid #007bff; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #e7f1ff; color: #007bff; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>📘 1. Tổng quan bài học</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <p><strong>BÀI 07 - Tổng hợp biểu mẫu trong kiểm thử phần mềm</strong></p>
+        <p><strong>Mục tiêu:</strong>&nbsp;Hệ thống hóa các biểu mẫu thường dùng trong quy trình kiểm thử; biết chọn biểu mẫu phù hợp và điền thông tin đủ rõ để nhóm có thể lập kế hoạch, thực thi, theo dõi lỗi và báo cáo kết quả.</p>
+        <p><strong>Nội dung:</strong></p>
+        <ul>
+            <li><strong>Ý chính 1:</strong> Biểu mẫu Test Plan và danh sách yêu cầu kiểm thử.</li>
+            <li><strong>Ý chính 2:</strong> Ma trận truy xuất yêu cầu và Test Case.</li>
+            <li><strong>Ý chính 3:</strong> Nhật ký thực thi kiểm thử và báo cáo lỗi (Bug Report).</li>
+            <li><strong>Ý chính 4:</strong> Báo cáo tổng kết kiểm thử (Test Report) và mối liên hệ giữa các biểu mẫu.</li>
+        </ul>
+        <p><strong>Kết quả cần đạt:</strong>&nbsp;Sinh viên điền được bộ biểu mẫu kiểm thử cơ bản cho một tính năng, liên kết được yêu cầu với test case, kết quả và lỗi phát hiện.</p>
+    </div>
+</details>
+
+<details style="border: 1px solid #fd7e14; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #fff5eb; color: #fd7e14; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>📚 2. Học liệu chính</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <p>Các biểu mẫu dưới đây là khung tham khảo. Điều chỉnh trường thông tin theo quy trình, công cụ và mức độ rủi ro của dự án; không để trường bắt buộc ở dạng placeholder khi nộp sản phẩm.</p>
+
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.1. Biểu mẫu Test Plan - Kế hoạch kiểm thử</h3>
+            <p>Dùng để thống nhất kiểm thử sẽ làm gì, làm như thế nào, ai thực hiện và điều kiện kết thúc. Các mục tiêu định lượng cần được nhóm thống nhất và có cách đo.</p>
+            <div style="overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse;">
+                    <tbody>
+                        <tr><th style="text-align: left; border: 1px solid #dee2e6; padding: 8px;">Trường</th><th style="text-align: left; border: 1px solid #dee2e6; padding: 8px;">Nội dung cần điền</th></tr>
+                        <tr><td style="border: 1px solid #dee2e6; padding: 8px;">Thông tin tài liệu</td><td style="border: 1px solid #dee2e6; padding: 8px;">Tên dự án: [Tên] | Phiên bản/build: [Số phiên bản] | Ngày: [dd/mm/yyyy] | Người lập: [Tên]</td></tr>
+                        <tr><td style="border: 1px solid #dee2e6; padding: 8px;">Mục tiêu kiểm thử</td><td style="border: 1px solid #dee2e6; padding: 8px;">[Chất lượng/hành vi/rủi ro cần xác minh]</td></tr>
+                        <tr><td style="border: 1px solid #dee2e6; padding: 8px;">Phạm vi</td><td style="border: 1px solid #dee2e6; padding: 8px;">Trong phạm vi: [Tính năng/yêu cầu] | Ngoài phạm vi: [Nội dung và lý do]</td></tr>
+                        <tr><td style="border: 1px solid #dee2e6; padding: 8px;">Phương pháp và loại kiểm thử</td><td style="border: 1px solid #dee2e6; padding: 8px;">[Thủ công/tự động; hộp đen/trắng/xám; cấp độ; hồi quy/khả năng sử dụng/hiệu năng...]</td></tr>
+                        <tr><td style="border: 1px solid #dee2e6; padding: 8px;">Môi trường và dữ liệu</td><td style="border: 1px solid #dee2e6; padding: 8px;">[Thiết bị, hệ điều hành, trình duyệt, phiên bản, cấu hình, bộ dữ liệu]</td></tr>
+                        <tr><td style="border: 1px solid #dee2e6; padding: 8px;">Vai trò và trách nhiệm</td><td style="border: 1px solid #dee2e6; padding: 8px;">[Người/nhóm] - [Trách nhiệm]</td></tr>
+                        <tr><td style="border: 1px solid #dee2e6; padding: 8px;">Lịch trình và nguồn lực</td><td style="border: 1px solid #dee2e6; padding: 8px;">[Mốc thời gian, nhân lực, công cụ và tài nguyên cần thiết]</td></tr>
+                        <tr><td style="border: 1px solid #dee2e6; padding: 8px;">Tiêu chí bắt đầu</td><td style="border: 1px solid #dee2e6; padding: 8px;">[Điều kiện cần có trước khi thực thi: build, môi trường, yêu cầu... ]</td></tr>
+                        <tr><td style="border: 1px solid #dee2e6; padding: 8px;">Tạm dừng/tiếp tục</td><td style="border: 1px solid #dee2e6; padding: 8px;">[Điều kiện dừng; điều kiện cho phép kiểm thử tiếp tục]</td></tr>
+                        <tr><td style="border: 1px solid #dee2e6; padding: 8px;">Tiêu chí hoàn thành</td><td style="border: 1px solid #dee2e6; padding: 8px;">[Ngưỡng/kết quả đo được; lỗi còn mở; phạm vi đã kiểm thử]</td></tr>
+                        <tr><td style="border: 1px solid #dee2e6; padding: 8px;">Rủi ro và giảm thiểu</td><td style="border: 1px solid #dee2e6; padding: 8px;">[Rủi ro] | [Ảnh hưởng] | [Biện pháp giảm thiểu/ứng phó]</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.2. Biểu mẫu danh sách yêu cầu kiểm thử (Test Requirements)</h3>
+            <p>Mỗi yêu cầu nên có mã duy nhất, mô tả đơn nghĩa và cách xác minh. Tách các hành vi khác nhau thành các yêu cầu riêng khi cần.</p>
+            <div style="overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse;">
+                    <thead><tr><th style="border: 1px solid #dee2e6; padding: 8px;">Requirement ID</th><th style="border: 1px solid #dee2e6; padding: 8px;">Mô tả yêu cầu</th><th style="border: 1px solid #dee2e6; padding: 8px;">Loại</th><th style="border: 1px solid #dee2e6; padding: 8px;">Ưu tiên/rủi ro</th><th style="border: 1px solid #dee2e6; padding: 8px;">Tiêu chí/cách xác minh</th><th style="border: 1px solid #dee2e6; padding: 8px;">Trạng thái/ghi chú</th></tr></thead>
+                    <tbody>
+                        <tr><td style="border: 1px solid #dee2e6; padding: 8px;">TR-001</td><td style="border: 1px solid #dee2e6; padding: 8px;">[Một hành vi/đặc tính cụ thể]</td><td style="border: 1px solid #dee2e6; padding: 8px;">[Chức năng/Phi chức năng]</td><td style="border: 1px solid #dee2e6; padding: 8px;">[Cao/Trung bình/Thấp hoặc thang nhóm dùng]</td><td style="border: 1px solid #dee2e6; padding: 8px;">[Điều kiện và kết quả đo/quan sát được]</td><td style="border: 1px solid #dee2e6; padding: 8px;">[Mới/Đã xác minh/Thay đổi/Cần làm rõ]</td></tr>
+                        <tr><td style="border: 1px solid #dee2e6; padding: 8px;">TR-002</td><td style="border: 1px solid #dee2e6; padding: 8px;">[Yêu cầu tiếp theo]</td><td style="border: 1px solid #dee2e6; padding: 8px;">[...]</td><td style="border: 1px solid #dee2e6; padding: 8px;">[...]</td><td style="border: 1px solid #dee2e6; padding: 8px;">[...]</td><td style="border: 1px solid #dee2e6; padding: 8px;">[...]</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p><strong>Kiểm tra chất lượng:</strong> Thay các từ như “nhanh”, “dễ dùng”, “đầy đủ” bằng tiêu chí có điều kiện kiểm chứng; xác nhận các điểm mơ hồ với bên liên quan.</p>
+        </div>
+
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.3. Biểu mẫu ma trận truy xuất yêu cầu (RTM)</h3>
+            <p>RTM cho biết yêu cầu nào được bao phủ bởi test case và kết quả nào đã được ghi nhận. Cập nhật ma trận khi yêu cầu hoặc test case thay đổi.</p>
+            <div style="overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse;">
+                    <thead><tr><th style="border: 1px solid #dee2e6; padding: 8px;">Requirement ID</th><th style="border: 1px solid #dee2e6; padding: 8px;">Mô tả ngắn</th><th style="border: 1px solid #dee2e6; padding: 8px;">Test Case ID</th><th style="border: 1px solid #dee2e6; padding: 8px;">Lần chạy/kết quả</th><th style="border: 1px solid #dee2e6; padding: 8px;">Bug ID</th><th style="border: 1px solid #dee2e6; padding: 8px;">Độ bao phủ/ghi chú</th></tr></thead>
+                    <tbody>
+                        <tr><td style="border: 1px solid #dee2e6; padding: 8px;">TR-001</td><td style="border: 1px solid #dee2e6; padding: 8px;">[Mô tả]</td><td style="border: 1px solid #dee2e6; padding: 8px;">TC-001, TC-002</td><td style="border: 1px solid #dee2e6; padding: 8px;">[Ngày/build; Pass/Fail/Blocked/Not Run]</td><td style="border: 1px solid #dee2e6; padding: 8px;">[BUG-ID hoặc Không có]</td><td style="border: 1px solid #dee2e6; padding: 8px;">[Đã bao phủ/Chưa bao phủ; ghi chú]</td></tr>
+                        <tr><td style="border: 1px solid #dee2e6; padding: 8px;">TR-002</td><td style="border: 1px solid #dee2e6; padding: 8px;">[...]</td><td style="border: 1px solid #dee2e6; padding: 8px;">[...]</td><td style="border: 1px solid #dee2e6; padding: 8px;">[...]</td><td style="border: 1px solid #dee2e6; padding: 8px;">[...]</td><td style="border: 1px solid #dee2e6; padding: 8px;">[...]</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.4. Biểu mẫu Test Case</h3>
+            <p>Mỗi test case nên kiểm tra một mục tiêu cụ thể, có thể thực thi lặp lại và truy xuất về yêu cầu.</p>
+            <div style="overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse;">
+                    <tbody>
+                        <tr><th style="text-align: left; border: 1px solid #dee2e6; padding: 8px;">Test Case ID</th><td style="border: 1px solid #dee2e6; padding: 8px;">TC-[Mã duy nhất]</td><th style="text-align: left; border: 1px solid #dee2e6; padding: 8px;">Requirement ID</th><td style="border: 1px solid #dee2e6; padding: 8px;">TR-[Mã yêu cầu]</td></tr>
+                        <tr><th style="text-align: left; border: 1px solid #dee2e6; padding: 8px;">Tên/mục tiêu</th><td colspan="3" style="border: 1px solid #dee2e6; padding: 8px;">[Hành vi cần xác minh]</td></tr>
+                        <tr><th style="text-align: left; border: 1px solid #dee2e6; padding: 8px;">Ưu tiên/loại</th><td style="border: 1px solid #dee2e6; padding: 8px;">[Ưu tiên; bình thường/lỗi/biên; loại kiểm thử]</td><th style="text-align: left; border: 1px solid #dee2e6; padding: 8px;">Môi trường</th><td style="border: 1px solid #dee2e6; padding: 8px;">[Build, OS, trình duyệt/thiết bị]</td></tr>
+                        <tr><th style="text-align: left; border: 1px solid #dee2e6; padding: 8px;">Tiền điều kiện</th><td colspan="3" style="border: 1px solid #dee2e6; padding: 8px;">[Trạng thái ban đầu cần có]</td></tr>
+                        <tr><th style="text-align: left; border: 1px solid #dee2e6; padding: 8px;">Dữ liệu kiểm thử</th><td colspan="3" style="border: 1px solid #dee2e6; padding: 8px;">[Giá trị cụ thể hoặc nguồn dữ liệu]</td></tr>
+                        <tr><th style="text-align: left; border: 1px solid #dee2e6; padding: 8px;">Các bước</th><td colspan="3" style="border: 1px solid #dee2e6; padding: 8px;">1. [Hành động cụ thể]<br>2. [Hành động tiếp theo]<br>3. [Xác minh kết quả]</td></tr>
+                        <tr><th style="text-align: left; border: 1px solid #dee2e6; padding: 8px;">Kết quả mong đợi</th><td colspan="3" style="border: 1px solid #dee2e6; padding: 8px;">[Kết quả quan sát được cho từng bước quan trọng]</td></tr>
+                        <tr><th style="text-align: left; border: 1px solid #dee2e6; padding: 8px;">Kết quả thực tế</th><td colspan="3" style="border: 1px solid #dee2e6; padding: 8px;">[Ghi nhận khi thực thi]</td></tr>
+                        <tr><th style="text-align: left; border: 1px solid #dee2e6; padding: 8px;">Trạng thái/BUG ID</th><td colspan="3" style="border: 1px solid #dee2e6; padding: 8px;">[Pass/Fail/Blocked/Not Run] | [BUG-ID nếu có]</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.5. Biểu mẫu nhật ký thực thi (Test Execution Log)</h3>
+            <p>Ghi lại lần chạy cụ thể để nhóm biết ai đã kiểm thử, trên build/môi trường nào và kết quả ra sao.</p>
+            <div style="overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse;">
+                    <thead><tr><th style="border: 1px solid #dee2e6; padding: 8px;">Ngày/giờ</th><th style="border: 1px solid #dee2e6; padding: 8px;">Build/môi trường</th><th style="border: 1px solid #dee2e6; padding: 8px;">Tester</th><th style="border: 1px solid #dee2e6; padding: 8px;">Test Case ID</th><th style="border: 1px solid #dee2e6; padding: 8px;">Kết quả</th><th style="border: 1px solid #dee2e6; padding: 8px;">Bug ID/ghi chú</th></tr></thead>
+                    <tbody><tr><td style="border: 1px solid #dee2e6; padding: 8px;">[Ngày/giờ]</td><td style="border: 1px solid #dee2e6; padding: 8px;">[Build, thiết bị, OS, trình duyệt]</td><td style="border: 1px solid #dee2e6; padding: 8px;">[Tên]</td><td style="border: 1px solid #dee2e6; padding: 8px;">TC-[ID]</td><td style="border: 1px solid #dee2e6; padding: 8px;">[Pass/Fail/Blocked/Not Run]</td><td style="border: 1px solid #dee2e6; padding: 8px;">[BUG-ID hoặc lý do bị chặn/ghi chú]</td></tr></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.6. Biểu mẫu báo cáo lỗi (Bug Report)</h3>
+            <p>Mô tả lỗi để người khác có thể hiểu, tái hiện và xác minh sau khi sửa. Phân loại lỗi khác với đánh giá mức độ nghiêm trọng và độ ưu tiên.</p>
+            <div style="overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse;">
+                    <tbody>
+                        <tr><th style="text-align: left; border: 1px solid #dee2e6; padding: 8px;">Bug ID/Tiêu đề</th><td style="border: 1px solid #dee2e6; padding: 8px;">BUG-[ID] | [Khu vực] - [Triệu chứng ngắn, cụ thể]</td></tr>
+                        <tr><th style="text-align: left; border: 1px solid #dee2e6; padding: 8px;">Loại lỗi</th><td style="border: 1px solid #dee2e6; padding: 8px;">[UI/UX, chức năng, đầu vào, hiệu năng, bảo mật, tích hợp/hệ thống...]</td></tr>
+                        <tr><th style="text-align: left; border: 1px solid #dee2e6; padding: 8px;">Môi trường</th><td style="border: 1px solid #dee2e6; padding: 8px;">[Build, thiết bị, OS, trình duyệt, cấu hình/dữ liệu liên quan]</td></tr>
+                        <tr><th style="text-align: left; border: 1px solid #dee2e6; padding: 8px;">Tiền điều kiện/dữ liệu</th><td style="border: 1px solid #dee2e6; padding: 8px;">[Trạng thái và dữ liệu cần thiết trước khi tái hiện]</td></tr>
+                        <tr><th style="text-align: left; border: 1px solid #dee2e6; padding: 8px;">Các bước tái hiện</th><td style="border: 1px solid #dee2e6; padding: 8px;">1. [Bước 1]<br>2. [Bước 2]<br>3. [Bước gây lỗi]</td></tr>
+                        <tr><th style="text-align: left; border: 1px solid #dee2e6; padding: 8px;">Kết quả mong đợi</th><td style="border: 1px solid #dee2e6; padding: 8px;">[Hành vi theo yêu cầu/tiêu chí chấp nhận]</td></tr>
+                        <tr><th style="text-align: left; border: 1px solid #dee2e6; padding: 8px;">Kết quả thực tế</th><td style="border: 1px solid #dee2e6; padding: 8px;">[Hành vi quan sát được; thông báo/mã lỗi nếu có]</td></tr>
+                        <tr><th style="text-align: left; border: 1px solid #dee2e6; padding: 8px;">Tần suất/ảnh hưởng</th><td style="border: 1px solid #dee2e6; padding: 8px;">[Luôn xảy ra/thỉnh thoảng; người dùng/chức năng bị ảnh hưởng]</td></tr>
+                        <tr><th style="text-align: left; border: 1px solid #dee2e6; padding: 8px;">Severity/Priority</th><td style="border: 1px solid #dee2e6; padding: 8px;">[Theo quy ước của dự án; nêu lý do nếu cần]</td></tr>
+                        <tr><th style="text-align: left; border: 1px solid #dee2e6; padding: 8px;">Bằng chứng/truy xuất</th><td style="border: 1px solid #dee2e6; padding: 8px;">[Ảnh/log/video; Test Case ID; Requirement ID]</td></tr>
+                        <tr><th style="text-align: left; border: 1px solid #dee2e6; padding: 8px;">Trạng thái/người phụ trách</th><td style="border: 1px solid #dee2e6; padding: 8px;">[New/Open/In Progress/Fixed/Retest/Closed; người phụ trách]</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.7. Biểu mẫu Test Report - Báo cáo kiểm thử</h3>
+            <p>Tóm tắt kết quả trong một khoảng thời gian/build cụ thể, nêu rõ phạm vi, mẫu số của các tỷ lệ và những rủi ro còn lại.</p>
+            <div style="overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse;">
+                    <tbody>
+                        <tr><th style="text-align: left; border: 1px solid #dee2e6; padding: 8px;">Thông tin chung</th><td style="border: 1px solid #dee2e6; padding: 8px;">Dự án: [Tên] | Phiên bản/build: [Số] | Thời gian: [Từ - đến] | Môi trường: [Mô tả] | Người lập: [Tên]</td></tr>
+                        <tr><th style="text-align: left; border: 1px solid #dee2e6; padding: 8px;">Phạm vi/kết luận tóm tắt</th><td style="border: 1px solid #dee2e6; padding: 8px;">[Phạm vi đã kiểm thử, chưa kiểm thử và kết luận/rủi ro chính]</td></tr>
+                        <tr><th style="text-align: left; border: 1px solid #dee2e6; padding: 8px;">Kết quả thực thi</th><td style="border: 1px solid #dee2e6; padding: 8px;">Tổng test case: [N] | Pass: [N] | Fail: [N] | Blocked: [N] | Not Run: [N]</td></tr>
+                        <tr><th style="text-align: left; border: 1px solid #dee2e6; padding: 8px;">Tỷ lệ</th><td style="border: 1px solid #dee2e6; padding: 8px;">Pass trên số đã thực thi = Pass / (Pass + Fail) x 100% = [Tỷ lệ]. Nêu riêng các trường hợp Blocked/Not Run; thống nhất cách tính cho báo cáo.</td></tr>
+                        <tr><th style="text-align: left; border: 1px solid #dee2e6; padding: 8px;">Độ bao phủ yêu cầu</th><td style="border: 1px solid #dee2e6; padding: 8px;">[Số/mã yêu cầu đã kiểm thử, chưa kiểm thử; tham chiếu RTM]</td></tr>
+                        <tr><th style="text-align: left; border: 1px solid #dee2e6; padding: 8px;">Lỗi đáng chú ý</th><td style="border: 1px solid #dee2e6; padding: 8px;">[Bug ID, mô tả, severity/priority, trạng thái, ảnh hưởng]</td></tr>
+                        <tr><th style="text-align: left; border: 1px solid #dee2e6; padding: 8px;">Rủi ro/giới hạn</th><td style="border: 1px solid #dee2e6; padding: 8px;">[Khu vực chưa kiểm thử, dữ liệu/môi trường hạn chế, rủi ro còn lại]</td></tr>
+                        <tr><th style="text-align: left; border: 1px solid #dee2e6; padding: 8px;">Khuyến nghị</th><td style="border: 1px solid #dee2e6; padding: 8px;">[Hành động cụ thể, người/nhóm phụ trách nếu biết, điều kiện kiểm thử lại]</td></tr>
+                        <tr><th style="text-align: left; border: 1px solid #dee2e6; padding: 8px;">Phê duyệt</th><td style="border: 1px solid #dee2e6; padding: 8px;">[Người duyệt, vai trò, ngày, trạng thái/phản hồi]</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.8. Luồng sử dụng các biểu mẫu</h3>
+            <p><strong>Test Plan</strong> xác định phạm vi và cách làm → <strong>Test Requirements</strong> liệt kê điều cần xác minh → <strong>RTM</strong> liên kết yêu cầu với kiểm thử → <strong>Test Case</strong> hướng dẫn thực thi → <strong>Execution Log</strong> ghi kết quả mỗi lần chạy → khi kiểm thử thất bại, tạo <strong>Bug Report</strong> → tổng hợp vào <strong>Test Report</strong>.</p>
+            <p><strong>Ví dụ:</strong> TR-002 (lọc công việc theo trạng thái) được bao phủ bởi TC-004. Lần chạy trên build 1.0 cho kết quả Fail nên tạo BUG-007, ghi liên kết vào RTM và tóm tắt trạng thái cùng khuyến nghị kiểm thử lại trong Test Report.</p>
+        </div>
+    </div>
+</details>
+
+<details style="border: 1px solid #28a745; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #eafaf1; color: #28a745; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>💡 3. Hoạt động &amp; Thực hành trên lớp</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <p style="margin-top: 0;">Dùng cùng một tính năng để hoàn thiện các biểu mẫu và kiểm tra tính liên kết của chúng:</p>
+        <div style="max-width: 760px; padding: 10px 12px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <p><strong style="color: #28a745;">📝 Bài tập theo nhóm</strong></p>
+            <p style="color: #495057;">Chọn tính năng lọc công việc theo trạng thái trong Todo App. Viết một mục Test Plan ngắn, hai yêu cầu kiểm thử, tối thiểu hai test case (có trường hợp danh sách rỗng hoặc dữ liệu hỗn hợp), một dòng RTM và một dòng nhật ký thực thi.</p>
+        </div>
+        <div style="max-width: 760px; padding: 10px 12px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <p><strong style="color: #28a745;">🐞 Mô phỏng báo lỗi</strong></p>
+            <p style="color: #495057;">Giả sử test case lọc trạng thái thất bại vì danh sách vẫn có công việc chưa hoàn thành. Điền Bug Report với bước tái hiện, kết quả mong đợi/thực tế, môi trường và liên kết tới TC/TR.</p>
+        </div>
+        <div style="max-width: 760px; padding: 10px 12px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <p><strong style="color: #28a745;">📊 Tổng hợp báo cáo</strong></p>
+            <p style="color: #495057;">Dựa trên kết quả giả định: 4 Pass, 1 Fail trong 5 test case đã chạy; có một lỗi lọc trạng thái đang mở. Tính tỷ lệ Pass, ghi trạng thái lỗi và đề xuất hành động tiếp theo trong Test Report. Không tự giả định lỗi đã được sửa.</p>
+        </div>
+        <div style="max-width: 760px; padding: 10px 12px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <p><strong style="color: #28a745;">✅ Kiểm tra tính nhất quán</strong></p>
+            <p style="color: #495057;">Rà soát chuỗi TR → TC → kết quả → Bug Report → Test Report. Kiểm tra mã định danh có khớp, phạm vi báo cáo có rõ và số liệu tổng hợp có đúng với nhật ký chạy hay không.</p>
+        </div>
+    </div>
+</details>
+
+<details style="border: 1px solid #6f42c1; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #f3e5f5; color: #6f42c1; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>🆘 4. Góc trợ giúp và mở rộng</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <p><strong>Gợi ý sử dụng:</strong> Duy trì cùng quy ước mã cho yêu cầu, test case và lỗi; luôn ghi build/môi trường khi thực thi; phân biệt Pass, Fail, Blocked và Not Run.</p>
+        <p><strong>Tránh các lỗi thường gặp:</strong> Tiêu chí hoàn thành mơ hồ; test case không có kết quả mong đợi; báo lỗi thiếu bước tái hiện; tính tỷ lệ mà không nêu mẫu số; hoặc báo cáo Pass nhưng không đối chiếu lỗi nghiêm trọng còn mở.</p>
+        <p><strong>Kiến thức mở rộng:</strong> Có thể mở rộng các biểu mẫu bằng quản lý phiên bản, người phê duyệt, liên kết ticket, bằng chứng và tự động tổng hợp từ công cụ quản lý kiểm thử.</p>
+        <p><strong>Tự đánh giá:</strong> Nếu một yêu cầu chưa có test case hoặc một test case Fail chưa có Bug ID, biểu mẫu nào cần được cập nhật để đảm bảo truy xuất đầy đủ?</p>
+    </div>
+</details>

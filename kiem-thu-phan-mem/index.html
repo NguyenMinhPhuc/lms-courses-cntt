@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Cổng học phần Kiểm thử và Đảm bảo chất lượng phần mềm: lộ trình bài học, slide, học liệu thực hành và hướng dẫn báo cáo cuối kỳ.">
+  <title>Kiểm thử và đảm bảo chất lượng phần mềm (Mã: 222201) | Khoa CNTT - Đại học Lạc Hồng</title>
+    <meta name="description" content=" Học phần trang bị kiến thức nền tảng và kỹ năng thực hành về kiểm thử phần mềm, tập trung vào quy trình kiểm thử thủ công: tìm hiểu yêu cầu, lập kế hoạch, thiết kế test case, nhận diện và báo cáo lỗi, theo dõi kết quả và tổng kết chất lượng">
+    <style>
+        :root {
+            color-scheme: light;
+            --ink: #172033;
+            --muted: #64748b;
+            --paper: #f6f8fc;
+            --white: #ffffff;
+            --line: #e2e8f0;
+            --brand: #3155d9;
+            --brand-dark: #233fae;
+            --mint: #dff7ef;
+            --mint-ink: #087a5b;
+            --peach: #fff0dc;
+            --peach-ink: #a94f08;
+            --violet: #efe8ff;
+            --violet-ink: #6841b7;
+            --shadow: 0 18px 55px rgba(35, 55, 100, .09);
+            font-family: Inter, "Segoe UI", Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 88px;
+        }
+
+        body {
+            margin: 0;
+            color: var(--ink);
+            background: var(--paper);
+            line-height: 1.65;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .skip-link {
+            position: absolute;
+            top: -48px;
+            left: 16px;
+            z-index: 10;
+            padding: 8px 12px;
+            color: var(--white);
+            background: var(--ink);
+            border-radius: 8px;
+        }
+
+        .skip-link:focus {
+            top: 12px;
+        }
+
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 5;
+            border-bottom: 1px solid rgba(226, 232, 240, .85);
+            background: rgba(255, 255, 255, .92);
+            backdrop-filter: blur(14px);
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            width: min(1160px, calc(100% - 40px));
+            min-height: 68px;
+            margin: 0 auto;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--ink);
+            font-weight: 800;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .brand-mark {
+            display: grid;
+            width: 36px;
+            height: 36px;
+            place-items: center;
+            color: var(--white);
+            background: linear-gradient(135deg, #4269f5, #7253db);
+            border-radius: 12px;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 6px;
+        }
+
+        .nav-links a {
+            padding: 8px 11px;
+            color: #475569;
+            font-size: .9rem;
+            font-weight: 650;
+            text-decoration: none;
+            border-radius: 9px;
+        }
+
+        .nav-links a:hover,
+        .nav-links a:focus-visible {
+            color: var(--brand-dark);
+            background: #eef2ff;
+        }
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+            padding: 82px 20px 76px;
+            color: var(--white);
+            background:
+                radial-gradient(ellipse at 82% 15%, rgba(115, 170, 255, .42), transparent 32%),
+                radial-gradient(ellipse at 15% 100%, rgba(91, 219, 189, .2), transparent 35%),
+                linear-gradient(125deg, #17234b 0%, #263e91 53%, #3155d9 100%);
+        }
+
+        .hero::after {
+            position: absolute;
+            right: -110px;
+            bottom: -260px;
+            width: 560px;
+            height: 560px;
+            border: 1px solid rgba(255, 255, 255, .14);
+            border-radius: 50%;
+            box-shadow: 0 0 0 52px rgba(255, 255, 255, .035), 0 0 0 105px rgba(255, 255, 255, .025);
+            content: "";
+        }
+
+        .hero-inner,
+        .container {
+            width: min(1080px, 100%);
+            margin: 0 auto;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 11px;
+            color: #dbeafe;
+            background: rgba(255, 255, 255, .11);
+            border: 1px solid rgba(255, 255, 255, .18);
+            border-radius: 999px;
+            font-size: .82rem;
+            font-weight: 750;
+            letter-spacing: .03em;
+        }
+
+        h1 {
+            max-width: 780px;
+            margin: 20px 0 14px;
+            font-size: clamp(2.35rem, 6vw, 4.4rem);
+            letter-spacing: -.045em;
+            line-height: 1.08;
+        }
+
+        .hero-copy {
+            max-width: 710px;
+            margin: 0;
+            color: #e2eaff;
+            font-size: clamp(1.05rem, 2vw, 1.22rem);
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 28px;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-height: 46px;
+            padding: 10px 17px;
+            color: var(--ink);
+            background: var(--white);
+            border: 1px solid transparent;
+            border-radius: 12px;
+            font-weight: 800;
+            text-decoration: none;
+            transition: transform .16s ease, box-shadow .16s ease;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 9px 24px rgba(0, 0, 0, .15);
+        }
+
+        .button.secondary {
+            color: var(--white);
+            background: rgba(255, 255, 255, .1);
+            border-color: rgba(255, 255, 255, .38);
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            max-width: 650px;
+            gap: 12px;
+            margin-top: 42px;
+        }
+
+        .stat {
+            padding: 13px 15px;
+            background: rgba(255, 255, 255, .09);
+            border: 1px solid rgba(255, 255, 255, .13);
+            border-radius: 14px;
+        }
+
+        .stat strong {
+            display: block;
+            font-size: 1.28rem;
+            line-height: 1.2;
+        }
+
+        .stat span {
+            color: #dbeafe;
+            font-size: .84rem;
+        }
+
+        main {
+            padding: 0 20px 70px;
+        }
+
+        .section {
+            padding-top: 62px;
+        }
+
+        .section-heading {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 22px;
+        }
+
+        .section-heading h2 {
+            margin: 0;
+            font-size: clamp(1.55rem, 3vw, 2rem);
+            letter-spacing: -.025em;
+            line-height: 1.2;
+        }
+
+        .section-heading p {
+            max-width: 560px;
+            margin: 8px 0 0;
+            color: var(--muted);
+        }
+
+        .overview-grid,
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .info-card,
+        .resource-card,
+        .lesson-card,
+        .project-card,
+        .flow-step {
+            background: var(--white);
+            border: 1px solid var(--line);
+            border-radius: 17px;
+            box-shadow: 0 5px 18px rgba(25, 45, 80, .035);
+        }
+
+        .info-card {
+            padding: 21px;
+        }
+
+        .icon {
+            display: grid;
+            width: 43px;
+            height: 43px;
+            place-items: center;
+            margin-bottom: 14px;
+            background: #eef2ff;
+            border-radius: 13px;
+            font-size: 1.25rem;
+        }
+
+        .info-card:nth-child(2) .icon {
+            background: var(--mint);
+        }
+
+        .info-card:nth-child(3) .icon {
+            background: var(--peach);
+        }
+
+        .info-card h3,
+        .resource-card h3,
+        .project-card h3 {
+            margin: 0 0 7px;
+            font-size: 1.08rem;
+        }
+
+        .info-card p,
+        .resource-card p,
+        .project-card p {
+            margin: 0;
+            color: var(--muted);
+            font-size: .95rem;
+        }
+
+        .lessons {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 15px;
+        }
+
+        .lesson-card {
+            display: flex;
+            min-height: 192px;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 19px;
+            text-decoration: none;
+            transition: transform .16s ease, border-color .16s ease, box-shadow .16s ease;
+        }
+
+        .lesson-card:hover,
+        .lesson-card:focus-visible {
+            transform: translateY(-3px);
+            border-color: #9eafff;
+            box-shadow: var(--shadow);
+        }
+
+        .lesson-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 12px;
+        }
+
+        .lesson-number {
+            color: var(--brand);
+            font-size: .8rem;
+            font-weight: 850;
+            letter-spacing: .07em;
+            text-transform: uppercase;
+        }
+
+        .lesson-icon {
+            display: grid;
+            width: 36px;
+            height: 36px;
+            place-items: center;
+            background: #f0f3ff;
+            border-radius: 11px;
+        }
+
+        .lesson-card h3 {
+            margin: 0 0 7px;
+            font-size: 1.02rem;
+            line-height: 1.35;
+        }
+
+        .lesson-card p {
+            margin: 0 0 14px;
+            color: var(--muted);
+            font-size: .9rem;
+            line-height: 1.55;
+        }
+
+        .card-link {
+            margin-top: auto;
+            color: var(--brand-dark);
+            font-size: .88rem;
+            font-weight: 800;
+        }
+
+        .flow {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .flow-step {
+            position: relative;
+            padding: 17px 15px;
+        }
+
+        .flow-step span {
+            display: block;
+            margin-bottom: 6px;
+            color: var(--brand);
+            font-size: .78rem;
+            font-weight: 850;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+        }
+
+        .flow-step strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .flow-step p {
+            margin: 0;
+            color: var(--muted);
+            font-size: .86rem;
+        }
+
+        .project-banner {
+            display: grid;
+            grid-template-columns: minmax(0, 1.35fr) minmax(250px, .65fr);
+            gap: 20px;
+            padding: 27px;
+            color: var(--white);
+            background: linear-gradient(125deg, #202c58, #354bb0);
+            border-radius: 22px;
+            box-shadow: var(--shadow);
+        }
+
+        .project-banner h2 {
+            margin: 0 0 9px;
+            font-size: 1.65rem;
+            line-height: 1.25;
+        }
+
+        .project-banner p {
+            margin: 0 0 16px;
+            color: #e0e7ff;
+        }
+
+        .project-banner .button {
+            min-height: 42px;
+            padding: 8px 13px;
+            font-size: .9rem;
+        }
+
+        .project-facts {
+            display: grid;
+            gap: 9px;
+            align-content: center;
+        }
+
+        .fact {
+            padding: 11px 13px;
+            background: rgba(255, 255, 255, .1);
+            border: 1px solid rgba(255, 255, 255, .15);
+            border-radius: 12px;
+            color: #f8fafc;
+            font-size: .9rem;
+        }
+
+        .resources {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .resource-card {
+            padding: 21px;
+        }
+
+        .resource-card .resource-icon {
+            margin-bottom: 8px;
+            font-size: 1.25rem;
+        }
+
+        .link-list {
+            display: grid;
+            gap: 8px;
+            margin: 14px 0 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .link-list a {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 8px 10px;
+            color: var(--brand-dark);
+            background: #f7f8ff;
+            border: 1px solid #edf0ff;
+            border-radius: 9px;
+            font-size: .9rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .link-list a:hover,
+        .link-list a:focus-visible {
+            background: #eef2ff;
+            border-color: #cbd5ff;
+        }
+
+        .link-list a span:last-child {
+            color: #8792aa;
+            font-size: .8rem;
+            white-space: nowrap;
+        }
+
+        .note {
+            margin-top: 17px;
+            padding: 14px 16px;
+            color: #5b4a19;
+            background: #fff8df;
+            border: 1px solid #f3e4a7;
+            border-radius: 12px;
+            font-size: .9rem;
+        }
+
+        .footer {
+            padding: 26px 20px 34px;
+            color: #cbd5e1;
+            background: #18213b;
+        }
+
+        .footer-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            width: min(1080px, 100%);
+            margin: 0 auto;
+        }
+
+        .footer p {
+            margin: 0;
+            font-size: .9rem;
+        }
+
+        .footer a {
+            color: #dbeafe;
+            font-weight: 750;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 850px) {
+            .overview-grid,
+            .lessons {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .flow {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+
+            .nav {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 5px;
+                padding: 11px 0;
+            }
+
+            .nav-links {
+                justify-content: flex-start;
+            }
+
+            .nav-links a {
+                padding: 6px 8px;
+                font-size: .84rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            html {
+                scroll-padding-top: 120px;
+            }
+
+            .hero {
+                padding-top: 58px;
+            }
+
+            .hero-stats,
+            .overview-grid,
+            .lessons,
+            .flow,
+            .resources,
+            .project-banner {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding-top: 46px;
+            }
+
+            .section-heading {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .lesson-card {
+                min-height: 0;
+            }
+
+            .project-banner {
+                padding: 22px;
+            }
+
+            .footer-inner {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                transition-duration: .01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a class="skip-link" href="#main">Bỏ qua điều hướng</a>
+
+    <header class="topbar">
+        <nav class="nav" aria-label="Điều hướng chính">
+            <a class="brand" href="#top">
+                <span class="brand-mark" aria-hidden="true">✓</span>
+                <span>Software Testing</span>
+            </a>
+            <div class="nav-links">
+                <a href="#tong-quan">Tổng quan</a>
+                <a href="#lo-trinh">Lộ trình</a>
+                <a href="#do-an">Báo cáo cuối kỳ</a>
+                <a href="#hoc-lieu">Học liệu</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero" id="top" aria-labelledby="hero-title">
+        <div class="hero-inner">
+            <span class="eyebrow"><span aria-hidden="true">✦</span> CỔNG HỌC PHẦN</span>
+            <h1 id="hero-title">Kiểm thử phần mềm<br>từ yêu cầu đến chất lượng</h1>
+            <p class="hero-copy">Không chỉ tìm lỗi — hãy học cách lập kế hoạch, thiết kế kiểm thử, ghi nhận bằng chứng và truyền đạt kết quả để đưa ra quyết định chất lượng tốt hơn.</p>
+            <div class="hero-actions">
+                <a class="button" href="#lo-trinh">Khám phá lộ trình <span aria-hidden="true">→</span></a>
+                <a class="button secondary" href="Moodle_HTML/00_Thong_tin_hoc_phan.html">Mở thông tin học phần</a>
+            </div>
+            <div class="hero-stats" aria-label="Tóm tắt học liệu">
+                <div class="stat"><strong>09</strong><span>Bài học Moodle</span></div>
+                <div class="stat"><strong>05</strong><span>Bộ slide bài giảng</span></div>
+                <div class="stat"><strong>01</strong><span>Dự án cuối kỳ theo nhóm</span></div>
+            </div>
+        </div>
+    </section>
+
+    <main id="main">
+        <section class="section container" id="tong-quan" aria-labelledby="overview-title">
+            <div class="section-heading">
+                <div>
+                    <h2 id="overview-title">Bắt đầu từ đây</h2>
+                    <p>Cổng này tập hợp bài giảng Moodle và các tài liệu đi kèm trong repository để bạn học theo tiến trình, tra cứu khi thực hành và chuẩn bị báo cáo cuối kỳ.</p>
+                </div>
+            </div>
+            <div class="overview-grid">
+                <article class="info-card">
+                    <div class="icon" aria-hidden="true">🎯</div>
+                    <h3>Mục tiêu học tập</h3>
+                    <p>Phân tích yêu cầu, xây dựng Test Plan, thiết kế test case, thực thi kiểm thử, báo cáo lỗi và tổng hợp Test Report có thể truy xuất.</p>
+                </article>
+                <article class="info-card">
+                    <div class="icon" aria-hidden="true">🧭</div>
+                    <h3>Học theo quy trình</h3>
+                    <p>Các chủ đề nối tiếp nhau từ yêu cầu, kế hoạch, test case đến kết quả, lỗi và khuyến nghị chất lượng.</p>
+                </article>
+                <article class="info-card">
+                    <div class="icon" aria-hidden="true">🤝</div>
+                    <h3>Thực hành cộng tác</h3>
+                    <p>Dùng Todo App và Notepad Cải Tiến làm bối cảnh ví dụ; trao đổi, rà soát chéo và ghi nhận rõ phần đóng góp của nhóm.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="section container" id="lo-trinh" aria-labelledby="lessons-title">
+            <div class="section-heading">
+                <div>
+                    <h2 id="lessons-title">Lộ trình bài học</h2>
+                    <p>Mở bài HTML để xem nội dung đầy đủ và sao chép vào Moodle. Nên bắt đầu từ bài 00, sau đó học theo thứ tự.</p>
+                </div>
+            </div>
+            <div class="lessons">
+                <a class="lesson-card" href="Moodle_HTML/00_Thong_tin_hoc_phan.html">
+                    <div class="lesson-top"><span class="lesson-number">Bài 00</span><span class="lesson-icon" aria-hidden="true">📘</span></div>
+                    <h3>Thông tin học phần</h3>
+                    <p>Mục tiêu, lộ trình, cách học, học liệu tham khảo và định hướng đánh giá.</p>
+                    <span class="card-link">Mở bài học →</span>
+                </a>
+                <a class="lesson-card" href="Moodle_HTML/01_Gioi_thieu_kiem_thu_phan_mem.html">
+                    <div class="lesson-top"><span class="lesson-number">Bài 01</span><span class="lesson-icon" aria-hidden="true">🔍</span></div>
+                    <h3>Giới thiệu kiểm thử phần mềm</h3>
+                    <p>Vai trò, lợi ích, cách phân loại kiểm thử và khi nào dùng kiểm thử thủ công.</p>
+                    <span class="card-link">Mở bài học →</span>
+                </a>
+                <a class="lesson-card" href="Moodle_HTML/02_Xay_dung_Test_Plan.html">
+                    <div class="lesson-top"><span class="lesson-number">Bài 02</span><span class="lesson-icon" aria-hidden="true">🗺️</span></div>
+                    <h3>Xây dựng Test Plan</h3>
+                    <p>Xác định phạm vi, phương pháp, nguồn lực, tiêu chí hoàn thành và rủi ro.</p>
+                    <span class="card-link">Mở bài học →</span>
+                </a>
+                <a class="lesson-card" href="Moodle_HTML/03_Xac_dinh_yeu_cau_kiem_thu.html">
+                    <div class="lesson-top"><span class="lesson-number">Bài 03</span><span class="lesson-icon" aria-hidden="true">📋</span></div>
+                    <h3>Xác định yêu cầu kiểm thử</h3>
+                    <p>Phân loại, làm rõ, viết yêu cầu có thể kiểm chứng và truy xuất độ bao phủ.</p>
+                    <span class="card-link">Mở bài học →</span>
+                </a>
+                <a class="lesson-card" href="Moodle_HTML/04_Test_Case_va_thiet_ke.html">
+                    <div class="lesson-top"><span class="lesson-number">Bài 04</span><span class="lesson-icon" aria-hidden="true">🧪</span></div>
+                    <h3>Test Case và cách xây dựng</h3>
+                    <p>Viết điều kiện, dữ liệu, bước thực hiện và kết quả mong đợi; bao phủ trường hợp bình thường, lỗi, biên.</p>
+                    <span class="card-link">Mở bài học →</span>
+                </a>
+                <a class="lesson-card" href="Moodle_HTML/05_Bao_cao_kiem_thu.html">
+                    <div class="lesson-top"><span class="lesson-number">Bài 05</span><span class="lesson-icon" aria-hidden="true">📊</span></div>
+                    <h3>Thực hiện báo cáo kiểm thử</h3>
+                    <p>Tổng hợp kết quả, độ bao phủ, lỗi, rủi ro và khuyến nghị.</p>
+                    <span class="card-link">Mở bài học →</span>
+                </a>
+                <a class="lesson-card" href="Moodle_HTML/06_Nhan_dien_va_phan_loai_loi.html">
+                    <div class="lesson-top"><span class="lesson-number">Bài 06</span><span class="lesson-icon" aria-hidden="true">🐞</span></div>
+                    <h3>Nhận diện và phân loại lỗi</h3>
+                    <p>UI/UX, chức năng, đầu vào, hiệu năng, bảo mật và lỗi tích hợp/hệ thống.</p>
+                    <span class="card-link">Mở bài học →</span>
+                </a>
+                <a class="lesson-card" href="Moodle_HTML/07_Tong_hop_template_testing.html">
+                    <div class="lesson-top"><span class="lesson-number">Bài 07</span><span class="lesson-icon" aria-hidden="true">🧰</span></div>
+                    <h3>Tổng hợp biểu mẫu kiểm thử</h3>
+                    <p>Thực hành với Test Plan, TR, RTM, Test Case, nhật ký chạy, Bug Report và Test Report.</p>
+                    <span class="card-link">Mở bài học →</span>
+                </a>
+                <a class="lesson-card" href="Moodle_HTML/08_Huong_dan_bao_cao_cuoi_ky.html">
+                    <div class="lesson-top"><span class="lesson-number">Bài 08</span><span class="lesson-icon" aria-hidden="true">🎓</span></div>
+                    <h3>Hướng dẫn báo cáo cuối kỳ</h3>
+                    <p>Yêu cầu dự án nhóm, cấu trúc báo cáo, tiến độ, rubric và checklist nộp bài.</p>
+                    <span class="card-link">Mở bài học →</span>
+                </a>
+            </div>
+        </section>
+
+        <section class="section container" aria-labelledby="workflow-title">
+            <div class="section-heading">
+                <div>
+                    <h2 id="workflow-title">Một quy trình kiểm thử xuyên suốt</h2>
+                    <p>Mỗi tài liệu là một phần của cùng chuỗi công việc, không phải biểu mẫu tách rời.</p>
+                </div>
+            </div>
+            <div class="flow">
+                <article class="flow-step"><span>01 · Hiểu</span><strong>Yêu cầu</strong><p>Xác định điều cần kiểm chứng và tiêu chí chấp nhận.</p></article>
+                <article class="flow-step"><span>02 · Lập kế hoạch</span><strong>Test Plan</strong><p>Chọn phạm vi, phương pháp, nguồn lực và cách đo.</p></article>
+                <article class="flow-step"><span>03 · Thiết kế</span><strong>Test Case</strong><p>Chuẩn bị điều kiện, dữ liệu, bước và kết quả mong đợi.</p></article>
+                <article class="flow-step"><span>04 · Thực thi</span><strong>Kết quả &amp; lỗi</strong><p>Ghi Pass/Fail, bằng chứng và lỗi có thể tái hiện.</p></article>
+                <article class="flow-step"><span>05 · Đánh giá</span><strong>Test Report</strong><p>Tổng hợp độ bao phủ, rủi ro và hành động tiếp theo.</p></article>
+            </div>
+        </section>
+
+        <section class="section container" id="do-an" aria-labelledby="project-title">
+            <div class="project-banner">
+                <div>
+                    <span class="eyebrow">DỰ ÁN NHÓM CUỐI KỲ</span>
+                    <h2 id="project-title">Áp dụng kiến thức vào một dự án kiểm thử hoàn chỉnh</h2>
+                    <p>Theo tài liệu quy định, nhóm 4–5 sinh viên thực hiện trong 3 tuần: lập Test Plan, thiết kế ít nhất 15 test case, ghi kết quả và lỗi, lập Test Report, rồi thuyết trình kết quả.</p>
+                    <a class="button" href="Moodle_HTML/08_Huong_dan_bao_cao_cuoi_ky.html">Xem hướng dẫn báo cáo →</a>
+                </div>
+                <div class="project-facts" aria-label="Thông tin chính về báo cáo cuối kỳ">
+                    <div class="fact"><strong>PDF:</strong> 10–15 trang nội dung, Times New Roman 12</div>
+                    <div class="fact"><strong>PowerPoint:</strong> 10–12 slide, trình bày 10–15 phút</div>
+                    <div class="fact"><strong>Trọng số theo quy định:</strong> 30% báo cáo viết + 10% thuyết trình</div>
+                    <div class="fact"><strong>Lưu ý:</strong> xác nhận ứng dụng và hạn nộp với thông báo Moodle</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section container" id="hoc-lieu" aria-labelledby="resources-title">
+            <div class="section-heading">
+                <div>
+                    <h2 id="resources-title">Thư viện học liệu</h2>
+                    <p>Tra cứu slide gốc, yêu cầu sản phẩm, biểu mẫu, ví dụ thực hành và quy định trong cùng dự án.</p>
+                </div>
+            </div>
+            <div class="resources">
+                <article class="resource-card">
+                    <div class="resource-icon" aria-hidden="true">🖥️</div>
+                    <h3>Slide bài giảng</h3>
+                    <p>Bản trình chiếu và ghi chú nội dung cho năm chủ đề chính.</p>
+                    <ul class="link-list">
+                        <li><a href="Slides/Lecture_1_Introduction_to_Software_Testing.pptx"><span>Bài 1 · Giới thiệu kiểm thử</span><span>PPTX ↗</span></a></li>
+                        <li><a href="Slides/Lecture_1_Introduction_to_Software_Testing.markdown"><span>Ghi chú bài 1</span><span>MD ↗</span></a></li>
+                        <li><a href="Slides/Lecture_2_Building_Test_Plan.pptx"><span>Bài 2 · Xây dựng Test Plan</span><span>PPTX ↗</span></a></li>
+                        <li><a href="Slides/Lecture_2_Building_Test_Plan.markdown"><span>Ghi chú bài 2</span><span>MD ↗</span></a></li>
+                        <li><a href="Slides/Lecture_3_Test_Requirements.pptx"><span>Bài 3 · Yêu cầu kiểm thử</span><span>PPTX ↗</span></a></li>
+                        <li><a href="Slides/Lecture_3_Test_Requirements.markdown"><span>Ghi chú bài 3</span><span>MD ↗</span></a></li>
+                        <li><a href="Slides/Lecture_4_Test_Case_Design.pptx"><span>Bài 4 · Thiết kế Test Case</span><span>PPTX ↗</span></a></li>
+                        <li><a href="Slides/Lecture_4_Test_Case_Design.markdown"><span>Ghi chú bài 4</span><span>MD ↗</span></a></li>
+                        <li><a href="Slides/Lecture_5_Test_Report.pptx"><span>Bài 5 · Test Report</span><span>PPTX ↗</span></a></li>
+                        <li><a href="Slides/Lecture_5_Test_Report.markdown"><span>Ghi chú bài 5</span><span>MD ↗</span></a></li>
+                        <li><a href="Slides/Supplementary_Lecture_Materials.markdown"><span>Tài liệu bổ sung và bài tập thực hành</span><span>MD ↗</span></a></li>
+                    </ul>
+                </article>
+
+                <article class="resource-card">
+                    <div class="resource-icon" aria-hidden="true">🧪</div>
+                    <h3>Yêu cầu và biểu mẫu kiểm thử</h3>
+                    <p>Tài liệu nền để phân tích sản phẩm và chuẩn hóa test case.</p>
+                    <ul class="link-list">
+                        <li><a href="01_PRD_Notepad_CaiTien.md_TiengViet.md"><span>PRD · Notepad Cải Tiến</span><span>MD ↗</span></a></li>
+                        <li><a href="02_TestRequirements_References.md"><span>Yêu cầu kiểm thử và tài liệu tham chiếu</span><span>MD ↗</span></a></li>
+                        <li><a href="03%20-%20Test%20Case.md"><span>Động từ và cách viết Test Case</span><span>MD ↗</span></a></li>
+                        <li><a href="Moodle_HTML/07_Tong_hop_template_testing.html"><span>Bộ biểu mẫu kiểm thử tổng hợp</span><span>HTML ↗</span></a></li>
+                        <li><a href="Moodle_HTML/06_Nhan_dien_va_phan_loai_loi.html"><span>Danh mục loại lỗi và cách nhận diện</span><span>HTML ↗</span></a></li>
+                        <li><a href="list-system-error.md"><span>Danh sách lỗi hệ thống (tài liệu nguồn)</span><span>MD ↗</span></a></li>
+                        <li><a href="template-lesson.md"><span>Mẫu bài học Moodle</span><span>MD ↗</span></a></li>
+                    </ul>
+                </article>
+
+                <article class="resource-card">
+                    <div class="resource-icon" aria-hidden="true">📚</div>
+                    <h3>Bài tập và ví dụ</h3>
+                    <p>Tham khảo đầu ra mẫu và tài liệu hướng dẫn bài tập nhóm.</p>
+                    <ul class="link-list">
+                        <li><a href="Examples/Lecture_Materials.markdown"><span>Học liệu thực hành Todo App</span><span>MD ↗</span></a></li>
+                        <li><a href="Examples/Group_Assignment_Manual_Testing_TodoApp.markdown"><span>Đề bài nhóm · Manual Testing Todo App</span><span>MD ↗</span></a></li>
+                        <li><a href="Examples/Sample_Solution_Manual_Testing_TodoApp.markdown"><span>Bài giải mẫu · Todo App</span><span>MD ↗</span></a></li>
+                        <li><a href="Test_Report_Notepad_CaiTien.markdown"><span>Ví dụ Test Report · Notepad Cải Tiến</span><span>MD ↗</span></a></li>
+                    </ul>
+                </article>
+
+                <article class="resource-card">
+                    <div class="resource-icon" aria-hidden="true">🎓</div>
+                    <h3>Quy định và thông tin</h3>
+                    <p>Đọc kỹ trước khi phân công nhóm, chọn đề tài và chuẩn bị nộp bài.</p>
+                    <ul class="link-list">
+                        <li><a href="Report/Final_Report_Guidelines_Software_Testing.markdown"><span>Quy định báo cáo cuối kỳ</span><span>MD ↗</span></a></li>
+                        <li><a href="Report/Team_Leader_Guidelines_Final_Report.markdown"><span>Hướng dẫn trưởng nhóm</span><span>MD ↗</span></a></li>
+                        <li><a href="Moodle_HTML/00_Thong_tin_hoc_phan.html"><span>Thông tin học phần trên Moodle</span><span>HTML ↗</span></a></li>
+                        <li><a href="README.md"><span>README dự án</span><span>MD ↗</span></a></li>
+                    </ul>
+                </article>
+            </div>
+            <aside class="note">
+                <strong>Lưu ý khi dùng tài liệu:</strong> Các tài liệu và ví dụ trong dự án hỗ trợ học tập; đề cương, lịch, hạn nộp và yêu cầu chính thức của lớp được xác định theo thông báo của giảng viên/Moodle. Trích dẫn nguồn và phân biệt rõ kết quả kiểm thử thật với tình huống mô phỏng.
+            </aside>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <p>Kiểm thử và Đảm bảo chất lượng phần mềm · Cổng học liệu học phần</p>
+            <p><a href="#top">Lên đầu trang ↑</a></p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,70 @@
+Tiêu chuẩn kiểm định ABET đánh giá chương trình đào tạo dựa trên nguyên lý cốt lõi nào?
+A. Số lượng phòng học và giảng đường lý thuyết
+B. Chuẩn đầu ra (Student Outcomes) và mức độ đáp ứng năng lực của người học
+C. Số năm thành lập trường đại học
+D. Mức học phí của từng ngành học
+ANSWER: B
+
+Khái niệm "Vibe Coding" trong chương trình đào tạo Khoa CNTT - LHU nhấn mạnh điều gì?
+A. Chỉ học lý thuyết mà không cần thực hành viết code
+B. Lập trình viên hợp tác cùng AI Agents để tăng tốc phát triển, chuyển trọng tâm sang tư duy kiến trúc và giải quyết bài toán
+C. Học thuộc lòng toàn bộ cú pháp của mọi ngôn ngữ lập trình
+D. Không cần kiểm thử và bảo trì mã nguồn
+ANSWER: B
+
+Trong 5 Trụ cột năng lực Kỹ sư kỷ nguyên AI tại LHU, trụ cột nào tập trung vào Large Language Models (LLM), RAG và Data Pipelines?
+A. Kiến trúc Cloud-Native & DevOps
+B. Chuyên sâu AI & Khoa học Dữ liệu
+C. An ninh mạng kỷ nguyên AI
+D. Tư duy Sản phẩm & Kỹ năng K-S-A
+ANSWER: B
+
+Kỹ thuật RAG (Retrieval-Augmented Generation) được học trong trụ cột AI & Dữ liệu có tác dụng chính là gì?
+A. Tự động tắt máy tính khi không dùng
+B. Kết hợp mô hình ngôn ngữ lớn với việc truy xuất tài liệu nội bộ để trả lời chính xác, tránh ảo giác AI
+C. Dịch tự động giao diện hệ điều hành Windows
+D. Nén dung lượng ổ đĩa cứng
+ANSWER: B
+
+Trụ cột "An ninh mạng kỷ nguyên AI" đào tạo cho sinh viên phương pháp tiếp cận bảo mật hiện đại nào?
+A. Chỉ cài đặt phần mềm diệt virus thông thường
+B. DevSecOps, kiến trúc Zero Trust và bảo mật ứng dụng LLM
+C. Chia sẻ mật khẩu công khai trong nhóm dự án
+D. Bỏ qua các bước rà soát lỗ hổng mã nguồn
+ANSWER: B
+
+Trong trụ cột "Kiến trúc Cloud-Native & DevOps", sinh viên được thực hành trực tiếp trên các nền tảng và công nghệ nào?
+A. Microsoft Word và Excel văn phòng
+B. Docker, Kubernetes, CI/CD Pipelines và các đám mây lớn (AWS, Azure, GCP)
+C. Photoshop và Illustrator
+D. Bộ công cụ gõ văn bản Unikey
+ANSWER: B
+
+Mô hình năng lực toàn diện K-S-A trong Trụ cột thứ 5 là viết tắt của các yếu tố nào?
+A. Knowledge (Kiến thức) – Skills (Kỹ năng) – Attitude (Thái độ)
+B. Key – Software – Architecture
+C. Kernel – Security – Algorithm
+D. Knowledge – Speed – Action
+ANSWER: A
+
+Sinh viên ngành CNTT tại Đại học Lạc Hồng bắt đầu tham gia chương trình thực tập doanh nghiệp (OJT) hưởng lương từ thời điểm nào?
+A. Học kỳ 1 Năm thứ nhất
+B. Học kỳ 1 Năm thứ hai
+C. Học kỳ 1 Năm thứ ba
+D. Sau khi đã nhận bằng tốt nghiệp
+ANSWER: C
+
+Tại sao sinh viên cần đặc biệt chú ý đến các "Môn học tiên quyết" trong sơ đồ đào tạo 4 năm?
+A. Vì môn tiên quyết không tính điểm vào GPA
+B. Vì nếu không đạt môn tiên quyết, sinh viên sẽ không được phép đăng ký học môn tiếp sau đó
+C. Vì môn tiên quyết luôn học vào ban đêm
+D. Vì môn tiên quyết không có bài thi cuối kỳ
+ANSWER: B
+
+Chuẩn đầu ra môn học (CLO - Course Learning Outcome) đóng vai trò gì đối với sinh viên?
+A. Là thước đo định lượng những kiến thức, kỹ năng và thái độ sinh viên phải đạt được sau khi hoàn thành học phần
+B. Là bảng xếp hạng điểm số giữa các lớp với nhau
+C. Là thông tin chỉ dành riêng cho phòng tài chính
+D. Là thời khóa biểu học tập hàng ngày
+ANSWER: A
+
