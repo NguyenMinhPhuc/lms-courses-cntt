@@ -1,0 +1,104 @@
+<details open="" style="border: 1px solid #007bff; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #e7f1ff; color: #007bff; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>📘 1. Tổng quan bài học</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <p><strong>BÀI 04 - Test Case và cách xây dựng</strong></p>
+        <p><strong>Mục tiêu:</strong>&nbsp;Hiểu cấu trúc test case và thiết kế các trường hợp kiểm thử có thể thực thi, rõ ràng, bao phủ yêu cầu và bao gồm trường hợp bình thường, lỗi và biên.</p>
+        <p><strong>Nội dung:</strong></p>
+        <ul>
+            <li><strong>Ý chính 1:</strong> Định nghĩa, vai trò và các trường thông tin của test case.</li>
+            <li><strong>Ý chính 2:</strong> Quy trình thiết kế test case dựa trên yêu cầu kiểm thử.</li>
+            <li><strong>Ý chính 3:</strong> Bao phủ luồng đúng, luồng lỗi và giá trị biên.</li>
+            <li><strong>Ý chính 4:</strong> Viết bước thực hiện/kết quả mong đợi rõ ràng, duy trì test case khi yêu cầu đổi.</li>
+        </ul>
+        <p><strong>Kết quả cần đạt:</strong>&nbsp;Sinh viên viết và rà soát được test case có tiền điều kiện, bước thao tác, kết quả mong đợi và liên kết tới yêu cầu liên quan.</p>
+    </div>
+</details>
+
+<details style="border: 1px solid #fd7e14; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #fff5eb; color: #fd7e14; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>📚 2. Học liệu chính</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.1. Test case là gì?</h3>
+            <p>Test case là tập hợp thông tin mô tả mục tiêu, điều kiện, thao tác và kết quả mong đợi để xác minh một yêu cầu hoặc hành vi cụ thể. Test case giúp người kiểm thử thực hiện nhất quán, ghi nhận pass/fail và cung cấp thông tin để tái hiện lỗi.</p>
+            <p><strong>Ví dụ:</strong> TC-001 xác minh người dùng tạo được ghi chú, lưu thành công và mở lại với nội dung không thay đổi.</p>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.2. Cấu trúc của một test case</h3>
+            <ul>
+                <li><strong>ID:</strong> mã duy nhất, ví dụ TC-001.</li>
+                <li><strong>Yêu cầu liên quan:</strong> mã TR hoặc tiêu chí chấp nhận được kiểm tra.</li>
+                <li><strong>Mô tả/mục tiêu:</strong> hành vi cần xác minh.</li>
+                <li><strong>Tiền điều kiện và dữ liệu:</strong> trạng thái ban đầu, tài khoản, dữ liệu và môi trường.</li>
+                <li><strong>Các bước:</strong> hành động tuần tự, cụ thể, có thể lặp lại.</li>
+                <li><strong>Kết quả mong đợi:</strong> phản hồi hoặc trạng thái hệ thống sau từng hành động quan trọng.</li>
+                <li><strong>Kết quả thực tế/trạng thái:</strong> thông tin ghi nhận khi thực thi như Pass, Fail hoặc Blocked.</li>
+            </ul>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.3. Quy trình thiết kế test case</h3>
+            <ol>
+                <li>Chọn yêu cầu kiểm thử đã được làm rõ và xác định mục tiêu xác minh.</li>
+                <li>Xác định tiền điều kiện, môi trường và dữ liệu cần thiết.</li>
+                <li>Thiết kế luồng hợp lệ, luồng không hợp lệ và các trường hợp biên phù hợp.</li>
+                <li>Viết bước thao tác và kết quả mong đợi bằng ngôn ngữ rõ ràng, quan sát được.</li>
+                <li>Kiểm tra khả năng thực thi, tính độc lập, độ bao phủ và liên kết yêu cầu.</li>
+                <li>Rà soát với đồng đội; cập nhật khi yêu cầu hoặc giao diện thay đổi.</li>
+            </ol>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.4. Trường hợp bình thường, lỗi và biên</h3>
+            <ul>
+                <li><strong>Bình thường:</strong> dữ liệu hợp lệ, thao tác phổ biến và kết quả thành công.</li>
+                <li><strong>Lỗi/không hợp lệ:</strong> dữ liệu thiếu hoặc sai quy tắc, hành động bị từ chối đúng cách.</li>
+                <li><strong>Biên:</strong> kiểm tra các giá trị tại giới hạn và sát giới hạn, ví dụ độ dài tối đa cho phép.</li>
+            </ul>
+            <p><strong>Ví dụ Todo App:</strong> Với yêu cầu tiêu đề tối đa 200 ký tự, kiểm tra tiêu đề thông thường, tiêu đề rỗng và tiêu đề có đúng 200 ký tự; xác minh hành vi với 201 ký tự theo quy tắc sản phẩm đã thống nhất.</p>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.5. Chất lượng, khả năng bảo trì và ví dụ</h3>
+            <p>Test case tốt cần đầy đủ, rõ ràng, khả thi, không phụ thuộc ngầm vào test case khác và dễ cập nhật. Khi có nhiều trường hợp, ưu tiên theo rủi ro và tránh trùng lặp không cần thiết.</p>
+            <p><strong>Ví dụ rút gọn:</strong> TC-002 - Mục tiêu: chặn tạo công việc khi tiêu đề rỗng. Tiền điều kiện: mở trang Todo App. Bước: để trống tiêu đề, nhấn “Thêm”. Kết quả mong đợi: công việc không được tạo và thông báo phù hợp được hiển thị.</p>
+            <p>Khi yêu cầu thay đổi, chẳng hạn bổ sung trạng thái “đang xử lý”, hãy rà soát test case lọc, dữ liệu kiểm thử và ma trận truy xuất liên quan.</p>
+        </div>
+    </div>
+</details>
+
+<details style="border: 1px solid #28a745; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #eafaf1; color: #28a745; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>💡 3. Hoạt động &amp; Thực hành trên lớp</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <p style="margin-top: 0;">Thực hành thiết kế test case cho ứng dụng Todo App:</p>
+        <div style="max-width: 760px; padding: 10px 12px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <p><strong style="color: #28a745;">📝 Bài tập viết test case</strong></p>
+            <p style="color: #495057;">Dựa trên TR-001 (tạo công việc với tiêu đề tối đa 200 ký tự), viết ba test case: tiêu đề hợp lệ, tiêu đề rỗng và tiêu đề tại giới hạn. Mỗi test case phải có ID, tiền điều kiện, dữ liệu, bước thực hiện và kết quả mong đợi.</p>
+        </div>
+        <div style="max-width: 760px; padding: 10px 12px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <p><strong style="color: #28a745;">🔎 Rà soát chéo</strong></p>
+            <p style="color: #495057;">Đổi test case với bạn học. Kiểm tra xem người khác có thể thực hiện mà không cần hỏi thêm không; kết quả mong đợi có quan sát/xác minh được không; test case có liên kết với đúng yêu cầu không.</p>
+        </div>
+        <div style="max-width: 760px; padding: 10px 12px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <p><strong style="color: #28a745;">🧪 Bổ sung bao phủ</strong></p>
+            <p style="color: #495057;">Thiết kế test case cho lọc công việc “hoàn thành”, bao gồm danh sách có kết quả, danh sách rỗng và dữ liệu hỗn hợp giữa hoàn thành/chưa hoàn thành.</p>
+        </div>
+    </div>
+</details>
+
+<details style="border: 1px solid #6f42c1; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #f3e5f5; color: #6f42c1; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>🆘 4. Góc trợ giúp và mở rộng</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <p><strong>Gợi ý viết bước:</strong> Mỗi bước bắt đầu bằng hành động cụ thể như mở, nhập, chọn, nhấn hoặc xác minh. Ghi riêng kết quả mong đợi để người thực thi biết điều gì chứng minh bước đó thành công.</p>
+        <p><strong>Kiến thức mở rộng:</strong> Tìm hiểu phân vùng tương đương, phân tích giá trị biên và cách ưu tiên test case theo rủi ro.</p>
+        <p><strong>Tự đánh giá:</strong> Một test case chỉ ghi “kiểm tra chức năng lọc hoạt động đúng” có đủ để thực thi không? Hãy bổ sung dữ liệu, bước và kết quả mong đợi.</p>
+    </div>
+</details>

@@ -1,0 +1,70 @@
+Quy tắc cốt lõi khi sử dụng AI để dịch thuật tài liệu tiếng Anh chuyên ngành CNTT là gì?
+A. Phải dịch từng từ một sang tiếng Việt thuần túy, kể cả tên lệnh
+B. Yêu cầu AI giữ nguyên các thuật ngữ kỹ thuật chuẩn quốc tế (như API, Framework, Polymorphism, Backend, Frontend...) để tránh hiểu sai bản chất
+C. Dịch ngẫu nhiên không cần kiểm tra lại
+D. Luôn dịch tên các ngôn ngữ lập trình sang tiếng Việt
+ANSWER: B
+
+Tại sao việc ép dịch thuật ngữ công nghệ sang nghĩa đen tiếng Việt (như dịch "Thread" thành "sợi chỉ", "Port" thành "cảng biển") lại bị coi là sai lầm trong kỹ thuật phần mềm?
+A. Vì làm câu văn quá ngắn
+B. Vì làm méo mó bản chất kỹ thuật của hệ thống và gây nhầm lẫn nghiêm trọng khi tra cứu tài liệu quốc tế
+C. Vì phần mềm sẽ báo lỗi không chạy được
+D. Vì vi phạm luật an ninh mạng
+ANSWER: B
+
+Hiện tượng "Ảo giác của AI" (AI Hallucination) trong các mô hình ngôn ngữ lớn được hiểu là gì?
+A. Màn hình máy tính bị rung lắc khi đang chat
+B. Mô hình AI tự tin đưa ra thông tin hoàn toàn sai sự thật, bịa đặt số liệu, trích dẫn tác giả hoặc thư viện code không hề tồn tại
+C. AI có khả năng nhìn thấy ma quái
+D. AI tự động tải virus về máy người dùng
+ANSWER: B
+
+Nguyên nhân kỹ thuật chính dẫn đến hiện tượng AI Hallucination là gì?
+A. Do người dùng gõ sai bàn phím
+B. Do cơ chế mô hình LLM là dự đoán chuỗi từ ngữ có xác suất cao nhất về mặt ngữ pháp chứ không có khả năng tự kiểm chứng chân lý thực tế
+C. Do máy tính bị nóng quạt tản nhiệt
+D. Do nhà cung cấp mạng viễn thông chặn dữ liệu
+ANSWER: B
+
+Kỹ thuật Prompting nào dưới đây giúp hạn chế tối đa hiện tượng ảo giác khi nhờ AI giải đáp kiến thức?
+A. "Hãy trả lời thật dài và bịa thêm ví dụ nếu không biết."
+B. Cung cấp trực tiếp tài liệu nguồn và ràng buộc: "Chỉ trả lời dựa trên đoạn văn bản được cung cấp ở trên; nếu thông tin không có trong tài liệu, hãy trả lời 'Tài liệu không đề cập'."
+C. Không cung cấp tài liệu gì và yêu cầu AI đoán mò
+D. Yêu cầu AI trả lời bằng thơ lục bát
+ANSWER: B
+
+Quy trình kiểm chứng sự thật (Fact-checking) bắt buộc sinh viên phải làm gì đối với các trích dẫn tài liệu do AI cung cấp?
+A. Tin tưởng tuyệt đối 100% không cần kiểm tra
+B. Tra cứu đối chiếu chéo tên bài báo, tác giả, năm xuất bản và chỉ số DOI trên các cổng khoa học uy tín (như Google Scholar, IEEE, ACM)
+C. Chia sẻ ngay lên mạng xã hội
+D. Xóa bài viết của AI ngay lập tức
+ANSWER: B
+
+Khi sử dụng AI để biên tập và nâng cao chất lượng bài viết báo cáo học thuật, câu lệnh nào dưới đây là phù hợp nhất?
+A. "Hãy viết lại toàn bộ theo ý của bạn và thay đổi hết ý tưởng của tôi."
+B. "Hãy rà soát lỗi chính tả, ngữ pháp và cải thiện sự mạch lạc của đoạn văn sau; giữ nguyên ý tưởng gốc và liệt kê rõ những chỗ đã chỉnh sửa kèm lý do."
+C. "Dịch đoạn này sang 5 thứ tiếng khác nhau."
+D. "Hãy viết đoạn văn này thật mơ hồ và khó hiểu."
+ANSWER: B
+
+Cấu trúc chuẩn mực của một bản Báo cáo Đồ án Kỹ thuật CNTT thường theo trình tự logic nào?
+A. Kết luận &rarr; Mở đầu &rarr; Trò chơi giải trí &rarr; Bảng điểm
+B. Đặt vấn đề/Mục tiêu &rarr; Tổng quan/Cơ sở lý thuyết &rarr; Thiết kế hệ thống &rarr; Hiện thực &amp; Thực nghiệm &rarr; Đánh giá &amp; Kết luận
+C. Danh sách thành viên nhóm &rarr; Hình ảnh đi chơi &rarr; Lời cảm ơn
+D. Bảng mã nguồn toàn bộ &rarr; Bìa báo cáo
+ANSWER: B
+
+Nguyên tắc Liêm chính học thuật (Academic Integrity) tại Đại học Lạc Hồng quy định như thế nào về việc sử dụng AI trong bài tập và đồ án?
+A. Nghiêm cấm hoàn toàn, không được phép chạm vào máy tính
+B. Được phép sử dụng AI như công cụ hỗ trợ nhưng phải khai báo minh bạch, trích dẫn rõ ràng phạm vi sử dụng và tự chịu trách nhiệm về nội dung báo cáo
+C. Được phép copy 100% câu trả lời của AI và nộp bài giả vờ là mình tự viết
+D. Tùy thuộc vào thời tiết của ngày nộp bài
+ANSWER: B
+
+Cổng thông tin học thuật trực tuyến chuẩn xác nào thường được sử dụng phổ biến nhất để tìm kiếm và kiểm chứng bài báo nghiên cứu khoa học?
+A. TikTok
+B. Google Scholar (scholar.google.com)
+C. Trang chia sẻ hình ảnh Pinterest
+D. Diễn đàn truyện tranh
+ANSWER: B
+

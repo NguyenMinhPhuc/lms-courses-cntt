@@ -1,0 +1,70 @@
+Về bản chất kỹ thuật, các mô hình ngôn ngữ lớn (LLM) như ChatGPT và Google Gemini hoạt động dựa trên cơ chế nào?
+A. Tự có ý thức và cảm xúc như con người
+B. Dự đoán từ (token) tiếp theo có xác suất xuất hiện cao nhất dựa trên ngữ cảnh văn bản đầu vào và dữ liệu huấn luyện
+C. Tìm kiếm dữ liệu thủ công như một nhân viên văn phòng
+D. Quét ổ cứng máy tính cá nhân của người dùng
+ANSWER: B
+
+Tổ chức nghiên cứu và phát triển sản phẩm ChatGPT là đơn vị nào?
+A. Microsoft
+B. OpenAI
+C. Apple
+D. Meta
+ANSWER: B
+
+Mô hình Trí tuệ nhân tạo tạo sinh đa phương thức (Multimodal AI) chủ lực của Google có tên gọi là gì?
+A. Claude
+B. DeepSeek
+C. Gemini
+D. Copilot
+ANSWER: C
+
+Khái niệm "Prompt Engineering" trong lĩnh vực Trí tuệ nhân tạo được hiểu là gì?
+A. Kỹ thuật sửa chữa phần cứng và thay thế chip vi xử lý
+B. Kỹ thuật thiết kế, tinh chỉnh và tối ưu hóa câu lệnh đầu vào để hướng dẫn AI tạo ra kết quả chính xác và chất lượng nhất
+C. Cài đặt hệ điều hành cho máy chủ AI
+D. Xóa bỏ hoàn toàn các mô hình ngôn ngữ lớn
+ANSWER: B
+
+Cấu trúc một câu lệnh (Prompt) chuẩn mực và đầy đủ để đạt kết quả tối ưu thường bao gồm 5 yếu tố nào?
+A. Chỉ cần duy nhất 1 từ khóa tiếng Anh
+B. [Vai trò] + [Bối cảnh cụ thể] + [Nhiệm vụ rõ ràng] + [Ràng buộc/Quy tắc] + [Định dạng đầu ra]
+C. Tên sinh viên + Ngày tháng năm sinh + Số điện thoại + Lời chúc
+D. Đoạn mã lỗi mà không cần giải thích gì thêm
+ANSWER: B
+
+Kỹ thuật Prompting "ELI5" (Explain Like I'm 5) thường được sinh viên sử dụng hiệu quả cho mục đích nào?
+A. Yêu cầu AI tự động xóa tài khoản học tập
+B. Yêu cầu AI giải thích một thuật ngữ hoặc khái niệm công nghệ phức tạp bằng ngôn từ cực kỳ giản dị, trực quan như giải thích cho một đứa trẻ 5 tuổi
+C. Yêu cầu AI viết bài luận tốt nghiệp đại học
+D. Yêu cầu AI hack tài khoản của người khác
+ANSWER: B
+
+Biện pháp bảo mật quan trọng hàng đầu mà sinh viên nên thiết lập ngay sau khi tạo tài khoản ChatGPT và Google là gì?
+A. Chia sẻ mật khẩu công khai cho các bạn cùng phòng
+B. Kích hoạt tính năng xác thực hai yếu tố (2FA - Two-Factor Authentication)
+C. Tắt tính năng bảo mật của trình duyệt
+D. Sử dụng mật khẩu đơn giản như "123456"
+ANSWER: B
+
+Khi câu trả lời ban đầu của ChatGPT hoặc Gemini chưa đúng trọng tâm mong muốn, người dùng nên làm gì?
+A. Tắt ngay trình duyệt và từ bỏ việc sử dụng AI
+B. Đưa ra câu hỏi nối tiếp (Follow-up prompt) làm rõ thêm bối cảnh, chỉ ra điểm chưa hài lòng và yêu cầu AI điều chỉnh lại
+C. Lặp lại y nguyên câu hỏi cũ nhiều lần liên tiếp
+D. Chửi bới công cụ AI
+ANSWER: B
+
+Khi muốn biến AI thành một "Gia sư ảo 1-1" (Personal Tutor) hướng dẫn học lập trình C++, câu lệnh mở đầu nào là phù hợp nhất?
+A. "Lập trình C++ là gì?"
+B. "Bạn là một gia sư lập trình C++ tận tâm. Hãy hướng dẫn tôi từng bước hiểu về khái niệm Con trỏ (Pointer), đưa ví dụ đời sống và sau đó đặt một câu hỏi kiểm tra độ hiểu bài của tôi."
+C. "Giải hết bài tập này cho tôi ngay lập tức."
+D. "C++ khó quá."
+ANSWER: B
+
+Nguyên nhân phổ biến nhất khiến AI đưa ra câu trả lời chung chung, thiếu chiều sâu là gì?
+A. Do AI không biết tiếng Việt
+B. Do câu lệnh của người dùng quá ngắn, mơ hồ, thiếu bối cảnh và không nêu rõ định dạng đầu ra mong muốn
+C. Do máy tính không có card đồ họa rời
+D. Do hệ thống LMS bị mất kết nối mạng
+ANSWER: B
+

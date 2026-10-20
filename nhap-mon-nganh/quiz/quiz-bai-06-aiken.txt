@@ -1,0 +1,70 @@
+Thuật ngữ "TL;DR" trong kỹ thuật tóm tắt văn bản bằng AI là viết tắt của cụm từ nào?
+A. Too Long; Didn't Read (Tóm tắt siêu ngắn gọn những ý cốt lõi nhất)
+B. Test Logic Data Record
+C. Total Line Direct Read
+D. Time Limit Decision Right
+ANSWER: A
+
+Khi cần đọc một chương sách kỹ thuật chuyên ngành dài 30 trang, cách tiếp cận tóm tắt nào bằng AI là hiệu quả nhất?
+A. Chỉ yêu cầu AI viết đúng 1 dòng duy nhất
+B. Yêu cầu AI tóm tắt có cấu trúc: Luận điểm chính &rarr; Giải thích chi tiết &rarr; Ví dụ minh họa &rarr; Bảng đối chiếu thuật ngữ
+C. Yêu cầu AI dịch toàn bộ sang tiếng La-tinh
+D. Bảo AI tự động xóa bớt các trang chẵn
+ANSWER: B
+
+Bảng "Glossary" mà sinh viên có thể yêu cầu AI trích xuất tự động từ một bài giảng mang ý nghĩa gì?
+A. Danh sách điểm số của các sinh viên trong lớp
+B. Bảng danh mục các thuật ngữ chuyên ngành mới xuất hiện kèm định nghĩa giải thích ngắn gọn, dễ hiểu
+C. Lịch thi cuối kỳ của học phần
+D. Danh sách các bài hát thịnh hành
+ANSWER: B
+
+Phương pháp học tập chủ động "Active Recall" (Gợi nhớ chủ động) được kết hợp với ChatGPT/Gemini như thế nào?
+A. Bảo AI viết sẵn toàn bộ câu trả lời rồi đọc thuộc lòng
+B. Yêu cầu AI đóng vai giám khảo, lần lượt đặt từng câu hỏi về bài học để sinh viên tự suy nghĩ trả lời, sau đó AI mới nhận xét và sửa lỗi
+C. Chép đi chép lại câu trả lời của AI vào tập 10 lần
+D. Bật máy tính để AI tự học một mình
+ANSWER: B
+
+Phương pháp "Spaced Repetition" (Lặp lại ngắt quãng) thường được ứng dụng cùng công cụ nào để giúp sinh viên ghi nhớ kiến thức lập trình lâu dài?
+A. Bộ thẻ nhớ Flashcard trên các ứng dụng như Anki hoặc Quizlet
+B. Trò chơi điện tử trực tuyến
+C. Các video giải trí ngắn trên TikTok
+D. Máy tính tính tiền siêu thị
+ANSWER: A
+
+Để dễ dàng nhập (import) bộ câu hỏi - câu trả lời ôn tập từ ChatGPT vào ứng dụng Anki hoặc Quizlet, ta nên yêu cầu AI xuất ra định dạng nào?
+A. Định dạng file âm thanh MP3
+B. Định dạng bảng 2 cột dạng Markdown hoặc định dạng văn bản ngăn cách bởi dấu tab (TSV/CSV)
+C. Định dạng ảnh chụp màn hình bị mờ
+D. Đoạn văn liền một khối không ngắt dòng
+ANSWER: B
+
+Khi một cuốn sách hoặc tài liệu quá dài vượt quá giới hạn cửa sổ ngữ cảnh (Context Window) của AI, giải pháp tối ưu là gì?
+A. Không sử dụng AI nữa
+B. Chia nhỏ tài liệu thành từng chương hoặc từng phần (1000 - 1500 từ) để yêu cầu AI xử lý và tóm tắt cuốn chiếu từng phần
+C. Dán toàn bộ vào một dòng duy nhất
+D. Đổi phông chữ tài liệu sang Times New Roman
+ANSWER: B
+
+Tại sao sinh viên nên có thói quen đổi tên (Rename) và phân loại các luồng trò chuyện (Chat Threads) trong ChatGPT/Gemini?
+A. Để trang web tải nhanh hơn
+B. Để lưu giữ ngữ cảnh riêng của từng môn học (ví dụ: [C++] - Con trỏ, [Toán rời rạc] - Đồ thị) và dễ dàng tra cứu lại khi ôn thi
+C. Vì ChatGPT sẽ tự động khóa tài khoản nếu không đổi tên
+D. Để chia sẻ tài khoản cho người khác dùng chung
+ANSWER: B
+
+Để tóm tắt một bài báo khoa học công nghệ quốc tế, cấu trúc chuẩn mực nào dưới đây giúp AI phân tích trọn vẹn giá trị bài báo?
+A. Tên tác giả + Giá tiền mua bài báo
+B. Mục tiêu nghiên cứu &rarr; Phương pháp tiếp cận &rarr; Kết quả đạt được &rarr; Đóng góp và Hạn chế của nghiên cứu
+C. Số lượng từ ngữ trong bài báo
+D. Màu sắc hình ảnh minh họa trong bài báo
+ANSWER: B
+
+Mục đích đúng đắn nhất khi sử dụng AI để tóm tắt sách và tài liệu học tập là gì?
+A. Thay thế hoàn toàn việc đọc sách và không cần bao giờ mở sách ra nữa
+B. Nhanh chóng nắm bắt bức tranh tổng thể và các luận điểm trọng tâm, từ đó định hướng đọc sâu vào những phần kiến thức quan trọng nhất
+C. Dùng bản tóm tắt nộp bài thay cho bài tập cá nhân
+D. Giảm thời gian ngủ của sinh viên
+ANSWER: B
+

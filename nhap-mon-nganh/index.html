@@ -1,0 +1,1775 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Khóa học: Nhập Môn Công Nghệ Thông Tin (111106) | Khoa CNTT - Đại học Lạc Hồng</title>
+  <meta name="description" content="Khóa học Nhập Môn Công Nghệ Thông Tin - Đại học Lạc Hồng (LHU). Chuẩn kiểm định ABET Hoa Kỳ, tiên phong AI-First & Vibe Coding, làm chủ ChatGPT, Gemini, tư duy Clean Code và định hình lộ trình 4 năm đại học.">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Inter & Roboto Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome 6.4.0 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['Roboto Mono', 'monospace'],
+          },
+          colors: {
+            asu: {
+              maroon: '#8C1D40',
+              gold: '#FFC627',
+              dark: '#5C142B',
+              light: '#FAEDF0'
+            },
+            lhu: {
+              blue: '#013D88',
+              sky: '#007BFF',
+              dark: '#01295C',
+              light: '#EEF5FC'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+    <style>
+    .glass-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+    }
+    .gradient-hero {
+      background: linear-gradient(135deg, #01295C 0%, #013D88 50%, #8C1D40 100%);
+    }
+    .badge-glow {
+      box-shadow: 0 0 15px rgba(255, 198, 39, 0.4);
+    }
+    
+    /* Typing Cursor */
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+    .typing-cursor {
+      display: inline-block;
+      width: 3px;
+      height: 0.9em;
+      background-color: #FFC627;
+      margin-left: 4px;
+      vertical-align: middle;
+      animation: blink 0.8s infinite;
+    }
+
+    /* Card Glow & Scale on Hover */
+    .card-hover-glow {
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+      position: relative;
+    }
+    .card-hover-glow:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 20px 40px -10px rgba(1, 61, 136, 0.25), 0 0 28px 4px rgba(255, 198, 39, 0.55);
+      border-color: #007BFF !important;
+      z-index: 20;
+    }
+
+    .dark-card-hover-glow {
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+      position: relative;
+    }
+    .dark-card-hover-glow:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 22px 45px -10px rgba(0, 0, 0, 0.75), 0 0 30px 5px rgba(255, 198, 39, 0.5);
+      border-color: #FFC627 !important;
+      z-index: 20;
+    }
+
+    /* Modal Animation */
+    @keyframes modalFadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes modalScaleIn {
+      from { opacity: 0; transform: scale(0.92) translateY(16px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .animate-modal-backdrop {
+      animation: modalFadeIn 0.25s ease-out forwards;
+    }
+    .animate-modal-box {
+      animation: modalScaleIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+  </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-asu-gold selection:text-slate-900">
+
+  <!-- TOP BAR -->
+  <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+      <div class="flex items-center gap-3">
+        <span class="inline-flex items-center gap-1.5 text-asu-gold font-semibold">
+          <i class="fa-solid fa-certificate"></i> CHUẨN KIỂM ĐỊNH ABET (HOA KỲ)
+        </span>
+        <span class="hidden md:inline text-slate-600">|</span>
+        <span class="hidden md:inline">Đối tác chiến lược: <strong>Arizona State University (ASU)</strong></span>
+      </div>
+      <div class="flex items-center gap-4 text-xs font-mono">
+        <span>Mã học phần: <strong class="text-white">111106</strong></span>
+        <span>Số tín chỉ: <strong class="text-asu-gold">3 (3-0-0)</strong></span>
+        <span>Mã ngành: <strong class="text-white">7480201</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <!-- Logo Brand -->
+      <a href="#" class="flex items-center gap-3 group">
+        <img src="LHU_ASU_VI_Small_Ngang.png" alt="LHU - ASU Logo" class="h-10 sm:h-12 w-auto object-contain">
+        <div class="border-l border-slate-300 pl-3">
+          <div class="text-xs font-bold text-slate-500 uppercase tracking-wider">Khoa Công Nghệ Thông Tin</div>
+          <div class="text-sm font-extrabold text-lhu-blue group-hover:text-asu-maroon transition-colors">ĐẠI HỌC LẠC HỒNG</div>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden lg:flex items-center gap-7 text-sm font-medium text-slate-700">
+        <a href="#tong-quan" class="hover:text-lhu-blue transition-colors">Tổng quan</a>
+        <a href="#chuan-dau-ra" class="hover:text-lhu-blue transition-colors">Chuẩn đầu ra</a>
+        <a href="#5-tru-cot" class="hover:text-lhu-blue transition-colors">5 Trụ cột AI</a>
+        <a href="#lo-trinh-9-buoi" class="hover:text-lhu-blue transition-colors">Lộ trình 9 buổi</a>
+        <a href="#danh-gia" class="hover:text-lhu-blue transition-colors">Đánh giá</a>
+        <a href="#giang-vien" class="hover:text-lhu-blue transition-colors">Giảng viên</a>
+        <a href="#faq" class="hover:text-lhu-blue transition-colors">Hỏi đáp</a>
+      </nav>
+
+      <!-- Action Button -->
+      <div class="flex items-center gap-3">
+        <a href="https://learn.lhu.edu.vn" target="_blank" rel="noopener noreferrer" 
+           class="inline-flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-lhu-blue to-asu-maroon text-white text-sm font-bold rounded-xl shadow-md hover:shadow-lg hover:brightness-110 transition-all">
+          <i class="fa-solid fa-graduation-cap text-asu-gold"></i>
+          <span>Vào lớp LMS</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="gradient-hero text-white relative overflow-hidden py-16 sm:py-24">
+    <!-- Subtle background pattern -->
+    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Left Hero Content -->
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-semibold text-asu-gold badge-glow">
+            <i class="fa-solid fa-sparkles"></i>
+            <span>HỌC PHẦN TIÊN PHONG • AI-FIRST &amp; VIBE CODING</span>
+          </div>
+
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black leading-tight tracking-tight min-h-[2.4em] sm:min-h-[1.9em]">
+            Nhập Môn <br class="hidden sm:inline">
+            <span id="heroTypingText" class="text-transparent bg-clip-text bg-gradient-to-r from-asu-gold via-yellow-200 to-white"></span><span class="typing-cursor"></span>
+          </h1>
+
+          <p class="text-base sm:text-lg text-slate-200 leading-relaxed max-w-2xl font-normal">
+            Bệ phóng vững chắc cho tân sinh viên Khoa CNTT - LHU. Khám phá 5 trụ cột năng lực kỹ sư tương lai, làm chủ Trí tuệ nhân tạo (ChatGPT, Gemini), thiết lập tư duy <strong>Clean Code</strong> và sẵn sàng bứt phá cùng chương trình chuẩn kiểm định quốc tế <strong>ABET Hoa Kỳ</strong>.
+          </p>
+
+          <!-- Key Metrics Grid -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-2">
+            <div class="p-3.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/10">
+              <div class="text-2xl font-black text-asu-gold font-mono">45</div>
+              <div class="text-xs text-slate-300 font-medium">Tiết thực chiến (9 buổi)</div>
+            </div>
+            <div class="p-3.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/10">
+              <div class="text-2xl font-black text-asu-gold font-mono">ABET</div>
+              <div class="text-xs text-slate-300 font-medium">Chuẩn kiểm định Mỹ</div>
+            </div>
+            <div class="p-3.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/10">
+              <div class="text-2xl font-black text-asu-gold font-mono">100%</div>
+              <div class="text-xs text-slate-300 font-medium">Ứng dụng GenAI</div>
+            </div>
+            <div class="p-3.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/10">
+              <div class="text-2xl font-black text-asu-gold font-mono">OJT</div>
+              <div class="text-xs text-slate-300 font-medium">Thực tập từ Kỳ 1 Năm 3</div>
+            </div>
+          </div>
+
+          <!-- Hero Buttons -->
+          <div class="flex flex-wrap gap-4 pt-4">
+            <a href="#lo-trinh-9-buoi" class="px-6 py-3.5 bg-asu-gold text-slate-900 font-extrabold rounded-xl shadow-lg hover:bg-yellow-400 hover:scale-[1.02] transition-all flex items-center gap-2">
+              <i class="fa-solid fa-list-check"></i>
+              <span>Khám phá Lộ trình 9 Buổi</span>
+            </a>
+            <a href="thong-tin-hoc-phan.html" class="px-6 py-3.5 bg-white/15 hover:bg-white/25 text-white font-bold rounded-xl border border-white/30 backdrop-blur-md transition-all flex items-center gap-2">
+              <i class="fa-solid fa-file-lines"></i>
+              <span>Xem Đề cương chi tiết</span>
+            </a>
+            <a href="danh-gia-hoc-phan.html" class="px-6 py-3.5 bg-white/15 hover:bg-white/25 text-white font-bold rounded-xl border border-white/30 backdrop-blur-md transition-all flex items-center gap-2">
+              <i class="fa-solid fa-clipboard-check text-emerald-400"></i>
+              <span>Đánh giá học phần</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Hero Card: Quick Course Card -->
+        <div class="lg:col-span-5">
+          <div class="bg-white text-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl border border-slate-100 relative">
+            <div class="absolute -top-3.5 right-6 px-3.5 py-1 bg-asu-maroon text-white text-xs font-black tracking-wider uppercase rounded-full shadow-md">
+              Học kỳ I • Năm 1
+            </div>
+
+            <div class="flex items-center gap-4 border-b border-slate-100 pb-5">
+              <div class="w-14 h-14 rounded-2xl bg-lhu-light text-lhu-blue flex items-center justify-center text-2xl font-black shadow-inner">
+                <i class="fa-solid fa-microchip"></i>
+              </div>
+              <div>
+                <h3 class="text-lg font-black text-slate-900 leading-snug">Nhập môn CNTT</h3>
+                <p class="text-xs text-slate-500 font-mono">111106 • 3 Tín chỉ (3-0-0)</p>
+              </div>
+            </div>
+
+            <div class="py-5 space-y-3.5 text-sm">
+              <div class="flex items-center justify-between text-slate-600">
+                <span class="flex items-center gap-2.5">
+                  <i class="fa-solid fa-calendar-check text-lhu-sky"></i>
+                  <span>Thời lượng khóa học:</span>
+                </span>
+                <strong class="text-slate-900">45 tiết (9 buổi x 5 tiết)</strong>
+              </div>
+              <div class="flex items-center justify-between text-slate-600">
+                <span class="flex items-center gap-2.5">
+                  <i class="fa-solid fa-user-tie text-asu-maroon"></i>
+                  <span>Giảng viên phụ trách:</span>
+                </span>
+                <strong class="text-slate-900 flex items-center gap-1.5"><img src="NguyenMinhPhuc_CNTT.jpg" alt="ThS. Nguyễn Minh Phúc" class="w-5 h-5 rounded-full object-cover object-top border border-slate-300"> ThS. Nguyễn Minh Phúc</strong>
+              </div>
+              <div class="flex items-center justify-between text-slate-600">
+                <span class="flex items-center gap-2.5">
+                  <i class="fa-solid fa-building-columns text-emerald-600"></i>
+                  <span>Đơn vị phụ trách:</span>
+                </span>
+                <strong class="text-slate-900">Khoa CNTT - LHU</strong>
+              </div>
+              <div class="flex items-center justify-between text-slate-600">
+                <span class="flex items-center gap-2.5">
+                  <i class="fa-solid fa-brain text-purple-600"></i>
+                  <span>Công cụ thực hành:</span>
+                </span>
+                <strong class="text-slate-900">ChatGPT, Gemini, Gamma, Git</strong>
+              </div>
+              <div class="flex items-center justify-between text-slate-600">
+                <span class="flex items-center gap-2.5">
+                  <i class="fa-solid fa-award text-amber-500"></i>
+                  <span>Đánh giá kết quả:</span>
+                </span>
+                <strong class="text-slate-900">30% QT - 30% GK - 40% CK</strong>
+              </div>
+            </div>
+
+            <div class="border-t border-slate-100 pt-5">
+              <a href="https://learn.lhu.edu.vn" target="_blank" rel="noopener noreferrer"
+                 class="w-full py-3.5 bg-lhu-blue hover:bg-lhu-dark text-white font-extrabold rounded-xl text-center block shadow-md hover:shadow-lg transition-all">
+                Truy cập Khóa học trên LMS LHU &rarr;
+              </a>
+              <p class="text-center text-[11px] text-slate-400 mt-2">
+                Đăng nhập bằng tài khoản email sinh viên <code>@lhu.edu.vn</code>
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: CHUẨN ĐẦU RA (CLO) -->
+  <section id="chuan-dau-ra" class="py-16 sm:py-20 bg-white border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <span class="text-xs font-bold uppercase tracking-widest text-lhu-sky bg-lhu-light px-3.5 py-1.5 rounded-full">
+          Chuẩn kiểm định quốc tế ABET
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-3">
+          Chuẩn Đầu Ra Học Phần (Course Learning Outcomes)
+        </h2>
+        <p class="text-slate-600 text-sm sm:text-base mt-2">
+          Học phần được xây dựng bám sát bộ tiêu chí Student Outcomes (SO) của tổ chức kiểm định ABET (Hoa Kỳ), cam kết trang bị năng lực thực chiến toàn diện.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- CLO 1 -->
+        <div onclick="openCloModal(1)" class="p-6 rounded-2xl bg-slate-50 border border-slate-200 card-hover-glow group" title="Nhấp để xem chi tiết chuẩn CLO 1">
+          <div class="w-12 h-12 rounded-xl bg-blue-100 text-lhu-blue flex items-center justify-center text-xl font-bold mb-4 group-hover:scale-110 transition-transform">
+            <i class="fa-solid fa-compass"></i>
+          </div>
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-mono font-bold text-lhu-blue bg-blue-50 px-2 py-0.5 rounded">CLO 1</span>
+            <span class="text-[11px] font-semibold text-slate-500">SO2 - PI 2.1</span>
+          </div>
+          <h3 class="font-bold text-slate-900 text-base mb-2">Nhận thức Ngành &amp; Đại học</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Thu thập, phân tích thông tin về Khoa CNTT - LHU, chương trình đào tạo chuẩn ABET, bản đồ nghề nghiệp IT và các kỹ năng cần có khi học đại học.
+          </p>
+        </div>
+
+        <!-- CLO 2 -->
+        <div onclick="openCloModal(2)" class="p-6 rounded-2xl bg-slate-50 border border-slate-200 card-hover-glow group" title="Nhấp để xem chi tiết chuẩn CLO 2">
+          <div class="w-12 h-12 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center text-xl font-bold mb-4 group-hover:scale-110 transition-transform">
+            <i class="fa-solid fa-robot"></i>
+          </div>
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-mono font-bold text-purple-700 bg-purple-50 px-2 py-0.5 rounded">CLO 2</span>
+            <span class="text-[11px] font-semibold text-slate-500">SO2 - PI 2.1</span>
+          </div>
+          <h3 class="font-bold text-slate-900 text-base mb-2">Ứng dụng Trí tuệ Nhân tạo</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Làm chủ ChatGPT, Gemini để tóm tắt tài liệu, học nhanh (Active Recall), tra cứu kỹ thuật và giải quyết các bài toán công nghệ thông tin.
+          </p>
+        </div>
+
+        <!-- CLO 3 -->
+        <div onclick="openCloModal(3)" class="p-6 rounded-2xl bg-slate-50 border border-slate-200 card-hover-glow group" title="Nhấp để xem chi tiết chuẩn CLO 3">
+          <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl font-bold mb-4 group-hover:scale-110 transition-transform">
+            <i class="fa-solid fa-file-signature"></i>
+          </div>
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-mono font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">CLO 3</span>
+            <span class="text-[11px] font-semibold text-slate-500">SO3 - PI 3.1</span>
+          </div>
+          <h3 class="font-bold text-slate-900 text-base mb-2">Soạn thảo &amp; Liêm chính</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Biên tập báo cáo học thuật, viết email chuyên nghiệp, dịch thuật thuật ngữ CNTT chuẩn xác và tuân thủ đạo đức liêm chính khi dùng AI.
+          </p>
+        </div>
+
+        <!-- CLO 4 -->
+        <div onclick="openCloModal(4)" class="p-6 rounded-2xl bg-slate-50 border border-slate-200 card-hover-glow group" title="Nhấp để xem chi tiết chuẩn CLO 4">
+          <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center text-xl font-bold mb-4 group-hover:scale-110 transition-transform">
+            <i class="fa-solid fa-users-gear"></i>
+          </div>
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-mono font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded">CLO 4</span>
+            <span class="text-[11px] font-semibold text-slate-500">SO5 - PI 5.1</span>
+          </div>
+          <h3 class="font-bold text-slate-900 text-base mb-2">Làm việc nhóm &amp; Kế hoạch</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Vận dụng kỹ năng tổ chức công việc cá nhân, xây dựng Kế hoạch học tập 4 năm (PLP) và cộng tác làm việc nhóm Agile/Scrum hiệu quả.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: 5 TRỤ CỘT NĂNG LỰC -->
+  <section id="5-tru-cot" class="py-16 sm:py-20 bg-slate-900 text-white relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <span class="text-xs font-bold uppercase tracking-widest text-asu-gold bg-white/10 px-3.5 py-1.5 rounded-full border border-white/15">
+          Mô hình đào tạo thời kỳ AI
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-black text-white mt-3">
+          5 Trụ Cột Năng Lực Kỹ Sư Kỷ Nguyên AI
+        </h2>
+        <p class="text-slate-400 text-sm sm:text-base mt-2">
+          Được giới thiệu ngay trong Bài 02 để định hướng cho sinh viên xuyên suốt toàn bộ chương trình đào tạo 4 năm tại Đại học Lạc Hồng.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <!-- Trụ cột 1 -->
+        <div onclick="openPillarModal(1)" class="p-6 rounded-2xl bg-white/5 border border-white/10 dark-card-hover-glow" title="Nhấp để xem chi tiết Trụ cột 1">
+          <div class="w-10 h-10 rounded-lg bg-asu-maroon text-white flex items-center justify-center font-black mb-4">
+            01
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Phát triển phần mềm tích hợp AI</h3>
+          <p class="text-xs text-slate-300 leading-relaxed mb-3">
+            Làm chủ AI Agents, Vibe Coding, chuyển dịch trọng tâm sang tư duy kiến trúc sạch (Clean Architecture), Prompt Engineering và thẩm định chất lượng mã nguồn.
+          </p>
+          <div class="flex flex-wrap gap-1.5 text-[11px] font-mono text-asu-gold">
+            <span class="bg-white/10 px-2 py-0.5 rounded">Vibe Coding</span>
+            <span class="bg-white/10 px-2 py-0.5 rounded">Clean Code</span>
+            <span class="bg-white/10 px-2 py-0.5 rounded">AI Agents</span>
+          </div>
+        </div>
+
+        <!-- Trụ cột 2 -->
+        <div onclick="openPillarModal(2)" class="p-6 rounded-2xl bg-white/5 border border-white/10 dark-card-hover-glow" title="Nhấp để xem chi tiết Trụ cột 2">
+          <div class="w-10 h-10 rounded-lg bg-asu-maroon text-white flex items-center justify-center font-black mb-4">
+            02
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Chuyên sâu AI &amp; Khoa học Dữ liệu</h3>
+          <p class="text-xs text-slate-300 leading-relaxed mb-3">
+            Đào tạo chuyên sâu về Large Language Models (LLM), kỹ thuật RAG, Fine-tuning mô hình AI, Data Pipelines và Business Intelligence (BI).
+          </p>
+          <div class="flex flex-wrap gap-1.5 text-[11px] font-mono text-asu-gold">
+            <span class="bg-white/10 px-2 py-0.5 rounded">LLMs &amp; RAG</span>
+            <span class="bg-white/10 px-2 py-0.5 rounded">Data Engineering</span>
+            <span class="bg-white/10 px-2 py-0.5 rounded">Fine-tuning</span>
+          </div>
+        </div>
+
+        <!-- Trụ cột 3 -->
+        <div onclick="openPillarModal(3)" class="p-6 rounded-2xl bg-white/5 border border-white/10 dark-card-hover-glow" title="Nhấp để xem chi tiết Trụ cột 3">
+          <div class="w-10 h-10 rounded-lg bg-asu-maroon text-white flex items-center justify-center font-black mb-4">
+            03
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">An ninh mạng Kỷ nguyên AI</h3>
+          <p class="text-xs text-slate-300 leading-relaxed mb-3">
+            Bảo vệ hệ thống trong kỷ nguyên tự động hóa: Bảo mật ứng dụng LLM, kiến trúc Zero Trust, DevSecOps, rà soát lỗ hổng và phòng chống tấn công số.
+          </p>
+          <div class="flex flex-wrap gap-1.5 text-[11px] font-mono text-asu-gold">
+            <span class="bg-white/10 px-2 py-0.5 rounded">DevSecOps</span>
+            <span class="bg-white/10 px-2 py-0.5 rounded">Zero Trust</span>
+            <span class="bg-white/10 px-2 py-0.5 rounded">AppSec</span>
+          </div>
+        </div>
+
+        <!-- Trụ cột 4 -->
+        <div onclick="openPillarModal(4)" class="p-6 rounded-2xl bg-white/5 border border-white/10 dark-card-hover-glow" title="Nhấp để xem chi tiết Trụ cột 4">
+          <div class="w-10 h-10 rounded-lg bg-asu-maroon text-white flex items-center justify-center font-black mb-4">
+            04
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Kiến trúc Cloud-Native &amp; DevOps</h3>
+          <p class="text-xs text-slate-300 leading-relaxed mb-3">
+            Thực hành trực tiếp trên các nền tảng điện toán đám mây (AWS, Azure, GCP); kiến trúc Microservices, Docker, Kubernetes và CI/CD Pipelines.
+          </p>
+          <div class="flex flex-wrap gap-1.5 text-[11px] font-mono text-asu-gold">
+            <span class="bg-white/10 px-2 py-0.5 rounded">AWS / Azure</span>
+            <span class="bg-white/10 px-2 py-0.5 rounded">Docker / K8s</span>
+            <span class="bg-white/10 px-2 py-0.5 rounded">CI/CD</span>
+          </div>
+        </div>
+
+        <!-- Trụ cột 5 -->
+        <div onclick="openPillarModal(5)" class="p-6 rounded-2xl bg-white/5 border border-white/10 dark-card-hover-glow lg:col-span-2" title="Nhấp để xem chi tiết Trụ cột 5">
+          <div class="w-10 h-10 rounded-lg bg-asu-gold text-slate-900 flex items-center justify-center font-black mb-4">
+            05
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Tư duy Sản phẩm &amp; Kỹ năng Toàn năng (K-S-A)</h3>
+          <p class="text-xs text-slate-300 leading-relaxed mb-3">
+            Khi AI hỗ trợ việc gõ cú pháp, giá trị cốt lõi của kỹ sư là tư duy giải quyết bài toán kinh doanh, trải nghiệm người dùng (UX/UI Centric), kỹ năng làm việc nhóm Agile, giao tiếp phản biện và đạo đức nghề nghiệp chuẩn ABET.
+          </p>
+          <div class="flex flex-wrap gap-1.5 text-[11px] font-mono text-asu-gold">
+            <span class="bg-white/10 px-2 py-0.5 rounded">Product Mindset</span>
+            <span class="bg-white/10 px-2 py-0.5 rounded">UX/UI Centric</span>
+            <span class="bg-white/10 px-2 py-0.5 rounded">Critical Thinking</span>
+            <span class="bg-white/10 px-2 py-0.5 rounded">Agile/Scrum</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: LỘ TRÌNH 9 BUỔI HỌC -->
+  <section id="lo-trinh-9-buoi" class="py-16 sm:py-24 bg-slate-50 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-bold uppercase tracking-widest text-asu-maroon bg-asu-light px-3.5 py-1.5 rounded-full">
+          Khung chương trình 45 tiết (5 tiết / buổi)
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-3">
+          Lộ Trình 9 Buổi Học Thực Chiến
+        </h2>
+        <p class="text-slate-600 text-sm sm:text-base mt-2">
+          Mỗi buổi học được thiết kế tương tác theo định dạng Accordion chuẩn LMS, đi kèm 10 câu trắc nghiệm Moodle Aiken và bài tập tình huống thực tế.
+        </p>
+      </div>
+
+      <div class="space-y-4 max-w-5xl mx-auto">
+
+        <!-- BUỔI 01 -->
+        <div onclick="openLessonModal(1)" class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 card-hover-glow flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4" title="Nhấp để xem chi tiết Buổi 1">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-blue-50 text-lhu-blue flex-shrink-0 flex items-center justify-center font-black text-lg">
+              01
+            </div>
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="text-[11px] font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded">Buổi 1 • 5 tiết</span>
+                <span class="text-[11px] text-slate-400">Khối Cơ sở ngành</span>
+              </div>
+              <h3 class="font-bold text-slate-900 text-base">Tổng quan về Khoa CNTT - LHU &amp; Bức tranh ngành CNTT</h3>
+              <p class="text-xs text-slate-500 mt-1">Lịch sử 25+ năm, triết lý "Đạo đức - Trí tuệ - Sáng tạo", chuẩn ABET &amp; đối tác ASU, văn phòng B301-B302 CS1.</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 flex-shrink-0">
+            <a href="bai-01.html" class="px-3 py-1.5 text-xs font-semibold text-lhu-blue bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors">
+              <i class="fa-solid fa-file-code mr-1"></i> Xem Bài 01
+            </a>
+            <a href="quiz/quiz-bai-01-aiken.txt" class="px-3 py-1.5 text-xs font-semibold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 rounded-lg transition-colors">
+              <i class="fa-solid fa-check mr-1"></i> Quiz (10 câu)
+            </a>
+          </div>
+        </div>
+
+        <!-- BUỔI 02 -->
+        <div onclick="openLessonModal(2)" class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 card-hover-glow flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4" title="Nhấp để xem chi tiết Buổi 2">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-blue-50 text-lhu-blue flex-shrink-0 flex items-center justify-center font-black text-lg">
+              02
+            </div>
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="text-[11px] font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded">Buổi 2 • 5 tiết</span>
+                <span class="text-[11px] text-slate-400">Chuẩn ABET Hoa Kỳ</span>
+              </div>
+              <h3 class="font-bold text-slate-900 text-base">Chương trình đào tạo Chuẩn ABET &amp; 5 Trụ cột Kỹ sư AI</h3>
+              <p class="text-xs text-slate-500 mt-1">Triết lý AI-First &amp; Vibe Coding, 5 trụ cột năng lực, cam kết 100% việc làm, OJT thực tập hưởng lương từ năm 3.</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 flex-shrink-0">
+            <a href="bai-02.html" class="px-3 py-1.5 text-xs font-semibold text-lhu-blue bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors">
+              <i class="fa-solid fa-file-code mr-1"></i> Xem Bài 02
+            </a>
+            <a href="quiz/quiz-bai-02-aiken.txt" class="px-3 py-1.5 text-xs font-semibold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 rounded-lg transition-colors">
+              <i class="fa-solid fa-check mr-1"></i> Quiz (10 câu)
+            </a>
+          </div>
+        </div>
+
+        <!-- BUỔI 03 -->
+        <div onclick="openLessonModal(3)" class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 card-hover-glow flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4" title="Nhấp để xem chi tiết Buổi 3">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-blue-50 text-lhu-blue flex-shrink-0 flex items-center justify-center font-black text-lg">
+              03
+            </div>
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="text-[11px] font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded">Buổi 3 • 5 tiết</span>
+                <span class="text-[11px] text-slate-400">Thị trường lao động IT</span>
+              </div>
+              <h3 class="font-bold text-slate-900 text-base">Bản đồ nghề nghiệp IT &amp; Các vị trí công việc thực tế</h3>
+              <p class="text-xs text-slate-500 mt-1">Phân tích vai trò Frontend, Backend, DevOps, AI, Security, QA/QC; một ngày của kỹ sư Agile; xây dựng GitHub từ năm 1.</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 flex-shrink-0">
+            <a href="bai-03.html" class="px-3 py-1.5 text-xs font-semibold text-lhu-blue bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors">
+              <i class="fa-solid fa-file-code mr-1"></i> Xem Bài 03
+            </a>
+            <a href="quiz/quiz-bai-03-aiken.txt" class="px-3 py-1.5 text-xs font-semibold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 rounded-lg transition-colors">
+              <i class="fa-solid fa-check mr-1"></i> Quiz (10 câu)
+            </a>
+          </div>
+        </div>
+
+        <!-- BUỔI 04 -->
+        <div onclick="openLessonModal(4)" class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 card-hover-glow flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4" title="Nhấp để xem chi tiết Buổi 4">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-blue-50 text-lhu-blue flex-shrink-0 flex items-center justify-center font-black text-lg">
+              04
+            </div>
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="text-[11px] font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded">Buổi 4 • 5 tiết</span>
+                <span class="text-[11px] text-slate-400">Kỹ năng chuyên nghiệp</span>
+              </div>
+              <h3 class="font-bold text-slate-900 text-base">Kỹ năng sinh viên đại học &amp; Tư duy lập trình Clean Code</h3>
+              <p class="text-xs text-slate-500 mt-1">Phương pháp tự học, quản lý thời gian Pomodoro/Eisenhower, chuẩn viết email học thuật, tư duy mã sạch &amp; nguyên lý SOLID.</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 flex-shrink-0">
+            <a href="bai-04.html" class="px-3 py-1.5 text-xs font-semibold text-lhu-blue bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors">
+              <i class="fa-solid fa-file-code mr-1"></i> Xem Bài 04
+            </a>
+            <a href="quiz/quiz-bai-04-aiken.txt" class="px-3 py-1.5 text-xs font-semibold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 rounded-lg transition-colors">
+              <i class="fa-solid fa-check mr-1"></i> Quiz (10 câu)
+            </a>
+          </div>
+        </div>
+
+        <!-- BUỔI 05 -->
+        <div onclick="openLessonModal(5)" class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 card-hover-glow flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4" title="Nhấp để xem chi tiết Buổi 5">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-purple-50 text-purple-600 flex-shrink-0 flex items-center justify-center font-black text-lg">
+              05
+            </div>
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="text-[11px] font-bold text-purple-700 bg-purple-50 px-2 py-0.5 rounded">Buổi 5 • 5 tiết</span>
+                <span class="text-[11px] text-slate-400">Generative AI cơ bản</span>
+              </div>
+              <h3 class="font-bold text-slate-900 text-base">Làm chủ GenAI: Đăng ký &amp; Kỹ thuật Prompt với ChatGPT &amp; Gemini</h3>
+              <p class="text-xs text-slate-500 mt-1">Cơ chế mô hình LLM, thiết lập bảo mật 2FA, công thức thiết kế prompt 5 thành phần, biến AI thành gia sư cá nhân 1-1.</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 flex-shrink-0">
+            <a href="bai-05.html" class="px-3 py-1.5 text-xs font-semibold text-purple-700 bg-purple-50 hover:bg-purple-100 rounded-lg transition-colors">
+              <i class="fa-solid fa-file-code mr-1"></i> Xem Bài 05
+            </a>
+            <a href="quiz/quiz-bai-05-aiken.txt" class="px-3 py-1.5 text-xs font-semibold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 rounded-lg transition-colors">
+              <i class="fa-solid fa-check mr-1"></i> Quiz (10 câu)
+            </a>
+          </div>
+        </div>
+
+        <!-- BUỔI 06 -->
+        <div onclick="openLessonModal(6)" class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 card-hover-glow flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4" title="Nhấp để xem chi tiết Buổi 6">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-purple-50 text-purple-600 flex-shrink-0 flex items-center justify-center font-black text-lg">
+              06
+            </div>
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="text-[11px] font-bold text-purple-700 bg-purple-50 px-2 py-0.5 rounded">Buổi 6 • 5 tiết</span>
+                <span class="text-[11px] text-slate-400">Đọc nhanh &amp; Ghi nhớ</span>
+              </div>
+              <h3 class="font-bold text-slate-900 text-base">Tóm tắt sách, Đọc nhanh tài liệu &amp; Phương pháp ghi nhớ với AI</h3>
+              <p class="text-xs text-slate-500 mt-1">Tóm tắt có cấu trúc, trích xuất thuật ngữ Glossary, kỹ thuật Active Recall (AI vấn đáp), tạo thẻ Flashcard Anki/Quizlet.</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 flex-shrink-0">
+            <a href="bai-06.html" class="px-3 py-1.5 text-xs font-semibold text-purple-700 bg-purple-50 hover:bg-purple-100 rounded-lg transition-colors">
+              <i class="fa-solid fa-file-code mr-1"></i> Xem Bài 06
+            </a>
+            <a href="quiz/quiz-bai-06-aiken.txt" class="px-3 py-1.5 text-xs font-semibold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 rounded-lg transition-colors">
+              <i class="fa-solid fa-check mr-1"></i> Quiz (10 câu)
+            </a>
+          </div>
+        </div>
+
+        <!-- BUỔI 07 -->
+        <div onclick="openLessonModal(7)" class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 card-hover-glow flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4" title="Nhấp để xem chi tiết Buổi 7">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-purple-50 text-purple-600 flex-shrink-0 flex items-center justify-center font-black text-lg">
+              07
+            </div>
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="text-[11px] font-bold text-purple-700 bg-purple-50 px-2 py-0.5 rounded">Buổi 7 • 5 tiết</span>
+                <span class="text-[11px] text-slate-400">Dịch thuật &amp; Liêm chính</span>
+              </div>
+              <h3 class="font-bold text-slate-900 text-base">Dịch thuật chuyên ngành, Viết báo cáo &amp; Kiểm soát ảo giác AI</h3>
+              <p class="text-xs text-slate-500 mt-1">Dịch thuật tiếng Anh kỹ thuật bảo toàn thuật ngữ gốc, chỉnh sửa ngữ pháp bài viết, nhận diện ảo giác AI &amp; Fact-checking.</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 flex-shrink-0">
+            <a href="bai-07.html" class="px-3 py-1.5 text-xs font-semibold text-purple-700 bg-purple-50 hover:bg-purple-100 rounded-lg transition-colors">
+              <i class="fa-solid fa-file-code mr-1"></i> Xem Bài 07
+            </a>
+            <a href="quiz/quiz-bai-07-aiken.txt" class="px-3 py-1.5 text-xs font-semibold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 rounded-lg transition-colors">
+              <i class="fa-solid fa-check mr-1"></i> Quiz (10 câu)
+            </a>
+          </div>
+        </div>
+
+        <!-- BUỔI 08 -->
+        <div onclick="openLessonModal(8)" class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 card-hover-glow flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4" title="Nhấp để xem chi tiết Buổi 8">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-purple-50 text-purple-600 flex-shrink-0 flex items-center justify-center font-black text-lg">
+              08
+            </div>
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="text-[11px] font-bold text-purple-700 bg-purple-50 px-2 py-0.5 rounded">Buổi 8 • 5 tiết</span>
+                <span class="text-[11px] text-slate-400">Vibe Coding &amp; Đa phương tiện</span>
+              </div>
+              <h3 class="font-bold text-slate-900 text-base">Kỹ thuật Prompt nâng cao: Đóng vai Chuyên gia &amp; Vibe Coding</h3>
+              <p class="text-xs text-slate-500 mt-1">Role Prompting, Chain-of-Thought, Vibe Coding hỗ trợ debug code C++, tạo slide Gamma, vẽ sơ đồ Mermaid từ đề án ASU.</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 flex-shrink-0">
+            <a href="bai-08.html" class="px-3 py-1.5 text-xs font-semibold text-purple-700 bg-purple-50 hover:bg-purple-100 rounded-lg transition-colors">
+              <i class="fa-solid fa-file-code mr-1"></i> Xem Bài 08
+            </a>
+            <a href="quiz/quiz-bai-08-aiken.txt" class="px-3 py-1.5 text-xs font-semibold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 rounded-lg transition-colors">
+              <i class="fa-solid fa-check mr-1"></i> Quiz (10 câu)
+            </a>
+          </div>
+        </div>
+
+        <!-- BUỔI 09 -->
+        <div onclick="openLessonModal(9)" class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 card-hover-glow flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4" title="Nhấp để xem chi tiết Buổi 9">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-rose-50 text-asu-maroon flex-shrink-0 flex items-center justify-center font-black text-lg">
+              09
+            </div>
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="text-[11px] font-bold text-asu-maroon bg-rose-50 px-2 py-0.5 rounded">Buổi 9 • 5 tiết</span>
+                <span class="text-[11px] text-slate-400">Tổng kết &amp; Báo cáo</span>
+              </div>
+              <h3 class="font-bold text-slate-900 text-base">Xây dựng Lộ trình học tập 4 năm &amp; Báo cáo Đồ án cuối kỳ</h3>
+              <p class="text-xs text-slate-500 mt-1">Kế hoạch phát triển cá nhân 4 năm (PLP), chứng chỉ quốc tế (AWS, Cisco, TOEIC), thuyết trình đồ án nhóm theo Rubric.</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 flex-shrink-0">
+            <a href="bai-09.html" class="px-3 py-1.5 text-xs font-semibold text-asu-maroon bg-rose-50 hover:bg-rose-100 rounded-lg transition-colors">
+              <i class="fa-solid fa-file-code mr-1"></i> Xem Bài 09
+            </a>
+            <a href="quiz/quiz-bai-09-aiken.txt" class="px-3 py-1.5 text-xs font-semibold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 rounded-lg transition-colors">
+              <i class="fa-solid fa-check mr-1"></i> Quiz (10 câu)
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Quick Download Banner -->
+      <div class="mt-12 p-6 rounded-2xl bg-gradient-to-r from-lhu-blue to-asu-maroon text-white flex flex-col sm:flex-row items-center justify-between gap-6 shadow-lg max-w-5xl mx-auto">
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-xl bg-asu-gold text-slate-900 flex items-center justify-center text-xl font-bold flex-shrink-0">
+            <i class="fa-solid fa-folder-tree"></i>
+          </div>
+          <div>
+            <h4 class="font-bold text-base">Ngân hàng 90 câu trắc nghiệm chuẩn Moodle (Aiken Format)</h4>
+            <p class="text-xs text-slate-200">Đã sẵn sàng tải về và import trực tiếp vào ngân hàng đề thi Moodle chỉ bằng 1 cú click.</p>
+          </div>
+        </div>
+        <a href="quiz/tong-hop-90-cau-quiz-aiken.txt" target="_blank" class="px-5 py-2.5 bg-white text-slate-900 hover:bg-slate-100 text-xs font-extrabold rounded-xl transition-all flex-shrink-0">
+          <i class="fa-solid fa-download mr-1.5"></i> Tải trọn bộ 90 câu
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION: PHƯƠNG PHÁP ĐÁNH GIÁ -->
+  <section id="danh-gia" class="py-16 sm:py-20 bg-white border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <span class="text-xs font-bold uppercase tracking-widest text-emerald-600 bg-emerald-50 px-3.5 py-1.5 rounded-full">
+          Minh bạch &amp; Thực chất
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-3">
+          Phương Pháp &amp; Trọng Số Đánh Giá Học Phần
+        </h2>
+        <p class="text-slate-600 text-sm sm:text-base mt-2">
+          Đánh giá liên tục dựa trên năng lực giải quyết vấn đề, tinh thần đồng đội và khả năng làm chủ công cụ trí tuệ nhân tạo.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        
+        <!-- Điểm quá trình -->
+        <div onclick="openAssessmentModal('quatrinh')" class="p-8 rounded-3xl bg-slate-50 border border-slate-200 card-hover-glow relative group" title="Nhấp để xem chi tiết Điểm Quá Trình">
+          <div class="text-4xl font-black text-lhu-sky font-mono mb-2">30%</div>
+          <h3 class="text-lg font-bold text-slate-900 mb-3">Điểm Quá Trình</h3>
+          <ul class="text-xs text-slate-600 space-y-2.5 leading-relaxed">
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-circle-check text-blue-500 mt-0.5"></i>
+              <span>Điểm danh và chuyên cần tham gia học tập trên lớp.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-circle-check text-blue-500 mt-0.5"></i>
+              <span>Hoàn thành các bài Quiz trắc nghiệm nhanh hàng tuần trên LMS.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-circle-check text-blue-500 mt-0.5"></i>
+              <span>Tích cực trao đổi, đặt câu hỏi trên diễn đàn môn học.</span>
+            </li>
+          </ul>
+          <div class="mt-6 pt-4 border-t border-slate-200 text-[11px] font-semibold text-slate-400">
+            Đáp ứng: CLO 1 &amp; CLO 4
+          </div>
+        </div>
+
+        <!-- Điểm giữa kỳ -->
+        <div onclick="openAssessmentModal('giuaky')" class="p-8 rounded-3xl bg-slate-50 border border-slate-200 card-hover-glow relative group" title="Nhấp để xem chi tiết Điểm Giữa Kỳ">
+          <div class="text-4xl font-black text-amber-500 font-mono mb-2">30%</div>
+          <h3 class="text-lg font-bold text-slate-900 mb-3">Điểm Giữa Kỳ</h3>
+          <ul class="text-xs text-slate-600 space-y-2.5 leading-relaxed">
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-circle-check text-amber-500 mt-0.5"></i>
+              <span>Bài thực hành viết email học thuật và giao tiếp chuyên nghiệp.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-circle-check text-amber-500 mt-0.5"></i>
+              <span>Kỹ thuật thiết kế Prompt và ứng dụng AI tóm tắt tài liệu kỹ thuật.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-circle-check text-amber-500 mt-0.5"></i>
+              <span>Báo cáo tiến độ đề cương đồ án của nhóm.</span>
+            </li>
+          </ul>
+          <div class="mt-6 pt-4 border-t border-slate-200 text-[11px] font-semibold text-slate-400">
+            Đáp ứng: CLO 2 &amp; CLO 3
+          </div>
+        </div>
+
+        <!-- Điểm cuối kỳ -->
+        <div onclick="openAssessmentModal('cuoiky')" class="p-8 rounded-3xl bg-slate-50 border border-slate-200 card-hover-glow relative group" title="Nhấp để xem chi tiết Đồ Án Cuối Kỳ">
+          <div class="text-4xl font-black text-asu-maroon font-mono mb-2">40%</div>
+          <h3 class="text-lg font-bold text-slate-900 mb-3">Báo Cáo Đồ Án Cuối Kỳ</h3>
+          <ul class="text-xs text-slate-600 space-y-2.5 leading-relaxed">
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-circle-check text-asu-maroon mt-0.5"></i>
+              <span>Hồ sơ báo cáo đồ án nhóm PDF theo đúng mẫu quy chuẩn.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-circle-check text-asu-maroon mt-0.5"></i>
+              <span>Slide thuyết trình sinh động (Gamma/Canva) và video demo sản phẩm.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-circle-check text-asu-maroon mt-0.5"></i>
+              <span>Thuyết trình và trả lời phản biện trước Hội đồng Giảng viên.</span>
+            </li>
+          </ul>
+          <div class="mt-6 pt-4 border-t border-slate-200 text-[11px] font-semibold text-slate-400">
+            Đáp ứng: CLO 1, 2, 3, 4 (Tổng hợp)
+          </div>
+        </div>
+
+      </div>
+
+      <!-- BANNER CHUYÊN ĐỀ ĐÁNH GIÁ HỌC PHẦN (LMS TOPIC) -->
+      <div class="mt-10 p-6 rounded-2xl bg-gradient-to-r from-emerald-600 via-teal-600 to-blue-700 text-white flex flex-col sm:flex-row items-center justify-between gap-6 shadow-lg max-w-5xl mx-auto">
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-xl bg-white/20 backdrop-blur-md text-white flex items-center justify-center text-xl font-bold flex-shrink-0 shadow-inner">
+            <i class="fa-solid fa-clipboard-check text-yellow-300"></i>
+          </div>
+          <div>
+            <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/20 text-[11px] font-bold text-yellow-200 mb-1">
+              <i class="fa-solid fa-star"></i> Moodle LMS Accordion Topic
+            </div>
+            <h4 class="font-bold text-base text-white">Chuyên Đề Đánh Giá Học Phần &amp; Tiêu Chí Rubrics (111106)</h4>
+            <p class="text-xs text-slate-100 mt-0.5">Định dạng 4 Accordion chuẩn LMS Moodle: Tổng quan, Rubrics, Cổng nộp bài 5 lớp và Quy định phúc khảo.</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2.5 flex-shrink-0">
+          <a href="danh-gia-hoc-phan.html" class="px-5 py-2.5 bg-white text-slate-900 hover:bg-yellow-300 text-xs font-black rounded-xl shadow transition-all flex items-center gap-2">
+            <i class="fa-solid fa-arrow-up-right-from-square text-emerald-700"></i> Xem Chuyên Đề
+          </a>
+          <a href="danh-gia-hoc-phan.md" target="_blank" class="px-4 py-2.5 bg-white/15 hover:bg-white/25 text-white text-xs font-bold rounded-xl border border-white/20 transition-all flex items-center gap-1.5" title="Mã nguồn Accordion Markdown dán vào Moodle">
+            <i class="fa-solid fa-code"></i> Code LMS
+          </a>
+        </div>
+      </div>
+
+      <!-- MULTI-CLASS ASSESSMENT ARCHITECTURE -->
+      <div class="mt-16 max-w-5xl mx-auto bg-slate-900 text-white rounded-3xl p-6 sm:p-10 shadow-xl border border-slate-800">
+        
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-800 pb-6 mb-8">
+          <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 bg-asu-maroon text-white text-xs font-bold rounded-full mb-2">
+              <i class="fa-solid fa-layer-group"></i>
+              <span>MULTI-CLASS LMS ARCHITECTURE</span>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-black text-white">
+              Tổ Chức Đánh Giá Phân Biệt Theo Từng Lớp Học Phần
+            </h3>
+            <p class="text-xs sm:text-sm text-slate-400 mt-1">
+              Khóa học chung mã <strong>111106</strong> được cấu hình quản lý độc lập cho nhiều lớp sinh viên (24CT111, 24CT112, 24CT113, 24CT114, 24CT115...)
+            </p>
+          </div>
+          <div class="flex-shrink-0">
+            <span class="px-3.5 py-2 rounded-xl bg-white/10 text-asu-gold font-mono text-xs border border-white/10">
+              <i class="fa-solid fa-shield-halved mr-1.5"></i> Moodle Separate Groups
+            </span>
+          </div>
+        </div>
+
+        <!-- 4 pillars of multi-class management -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+          <div class="p-4 rounded-2xl bg-white/5 border border-white/10">
+            <div class="w-8 h-8 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center font-bold text-sm mb-3">
+              <i class="fa-solid fa-users-viewfinder"></i>
+            </div>
+            <h4 class="text-sm font-bold text-white mb-1.5">1. Separate Groups</h4>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Sinh viên chỉ thấy bài nộp, diễn đàn và thành viên thuộc đúng lớp của mình, không bị nhiễu thông tin giữa các lớp.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-white/5 border border-white/10">
+            <div class="w-8 h-8 rounded-lg bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold text-sm mb-3">
+              <i class="fa-solid fa-clock-rotate-left"></i>
+            </div>
+            <h4 class="text-sm font-bold text-white mb-1.5">2. Group Overrides</h4>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Cấu hình thời gian mở/đóng Quiz và hạn nộp bài riêng theo đúng lịch học trong tuần của từng lớp mà vẫn dùng chung 1 đề thi.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-white/5 border border-white/10">
+            <div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-sm mb-3">
+              <i class="fa-solid fa-file-code"></i>
+            </div>
+            <h4 class="text-sm font-bold text-white mb-1.5">3. Cú Pháp Đặt Tên</h4>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Quy chuẩn file nộp bài bắt buộc: <code class="text-asu-gold font-mono text-[11px]">[Lớp]_[Nhóm/MSSV]_[NộiDung].pdf</code> tránh nhầm lẫn dữ liệu.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-white/5 border border-white/10">
+            <div class="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-sm mb-3">
+              <i class="fa-solid fa-file-excel"></i>
+            </div>
+            <h4 class="text-sm font-bold text-white mb-1.5">4. Sổ Điểm Theo Lớp</h4>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Gradebook lọc riêng theo Group. Giảng viên xuất bảng điểm Excel riêng cho từng lớp để nộp về Khoa và Phòng Đào tạo LHU.
+            </p>
+          </div>
+        </div>
+
+        <!-- Interactive Class Schedule & Assessment Tabs -->
+        <div class="bg-white/5 rounded-2xl p-5 border border-white/10">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+            <span class="text-xs font-bold text-slate-300 uppercase tracking-wider">
+              <i class="fa-solid fa-calendar-days text-asu-gold mr-1.5"></i> Chọn Lớp Học Phần để xem Lịch Đánh Giá &amp; Nộp Bài:
+            </span>
+            <!-- Class Tabs -->
+            <div class="flex flex-wrap gap-2 text-xs font-mono" id="classTabs">
+              <button onclick="switchClassTab('24CT111')" id="btn-24CT111" class="class-tab-btn active px-3 py-1.5 rounded-lg bg-asu-maroon text-white font-bold transition-all">
+                Lớp 24CT111
+              </button>
+              <button onclick="switchClassTab('24CT112')" id="btn-24CT112" class="class-tab-btn px-3 py-1.5 rounded-lg bg-white/10 text-slate-300 hover:bg-white/20 font-bold transition-all">
+                Lớp 24CT112
+              </button>
+              <button onclick="switchClassTab('24CT113')" id="btn-24CT113" class="class-tab-btn px-3 py-1.5 rounded-lg bg-white/10 text-slate-300 hover:bg-white/20 font-bold transition-all">
+                Lớp 24CT113
+              </button>
+              <button onclick="switchClassTab('24CT114')" id="btn-24CT114" class="class-tab-btn px-3 py-1.5 rounded-lg bg-white/10 text-slate-300 hover:bg-white/20 font-bold transition-all">
+                Lớp 24CT114
+              </button>
+              <button onclick="switchClassTab('24CT115')" id="btn-24CT115" class="class-tab-btn px-3 py-1.5 rounded-lg bg-white/10 text-slate-300 hover:bg-white/20 font-bold transition-all">
+                Lớp 24CT115
+              </button>
+            </div>
+          </div>
+
+          <!-- Tab Content Display -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2 text-xs">
+            <div class="p-3.5 rounded-xl bg-black/20 border border-white/5 space-y-1.5">
+              <div class="text-slate-400">Thời khóa biểu lớp:</div>
+              <div id="classSchedule" class="text-white font-bold text-sm">Sáng Thứ 2 (Tiết 1 - 5) • Phòng I201 CS1</div>
+              <div id="classRoom" class="text-slate-400 text-[11px]">Giảng viên: ThS. Nguyễn Minh Phúc</div>
+            </div>
+
+            <div class="p-3.5 rounded-xl bg-black/20 border border-white/5 space-y-1.5">
+              <div class="text-slate-400">Khung giờ mở Quiz hàng tuần:</div>
+              <div id="classQuizTime" class="text-asu-gold font-bold text-sm">11:00 - 23:59 Thứ 2 hàng tuần</div>
+              <div class="text-slate-400 text-[11px]">Thời gian làm bài: 15 phút / 10 câu (Aiken)</div>
+            </div>
+
+            <div class="p-3.5 rounded-xl bg-black/20 border border-white/5 space-y-1.5">
+              <div class="text-slate-400">Hạn nộp Đồ án &amp; Báo cáo cuối kỳ:</div>
+              <div id="classFinalTime" class="text-emerald-400 font-bold text-sm">23:59 Chủ Nhật (Tuần 9)</div>
+              <div id="classFileSyntax" class="text-slate-400 font-mono text-[11px]">24CT111_NhomXX_DoAn.pdf</div>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+            <div class="text-slate-400">
+              <i class="fa-solid fa-triangle-exclamation text-amber-400 mr-1.5"></i>
+              Sinh viên chỉ nộp bài đúng vào mục Assignment có ký hiệu mã lớp của mình trên LMS.
+            </div>
+            <a href="https://learn.lhu.edu.vn" target="_blank" class="text-asu-gold hover:underline font-bold flex items-center gap-1">
+              Đến khu vực nộp bài trên LMS &rarr;
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <script>
+        const classData = {
+          '24CT111': {
+            schedule: 'Sáng Thứ 2 (Tiết 1 - 5) • Phòng I201 CS1',
+            instructor: 'Giảng viên: ThS. Nguyễn Minh Phúc',
+            quizTime: '11:00 - 23:59 Thứ 2 hàng tuần',
+            finalTime: '23:59 Chủ Nhật (Tuần 9)',
+            fileSyntax: '24CT111_NhomXX_DoAn.pdf'
+          },
+          '24CT112': {
+            schedule: 'Chiều Thứ 2 (Tiết 7 - 11) • Phòng I202 CS1',
+            instructor: 'Giảng viên: ThS. Nguyễn Minh Phúc',
+            quizTime: '17:00 - 23:59 Thứ 2 hàng tuần',
+            finalTime: '23:59 Chủ Nhật (Tuần 9)',
+            fileSyntax: '24CT112_NhomXX_DoAn.pdf'
+          },
+          '24CT113': {
+            schedule: 'Sáng Thứ 4 (Tiết 1 - 5) • Phòng B304 CS1',
+            instructor: 'Giảng viên bộ môn CNTT - LHU',
+            quizTime: '11:00 - 23:59 Thứ 4 hàng tuần',
+            finalTime: '23:59 Thứ 3 (Tuần 10)',
+            fileSyntax: '24CT113_NhomXX_DoAn.pdf'
+          },
+          '24CT114': {
+            schedule: 'Chiều Thứ 5 (Tiết 7 - 11) • Phòng B305 CS1',
+            instructor: 'Giảng viên bộ môn CNTT - LHU',
+            quizTime: '17:00 - 23:59 Thứ 5 hàng tuần',
+            finalTime: '23:59 Thứ 4 (Tuần 10)',
+            fileSyntax: '24CT114_NhomXX_DoAn.pdf'
+          },
+          '24CT115': {
+            schedule: 'Sáng Thứ 6 (Tiết 1 - 5) • Phòng B304 CS1',
+            instructor: 'Giảng viên bộ môn CNTT - LHU',
+            quizTime: '11:00 - 23:59 Thứ 6 hàng tuần',
+            finalTime: '23:59 Thứ 5 (Tuần 10)',
+            fileSyntax: '24CT115_NhomXX_DoAn.pdf'
+          }
+        };
+
+        function switchClassTab(classCode) {
+          // Update buttons
+          document.querySelectorAll('.class-tab-btn').forEach(btn => {
+            btn.classList.remove('bg-asu-maroon', 'text-white');
+            btn.classList.add('bg-white/10', 'text-slate-300');
+          });
+          const activeBtn = document.getElementById('btn-' + classCode);
+          if (activeBtn) {
+            activeBtn.classList.add('bg-asu-maroon', 'text-white');
+            activeBtn.classList.remove('bg-white/10', 'text-slate-300');
+          }
+
+          // Update info
+          const data = classData[classCode];
+          if (data) {
+            document.getElementById('classSchedule').innerText = data.schedule;
+            document.getElementById('classRoom').innerText = data.instructor;
+            document.getElementById('classQuizTime').innerText = data.quizTime;
+            document.getElementById('classFinalTime').innerText = data.finalTime;
+            document.getElementById('classFileSyntax').innerText = data.fileSyntax;
+          }
+        }
+      </script>
+
+    </div>
+  </section>
+
+
+  <!-- SECTION: GIẢNG VIÊN & VĂN PHÒNG KHOA -->
+  <section id="giang-vien" class="py-16 sm:py-20 bg-slate-50 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Giảng viên -->
+        <div class="lg:col-span-7 space-y-6">
+          <span class="text-xs font-bold uppercase tracking-widest text-lhu-blue bg-blue-50 px-3.5 py-1.5 rounded-full">
+            Đội ngũ sư phạm tâm huyết
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-black text-slate-900">
+            Giảng Viên Phụ Trách Học Phần
+          </h2>
+          <div class="p-6 sm:p-7 rounded-3xl bg-white border border-slate-200 shadow-sm flex flex-col sm:flex-row items-center sm:items-start gap-6 card-hover-glow">
+            <div class="relative flex-shrink-0">
+              <img src="NguyenMinhPhuc_CNTT.jpg" alt="ThS. Nguyễn Minh Phúc" class="w-28 h-28 sm:w-32 sm:h-32 rounded-2xl object-cover object-top border-2 border-lhu-blue/30 shadow-lg">
+              <span class="absolute -bottom-2 -right-2 px-2.5 py-0.5 bg-asu-maroon text-white text-[10px] font-bold rounded-full shadow">
+                Giảng viên
+              </span>
+            </div>
+            <div class="space-y-1.5 text-center sm:text-left">
+              <h3 class="text-xl font-black text-slate-900">ThS. Nguyễn Minh Phúc</h3>
+              <p class="text-xs text-lhu-sky font-semibold">Giảng viên Khoa Công nghệ Thông tin • Đại học Lạc Hồng</p>
+              <p class="text-xs text-slate-500 leading-relaxed pt-1">
+                Giảng viên phụ trách thiết kế chương trình AI-First &amp; Vibe Coding. Với phương châm giảng dạy truyền cảm hứng, đồng hành sát cánh cùng tân sinh viên ngay từ những dòng code đầu tiên.
+              </p>
+              <div class="pt-2 flex flex-wrap gap-4 text-xs">
+                <a href="mailto:phuc@lhu.edu.vn" class="text-slate-600 hover:text-lhu-blue font-medium flex items-center gap-1.5">
+                  <i class="fa-solid fa-envelope text-lhu-sky"></i> phuc@lhu.edu.vn
+                </a>
+                <a href="https://me.lhu.edu.vn" target="_blank" class="text-slate-600 hover:text-lhu-blue font-medium flex items-center gap-1.5">
+                  <i class="fa-solid fa-globe text-emerald-600"></i> me.lhu.edu.vn
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Văn phòng Khoa -->
+        <div class="lg:col-span-5 bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm space-y-4">
+          <h3 class="font-bold text-slate-900 text-base flex items-center gap-2">
+            <i class="fa-solid fa-location-dot text-asu-maroon"></i>
+            <span>Văn Phòng Khoa CNTT - LHU</span>
+          </h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Phòng B301 - B302, Cơ sở 1, Số 10 Huỳnh Văn Nghệ, P. Bửu Long, TP. Biên Hòa, Tỉnh Đồng Nai.
+          </p>
+          <div class="space-y-2 text-xs text-slate-600 pt-2 border-t border-slate-100">
+            <div class="flex justify-between">
+              <span>Điện thoại bàn:</span>
+              <strong class="text-slate-900">(0251) 3952 251</strong>
+            </div>
+            <div class="flex justify-between">
+              <span>Email Khoa:</span>
+              <strong class="text-slate-900">cntt@lhu.edu.vn</strong>
+            </div>
+            <div class="flex justify-between">
+              <span>Website Khoa:</span>
+              <a href="https://cs.lhu.edu.vn" target="_blank" class="text-lhu-blue font-bold hover:underline">cs.lhu.edu.vn</a>
+            </div>
+            <div class="flex justify-between">
+              <span>Diễn đàn sinh viên:</span>
+              <a href="https://forum.fitlhu.com" target="_blank" class="text-lhu-blue font-bold hover:underline">forum.fitlhu.com</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: FAQ -->
+  <section id="faq" class="py-16 sm:py-20 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center mb-12">
+        <span class="text-xs font-bold uppercase tracking-widest text-lhu-blue bg-blue-50 px-3.5 py-1.5 rounded-full">
+          Giải đáp thắc mắc
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-3">
+          Câu Hỏi Thường Gặp Của Tân Sinh Viên
+        </h2>
+      </div>
+
+      <div class="space-y-4">
+        
+        <details class="p-5 rounded-2xl bg-slate-50 border border-slate-200 group">
+          <summary class="font-bold text-slate-900 cursor-pointer flex justify-between items-center text-sm sm:text-base">
+            <span>1. Chưa từng học lập trình ở cấp 3 thì có theo kịp môn học này không?</span>
+            <span class="text-slate-400 group-open:rotate-180 transition-transform">&darr;</span>
+          </summary>
+          <p class="text-xs sm:text-sm text-slate-600 mt-3 leading-relaxed">
+            Hoàn toàn theo kịp! Học phần Nhập môn CNTT được thiết kế riêng cho sinh viên năm nhất bắt đầu từ con số 0. Thầy cô sẽ hướng dẫn từ tư duy logic, kỹ năng sử dụng máy tính, làm chủ AI như người gia sư cá nhân và các bài tập thực hành từng bước.
+          </p>
+        </details>
+
+        <details class="p-5 rounded-2xl bg-slate-50 border border-slate-200 group">
+          <summary class="font-bold text-slate-900 cursor-pointer flex justify-between items-center text-sm sm:text-base">
+            <span>2. Cần chuẩn bị máy tính xách tay (Laptop) cấu hình như thế nào?</span>
+            <span class="text-slate-400 group-open:rotate-180 transition-transform">&darr;</span>
+          </summary>
+          <p class="text-xs sm:text-sm text-slate-600 mt-3 leading-relaxed">
+            Cấu hình đề xuất cho năm nhất: Chip Intel Core i5 hoặc AMD Ryzen 5 trở lên, RAM tối thiểu 8GB (khuyến khích 16GB), ổ cứng SSD 256GB trở lên. Khoa cũng có đầy đủ hệ thống phòng máy tính thực hành cấu hình cao tại Cơ sở 1 phục vụ học tập.
+          </p>
+        </details>
+
+        <details class="p-5 rounded-2xl bg-slate-50 border border-slate-200 group">
+          <summary class="font-bold text-slate-900 cursor-pointer flex justify-between items-center text-sm sm:text-base">
+            <span>3. Sử dụng ChatGPT hay Gemini khi làm bài tập có bị coi là gian lận không?</span>
+            <span class="text-slate-400 group-open:rotate-180 transition-transform">&darr;</span>
+          </summary>
+          <p class="text-xs sm:text-sm text-slate-600 mt-3 leading-relaxed">
+            Không hề bị cấm, mà Khoa khuyến khích sử dụng AI như công cụ đồng sáng tạo! Điều cốt lõi là sinh viên phải tuân thủ chuẩn mực Liêm chính học thuật (Bài 07): Tự đọc hiểu, kiểm chứng thông tin, không sao chép nguyên xi mù quáng và khai báo minh bạch phần việc AI hỗ trợ.
+          </p>
+        </details>
+
+        <details class="p-5 rounded-2xl bg-slate-50 border border-slate-200 group">
+          <summary class="font-bold text-slate-900 cursor-pointer flex justify-between items-center text-sm sm:text-base">
+            <span>4. Sinh viên năm nhất có được tham gia các CLB chuyên ngành và Maker Lab không?</span>
+            <span class="text-slate-400 group-open:rotate-180 transition-transform">&darr;</span>
+          </summary>
+          <p class="text-xs sm:text-sm text-slate-600 mt-3 leading-relaxed">
+            Khoa đặc biệt khuyến khích các bạn tham gia ngay từ học kỳ 1! Các CLB như CLB Lập trình, CLB An toàn thông tin, CLB AI &amp; Robotics luôn mở cửa chào đón tân sinh viên để cùng sinh hoạt dự án và chuẩn bị thi đấu học thuật.
+          </p>
+        </details>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-slate-950 text-slate-400 py-12 border-t border-slate-800 text-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+        <div class="flex items-center gap-3">
+          <img src="LHU_ASU_VI_Small_Ngang.png" alt="LHU Logo" class="h-8 w-auto brightness-90">
+          <div class="text-left border-l border-slate-800 pl-3">
+            <div class="font-bold text-white">Khoa Công nghệ Thông tin - Trường Đại học Lạc Hồng</div>
+            <div class="text-[11px] text-slate-500">Mã trường: DLH • Mã ngành: 7480201 • Chuẩn kiểm định ABET (USA)</div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-6 text-slate-400">
+          <a href="https://cs.lhu.edu.vn" target="_blank" class="hover:text-white transition-colors">cs.lhu.edu.vn</a>
+          <a href="https://learn.lhu.edu.vn" target="_blank" class="hover:text-white transition-colors">learn.lhu.edu.vn</a>
+          <a href="https://forum.fitlhu.com" target="_blank" class="hover:text-white transition-colors">forum.fitlhu.com</a>
+        </div>
+      </div>
+
+      <div class="text-center text-slate-600 mt-8 pt-8 border-t border-slate-900">
+        &copy; 2026 Khoa Công nghệ Thông tin - Trường Đại học Lạc Hồng. Lưu hành nội bộ phục vụ đào tạo học phần Nhập môn CNTT (111106).
+      </div>
+    </div>
+  </footer>
+
+  <!-- UNIVERSAL MODAL POPUP DIALOG -->
+  <div id="universalModal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 sm:p-6 overflow-y-auto" role="dialog" aria-modal="true">
+    <!-- Backdrop with blur -->
+    <div id="modalBackdrop" onclick="closeModal()" class="fixed inset-0 bg-slate-950/75 backdrop-blur-sm transition-opacity duration-300"></div>
+    
+    <!-- Modal Window -->
+    <div id="modalBox" class="relative w-full max-w-2xl bg-white rounded-3xl shadow-2xl border border-slate-100 overflow-hidden z-10 my-8">
+      <!-- Header with dynamic color banner -->
+      <div id="modalHeaderBg" class="p-6 bg-gradient-to-r from-lhu-blue to-asu-maroon text-white flex items-start justify-between relative">
+        <div class="pr-8">
+          <span id="modalCategoryBadge" class="inline-block px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-[11px] font-bold text-asu-gold uppercase tracking-wider mb-2">
+            CHI TIẾT HỌC PHẦN
+          </span>
+          <h3 id="modalTitle" class="text-xl sm:text-2xl font-black text-white leading-tight">
+            Tiêu đề Modal
+          </h3>
+          <p id="modalSubtitle" class="text-xs sm:text-sm text-slate-200 mt-1 font-normal">
+            Phụ đề tóm tắt nội dung
+          </p>
+        </div>
+        
+        <!-- Close Button -->
+        <button onclick="closeModal()" class="w-9 h-9 rounded-full bg-black/20 hover:bg-black/40 text-white flex items-center justify-center transition-all flex-shrink-0" title="Đóng modal (Phím Esc)">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <!-- Modal Body Content -->
+      <div id="modalBody" class="p-6 sm:p-8 max-h-[65vh] overflow-y-auto space-y-4 text-sm text-slate-700 leading-relaxed">
+        <!-- Content will be injected here -->
+      </div>
+
+      <!-- Modal Footer -->
+      <div id="modalFooter" class="p-4 sm:p-5 bg-slate-50 border-t border-slate-200 flex flex-wrap items-center justify-between gap-3">
+        <div id="modalSecondaryLink"></div>
+        <div class="flex items-center gap-2">
+          <button onclick="closeModal()" class="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 text-xs font-bold rounded-xl transition-all">
+            Đóng
+          </button>
+          <div id="modalPrimaryAction"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT: TYPING EFFECT & MODAL CONTROLLER -->
+  <script>
+    /* 1. TYPING EFFECT CHO HERO SECTION */
+    const typingPhrases = [
+      "Công Nghệ Thông Tin",
+      "Kỷ Nguyên AI & Vibe Coding",
+      "Kỹ Sư Chuẩn Quốc Tế ABET",
+      "Bệ Phóng Sự Nghiệp Toàn Cầu"
+    ];
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let typingSpeed = 100;
+    const heroTypingEl = document.getElementById("heroTypingText");
+
+    function typeHeroText() {
+      const currentPhrase = typingPhrases[phraseIndex];
+      
+      if (isDeleting) {
+        heroTypingEl.innerText = currentPhrase.substring(0, charIndex - 1);
+        charIndex--;
+        typingSpeed = 50;
+      } else {
+        heroTypingEl.innerText = currentPhrase.substring(0, charIndex + 1);
+        charIndex++;
+        typingSpeed = 90;
+      }
+
+      if (!isDeleting && charIndex === currentPhrase.length) {
+        isDeleting = true;
+        typingSpeed = 1800; // Pause at end of phrase
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        phraseIndex = (phraseIndex + 1) % typingPhrases.length;
+        typingSpeed = 400; // Pause before typing new phrase
+      }
+
+      setTimeout(typeHeroText, typingSpeed);
+    }
+    document.addEventListener("DOMContentLoaded", typeHeroText);
+
+    /* 2. DỮ LIỆU MODAL CHI TIẾT (9 BUỔI, 5 TRỤ CỘT, CLO, ĐÁNH GIÁ) */
+    const modalData = {
+      lesson: {
+        1: {
+          badge: "BUỔI 01 • 5 TIẾT • CƠ SỞ NGÀNH",
+          title: "Bài 01 - Tổng quan về Khoa CNTT - LHU & Bức tranh ngành CNTT",
+          subtitle: "Lịch sử hơn 25 năm (1997-1998), triết lý Đạo đức - Trí tuệ - Sáng tạo & Chuẩn ABET",
+          body: `
+            <div class="space-y-4">
+              <div class="p-4 rounded-xl bg-blue-50 border border-blue-100 text-xs text-blue-900">
+                <strong>🎯 Mục tiêu bài học:</strong> Hiểu rõ lịch sử, sứ mạng, cơ cấu tổ chức Khoa CNTT LHU; nắm bắt chuẩn kiểm định quốc tế ABET và hợp tác Arizona State University (ASU); hòa nhập nhanh chóng vào môi trường đại học.
+              </div>
+              <h4 class="font-bold text-slate-900 text-sm">Nội dung 4 ý chính trọng tâm:</h4>
+              <ul class="list-disc pl-5 space-y-1.5 text-xs text-slate-600">
+                <li><strong>Hành trình 25+ năm:</strong> Đào tạo từ năm 1997-1998, phòng B301-B302 Cơ sở 1, đội ngũ Giáo sư/Tiến sĩ tâm huyết.</li>
+                <li><strong>Chuẩn quốc tế ABET (USA):</strong> Kiểm định kỹ thuật công nghệ khắt khe nhất của Mỹ, bảo chứng chất lượng bằng cấp toàn cầu.</li>
+                <li><strong>Bản chất ngành CNTT:</strong> Mã ngành 7480201, mã trường DLH, vai trò hạ tầng số trong thời kỳ AI-First.</li>
+                <li><strong>Hệ sinh thái sinh viên:</strong> Hệ thống CLB chuyên môn, Maker Lab, mạng lưới 500+ doanh nghiệp đối tác, cam kết 100% việc làm.</li>
+              </ul>
+              <div class="p-3.5 rounded-xl bg-slate-100 text-xs text-slate-700 flex justify-between items-center">
+                <span>📝 Trắc nghiệm Moodle: <strong>10 câu chuẩn Aiken</strong></span>
+                <span class="text-emerald-700 font-bold">Đáp ứng CLO 1</span>
+              </div>
+            </div>
+          `,
+          fileLink: "bai-01.html",
+          quizLink: "quiz/quiz-bai-01-aiken.txt"
+        },
+        2: {
+          badge: "BUỔI 02 • 5 TIẾT • CHUẨN ABET HOA KỲ",
+          title: "Bài 02 - Chương trình đào tạo Chuẩn ABET & 5 Trụ cột Kỹ sư AI",
+          subtitle: "Mô hình đào tạo toàn diện chuẩn quốc tế, tiên phong AI-First & Vibe Coding",
+          body: `
+            <div class="space-y-4">
+              <div class="p-4 rounded-xl bg-blue-50 border border-blue-100 text-xs text-blue-900">
+                <strong>🎯 Mục tiêu bài học:</strong> Phân tích sơ đồ môn học 4 năm, nắm vững 5 trụ cột năng lực kỹ sư thời kỳ AI và lộ trình thực tập OJT hưởng lương từ năm 3.
+              </div>
+              <h4 class="font-bold text-slate-900 text-sm">5 Trụ cột năng lực cốt lõi:</h4>
+              <ol class="list-decimal pl-5 space-y-1.5 text-xs text-slate-600">
+                <li><strong>Phát triển phần mềm + AI:</strong> Vibe Coding, Clean Architecture, thẩm định mã nguồn AI sinh ra.</li>
+                <li><strong>Chuyên sâu AI & Khoa học dữ liệu:</strong> LLMs, RAG, Fine-tuning, Data Pipelines và BI.</li>
+                <li><strong>An ninh mạng kỷ nguyên AI:</strong> DevSecOps, kiến trúc Zero Trust, rà soát lỗ hổng số.</li>
+                <li><strong>Cloud-Native & DevOps:</strong> Thực hành trên AWS/Azure, Docker, Kubernetes, CI/CD.</li>
+                <li><strong>Tư duy sản phẩm K-S-A:</strong> Product Mindset, UX/UI Centric, giải quyết bài toán kinh doanh thực tế.</li>
+              </ol>
+              <div class="p-3.5 rounded-xl bg-slate-100 text-xs text-slate-700 flex justify-between items-center">
+                <span>📝 Trắc nghiệm Moodle: <strong>10 câu chuẩn Aiken</strong></span>
+                <span class="text-emerald-700 font-bold">Đáp ứng CLO 1 & SO2</span>
+              </div>
+            </div>
+          `,
+          fileLink: "bai-02.html",
+          quizLink: "quiz/quiz-bai-02-aiken.txt"
+        },
+        3: {
+          badge: "BUỔI 03 • 5 TIẾT • THỊ TRƯỜNG LAO ĐỘNG",
+          title: "Bài 03 - Bản đồ nghề nghiệp IT & Các vị trí công việc thực tế",
+          subtitle: "Định vị vị trí công việc, quy trình Agile/Scrum và xây dựng Portfolio GitHub từ năm 1",
+          body: `
+            <div class="space-y-4">
+              <div class="p-4 rounded-xl bg-blue-50 border border-blue-100 text-xs text-blue-900">
+                <strong>🎯 Mục tiêu bài học:</strong> Phân biệt chính xác vai trò công việc (Frontend, Backend, DevOps, AI, QA/QC, PM), mức lương thị trường và xây dựng hồ sơ năng lực thực chiến.
+              </div>
+              <h4 class="font-bold text-slate-900 text-sm">Điểm nhấn nội dung:</h4>
+              <ul class="list-disc pl-5 space-y-1.5 text-xs text-slate-600">
+                <li><strong>Một ngày của Kỹ sư công nghệ:</strong> Quy trình phát triển Agile/Scrum, Daily Standup 15 phút, Sprint, Code Review và Release.</li>
+                <li><strong>Nấc thang thăng tiến:</strong> Intern &rarr; Fresher &rarr; Junior &rarr; Middle &rarr; Senior &rarr; Tech Lead / Software Architect.</li>
+                <li><strong>Hồ sơ GitHub:</strong> Xây dựng thương hiệu cá nhân, lưu trữ mã nguồn dự án thực tế để thuyết phục nhà tuyển dụng từ sớm.</li>
+              </ul>
+              <div class="p-3.5 rounded-xl bg-slate-100 text-xs text-slate-700 flex justify-between items-center">
+                <span>📝 Trắc nghiệm Moodle: <strong>10 câu chuẩn Aiken</strong></span>
+                <span class="text-emerald-700 font-bold">Đáp ứng CLO 1</span>
+              </div>
+            </div>
+          `,
+          fileLink: "bai-03.html",
+          quizLink: "quiz/quiz-bai-03-aiken.txt"
+        },
+        4: {
+          badge: "BUỔI 04 • 5 TIẾT • KỸ NĂNG NỀN TẢNG",
+          title: "Bài 04 - Kỹ năng sinh viên đại học & Tư duy lập trình Clean Code",
+          subtitle: "Tự học, quản lý thời gian, chuẩn mực email học thuật & Nghệ thuật viết mã sạch",
+          body: `
+            <div class="space-y-4">
+              <div class="p-4 rounded-xl bg-blue-50 border border-blue-100 text-xs text-blue-900">
+                <strong>🎯 Mục tiêu bài học:</strong> Thiết lập phương pháp tự học đại học, quản lý thời gian khoa học và rèn luyện tư duy viết mã sạch (Clean Code) ngay từ bài tập đầu tiên.
+              </div>
+              <h4 class="font-bold text-slate-900 text-sm">Điểm nhấn nội dung:</h4>
+              <ul class="list-disc pl-5 space-y-1.5 text-xs text-slate-600">
+                <li><strong>Kỹ năng tự học & Quản lý thời gian:</strong> Phương pháp Pomodoro (25-5), Ma trận Eisenhower, ghi chép Cornell.</li>
+                <li><strong>Giao tiếp học thuật:</strong> Viết email chuyên nghiệp gửi giảng viên/doanh nghiệp, chữ ký chuẩn.</li>
+                <li><strong>Triết lý Clean Code (Uncle Bob):</strong> Code viết ra cho con người đọc trước, sau đó mới đến máy tính; quy tắc đặt tên có ý nghĩa; hàm đơn nhiệm.</li>
+                <li><strong>Nguyên lý SOLID căn bản:</strong> Đặc biệt là Single Responsibility (Đơn trách nhiệm).</li>
+              </ul>
+              <div class="p-3.5 rounded-xl bg-slate-100 text-xs text-slate-700 flex justify-between items-center">
+                <span>📝 Trắc nghiệm Moodle: <strong>10 câu chuẩn Aiken</strong></span>
+                <span class="text-emerald-700 font-bold">Đáp ứng CLO 4 & SO5</span>
+              </div>
+            </div>
+          `,
+          fileLink: "bai-04.html",
+          quizLink: "quiz/quiz-bai-04-aiken.txt"
+        },
+        5: {
+          badge: "BUỔI 05 • 5 TIẾT • LÀM CHỦ GEN AI",
+          title: "Bài 05 - Làm chủ GenAI: Đăng ký & Kỹ thuật Prompt với ChatGPT & Gemini",
+          subtitle: "Bản chất mô hình ngôn ngữ lớn, bảo mật 2FA và công thức Prompt 5 thành phần",
+          body: `
+            <div class="space-y-4">
+              <div class="p-4 rounded-xl bg-purple-50 border border-purple-100 text-xs text-purple-900">
+                <strong>🎯 Mục tiêu bài học:</strong> Hiểu rõ cơ chế LLM, kích hoạt tài khoản an toàn và viết câu lệnh chuẩn để biến AI thành người gia sư 1-1 hỗ trợ học tập cá nhân.
+              </div>
+              <h4 class="font-bold text-slate-900 text-sm">Công thức Prompt chuẩn 5 yếu tố:</h4>
+              <div class="p-3 bg-purple-50 rounded-lg font-mono text-xs text-purple-800">
+                [Vai trò] + [Bối cảnh cụ thể] + [Nhiệm vụ rõ ràng] + [Ràng buộc/Quy tắc] + [Định dạng đầu ra]
+              </div>
+              <ul class="list-disc pl-5 space-y-1 text-xs text-slate-600">
+                <li>Kỹ thuật ELI5 (Explain Like I'm 5) giải thích khái niệm phức tạp siêu dễ hiểu.</li>
+                <li>Kỹ thuật Follow-up câu hỏi nối tiếp và tạo Custom Instructions trên ChatGPT.</li>
+              </ul>
+              <div class="p-3.5 rounded-xl bg-slate-100 text-xs text-slate-700 flex justify-between items-center">
+                <span>📝 Trắc nghiệm Moodle: <strong>10 câu chuẩn Aiken</strong></span>
+                <span class="text-emerald-700 font-bold">Đáp ứng CLO 2 & SO2</span>
+              </div>
+            </div>
+          `,
+          fileLink: "bai-05.html",
+          quizLink: "quiz/quiz-bai-05-aiken.txt"
+        },
+        6: {
+          badge: "BUỔI 06 • 5 TIẾT • HỌC NHANH VỚI AI",
+          title: "Bài 06 - Tóm tắt sách, Đọc nhanh tài liệu & Phương pháp ghi nhớ với AI",
+          subtitle: "Kỹ thuật tóm tắt có cấu trúc, trích xuất Glossary, Active Recall & Thẻ nhớ Anki",
+          body: `
+            <div class="space-y-4">
+              <div class="p-4 rounded-xl bg-purple-50 border border-purple-100 text-xs text-purple-900">
+                <strong>🎯 Mục tiêu bài học:</strong> Khai thác AI để đọc hiểu tài liệu kỹ thuật tốc độ cao, tự động hóa đề cương, sinh flashcard và quản lý lịch sử hội thoại môn học.
+              </div>
+              <ul class="list-disc pl-5 space-y-1.5 text-xs text-slate-600">
+                <li><strong>Tóm tắt đa cấp độ:</strong> Tóm tắt siêu ngắn TL;DR, tóm tắt có cấu trúc luận điểm &amp; dẫn chứng.</li>
+                <li><strong>Active Recall:</strong> Yêu cầu AI đóng vai giám khảo vấn đáp, hỏi từng câu và sửa lỗi trực tiếp.</li>
+                <li><strong>Spaced Repetition:</strong> Xuất bảng thuật ngữ Markdown hai cột để import thẳng vào Anki / Quizlet.</li>
+                <li><strong>Tổ chức Chat Threads:</strong> Gom nhóm theo môn học [C++] - Con trỏ, [Toán] - Đồ thị.</li>
+              </ul>
+              <div class="p-3.5 rounded-xl bg-slate-100 text-xs text-slate-700 flex justify-between items-center">
+                <span>📝 Trắc nghiệm Moodle: <strong>10 câu chuẩn Aiken</strong></span>
+                <span class="text-emerald-700 font-bold">Đáp ứng CLO 2</span>
+              </div>
+            </div>
+          `,
+          fileLink: "bai-06.html",
+          quizLink: "quiz/quiz-bai-06-aiken.txt"
+        },
+        7: {
+          badge: "BUỔI 07 • 5 TIẾT • HỌC THUẬT & LIÊM CHÍNH",
+          title: "Bài 07 - Dịch thuật chuyên ngành, Viết báo cáo & Kiểm soát ảo giác AI",
+          subtitle: "Dịch thuật bảo toàn thuật ngữ tiếng Anh, nhận diện AI Hallucination & Fact-checking",
+          body: `
+            <div class="space-y-4">
+              <div class="p-4 rounded-xl bg-purple-50 border border-purple-100 text-xs text-purple-900">
+                <strong>🎯 Mục tiêu bài học:</strong> Dịch thuật chuẩn xác tài liệu tiếng Anh CNTT, biên tập bài viết học thuật mạch lạc và kiểm chứng sự thật để chống hiện tượng ảo giác AI.
+              </div>
+              <ul class="list-disc pl-5 space-y-1.5 text-xs text-slate-600">
+                <li><strong>Dịch thuật kỹ thuật:</strong> Giữ nguyên thuật ngữ quốc tế (API, framework, polymorphism...). Tránh dịch thô bạo gây sai bản chất.</li>
+                <li><strong>Ảo giác AI (Hallucination):</strong> Hiểu nguyên nhân mô hình tự bịa số liệu, bài báo hoặc thư viện không tồn tại.</li>
+                <li><strong>Quy trình Fact-checking:</strong> Đối chiếu chéo nguồn tin với Google Scholar, IEEE, ACM và tài liệu gốc.</li>
+                <li><strong>Liêm chính học thuật:</strong> Khai báo minh bạch việc dùng AI trong báo cáo và tự chịu trách nhiệm về nội dung.</li>
+              </ul>
+              <div class="p-3.5 rounded-xl bg-slate-100 text-xs text-slate-700 flex justify-between items-center">
+                <span>📝 Trắc nghiệm Moodle: <strong>10 câu chuẩn Aiken</strong></span>
+                <span class="text-emerald-700 font-bold">Đáp ứng CLO 3 & SO3</span>
+              </div>
+            </div>
+          `,
+          fileLink: "bai-07.html",
+          quizLink: "quiz/quiz-bai-07-aiken.txt"
+        },
+        8: {
+          badge: "BUỔI 08 • 5 TIẾT • VIBE CODING NÂNG CAO",
+          title: "Bài 08 - Kỹ thuật Prompt nâng cao: Đóng vai Chuyên gia & Vibe Coding",
+          subtitle: "Role Prompting, Chain-of-Thought, gỡ lỗi code C++ và trực quan hóa sản phẩm",
+          body: `
+            <div class="space-y-4">
+              <div class="p-4 rounded-xl bg-purple-50 border border-purple-100 text-xs text-purple-900">
+                <strong>🎯 Mục tiêu bài học:</strong> Sử dụng các kỹ thuật Prompt chuyên sâu (Few-Shot, CoT), ứng dụng AI gỡ lỗi mã nguồn C++ và trực quan hóa slide/sơ đồ cho đồ án học phần.
+              </div>
+              <ul class="list-disc pl-5 space-y-1.5 text-xs text-slate-600">
+                <li><strong>Role Prompting:</strong> Đóng vai Senior Software Architect, Security Consultant để tư vấn kỹ thuật.</li>
+                <li><strong>Vibe Coding debug C++:</strong> Cung cấp mã nguồn kèm nguyên văn thông báo lỗi (Compiler error / Stack trace) để AI phân tích nguyên nhân và giải pháp sửa.</li>
+                <li><strong>Công cụ đa phương tiện:</strong> Tạo slide thuyết trình tự động bằng Gamma.app, vẽ sơ đồ Mermaid.js.</li>
+                <li><strong>Bảo mật:</strong> Tuyệt đối không dán mật khẩu, chuỗi kết nối DB hay API Keys lên AI công cộng.</li>
+              </ul>
+              <div class="p-3.5 rounded-xl bg-slate-100 text-xs text-slate-700 flex justify-between items-center">
+                <span>📝 Trắc nghiệm Moodle: <strong>10 câu chuẩn Aiken</strong></span>
+                <span class="text-emerald-700 font-bold">Đáp ứng CLO 2 & SO2</span>
+              </div>
+            </div>
+          `,
+          fileLink: "bai-08.html",
+          quizLink: "quiz/quiz-bai-08-aiken.txt"
+        },
+        9: {
+          badge: "BUỔI 09 • 5 TIẾT • TỔNG KẾT & BÁO CÁO",
+          title: "Bài 09 - Xây dựng Lộ trình học tập 4 năm & Báo cáo Đồ án cuối kỳ",
+          subtitle: "Personal Learning Plan (PLP), chứng chỉ quốc tế và thuyết trình trước Hội đồng",
+          body: `
+            <div class="space-y-4">
+              <div class="p-4 rounded-xl bg-rose-50 border border-rose-100 text-xs text-rose-900">
+                <strong>🎯 Mục tiêu bài học:</strong> Hoàn thiện kế hoạch phát triển cá nhân 4 năm (PLP); tự tin thuyết trình đồ án nhóm và hoàn thành toàn diện chuẩn đầu ra của môn học.
+              </div>
+              <ul class="list-disc pl-5 space-y-1.5 text-xs text-slate-600">
+                <li><strong>Kế hoạch 4 năm (PLP):</strong> Đặt mục tiêu GPA, chứng chỉ tiếng Anh (TOEIC/IELTS), chứng chỉ quốc tế (AWS, Cisco, Google Cloud), tham gia CLB và OJT.</li>
+                <li><strong>Báo cáo Đồ án nhóm:</strong> Thuyết trình sản phẩm ứng dụng Generative AI hoặc đề tài CNTT trước Giảng viên và bạn học.</li>
+                <li><strong>Đánh giá Rubric 40%:</strong> Tiêu chí chất lượng sản phẩm, tinh thần đồng đội, tính sáng tạo và bản lĩnh phản biện.</li>
+              </ul>
+              <div class="p-3.5 rounded-xl bg-slate-100 text-xs text-slate-700 flex justify-between items-center">
+                <span>📝 Trắc nghiệm Tổng hợp: <strong>10 câu chuẩn Aiken</strong></span>
+                <span class="text-emerald-700 font-bold">Đáp ứng CLO 1, 2, 3, 4</span>
+              </div>
+            </div>
+          `,
+          fileLink: "bai-09.html",
+          quizLink: "quiz/quiz-bai-09-aiken.txt"
+        }
+      },
+      pillar: {
+        1: {
+          badge: "TRỤ CỘT 01 • CHUẨN ABET HOA KỲ",
+          title: "Phát Triển Phần Mềm Tích Hợp AI (AI-Integrated Software Dev)",
+          subtitle: "Làm chủ AI Agents, Vibe Coding và Tư duy Kiến trúc Phần mềm Sạch",
+          body: `
+            <p>Trụ cột giúp sinh viên chuyển dịch từ việc gõ cú pháp thủ công sang vai trò Kiến trúc sư trưởng:</p>
+            <ul class="list-disc pl-5 space-y-2 text-xs text-slate-600 mt-2">
+              <li><strong>Vibe Coding:</strong> Tương tác cùng các AI Assistant (GitHub Copilot, Gemini Code Assist, Cursor) để tăng tốc độ phát triển phần mềm gấp 3 lần.</li>
+              <li><strong>Clean Architecture:</strong> Thiết kế kiến trúc module hóa, phân tách tầng rõ ràng (MVC, MVVM, Clean Code).</li>
+              <li><strong>Thẩm định chất lượng:</strong> Biết đọc hiểu, kiểm thử (Unit Testing) và tối ưu hóa mã nguồn do AI sinh ra.</li>
+            </ul>
+          `
+        },
+        2: {
+          badge: "TRỤ CỘT 02 • CHUẨN ABET HOA KỲ",
+          title: "Chuyên Sâu AI & Khoa Học Dữ Liệu (LLM & Data Engineering)",
+          subtitle: "Large Language Models, Kỹ thuật RAG, Fine-tuning và Data Pipelines",
+          body: `
+            <p>Trụ cột đào tạo chuyên sâu về công nghệ lõi của Trí tuệ Nhân tạo hiện đại:</p>
+            <ul class="list-disc pl-5 space-y-2 text-xs text-slate-600 mt-2">
+              <li><strong>RAG (Retrieval-Augmented Generation):</strong> Kết nối mô hình ngôn ngữ lớn với cơ sở tri thức doanh nghiệp để triệt tiêu ảo giác AI.</li>
+              <li><strong>Fine-tuning:</strong> Huấn luyện tinh chỉnh các mô hình AI mã nguồn mở (Llama, Gemma) phục vụ bài toán chuyên biệt.</li>
+              <li><strong>Data Engineering & BI:</strong> Xây dựng đường ống dữ liệu quy mô lớn, phân tích trực quan hóa dữ liệu kinh doanh.</li>
+            </ul>
+          `
+        },
+        3: {
+          badge: "TRỤ CỘT 03 • CHUẨN ABET HOA KỲ",
+          title: "An Ninh Mạng Kỷ Nguyên AI (Cybersecurity & DevSecOps)",
+          subtitle: "Bảo vệ hệ thống trong kỷ nguyên tự động hóa, Zero Trust & Bảo mật ứng dụng LLM",
+          body: `
+            <p>Trụ cột rèn luyện kỹ năng bảo vệ an toàn thông tin và phòng thủ số:</p>
+            <ul class="list-disc pl-5 space-y-2 text-xs text-slate-600 mt-2">
+              <li><strong>Bảo mật LLM:</strong> Phòng chống tấn công Prompt Injection, rò rỉ dữ liệu nhạy cảm qua mô hình AI.</li>
+              <li><strong>DevSecOps:</strong> Tích hợp kiểm tra bảo mật tự động ngay trong chu trình CI/CD từ ngày đầu tiên viết code.</li>
+              <li><strong>Kiến trúc Zero Trust:</strong> Xác thực liên tục, rà soát lỗ hổng và phòng chống tấn công mạng toàn diện.</li>
+            </ul>
+          `
+        },
+        4: {
+          badge: "TRỤ CỘT 04 • CHUẨN ABET HOA KỲ",
+          title: "Kiến Trúc Cloud-Native & DevOps (Cloud Platforms & Infrastructure)",
+          subtitle: "Thực hành trực tiếp trên AWS, Azure, GCP; Docker, Kubernetes & CI/CD",
+          body: `
+            <p>Trụ cột xây dựng năng lực vận hành hệ thống phần mềm quy mô lớn:</p>
+            <ul class="list-disc pl-5 space-y-2 text-xs text-slate-600 mt-2">
+              <li><strong>Nền tảng Đám mây:</strong> Thực hành trực tiếp trên hạ tầng AWS, Microsoft Azure, Google Cloud Platform.</li>
+              <li><strong>Container & Điều phối:</strong> Đóng gói ứng dụng với Docker, quản lý cụm container với Kubernetes (K8s).</li>
+              <li><strong>CI/CD Pipelines:</strong> Tự động hóa kiểm thử và triển khai mã nguồn liên tục lên môi trường Production.</li>
+            </ul>
+          `
+        },
+        5: {
+          badge: "TRỤ CỘT 05 • CHUẨN ABET HOA KỲ",
+          title: "Tư Duy Sản Phẩm & Kỹ Năng Kỹ Sư Toàn Năng (K-S-A)",
+          subtitle: "Product Mindset, Trải nghiệm người dùng UX/UI, Agile/Scrum & Đạo đức ABET",
+          body: `
+            <p>Trụ cột rèn luyện tư duy kinh doanh và kỹ năng mềm của một kỹ sư xuất sắc:</p>
+            <ul class="list-disc pl-5 space-y-2 text-xs text-slate-600 mt-2">
+              <li><strong>Tư duy sản phẩm (Product Mindset):</strong> Giải quyết đúng bài toán thực tế của khách hàng, lấy trải nghiệm người dùng làm trung tâm (UX/UI Centric).</li>
+              <li><strong>Làm việc nhóm Agile/Scrum:</strong> Cộng tác linh hoạt, giao tiếp phản biện và quản lý dự án hiệu quả.</li>
+              <li><strong>Đạo đức nghề nghiệp ABET:</strong> Tôn trọng bản quyền, liêm chính học thuật, trách nhiệm xã hội và tinh thần học tập suốt đời.</li>
+            </ul>
+          `
+        }
+      },
+      clo: {
+        1: {
+          badge: "CHUẨN ĐẦU RA MÔN HỌC • CLO 1",
+          title: "Nhận thức Ngành nghề, Khoa CNTT & Kỹ năng Học Đại học",
+          subtitle: "Mức độ giảng dạy: Kiến thức (Mức 2) • Đáp ứng chuẩn ABET: SO2 - PI 2.1",
+          body: `
+            <div class="space-y-3">
+              <p><strong>Nội dung chuẩn đầu ra:</strong> Sinh viên có khả năng thu thập, xử lý và tổng hợp thông tin về ngành Công nghệ Thông tin, Khoa CNTT - LHU, chuẩn kiểm định quốc tế ABET và các kỹ năng thích ứng cần thiết trong môi trường đại học.</p>
+              <div class="p-3 bg-blue-50 rounded-xl text-xs text-blue-900">
+                <strong>Phương pháp đánh giá:</strong> Bài kiểm tra trắc nghiệm Quiz Bài 01, Bài 02, Bài 03 và tương tác thảo luận trên diễn đàn môn học.
+              </div>
+            </div>
+          `
+        },
+        2: {
+          badge: "CHUẨN ĐẦU RA MÔN HỌC • CLO 2",
+          title: "Ứng dụng Trí tuệ Nhân tạo trong Học tập và Lập trình CNTT",
+          subtitle: "Mức độ giảng dạy: Kiến thức (Mức 3) • Đáp ứng chuẩn ABET: SO2 - PI 2.1",
+          body: `
+            <div class="space-y-3">
+              <p><strong>Nội dung chuẩn đầu ra:</strong> Sinh viên áp dụng thành thạo Trí tuệ nhân tạo tạo sinh (ChatGPT, Google Gemini) và các công cụ số vào việc đọc hiểu, tóm tắt tài liệu kỹ thuật, học nhanh (Active Recall), tra cứu thông tin và hỗ trợ lập trình (Vibe Coding).</p>
+              <div class="p-3 bg-purple-50 rounded-xl text-xs text-purple-900">
+                <strong>Phương pháp đánh giá:</strong> Bài tập thực hành thiết kế Prompt, bài kiểm tra giữa kỳ và sản phẩm ứng dụng AI trong đồ án nhóm.
+              </div>
+            </div>
+          `
+        },
+        3: {
+          badge: "CHUẨN ĐẦU RA MÔN HỌC • CLO 3",
+          title: "Soạn thảo Báo cáo Kỹ thuật & Liêm chính Học thuật",
+          subtitle: "Mức độ giảng dạy: Kỹ năng (Mức 3) • Đáp ứng chuẩn ABET: SO3 - PI 3.1",
+          body: `
+            <div class="space-y-3">
+              <p><strong>Nội dung chuẩn đầu ra:</strong> Sinh viên viết và trình bày được báo cáo kỹ thuật, biên tập văn bản, dịch thuật tài liệu tiếng Anh CNTT đúng quy chuẩn định dạng học thuật; có ý thức kiểm chứng sự thật (Fact-checking) và tuân thủ nghiêm túc liêm chính học thuật.</p>
+              <div class="p-3 bg-emerald-50 rounded-xl text-xs text-emerald-900">
+                <strong>Phương pháp đánh giá:</strong> Bài tập thực hành viết email học thuật, bài dịch thuật tài liệu kỹ thuật và bản báo cáo đồ án nhóm định dạng PDF.
+              </div>
+            </div>
+          `
+        },
+        4: {
+          badge: "CHUẨN ĐẦU RA MÔN HỌC • CLO 4",
+          title: "Tổ chức Công việc Cá nhân & Cộng tác Làm việc Nhóm",
+          subtitle: "Mức độ giảng dạy: Thái độ (Mức 3) • Đáp ứng chuẩn ABET: SO5 - PI 5.1",
+          body: `
+            <div class="space-y-3">
+              <p><strong>Nội dung chuẩn đầu ra:</strong> Sinh viên vận dụng tốt kỹ năng lập kế hoạch học tập cá nhân 4 năm (PLP), quản lý thời gian hiệu quả và phối hợp cộng tác làm việc nhóm tích cực theo mô hình Agile/Scrum để hoàn thành mục tiêu công việc.</p>
+              <div class="p-3 bg-amber-50 rounded-xl text-xs text-amber-900">
+                <strong>Phương pháp đánh giá:</strong> Đánh giá mức độ chuyên cần, tinh thần tham gia thảo luận nhóm, hồ sơ kế hoạch học tập cá nhân và thuyết trình phản biện đồ án.
+              </div>
+            </div>
+          `
+        }
+      },
+      assessment: {
+        'quatrinh': {
+          badge: "THÀNH PHẦN ĐÁNH GIÁ • TRỌNG SỐ 30%",
+          title: "Điểm Quá Trình (Continuous Assessment)",
+          subtitle: "Chuyên cần, tham gia thảo luận diễn đàn & Hoàn thành các bài Quiz LMS",
+          body: `
+            <div class="space-y-3">
+              <p>Điểm quá trình ghi nhận sự nỗ lực và tương tác đều đặn của sinh viên trong suốt 9 tuần học:</p>
+              <ul class="list-disc pl-5 space-y-1.5 text-xs text-slate-600">
+                <li><strong>Chuyên cần & Thái độ:</strong> Tham gia đầy đủ các buổi học trực tiếp trên lớp và thực hành máy tính.</li>
+                <li><strong>Bài kiểm tra trắc nghiệm nhanh hàng tuần:</strong> Làm các bài Quiz (Bài 01 đến Bài 08) trên LMS LHU với ngân hàng câu hỏi chuẩn Aiken.</li>
+                <li><strong>Tương tác diễn đàn:</strong> Chia sẻ ý kiến, thảo luận các tình huống thực tế trên diễn đàn forum.fitlhu.com.</li>
+              </ul>
+            </div>
+          `,
+          fileLink: "danh-gia-hoc-phan.html"
+        },
+        'giuaky': {
+          badge: "THÀNH PHẦN ĐÁNH GIÁ • TRỌNG SỐ 30%",
+          title: "Điểm Giữa Kỳ (Midterm Assessment)",
+          subtitle: "Kỹ năng viết email học thuật, thực hành Prompt Engineering & Đề cương đồ án",
+          body: `
+            <div class="space-y-3">
+              <p>Đánh giá năng lực thực hành kỹ năng mềm và kỹ năng ứng dụng công nghệ:</p>
+              <ul class="list-disc pl-5 space-y-1.5 text-xs text-slate-600">
+                <li><strong>Bài tập 1:</strong> Soạn thảo email học thuật chuẩn mực gửi giảng viên qua tài khoản @lhu.edu.vn và chuẩn hóa đoạn code vi phạm Clean Code.</li>
+                <li><strong>Bài tập 2:</strong> Thiết kế bộ Prompt 5 thành phần để tóm tắt tài liệu kỹ thuật và tạo bộ flashcard ôn tập.</li>
+                <li><strong>Báo cáo tiến độ nhóm:</strong> Nộp bản đề cương sơ bộ của đề tài đồ án cuối kỳ.</li>
+              </ul>
+            </div>
+          `,
+          fileLink: "danh-gia-hoc-phan.html"
+        },
+        'cuoiky': {
+          badge: "THÀNH PHẦN ĐÁNH GIÁ • TRỌNG SỐ 40%",
+          title: "Báo Cáo Đồ Án Cuối Kỳ (Final Project & Presentation)",
+          subtitle: "Hồ sơ báo cáo, slide thuyết trình, sản phẩm demo & Phản biện trước Giảng viên",
+          body: `
+            <div class="space-y-3">
+              <p>Đánh giá tổng hợp toàn diện các chuẩn đầu ra (CLO1, CLO2, CLO3, CLO4) theo bảng tiêu chí Rubric:</p>
+              <ul class="list-disc pl-5 space-y-1.5 text-xs text-slate-600">
+                <li><strong>Sản phẩm đồ án:</strong> Đề tài nghiên cứu CNTT hoặc sản phẩm ứng dụng Generative AI (theo 15 chủ đề thực hành ASU/LHU).</li>
+                <li><strong>Hồ sơ nộp bài:</strong> Báo cáo định dạng PDF đúng mẫu quy định của Khoa kèm slide thuyết trình (Gamma/Canva).</li>
+                <li><strong>Kế hoạch học tập 4 năm (PLP):</strong> Bản kế hoạch cá nhân của từng thành viên trong nhóm.</li>
+                <li><strong>Thuyết trình & Phản biện:</strong> 10-15 phút báo cáo tự tin trước tập thể lớp và trả lời câu hỏi của Giảng viên.</li>
+              </ul>
+            </div>
+          `,
+          fileLink: "danh-gia-hoc-phan.html"
+        }
+      }
+    };
+
+    /* 3. MODAL CONTROLLER FUNCTIONS */
+    const modalEl = document.getElementById("universalModal");
+    const modalBoxEl = document.getElementById("modalBox");
+    const modalTitleEl = document.getElementById("modalTitle");
+    const modalSubtitleEl = document.getElementById("modalSubtitle");
+    const modalBadgeEl = document.getElementById("modalCategoryBadge");
+    const modalBodyEl = document.getElementById("modalBody");
+    const modalSecondaryLinkEl = document.getElementById("modalSecondaryLink");
+    const modalPrimaryActionEl = document.getElementById("modalPrimaryAction");
+
+    function openModalWithData(data, type) {
+      if (!data) return;
+
+      modalBadgeEl.innerText = data.badge || "THÔNG TIN HỌC PHẦN";
+      modalTitleEl.innerText = data.title || "";
+      modalSubtitleEl.innerText = data.subtitle || "";
+      modalBodyEl.innerHTML = data.body || "";
+
+      // Configure Action Buttons
+      if (data.fileLink) {
+        modalSecondaryLinkEl.innerHTML = `<a href="${data.fileLink}" target="_blank" class="text-xs text-lhu-blue hover:underline font-bold flex items-center gap-1.5"><i class="fa-solid fa-file-code"></i> Mở file bài học (${data.fileLink})</a>`;
+      } else {
+        modalSecondaryLinkEl.innerHTML = `<span class="text-xs text-slate-400">Khoa CNTT - Đại học Lạc Hồng</span>`;
+      }
+
+      if (data.quizLink) {
+        modalPrimaryActionEl.innerHTML = `<a href="${data.quizLink}" target="_blank" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-xl shadow transition-all flex items-center gap-1.5"><i class="fa-solid fa-list-check"></i> Xem 10 câu Quiz</a>`;
+      } else {
+        modalPrimaryActionEl.innerHTML = `<a href="https://learn.lhu.edu.vn" target="_blank" class="px-4 py-2 bg-lhu-blue hover:bg-lhu-dark text-white text-xs font-bold rounded-xl shadow transition-all flex items-center gap-1.5"><i class="fa-solid fa-graduation-cap text-asu-gold"></i> Vào lớp LMS</a>`;
+      }
+
+      // Show Modal with Animation
+      modalEl.classList.remove("hidden");
+      modalEl.classList.add("flex");
+      document.body.classList.add("overflow-hidden");
+      modalBoxEl.classList.add("animate-modal-box");
+      document.getElementById("modalBackdrop").classList.add("animate-modal-backdrop");
+    }
+
+    function openLessonModal(lessonNumber) {
+      const data = modalData.lesson[lessonNumber];
+      openModalWithData(data, 'lesson');
+    }
+
+    function openPillarModal(pillarNumber) {
+      const data = modalData.pillar[pillarNumber];
+      openModalWithData(data, 'pillar');
+    }
+
+    function openCloModal(cloNumber) {
+      const data = modalData.clo[cloNumber];
+      openModalWithData(data, 'clo');
+    }
+
+    function openAssessmentModal(type) {
+      const data = modalData.assessment[type];
+      openModalWithData(data, 'assessment');
+    }
+
+    function closeModal() {
+      modalEl.classList.add("hidden");
+      modalEl.classList.remove("flex");
+      document.body.classList.remove("overflow-hidden");
+    }
+
+    // Close on Escape Key
+    document.addEventListener("keydown", function(e) {
+      if (e.key === "Escape" && !modalEl.classList.contains("hidden")) {
+        closeModal();
+      }
+    });
+  </script>
+
+</body>
+</html>
+
