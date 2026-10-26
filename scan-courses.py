@@ -171,6 +171,12 @@ def main():
             c["courseLanding"] = "course-landingpage.html"
             c["syllabusFile"] = "thong-tin-hoc-phan.html"
             c["assessmentFile"] = "danh-gia-hoc-phan.html"
+        elif c["id"] == "lap-trinh-frontend":
+            c["title"] = "Lập Trình Front-End"
+            c["englishTitle"] = "Front-End Programming (Next.js, TypeScript & Vibe Coding)"
+            c["hours"] = "60 tiết (12 buổi)"
+            c["tags"] = ["ABET", "AI-First", "Vibe Coding", "Next.js", "Chuyên ngành"]
+            c["icon"] = "fa-solid fa-code"
 
     # Write courses.json
     json_path = ROOT_DIR / "courses.json"

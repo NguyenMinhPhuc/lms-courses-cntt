@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LẬP TRÌNH FRONT-END (NEXT.JS, TYPESCRIPT &amp; VIBE CODING) | Lập trình Front-End - Khoa CNTT - Đại học Lạc Hồng</title>
+  <meta name="description" content="Đánh giá &amp; Phản hồi: LẬP TRÌNH FRONT-END (NEXT.JS, TYPESCRIPT &amp; VIBE CODING) - Lập trình Front-End (Next.js, TypeScript &amp; Vibe Coding)">
+
+  <!-- Tailwind CSS CDN (kèm plugin typography cho nội dung Markdown) -->
+  <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6.4.0 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Highlight.js 11.9.0 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            asu: { maroon: '#8C1D40', gold: '#FFC627', dark: '#5C142B', light: '#FAEDF0' },
+            lhu: { blue: '#013D88', sky: '#007BFF', dark: '#01295C', light: '#EEF5FC' },
+            fe: { indigo: '#6366F1', dark: '#312E81', light: '#EEF2FF' }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .lesson h2, .lesson h3, .lesson h4 { scroll-margin-top: 90px; }
+    .lesson h3 { padding-bottom: .4rem; border-bottom: 2px solid #EEF2FF; }
+    .lesson blockquote { border-left: 4px solid #6366F1; background: #F5F7FF; border-radius: 0 12px 12px 0; padding: .6rem 1rem; font-style: normal; color: #1e293b; }
+    .lesson blockquote p:first-of-type::before, .lesson blockquote p:last-of-type::after { content: none; }
+    .lesson pre { border-radius: 12px; padding: 0; background: #0d1117; }
+    .lesson pre code.hljs { border-radius: 12px; padding: 1rem 1.1rem; font-size: 13px; line-height: 1.6; }
+    .lesson :not(pre) > code { background: #EEF2FF; color: #3730A3; padding: .1rem .35rem; border-radius: 6px; font-weight: 500; }
+    .lesson :not(pre) > code::before, .lesson :not(pre) > code::after { content: none; }
+    .lesson table { display: block; overflow-x: auto; font-size: 14px; }
+    .lesson thead th { background: #F1F5F9; }
+    .lesson th, .lesson td { border: 1px solid #E2E8F0; padding: .5rem .7rem !important; vertical-align: top; }
+    .lesson details { border: 1px solid #C7D2FE; border-radius: 10px; padding: .6rem .9rem; margin: .5rem 0 1.2rem; background: #FAFAFF; }
+    .lesson details summary { cursor: pointer; font-weight: 600; color: #4338CA; }
+    .lesson details[open] summary { margin-bottom: .4rem; }
+    .lesson hr { border-color: #E2E8F0; margin: 2rem 0; }
+    @media print {
+      header, footer, .no-print { display: none !important; }
+      details { break-inside: avoid; margin-bottom: 20px; }
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans antialiased selection:bg-asu-gold selection:text-slate-900 min-h-screen flex flex-col">
+
+  <!-- TOP BAR -->
+  <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800 no-print">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+      <div class="flex items-center gap-2">
+        <span class="text-asu-gold font-semibold"><i class="fa-solid fa-certificate mr-1"></i> CHUẨN KIỂM ĐỊNH ABET (USA)</span>
+        <span class="text-slate-600 hidden sm:inline">•</span>
+        <span class="hidden sm:inline">Lớp học đảo ngược • Vibe Coding</span>
+      </div>
+      <div class="flex items-center gap-4 text-xs font-mono">
+        <span>Thời lượng: <strong class="text-white">60 tiết (12 buổi)</strong></span>
+        <span>LT/TH: <strong class="text-asu-gold">30% / 70%</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="sticky top-0 z-40 bg-white shadow-sm border-b border-slate-200 no-print">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <a href="../index.html" class="flex items-center gap-2.5 text-slate-800 hover:text-lhu-blue transition-colors">
+        <img src="../LHU_ASU_VI_Small_Ngang.png" alt="Logo LHU" class="h-8 w-auto">
+        <div class="border-l border-slate-300 pl-2.5">
+          <div class="text-[11px] font-bold text-slate-500 uppercase">Khoa CNTT - LHU</div>
+          <div class="text-xs font-extrabold text-lhu-blue">LẬP TRÌNH FRONT-END</div>
+        </div>
+      </a>
+      <div class="flex items-center gap-3 text-xs">
+        <a href="../index.html" class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-arrow-left"></i>
+          <span class="hidden sm:inline">Về Landing Page</span>
+        </a>
+        <button onclick="window.print()" class="hidden sm:flex px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-all items-center gap-1.5" title="In hoặc lưu file PDF">
+          <i class="fa-solid fa-print"></i>
+          <span>In / PDF</span>
+        </button>
+        <a href="https://learn.lhu.edu.vn" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-lhu-blue hover:bg-lhu-dark text-white font-bold rounded-xl shadow transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-graduation-cap text-asu-gold"></i>
+          <span>Vào lớp LMS</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="flex-grow max-w-5xl w-full mx-auto px-4 sm:px-6 py-8">
+
+    <!-- Title Card -->
+    <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 mb-8">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-5">
+        <div>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-fe-light text-fe-dark font-bold text-xs uppercase tracking-wider mb-2">
+            <i class="fa-solid fa-code"></i> Đánh giá &amp; Phản hồi
+          </span>
+          <h1 class="text-2xl sm:text-3xl font-black text-slate-900 leading-tight">
+            LẬP TRÌNH FRONT-END (NEXT.JS, TYPESCRIPT &amp; VIBE CODING)
+          </h1>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1 font-mono">
+            Học phần: Lập trình Front-End (Next.js, TypeScript & Vibe Coding) • Khoa CNTT - Đại học Lạc Hồng
+          </p>
+        </div>
+        <div class="flex-shrink-0 flex sm:flex-col items-center sm:items-end justify-between gap-1 text-xs">
+          <span class="px-3 py-1.5 bg-emerald-50 text-emerald-700 font-bold rounded-lg border border-emerald-200">
+            <i class="fa-solid fa-check-circle mr-1"></i> Lưu hành nội bộ 2026
+          </span>
+          <span class="text-slate-400 text-[11px]">Định dạng LMS Lecture</span>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between pt-4 text-xs no-print">
+        <span class="text-slate-500">
+          <i class="fa-solid fa-circle-info text-blue-500 mr-1"></i>
+          Bấm vào các khối thu gọn để xem đáp án hoặc chi tiết.
+        </span>
+        <div class="flex items-center gap-2">
+          <button onclick="toggleAllDetails(true)" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg transition-colors">Mở tất cả</button>
+          <button onclick="toggleAllDetails(false)" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg transition-colors">Thu gọn</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <article class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 lesson prose prose-slate max-w-none prose-headings:font-extrabold prose-h3:text-lhu-dark prose-h4:text-fe-dark prose-a:text-lhu-blue">
+<h2 id="assessment-tu-danh-gia-danh-gia-dong-dang">ASSESSMENT – TỰ ĐÁNH GIÁ &amp; ĐÁNH GIÁ ĐỒNG ĐẲNG</h2>
+<blockquote>
+<p><strong>Áp dụng:</strong> Mỗi sinh viên tự đánh giá tại 2 mốc (trước Buổi 7, trước Buổi 12) và đánh giá đồng đẳng các thành viên trong nhóm cùng thời điểm<br><strong>Chuẩn đầu ra liên quan:</strong> CLO1–CLO4, trọng tâm CLO4 (PI 5.1 – làm việc nhóm)<br><strong>Nộp tại:</strong> Cổng hồ sơ Giữa kỳ / Cuối kỳ trên LMS, tên file <code>[MãLớp]_[NhomXX]_[MSSV]_PeerReview.pdf</code> (hoặc Google Form do giảng viên cung cấp)</p>
+</blockquote>
+<hr>
+<h3 id="1-vi-sao-phai-tu-danh-gia">1. Vì sao phải tự đánh giá?</h3>
+<p>Ba tuần trước Hackathon, nhóm của bạn có một thành viên gần như không push code. Đến Buổi 12 mới nói ra thì đã quá muộn để sửa. Phiếu tự đánh giá và đánh giá đồng đẳng giúp phát hiện sớm những tình huống như vậy, đồng thời cho mỗi người cơ hội nhìn lại mình đang đứng ở đâu so với rubric.</p>
+<ul>
+<li><strong>Phiếu chỉ dùng để tham khảo:</strong> giảng viên đọc phiếu để chuẩn bị câu hỏi phản biện và hỗ trợ nhóm, không tự động cộng/trừ điểm. Điểm cá nhân vẫn tính theo công thức Nhóm × 0.7 + Phản biện × 0.3.</li>
+<li><strong>Bảo mật:</strong> nội dung đánh giá đồng đẳng chỉ giảng viên đọc, không chia sẻ cho các thành viên khác.</li>
+<li><strong>Trung thực, có minh chứng:</strong> mỗi nhận định nên kèm link commit, PR hoặc Issue cụ thể.</li>
+</ul>
+<hr>
+<h3 id="2-phieu-tu-danh-gia-ca-nhan">2. Phiếu tự đánh giá cá nhân</h3>
+<p><strong>Họ tên:</strong> ............ <strong>MSSV:</strong> ............ <strong>Lớp:</strong> ............ <strong>Nhóm:</strong> ............ <strong>Mốc:</strong> ☐ Trước Buổi 7 ☐ Trước Buổi 12</p>
+<h4 id="2-1-tu-danh-gia-theo-chuan-dau-ra">2.1. Tự đánh giá theo chuẩn đầu ra</h4>
+<p>Thang mức: <strong>1</strong> – Chưa làm được · <strong>2</strong> – Làm được khi có hướng dẫn · <strong>3</strong> – Tự làm được · <strong>4</strong> – Làm tốt và hướng dẫn được bạn khác.</p>
+<table>
+<thead>
+<tr>
+<th>CLO</th>
+<th>Năng lực cần đạt</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>Minh chứng (link commit/PR/file)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CLO1</td>
+<td>Tôi phân tích được một màn hình thành các component và vẽ được Wireframe tương ứng</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+<td></td>
+</tr>
+<tr>
+<td>CLO2</td>
+<td>Tôi viết được component TypeScript có interface props rõ ràng, không dùng <code>any</code></td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+<td></td>
+</tr>
+<tr>
+<td>CLO2</td>
+<td>Tôi tổ chức được route tĩnh, nested và dynamic trong App Router</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+<td></td>
+</tr>
+<tr>
+<td>CLO2</td>
+<td>Tôi tùy biến được theme Ant Design và làm giao diện responsive</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+<td></td>
+</tr>
+<tr>
+<td>CLO2</td>
+<td>Tôi gọi được REST API, khai báo type khớp response, xử lý loading/error</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+<td></td>
+</tr>
+<tr>
+<td>CLO2</td>
+<td>Tôi viết được form có validation bằng React Hook Form + Zod</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+<td></td>
+</tr>
+<tr>
+<td>CLO2</td>
+<td>Tôi review được code AI sinh ra và tự sửa lỗi trước khi commit</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+<td></td>
+</tr>
+<tr>
+<td>CLO3</td>
+<td>Tôi trình bày được phần việc của mình bằng văn bản và khi thuyết trình</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+<td></td>
+</tr>
+<tr>
+<td>CLO4</td>
+<td>Tôi làm việc qua branch + Pull Request, commit đúng Conventional Commits</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+<td></td>
+</tr>
+<tr>
+<td>CLO4</td>
+<td>Tôi deploy được lên Vercel và đọc được báo cáo Lighthouse</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+<td></td>
+</tr>
+</tbody></table>
+<h4 id="2-2-dong-gop-cua-toi-cho-du-an">2.2. Đóng góp của tôi cho dự án</h4>
+<table>
+<thead>
+<tr>
+<th>Tính năng / hạng mục tôi đảm nhiệm</th>
+<th>File chính</th>
+<th>Link PR</th>
+<th>Trạng thái</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+<td></td>
+<td>☐ Xong ☐ Đang làm</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>☐ Xong ☐ Đang làm</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>☐ Xong ☐ Đang làm</td>
+</tr>
+</tbody></table>
+<ul>
+<li>Số commit của tôi (theo <code>git shortlog -sne --no-merges</code>): ........</li>
+<li>Tôi đã review ........ Pull Request của thành viên khác.</li>
+</ul>
+<h4 id="2-3-cau-hoi-phan-tu">2.3. Câu hỏi phản tư</h4>
+<ol>
+<li>Đoạn code nào trong dự án tôi tự tin giải thích nhất? Đoạn nào tôi còn chưa hiểu hết?</li>
+<li>Một lần AI sinh code sai mà tôi phát hiện ra: lỗi là gì, tôi phát hiện bằng cách nào, đã sửa ra sao?</li>
+<li>Nếu được làm lại giai đoạn vừa qua, tôi sẽ thay đổi điều gì trong cách làm việc với nhóm?</li>
+<li>Mục tiêu cụ thể của tôi cho giai đoạn tiếp theo (ví dụ: &quot;tự viết được <code>generateMetadata</code> không cần AI&quot;).</li>
+</ol>
+<hr>
+<h3 id="3-phieu-danh-gia-dong-dang-peer-review-trong-nhom">3. Phiếu đánh giá đồng đẳng (Peer Review) trong nhóm</h3>
+<p><strong>Người đánh giá:</strong> ............ <strong>MSSV:</strong> ............ <strong>Nhóm:</strong> ............ <strong>Mốc:</strong> ☐ Trước Buổi 7 ☐ Trước Buổi 12</p>
+<h4 id="3-1-danh-gia-tung-thanh-vien-khong-tu-danh-gia-ban-than-o-bang-nay">3.1. Đánh giá từng thành viên (không tự đánh giá bản thân ở bảng này)</h4>
+<p>Thang mức: <strong>1</strong> – Hiếm khi · <strong>2</strong> – Đôi khi · <strong>3</strong> – Thường xuyên · <strong>4</strong> – Luôn luôn.</p>
+<table>
+<thead>
+<tr>
+<th>Tiêu chí</th>
+<th>Thành viên 1: ........</th>
+<th>Thành viên 2: ........</th>
+<th>Thành viên 3: ........</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Hoàn thành phần việc được giao đúng hạn</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Code đưa lên chạy được, ít gây xung đột (conflict) cho người khác</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Commit thường xuyên, message rõ ràng</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Review PR và góp ý mang tính xây dựng</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Tham gia họp nhóm, phản hồi tin nhắn kịp thời</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Hỗ trợ thành viên khác khi gặp lỗi</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Tổng (/24)</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h4 id="3-2-uoc-luong-ty-le-dong-gop-tong-100-co-tinh-ca-ban-than">3.2. Ước lượng tỷ lệ đóng góp (tổng = 100%, có tính cả bản thân)</h4>
+<table>
+<thead>
+<tr>
+<th>Thành viên</th>
+<th>Bản thân</th>
+<th>TV1</th>
+<th>TV2</th>
+<th>TV3</th>
+<th>Tổng</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Tỷ lệ đóng góp (%)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>100%</td>
+</tr>
+</tbody></table>
+<h4 id="3-3-nhan-xet">3.3. Nhận xét</h4>
+<ul>
+<li><strong>Một điều thành viên ........ làm tốt:</strong> ..............................................</li>
+<li><strong>Một điều nhóm cần cải thiện ở giai đoạn tới:</strong> .......................................</li>
+<li><strong>Có vấn đề nào cần giảng viên hỗ trợ không?</strong> ☐ Không ☐ Có: ...........................</li>
+</ul>
+<blockquote>
+<p>⚠️ <strong>Khi nào giảng viên can thiệp?</strong> Nếu tỷ lệ đóng góp của một thành viên dưới 15% theo đánh giá của đa số nhóm <strong>và</strong> Git log cũng cho thấy điều tương tự, giảng viên sẽ trao đổi riêng với nhóm, đồng thời tập trung câu hỏi phản biện vào phần việc của thành viên đó.</p>
+</blockquote>
+<hr>
+<h3 id="4-checklist-tu-kiem-tra-truoc-moi-moc">4. Checklist tự kiểm tra trước mỗi mốc</h3>
+<h4 id="4-1-truoc-moi-buoi-hoc-buoi-1-11">4.1. Trước mỗi buổi học (Buổi 1–11)</h4>
+<ul>
+<li><input disabled="" type="checkbox"> Đã xem video/slide và đọc phần lý thuyết của buổi trong tài liệu tự học.</li>
+<li><input disabled="" type="checkbox"> Đã làm Quiz LMS (trước khi buổi học bắt đầu).</li>
+<li><input disabled="" type="checkbox"> Đã <code>git pull</code> code mới nhất của nhóm, chạy <code>npm run dev</code> không lỗi.</li>
+<li><input disabled="" type="checkbox"> BTVN buổi trước đã push lên branch riêng, mở PR và nộp link trên LMS.</li>
+</ul>
+<h4 id="4-2-truoc-buoi-7-giua-ky">4.2. Trước Buổi 7 – Giữa kỳ</h4>
+<ul>
+<li><input disabled="" type="checkbox"> Figma đủ 5 màn hình: Trang chủ, Chi tiết sự kiện, Đặt vé, Trang cá nhân, Admin Dashboard.</li>
+<li><input disabled="" type="checkbox"> Các route chính chạy được, có <code>not-found.tsx</code> và <code>loading.tsx</code>.</li>
+<li><input disabled="" type="checkbox"> Đã tùy biến theme qua <code>ConfigProvider</code> và SCSS Module; kiểm tra ở 375px và 1440px.</li>
+<li><input disabled="" type="checkbox"> <code>npm run lint</code> và <code>npm run build</code> thành công; Console không còn lỗi đỏ, không còn hydration error.</li>
+<li><input disabled="" type="checkbox"> <code>README.md</code> đủ 5 mục + Nhật ký Vibe Coding; đã gắn tag <code>v0.5-midterm</code>.</li>
+<li><input disabled="" type="checkbox"> <strong>Tôi</strong> giải thích được mọi file mình đã commit (thử tự giải thích to thành tiếng 1 phút/file).</li>
+<li><input disabled="" type="checkbox"> Đã nộp phiếu tự đánh giá và đánh giá đồng đẳng mốc 1.</li>
+</ul>
+<h4 id="4-3-truoc-buoi-11-deploy">4.3. Trước Buổi 11 – Deploy</h4>
+<ul>
+<li><input disabled="" type="checkbox"> Toàn bộ góp ý giữa kỳ đã thành GitHub Issue nhãn <code>midterm-feedback</code> và đã đóng.</li>
+<li><input disabled="" type="checkbox"> Dữ liệu trang chủ, chi tiết, danh mục lấy từ API thật; đã xử lý loading và error.</li>
+<li><input disabled="" type="checkbox"> Form đăng nhập/đăng ký/tạo sự kiện có Zod validation; Wishlist lưu LocalStorage.</li>
+<li><input disabled="" type="checkbox"> Responsive 375px / 768px / 1440px không tràn ngang.</li>
+<li><input disabled="" type="checkbox"> Đã có tài khoản Vercel, repository đã kết nối; đã chuẩn bị file kịch bản Test Case.</li>
+</ul>
+<h4 id="4-4-truoc-buoi-12-hackathon">4.4. Trước Buổi 12 – Hackathon</h4>
+<ul>
+<li><input disabled="" type="checkbox"> Link Vercel Live hoạt động trên điện thoại; biến môi trường <code>NEXT_PUBLIC_API_URL</code> đúng.</li>
+<li><input disabled="" type="checkbox"> Có <code>generateMetadata</code> cho <code>/events/[id]</code>; chia sẻ link lên Zalo/Facebook hiển thị đúng ảnh và tiêu đề.</li>
+<li><input disabled="" type="checkbox"> Lighthouse (Mobile, trên link Vercel): Performance ........ / SEO ........ (mục tiêu &gt; 85 / &gt; 90).</li>
+<li><input disabled="" type="checkbox"> Báo cáo Word/PDF: kiến trúc, Wireframe, API tích hợp, phân công, minh chứng Git, kết quả Lighthouse, Nhật ký Vibe Coding.</li>
+<li><input disabled="" type="checkbox"> Slide và kịch bản demo 8 phút đã tập ít nhất 2 lần, có phương án dự phòng (video quay sẵn) nếu mạng lỗi.</li>
+<li><input disabled="" type="checkbox"> Đã gắn tag <code>v1.0-final</code>, nộp hồ sơ đúng tên file <code>[MãLớp]_[NhomXX]_BaoCaoCuoiKy.pdf</code>.</li>
+<li><input disabled="" type="checkbox"> Đã nộp phiếu tự đánh giá và đánh giá đồng đẳng mốc 2.</li>
+</ul>
+<hr>
+<h3 id="cau-hoi-tu-kiem-tra">❓ Câu hỏi tự kiểm tra</h3>
+<p><strong>Câu hỏi:</strong> Bạn được phân công làm Seat Picker, nhưng phần lớn code do AI sinh và bạn chỉ chỉnh màu sắc. Trước Buổi 12, việc nên làm nhất là gì?</p>
+<ul>
+<li>A. Ghi vào phiếu đánh giá đồng đẳng rằng cả nhóm cùng làm phần này</li>
+<li>B. Đọc lại toàn bộ code, tự giải thích luồng state và thử viết lại một phần không dùng AI</li>
+<li>C. Đổi sang thuyết trình phần slide để tránh câu hỏi về code</li>
+<li>D. Nhờ thành viên khác trả lời thay khi giảng viên hỏi</li>
+</ul>
+<details>
+<summary>👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> B<br>
+<b>Giải thích:</b> 30% điểm cuối kỳ cá nhân đến từ phản biện code mình đảm nhiệm. Dùng AI không bị cấm, nhưng bạn phải hiểu và giải thích được code. Tự viết lại một phần là cách nhanh nhất để kiểm tra mình đã thật sự hiểu hay chưa.
+</details>
+
+    </article>
+
+    <!-- Bottom Navigation -->
+    <div class="flex items-center justify-between gap-4 mt-8 no-print text-xs font-bold">
+      <span></span>
+      <a href="../index.html#lo-trinh" class="px-4 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-800 rounded-xl transition-all flex items-center gap-2">
+        <i class="fa-solid fa-table-cells-large"></i> Danh mục bài học
+      </a>
+      <span></span>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-slate-200 py-6 text-xs text-slate-500 mt-12 no-print">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <strong>Khoa Công nghệ Thông tin - Trường Đại học Lạc Hồng</strong><br>
+        Phòng B301 - B302, Cơ sở 1, Số 10 Huỳnh Văn Nghệ, P. Bửu Long, TP. Biên Hòa, Đồng Nai.
+      </div>
+      <div class="sm:text-right">
+        <span>Email: cntt@lhu.edu.vn • Hotline: (0251) 3952 251</span><br>
+        <span>Hệ thống LMS: <a href="https://learn.lhu.edu.vn" target="_blank" rel="noopener noreferrer" class="text-lhu-blue font-bold">learn.lhu.edu.vn</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleAllDetails(open) {
+      document.querySelectorAll("details").forEach(d => {
+        if (open) d.setAttribute("open", ""); else d.removeAttribute("open");
+      });
+    }
+    if (window.hljs) hljs.highlightAll();
+  </script>
+
+</body>
+</html>

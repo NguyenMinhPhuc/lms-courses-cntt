@@ -1,0 +1,84 @@
+Buổi Hackathon & Final Showcase chiếm bao nhiêu phần trăm tổng điểm học phần?
+A. 30%
+B. 50%
+C. 40%
+D. 20%
+ANSWER: C
+
+Phần Khai mạc & Triển lãm Live Products kéo dài bao lâu và các nhóm làm gì?
+A. 30 phút, mở link Vercel Live để GV và các nhóm khác trải nghiệm chéo (Cross-Testing)
+B. 60 phút, nộp báo cáo giấy cho GV
+C. 15 phút, bốc thăm thứ tự thuyết trình
+D. 35 phút, GV công bố điểm và trao giải
+ANSWER: A
+
+Trong phần Thuyết trình Hackathon Showcase, mỗi nhóm được phân bổ thời gian như thế nào?
+A. 10 phút thuyết trình và 5 phút phản biện
+B. 5 phút thuyết trình và 8 phút phản biện
+C. 15 phút thuyết trình, không có phản biện
+D. 8 phút thuyết trình kèm demo Live và 5 phút Q&A phản biện
+ANSWER: D
+
+Công thức tính điểm cuối kỳ cá nhân của học phần là gì?
+A. Điểm Nhóm × 0.5 + Điểm Phản biện Cá nhân × 0.5
+B. Điểm Nhóm × 0.7 + Điểm Phản biện Cá nhân × 0.3
+C. Điểm Nhóm × 0.3 + Điểm Phản biện Cá nhân × 0.7
+D. Chỉ tính Điểm Nhóm
+ANSWER: B
+
+Nhóm đạt 8.0 điểm đồ án, sinh viên Bình đạt 5.0 điểm phản biện cá nhân. Điểm cuối kỳ của Bình là bao nhiêu?
+A. 6.5
+B. 7.1
+C. 8.0
+D. 6.8
+ANSWER: B
+
+Trong rubric 6 tiêu chí, hai tiêu chí nào có trọng số cao nhất (20%)?
+A. Wireframe Design và Báo cáo Văn bản
+B. Deploy/SEO/Lighthouse và Thuyết trình
+C. Xây dựng Giao diện & Vibe Coding và Xử lý Logic, TypeScript & REST API
+D. Báo cáo & Git Commit và Thuyết trình & Phản biện
+ANSWER: C
+
+Điểm Phản biện Cá nhân (30%) được đánh giá dựa trên những yếu tố nào?
+A. Git Commit Log cá nhân và phần trả lời phản biện về code mình đảm nhiệm
+B. Số lượng slide và hiệu ứng trình chiếu
+C. Điểm trung bình các bài quiz trên LMS
+D. Số lượt trải nghiệm sản phẩm ở phần triển lãm
+ANSWER: A
+
+Sản phẩm đạt Lighthouse Performance 78 điểm, Deploy Vercel ổn định nhưng mới cấu hình SEO Metadata tĩnh. Tiêu chí "CI/CD Deployment, SEO & Lighthouse" thuộc mức nào?
+A. Xuất sắc
+B. Trung bình
+C. Yếu
+D. Khá
+ANSWER: D
+
+Để đạt mức Xuất sắc ở tiêu chí "Mô hình hóa UI & Wireframe Design", sản phẩm web cần đáp ứng điều gì?
+A. Có bản vẽ tay sơ sài cho 3 màn hình
+B. Có Wireframe Figma đủ 5 màn hình và sản phẩm thật khớp trên 90% thiết kế
+C. Không cần Wireframe nếu giao diện đẹp
+D. Có Wireframe 5 màn hình, sản phẩm tái hiện 50% bản vẽ
+ANSWER: B
+
+Git log cho thấy gần như toàn bộ commit đến từ 1–2 thành viên. Theo rubric, tiêu chí "Báo cáo & Git Commit" có nguy cơ rơi vào mức nào?
+A. Xuất sắc
+B. Khá
+C. Trung bình
+D. Không ảnh hưởng đến điểm
+ANSWER: C
+
+Nhóm có giao diện hỗ trợ Dark/Light Mode và Micro-interactions vượt yêu cầu cơ bản có thể nhận điểm thưởng thuộc hạng mục nào?
+A. Ultra Performance
+B. Vibe Coding Master
+C. Git Excellence
+D. UI Innovation
+ANSWER: D
+
+Khi dùng AI để chuẩn bị phản biện cá nhân, cách làm nào phù hợp với nguyên tắc Vibe Coding của học phần?
+A. Yêu cầu AI đặt câu hỏi phản biện về code của mình, còn câu trả lời tự xây dựng và kiểm chứng
+B. Học thuộc câu trả lời AI viết sẵn cho từng đoạn code
+C. Nhờ AI viết lại toàn bộ code ngay trước buổi Showcase
+D. Không cần chuẩn bị vì GV chỉ hỏi về phần của nhóm trưởng
+ANSWER: A
+

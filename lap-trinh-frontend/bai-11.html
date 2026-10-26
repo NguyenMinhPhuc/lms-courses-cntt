@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 11 - PBL 2 – CI/CD, Deploy Vercel, SEO &amp; Performance | Lập trình Front-End - Khoa CNTT - Đại học Lạc Hồng</title>
+  <meta name="description" content="Bài 11 - PBL 2 – CI/CD, Deploy Vercel, SEO &amp; Performance - Lập trình Front-End (Next.js, TypeScript &amp; Vibe Coding). Thời lượng: 5 tiết (225 phút) · Hình thức: Học theo dự án (PBL 2) – Giảng viên làm Mentor · Chuẩn đầu ra: PI 5.1 (CLO4)Dự án xuyên suốt: Smart Event Hub – triển khai lên Vercel, tối ưu">
+
+  <!-- Tailwind CSS CDN (kèm plugin typography cho nội dung Markdown) -->
+  <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6.4.0 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Highlight.js 11.9.0 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            asu: { maroon: '#8C1D40', gold: '#FFC627', dark: '#5C142B', light: '#FAEDF0' },
+            lhu: { blue: '#013D88', sky: '#007BFF', dark: '#01295C', light: '#EEF5FC' },
+            fe: { indigo: '#6366F1', dark: '#312E81', light: '#EEF2FF' }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .lesson h2, .lesson h3, .lesson h4 { scroll-margin-top: 90px; }
+    .lesson h3 { padding-bottom: .4rem; border-bottom: 2px solid #EEF2FF; }
+    .lesson blockquote { border-left: 4px solid #6366F1; background: #F5F7FF; border-radius: 0 12px 12px 0; padding: .6rem 1rem; font-style: normal; color: #1e293b; }
+    .lesson blockquote p:first-of-type::before, .lesson blockquote p:last-of-type::after { content: none; }
+    .lesson pre { border-radius: 12px; padding: 0; background: #0d1117; }
+    .lesson pre code.hljs { border-radius: 12px; padding: 1rem 1.1rem; font-size: 13px; line-height: 1.6; }
+    .lesson :not(pre) > code { background: #EEF2FF; color: #3730A3; padding: .1rem .35rem; border-radius: 6px; font-weight: 500; }
+    .lesson :not(pre) > code::before, .lesson :not(pre) > code::after { content: none; }
+    .lesson table { display: block; overflow-x: auto; font-size: 14px; }
+    .lesson thead th { background: #F1F5F9; }
+    .lesson th, .lesson td { border: 1px solid #E2E8F0; padding: .5rem .7rem !important; vertical-align: top; }
+    .lesson details { border: 1px solid #C7D2FE; border-radius: 10px; padding: .6rem .9rem; margin: .5rem 0 1.2rem; background: #FAFAFF; }
+    .lesson details summary { cursor: pointer; font-weight: 600; color: #4338CA; }
+    .lesson details[open] summary { margin-bottom: .4rem; }
+    .lesson hr { border-color: #E2E8F0; margin: 2rem 0; }
+    @media print {
+      header, footer, .no-print { display: none !important; }
+      details { break-inside: avoid; margin-bottom: 20px; }
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans antialiased selection:bg-asu-gold selection:text-slate-900 min-h-screen flex flex-col">
+
+  <!-- TOP BAR -->
+  <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800 no-print">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+      <div class="flex items-center gap-2">
+        <span class="text-asu-gold font-semibold"><i class="fa-solid fa-certificate mr-1"></i> CHUẨN KIỂM ĐỊNH ABET (USA)</span>
+        <span class="text-slate-600 hidden sm:inline">•</span>
+        <span class="hidden sm:inline">Lớp học đảo ngược • Vibe Coding</span>
+      </div>
+      <div class="flex items-center gap-4 text-xs font-mono">
+        <span>Thời lượng: <strong class="text-white">60 tiết (12 buổi)</strong></span>
+        <span>LT/TH: <strong class="text-asu-gold">30% / 70%</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="sticky top-0 z-40 bg-white shadow-sm border-b border-slate-200 no-print">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2.5 text-slate-800 hover:text-lhu-blue transition-colors">
+        <img src="LHU_ASU_VI_Small_Ngang.png" alt="Logo LHU" class="h-8 w-auto">
+        <div class="border-l border-slate-300 pl-2.5">
+          <div class="text-[11px] font-bold text-slate-500 uppercase">Khoa CNTT - LHU</div>
+          <div class="text-xs font-extrabold text-lhu-blue">LẬP TRÌNH FRONT-END</div>
+        </div>
+      </a>
+      <div class="flex items-center gap-3 text-xs">
+        <a href="index.html" class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-arrow-left"></i>
+          <span class="hidden sm:inline">Về Landing Page</span>
+        </a>
+        <button onclick="window.print()" class="hidden sm:flex px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-all items-center gap-1.5" title="In hoặc lưu file PDF">
+          <i class="fa-solid fa-print"></i>
+          <span>In / PDF</span>
+        </button>
+        <a href="https://learn.lhu.edu.vn" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-lhu-blue hover:bg-lhu-dark text-white font-bold rounded-xl shadow transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-graduation-cap text-asu-gold"></i>
+          <span>Vào lớp LMS</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="flex-grow max-w-5xl w-full mx-auto px-4 sm:px-6 py-8">
+
+    <!-- Title Card -->
+    <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 mb-8">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-5">
+        <div>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-fe-light text-fe-dark font-bold text-xs uppercase tracking-wider mb-2">
+            <i class="fa-solid fa-code"></i> CHƯƠNG 6: DỰ ÁN THỰC TẾ – TỐI ƯU &amp; TRIỂN KHAI
+          </span>
+          <h1 class="text-2xl sm:text-3xl font-black text-slate-900 leading-tight">
+            Bài 11 - PBL 2 – CI/CD, Deploy Vercel, SEO &amp; Performance
+          </h1>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1 font-mono">
+            Học phần: Lập trình Front-End (Next.js, TypeScript & Vibe Coding) • Khoa CNTT - Đại học Lạc Hồng
+          </p>
+        </div>
+        <div class="flex-shrink-0 flex sm:flex-col items-center sm:items-end justify-between gap-1 text-xs">
+          <span class="px-3 py-1.5 bg-emerald-50 text-emerald-700 font-bold rounded-lg border border-emerald-200">
+            <i class="fa-solid fa-check-circle mr-1"></i> Lưu hành nội bộ 2026
+          </span>
+          <span class="text-slate-400 text-[11px]">Định dạng LMS Lecture</span>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between pt-4 text-xs no-print">
+        <span class="text-slate-500">
+          <i class="fa-solid fa-circle-info text-blue-500 mr-1"></i>
+          Bấm vào các khối thu gọn để xem đáp án hoặc chi tiết.
+        </span>
+        <div class="flex items-center gap-2">
+          <button onclick="toggleAllDetails(true)" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg transition-colors">Mở tất cả</button>
+          <button onclick="toggleAllDetails(false)" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg transition-colors">Thu gọn</button>
+        </div>
+      </div>
+      <nav class="mt-5 pt-4 border-t border-slate-100 no-print">
+        <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">Nội dung trang</div>
+        <div class="flex flex-wrap gap-2">
+          <a href="#1-dat-van-de-dan-nhap-introduction-hook" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">📝 1. ĐẶT VẤN ĐỀ &amp; DẪN NHẬP (Introduction / Hook)</a>
+          <a href="#2-noi-dung-cot-loi-core-content" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">📖 2. NỘI DUNG CỐT LÕI (Core Content)</a>
+          <a href="#3-tom-tat-diem-can-nho-key-takeaways" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">📌 3. TÓM TẮT &amp; ĐIỂM CẦN NHỚ (Key Takeaways)</a>
+          <a href="#4-hoat-dong-kiem-tra-nhanh-self-assessment-quiz" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">❓ 4. HOẠT ĐỘNG KIỂM TRA NHANH (Self-Assessment / Quiz)</a>
+          <a href="#5-nhiem-vu-hoc-tap-thao-luan-lms-discussion-assignment" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">💬 5. NHIỆM VỤ HỌC TẬP &amp; THẢO LUẬN (LMS Discussion / Assignment)</a>
+        </div>
+      </nav>
+    </div>
+
+    <!-- Content -->
+    <article class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 lesson prose prose-slate max-w-none prose-headings:font-extrabold prose-h3:text-lhu-dark prose-h4:text-fe-dark prose-a:text-lhu-blue">
+<blockquote>
+<p><strong>Thời lượng:</strong> 5 tiết (225 phút) · <strong>Hình thức:</strong> Học theo dự án (PBL 2) – Giảng viên làm Mentor · <strong>Chuẩn đầu ra:</strong> PI 5.1 (CLO4)<br><strong>Dự án xuyên suốt:</strong> Smart Event Hub – triển khai lên Vercel, tối ưu SEO Metadata và đạt Lighthouse Performance &gt; 85</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>🎯 <strong>MỤC TIÊU BÀI HỌC (Learning Objectives)</strong><br>Sau khi hoàn thành bài học này, người học có thể:</p>
+<ul>
+<li><strong>[Bloom 1/2 - Kiến thức]:</strong> Giải thích được quy trình CI/CD trên Vercel, vai trò của biến môi trường theo từng môi trường (Development, Preview, Production) và các chỉ số Lighthouse.</li>
+<li><strong>[Bloom 3/4 - Kỹ năng]:</strong> Cấu hình Metadata tĩnh, <code>generateMetadata</code> động cho <code>/events/[id]</code> (Next.js 15), thay <code>&lt;img&gt;</code> bằng <code>next/image</code>, tối ưu font với <code>next/font</code> và lazy load bằng <code>next/dynamic</code>.</li>
+<li><strong>[Bloom 5/6 - Năng lực]:</strong> Deploy thành công Smart Event Hub lên domain Vercel thật, tự chẩn đoán lỗi Build Fail và đánh giá – cải thiện điểm Lighthouse (Performance &gt; 85, SEO &gt; 90).</li>
+</ul>
+</blockquote>
+<hr>
+<h3 id="1-dat-van-de-dan-nhap-introduction-hook">📝 1. ĐẶT VẤN ĐỀ &amp; DẪN NHẬP (Introduction / Hook)</h3>
+<p>Một thành viên gửi link sự kiện &quot;Workshop Next.js 15&quot; của nhóm vào group Zalo lớp. Thay vì ảnh banner và tên sự kiện, bản xem trước chỉ hiện chữ &quot;Create Next App&quot; cùng một ô trống. Tệ hơn, link đó lại là <code>localhost:3000</code>, nên không ai ngoài máy bạn mở được. Sản phẩm làm suốt 10 buổi gần như &quot;vô hình&quot; với người dùng thật.</p>
+<p>Hôm nay chúng ta đưa Smart Event Hub lên Internet. <strong>Làm sao để mỗi lần <code>git push</code> là web tự cập nhật, link chia sẻ hiện đúng ảnh và tiêu đề sự kiện, và trang tải đủ nhanh để Lighthouse chấm điểm xanh?</strong> Ba câu hỏi này tương ứng với ba phần PBL của buổi học.</p>
+<blockquote>
+<p>🧭 <strong>Trước giờ học (Flipped Classroom):</strong> Đọc <em>Next.js Metadata Documentation</em> và <em>Google Lighthouse Audit Guide</em> (link ở mục 5). Đăng nhập Vercel bằng tài khoản GitHub, kiểm tra repo nhóm đã công khai ở branch <code>main</code>. Chạy thử <code>npm run build</code> trên máy để phát hiện lỗi sớm. Mang theo file <code>Test_Cases_Scenario</code> từ Bài 10. Làm quiz nhanh trên LMS.</p>
+</blockquote>
+<hr>
+<h3 id="2-noi-dung-cot-loi-core-content">📖 2. NỘI DUNG CỐT LÕI (Core Content)</h3>
+<h4 id="2-1-ci-cd-voi-vercel-quan-tri-bien-moi-truong">2.1. CI/CD với Vercel &amp; quản trị biến môi trường</h4>
+<ul>
+<li><strong>Khái niệm:</strong> <strong>CI/CD</strong> (Continuous Integration / Continuous Deployment) là quy trình tự động Build – kiểm tra – Deploy mỗi khi code thay đổi. Vercel kết nối trực tiếp với GitHub: mỗi lượt <code>git push</code> lên <code>main</code> kích hoạt một bản Production mới.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li>Các bước: Vercel Dashboard → <em>Add New Project</em> → chọn repo → Vercel tự nhận diện Next.js → khai báo Environment Variables → <em>Deploy</em>.</li>
+<li>Biến môi trường được quản lý trong Project Settings theo 3 môi trường: <strong>Development</strong>, <strong>Preview</strong> (các branch/PR khác <code>main</code>), <strong>Production</strong>.</li>
+<li>Biến có tiền tố <code>NEXT_PUBLIC_</code> được <strong>gắn cứng vào bundle lúc build</strong> và lộ ra trình duyệt. Không đặt API Key bí mật vào biến này. Đổi giá trị trên Vercel xong phải <strong>Redeploy</strong> mới có hiệu lực.</li>
+<li>File <code>.env.local</code>, <code>.env.production</code> chứa giá trị thật không được commit; chỉ commit <code>.env.example</code>.</li>
+</ul>
+</li>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote>
+<p>Nhóm B deploy thành công nhưng trang chủ trống trơn. Console báo gọi <code>undefined/api/events</code>. Nguyên nhân: quên khai báo <code>NEXT_PUBLIC_API_URL</code> trên Vercel. Thêm biến, bấm Redeploy, dữ liệu hiện lại.</p>
+</blockquote>
+</li>
+</ul>
+<pre><code class="language-bash"># .env.example (commit file này, KHÔNG commit .env.local)
+NEXT_PUBLIC_API_URL=https://your-backend.example.com
+NEXT_PUBLIC_SITE_URL=https://smart-event-hub.vercel.app
+</code></pre>
+<pre><code class="language-ts">// lib/config.ts – báo lỗi rõ ràng thay vì gọi &quot;undefined/api/...&quot;
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
+if (!API_URL) {
+  throw new Error(&#39;Thiếu biến môi trường NEXT_PUBLIC_API_URL&#39;);
+}
+
+export const config = {
+  apiUrl: API_URL,
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? &#39;http://localhost:3000&#39;,
+} as const;
+</code></pre>
+<pre><code class="language-bash"># Quy trình an toàn trước khi push lên main
+npm run build                 # build y hệt Vercel: type-check + lint + build
+git add .
+git commit -m &quot;feat(seo): thêm generateMetadata cho trang chi tiết sự kiện&quot;
+git push origin main          # Vercel tự động Build &amp; Deploy
+</code></pre>
+<blockquote>
+<p><strong>Lỗi Build Fail hay gặp trên Vercel:</strong> lỗi TypeScript/ESLint mà dev mode bỏ qua; import sai hoa/thường (<code>EventCard</code> vs <code>eventCard</code>) vì Windows không phân biệt nhưng Linux của Vercel thì có; thiếu biến môi trường; dùng <code>window</code>/<code>localStorage</code> trong Server Component.</p>
+</blockquote>
+<h4 id="2-2-seo-voi-metadata-api-metadata-tinh-cho-root-layout">2.2. SEO với Metadata API – Metadata tĩnh cho Root Layout</h4>
+<ul>
+<li><strong>Khái niệm:</strong> <strong>Metadata API</strong> của App Router sinh các thẻ <code>&lt;title&gt;</code>, <code>&lt;meta name=&quot;description&quot;&gt;</code>, OpenGraph… từ object <code>metadata</code> export trong <code>layout.tsx</code> hoặc <code>page.tsx</code>, không cần tự viết thẻ <code>&lt;head&gt;</code>.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li><code>metadataBase</code> giúp các URL ảnh tương đối (<code>/og-default.png</code>) được chuyển thành URL tuyệt đối khi chia sẻ.</li>
+<li><code>title.template</code> tạo tiêu đề thống nhất: trang con chỉ cần khai báo <code>title: &#39;Đặt vé&#39;</code>, kết quả là &quot;Đặt vé | Smart Event Hub&quot;.</li>
+<li>Quy ước file: <code>app/favicon.ico</code>, <code>app/opengraph-image.png</code>, <code>app/sitemap.ts</code>, <code>app/robots.ts</code> được Next.js tự nhận diện.</li>
+<li><code>next/font</code> tự host font, tránh nghẽn tải và giảm Layout Shift do đổi font.</li>
+</ul>
+</li>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote>
+<p>Khi dán link trang chủ vào Facebook/Zalo, bản xem trước hiển thị tên &quot;Smart Event Hub&quot;, mô tả ngắn và ảnh <code>og-default.png</code> thay cho &quot;Create Next App&quot;.</p>
+</blockquote>
+</li>
+</ul>
+<pre><code class="language-tsx">// app/layout.tsx
+import type { Metadata } from &#39;next&#39;;
+import type { ReactNode } from &#39;react&#39;;
+import { Be_Vietnam_Pro } from &#39;next/font/google&#39;;
+import &#39;./globals.scss&#39;;
+
+const beVietnam = Be_Vietnam_Pro({
+  subsets: [&#39;latin&#39;, &#39;vietnamese&#39;],
+  weight: [&#39;400&#39;, &#39;600&#39;, &#39;700&#39;],
+  display: &#39;swap&#39;,
+});
+
+export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? &#39;http://localhost:3000&#39;),
+  title: {
+    default: &#39;Smart Event Hub – Đặt vé sự kiện trực tuyến&#39;,
+    template: &#39;%s | Smart Event Hub&#39;,
+  },
+  description: &#39;Khám phá và đặt vé hội thảo, concert, workshop nhanh chóng trên Smart Event Hub.&#39;,
+  keywords: [&#39;đặt vé&#39;, &#39;sự kiện&#39;, &#39;workshop&#39;, &#39;concert&#39;, &#39;Smart Event Hub&#39;],
+  openGraph: {
+    type: &#39;website&#39;,
+    locale: &#39;vi_VN&#39;,
+    siteName: &#39;Smart Event Hub&#39;,
+    images: [&#39;/og-default.png&#39;],
+  },
+};
+
+export default function RootLayout({ children }: { children: ReactNode }) {
+  return (
+    &lt;html lang=&quot;vi&quot;&gt;
+      &lt;body className={beVietnam.className}&gt;{children}&lt;/body&gt;
+    &lt;/html&gt;
+  );
+}
+</code></pre>
+<pre><code class="language-ts">// app/robots.ts
+import type { MetadataRoute } from &#39;next&#39;;
+
+export default function robots(): MetadataRoute.Robots {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? &#39;http://localhost:3000&#39;;
+  return {
+    rules: { userAgent: &#39;*&#39;, allow: &#39;/&#39;, disallow: &#39;/admin/&#39; },
+    sitemap: `${baseUrl}/sitemap.xml`,
+  };
+}
+</code></pre>
+<pre><code class="language-ts">// app/sitemap.ts
+import type { MetadataRoute } from &#39;next&#39;;
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? &#39;http://localhost:3000&#39;;
+  return [&#39;&#39;, &#39;/events&#39;, &#39;/about&#39;].map((path) =&gt; ({
+    url: `${baseUrl}${path}`,
+    lastModified: new Date(),
+  }));
+}
+</code></pre>
+<h4 id="2-3-metadata-dong-voi-generatemetadata-next-js-15">2.3. Metadata động với <code>generateMetadata</code> (Next.js 15)</h4>
+<ul>
+<li><strong>Khái niệm:</strong> Với Dynamic Route <code>/events/[id]</code>, mỗi sự kiện cần tiêu đề và ảnh OpenGraph riêng. Hàm <code>generateMetadata</code> chạy trên server, gọi API rồi trả về object <code>Metadata</code>.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li><strong>Từ Next.js 15, <code>params</code> là <code>Promise</code>.</strong> Phải viết <code>const { id } = await params;</code>. Ví dụ cũ dạng <code>params.id</code> sẽ báo lỗi type và cảnh báo khi chạy.</li>
+<li>Bọc hàm lấy dữ liệu bằng <code>cache()</code> của React để <code>generateMetadata</code> và component trang dùng chung một kết quả, không gọi API hai lần.</li>
+<li>Luôn có <strong>fallback metadata</strong> khi không tìm thấy sự kiện; trang thì gọi <code>notFound()</code> để hiện 404.</li>
+<li>Ảnh chính (LCP) của trang dùng <code>next/image</code> với <code>priority</code> và <code>sizes</code> phù hợp.</li>
+</ul>
+</li>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote>
+<p>Link <code>smart-event-hub.vercel.app/events/12</code> khi chia sẻ lên Zalo hiển thị đúng banner và tên &quot;Workshop Next.js 15 | Smart Event Hub&quot;. Link sự kiện đã bị xóa hiển thị &quot;Không tìm thấy sự kiện&quot; thay vì lỗi trắng trang.</p>
+</blockquote>
+</li>
+</ul>
+<pre><code class="language-ts">// lib/events.ts
+import { cache } from &#39;react&#39;;
+
+export interface EventItem {
+  id: string;
+  title: string;
+  description: string;
+  bannerUrl: string;
+  startDate: string;
+  price: number;
+  status: &#39;UPCOMING&#39; | &#39;ONGOING&#39; | &#39;ENDED&#39;;
+}
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
+export const getEventById = cache(async (id: string): Promise&lt;EventItem | null&gt; =&gt; {
+  try {
+    const res = await fetch(`${API_URL}/api/events/${id}`, { next: { revalidate: 60 } });
+    if (!res.ok) return null;
+    return (await res.json()) as EventItem;
+  } catch {
+    return null;
+  }
+});
+</code></pre>
+<pre><code class="language-tsx">// app/events/[id]/page.tsx
+import type { Metadata } from &#39;next&#39;;
+import Image from &#39;next/image&#39;;
+import { notFound } from &#39;next/navigation&#39;;
+import { getEventById } from &#39;@/lib/events&#39;;
+
+type Props = {
+  params: Promise&lt;{ id: string }&gt;;
+};
+
+export async function generateMetadata({ params }: Props): Promise&lt;Metadata&gt; {
+  const { id } = await params;
+  const event = await getEventById(id);
+
+  if (!event) {
+    return {
+      title: &#39;Không tìm thấy sự kiện&#39;,
+      description: &#39;Sự kiện không tồn tại hoặc đã bị gỡ khỏi Smart Event Hub.&#39;,
+    };
+  }
+
+  return {
+    title: event.title,
+    description: event.description,
+    openGraph: {
+      title: event.title,
+      description: event.description,
+      images: [{ url: event.bannerUrl, alt: event.title }],
+    },
+  };
+}
+
+export default async function EventDetailPage({ params }: Props) {
+  const { id } = await params;
+  const event = await getEventById(id);
+  if (!event) notFound();
+
+  return (
+    &lt;article&gt;
+      &lt;Image
+        src={event.bannerUrl}
+        alt={event.title}
+        width={1200}
+        height={630}
+        priority
+        sizes=&quot;(max-width: 768px) 100vw, 1200px&quot;
+        style={{ width: &#39;100%&#39;, height: &#39;auto&#39; }}
+      /&gt;
+      &lt;h1&gt;{event.title}&lt;/h1&gt;
+      &lt;p&gt;{event.description}&lt;/p&gt;
+    &lt;/article&gt;
+  );
+}
+</code></pre>
+<h4 id="2-4-performance-next-image-next-dynamic-lighthouse">2.4. Performance: <code>next/image</code>, <code>next/dynamic</code> &amp; Lighthouse</h4>
+<ul>
+<li><strong>Khái niệm:</strong> <strong>Google Lighthouse</strong> (trong Chrome DevTools) chấm 4 nhóm chỉ số: <strong>Performance, Accessibility, Best Practices, SEO</strong>. Mục tiêu của buổi: Performance &gt; 85, SEO &gt; 90.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li><code>next/image</code> tự resize theo thiết bị, lazy load ảnh ngoài màn hình, chuyển sang WebP (thêm AVIF qua <code>images.formats</code>). Thuộc tính <code>width</code>/<code>height</code> giữ chỗ trước nên trang không bị nhảy bố cục (<strong>CLS – Cumulative Layout Shift</strong>).</li>
+<li>Ảnh từ domain backend phải khai báo trong <code>images.remotePatterns</code>, nếu không <code>next/image</code> báo lỗi.</li>
+<li>Component nặng (sơ đồ chọn ghế, biểu đồ Admin) nên lazy load bằng <code>next/dynamic</code>. Tùy chọn <code>ssr: false</code> chỉ dùng được trong Client Component.</li>
+<li>Chạy Lighthouse trên <strong>link Vercel Live</strong> trong cửa sổ ẩn danh để extension không làm sai kết quả.</li>
+</ul>
+</li>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote>
+<p>Trang chi tiết sự kiện tải ngay cả component Seat Picker dù người dùng chưa bấm &quot;Chọn ghế&quot;. Chuyển sang <code>dynamic()</code> kèm <code>Skeleton</code>, phần JavaScript tải ban đầu nhỏ lại và điểm Performance tăng rõ.</p>
+</blockquote>
+</li>
+</ul>
+<pre><code class="language-ts">// next.config.ts
+import type { NextConfig } from &#39;next&#39;;
+
+const nextConfig: NextConfig = {
+  images: {
+    formats: [&#39;image/avif&#39;, &#39;image/webp&#39;],
+    remotePatterns: [
+      // Thay bằng domain backend thật của lớp
+      { protocol: &#39;https&#39;, hostname: &#39;your-backend.example.com&#39;, pathname: &#39;/uploads/**&#39; },
+    ],
+  },
+};
+
+export default nextConfig;
+</code></pre>
+<pre><code class="language-tsx">// components/booking/SeatPickerLazy.tsx
+&#39;use client&#39;;
+
+import dynamic from &#39;next/dynamic&#39;;
+import { Skeleton } from &#39;antd&#39;;
+
+const SeatPicker = dynamic(() =&gt; import(&#39;./SeatPicker&#39;), {
+  ssr: false,
+  loading: () =&gt; &lt;Skeleton active paragraph={{ rows: 6 }} /&gt;,
+});
+
+export default function SeatPickerLazy({ eventId }: { eventId: string }) {
+  return &lt;SeatPicker eventId={eventId} /&gt;;
+}
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Vấn đề Lighthouse báo</th>
+<th>Hướng xử lý trong Smart Event Hub</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Ảnh quá lớn, sai định dạng</td>
+<td>Thay <code>&lt;img&gt;</code> bằng <code>next/image</code>, đặt <code>sizes</code> đúng</td>
+</tr>
+<tr>
+<td>LCP chậm (banner tải muộn)</td>
+<td>Thêm <code>priority</code> cho ảnh banner đầu trang</td>
+</tr>
+<tr>
+<td>Layout Shift (CLS)</td>
+<td>Khai báo <code>width</code>/<code>height</code>, dùng <code>next/font</code>, giữ chỗ bằng Skeleton</td>
+</tr>
+<tr>
+<td>JavaScript ban đầu nặng</td>
+<td>Lazy load component nặng bằng <code>next/dynamic</code></td>
+</tr>
+<tr>
+<td>SEO thiếu description/title</td>
+<td>Bổ sung <code>metadata</code> và <code>generateMetadata</code></td>
+</tr>
+</tbody></table>
+<h4 id="2-5-vibe-coding-prompt-mau-cach-kiem-duyet-code-ai">2.5. Vibe Coding – Prompt mẫu &amp; cách kiểm duyệt code AI</h4>
+<pre><code class="language-text">Hướng dẫn tôi cách viết hàm `generateMetadata` trong Next.js App Router cho trang Dynamic Route `/events/[id]/page.tsx`.
+Yêu cầu:
+1. Gọi API `getEventById(id)` lấy thông tin sự kiện.
+2. Trả về object Metadata gồm: `title`, `description`, `openGraph` (title, description, images chứa URL ảnh sự kiện).
+3. Xử lý trường hợp không tìm thấy sự kiện thì trả về fallback metadata tiêu chuẩn.
+Lưu ý: dự án dùng Next.js 15, `params` là Promise.
+</code></pre>
+<pre><code class="language-text">Tôi gặp lỗi Build Error trên Vercel khi Deploy dự án Next.js TypeScript:
+[Dán đoạn log lỗi Vercel Build Error vào đây]
+
+Hãy phân tích nguyên nhân lỗi và hướng dẫn từng bước cách sửa lỗi trên tệp mã nguồn hoặc cấu hình Vercel Settings.
+</code></pre>
+<p><strong>Checklist kiểm duyệt code AI:</strong></p>
+<ul>
+<li><strong>Phiên bản Next.js:</strong> AI hay sinh <code>params.id</code> theo kiểu Next.js 14. Bắt buộc sửa thành <code>const { id } = await params;</code>.</li>
+<li><strong>Bảo mật:</strong> Không có secret nào nằm trong biến <code>NEXT_PUBLIC_</code>; không commit <code>.env.local</code>.</li>
+<li><strong>Fallback:</strong> <code>generateMetadata</code> có xử lý sự kiện không tồn tại; trang gọi <code>notFound()</code>.</li>
+<li><strong>Ảnh:</strong> Mọi <code>&lt;img&gt;</code> đã đổi sang <code>Image</code>; domain ảnh có trong <code>remotePatterns</code>; chỉ ảnh đầu trang dùng <code>priority</code>.</li>
+<li><strong>Kiểm chứng:</strong> <code>npm run build</code> pass trên máy trước khi push; chạy lại Lighthouse sau mỗi lần sửa để xác nhận điểm thực sự tăng.</li>
+</ul>
+<blockquote>
+<p><strong>Đừng tin &quot;điểm tưởng tượng&quot;:</strong> AI có thể nói &quot;sau khi sửa, điểm sẽ đạt 95&quot;. Con số duy nhất được ghi vào báo cáo là kết quả Lighthouse nhóm tự chạy trên link Vercel Live.</p>
+</blockquote>
+<h4 id="2-6-thuc-hanh-tren-lop">2.6. Thực hành trên lớp</h4>
+<p>Buổi PBL 2 do Giảng viên mentor trực tiếp. Kết thúc buổi, mỗi nhóm phải có link Live hoạt động.</p>
+<table>
+<thead>
+<tr>
+<th>Phần</th>
+<th>Thời lượng</th>
+<th>Nhiệm vụ</th>
+<th>Output mong muốn</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Lý thuyết &amp; Thao tác mẫu</td>
+<td>30&#39;</td>
+<td>GV demo CI/CD Vercel, Environment Variables, Metadata API, <code>next/image</code>, <code>next/font</code>, <code>next/dynamic</code></td>
+<td>Nhóm nắm quy trình deploy và checklist SEO</td>
+</tr>
+<tr>
+<td>PBL Phần 1 – SEO &amp; Metadata động</td>
+<td>60&#39;</td>
+<td>Metadata tĩnh cho Root Layout; <code>generateMetadata</code> cho <code>/events/[id]</code>; thay toàn bộ <code>&lt;img&gt;</code> bằng <code>Image</code></td>
+<td>Link chia sẻ Zalo/Facebook hiện đúng ảnh và tiêu đề; ảnh tối ưu WebP/AVIF</td>
+</tr>
+<tr>
+<td>PBL Phần 2 – Deploy Vercel &amp; biến môi trường</td>
+<td>60&#39;</td>
+<td>Push <code>main</code>, kết nối repo với Vercel, khai báo <code>NEXT_PUBLIC_API_URL</code>, xử lý Build Fail</td>
+<td>Domain dạng <code>smart-event-hub.vercel.app</code> chạy ổn định; API, LocalStorage hoạt động trên Live</td>
+</tr>
+<tr>
+<td>PBL Phần 3 – Audit Lighthouse</td>
+<td>60&#39;</td>
+<td>Chạy Lighthouse trên link Live, phân tích 4 chỉ số, dùng Vibe Coding sửa code</td>
+<td>Performance &gt; 85, SEO &gt; 90</td>
+</tr>
+<tr>
+<td>Tổng kết</td>
+<td>15&#39;</td>
+<td>Tổng hợp link Live Web App của toàn bộ các nhóm, giao BTVN</td>
+<td>Danh sách link Vercel của cả lớp</td>
+</tr>
+</tbody></table>
+<ul>
+<li><strong>PBL Phần 1:</strong> Bắt đầu từ <code>app/layout.tsx</code>, sau đó đến <code>app/events/[id]/page.tsx</code>. Kiểm tra thẻ meta bằng View Page Source; sau khi deploy, dán link vào Zalo/Facebook để xem bản xem trước.</li>
+<li><strong>PBL Phần 2:</strong> Chạy <code>npm run build</code> trên máy trước. Nếu Vercel báo lỗi, copy log và dùng prompt &quot;Build Error&quot; ở mục 2.5, nhưng phải hiểu nguyên nhân trước khi sửa.</li>
+<li><strong>PBL Phần 3:</strong> Chụp ảnh kết quả Lighthouse <strong>trước</strong> và <strong>sau</strong> tối ưu để đưa vào báo cáo cuối kỳ. Chạy thêm kịch bản <code>Test_Cases_Scenario</code> trên link Live.</li>
+</ul>
+<hr>
+<h3 id="3-tom-tat-diem-can-nho-key-takeaways">📌 3. TÓM TẮT &amp; ĐIỂM CẦN NHỚ (Key Takeaways)</h3>
+<ul>
+<li>🔹 <strong>CI/CD Vercel:</strong> Kết nối GitHub một lần, sau đó mỗi <code>git push</code> lên <code>main</code> tự động Build và Deploy; branch khác tạo bản Preview.</li>
+<li>🔹 <strong>Biến môi trường:</strong> Khai báo theo Development/Preview/Production; <code>NEXT_PUBLIC_</code> lộ ra trình duyệt và chỉ cập nhật sau khi Redeploy.</li>
+<li>🔹 <strong>Metadata API:</strong> <code>metadata</code> tĩnh cho layout, <code>generateMetadata</code> cho trang động; Next.js 15 dùng <code>const { id } = await params;</code>.</li>
+<li>🔹 <strong>Performance:</strong> <code>next/image</code> (resize, lazy load, WebP/AVIF, chống CLS), <code>next/font</code>, <code>next/dynamic</code> cho component nặng.</li>
+<li>🔹 <strong>Lighthouse là thước đo cuối:</strong> Mục tiêu Performance &gt; 85, SEO &gt; 90, đo trên link Vercel Live chứ không phải localhost.</li>
+</ul>
+<hr>
+<h3 id="4-hoat-dong-kiem-tra-nhanh-self-assessment-quiz">❓ 4. HOẠT ĐỘNG KIỂM TRA NHANH (Self-Assessment / Quiz)</h3>
+<p><strong>Câu 1:</strong> Trong Next.js 15, cách lấy <code>id</code> đúng bên trong <code>generateMetadata({ params })</code> là gì?</p>
+<ul>
+<li>A. <code>const id = params.id;</code></li>
+<li>B. <code>const { id } = useParams();</code></li>
+<li>C. <code>const { id } = await params;</code></li>
+<li>D. <code>const id = router.query.id;</code></li>
+</ul>
+<details>
+<summary>👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> C<br>
+<b>Giải thích:</b> Từ Next.js 15, <code>params</code> là Promise nên phải <code>await</code>. <code>useParams</code> là hook của Client Component, còn <code>router.query</code> thuộc Pages Router cũ.
+</details>
+
+<p><strong>Câu 2:</strong> Nhóm đã sửa giá trị <code>NEXT_PUBLIC_API_URL</code> trên Vercel nhưng web vẫn gọi URL cũ. Nguyên nhân hợp lý nhất?</p>
+<ul>
+<li>A. Biến <code>NEXT_PUBLIC_</code> được gắn vào bundle lúc build, cần Redeploy</li>
+<li>B. Vercel không hỗ trợ biến môi trường cho Next.js</li>
+<li>C. Phải đổi tên biến thành <code>API_URL</code></li>
+<li>D. Trình duyệt chặn biến môi trường từ Vercel</li>
+</ul>
+<details>
+<summary>👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> A<br>
+<b>Giải thích:</b> Giá trị biến công khai được thay thế trực tiếp vào code khi build, nên đổi giá trị phải build lại (Redeploy) mới có hiệu lực.
+</details>
+
+<p><strong>Câu 3:</strong> Vì sao dùng <code>Image</code> của <code>next/image</code> giúp cải thiện điểm Lighthouse Performance?</p>
+<ul>
+<li>A. Vì nó tải toàn bộ ảnh ngay khi mở trang</li>
+<li>B. Vì nó tự resize, lazy load, đổi sang WebP/AVIF và giữ chỗ chống Layout Shift</li>
+<li>C. Vì nó chuyển ảnh thành chuỗi Base64 trong HTML</li>
+<li>D. Vì nó tắt ảnh trên thiết bị di động</li>
+</ul>
+<details>
+<summary>👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> B<br>
+<b>Giải thích:</b> Ảnh nhỏ hơn, đúng kích thước thiết bị và chỉ tải khi cần giúp tăng tốc; <code>width</code>/<code>height</code> giữ chỗ trước nên giảm CLS.
+</details>
+
+<p><strong>Câu 4:</strong> Build trên máy Windows chạy tốt nhưng Vercel báo <code>Module not found: Can&#39;t resolve &#39;./eventCard&#39;</code>, trong khi file thật tên <code>EventCard.tsx</code>. Nên sửa thế nào?</p>
+<ul>
+<li>A. Tắt TypeScript trong <code>tsconfig.json</code></li>
+<li>B. Xóa thư mục <code>.next</code> trên máy rồi push lại</li>
+<li>C. Chuyển dự án sang Pages Router</li>
+<li>D. Sửa đường dẫn import cho đúng hoa/thường như tên file</li>
+</ul>
+<details>
+<summary>👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> D<br>
+<b>Giải thích:</b> Môi trường build Linux của Vercel phân biệt chữ hoa/thường, còn Windows thì không. Import phải khớp chính xác tên file.
+</details>
+
+<blockquote>
+<p>Bộ 10+ câu đầy đủ: <code>quiz/quiz-bai-11-aiken.txt</code></p>
+</blockquote>
+<hr>
+<h3 id="5-nhiem-vu-hoc-tap-thao-luan-lms-discussion-assignment">💬 5. NHIỆM VỤ HỌC TẬP &amp; THẢO LUẬN (LMS Discussion / Assignment)</h3>
+<ul>
+<li><strong>Chủ đề thảo luận Diễn đàn (Forum Discussion):</strong> Đăng ảnh Lighthouse trước và sau tối ưu của nhóm bạn. Thay đổi nào giúp tăng điểm nhiều nhất? Có gợi ý nào của AI làm điểm <strong>giảm</strong> hoặc không đổi không? Hãy giải thích vì sao.</li>
+<li><strong>Yêu cầu nộp bài (Bài tập về nhà):</strong><ul>
+<li>Viết <strong>Báo cáo Văn bản</strong> (Word/PDF) hoàn chỉnh theo mẫu quy định: mô tả kiến trúc dự án, sơ đồ Wireframe, mô tả API tích hợp, phân công công việc, ảnh chụp minh chứng Git commit và Link Vercel Live.</li>
+<li>Chuẩn bị <strong>Slide thuyết trình</strong> chuyên nghiệp cho Bài 12 – Thi Hackathon &amp; Final Showcase.</li>
+<li><strong>Output:</strong> file <code>BaoCao_SmartEventHub_&lt;TenNhom&gt;.pdf</code> (hoặc <code>.docx</code>) và slide sẵn sàng cho buổi bảo vệ cuối kỳ.</li>
+<li><strong>Hạn nộp:</strong> trước buổi học tiếp theo. Nộp file trên LMS, đồng thời đưa báo cáo vào thư mục <code>docs/</code> qua PR <code>docs/final-report</code>.</li>
+</ul>
+</li>
+<li><strong>📚 Tài liệu đọc &amp; tham khảo:</strong><ul>
+<li>Next.js Metadata Documentation: <a href="https://nextjs.org/docs/app/building-your-application/optimizing/metadata" target="_blank" rel="noopener noreferrer">https://nextjs.org/docs/app/building-your-application/optimizing/metadata</a></li>
+<li>Next.js – generateMetadata: <a href="https://nextjs.org/docs/app/api-reference/functions/generate-metadata" target="_blank" rel="noopener noreferrer">https://nextjs.org/docs/app/api-reference/functions/generate-metadata</a></li>
+<li>Next.js – Image Component: <a href="https://nextjs.org/docs/app/api-reference/components/image" target="_blank" rel="noopener noreferrer">https://nextjs.org/docs/app/api-reference/components/image</a></li>
+<li>Vercel – Environment Variables: <a href="https://vercel.com/docs/projects/environment-variables" target="_blank" rel="noopener noreferrer">https://vercel.com/docs/projects/environment-variables</a></li>
+<li>Google Lighthouse Audit Guide: <a href="https://developer.chrome.com/docs/lighthouse/overview/" target="_blank" rel="noopener noreferrer">https://developer.chrome.com/docs/lighthouse/overview/</a></li>
+</ul>
+</li>
+</ul>
+
+    </article>
+
+    <!-- Bottom Navigation -->
+    <div class="flex items-center justify-between gap-4 mt-8 no-print text-xs font-bold">
+      <a href="bai-10.html" class="px-4 py-2.5 bg-white border border-slate-200 hover:border-lhu-blue text-slate-700 hover:text-lhu-blue rounded-xl shadow-sm transition-all flex items-center gap-2"><i class="fa-solid fa-chevron-left"></i> Bài trước</a>
+      <a href="index.html#lo-trinh" class="px-4 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-800 rounded-xl transition-all flex items-center gap-2">
+        <i class="fa-solid fa-table-cells-large"></i> Danh mục bài học
+      </a>
+      <a href="bai-12.html" class="px-4 py-2.5 bg-white border border-slate-200 hover:border-lhu-blue text-slate-700 hover:text-lhu-blue rounded-xl shadow-sm transition-all flex items-center gap-2">Bài tiếp theo <i class="fa-solid fa-chevron-right"></i></a>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-slate-200 py-6 text-xs text-slate-500 mt-12 no-print">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <strong>Khoa Công nghệ Thông tin - Trường Đại học Lạc Hồng</strong><br>
+        Phòng B301 - B302, Cơ sở 1, Số 10 Huỳnh Văn Nghệ, P. Bửu Long, TP. Biên Hòa, Đồng Nai.
+      </div>
+      <div class="sm:text-right">
+        <span>Email: cntt@lhu.edu.vn • Hotline: (0251) 3952 251</span><br>
+        <span>Hệ thống LMS: <a href="https://learn.lhu.edu.vn" target="_blank" rel="noopener noreferrer" class="text-lhu-blue font-bold">learn.lhu.edu.vn</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleAllDetails(open) {
+      document.querySelectorAll("details").forEach(d => {
+        if (open) d.setAttribute("open", ""); else d.removeAttribute("open");
+      });
+    }
+    if (window.hljs) hljs.highlightAll();
+  </script>
+
+</body>
+</html>

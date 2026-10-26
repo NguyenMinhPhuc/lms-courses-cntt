@@ -1,0 +1,633 @@
+<details open="" style="border: 1px solid #007bff; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #e7f1ff; color: #007bff; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>📘 1. Tổng quan bài học</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <p style="margin-top: 0;"><strong>BÀI 08 - Data Fetching &amp; tích hợp RESTful API (5 tiết)</strong></p>
+        <p style="margin: 0 0 8px 0; color: #6c757d;">CHƯƠNG 5: DỮ LIỆU, FORM &amp; LƯU TRỮ PHÍA CLIENT</p>
+        <p><strong>Thời lượng:</strong> 5 tiết (225 phút) · <strong>Hình thức:</strong> Lớp học đảo ngược · <strong>Chuẩn đầu ra:</strong> PI 2.3 (CLO2)<br><strong>Dự án xuyên suốt:</strong> Smart Event Hub – kết nối RESTful API / Swagger UI Backend có sẵn, thay toàn bộ Mock JSON bằng dữ liệu động (danh sách và chi tiết sự kiện, danh mục, tìm kiếm – phân trang, đặt vé).</p>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #f3f8ff; border: 1px solid #cfe2ff; border-radius: 8px;">
+            <p>🎯 <strong>MỤC TIÊU BÀI HỌC (Learning Objectives)</strong><br>Sau khi hoàn thành bài học này, người học có thể:</p>
+<ul>
+<li><strong>[Bloom 1/2 - Kiến thức]:</strong> Phân biệt Data Fetching trong Server Component và Client Component; giải thích cơ chế caching và <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">revalidate</code> của <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">fetch</code> trong Next.js.</li>
+<li><strong>[Bloom 3/4 - Kỹ năng]:</strong> Xây dựng Generic Interface <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">ApiResponse&lt;T&gt;</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">PaginatedData&lt;T&gt;</code>, tầng service <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">eventService.ts</code> bằng Axios; render dữ liệu dạng mảng (danh sách) và dạng đơn (chi tiết theo <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">id</code>) với Loading, Error, 404.</li>
+<li><strong>[Bloom 5/6 - Năng lực]:</strong> Dùng AI chuyển Swagger JSON thành DTO/Interface/Service, đánh giá và sửa output AI để đạt type-safety tuyệt đối, không dùng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">any</code>.</li>
+</ul>
+        </div>
+        <p><strong>📝 Đặt vấn đề &amp; dẫn nhập</strong></p>
+        <p>Đến hết giữa kỳ, trang chủ Smart Event Hub vẫn đọc dữ liệu từ file <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">mockEvents.json</code>. Ban tổ chức thêm một concert mới trên hệ thống quản trị, nhưng người dùng không thấy gì cho đến khi lập trình viên sửa file JSON và deploy lại. Thực tế không ứng dụng đặt vé nào vận hành như vậy: dữ liệu phải chảy từ Backend qua RESTful API lên giao diện theo thời gian thực.</p>
+<p><strong>Câu hỏi gợi mở:</strong> Nên gọi API ngay trên server khi render trang, hay để trình duyệt tự gọi sau khi tải xong? Khi API trả về một object JSON có 30 trường lồng nhau, làm sao để TypeScript &quot;hiểu&quot; đúng từng trường mà không phải gõ tay từng dòng interface? Và nếu Backend sập lúc 8 giờ tối, người dùng sẽ thấy gì?</p>
+<blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #007bff; border-radius: 0 8px 8px 0; color: #212529;">
+<p>🧭 <strong>Trước giờ học (Flipped Classroom):</strong> Xem video RESTful API concepts, Fetch API, Axios, Async/Await trong TypeScript. Đọc tài liệu <em>Next.js Data Fetching, Caching, and Revalidating</em> và <em>Axios Documentation</em> (mục 5). Mở Swagger UI của Backend Smart Event Hub do giảng viên cung cấp, thử gọi <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">GET /events</code> và lưu lại một JSON response mẫu. Làm quiz 5–10 câu trên LMS.</p>
+</blockquote>
+    </div>
+</details>
+
+<details style="border: 1px solid #fd7e14; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #fff5eb; color: #fd7e14; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>📚 2. Học liệu chính</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.1. Data Fetching trong Next.js: Server Component vs Client Component</h3>
+            <ul>
+<li><strong>Khái niệm:</strong> Next.js App Router cho phép lấy dữ liệu ở hai nơi. <strong>Server-side fetching</strong> dùng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">async/await</code> trực tiếp trong Server Component, HTML trả về đã có sẵn dữ liệu. <strong>Client-side fetching</strong> dùng Axios hoặc SWR/TanStack Query trong Client Component, phù hợp với dữ liệu cần tương tác liên tục hoặc cập nhật thời gian thực.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong></li>
+</ul>
+<table style="width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 14px;">
+<thead>
+<tr>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Tiêu chí</th>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Server Component</th>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Client Component</th>
+</tr>
+</thead>
+<tbody><tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Nơi chạy</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Server (Node.js), lúc render trang</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Trình duyệt, sau khi trang hydrate</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Cú pháp</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;"><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">export default async function Page()</code> + <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">await</code></td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;"><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useEffect</code> + <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useState</code>, hoặc SWR/TanStack Query</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">SEO</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">HTML đã có dữ liệu, tốt cho SEO</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Dữ liệu xuất hiện sau, bot có thể không thấy</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Bảo mật</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Giữ được secret/API key phía server</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Mọi request lộ trong tab Network</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Dùng cho</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Danh sách sự kiện, trang chi tiết</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Tìm kiếm khi gõ, POST đặt vé, dữ liệu realtime</td>
+</tr>
+</tbody></table>
+<ul>
+<li>Next.js mở rộng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">fetch</code> native với tùy chọn <strong>caching</strong> (<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">cache: &#39;force-cache&#39;</code>) và <strong>revalidation</strong> (<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">next: { revalidate: giây }</code>). Từ <strong>Next.js 15, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">fetch</code> không còn được cache mặc định</strong>, vì vậy muốn cache phải khai báo rõ ràng.</li>
+<li><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">revalidate: 3600</code> nghĩa là kết quả được dùng lại tối đa 1 giờ; request đầu tiên sau mốc đó vẫn nhận bản cũ, đồng thời Next.js lấy bản mới ở nền cho lượt sau.</li>
+</ul>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// services/eventServer.ts – Fetch trên Server Component có caching/revalidate
+import type { ApiResponse, PaginatedData } from &#39;@/types/api&#39;;
+import type { IEventItem } from &#39;@/types/event&#39;;
+
+export async function getFeaturedEvents(): Promise&lt;PaginatedData&lt;IEventItem&gt;&gt; {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/events?page=1&amp;limit=8`, {
+    next: { revalidate: 3600 }, // Làm mới tối đa mỗi 1 giờ
+  });
+  if (!res.ok) throw new Error(`Không tải được danh sách sự kiện (HTTP ${res.status})`);
+  const json = (await res.json()) as ApiResponse&lt;PaginatedData&lt;IEventItem&gt;&gt;;
+  return json.data;
+}
+</code></pre>
+<ul>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #fd7e14; border-radius: 0 8px 8px 0; color: #212529;">
+<p>Danh sách &quot;Sự kiện nổi bật&quot; ít thay đổi trong ngày, nên fetch trên server với <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">revalidate: 3600</code> giúp trang chủ tải nhanh và chia sẻ link lên Zalo vẫn hiện đúng nội dung. Ngược lại, ô tìm kiếm gợi ý theo từng ký tự gõ phải chạy ở Client Component vì phụ thuộc thao tác người dùng.</p>
+</blockquote>
+</li>
+</ul>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.2. Type-safe API: Generic Response, DTO và ViewModel</h3>
+            <ul>
+<li><strong>Khái niệm:</strong> Backend RESTful thường bọc dữ liệu trong một &quot;vỏ&quot; chung gồm mã trạng thái, thông điệp và <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">data</code>. Khai báo vỏ này bằng <strong>Generic Interface</strong> giúp tái sử dụng cho mọi endpoint. <strong>DTO (Data Transfer Object)</strong> mô tả đúng hình dạng JSON Backend trả về; <strong>ViewModel</strong> là dữ liệu đã được định dạng sẵn để UI hiển thị.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">ApiResponse&lt;T&gt;</code> cho mọi response; <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">PaginatedData&lt;T&gt;</code> cho danh sách có phân trang.</li>
+<li>DTO bám sát Swagger: ngày tháng là <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">string</code> (ISO 8601), trường có thể rỗng khai báo <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">| null</code>.</li>
+<li>Hàm <strong>mapper</strong> chuyển DTO → ViewModel, gom logic định dạng tiền, ngày về một chỗ. Khi Backend đổi tên field, chỉ sửa mapper.</li>
+</ul>
+</li>
+</ul>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// types/api.ts
+export interface ApiResponse&lt;T&gt; {
+  statusCode: number;
+  message: string;
+  data: T;
+}
+
+export interface PaginatedData&lt;T&gt; {
+  items: T[];
+  total: number;
+  page: number;
+  limit: number;
+}
+</code></pre>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// types/event.ts – DTO theo Swagger
+export type EventStatus = &#39;UPCOMING&#39; | &#39;ONGOING&#39; | &#39;ENDED&#39;;
+
+export interface IOrganizer {
+  id: string;
+  name: string;
+  email: string;
+  avatarUrl: string | null;
+}
+
+export interface ICategory {
+  id: string;
+  name: string;
+  slug: string;
+}
+
+export interface IEventItem {
+  id: string;
+  title: string;
+  bannerUrl: string;
+  location: string;
+  startDate: string; // ISO 8601
+  price: number;
+  status: EventStatus;
+  category: ICategory;
+  organizer: IOrganizer;
+}
+
+// ViewModel cho EventCard
+export interface EventCardVM {
+  id: string;
+  title: string;
+  bannerUrl: string;
+  dateLabel: string;
+  priceLabel: string;
+  status: EventStatus;
+}
+</code></pre>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// lib/mappers/event.ts
+import type { EventCardVM, IEventItem } from &#39;@/types/event&#39;;
+
+const dateFmt = new Intl.DateTimeFormat(&#39;vi-VN&#39;, { dateStyle: &#39;medium&#39;, timeZone: &#39;Asia/Ho_Chi_Minh&#39; });
+const priceFmt = new Intl.NumberFormat(&#39;vi-VN&#39;, { style: &#39;currency&#39;, currency: &#39;VND&#39; });
+
+export function toEventCardVM(dto: IEventItem): EventCardVM {
+  return {
+    id: dto.id,
+    title: dto.title,
+    bannerUrl: dto.bannerUrl,
+    dateLabel: dateFmt.format(new Date(dto.startDate)),
+    priceLabel: dto.price === 0 ? &#39;Miễn phí&#39; : priceFmt.format(dto.price),
+    status: dto.status,
+  };
+}
+</code></pre>
+<ul>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #fd7e14; border-radius: 0 8px 8px 0; color: #212529;">
+<p>Backend đổi <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">bannerUrl</code> thành <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">coverImage</code> ở phiên bản API mới. Nhờ DTO và mapper, nhóm chỉ sửa 2 dòng trong <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">types/event.ts</code> và <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">toEventCardVM</code>, TypeScript tự chỉ ra mọi chỗ còn dùng tên cũ. Không ai phải lục từng component.</p>
+</blockquote>
+</li>
+</ul>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.3. Tầng Service với Axios: danh sách (Array Data)</h3>
+            <ul>
+<li><strong>Khái niệm:</strong> <strong>Service layer</strong> là các hàm gọi API tập trung trong thư mục <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">services/</code>. Component không gọi <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">axios</code> trực tiếp mà gọi <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">getEvents()</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">getEventById()</code>… Nhờ đó URL, header, xử lý lỗi nằm ở một nơi, dễ kiểm thử và dễ thay đổi.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li>Tạo một Axios instance với <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">baseURL</code> đọc từ biến môi trường <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">NEXT_PUBLIC_API_URL</code> (khai báo trong <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">.env.local</code>), không hard-code URL.</li>
+<li>Truyền kiểu generic cho <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">http.get&lt;...&gt;()</code> để <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">res.data</code> có type chính xác.</li>
+<li>Trong Next.js 15, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">searchParams</code> của page là <strong>Promise</strong>, cần <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">await</code> trước khi dùng.</li>
+</ul>
+</li>
+</ul>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// lib/http.ts
+import axios from &#39;axios&#39;;
+
+export const http = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_API_URL, // ví dụ: https://&lt;backend-cua-lop&gt;/api/v1
+  timeout: 10_000,
+  headers: { &#39;Content-Type&#39;: &#39;application/json&#39; },
+});
+</code></pre>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// services/eventService.ts
+import axios from &#39;axios&#39;;
+import { http } from &#39;@/lib/http&#39;;
+import type { ApiResponse, PaginatedData } from &#39;@/types/api&#39;;
+import type { ICategory, IEventItem } from &#39;@/types/event&#39;;
+
+export interface GetEventsParams {
+  page?: number;
+  limit?: number;
+  search?: string;
+  categoryId?: string;
+}
+
+export async function getEvents(params: GetEventsParams = {}): Promise&lt;PaginatedData&lt;IEventItem&gt;&gt; {
+  const res = await http.get&lt;ApiResponse&lt;PaginatedData&lt;IEventItem&gt;&gt;&gt;(&#39;/events&#39;, { params });
+  return res.data.data;
+}
+
+export async function getEventById(id: string): Promise&lt;IEventItem | null&gt; {
+  try {
+    const res = await http.get&lt;ApiResponse&lt;IEventItem&gt;&gt;(`/events/${encodeURIComponent(id)}`);
+    return res.data.data;
+  } catch (error) {
+    if (axios.isAxiosError(error) &amp;&amp; error.response?.status === 404) return null;
+    throw error; // Network Error / 500 → để error.tsx xử lý
+  }
+}
+
+export async function getCategories(): Promise&lt;ICategory[]&gt; {
+  const res = await http.get&lt;ApiResponse&lt;ICategory[]&gt;&gt;(&#39;/categories&#39;);
+  return res.data.data;
+}
+
+export interface CreateOrderPayload {
+  eventId: string;
+  ticketType: &#39;VVIP&#39; | &#39;VIP&#39; | &#39;STANDARD&#39;;
+  quantity: number;
+}
+
+export interface IOrder {
+  id: string;
+  totalAmount: number;
+}
+
+export async function createOrder(payload: CreateOrderPayload): Promise&lt;IOrder&gt; {
+  const res = await http.post&lt;ApiResponse&lt;IOrder&gt;&gt;(&#39;/orders&#39;, payload);
+  return res.data.data;
+}
+</code></pre>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// app/page.tsx – Server Component: fetch danh sách rồi truyền props
+import EventList from &#39;@/components/events/EventList&#39;;
+import { toEventCardVM } from &#39;@/lib/mappers/event&#39;;
+import { getEvents } from &#39;@/services/eventService&#39;;
+
+interface HomePageProps {
+  searchParams: Promise&lt;{ page?: string; search?: string }&gt;;
+}
+
+export default async function HomePage({ searchParams }: HomePageProps) {
+  const { page = &#39;1&#39;, search = &#39;&#39; } = await searchParams;
+  const data = await getEvents({ page: Number(page) || 1, limit: 12, search });
+
+  return (
+    &lt;EventList
+      events={data.items.map(toEventCardVM)}
+      total={data.total}
+      page={data.page}
+      pageSize={data.limit}
+    /&gt;
+  );
+}
+</code></pre>
+<ul>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #fd7e14; border-radius: 0 8px 8px 0; color: #212529;">
+<p>URL <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/?search=rock&amp;page=2</code> được đọc ngay trên server, nên người dùng copy link gửi bạn bè sẽ thấy đúng trang 2 kết quả &quot;rock&quot;. Đây cũng là cách Member 2 trong Team Challenge làm tính năng Tìm kiếm &amp; Phân trang.</p>
+</blockquote>
+</li>
+</ul>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.4. Dữ liệu đơn (Single Data): trang chi tiết, 404, Loading và Error</h3>
+            <ul>
+<li><strong>Khái niệm:</strong> Trang <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/events/[id]</code> lấy <strong>một</strong> sự kiện theo <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">id</code> trên URL. Ba trạng thái phải xử lý đủ: <strong>đang tải</strong> (<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">loading.tsx</code>), <strong>không tồn tại</strong> (<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">notFound()</code> → <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">not-found.tsx</code>), <strong>lỗi máy chủ</strong> (<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">error.tsx</code>).</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">params</code> là Promise trong Next.js 15: <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">const { id } = await params;</code>.</li>
+<li><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">notFound()</code> từ <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">next/navigation</code> hoạt động bằng cách ném một lỗi đặc biệt. <strong>Không gọi <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">notFound()</code> bên trong <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">try</code> có <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">catch</code> bắt mọi lỗi</strong>, nếu không trang 404 sẽ bị &quot;nuốt&quot;. Vì vậy <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">getEventById</code> tự xử lý 404 và trả <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">null</code>.</li>
+<li><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">error.tsx</code> bắt buộc là Client Component, nhận props <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">error</code> và <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">reset</code>.</li>
+</ul>
+</li>
+</ul>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// app/events/[id]/page.tsx
+import Image from &#39;next/image&#39;;
+import { notFound } from &#39;next/navigation&#39;;
+import { getEventById } from &#39;@/services/eventService&#39;;
+
+interface PageProps {
+  params: Promise&lt;{ id: string }&gt;;
+}
+
+export default async function EventDetailPage({ params }: PageProps) {
+  const { id } = await params;
+  const event = await getEventById(id);
+  if (!event) notFound(); // TypeScript hiểu từ đây event không còn null
+
+  return (
+    &lt;article&gt;
+      &lt;Image src={event.bannerUrl} alt={event.title} width={1200} height={480} priority /&gt;
+      &lt;h1&gt;{event.title}&lt;/h1&gt;
+      &lt;p&gt;Giá vé: {event.price.toLocaleString(&#39;vi-VN&#39;)} đ&lt;/p&gt;
+      &lt;p&gt;Ban tổ chức: {event.organizer.name} ({event.organizer.email})&lt;/p&gt;
+    &lt;/article&gt;
+  );
+}
+</code></pre>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// app/events/[id]/error.tsx
+&#39;use client&#39;;
+
+import { useEffect } from &#39;react&#39;;
+import { Button, Result } from &#39;antd&#39;;
+
+export default function EventDetailError({ error, reset }: { error: Error &amp; { digest?: string }; reset: () =&gt; void }) {
+  useEffect(() =&gt; {
+    console.error(error); // Gửi lên công cụ log nếu có
+  }, [error]);
+
+  return (
+    &lt;Result
+      status=&quot;500&quot;
+      title=&quot;Không tải được sự kiện&quot;
+      subTitle=&quot;Máy chủ đang gián đoạn, vui lòng thử lại sau.&quot;
+      extra={&lt;Button type=&quot;primary&quot; onClick={reset}&gt;Thử lại&lt;/Button&gt;}
+    /&gt;
+  );
+}
+</code></pre>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// app/events/[id]/loading.tsx
+import { Skeleton } from &#39;antd&#39;;
+
+export default function Loading() {
+  return &lt;Skeleton active paragraph={{ rows: 6 }} /&gt;;
+}
+</code></pre>
+<blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #fd7e14; border-radius: 0 8px 8px 0; color: #212529;">
+<p>⚠️ <strong>Lưu ý:</strong> <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">next/image</code> với ảnh từ domain Backend cần khai báo <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">images.remotePatterns</code> trong <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">next.config.ts</code>, nếu không trang sẽ báo lỗi &quot;hostname is not configured&quot;.</p>
+</blockquote>
+<ul>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #fd7e14; border-radius: 0 8px 8px 0; color: #212529;">
+<p>Người dùng mở link cũ <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/events/abc-2023</code> của một sự kiện đã bị xóa. Thay vì trang trắng hay lỗi 500, họ thấy trang 404 thân thiện kèm nút &quot;Xem sự kiện khác&quot;. Đó là khác biệt giữa sản phẩm demo và sản phẩm thật.</p>
+</blockquote>
+</li>
+</ul>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.5. Client-side Fetching: danh mục, đặt vé và trạng thái Loading</h3>
+            <ul>
+<li><strong>Khái niệm:</strong> Khi dữ liệu phụ thuộc thao tác người dùng (chọn danh mục, bấm Đặt vé), chúng ta gọi API trong Client Component. Mỗi lần gọi phải thể hiện rõ trạng thái bằng <strong>Spin/Skeleton</strong> của Ant Design và thông báo kết quả bằng <strong>Notification</strong>.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li>Dùng biến cờ <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">ignore</code> trong <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useEffect</code> để bỏ qua kết quả trả về sau khi component đã unmount.</li>
+<li>Dùng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">App.useApp()</code> để lấy <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">notification</code> theo đúng theme. Yêu cầu: <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">app/layout.tsx</code> bọc nội dung trong <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&lt;App&gt;</code> của antd (bên trong <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">ConfigProvider</code>).</li>
+<li>Với dữ liệu fetch lặp lại nhiều nơi, có thể dùng SWR/TanStack Query để có sẵn cache, retry, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">isLoading</code>.</li>
+</ul>
+</li>
+</ul>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// components/events/CategoryFilter.tsx – dùng bên trong một Client Component cha (FilterBar)
+&#39;use client&#39;;
+
+import { useEffect, useState } from &#39;react&#39;;
+import { Alert, Select } from &#39;antd&#39;;
+import { getCategories } from &#39;@/services/eventService&#39;;
+import type { ICategory } from &#39;@/types/event&#39;;
+
+interface CategoryFilterProps {
+  onChange: (categoryId: string | undefined) =&gt; void;
+}
+
+export default function CategoryFilter({ onChange }: CategoryFilterProps) {
+  const [categories, setCategories] = useState&lt;ICategory[]&gt;([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState&lt;string | null&gt;(null);
+
+  useEffect(() =&gt; {
+    let ignore = false;
+    getCategories()
+      .then((data) =&gt; { if (!ignore) setCategories(data); })
+      .catch(() =&gt; { if (!ignore) setError(&#39;Không tải được danh mục sự kiện&#39;); })
+      .finally(() =&gt; { if (!ignore) setLoading(false); });
+    return () =&gt; { ignore = true; };
+  }, []);
+
+  if (error) return &lt;Alert type=&quot;error&quot; message={error} showIcon /&gt;;
+
+  return (
+    &lt;Select
+      allowClear
+      loading={loading}
+      placeholder=&quot;Chọn danh mục&quot;
+      style={{ minWidth: 200 }}
+      options={categories.map((c) =&gt; ({ value: c.id, label: c.name }))}
+      onChange={(value: string | undefined) =&gt; onChange(value)}
+    /&gt;
+  );
+}
+</code></pre>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// components/booking/BookTicketButton.tsx – POST /orders
+&#39;use client&#39;;
+
+import { useState } from &#39;react&#39;;
+import axios from &#39;axios&#39;;
+import { App, Button } from &#39;antd&#39;;
+import { createOrder, type CreateOrderPayload } from &#39;@/services/eventService&#39;;
+
+export default function BookTicketButton({ payload }: { payload: CreateOrderPayload }) {
+  const { notification } = App.useApp();
+  const [submitting, setSubmitting] = useState(false);
+
+  const handleBook = async () =&gt; {
+    setSubmitting(true);
+    try {
+      const order = await createOrder(payload);
+      notification.success({ message: &#39;Đặt vé thành công&#39;, description: `Mã đơn hàng: ${order.id}` });
+    } catch (error) {
+      const description =
+        axios.isAxiosError(error) &amp;&amp; error.response?.status === 409
+          ? &#39;Hạng vé này vừa hết chỗ, vui lòng chọn hạng khác.&#39;
+          : &#39;Không thể kết nối máy chủ, vui lòng thử lại.&#39;;
+      notification.error({ message: &#39;Đặt vé thất bại&#39;, description });
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  return (
+    &lt;Button type=&quot;primary&quot; size=&quot;large&quot; loading={submitting} onClick={handleBook}&gt;
+      Đặt vé ngay
+    &lt;/Button&gt;
+  );
+}
+</code></pre>
+<ul>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #fd7e14; border-radius: 0 8px 8px 0; color: #212529;">
+<p>Khi mạng 4G chập chờn, nút &quot;Đặt vé ngay&quot; chuyển sang trạng thái loading và bị vô hiệu hóa. Người dùng không thể bấm liên tục 5 lần tạo ra 5 đơn hàng trùng – một lỗi rất hay gặp ở các trang bán vé làm vội.</p>
+</blockquote>
+</li>
+</ul>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.6. Vibe Coding – Prompt mẫu &amp; cách kiểm duyệt code AI</h3>
+            <p>Quy trình Vibe Coding của buổi này: <strong>thả API Specification / JSON Swagger vào AI</strong> để sinh DTO, Interface và hàm service. AI làm phần gõ phím lặp lại; các bạn chịu trách nhiệm đối chiếu với dữ liệu thật.</p>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">Bạn là một Fullstack Developer. Dưới đây là JSON Response từ Swagger API danh sách sự kiện:
+[Dán đoạn JSON Swagger API Response vào đây]
+
+Yêu cầu:
+1. Sinh các TypeScript Interfaces tương ứng (`IEventResponse`, `IEventItem`, `IOrganizer`).
+2. Viết 1 file `services/eventService.ts` sử dụng `axios` để thực hiện hàm `getEvents(params)`
+   với các query: `page`, `limit`, `search`.
+3. Viết code ví dụ Fetch dữ liệu trong Server Component Next.js (`app/page.tsx`)
+   và truyền props vào Component `EventList`.
+Ràng buộc: Next.js 15 (searchParams là Promise), TypeScript strict, không dùng `any`.
+</code></pre>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">Viết giúp tôi hàm `getEventById(id: string)` trong `services/eventService.ts` và tích hợp vào
+trang Next.js Server Component `/app/events/[id]/page.tsx`.
+- Nếu không tìm thấy sự kiện (API trả về lỗi 404), gọi hàm `notFound()` từ `next/navigation`
+  để chuyển hướng đến trang 404.
+- Bổ sung Try/Catch block để bắt lỗi kết nối API.
+</code></pre>
+<p><strong>Checklist kiểm duyệt code AI:</strong></p>
+<ul>
+<li>Tên field trong interface khớp <strong>từng ký tự</strong> với JSON thật (<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">startDate</code> hay <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">start_date</code>?).</li>
+<li>Trường có thể <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">null</code> trong Swagger được khai báo <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">| null</code>; ngày tháng là <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">string</code>, không phải <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Date</code>.</li>
+<li>Không có <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">any</code>, không có <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">as unknown as ...</code> để &quot;lách&quot; type checker.</li>
+<li><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">notFound()</code> nằm ngoài khối <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">try/catch</code> bắt mọi lỗi; <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">params</code>/<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">searchParams</code> được <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">await</code>.</li>
+<li>URL lấy từ biến môi trường; component dùng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useEffect</code>/<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useState</code> có <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&#39;use client&#39;</code>.</li>
+<li>Mọi lời gọi API đều có trạng thái Loading và nhánh xử lý lỗi.</li>
+</ul>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">📌 Tóm tắt &amp; điểm cần nhớ</h3>
+            <ul>
+<li>🔹 <strong>Chọn đúng nơi fetch:</strong> dữ liệu cần SEO, ít thay đổi → Server Component; dữ liệu phụ thuộc tương tác → Client Component.</li>
+<li>🔹 <strong>Next.js 15 không cache <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">fetch</code> mặc định:</strong> muốn cache dùng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">cache: &#39;force-cache&#39;</code> hoặc <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">next: { revalidate: giây }</code>.</li>
+<li>🔹 <strong>Generic + DTO + mapper:</strong> <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">ApiResponse&lt;T&gt;</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">PaginatedData&lt;T&gt;</code> cho vỏ response; DTO bám Swagger; mapper tạo ViewModel cho UI.</li>
+<li>🔹 <strong>Service layer:</strong> component gọi <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">getEvents()</code>, không gọi <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">axios</code> trực tiếp; URL nằm trong <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">NEXT_PUBLIC_API_URL</code>.</li>
+<li>🔹 <strong>Đủ 3 trạng thái:</strong> Loading (<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">loading.tsx</code>, Spin/Skeleton), 404 (<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">notFound()</code>), lỗi máy chủ (<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">error.tsx</code>, Notification).</li>
+<li>🔹 <strong>AI sinh – người duyệt:</strong> luôn đối chiếu interface do AI sinh với JSON thật trước khi dùng.</li>
+</ul>
+        </div>
+    </div>
+</details>
+
+<details style="border: 1px solid #28a745; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #eafaf1; color: #28a745; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>💡 3. Hoạt động &amp; Thực hành trên lớp</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <p style="margin-top: 0;">Thực hiện các hoạt động sau để vận dụng kiến thức của buổi học:</p>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #28a745;">🧑‍💻 Thực hành trên lớp</h3>
+            <table style="width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 14px;">
+<thead>
+<tr>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Phần</th>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Thời lượng</th>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Nhiệm vụ</th>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Output mong muốn</th>
+</tr>
+</thead>
+<tbody><tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Guided Practice</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">45&#39;</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Sinh <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">IEvent</code> từ JSON <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/api/v1/events</code>; viết <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">services/eventService.ts</code> với <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">getEvents()</code>; render danh sách ở <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">app/page.tsx</code></td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Trang chủ hiển thị sự kiện từ API thật, không dùng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">any</code></td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Unguided Practice</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">45&#39;</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Viết <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">getEventById(id)</code>; kết nối trang <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/events/[id]</code>; hiển thị Banner, Tên, Giá vé, Ban tổ chức</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Bấm từng Card mở đúng chi tiết theo <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">id</code></td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Team Challenge</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">60&#39;</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Chia việc gọi API: danh mục, tìm kiếm &amp; phân trang, POST đặt vé; dùng Spin/Skeleton khi tải</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Toàn bộ Mock JSON được thay bằng dữ liệu API thật</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Tổng kết</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">15&#39;</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">GV chữa lỗi phổ biến, giải đáp, giao BTVN</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Danh sách lỗi cần sửa của từng nhóm</td>
+</tr>
+</tbody></table>
+<ul>
+<li><strong>Guided (45&#39;):</strong> Thả JSON response mẫu của <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/api/v1/events</code> vào AI để sinh interface, sau đó tự đối chiếu và chỉnh sửa. Viết <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">services/eventService.ts</code> với hàm <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">getEvents()</code> gọi API bằng Axios/Fetch. Kết nối vào <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">app/page.tsx</code> để render danh sách Card sự kiện.</li>
+<li><strong>Unguided (45&#39;):</strong> Tự viết hàm lấy chi tiết sự kiện (<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">getEventById</code>, có thể đặt tên <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">getEventDetail</code>) và tích hợp vào Dynamic Route <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/events/[id]</code>. Hiển thị dữ liệu đơn lên giao diện; xử lý trường hợp 404 bằng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">notFound()</code>.</li>
+<li><strong>Team Challenge (60&#39;):</strong> <strong>Member 1</strong> fetch <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/api/categories</code> render vào Filter Bar. <strong>Member 2</strong> làm Tìm kiếm &amp; Phân trang qua <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/api/events?search=...&amp;page=...</code>. <strong>Member 3</strong> tích hợp <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">POST /api/orders</code>, truyền payload từ Client lên Server và hiện Notification thành công. Mọi thao tác chờ API đều có Spin/Skeleton của Ant Design.</li>
+</ul>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #28a745;">❓ Kiểm tra nhanh (Self-Assessment)</h3>
+            <p><strong>Câu 1:</strong> Trong Next.js 15, đoạn <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">fetch(url, { next: { revalidate: 3600 } })</code> trong Server Component có ý nghĩa gì?</p>
+<ul>
+<li>A. Gọi lại API mỗi 3600 mili-giây trên trình duyệt</li>
+<li>B. Không bao giờ cache kết quả</li>
+<li>C. Dùng lại kết quả đã cache tối đa 1 giờ rồi mới lấy bản mới</li>
+<li>D. Chỉ cho phép gọi API 3600 lần mỗi ngày</li>
+</ul>
+<details style="margin: 6px 0 14px 0; padding: 8px 12px; background-color: #ffffff; border: 1px dashed #adb5bd; border-radius: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #495057;">👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> C<br>
+<b>Giải thích:</b> <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">revalidate</code> tính bằng giây. Sau 3600 giây, Next.js làm mới dữ liệu ở lần request kế tiếp; trong khoảng đó dùng bản cache.
+</details>
+
+<p><strong>Câu 2:</strong> Vì sao nên khai báo <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">ApiResponse&lt;T&gt;</code> thay vì viết riêng interface vỏ response cho từng endpoint?</p>
+<ul>
+<li>A. Vì TypeScript bắt buộc mọi interface phải có generic</li>
+<li>B. Để tái sử dụng một cấu trúc vỏ chung, chỉ thay kiểu của <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">data</code></li>
+<li>C. Để Axios tự động sinh dữ liệu mẫu</li>
+<li>D. Để không cần kiểm tra lỗi HTTP</li>
+</ul>
+<details style="margin: 6px 0 14px 0; padding: 8px 12px; background-color: #ffffff; border: 1px dashed #adb5bd; border-radius: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #495057;">👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> B<br>
+<b>Giải thích:</b> Mọi response có chung <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">statusCode</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">message</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">data</code>. Generic <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">T</code> cho phép dùng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">ApiResponse&lt;IEventItem[]&gt;</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">ApiResponse&lt;ICategory[]&gt;</code>… mà không lặp code.
+</details>
+
+<p><strong>Câu 3:</strong> Đoạn code <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">try { const e = await getEvent(id); if (!e) notFound(); } catch { return &lt;p&gt;Lỗi&lt;/p&gt;; }</code> gặp vấn đề gì?</p>
+<ul>
+<li>A. <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">notFound()</code> ném lỗi đặc biệt nên bị <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">catch</code> nuốt, trang 404 không hiển thị</li>
+<li>B. <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">notFound()</code> chỉ dùng được trong Client Component</li>
+<li>C. Không thể dùng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">await</code> trong Server Component</li>
+<li>D. Không có vấn đề gì</li>
+</ul>
+<details style="margin: 6px 0 14px 0; padding: 8px 12px; background-color: #ffffff; border: 1px dashed #adb5bd; border-radius: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #495057;">👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> A<br>
+<b>Giải thích:</b> <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">notFound()</code> hoạt động bằng cách throw. Khối <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">catch</code> bắt mọi lỗi sẽ chặn cơ chế này. Hãy xử lý 404 trong service (trả <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">null</code>) và gọi <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">notFound()</code> ngoài <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">try/catch</code>.
+</details>
+
+<p><strong>Câu 4:</strong> Tính năng gợi ý kết quả ngay khi người dùng gõ vào ô tìm kiếm nên fetch dữ liệu ở đâu?</p>
+<ul>
+<li>A. Trong <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">layout.tsx</code> gốc</li>
+<li>B. Trong Server Component với <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">revalidate: 3600</code></li>
+<li>C. Trong file <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">next.config.ts</code></li>
+<li>D. Trong Client Component (kết hợp debounce), dùng Axios hoặc SWR</li>
+</ul>
+<details style="margin: 6px 0 14px 0; padding: 8px 12px; background-color: #ffffff; border: 1px dashed #adb5bd; border-radius: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #495057;">👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> D<br>
+<b>Giải thích:</b> Dữ liệu phụ thuộc từng thao tác gõ phím nên phải gọi từ trình duyệt; kết hợp debounce (Buổi 6) để tránh gọi API ở mỗi ký tự.
+</details>
+
+<blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #28a745; border-radius: 0 8px 8px 0; color: #212529;">
+<p>Bộ 10+ câu đầy đủ: Quiz Bài 08 trên LMS</p>
+</blockquote>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #28a745;">💬 Thảo luận &amp; 📤 Nộp bài</h3>
+            <ul>
+<li><strong>Chủ đề thảo luận Diễn đàn (Forum Discussion):</strong> Trang Chi tiết sự kiện có phần &quot;Số vé còn lại&quot; thay đổi liên tục, trong khi mô tả sự kiện gần như cố định. Bạn sẽ chia phần nào fetch trên server, phần nào fetch trên client, và chọn <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">revalidate</code> bao nhiêu cho từng phần? Hãy lập luận dựa trên SEO, hiệu năng và trải nghiệm người dùng.</li>
+<li><strong>Yêu cầu nộp bài (Bài tập về nhà):</strong><ul>
+<li>Xử lý ngoại lệ khi API gặp sự cố (Network Error, Server 500) bằng cách kết hợp Ant Design Notification / Alert hoặc <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">error.tsx</code> cho các route đã tích hợp API.</li>
+<li><strong>Output:</strong> Web app hoạt động an toàn, có thông báo lỗi văn minh khi Server API gián đoạn. Ảnh chụp màn hình 3 trạng thái (Loading – Lỗi – Thành công) đính kèm trong mô tả PR.</li>
+<li><strong>Hạn nộp:</strong> trước buổi học tiếp theo. Branch <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">feature/api-error-handling-&lt;mssv&gt;</code>, PR đặt tên <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">feat(api): handle network and server errors – &lt;Họ tên&gt;</code>; nộp link PR lên LMS.</li>
+</ul>
+</li>
+</ul>
+        </div>
+    </div>
+</details>
+
+<details style="border: 1px solid #6f42c1; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #f3e5f5; color: #6f42c1; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>🆘 4. Góc trợ giúp và mở rộng</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <ul>
+<li><strong>📚 Tài liệu đọc &amp; tham khảo:</strong><ul>
+<li>Next.js Data Fetching, Caching, and Revalidating: <a href="https://nextjs.org/docs/app/building-your-application/data-fetching/fetching-caching-and-revalidating" target="_blank" rel="noopener noreferrer" style="color: #6f42c1;">https://nextjs.org/docs/app/building-your-application/data-fetching/fetching-caching-and-revalidating</a></li>
+<li>Axios Documentation: <a href="https://axios-http.com/docs/intro" target="_blank" rel="noopener noreferrer" style="color: #6f42c1;">https://axios-http.com/docs/intro</a></li>
+<li>Next.js Error Handling: <a href="https://nextjs.org/docs/app/building-your-application/routing/error-handling" target="_blank" rel="noopener noreferrer" style="color: #6f42c1;">https://nextjs.org/docs/app/building-your-application/routing/error-handling</a></li>
+<li>Next.js <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">notFound()</code>: <a href="https://nextjs.org/docs/app/api-reference/functions/not-found" target="_blank" rel="noopener noreferrer" style="color: #6f42c1;">https://nextjs.org/docs/app/api-reference/functions/not-found</a></li>
+</ul>
+</li>
+</ul>
+        <p><strong>Hỗ trợ kỹ thuật:</strong> Gặp lỗi cài đặt (Node.js, Git, Next.js) hoặc lỗi build, hãy đăng câu hỏi lên diễn đàn môn học kèm ảnh chụp lỗi, lệnh đã chạy và link repository. Giảng viên và bạn học sẽ phản hồi trước buổi học tiếp theo.</p>
+        <p><strong>Nguyên tắc Vibe Coding:</strong> AI sinh khung code, các bạn chịu trách nhiệm đọc hiểu, kiểm tra kiểu dữ liệu và sửa lỗi. Mọi đoạn code nộp lên đều có thể được hỏi phản biện.</p>
+    </div>
+</details>

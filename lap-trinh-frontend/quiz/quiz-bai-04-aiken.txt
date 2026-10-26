@@ -1,0 +1,84 @@
+Trong Next.js App Router, thư mục nào tạo được route động khớp với URL /events/ev-101?
+A. app/events/{id}/page.tsx
+B. app/events/[id]/page.tsx
+C. app/events/:id/page.tsx
+D. app/events/(id)/page.tsx
+ANSWER: B
+
+Trong Next.js 15, cách lấy tham số id đúng trong Server Component app/events/[id]/page.tsx là gì?
+A. const { id } = await params;
+B. const id = params.id;
+C. const { id } = useParams();
+D. const id = router.query.id;
+ANSWER: A
+
+Thư mục app/docs/[...slug]/page.tsx sẽ KHÔNG khớp với URL nào sau đây?
+A. /docs/a
+B. /docs/a/b
+C. /docs/huong-dan/dat-ve
+D. /docs
+ANSWER: D
+
+Với Optional Catch-all app/shop/[[...slug]]/page.tsx, khi truy cập URL /shop thì giá trị slug là gì?
+A. Mảng rỗng []
+B. Chuỗi rỗng ''
+C. undefined
+D. Chuỗi 'shop'
+ANSWER: C
+
+Hook nào dùng để lấy đường dẫn hiện tại (ví dụ /category/music) nhằm tô sáng menu đang chọn trong Client Component?
+A. useSearchParams()
+B. usePathname()
+C. useParams()
+D. useRouter()
+ANSWER: B
+
+Khai báo kiểu nào đúng cho prop searchParams của page.tsx trong Next.js 15?
+A. searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+B. searchParams: { [key: string]: string }
+C. searchParams: URLSearchParams
+D. searchParams: string[]
+ANSWER: A
+
+Một Client Component dùng useSearchParams() để đọc ?sort=latest. Khi chạy npm run build, trang báo lỗi liên quan đến render tĩnh. Cách xử lý phù hợp là gì?
+A. Chuyển component sang Server Component và giữ nguyên hook
+B. Đọc window.location.search trực tiếp trong thân component
+C. Xóa chỉ thị 'use client' ở đầu file
+D. Bọc component đó trong thẻ Suspense với fallback
+ANSWER: D
+
+Lợi ích chính của việc khai báo interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> là gì?
+A. Button tự động trở thành Server Component
+B. Next.js tự sinh file SCSS cho Button
+C. Button nhận sẵn mọi thuộc tính HTML gốc như onClick, type, disabled, aria-*
+D. Bắt buộc mọi Button phải truyền prop variant
+ANSWER: C
+
+Vì sao trong Button.tsx nên đặt mặc định type = 'button' khi destructure props?
+A. Để tránh nút vô tình submit form khi nằm trong thẻ form
+B. Để nút luôn có màu primary
+C. Để TypeScript không báo lỗi any
+D. Để nút tự động hiển thị spinner
+ANSWER: A
+
+Khai báo variant?: 'primary' | 'secondary' | 'outline' trong Props mang lại lợi ích gì?
+A. Cho phép truyền bất kỳ chuỗi nào vào variant
+B. Giúp Button chạy nhanh hơn khi render
+C. Tự động tạo class CSS tương ứng
+D. TypeScript báo lỗi ngay khi truyền giá trị không nằm trong danh sách
+ANSWER: D
+
+Kỹ thuật cho phép truyền các phần tử JSX vào bên trong component (ví dụ nội dung của Modal hay Card) được gọi là gì?
+A. Prop Drilling
+B. Component Composition với children prop
+C. State Lifting
+D. Dynamic Import
+ANSWER: B
+
+Theo chuẩn tổ chức thư mục của buổi học, component EventCard và SeatPicker nên đặt ở đâu?
+A. components/ui/
+B. components/common/
+C. components/features/
+D. app/events/[id]/
+ANSWER: C
+

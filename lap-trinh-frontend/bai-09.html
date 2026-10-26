@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 09 - Form Validation (React Hook Form + Zod), Local Storage &amp; Complex UI State | Lập trình Front-End - Khoa CNTT - Đại học Lạc Hồng</title>
+  <meta name="description" content="Bài 09 - Form Validation (React Hook Form + Zod), Local Storage &amp; Complex UI State - Lập trình Front-End (Next.js, TypeScript &amp; Vibe Coding). Thời lượng: 5 tiết (225 phút) · Hình thức: Lớp học đảo ngược · Chuẩn đầu ra: PI 2.3 (CLO2)Dự án xuyên suốt: Smart Event Hub – Form Đăng nhập/Đăng ký, lưu Auth">
+
+  <!-- Tailwind CSS CDN (kèm plugin typography cho nội dung Markdown) -->
+  <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6.4.0 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Highlight.js 11.9.0 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            asu: { maroon: '#8C1D40', gold: '#FFC627', dark: '#5C142B', light: '#FAEDF0' },
+            lhu: { blue: '#013D88', sky: '#007BFF', dark: '#01295C', light: '#EEF5FC' },
+            fe: { indigo: '#6366F1', dark: '#312E81', light: '#EEF2FF' }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .lesson h2, .lesson h3, .lesson h4 { scroll-margin-top: 90px; }
+    .lesson h3 { padding-bottom: .4rem; border-bottom: 2px solid #EEF2FF; }
+    .lesson blockquote { border-left: 4px solid #6366F1; background: #F5F7FF; border-radius: 0 12px 12px 0; padding: .6rem 1rem; font-style: normal; color: #1e293b; }
+    .lesson blockquote p:first-of-type::before, .lesson blockquote p:last-of-type::after { content: none; }
+    .lesson pre { border-radius: 12px; padding: 0; background: #0d1117; }
+    .lesson pre code.hljs { border-radius: 12px; padding: 1rem 1.1rem; font-size: 13px; line-height: 1.6; }
+    .lesson :not(pre) > code { background: #EEF2FF; color: #3730A3; padding: .1rem .35rem; border-radius: 6px; font-weight: 500; }
+    .lesson :not(pre) > code::before, .lesson :not(pre) > code::after { content: none; }
+    .lesson table { display: block; overflow-x: auto; font-size: 14px; }
+    .lesson thead th { background: #F1F5F9; }
+    .lesson th, .lesson td { border: 1px solid #E2E8F0; padding: .5rem .7rem !important; vertical-align: top; }
+    .lesson details { border: 1px solid #C7D2FE; border-radius: 10px; padding: .6rem .9rem; margin: .5rem 0 1.2rem; background: #FAFAFF; }
+    .lesson details summary { cursor: pointer; font-weight: 600; color: #4338CA; }
+    .lesson details[open] summary { margin-bottom: .4rem; }
+    .lesson hr { border-color: #E2E8F0; margin: 2rem 0; }
+    @media print {
+      header, footer, .no-print { display: none !important; }
+      details { break-inside: avoid; margin-bottom: 20px; }
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans antialiased selection:bg-asu-gold selection:text-slate-900 min-h-screen flex flex-col">
+
+  <!-- TOP BAR -->
+  <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800 no-print">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+      <div class="flex items-center gap-2">
+        <span class="text-asu-gold font-semibold"><i class="fa-solid fa-certificate mr-1"></i> CHUẨN KIỂM ĐỊNH ABET (USA)</span>
+        <span class="text-slate-600 hidden sm:inline">•</span>
+        <span class="hidden sm:inline">Lớp học đảo ngược • Vibe Coding</span>
+      </div>
+      <div class="flex items-center gap-4 text-xs font-mono">
+        <span>Thời lượng: <strong class="text-white">60 tiết (12 buổi)</strong></span>
+        <span>LT/TH: <strong class="text-asu-gold">30% / 70%</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="sticky top-0 z-40 bg-white shadow-sm border-b border-slate-200 no-print">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2.5 text-slate-800 hover:text-lhu-blue transition-colors">
+        <img src="LHU_ASU_VI_Small_Ngang.png" alt="Logo LHU" class="h-8 w-auto">
+        <div class="border-l border-slate-300 pl-2.5">
+          <div class="text-[11px] font-bold text-slate-500 uppercase">Khoa CNTT - LHU</div>
+          <div class="text-xs font-extrabold text-lhu-blue">LẬP TRÌNH FRONT-END</div>
+        </div>
+      </a>
+      <div class="flex items-center gap-3 text-xs">
+        <a href="index.html" class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-arrow-left"></i>
+          <span class="hidden sm:inline">Về Landing Page</span>
+        </a>
+        <button onclick="window.print()" class="hidden sm:flex px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-all items-center gap-1.5" title="In hoặc lưu file PDF">
+          <i class="fa-solid fa-print"></i>
+          <span>In / PDF</span>
+        </button>
+        <a href="https://learn.lhu.edu.vn" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-lhu-blue hover:bg-lhu-dark text-white font-bold rounded-xl shadow transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-graduation-cap text-asu-gold"></i>
+          <span>Vào lớp LMS</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="flex-grow max-w-5xl w-full mx-auto px-4 sm:px-6 py-8">
+
+    <!-- Title Card -->
+    <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 mb-8">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-5">
+        <div>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-fe-light text-fe-dark font-bold text-xs uppercase tracking-wider mb-2">
+            <i class="fa-solid fa-code"></i> CHƯƠNG 5: DỮ LIỆU, FORM &amp; LƯU TRỮ PHÍA CLIENT
+          </span>
+          <h1 class="text-2xl sm:text-3xl font-black text-slate-900 leading-tight">
+            Bài 09 - Form Validation (React Hook Form + Zod), Local Storage &amp; Complex UI State
+          </h1>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1 font-mono">
+            Học phần: Lập trình Front-End (Next.js, TypeScript & Vibe Coding) • Khoa CNTT - Đại học Lạc Hồng
+          </p>
+        </div>
+        <div class="flex-shrink-0 flex sm:flex-col items-center sm:items-end justify-between gap-1 text-xs">
+          <span class="px-3 py-1.5 bg-emerald-50 text-emerald-700 font-bold rounded-lg border border-emerald-200">
+            <i class="fa-solid fa-check-circle mr-1"></i> Lưu hành nội bộ 2026
+          </span>
+          <span class="text-slate-400 text-[11px]">Định dạng LMS Lecture</span>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between pt-4 text-xs no-print">
+        <span class="text-slate-500">
+          <i class="fa-solid fa-circle-info text-blue-500 mr-1"></i>
+          Bấm vào các khối thu gọn để xem đáp án hoặc chi tiết.
+        </span>
+        <div class="flex items-center gap-2">
+          <button onclick="toggleAllDetails(true)" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg transition-colors">Mở tất cả</button>
+          <button onclick="toggleAllDetails(false)" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg transition-colors">Thu gọn</button>
+        </div>
+      </div>
+      <nav class="mt-5 pt-4 border-t border-slate-100 no-print">
+        <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">Nội dung trang</div>
+        <div class="flex flex-wrap gap-2">
+          <a href="#1-dat-van-de-dan-nhap-introduction-hook" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">📝 1. ĐẶT VẤN ĐỀ &amp; DẪN NHẬP (Introduction / Hook)</a>
+          <a href="#2-noi-dung-cot-loi-core-content" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">📖 2. NỘI DUNG CỐT LÕI (Core Content)</a>
+          <a href="#3-tom-tat-diem-can-nho-key-takeaways" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">📌 3. TÓM TẮT &amp; ĐIỂM CẦN NHỚ (Key Takeaways)</a>
+          <a href="#4-hoat-dong-kiem-tra-nhanh-self-assessment-quiz" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">❓ 4. HOẠT ĐỘNG KIỂM TRA NHANH (Self-Assessment / Quiz)</a>
+          <a href="#5-nhiem-vu-hoc-tap-thao-luan-lms-discussion-assignment" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">💬 5. NHIỆM VỤ HỌC TẬP &amp; THẢO LUẬN (LMS Discussion / Assignment)</a>
+        </div>
+      </nav>
+    </div>
+
+    <!-- Content -->
+    <article class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 lesson prose prose-slate max-w-none prose-headings:font-extrabold prose-h3:text-lhu-dark prose-h4:text-fe-dark prose-a:text-lhu-blue">
+<blockquote>
+<p><strong>Thời lượng:</strong> 5 tiết (225 phút) · <strong>Hình thức:</strong> Lớp học đảo ngược · <strong>Chuẩn đầu ra:</strong> PI 2.3 (CLO2)<br><strong>Dự án xuyên suốt:</strong> Smart Event Hub – Form Đăng nhập/Đăng ký, lưu Auth Token vào LocalStorage/Cookies, Form &quot;Tạo sự kiện mới&quot; cho Admin và tính năng Wishlist đồng bộ toàn ứng dụng.</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>🎯 <strong>MỤC TIÊU BÀI HỌC (Learning Objectives)</strong><br>Sau khi hoàn thành bài học này, người học có thể:</p>
+<ul>
+<li><strong>[Bloom 1/2 - Kiến thức]:</strong> Giải thích cơ chế Uncontrolled Form của React Hook Form, vai trò của Zod Schema và <code>z.infer</code>; so sánh localStorage, sessionStorage và Cookies.</li>
+<li><strong>[Bloom 3/4 - Kỹ năng]:</strong> Xây dựng form có validation (email, độ dài mật khẩu, xác nhận mật khẩu, ràng buộc ngày) bằng <code>useForm</code> + <code>zodResolver</code> kết hợp Ant Design; viết hook <code>useLocalStorage</code> an toàn với hydration.</li>
+<li><strong>[Bloom 5/6 - Năng lực]:</strong> Thiết kế trạng thái Wishlist dùng chung giữa nhiều component, duy trì sau khi F5; đánh giá rủi ro bảo mật khi chọn nơi lưu token.</li>
+</ul>
+</blockquote>
+<hr>
+<h3 id="1-dat-van-de-dan-nhap-introduction-hook">📝 1. ĐẶT VẤN ĐỀ &amp; DẪN NHẬP (Introduction / Hook)</h3>
+<p>Một người dùng điền form đăng ký Smart Event Hub, gõ email thiếu dấu <code>@</code>, mật khẩu 3 ký tự, bấm &quot;Đăng ký&quot; và nhận về… một trang trắng vì Backend trả lỗi 400. Một Admin khác tạo sự kiện có ngày kết thúc <strong>trước</strong> ngày bắt đầu, hệ thống vẫn lưu và đăng lên trang chủ. Cả hai lỗi đều có thể chặn ngay trên trình duyệt, trước khi request kịp rời khỏi máy người dùng.</p>
+<p><strong>Câu hỏi gợi mở:</strong> Làm sao kiểm tra dữ liệu ngay khi gõ mà form không bị giật vì re-render liên tục? Bạn thả tim một sự kiện, bấm F5 – trái tim còn đỏ không? Và nếu bạn đọc <code>localStorage</code> ngay khi render, vì sao Next.js lại báo <code>window is not defined</code> hoặc Hydration Error?</p>
+<blockquote>
+<p>🧭 <strong>Trước giờ học (Flipped Classroom):</strong> Xem video Web Storage API (LocalStorage), Form State Handling, Validation Schema (Zod/Yup). Đọc trang chủ <em>React Hook Form</em> và <em>Zod</em> (mục 5). Cài sẵn thư viện: <code>npm install react-hook-form zod @hookform/resolvers dayjs @ant-design/icons</code>. Làm quiz 5–10 câu trên LMS.</p>
+</blockquote>
+<hr>
+<h3 id="2-noi-dung-cot-loi-core-content">📖 2. NỘI DUNG CỐT LÕI (Core Content)</h3>
+<h4 id="2-1-react-hook-form-zod-validation-nhanh-va-type-safe">2.1. React Hook Form + Zod: validation nhanh và type-safe</h4>
+<ul>
+<li><strong>Khái niệm:</strong> <strong>React Hook Form (RHF)</strong> quản lý form theo cơ chế <strong>Uncontrolled Component</strong>: giá trị nằm trong ref của input thay vì state, nên gõ phím không làm cả form re-render. <strong>Zod</strong> định nghĩa <strong>Schema</strong> kiểm tra dữ liệu; nối với RHF qua <code>zodResolver</code> từ <code>@hookform/resolvers/zod</code>. Điểm mạnh: <code>z.infer&lt;typeof schema&gt;</code> tự sinh TypeScript type từ chính schema, nên rule và type không bao giờ lệch nhau.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li>Rule thông dụng: bắt buộc nhập (<code>.min(1, ...)</code>), định dạng email (<code>.email()</code>), độ dài (<code>.min(6)</code>), so khớp mật khẩu (<code>.refine()</code> cấp object với <code>path</code>).</li>
+<li><code>useForm&lt;T&gt;({ resolver: zodResolver(schema), defaultValues, mode })</code>: <code>mode: &#39;onChange&#39;</code> kiểm tra ngay khi gõ; <code>&#39;onTouched&#39;</code> chờ người dùng rời ô lần đầu.</li>
+<li>Lấy lỗi qua <code>formState.errors.&lt;field&gt;?.message</code>; trạng thái gửi qua <code>formState.isSubmitting</code>.</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-ts">// schemas/authSchema.ts
+import { z } from &#39;zod&#39;;
+
+export const loginSchema = z.object({
+  email: z.string().min(1, &#39;Email là bắt buộc&#39;).email(&#39;Email không đúng định dạng&#39;),
+  password: z.string().min(6, &#39;Mật khẩu tối thiểu 6 ký tự&#39;),
+});
+export type LoginInput = z.infer&lt;typeof loginSchema&gt;;
+
+export const registerSchema = z
+  .object({
+    fullName: z.string().trim().min(2, &#39;Họ tên tối thiểu 2 ký tự&#39;),
+    email: z.string().min(1, &#39;Email là bắt buộc&#39;).email(&#39;Email không đúng định dạng&#39;),
+    password: z.string().min(6, &#39;Mật khẩu tối thiểu 6 ký tự&#39;),
+    confirmPassword: z.string().min(1, &#39;Vui lòng nhập lại mật khẩu&#39;),
+  })
+  .refine((data) =&gt; data.password === data.confirmPassword, {
+    message: &#39;Mật khẩu nhập lại không khớp&#39;,
+    path: [&#39;confirmPassword&#39;], // Lỗi hiển thị dưới ô Nhập lại mật khẩu
+  });
+export type RegisterInput = z.infer&lt;typeof registerSchema&gt;;
+</code></pre>
+<ul>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote>
+<p>Form Thanh toán có 12 trường. Với <code>useState</code> cho từng ô, mỗi ký tự gõ vào ô &quot;Địa chỉ&quot; làm cả 12 ô render lại. Với RHF, chỉ phần hiển thị lỗi của ô đó cập nhật, form vẫn mượt trên điện thoại cấu hình thấp.</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="2-2-component-loginform-rhf-zod-ant-design">2.2. Component LoginForm: RHF + Zod + Ant Design</h4>
+<ul>
+<li><strong>Khái niệm:</strong> Ant Design <code>Input</code> là component có giao diện riêng, nên chúng ta nối nó với RHF bằng <strong><code>Controller</code></strong>. Antd <code>Form</code> được đặt <code>component={false}</code> để chỉ mượn layout và kiểu hiển thị lỗi, còn việc submit do <code>handleSubmit</code> của RHF đảm nhận.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li><code>Form.Item</code> nhận <code>validateStatus=&quot;error&quot;</code> và <code>help={errors.email?.message}</code> để hiện chữ đỏ ngay dưới input.</li>
+<li>Dùng <code>App.useApp()</code> lấy <code>message</code> – yêu cầu <code>app/layout.tsx</code> đã bọc <code>&lt;App&gt;</code> của antd (như Bài 08). Thông báo vẫn hiển thị khi <code>router.push(&#39;/&#39;)</code> chuyển trang.</li>
+<li>Token lưu vào <code>localStorage</code> <strong>chỉ trong hàm xử lý sự kiện</strong>, không phải lúc render.</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-tsx">// components/auth/LoginForm.tsx
+&#39;use client&#39;;
+
+import { useRouter } from &#39;next/navigation&#39;;
+import { Controller, useForm } from &#39;react-hook-form&#39;;
+import { zodResolver } from &#39;@hookform/resolvers/zod&#39;;
+import { App, Button, Form, Input } from &#39;antd&#39;;
+import { loginSchema, type LoginInput } from &#39;@/schemas/authSchema&#39;;
+
+// Giả lập API POST /auth/login – thay bằng authService thật khi Backend sẵn sàng
+async function onLogin(values: LoginInput): Promise&lt;{ accessToken: string }&gt; {
+  await new Promise((resolve) =&gt; setTimeout(resolve, 800));
+  if (!values.email.endsWith(&#39;@lhu.edu.vn&#39;)) throw new Error(&#39;Sai email hoặc mật khẩu&#39;);
+  return { accessToken: &#39;mock-token-123&#39; };
+}
+
+export default function LoginForm() {
+  const router = useRouter();
+  const { message } = App.useApp();
+  const {
+    control,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm&lt;LoginInput&gt;({
+    resolver: zodResolver(loginSchema),
+    defaultValues: { email: &#39;&#39;, password: &#39;&#39; },
+    mode: &#39;onChange&#39;,
+  });
+
+  const onSubmit = async (values: LoginInput) =&gt; {
+    try {
+      const { accessToken } = await onLogin(values);
+      localStorage.setItem(&#39;accessToken&#39;, accessToken);
+      message.success(&#39;Đăng nhập thành công&#39;);
+      router.push(&#39;/&#39;);
+    } catch (error) {
+      message.error(error instanceof Error ? error.message : &#39;Đăng nhập thất bại&#39;);
+    }
+  };
+
+  return (
+    &lt;form onSubmit={handleSubmit(onSubmit)} noValidate&gt;
+      &lt;Form layout=&quot;vertical&quot; component={false}&gt;
+        &lt;Form.Item label=&quot;Email&quot; validateStatus={errors.email ? &#39;error&#39; : undefined} help={errors.email?.message}&gt;
+          &lt;Controller
+            name=&quot;email&quot;
+            control={control}
+            render={({ field }) =&gt; &lt;Input {...field} type=&quot;email&quot; placeholder=&quot;ban@lhu.edu.vn&quot; /&gt;}
+          /&gt;
+        &lt;/Form.Item&gt;
+        &lt;Form.Item label=&quot;Mật khẩu&quot; validateStatus={errors.password ? &#39;error&#39; : undefined} help={errors.password?.message}&gt;
+          &lt;Controller
+            name=&quot;password&quot;
+            control={control}
+            render={({ field }) =&gt; &lt;Input.Password {...field} placeholder=&quot;Tối thiểu 6 ký tự&quot; /&gt;}
+          /&gt;
+        &lt;/Form.Item&gt;
+        &lt;Button type=&quot;primary&quot; htmlType=&quot;submit&quot; loading={isSubmitting} block&gt;
+          Đăng nhập
+        &lt;/Button&gt;
+      &lt;/Form&gt;
+    &lt;/form&gt;
+  );
+}
+</code></pre>
+<blockquote>
+<p>⚠️ <strong>Bảo mật:</strong> <code>localStorage</code> đọc được bởi mọi đoạn JavaScript trên trang, nên nếu site dính lỗi XSS thì token bị đánh cắp. Bài tập hôm nay dùng <code>localStorage</code> để luyện kỹ thuật; với sản phẩm thật, Auth Token nên nằm trong <strong>httpOnly Cookie</strong> do Backend thiết lập.</p>
+</blockquote>
+<h4 id="2-3-schema-phuc-tap-form-quot-tao-su-kien-moi-quot-voi-refine">2.3. Schema phức tạp: Form &quot;Tạo sự kiện mới&quot; với <code>.refine()</code></h4>
+<ul>
+<li><strong>Khái niệm:</strong> Form Admin <code>/admin/create-event</code> có nhiều kiểu dữ liệu: chuỗi, số, URL, ngày giờ. Ràng buộc liên quan <strong>hai trường cùng lúc</strong> (ngày kết thúc phải sau ngày bắt đầu) được viết bằng <code>.refine()</code> trên cả object.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li>Lưu ngày dưới dạng <strong>chuỗi ISO</strong> trong form; <code>Controller</code> chuyển đổi qua lại với <code>Dayjs</code> mà <code>DatePicker</code> của antd yêu cầu.</li>
+<li><code>InputNumber</code> trả về <code>number | null</code>; schema <code>z.number({ message })</code> bắt cả trường hợp ô bị xóa trống.</li>
+<li><code>path: [&#39;endDate&#39;]</code> gắn lỗi vào đúng ô Ngày kết thúc.</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-ts">// schemas/eventSchema.ts
+import { z } from &#39;zod&#39;;
+
+export const createEventSchema = z
+  .object({
+    title: z.string().trim().min(5, &#39;Tên sự kiện tối thiểu 5 ký tự&#39;),
+    location: z.string().trim().min(1, &#39;Vui lòng nhập địa điểm&#39;),
+    startDate: z.string().min(1, &#39;Vui lòng chọn ngày bắt đầu&#39;),
+    endDate: z.string().min(1, &#39;Vui lòng chọn ngày kết thúc&#39;),
+    price: z.number({ message: &#39;Vui lòng nhập giá vé hợp lệ&#39; }).positive(&#39;Giá vé phải lớn hơn 0&#39;),
+    coverImage: z.string().url(&#39;Ảnh bìa phải là một URL hợp lệ&#39;),
+    description: z.string().trim().min(20, &#39;Mô tả tối thiểu 20 ký tự&#39;),
+  })
+  .refine((data) =&gt; new Date(data.endDate).getTime() &gt; new Date(data.startDate).getTime(), {
+    message: &#39;Ngày kết thúc phải sau ngày bắt đầu&#39;,
+    path: [&#39;endDate&#39;],
+  });
+
+export type CreateEventInput = z.infer&lt;typeof createEventSchema&gt;;
+</code></pre>
+<pre><code class="language-tsx">// Trích đoạn trong components/admin/CreateEventForm.tsx (&#39;use client&#39;)
+// import dayjs from &#39;dayjs&#39;; import { DatePicker, InputNumber } from &#39;antd&#39;;
+&lt;Form.Item label=&quot;Ngày kết thúc&quot; validateStatus={errors.endDate ? &#39;error&#39; : undefined} help={errors.endDate?.message}&gt;
+  &lt;Controller
+    name=&quot;endDate&quot;
+    control={control}
+    render={({ field }) =&gt; (
+      &lt;DatePicker
+        showTime
+        style={{ width: &#39;100%&#39; }}
+        value={field.value ? dayjs(field.value) : null}
+        onChange={(date) =&gt; field.onChange(date ? date.toISOString() : &#39;&#39;)}
+        onBlur={field.onBlur}
+      /&gt;
+    )}
+  /&gt;
+&lt;/Form.Item&gt;
+
+&lt;Form.Item label=&quot;Giá vé (VNĐ)&quot; validateStatus={errors.price ? &#39;error&#39; : undefined} help={errors.price?.message}&gt;
+  &lt;Controller
+    name=&quot;price&quot;
+    control={control}
+    render={({ field }) =&gt; (
+      &lt;InputNumber min={0} step={10000} style={{ width: &#39;100%&#39; }} value={field.value} onChange={field.onChange} onBlur={field.onBlur} /&gt;
+    )}
+  /&gt;
+&lt;/Form.Item&gt;
+</code></pre>
+<p><code>useForm&lt;CreateEventInput&gt;</code> cần <code>defaultValues</code> đầy đủ: <code>{ title: &#39;&#39;, location: &#39;&#39;, startDate: &#39;&#39;, endDate: &#39;&#39;, price: 0, coverImage: &#39;&#39;, description: &#39;&#39; }</code>.</p>
+<ul>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote>
+<p>Admin nhập workshop &quot;React Summit&quot; bắt đầu 20/12 9:00, kết thúc 20/12 8:00 do chọn nhầm giờ. Ngay khi rời ô, dòng đỏ &quot;Ngày kết thúc phải sau ngày bắt đầu&quot; xuất hiện dưới ô Ngày kết thúc, nút Lưu không gửi request. Backend không phải nhận dữ liệu rác.</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="2-4-web-storage-api-hydration-safety">2.4. Web Storage API &amp; Hydration Safety</h4>
+<ul>
+<li><strong>Khái niệm:</strong> Trình duyệt cung cấp ba nơi lưu dữ liệu phía client. Chọn sai nơi lưu có thể gây lỗi bảo mật hoặc mất dữ liệu.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Tiêu chí</th>
+<th>localStorage</th>
+<th>sessionStorage</th>
+<th>Cookies</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Thời gian tồn tại</td>
+<td>Đến khi bị xóa</td>
+<td>Đến khi đóng tab</td>
+<td>Theo <code>Expires</code>/<code>Max-Age</code></td>
+</tr>
+<tr>
+<td>Gửi kèm request</td>
+<td>Không</td>
+<td>Không</td>
+<td>Có, tự động</td>
+</tr>
+<tr>
+<td>JavaScript đọc được</td>
+<td>Có</td>
+<td>Có</td>
+<td>Có, trừ httpOnly</td>
+</tr>
+<tr>
+<td>Dùng cho</td>
+<td>Wishlist, theme, tùy chọn UI</td>
+<td>Bước tạm của form nhiều trang</td>
+<td>Auth Token (httpOnly), phiên đăng nhập</td>
+</tr>
+</tbody></table>
+<ul>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li>Client Component vẫn được <strong>render trước trên server</strong>, nơi không có <code>window</code>. Đọc <code>localStorage</code> khi render sẽ gây <code>window is not defined</code>, hoặc HTML server và client khác nhau → <strong>Hydration Mismatch</strong>.</li>
+<li>Cách an toàn: render lần đầu bằng giá trị mặc định (giống server), <strong>đọc storage trong <code>useEffect</code></strong> sau khi mount, rồi cập nhật state.</li>
+<li>Đọc Cookie trên server trong Next.js 15: <code>const token = (await cookies()).get(&#39;accessToken&#39;)?.value;</code> (hàm <code>cookies()</code> từ <code>next/headers</code> trả về Promise).</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-ts">// hooks/useLocalStorage.ts – an toàn với SSR/hydration
+&#39;use client&#39;;
+
+import { useEffect, useState } from &#39;react&#39;;
+
+export function useLocalStorage&lt;T&gt;(key: string, initialValue: T) {
+  const [storedValue, setStoredValue] = useState&lt;T&gt;(initialValue);
+  const [isHydrated, setIsHydrated] = useState(false);
+
+  // 1) Chỉ đọc localStorage sau khi đã mount trên trình duyệt
+  useEffect(() =&gt; {
+    try {
+      const item = window.localStorage.getItem(key);
+      if (item !== null) setStoredValue(JSON.parse(item) as T);
+    } catch {
+      // JSON hỏng hoặc trình duyệt chặn storage → giữ initialValue
+    }
+    setIsHydrated(true);
+  }, [key]);
+
+  // 2) Ghi lại mỗi khi giá trị thay đổi, bỏ qua lần render trước khi hydrate
+  useEffect(() =&gt; {
+    if (!isHydrated) return;
+    try {
+      window.localStorage.setItem(key, JSON.stringify(storedValue));
+    } catch {
+      // Hết dung lượng hoặc chế độ ẩn danh chặn ghi
+    }
+  }, [key, storedValue, isHydrated]);
+
+  return [storedValue, setStoredValue, isHydrated] as const;
+}
+</code></pre>
+<blockquote>
+<p>💡 <strong>Vì sao cần <code>isHydrated</code>?</strong> Nếu thiếu cờ này, effect ghi sẽ chạy ngay lần đầu và lưu đè <code>initialValue</code> (mảng rỗng) lên dữ liệu thật trước khi kịp đọc. Hook giả định <code>key</code> cố định trong suốt vòng đời component. Muốn đồng bộ giữa nhiều tab, có thể lắng nghe thêm sự kiện <code>storage</code> của <code>window</code>.</p>
+</blockquote>
+<ul>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote>
+<p>Phiên bản đầu của nhóm dùng <code>useState(JSON.parse(localStorage.getItem(&#39;wishlist&#39;) ?? &#39;[]&#39;))</code>. <code>npm run dev</code> báo Hydration Error, còn <code>npm run build</code> thất bại với <code>localStorage is not defined</code>. Chuyển sang <code>useLocalStorage</code> giải quyết cả hai.</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="2-5-complex-ui-state-wishlist-dong-bo-giua-nhieu-component">2.5. Complex UI State: Wishlist đồng bộ giữa nhiều component</h4>
+<ul>
+<li><strong>Khái niệm:</strong> Trái tim Wishlist xuất hiện ở Card trang chủ, trang chi tiết và trang <code>/user/wishlist</code>. Nếu mỗi nơi tự gọi <code>useLocalStorage</code>, chúng giữ các bản state riêng: thả tim ở Card nhưng bộ đếm trên Header không đổi. Giải pháp là <strong>nâng state lên một Context Provider</strong> dùng chung.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong> Provider giữ state bằng <code>useLocalStorage</code>; component con đọc qua hook <code>useWishlist()</code>. Chỉ hiển thị trạng thái &quot;đã thích&quot; khi <code>isHydrated</code> để HTML server và client trùng nhau.</li>
+</ul>
+<pre><code class="language-tsx">// contexts/WishlistContext.tsx
+&#39;use client&#39;;
+
+import { createContext, useCallback, useContext, useMemo, type ReactNode } from &#39;react&#39;;
+import { useLocalStorage } from &#39;@/hooks/useLocalStorage&#39;;
+
+interface WishlistContextValue {
+  ids: string[];
+  isHydrated: boolean;
+  isWishlisted: (id: string) =&gt; boolean;
+  toggle: (id: string) =&gt; void;
+}
+
+const WishlistContext = createContext&lt;WishlistContextValue | null&gt;(null);
+
+export function WishlistProvider({ children }: { children: ReactNode }) {
+  const [ids, setIds, isHydrated] = useLocalStorage&lt;string[]&gt;(&#39;seh-wishlist&#39;, []);
+
+  const toggle = useCallback(
+    (id: string) =&gt; setIds((prev) =&gt; (prev.includes(id) ? prev.filter((x) =&gt; x !== id) : [...prev, id])),
+    [setIds],
+  );
+
+  const value = useMemo&lt;WishlistContextValue&gt;(
+    () =&gt; ({ ids, isHydrated, isWishlisted: (id) =&gt; ids.includes(id), toggle }),
+    [ids, isHydrated, toggle],
+  );
+
+  return &lt;WishlistContext.Provider value={value}&gt;{children}&lt;/WishlistContext.Provider&gt;;
+}
+
+export function useWishlist(): WishlistContextValue {
+  const ctx = useContext(WishlistContext);
+  if (!ctx) throw new Error(&#39;useWishlist phải được dùng bên trong &lt;WishlistProvider&gt;&#39;);
+  return ctx;
+}
+</code></pre>
+<pre><code class="language-tsx">// components/events/WishlistButton.tsx
+&#39;use client&#39;;
+
+import { HeartFilled, HeartOutlined } from &#39;@ant-design/icons&#39;;
+import { Button } from &#39;antd&#39;;
+import { useWishlist } from &#39;@/contexts/WishlistContext&#39;;
+
+export default function WishlistButton({ eventId }: { eventId: string }) {
+  const { isHydrated, isWishlisted, toggle } = useWishlist();
+  const active = isHydrated &amp;&amp; isWishlisted(eventId);
+
+  return (
+    &lt;Button
+      type=&quot;text&quot;
+      shape=&quot;circle&quot;
+      aria-pressed={active}
+      aria-label={active ? &#39;Bỏ khỏi danh sách yêu thích&#39; : &#39;Thêm vào danh sách yêu thích&#39;}
+      icon={active ? &lt;HeartFilled style={{ color: &#39;#ef4444&#39; }} /&gt; : &lt;HeartOutlined /&gt;}
+      onClick={() =&gt; toggle(eventId)}
+    /&gt;
+  );
+}
+</code></pre>
+<p>Đặt <code>&lt;WishlistProvider&gt;</code> bao quanh <code>{children}</code> trong <code>app/layout.tsx</code> (Server Component vẫn render được Client Provider). Trang <code>/user/wishlist</code> dùng <code>ids</code> từ <code>useWishlist()</code> để lọc/gọi API lấy thông tin các sự kiện đã lưu.</p>
+<ul>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote>
+<p>Người dùng thả tim 3 concert trên trang chủ, Header lập tức hiện &quot;Yêu thích (3)&quot;. Họ tắt máy, sáng hôm sau mở lại, danh sách vẫn còn nguyên. Đây chính là output mong muốn của Team Challenge hôm nay.</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="2-6-vibe-coding-prompt-mau-cach-kiem-duyet-code-ai">2.6. Vibe Coding – Prompt mẫu &amp; cách kiểm duyệt code AI</h4>
+<p>AI sinh Zod Schema và form rất nhanh, nhưng hay trộn cú pháp cũ – mới hoặc quên các chi tiết Next.js. Hãy dùng prompt có ràng buộc rõ ràng.</p>
+<pre><code class="language-text">Hãy tạo cho tôi Component `LoginForm.tsx` bằng Next.js (&quot;use client&quot;) kết hợp React Hook Form,
+Zod và Ant Design Input.
+Yêu cầu chi tiết:
+1. Định nghĩa Zod Schema `loginSchema`:
+   - email: Chuỗi, bắt buộc, đúng định dạng Email.
+   - password: Chuỗi, bắt buộc, tối thiểu 6 ký tự.
+2. Tích hợp `useForm` với `zodResolver(loginSchema)`.
+3. Khi submit hợp lệ, gọi hàm `onLogin(values)` giả lập, lưu token vào
+   `localStorage.setItem(&#39;accessToken&#39;, &#39;mock-token-123&#39;)` và hiển thị Antd `message.success(&quot;Đăng nhập thành công&quot;)`.
+4. Hiển thị error message màu đỏ dưới ô input nếu dữ liệu không hợp lệ.
+Ràng buộc: TypeScript strict, type lấy từ z.infer, dùng Controller cho Input của antd.
+</code></pre>
+<pre><code class="language-text">Hãy viết một Zod Schema tên là `createEventSchema` cho Form Tạo sự kiện có ràng buộc nâng cao:
+- `title`: string, min 5 chars.
+- `startDate`: date string.
+- `endDate`: date string.
+- Sử dụng hàm `.refine()` của Zod để kiểm tra `endDate` phải có thời gian lớn hơn `startDate`.
+Cho tôi mã nguồn Zod Schema và cách dùng với React Hook Form.
+</code></pre>
+<p><strong>Checklist kiểm duyệt code AI:</strong></p>
+<ul>
+<li>Import đúng: <code>zodResolver</code> từ <code>@hookform/resolvers/zod</code>; type lấy bằng <code>z.infer</code>, không khai báo interface trùng lặp.</li>
+<li><code>defaultValues</code> có đủ mọi trường (tránh cảnh báo uncontrolled → controlled).</li>
+<li>Component antd (<code>Input</code>, <code>DatePicker</code>, <code>InputNumber</code>) được nối qua <code>Controller</code>; <code>DatePicker</code> nhận <code>Dayjs</code>, không nhận chuỗi.</li>
+<li><code>.refine()</code> có <code>path</code> để lỗi hiện đúng ô.</li>
+<li>Không đọc <code>localStorage</code>/<code>window</code> trong lúc render; có <code>&#39;use client&#39;</code>; không <code>console.log</code> token.</li>
+</ul>
+<h4 id="2-7-thuc-hanh-tren-lop">2.7. Thực hành trên lớp</h4>
+<table>
+<thead>
+<tr>
+<th>Phần</th>
+<th>Thời lượng</th>
+<th>Nhiệm vụ</th>
+<th>Output mong muốn</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Guided Practice</td>
+<td>45&#39;</td>
+<td>Cài <code>react-hook-form</code>, <code>zod</code>, <code>@hookform/resolvers</code>; tạo <code>loginSchema</code>; xây <code>LoginForm.tsx</code> lưu JWT vào localStorage</td>
+<td>Lỗi hiện ngay khi gõ; đăng nhập thành công lưu token và về Trang chủ</td>
+</tr>
+<tr>
+<td>Unguided Practice</td>
+<td>45&#39;</td>
+<td>Form &quot;Tạo sự kiện mới&quot; <code>/admin/create-event</code> với <code>createEventSchema</code></td>
+<td>Bắt được mọi trường hợp ngày tháng, giá vé, URL không hợp lệ</td>
+</tr>
+<tr>
+<td>Team Challenge</td>
+<td>60&#39;</td>
+<td>Tính năng Wishlist toàn app + trang <code>/user/wishlist</code></td>
+<td>F5 vẫn giữ đúng trạng thái; các component đồng bộ tức thì</td>
+</tr>
+<tr>
+<td>Tổng kết</td>
+<td>15&#39;</td>
+<td>GV chữa lỗi hydration/validation phổ biến, giao BTVN</td>
+<td>Danh sách lỗi cần sửa của từng nhóm</td>
+</tr>
+</tbody></table>
+<ul>
+<li><strong>Guided (45&#39;):</strong> Theo giảng viên tạo <code>schemas/authSchema.ts</code> và <code>LoginForm.tsx</code>. Form hiển thị lỗi validation ngay dưới từng input, submit gọi API Login (giả lập), lưu JWT vào <code>localStorage</code> và chuyển hướng về Trang chủ.</li>
+<li><strong>Unguided (45&#39;):</strong> Tự xây form Admin gồm Tên sự kiện, Địa điểm, Ngày bắt đầu/kết thúc (DatePicker), Giá vé (&gt; 0), Ảnh bìa (URL), Mô tả; ràng buộc Ngày kết thúc sau Ngày bắt đầu.</li>
+<li><strong>Team Challenge (60&#39;):</strong> Bấm icon trái tim trên bất kỳ Card nào để thêm/xóa khỏi Wishlist; lưu danh sách ID vào <code>localStorage</code>; tạo trang <code>/user/wishlist</code> render các sự kiện đã lưu; đảm bảo đồng bộ state giữa các component trên cùng trang.</li>
+</ul>
+<hr>
+<h3 id="3-tom-tat-diem-can-nho-key-takeaways">📌 3. TÓM TẮT &amp; ĐIỂM CẦN NHỚ (Key Takeaways)</h3>
+<ul>
+<li>🔹 <strong>RHF giảm re-render:</strong> form uncontrolled, chỉ cập nhật phần cần thiết; <code>Controller</code> dùng cho component UI như antd.</li>
+<li>🔹 <strong>Zod là nguồn sự thật duy nhất:</strong> rule validation và TypeScript type (<code>z.infer</code>) sinh từ cùng một schema.</li>
+<li>🔹 <strong>Ràng buộc nhiều trường dùng <code>.refine()</code> + <code>path</code>:</strong> xác nhận mật khẩu, ngày kết thúc sau ngày bắt đầu.</li>
+<li>🔹 <strong>Chọn đúng nơi lưu:</strong> localStorage cho dữ liệu UI không nhạy cảm; Auth Token thật nên ở httpOnly Cookie.</li>
+<li>🔹 <strong>Hydration safety:</strong> chỉ đọc <code>localStorage</code> trong <code>useEffect</code>, render lần đầu bằng giá trị mặc định.</li>
+<li>🔹 <strong>State dùng chung → Context Provider:</strong> Wishlist đồng bộ mọi component và tồn tại sau F5.</li>
+</ul>
+<hr>
+<h3 id="4-hoat-dong-kiem-tra-nhanh-self-assessment-quiz">❓ 4. HOẠT ĐỘNG KIỂM TRA NHANH (Self-Assessment / Quiz)</h3>
+<p><strong>Câu 1:</strong> Vì sao React Hook Form giúp form nhiều trường mượt hơn so với dùng <code>useState</code> cho từng ô?</p>
+<ul>
+<li>A. RHF tự động gửi dữ liệu lên server sau mỗi ký tự</li>
+<li>B. RHF quản lý giá trị theo cơ chế uncontrolled (ref), hạn chế re-render toàn form</li>
+<li>C. RHF chỉ hoạt động trong Server Component</li>
+<li>D. RHF thay thế hoàn toàn nhu cầu validation</li>
+</ul>
+<details>
+<summary>👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> B<br>
+<b>Giải thích:</b> Giá trị input nằm trong ref, không phải state của component, nên gõ phím không kích hoạt render lại cả form.
+</details>
+
+<p><strong>Câu 2:</strong> Để lỗi &quot;Mật khẩu nhập lại không khớp&quot; hiển thị dưới ô <code>confirmPassword</code>, cần làm gì với <code>.refine()</code>?</p>
+<ul>
+<li>A. Đặt <code>.refine()</code> bên trong <code>z.string()</code> của <code>password</code></li>
+<li>B. Gọi <code>.refine()</code> hai lần</li>
+<li>C. Khai báo <code>path: [&#39;confirmPassword&#39;]</code> trong tham số thứ hai</li>
+<li>D. Thêm <code>mode: &#39;onSubmit&#39;</code> vào <code>useForm</code></li>
+</ul>
+<details>
+<summary>👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> C<br>
+<b>Giải thích:</b> <code>.refine()</code> cấp object mặc định gắn lỗi vào gốc form; <code>path</code> chỉ định trường nhận lỗi để RHF hiển thị qua <code>errors.confirmPassword</code>.
+</details>
+
+<p><strong>Câu 3:</strong> Đoạn <code>const [list] = useState(JSON.parse(localStorage.getItem(&#39;wishlist&#39;) ?? &#39;[]&#39;))</code> trong Client Component gây ra vấn đề gì?</p>
+<ul>
+<li>A. Lỗi <code>localStorage is not defined</code> khi render trên server hoặc Hydration Mismatch</li>
+<li>B. Không có vấn đề vì đã có <code>&#39;use client&#39;</code></li>
+<li>C. Chỉ chậm hơn một chút</li>
+<li>D. localStorage tự xóa sau mỗi lần render</li>
+</ul>
+<details>
+<summary>👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> A<br>
+<b>Giải thích:</b> Client Component vẫn được prerender trên server, nơi không có <code>localStorage</code>. Cần đọc trong <code>useEffect</code> như hook <code>useLocalStorage</code>.
+</details>
+
+<p><strong>Câu 4:</strong> Nơi lưu Auth Token nào an toàn nhất trước tấn công XSS?</p>
+<ul>
+<li>A. localStorage</li>
+<li>B. sessionStorage</li>
+<li>C. Biến toàn cục <code>window.token</code></li>
+<li>D. httpOnly Cookie do server thiết lập</li>
+</ul>
+<details>
+<summary>👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> D<br>
+<b>Giải thích:</b> JavaScript trên trang không đọc được httpOnly Cookie, nên mã độc XSS không lấy được token; trình duyệt vẫn tự gửi cookie kèm request.
+</details>
+
+<blockquote>
+<p>Bộ 10+ câu đầy đủ: <code>quiz/quiz-bai-09-aiken.txt</code></p>
+</blockquote>
+<hr>
+<h3 id="5-nhiem-vu-hoc-tap-thao-luan-lms-discussion-assignment">💬 5. NHIỆM VỤ HỌC TẬP &amp; THẢO LUẬN (LMS Discussion / Assignment)</h3>
+<ul>
+<li><strong>Chủ đề thảo luận Diễn đàn (Forum Discussion):</strong> Đã có validation phía client bằng Zod, Backend còn cần validate lại không? Hãy nêu ít nhất hai tình huống người dùng có thể vượt qua validation trên trình duyệt, và đề xuất cách chia sẻ cùng một schema giữa Front-End và Back-End.</li>
+<li><strong>Yêu cầu nộp bài (Bài tập về nhà):</strong><ul>
+<li>Tất cả thành viên đăng ký tài khoản <strong>GitHub</strong> và <strong>Vercel</strong>.</li>
+<li>Đẩy code mới nhất (Login, Create Event, Wishlist) lên GitHub; kiểm tra kết nối Repository với Vercel Dashboard để sẵn sàng cho các buổi PBL Deploy.</li>
+<li><strong>Output:</strong> 100% thành viên có tài khoản Vercel sẵn sàng kết nối CI/CD; ảnh chụp màn hình Vercel Dashboard đã thấy repo của nhóm.</li>
+<li><strong>Hạn nộp:</strong> trước buổi học tiếp theo. Commit cuối theo mẫu <code>feat(wishlist): persist favorite events in localStorage</code>; nộp link repo + ảnh chụp lên LMS với tên file <code>B09_&lt;TenNhom&gt;_Vercel.png</code>.</li>
+</ul>
+</li>
+<li><strong>📚 Tài liệu đọc &amp; tham khảo:</strong><ul>
+<li>React Hook Form Documentation: <a href="https://react-hook-form.com/" target="_blank" rel="noopener noreferrer">https://react-hook-form.com/</a></li>
+<li>Zod Documentation: <a href="https://zod.dev/" target="_blank" rel="noopener noreferrer">https://zod.dev/</a></li>
+<li>Hook Form Resolvers: <a href="https://github.com/react-hook-form/resolvers" target="_blank" rel="noopener noreferrer">https://github.com/react-hook-form/resolvers</a></li>
+<li>MDN – Window.localStorage: <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage" target="_blank" rel="noopener noreferrer">https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage</a></li>
+<li>Next.js <code>cookies()</code>: <a href="https://nextjs.org/docs/app/api-reference/functions/cookies" target="_blank" rel="noopener noreferrer">https://nextjs.org/docs/app/api-reference/functions/cookies</a></li>
+</ul>
+</li>
+</ul>
+
+    </article>
+
+    <!-- Bottom Navigation -->
+    <div class="flex items-center justify-between gap-4 mt-8 no-print text-xs font-bold">
+      <a href="bai-08.html" class="px-4 py-2.5 bg-white border border-slate-200 hover:border-lhu-blue text-slate-700 hover:text-lhu-blue rounded-xl shadow-sm transition-all flex items-center gap-2"><i class="fa-solid fa-chevron-left"></i> Bài trước</a>
+      <a href="index.html#lo-trinh" class="px-4 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-800 rounded-xl transition-all flex items-center gap-2">
+        <i class="fa-solid fa-table-cells-large"></i> Danh mục bài học
+      </a>
+      <a href="bai-10.html" class="px-4 py-2.5 bg-white border border-slate-200 hover:border-lhu-blue text-slate-700 hover:text-lhu-blue rounded-xl shadow-sm transition-all flex items-center gap-2">Bài tiếp theo <i class="fa-solid fa-chevron-right"></i></a>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-slate-200 py-6 text-xs text-slate-500 mt-12 no-print">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <strong>Khoa Công nghệ Thông tin - Trường Đại học Lạc Hồng</strong><br>
+        Phòng B301 - B302, Cơ sở 1, Số 10 Huỳnh Văn Nghệ, P. Bửu Long, TP. Biên Hòa, Đồng Nai.
+      </div>
+      <div class="sm:text-right">
+        <span>Email: cntt@lhu.edu.vn • Hotline: (0251) 3952 251</span><br>
+        <span>Hệ thống LMS: <a href="https://learn.lhu.edu.vn" target="_blank" rel="noopener noreferrer" class="text-lhu-blue font-bold">learn.lhu.edu.vn</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleAllDetails(open) {
+      document.querySelectorAll("details").forEach(d => {
+        if (open) d.setAttribute("open", ""); else d.removeAttribute("open");
+      });
+    }
+    if (window.hljs) hljs.highlightAll();
+  </script>
+
+</body>
+</html>

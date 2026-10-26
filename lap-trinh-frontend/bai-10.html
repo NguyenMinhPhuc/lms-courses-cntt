@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 10 - PBL 1 – Refactoring, Optimization &amp; Responsive Polish | Lập trình Front-End - Khoa CNTT - Đại học Lạc Hồng</title>
+  <meta name="description" content="Bài 10 - PBL 1 – Refactoring, Optimization &amp; Responsive Polish - Lập trình Front-End (Next.js, TypeScript &amp; Vibe Coding). Thời lượng: 5 tiết (225 phút) · Hình thức: Học theo dự án (PBL 1) – Giảng viên làm Mentor · Chuẩn đầu ra: PI 2.3 (CLO2), PI 5.1 (CLO4)Dự án xuyên suốt: Smart Event Hub – tối ưu U">
+
+  <!-- Tailwind CSS CDN (kèm plugin typography cho nội dung Markdown) -->
+  <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6.4.0 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Highlight.js 11.9.0 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            asu: { maroon: '#8C1D40', gold: '#FFC627', dark: '#5C142B', light: '#FAEDF0' },
+            lhu: { blue: '#013D88', sky: '#007BFF', dark: '#01295C', light: '#EEF5FC' },
+            fe: { indigo: '#6366F1', dark: '#312E81', light: '#EEF2FF' }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .lesson h2, .lesson h3, .lesson h4 { scroll-margin-top: 90px; }
+    .lesson h3 { padding-bottom: .4rem; border-bottom: 2px solid #EEF2FF; }
+    .lesson blockquote { border-left: 4px solid #6366F1; background: #F5F7FF; border-radius: 0 12px 12px 0; padding: .6rem 1rem; font-style: normal; color: #1e293b; }
+    .lesson blockquote p:first-of-type::before, .lesson blockquote p:last-of-type::after { content: none; }
+    .lesson pre { border-radius: 12px; padding: 0; background: #0d1117; }
+    .lesson pre code.hljs { border-radius: 12px; padding: 1rem 1.1rem; font-size: 13px; line-height: 1.6; }
+    .lesson :not(pre) > code { background: #EEF2FF; color: #3730A3; padding: .1rem .35rem; border-radius: 6px; font-weight: 500; }
+    .lesson :not(pre) > code::before, .lesson :not(pre) > code::after { content: none; }
+    .lesson table { display: block; overflow-x: auto; font-size: 14px; }
+    .lesson thead th { background: #F1F5F9; }
+    .lesson th, .lesson td { border: 1px solid #E2E8F0; padding: .5rem .7rem !important; vertical-align: top; }
+    .lesson details { border: 1px solid #C7D2FE; border-radius: 10px; padding: .6rem .9rem; margin: .5rem 0 1.2rem; background: #FAFAFF; }
+    .lesson details summary { cursor: pointer; font-weight: 600; color: #4338CA; }
+    .lesson details[open] summary { margin-bottom: .4rem; }
+    .lesson hr { border-color: #E2E8F0; margin: 2rem 0; }
+    @media print {
+      header, footer, .no-print { display: none !important; }
+      details { break-inside: avoid; margin-bottom: 20px; }
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans antialiased selection:bg-asu-gold selection:text-slate-900 min-h-screen flex flex-col">
+
+  <!-- TOP BAR -->
+  <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800 no-print">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+      <div class="flex items-center gap-2">
+        <span class="text-asu-gold font-semibold"><i class="fa-solid fa-certificate mr-1"></i> CHUẨN KIỂM ĐỊNH ABET (USA)</span>
+        <span class="text-slate-600 hidden sm:inline">•</span>
+        <span class="hidden sm:inline">Lớp học đảo ngược • Vibe Coding</span>
+      </div>
+      <div class="flex items-center gap-4 text-xs font-mono">
+        <span>Thời lượng: <strong class="text-white">60 tiết (12 buổi)</strong></span>
+        <span>LT/TH: <strong class="text-asu-gold">30% / 70%</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="sticky top-0 z-40 bg-white shadow-sm border-b border-slate-200 no-print">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2.5 text-slate-800 hover:text-lhu-blue transition-colors">
+        <img src="LHU_ASU_VI_Small_Ngang.png" alt="Logo LHU" class="h-8 w-auto">
+        <div class="border-l border-slate-300 pl-2.5">
+          <div class="text-[11px] font-bold text-slate-500 uppercase">Khoa CNTT - LHU</div>
+          <div class="text-xs font-extrabold text-lhu-blue">LẬP TRÌNH FRONT-END</div>
+        </div>
+      </a>
+      <div class="flex items-center gap-3 text-xs">
+        <a href="index.html" class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-arrow-left"></i>
+          <span class="hidden sm:inline">Về Landing Page</span>
+        </a>
+        <button onclick="window.print()" class="hidden sm:flex px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-all items-center gap-1.5" title="In hoặc lưu file PDF">
+          <i class="fa-solid fa-print"></i>
+          <span>In / PDF</span>
+        </button>
+        <a href="https://learn.lhu.edu.vn" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-lhu-blue hover:bg-lhu-dark text-white font-bold rounded-xl shadow transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-graduation-cap text-asu-gold"></i>
+          <span>Vào lớp LMS</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="flex-grow max-w-5xl w-full mx-auto px-4 sm:px-6 py-8">
+
+    <!-- Title Card -->
+    <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 mb-8">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-5">
+        <div>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-fe-light text-fe-dark font-bold text-xs uppercase tracking-wider mb-2">
+            <i class="fa-solid fa-code"></i> CHƯƠNG 6: DỰ ÁN THỰC TẾ – TỐI ƯU &amp; TRIỂN KHAI
+          </span>
+          <h1 class="text-2xl sm:text-3xl font-black text-slate-900 leading-tight">
+            Bài 10 - PBL 1 – Refactoring, Optimization &amp; Responsive Polish
+          </h1>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1 font-mono">
+            Học phần: Lập trình Front-End (Next.js, TypeScript & Vibe Coding) • Khoa CNTT - Đại học Lạc Hồng
+          </p>
+        </div>
+        <div class="flex-shrink-0 flex sm:flex-col items-center sm:items-end justify-between gap-1 text-xs">
+          <span class="px-3 py-1.5 bg-emerald-50 text-emerald-700 font-bold rounded-lg border border-emerald-200">
+            <i class="fa-solid fa-check-circle mr-1"></i> Lưu hành nội bộ 2026
+          </span>
+          <span class="text-slate-400 text-[11px]">Định dạng LMS Lecture</span>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between pt-4 text-xs no-print">
+        <span class="text-slate-500">
+          <i class="fa-solid fa-circle-info text-blue-500 mr-1"></i>
+          Bấm vào các khối thu gọn để xem đáp án hoặc chi tiết.
+        </span>
+        <div class="flex items-center gap-2">
+          <button onclick="toggleAllDetails(true)" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg transition-colors">Mở tất cả</button>
+          <button onclick="toggleAllDetails(false)" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg transition-colors">Thu gọn</button>
+        </div>
+      </div>
+      <nav class="mt-5 pt-4 border-t border-slate-100 no-print">
+        <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">Nội dung trang</div>
+        <div class="flex flex-wrap gap-2">
+          <a href="#1-dat-van-de-dan-nhap-introduction-hook" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">📝 1. ĐẶT VẤN ĐỀ &amp; DẪN NHẬP (Introduction / Hook)</a>
+          <a href="#2-noi-dung-cot-loi-core-content" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">📖 2. NỘI DUNG CỐT LÕI (Core Content)</a>
+          <a href="#3-tom-tat-diem-can-nho-key-takeaways" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">📌 3. TÓM TẮT &amp; ĐIỂM CẦN NHỚ (Key Takeaways)</a>
+          <a href="#4-hoat-dong-kiem-tra-nhanh-self-assessment-quiz" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">❓ 4. HOẠT ĐỘNG KIỂM TRA NHANH (Self-Assessment / Quiz)</a>
+          <a href="#5-nhiem-vu-hoc-tap-thao-luan-lms-discussion-assignment" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">💬 5. NHIỆM VỤ HỌC TẬP &amp; THẢO LUẬN (LMS Discussion / Assignment)</a>
+        </div>
+      </nav>
+    </div>
+
+    <!-- Content -->
+    <article class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 lesson prose prose-slate max-w-none prose-headings:font-extrabold prose-h3:text-lhu-dark prose-h4:text-fe-dark prose-a:text-lhu-blue">
+<blockquote>
+<p><strong>Thời lượng:</strong> 5 tiết (225 phút) · <strong>Hình thức:</strong> Học theo dự án (PBL 1) – Giảng viên làm Mentor · <strong>Chuẩn đầu ra:</strong> PI 2.3 (CLO2), PI 5.1 (CLO4)<br><strong>Dự án xuyên suốt:</strong> Smart Event Hub – tối ưu UI/UX toàn bộ dự án, làm sạch codebase và Responsive Polish trên 3 kích thước màn hình</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>🎯 <strong>MỤC TIÊU BÀI HỌC (Learning Objectives)</strong><br>Sau khi hoàn thành bài học này, người học có thể:</p>
+<ul>
+<li><strong>[Bloom 1/2 - Kiến thức]:</strong> Nhận diện được các Code Smell phổ biến trong component React (trùng lặp, component quá lớn, lạm dụng <code>any</code>, biến thừa) và giải thích được quy chuẩn Responsive 375px – 768px – 1440px.</li>
+<li><strong>[Bloom 3/4 - Kỹ năng]:</strong> Áp dụng Vibe Code Refactoring để phân rã component, thay <code>any</code> bằng Interface, dùng SCSS Mixin, <code>Drawer</code>/Grid của Ant Design để sửa lỗi tràn khung trên di động.</li>
+<li><strong>[Bloom 5/6 - Năng lực]:</strong> Đánh giá chất lượng code do AI đề xuất, đưa dự án về trạng thái TypeScript strict pass 100%, Zero Console Warnings và được Giảng viên nghiệm thu tiến độ PBL 1.</li>
+</ul>
+</blockquote>
+<hr>
+<h3 id="1-dat-van-de-dan-nhap-introduction-hook">📝 1. ĐẶT VẤN ĐỀ &amp; DẪN NHẬP (Introduction / Hook)</h3>
+<p>Sau 9 buổi, Smart Event Hub của các nhóm đã có đủ routing, giao diện Ant Design, kết nối API và form đặt vé. Thử mở trang chủ trên điện thoại 375px: thanh lọc sự kiện tràn ra ngoài, xuất hiện thanh cuộn ngang, nút &quot;Đặt vé&quot; bé đến mức khó bấm. Mở DevTools thì Console đỏ rực với <code>Hydration failed</code>, còn trong code có ba bốn file <code>EventCard</code> gần như giống hệt nhau do mỗi thành viên tự sinh bằng AI.</p>
+<p>Một sản phẩm &quot;chạy được&quot; chưa phải là sản phẩm có thể đưa cho người dùng thật. <strong>Nếu ngày mai nhóm phải deploy lên Internet, các bạn sẽ sửa lỗi nào trước, và làm sao chứng minh việc refactor không làm hỏng giao diện cũ?</strong> Buổi PBL hôm nay dành trọn cho câu hỏi đó.</p>
+<blockquote>
+<p>🧭 <strong>Trước giờ học (Flipped Classroom):</strong> Đọc <em>Refactoring Guru – Code Smells</em> và <em>Google Responsive Web Design Basics</em> (link ở mục 5). Tự rà soát repo nhóm, liệt kê ít nhất 5 Code Smell và 3 lỗi responsive. Làm quiz nhanh trên LMS. Mang laptop đã chạy được <code>npm run dev</code> của dự án.</p>
+</blockquote>
+<hr>
+<h3 id="2-noi-dung-cot-loi-core-content">📖 2. NỘI DUNG CỐT LÕI (Core Content)</h3>
+<h4 id="2-1-code-smell-ky-thuat-vibe-code-refactoring">2.1. Code Smell &amp; kỹ thuật Vibe Code Refactoring</h4>
+<ul>
+<li><strong>Khái niệm:</strong> <strong>Code Smell</strong> là dấu hiệu bề mặt cho thấy code khó đọc, khó bảo trì, dù chương trình vẫn chạy. <strong>Refactoring</strong> là cải tổ cấu trúc code mà <strong>không thay đổi hành vi</strong> giao diện và logic.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li>Các dấu hiệu cần refactor gấp: đoạn JSX/SCSS lặp lại (vi phạm DRY), component dài hơn 300 dòng, khai báo <code>any</code> tràn lan, unused imports/variables, <code>console.log</code> còn sót.</li>
+<li>Quy trình Vibe Code Refactoring: dán đoạn code vào Cursor/Copilot, yêu cầu AI phân rã thành sub-component, thay <code>any</code> bằng Interface, dùng <code>React.memo</code>/<code>useCallback</code> khi có lý do re-render rõ ràng.</li>
+<li>Mục tiêu buổi học: rút gọn codebase <strong>trên 20% số dòng</strong> mà giao diện không đổi.</li>
+</ul>
+</li>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote>
+<p>Nhóm A có <code>EventList</code> dùng <code>any[]</code>, render thẻ card bằng JSX thô và gọi <code>alert()</code> khi đặt vé. Sau refactor, card được tách thành <code>EventCard</code> dùng chung cho Home, Category và Wishlist; handler đặt vé được giữ ổn định bằng <code>useCallback</code>.</p>
+</blockquote>
+</li>
+</ul>
+<pre><code class="language-tsx">// ❌ TRƯỚC: any, console.log, JSX lặp lại ở nhiều trang
+export default function EventList({ events }: { events: any[] }) {
+  console.log(events);
+  return (
+    &lt;div&gt;
+      {events.map((e) =&gt; (
+        &lt;div key={e.id} className=&quot;card&quot;&gt;
+          &lt;img src={e.bannerUrl} /&gt;
+          &lt;h3&gt;{e.title}&lt;/h3&gt;
+          &lt;p&gt;{e.price.toLocaleString(&#39;vi-VN&#39;)} đ&lt;/p&gt;
+          &lt;button onClick={() =&gt; alert(&#39;Đặt vé &#39; + e.id)}&gt;Đặt vé&lt;/button&gt;
+        &lt;/div&gt;
+      ))}
+    &lt;/div&gt;
+  );
+}
+</code></pre>
+<pre><code class="language-tsx">// ✅ SAU: types/event.ts
+export interface EventItem {
+  id: string;
+  title: string;
+  startDate: string;
+  price: number;
+  bannerUrl: string;
+  status: &#39;UPCOMING&#39; | &#39;ONGOING&#39; | &#39;ENDED&#39;;
+}
+</code></pre>
+<pre><code class="language-tsx">// ✅ SAU: components/shared/EventCard.tsx
+&#39;use client&#39;;
+
+import { memo } from &#39;react&#39;;
+import Image from &#39;next/image&#39;;
+import { Button, Card } from &#39;antd&#39;;
+import type { EventItem } from &#39;@/types/event&#39;;
+
+interface EventCardProps {
+  event: EventItem;
+  onBook: (id: string) =&gt; void;
+}
+
+const formatPrice = (value: number): string =&gt;
+  value === 0 ? &#39;Miễn phí&#39; : `${value.toLocaleString(&#39;vi-VN&#39;)} đ`;
+
+function EventCardBase({ event, onBook }: EventCardProps) {
+  return (
+    &lt;Card
+      cover={
+        // Ảnh từ domain ngoài cần khai báo images.remotePatterns (xem Bài 11)
+        &lt;Image src={event.bannerUrl} alt={event.title} width={400} height={225} /&gt;
+      }
+      actions={[
+        &lt;Button key=&quot;book&quot; type=&quot;primary&quot; onClick={() =&gt; onBook(event.id)}&gt;
+          Đặt vé
+        &lt;/Button&gt;,
+      ]}
+    &gt;
+      &lt;Card.Meta title={event.title} description={formatPrice(event.price)} /&gt;
+    &lt;/Card&gt;
+  );
+}
+
+export const EventCard = memo(EventCardBase);
+</code></pre>
+<pre><code class="language-tsx">// ✅ SAU: components/shared/EventList.tsx
+&#39;use client&#39;;
+
+import { useCallback } from &#39;react&#39;;
+import { useRouter } from &#39;next/navigation&#39;;
+import { Col, Row } from &#39;antd&#39;;
+import type { EventItem } from &#39;@/types/event&#39;;
+import { EventCard } from &#39;./EventCard&#39;;
+
+export default function EventList({ events }: { events: EventItem[] }) {
+  const router = useRouter();
+  const handleBook = useCallback(
+    (id: string) =&gt; router.push(`/checkout/${id}`),
+    [router],
+  );
+
+  return (
+    &lt;Row gutter={[16, 16]}&gt;
+      {events.map((event) =&gt; (
+        &lt;Col key={event.id} xs={24} sm={12} lg={8}&gt;
+          &lt;EventCard event={event} onBook={handleBook} /&gt;
+        &lt;/Col&gt;
+      ))}
+    &lt;/Row&gt;
+  );
+}
+</code></pre>
+<blockquote>
+<p><strong>Lưu ý:</strong> <code>memo</code> chỉ có tác dụng khi props giữ nguyên tham chiếu. Nếu truyền <code>onBook={(id) =&gt; ...}</code> viết trực tiếp trong JSX, mỗi lần render cha lại tạo hàm mới và <code>memo</code> trở nên vô ích.</p>
+</blockquote>
+<h4 id="2-2-lam-sach-typescript-strict-don-console">2.2. Làm sạch TypeScript strict &amp; dọn Console</h4>
+<ul>
+<li><strong>Khái niệm:</strong> Trạng thái &quot;sạch&quot; của buổi PBL 1 gồm: <strong>TypeScript strict mode pass 100%</strong> không warning, không còn <code>any</code>, không còn biến thừa và <code>console.log</code> dư thừa.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li>Bật <code>&quot;strict&quot;: true</code> trong <code>tsconfig.json</code>, chạy <code>tsc --noEmit</code> để thấy toàn bộ lỗi type mà không cần build.</li>
+<li>Khi chưa biết kiểu dữ liệu, dùng <code>unknown</code> rồi thu hẹp kiểu (type narrowing) thay vì <code>any</code>.</li>
+<li>ESLint báo unused imports/variables; xóa hẳn chứ không comment lại.</li>
+</ul>
+</li>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote>
+<p>Hàm đọc wishlist từ LocalStorage trả về <code>JSON.parse(raw)</code> có kiểu <code>any</code>. Đổi sang <code>unknown</code> buộc nhóm kiểm tra <code>Array.isArray()</code> trước khi dùng, tránh crash khi dữ liệu bị sửa tay trong DevTools.</p>
+</blockquote>
+</li>
+</ul>
+<pre><code class="language-bash"># Kiểm tra type toàn dự án, không sinh file build
+npx tsc --noEmit
+
+# Kiểm tra lint (unused vars, hooks deps...)
+npm run lint
+
+# Tìm nhanh any và console.log còn sót
+git grep -n -E &quot;: any|as any|console\.log&quot; -- &quot;*.ts&quot; &quot;*.tsx&quot;
+</code></pre>
+<h4 id="2-3-quy-chuan-responsive-breakpoint-sua-horizontal-overflow">2.3. Quy chuẩn Responsive Breakpoint &amp; sửa Horizontal Overflow</h4>
+<ul>
+<li><strong>Khái niệm:</strong> Mọi trang phải hiển thị mượt trên 3 kích thước tiêu chuẩn: <strong>Mobile 375px</strong> (iPhone SE/12), <strong>Tablet 768px</strong> (iPad), <strong>Desktop 1440px</strong>.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li>Danh sách trang phải kiểm tra 100%: Home, Listing, Event Detail, Booking Modal, Admin Orders.</li>
+<li>Nguyên nhân tràn ngang thường gặp: <code>width</code> cố định bằng px, ảnh không có <code>max-width: 100%</code>, flex không <code>wrap</code>, bảng dữ liệu rộng, dùng <code>100vw</code> (tính cả thanh cuộn dọc).</li>
+<li>Cách xử lý: dùng đơn vị tương đối, <code>flex-wrap: wrap</code>, <code>min-width: 0</code> cho item flex, bọc bảng trong vùng cuộn riêng (<code>Table</code> của AntD có prop <code>scroll={{ x: true }}</code>).</li>
+<li>Mobile UX Adaptation: chuyển cấu trúc ngang phức tạp sang <strong>Vertical Stack</strong>, <strong>Drawer</strong> hoặc <strong>Collapse</strong>; nút bấm đủ lớn cho thao tác cảm ứng.</li>
+</ul>
+</li>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote>
+<p>Trang Admin Orders có bảng 8 cột. Trên 375px, cả trang bị kéo ngang. Thêm <code>scroll={{ x: true }}</code> cho <code>Table</code>, chỉ vùng bảng cuộn ngang, header và menu vẫn đứng yên.</p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>⚠️ <strong>Bẫy thường gặp:</strong> mixin <code>respond-to</code> từ Bài 01 viết theo <strong>mobile-first</strong> (<code>min-width</code>), nên <code>respond-to(&#39;mobile&#39;) { display: none; }</code> sẽ ẩn phần tử <strong>từ 640px trở lên</strong>, tức là ẩn trên tablet/desktop chứ không phải trên điện thoại. Đừng đổi nghĩa của <code>respond-to</code> (mọi file SCSS cũ sẽ hỏng theo). Hãy bổ sung một mixin chiều ngược lại.</p>
+</blockquote>
+<pre><code class="language-scss">// styles/_mixins.scss – giữ nguyên map &amp; respond-to của Bài 01, bổ sung respond-below
+@use &#39;sass:map&#39;;
+
+$breakpoints: (&#39;mobile&#39;: 640px, &#39;tablet&#39;: 768px, &#39;desktop&#39;: 1024px);
+
+// Mobile-first: áp dụng TỪ mốc trở lên
+@mixin respond-to($breakpoint) {
+  $value: map.get($breakpoints, $breakpoint);
+  @if $value {
+    @media (min-width: $value) { @content; }
+  } @else {
+    @error &quot;Breakpoint `#{$breakpoint}` không tồn tại.&quot;;
+  }
+}
+
+// Desktop-down: áp dụng DƯỚI mốc (dùng cho ẩn/hiện theo thiết bị)
+@mixin respond-below($breakpoint) {
+  $value: map.get($breakpoints, $breakpoint);
+  @if $value {
+    @media (max-width: $value - 0.02px) { @content; }
+  } @else {
+    @error &quot;Breakpoint `#{$breakpoint}` không tồn tại.&quot;;
+  }
+}
+</code></pre>
+<pre><code class="language-scss">// components/shared/EventFilterBar.module.scss
+@use &#39;../../styles/mixins&#39; as *; // đường dẫn tương đối theo vị trí file
+
+// Mốc &#39;tablet&#39; = 768px, trùng breakpoint md của Grid Ant Design
+.desktopOnly {
+  display: block;
+  @include respond-below(&#39;tablet&#39;) { display: none; }  // &lt; 768px: ẩn
+}
+
+.mobileOnly {
+  display: none;
+  @include respond-below(&#39;tablet&#39;) { display: block; } // &lt; 768px: hiện
+}
+</code></pre>
+<h4 id="2-4-chuyen-filter-bar-sang-drawer-tren-di-dong">2.4. Chuyển Filter Bar sang Drawer trên di động</h4>
+<ul>
+<li><strong>Khái niệm:</strong> Thay vì ép thanh lọc ngang co lại, trên Mobile ta hiển thị một nút <strong>&quot;Bộ lọc&quot;</strong> mở <code>Drawer</code>; trên Desktop giữ nguyên Filter Bar nằm ngang.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li>Tách phần ô lọc thành sub-component <code>FilterFields</code> để dùng lại ở cả hai chế độ (đúng tinh thần DRY).</li>
+<li>Grid AntD <code>xs={24}</code> (một cột trên mobile), <code>md={8}</code> (ba cột từ 768px).</li>
+<li>Ẩn/hiện bằng CSS (<code>.desktopOnly</code>/<code>.mobileOnly</code>) thay vì đọc kích thước màn hình trong JavaScript, nên HTML server và client luôn giống nhau, không gây lỗi hydration.</li>
+</ul>
+</li>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote>
+<p>Các ứng dụng đặt vé phổ biến đều gom bộ lọc vào một nút trên điện thoại. Người dùng chọn xong thì đóng Drawer, danh sách sự kiện cập nhật ngay vì state nằm ở component cha.</p>
+</blockquote>
+</li>
+</ul>
+<pre><code class="language-tsx">// components/shared/EventFilterBar.tsx
+&#39;use client&#39;;
+
+import { useState } from &#39;react&#39;;
+import { Button, Col, Drawer, Input, Row, Select } from &#39;antd&#39;;
+import styles from &#39;./EventFilterBar.module.scss&#39;;
+
+export interface EventFilters {
+  keyword: string;
+  category: string | undefined;
+  priceRange: &#39;all&#39; | &#39;free&#39; | &#39;paid&#39;;
+}
+
+interface EventFilterBarProps {
+  value: EventFilters;
+  onChange: (next: EventFilters) =&gt; void;
+}
+
+const CATEGORY_OPTIONS = [
+  { label: &#39;Âm nhạc&#39;, value: &#39;music&#39; },
+  { label: &#39;Công nghệ&#39;, value: &#39;tech&#39; },
+  { label: &#39;Workshop&#39;, value: &#39;workshop&#39; },
+];
+
+const PRICE_OPTIONS: { label: string; value: EventFilters[&#39;priceRange&#39;] }[] = [
+  { label: &#39;Tất cả mức giá&#39;, value: &#39;all&#39; },
+  { label: &#39;Miễn phí&#39;, value: &#39;free&#39; },
+  { label: &#39;Có phí&#39;, value: &#39;paid&#39; },
+];
+
+function FilterFields({ value, onChange }: EventFilterBarProps) {
+  return (
+    &lt;Row gutter={[16, 16]}&gt;
+      &lt;Col xs={24} md={8}&gt;
+        &lt;Input
+          allowClear
+          placeholder=&quot;Tìm sự kiện...&quot;
+          value={value.keyword}
+          onChange={(e) =&gt; onChange({ ...value, keyword: e.target.value })}
+        /&gt;
+      &lt;/Col&gt;
+      &lt;Col xs={24} md={8}&gt;
+        &lt;Select
+          allowClear
+          style={{ width: &#39;100%&#39; }}
+          placeholder=&quot;Danh mục&quot;
+          options={CATEGORY_OPTIONS}
+          value={value.category}
+          onChange={(category: string | undefined) =&gt; onChange({ ...value, category })}
+        /&gt;
+      &lt;/Col&gt;
+      &lt;Col xs={24} md={8}&gt;
+        &lt;Select
+          style={{ width: &#39;100%&#39; }}
+          options={PRICE_OPTIONS}
+          value={value.priceRange}
+          onChange={(priceRange: EventFilters[&#39;priceRange&#39;]) =&gt; onChange({ ...value, priceRange })}
+        /&gt;
+      &lt;/Col&gt;
+    &lt;/Row&gt;
+  );
+}
+
+export default function EventFilterBar(props: EventFilterBarProps) {
+  const [open, setOpen] = useState(false);
+
+  return (
+    &lt;&gt;
+      &lt;div className={styles.desktopOnly}&gt;
+        &lt;FilterFields {...props} /&gt;
+      &lt;/div&gt;
+      &lt;div className={styles.mobileOnly}&gt;
+        &lt;Button block size=&quot;large&quot; onClick={() =&gt; setOpen(true)}&gt;
+          Bộ lọc
+        &lt;/Button&gt;
+        &lt;Drawer title=&quot;Bộ lọc sự kiện&quot; placement=&quot;bottom&quot; open={open} onClose={() =&gt; setOpen(false)}&gt;
+          &lt;FilterFields {...props} /&gt;
+        &lt;/Drawer&gt;
+      &lt;/div&gt;
+    &lt;/&gt;
+  );
+}
+</code></pre>
+<h4 id="2-5-hot-reload-dut-diem-console-warnings">2.5. Hot Reload &amp; dứt điểm Console Warnings</h4>
+<ul>
+<li><strong>Khái niệm:</strong> Mục tiêu cuối buổi là <strong>Zero Console Warnings</strong> và Hot Reload mượt khi chạy <code>npm run dev</code>. Hai cảnh báo hay gặp nhất là <em>React does not recognize the prop...</em> và <em>Hydration failed...</em>.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li><strong>Unknown prop:</strong> truyền prop tự đặt (ví dụ <code>isHot</code>) xuống thẻ DOM qua <code>{...props}</code>. Cách sửa: destructure prop đó ra trước khi spread.</li>
+<li><strong>Hydration failed:</strong> HTML server render khác HTML client render lần đầu. Nguyên nhân: đọc <code>localStorage</code>/<code>window</code> ngay khi render, dùng <code>Date.now()</code>/<code>Math.random()</code>, lồng thẻ sai (<code>&lt;div&gt;</code> trong <code>&lt;p&gt;</code>). Cách sửa: đọc dữ liệu trình duyệt trong <code>useEffect</code>, giữ cấu trúc HTML hợp lệ.</li>
+</ul>
+</li>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote>
+<p>Badge &quot;Yêu thích&quot; trên Header đọc số lượng từ LocalStorage ngay trong thân component. Server không có LocalStorage nên render 0, client render 3, React báo hydration lỗi. Chuyển phần đọc vào <code>useEffect</code> là hết.</p>
+</blockquote>
+</li>
+</ul>
+<pre><code class="language-tsx">// ✅ Không để prop tự đặt lọt xuống DOM
+import type { HTMLAttributes } from &#39;react&#39;;
+
+interface EventTagProps extends HTMLAttributes&lt;HTMLSpanElement&gt; {
+  isHot?: boolean;
+}
+
+export function EventTag({ isHot = false, className = &#39;&#39;, ...rest }: EventTagProps) {
+  return &lt;span {...rest} className={`${className} ${isHot ? &#39;tag-hot&#39; : &#39;&#39;}`.trim()} /&gt;;
+}
+</code></pre>
+<pre><code class="language-tsx">// ✅ Đọc LocalStorage sau khi mount để tránh Hydration failed
+&#39;use client&#39;;
+
+import { useEffect, useState } from &#39;react&#39;;
+import { Badge } from &#39;antd&#39;;
+
+export default function WishlistBadge() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() =&gt; {
+    try {
+      const parsed: unknown = JSON.parse(localStorage.getItem(&#39;wishlist&#39;) ?? &#39;[]&#39;);
+      setCount(Array.isArray(parsed) ? parsed.length : 0);
+    } catch {
+      setCount(0);
+    }
+  }, []);
+
+  return (
+    &lt;Badge count={count} showZero&gt;
+      &lt;span&gt;Yêu thích&lt;/span&gt;
+    &lt;/Badge&gt;
+  );
+}
+</code></pre>
+<h4 id="2-6-vibe-coding-prompt-mau-cach-kiem-duyet-code-ai">2.6. Vibe Coding – Prompt mẫu &amp; cách kiểm duyệt code AI</h4>
+<p>Hãy để AI làm &quot;Tech Lead&quot; rà soát, nhưng người quyết định giữ hay bỏ thay đổi vẫn là nhóm.</p>
+<pre><code class="language-text">Tôi có Component `EventFilterBar.tsx` đang bị tràn khung khi co màn hình xuống kích thước Mobile (375px).
+Hãy hướng dẫn tôi refactor Component này sử dụng Ant Design `Drawer` hoặc Responsive Grid (`xs={24}`, `md={8}`)
+để hiển thị dạng nút &quot;Bộ lọc&quot; mở ra Drawer trên Mobile, còn trên Desktop thì giữ nguyên Filter Bar nằm ngang.
+Viết bằng Next.js TypeScript và Ant Design v5.
+</code></pre>
+<pre><code class="language-text">Hãy đóng vai một Tech Lead chuyên về Clean Code. Hãy rà soát đoạn mã Next.js Component sau và refactor lại giúp tôi:
+[Dán đoạn code lặp lại hoặc chưa tối ưu vào đây]
+
+Yêu cầu refactor:
+1. Phân rã các khối UI lặp lại thành sub-component nhỏ.
+2. Loại bỏ các khai báo `any`, thay bằng Interface có cấu trúc chặt chẽ.
+3. Tối ưu hóa re-render bằng cách dùng `React.memo` hoặc `useCallback` nếu cần thiết.
+4. Giải thích ngắn gọn các cải tiến đã thực hiện.
+</code></pre>
+<p><strong>Checklist kiểm duyệt code AI trước khi commit:</strong></p>
+<ul>
+<li><strong>Hành vi không đổi:</strong> so sánh giao diện trước/sau ở cả 375px, 768px, 1440px.</li>
+<li><strong>Type:</strong> không còn <code>any</code>; <code>npx tsc --noEmit</code> không lỗi.</li>
+<li><strong>Logic:</strong> handler, state, điều kiện hiển thị giữ nguyên; AI không &quot;tiện tay&quot; xóa nhánh xử lý lỗi.</li>
+<li><strong>Hiệu năng:</strong> <code>memo</code>/<code>useCallback</code> có lý do cụ thể, không bọc tràn lan.</li>
+<li><strong>Responsive:</strong> không còn thanh cuộn ngang; nút đủ lớn cho cảm ứng.</li>
+<li><strong>Console:</strong> reload trang, Console không còn warning.</li>
+</ul>
+<blockquote>
+<p><strong>Quy tắc PBL:</strong> mỗi lần refactor là một commit nhỏ, thông điệp rõ ràng (ví dụ <code>refactor(event-card): tách EventCard dùng chung, bỏ any</code>) để dễ hoàn tác khi AI làm hỏng logic.</p>
+</blockquote>
+<h4 id="2-7-thuc-hanh-tren-lop">2.7. Thực hành trên lớp</h4>
+<p>Buổi PBL không theo khung Guided/Unguided thông thường. Giảng viên đóng vai <strong>Technical Director / Senior Mentor</strong>, đi từng nhóm tháo gỡ điểm nghẽn kỹ thuật.</p>
+<table>
+<thead>
+<tr>
+<th>Phần</th>
+<th>Thời lượng</th>
+<th>Nhiệm vụ</th>
+<th>Output mong muốn</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Định hướng</td>
+<td>30&#39;</td>
+<td>GV hướng dẫn Vibe Code Refactoring (Code Smell, Unused Imports, SCSS lặp) và quy chuẩn 375/768/1440px</td>
+<td>Nhóm có danh sách lỗi cần xử lý</td>
+</tr>
+<tr>
+<td>PBL Phần 1 – Responsive Polish</td>
+<td>60&#39;</td>
+<td>Kiểm tra 5 trang trên 3 kích thước, sửa tràn khung, chuyển Menu/Filter sang <code>Drawer</code>/<code>Collapse</code></td>
+<td>Không còn Horizontal Overflow, thao tác cảm ứng mượt</td>
+</tr>
+<tr>
+<td>PBL Phần 2 – Vibe Code Refactoring &amp; DRY</td>
+<td>60&#39;</td>
+<td>Tách Reusable Components, xóa <code>any</code>, biến thừa, <code>console.log</code>; gom SCSS bằng Mixin &amp; CSS Variables</td>
+<td>Codebase giảm &gt;20% số dòng, TS strict pass 100%</td>
+</tr>
+<tr>
+<td>PBL Phần 3 – Hot Reload &amp; Review trực tiếp</td>
+<td>60&#39;</td>
+<td>Chạy Dev, sửa Console Warning; GV review code tại máy từng nhóm</td>
+<td>Zero Console Warnings, danh mục bug đã fix</td>
+</tr>
+<tr>
+<td>Tổng kết</td>
+<td>15&#39;</td>
+<td>Nghiệm thu tiến độ tại máy, giao BTVN</td>
+<td>Biên bản kiểm tra tiến độ PBL 1</td>
+</tr>
+</tbody></table>
+<ul>
+<li><strong>PBL Phần 1:</strong> Mở DevTools ở chế độ Device Toolbar, lần lượt chọn 375px, 768px, 1440px cho Home, Listing, Event Detail, Booking Modal, Admin Orders. Ghi lỗi vào bảng chung của nhóm rồi chia người sửa.</li>
+<li><strong>PBL Phần 2:</strong> Mỗi thành viên chọn component dài nhất mình phụ trách, dùng prompt Tech Lead ở mục 2.6 để refactor. Đếm số dòng trước/sau bằng <code>git diff --stat</code>.</li>
+<li><strong>PBL Phần 3:</strong> Cả nhóm chạy <code>npm run dev</code>, sửa từng warning trong Console. GV kiểm tra trực tiếp và ghi nhận danh mục bug đã fix vào biên bản.</li>
+</ul>
+<hr>
+<h3 id="3-tom-tat-diem-can-nho-key-takeaways">📌 3. TÓM TẮT &amp; ĐIỂM CẦN NHỚ (Key Takeaways)</h3>
+<ul>
+<li>🔹 <strong>Refactor không đổi hành vi:</strong> Mục tiêu là code gọn hơn (&gt;20% dòng), dễ bảo trì hơn, nhưng giao diện và logic phải giữ nguyên.</li>
+<li>🔹 <strong>Code Smell cần xử lý:</strong> JSX/SCSS lặp lại, component &gt;300 dòng, <code>any</code>, unused variables, <code>console.log</code> dư thừa.</li>
+<li>🔹 <strong>Responsive 3 mốc:</strong> 375px – 768px – 1440px; tràn ngang được xử lý bằng đơn vị tương đối, <code>flex-wrap</code>, vùng cuộn riêng cho bảng, Drawer/Collapse trên mobile.</li>
+<li>🔹 <strong>Hydration an toàn:</strong> Không đọc <code>localStorage</code>/<code>window</code> khi render; ẩn/hiện theo thiết bị bằng CSS để HTML server và client giống nhau.</li>
+<li>🔹 <strong>AI là Tech Lead gợi ý, nhóm là người duyệt:</strong> Mọi thay đổi do AI đề xuất phải qua checklist type – logic – responsive – console trước khi commit.</li>
+</ul>
+<hr>
+<h3 id="4-hoat-dong-kiem-tra-nhanh-self-assessment-quiz">❓ 4. HOẠT ĐỘNG KIỂM TRA NHANH (Self-Assessment / Quiz)</h3>
+<p><strong>Câu 1:</strong> Dấu hiệu nào sau đây KHÔNG được xem là Code Smell cần refactor gấp?</p>
+<ul>
+<li>A. Component dài hơn 300 dòng</li>
+<li>B. Khai báo <code>any</code> ở nhiều props</li>
+<li>C. Component nhận props có Interface rõ ràng</li>
+<li>D. Ba file card gần như giống hệt nhau</li>
+</ul>
+<details>
+<summary>👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> C<br>
+<b>Giải thích:</b> Props có Interface rõ ràng là thực hành tốt. Các phương án còn lại là component quá lớn, lạm dụng <code>any</code> và vi phạm DRY.
+</details>
+
+<p><strong>Câu 2:</strong> Trang Admin Orders có bảng nhiều cột làm cả trang bị cuộn ngang ở 375px. Cách xử lý phù hợp nhất là gì?</p>
+<ul>
+<li>A. Đặt <code>overflow: hidden</code> cho thẻ <code>body</code></li>
+<li>B. Cho <code>Table</code> cuộn ngang trong vùng riêng bằng <code>scroll={{ x: true }}</code></li>
+<li>C. Giảm font chữ của cả trang xuống 10px</li>
+<li>D. Xóa bớt cột dữ liệu trên mọi thiết bị</li>
+</ul>
+<details>
+<summary>👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> B<br>
+<b>Giải thích:</b> Chỉ vùng bảng cuộn ngang, phần còn lại của trang giữ nguyên. Ẩn overflow ở body sẽ che mất dữ liệu, còn giảm font hay xóa cột làm hỏng trải nghiệm.
+</details>
+
+<p><strong>Câu 3:</strong> Component đọc <code>localStorage</code> ngay trong thân hàm render và gây lỗi <em>Hydration failed</em>. Nên sửa thế nào?</p>
+<ul>
+<li>A. Chuyển phần đọc <code>localStorage</code> vào <code>useEffect</code></li>
+<li>B. Đổi file thành Server Component</li>
+<li>C. Bọc component trong <code>React.memo</code></li>
+<li>D. Xóa directive <code>&#39;use client&#39;</code></li>
+</ul>
+<details>
+<summary>👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> A<br>
+<b>Giải thích:</b> <code>useEffect</code> chỉ chạy trên trình duyệt sau khi mount, nên lần render đầu ở server và client cho cùng kết quả.
+</details>
+
+<p><strong>Câu 4:</strong> Vì sao truyền <code>onBook={(id) =&gt; router.push(...)}</code> trực tiếp trong JSX làm <code>React.memo</code> của <code>EventCard</code> mất tác dụng?</p>
+<ul>
+<li>A. Vì <code>memo</code> không hỗ trợ props kiểu hàm</li>
+<li>B. Vì <code>router.push</code> luôn gây reload toàn trang</li>
+<li>C. Vì Arrow Function không được dùng trong Client Component</li>
+<li>D. Vì mỗi lần cha render lại tạo một hàm mới, tham chiếu props thay đổi</li>
+</ul>
+<details>
+<summary>👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> D<br>
+<b>Giải thích:</b> <code>memo</code> so sánh nông props. Hàm mới mỗi lần render khiến so sánh luôn khác, nên cần <code>useCallback</code> để giữ tham chiếu ổn định.
+</details>
+
+<blockquote>
+<p>Bộ 10+ câu đầy đủ: <code>quiz/quiz-bai-10-aiken.txt</code></p>
+</blockquote>
+<hr>
+<h3 id="5-nhiem-vu-hoc-tap-thao-luan-lms-discussion-assignment">💬 5. NHIỆM VỤ HỌC TẬP &amp; THẢO LUẬN (LMS Discussion / Assignment)</h3>
+<ul>
+<li><strong>Chủ đề thảo luận Diễn đàn (Forum Discussion):</strong> Hãy chia sẻ một đoạn refactor mà AI đề xuất nhưng nhóm bạn <strong>không</strong> chấp nhận (hoặc phải sửa lại). AI đã sai ở đâu: làm đổi logic, thêm <code>memo</code> vô lý, hay phá responsive? Từ đó, theo bạn ranh giới giữa &quot;để AI refactor&quot; và &quot;tự refactor&quot; nằm ở đâu?</li>
+<li><strong>Yêu cầu nộp bài (Bài tập về nhà):</strong><ul>
+<li>Mỗi nhóm xây dựng file kịch bản chạy thử nghiệm toàn hệ thống <code>Test_Cases_Scenario.md</code> (hoặc <code>.docx</code>), bao phủ các luồng: Home → Danh mục → Chi tiết sự kiện → Đặt vé, Đăng nhập, Wishlist, Admin Orders.</li>
+<li>Chuẩn bị sẵn tài khoản Vercel và GitHub Repository <strong>công khai</strong> ở branch <code>main</code> cho buổi PBL 2.</li>
+<li><strong>Output:</strong> tệp kịch bản kiểm thử sẵn sàng để test live khi deploy; đặt trong thư mục <code>docs/</code> của repo.</li>
+<li><strong>Hạn nộp:</strong> trước buổi học tiếp theo. Merge qua PR có tên <code>docs/test-cases-scenario</code>, nộp link PR lên LMS.</li>
+</ul>
+</li>
+<li><strong>📚 Tài liệu đọc &amp; tham khảo:</strong><ul>
+<li>Refactoring Guru – Code Smells: <a href="https://refactoring.guru/refactoring/smells" target="_blank" rel="noopener noreferrer">https://refactoring.guru/refactoring/smells</a></li>
+<li>Google Responsive Web Design Basics: <a href="https://web.dev/responsive-web-design-basics/" target="_blank" rel="noopener noreferrer">https://web.dev/responsive-web-design-basics/</a></li>
+<li>Ant Design – Drawer: <a href="https://ant.design/components/drawer" target="_blank" rel="noopener noreferrer">https://ant.design/components/drawer</a></li>
+<li>Ant Design – Grid: <a href="https://ant.design/components/grid" target="_blank" rel="noopener noreferrer">https://ant.design/components/grid</a></li>
+<li>React – memo: <a href="https://react.dev/reference/react/memo" target="_blank" rel="noopener noreferrer">https://react.dev/reference/react/memo</a></li>
+<li>Next.js – Hydration Error: <a href="https://nextjs.org/docs/messages/react-hydration-error" target="_blank" rel="noopener noreferrer">https://nextjs.org/docs/messages/react-hydration-error</a></li>
+</ul>
+</li>
+</ul>
+
+    </article>
+
+    <!-- Bottom Navigation -->
+    <div class="flex items-center justify-between gap-4 mt-8 no-print text-xs font-bold">
+      <a href="bai-09.html" class="px-4 py-2.5 bg-white border border-slate-200 hover:border-lhu-blue text-slate-700 hover:text-lhu-blue rounded-xl shadow-sm transition-all flex items-center gap-2"><i class="fa-solid fa-chevron-left"></i> Bài trước</a>
+      <a href="index.html#lo-trinh" class="px-4 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-800 rounded-xl transition-all flex items-center gap-2">
+        <i class="fa-solid fa-table-cells-large"></i> Danh mục bài học
+      </a>
+      <a href="bai-11.html" class="px-4 py-2.5 bg-white border border-slate-200 hover:border-lhu-blue text-slate-700 hover:text-lhu-blue rounded-xl shadow-sm transition-all flex items-center gap-2">Bài tiếp theo <i class="fa-solid fa-chevron-right"></i></a>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-slate-200 py-6 text-xs text-slate-500 mt-12 no-print">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <strong>Khoa Công nghệ Thông tin - Trường Đại học Lạc Hồng</strong><br>
+        Phòng B301 - B302, Cơ sở 1, Số 10 Huỳnh Văn Nghệ, P. Bửu Long, TP. Biên Hòa, Đồng Nai.
+      </div>
+      <div class="sm:text-right">
+        <span>Email: cntt@lhu.edu.vn • Hotline: (0251) 3952 251</span><br>
+        <span>Hệ thống LMS: <a href="https://learn.lhu.edu.vn" target="_blank" rel="noopener noreferrer" class="text-lhu-blue font-bold">learn.lhu.edu.vn</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleAllDetails(open) {
+      document.querySelectorAll("details").forEach(d => {
+        if (open) d.setAttribute("open", ""); else d.removeAttribute("open");
+      });
+    }
+    if (window.hljs) hljs.highlightAll();
+  </script>
+
+</body>
+</html>

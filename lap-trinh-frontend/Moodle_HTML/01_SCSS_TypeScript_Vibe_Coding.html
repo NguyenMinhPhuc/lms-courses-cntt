@@ -1,0 +1,458 @@
+<details open="" style="border: 1px solid #007bff; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #e7f1ff; color: #007bff; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>📘 1. Tổng quan bài học</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <p style="margin-top: 0;"><strong>BÀI 01 - SCSS nâng cao, TypeScript căn bản &amp; thiết lập Vibe Coding (5 tiết)</strong></p>
+        <p style="margin: 0 0 8px 0; color: #6c757d;">CHƯƠNG 1: NỀN TẢNG &amp; MÔ HÌNH HÓA GIAO DIỆN</p>
+        <p><strong>Thời lượng:</strong> 5 tiết (225 phút) · <strong>Hình thức:</strong> Lớp học đảo ngược · <strong>Chuẩn đầu ra:</strong> PI 1.4 (CLO1), PI 2.3 (CLO2)<br><strong>Dự án xuyên suốt:</strong> Smart Event Hub – Khởi tạo dự án, dựng Design Token SCSS, Layout Banner và Card sự kiện.</p>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #f3f8ff; border: 1px solid #cfe2ff; border-radius: 8px;">
+            <p>🎯 <strong>MỤC TIÊU BÀI HỌC (Learning Objectives)</strong><br>Sau khi hoàn thành bài học này, người học có thể:</p>
+<ul>
+<li><strong>[Bloom 1/2 - Kiến thức]:</strong> Giải thích được Variables, Nesting, Mixins, Breakpoints trong SCSS; quy tắc BEM kết hợp CSS Modules; khác biệt giữa <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">interface</code> và <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">type</code> trong TypeScript.</li>
+<li><strong>[Bloom 3/4 - Kỹ năng]:</strong> Áp dụng Mixin <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">respond-to</code> và TypeScript Interface để xây dựng component <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">EventCard</code> responsive, không có lỗi <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">implicit any</code>.</li>
+<li><strong>[Bloom 5/6 - Năng lực]:</strong> Viết Prompt theo cấu trúc Context → Requirement → Constraint, đánh giá và sửa code do AI sinh ra; phối hợp nhóm qua Git (branch, Pull Request, review chéo).</li>
+</ul>
+        </div>
+        <p><strong>📝 Đặt vấn đề &amp; dẫn nhập</strong></p>
+        <p>Hãy hình dung nhóm các bạn có bốn thành viên, mỗi người tự đặt màu chủ đạo cho phần mình làm. Người dùng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">#3b82f6</code>, người dùng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">blue</code>, người khác lại viết <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">.title</code> trùng tên với file CSS của bạn cùng nhóm. Đến ngày ghép code, giao diện &quot;Smart Event Hub&quot; trông như bốn website khác nhau, còn card sự kiện thì vỡ khung trên điện thoại. Nguyên nhân không nằm ở kỹ năng gõ code, mà ở chỗ nhóm chưa có một <strong>hệ thống biến dùng chung</strong>, chưa có <strong>kiểu dữ liệu thống nhất</strong> cho đối tượng sự kiện và chưa có <strong>quy tắc làm việc với AI</strong>.</p>
+<p>Vậy làm thế nào để AI sinh code nhanh mà vẫn đúng kiểu, đúng màu, đúng breakpoint của cả nhóm? Buổi học này trả lời câu hỏi đó bằng ba công cụ: SCSS có tổ chức, TypeScript chặt chẽ và một quy trình Vibe Coding có kiểm soát.</p>
+<blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #007bff; border-radius: 0 8px 8px 0; color: #212529;">
+<p>🧭 <strong>Trước giờ học (Flipped Classroom):</strong></p>
+<ul>
+<li>Xem video SCSS Flexbox/Grid Mixin và video TypeScript Interface vs Type do giảng viên đăng trên LMS.</li>
+<li>Cài đặt VS Code, Node.js (bản LTS), Git và Cursor AI hoặc extension GitHub Copilot.</li>
+<li>Đọc tài liệu Sass, TypeScript for React, Next.js CSS Modules (mục 5) và làm Quiz nhanh 5–10 câu trên LMS.</li>
+</ul>
+</blockquote>
+    </div>
+</details>
+
+<details style="border: 1px solid #fd7e14; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #fff5eb; color: #fd7e14; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>📚 2. Học liệu chính</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.1. SCSS nâng cao: Variables, Nesting, Mixins &amp; Breakpoints</h3>
+            <ul>
+<li><strong>Khái niệm:</strong> SCSS là cú pháp mở rộng của CSS, cho phép khai báo biến, lồng selector và đóng gói đoạn CSS lặp lại bằng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">@mixin</code>. Mã SCSS được biên dịch thành CSS thuần trước khi chạy trên trình duyệt.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li><strong>Variable System:</strong> gom màu sắc, spacing, font size, shadow vào một file <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">_variables.scss</code> (Design Token). Đổi một biến, toàn bộ dự án thay đổi theo.</li>
+<li><strong>Nesting:</strong> viết selector con bên trong selector cha, nhưng không nên lồng quá 3 cấp để tránh CSS khó ghi đè.</li>
+<li><strong>Mixin &amp; Breakpoints:</strong> <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">@mixin respond-to($breakpoint)</code> dùng map để quản lý responsive tập trung tại các mốc 640px, 768px, 1024px. Mixin viết theo hướng <strong>mobile-first</strong> (<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">min-width</code>): style gốc dành cho điện thoại, các mốc lớn hơn bổ sung dần.</li>
+<li>Dart Sass hiện khuyến nghị <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">@use</code> thay cho <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">@import</code> và <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">map.get</code> (module <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">sass:map</code>) thay cho hàm cũ <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">map-get</code>; hai cách cho kết quả như nhau.</li>
+</ul>
+</li>
+</ul>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// styles/_variables.scss – Design Token dùng chung cho cả nhóm
+$color-primary: #6366f1;
+$color-upcoming: #3b82f6;
+$color-ongoing: #22c55e;
+$color-ended: #9ca3af;
+$color-text: #1f2937;
+
+$space-sm: 8px;
+$space-md: 16px;
+$space-lg: 24px;
+
+$font-size-base: 16px;
+$font-size-lg: 20px;
+$radius-md: 12px;
+$shadow-card: 0 4px 16px rgba(0, 0, 0, 0.08);
+</code></pre>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// styles/_mixins.scss
+@use &#39;sass:map&#39;;
+
+$breakpoints: (&#39;mobile&#39;: 640px, &#39;tablet&#39;: 768px, &#39;desktop&#39;: 1024px);
+
+@mixin respond-to($breakpoint) {
+  $value: map.get($breakpoints, $breakpoint);
+  @if $value {
+    @media (min-width: $value) { @content; }
+  } @else {
+    @warn &quot;Breakpoint `#{$breakpoint}` không tồn tại.&quot;;
+  }
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin text-truncate($lines: 1) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+</code></pre>
+<ul>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #fd7e14; border-radius: 0 8px 8px 0; color: #212529;">
+<p>Khách hàng yêu cầu đổi màu thương hiệu Smart Event Hub từ tím sang cam ngay trước buổi demo. Nhờ <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">$color-primary</code> nằm trong <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">_variables.scss</code>, nhóm chỉ sửa đúng một dòng thay vì dò tìm hàng chục mã màu rải rác trong 20 file.</p>
+</blockquote>
+</li>
+</ul>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.2. BEM Naming Convention &amp; CSS Modules trong Next.js</h3>
+            <ul>
+<li><strong>Khái niệm:</strong> BEM (<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Block__Element--Modifier</code>) là quy tắc đặt tên class giúp đọc tên là hiểu cấu trúc. CSS Modules (<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">filename.module.scss</code>) tự động mã hóa (hash) tên class, ví dụ <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">.card</code> thành <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">EventCard_card__x7Ab2</code>, nên style chỉ có hiệu lực trong component import nó.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li>Block: <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">card</code>; Element: <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">card__title</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">card__image</code>; Modifier: <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">badge--upcoming</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">badge--ended</code>.</li>
+<li>Trong TSX, truy cập class có ký tự đặc biệt bằng ngoặc vuông: <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">styles[&#39;card__title&#39;]</code>.</li>
+<li>CSS Modules giải quyết <strong>Global CSS pollution</strong>: hai component cùng có class <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">.title</code> không còn ghi đè lẫn nhau, vì sau khi build chúng mang hai tên hash khác nhau.</li>
+<li>Next.js hỗ trợ SCSS sẵn, chỉ cần cài thêm gói <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">sass</code>: <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">npm install -D sass</code>.</li>
+</ul>
+</li>
+</ul>
+<blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #fd7e14; border-radius: 0 8px 8px 0; color: #212529;">
+<p><strong>Lưu ý:</strong> CSS Modules không thay thế BEM. Hash tránh xung đột giữa các file, còn BEM giúp đồng đội đọc hiểu quan hệ giữa các class trong cùng một file.</p>
+</blockquote>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.3. TypeScript căn bản cho React</h3>
+            <ul>
+<li><strong>Khái niệm:</strong> TypeScript bổ sung hệ thống kiểu tĩnh cho JavaScript. Lỗi sai kiểu được phát hiện ngay trong editor và lúc build, thay vì đợi người dùng gặp lỗi trên trình duyệt.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li><strong>Primitives &amp; Array/Object typing:</strong> <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">string</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">number</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">boolean</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">string[]</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">{ id: string; price: number }</code>.</li>
+<li><strong>Interface vs Type:</strong> <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">interface</code> mở rộng được qua <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">extends</code>, hợp với React Props và Data Model. <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">type</code> hợp với <strong>Union Types</strong> như <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&#39;UPCOMING&#39; | &#39;ONGOING&#39; | &#39;ENDED&#39;</code>.</li>
+<li><strong>Enum:</strong> cũng biểu diễn được trạng thái, nhưng sinh thêm mã JavaScript lúc chạy. Trong dự án Next.js, union type gọn hơn và tương thích JSON từ API tốt hơn.</li>
+<li><strong>Strict mode &amp; Generics:</strong> bật <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&quot;strict&quot;: true</code> trong <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">tsconfig.json</code> (mặc định khi tạo dự án Next.js), tuyệt đối tránh <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">any</code>. Dùng Generics <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&lt;T&gt;</code> cho hàm/component tái sử dụng.</li>
+</ul>
+</li>
+</ul>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// types/event.ts
+export type EventStatus = &#39;UPCOMING&#39; | &#39;ONGOING&#39; | &#39;ENDED&#39;;
+
+export interface EventItem {
+  id: string;
+  title: string;
+  imageUrl: string;
+  startDate: string; // ISO 8601, ví dụ &#39;2026-12-20T19:00:00+07:00&#39;
+  location: string;
+  price: number;
+  status: EventStatus;
+}
+
+export interface EventProps {
+  event: EventItem;
+}
+
+// Cách viết bằng enum (tham khảo) – sinh thêm object JS khi chạy
+export enum EventStatusEnum {
+  UPCOMING = &#39;UPCOMING&#39;,
+  ONGOING = &#39;ONGOING&#39;,
+  ENDED = &#39;ENDED&#39;,
+}
+
+// Generics: một hàm dùng được cho mọi kiểu phần tử
+export function getFirst&lt;T&gt;(items: T[]): T | undefined {
+  return items[0];
+}
+</code></pre>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.4. Ghép lại: Component EventCard responsive</h3>
+            <p>Hãy quan sát cách ba mảnh kiến thức trên kết hợp trong một component thật của dự án. Card hiển thị ảnh bìa, tiêu đề, ngày giờ, giá vé và badge trạng thái; lưới card hiển thị 1 cột trên mobile, 2 cột từ 640px và 3 cột từ 1024px.</p>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// components/EventCard/EventCard.tsx
+import Image from &#39;next/image&#39;;
+import type { ReactNode } from &#39;react&#39;;
+import type { EventProps, EventStatus } from &#39;@/types/event&#39;;
+import styles from &#39;./EventCard.module.scss&#39;;
+
+const STATUS_LABEL: Record&lt;EventStatus, string&gt; = {
+  UPCOMING: &#39;Sắp diễn ra&#39;,
+  ONGOING: &#39;Đang diễn ra&#39;,
+  ENDED: &#39;Đã kết thúc&#39;,
+};
+
+const formatPrice = (price: number): string =&gt;
+  price === 0
+    ? &#39;Miễn phí&#39;
+    : new Intl.NumberFormat(&#39;vi-VN&#39;, { style: &#39;currency&#39;, currency: &#39;VND&#39; }).format(price);
+
+export default function EventCard({ event }: EventProps) {
+  const { title, imageUrl, startDate, location, price, status } = event;
+
+  return (
+    &lt;article className={styles.card}&gt;
+      &lt;div className={styles[&#39;card__image&#39;]}&gt;
+        {/* fill + sizes: next/image tự chọn kích thước ảnh phù hợp từng màn hình */}
+        &lt;Image src={imageUrl} alt={title} fill sizes=&quot;(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw&quot; /&gt;
+        &lt;span className={`${styles.badge} ${styles[`badge--${status.toLowerCase()}`]}`}&gt;
+          {STATUS_LABEL[status]}
+        &lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div className={styles[&#39;card__body&#39;]}&gt;
+        &lt;h3 className={styles[&#39;card__title&#39;]}&gt;{title}&lt;/h3&gt;
+        &lt;p&gt;{new Date(startDate).toLocaleString(&#39;vi-VN&#39;)} · {location}&lt;/p&gt;
+        &lt;p className={styles[&#39;card__price&#39;]}&gt;{formatPrice(price)}&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/article&gt;
+  );
+}
+
+export function EventCardGrid({ children }: { children: ReactNode }) {
+  return &lt;div className={styles.grid}&gt;{children}&lt;/div&gt;;
+}
+</code></pre>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// components/EventCard/EventCard.module.scss
+@use &#39;../../styles/variables&#39; as *;
+@use &#39;../../styles/mixins&#39; as *;
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;            // Mobile (&lt; 640px): 1 cột
+  gap: $space-lg;
+  @include respond-to(&#39;mobile&#39;) { grid-template-columns: repeat(2, 1fr); }  // Tablet: 2 cột
+  @include respond-to(&#39;desktop&#39;) { grid-template-columns: repeat(3, 1fr); } // Desktop: 3 cột
+}
+
+.card {
+  border-radius: $radius-md;
+  box-shadow: $shadow-card;
+  overflow: hidden;
+  background: #fff;
+  transition: transform 0.2s ease;
+  &amp;:hover { transform: translateY(-4px); }
+
+  &amp;__image { position: relative; aspect-ratio: 16 / 9; img { object-fit: cover; } }
+  &amp;__body { padding: $space-md; color: $color-text; }
+  &amp;__title { font-size: $font-size-lg; @include text-truncate(2); }
+  &amp;__price { font-weight: 700; color: $color-primary; }
+}
+
+.badge {
+  position: absolute; top: $space-sm; left: $space-sm;
+  padding: 4px $space-sm; border-radius: 999px; color: #fff; font-size: 12px;
+  &amp;--upcoming { background: $color-upcoming; }
+  &amp;--ongoing { background: $color-ongoing; }
+  &amp;--ended { background: $color-ended; }
+}
+</code></pre>
+<blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #fd7e14; border-radius: 0 8px 8px 0; color: #212529;">
+<p><strong>Cấu hình ảnh từ xa:</strong> nếu <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">imageUrl</code> trỏ tới domain ngoài (CDN của Backend), cần khai báo domain đó trong <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">images.remotePatterns</code> của <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">next.config.ts</code>, nếu không <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">next/image</code> sẽ báo lỗi.</p>
+</blockquote>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.5. Vibe Coding – Prompt mẫu &amp; cách kiểm duyệt code AI</h3>
+            <ul>
+<li><strong>Khái niệm:</strong> Vibe Coding là cách làm việc trong đó <strong>AI sinh khung code (boilerplate)</strong>, còn <strong>sinh viên chịu trách nhiệm kiểm duyệt</strong> Type Safety, logic và refactor. Các bạn đóng vai Architect, AI là trợ lý gõ phím.</li>
+<li><strong>Thiết lập Rule cho AI:</strong> tạo file <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">.cursorrules</code> ở thư mục gốc (Cursor đọc tự động; với Copilot dùng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">.github/copilot-instructions.md</code>) để AI luôn tuân theo quy ước của nhóm:</li>
+</ul>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;"># .cursorrules – Smart Event Hub
+- Stack: Next.js 15 App Router, TypeScript strict, SCSS Modules.
+- Không dùng kiểu any. Interface/Type đặt trong thư mục types/.
+- Style: dùng biến trong styles/_variables.scss và mixin trong styles/_mixins.scss, không hard-code màu.
+- Đặt tên class theo BEM. Không viết inline style.
+- Ảnh dùng next/image, link nội bộ dùng next/link.
+- Comment tiếng Việt ngắn gọn ở các đoạn logic quan trọng.
+</code></pre>
+<ul>
+<li><strong>Prompt 3 bước – Context → Requirement → Constraint.</strong> Prompt hướng dẫn trong phần Guided:</li>
+</ul>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">[Context] Hãy đóng vai một Chuyên gia Front-End Developer kinh nghiệm với Next.js và TypeScript.
+Hãy viết cho tôi một Component React tên là EventCard.tsx kèm theo file SCSS Module EventCard.module.scss.
+
+[Requirement]
+1. TypeScript Interface EventProps:
+   - id: string
+   - title: string
+   - imageUrl: string
+   - startDate: string
+   - location: string
+   - price: number
+   - status: &#39;UPCOMING&#39; | &#39;ONGOING&#39; | &#39;ENDED&#39;
+2. SCSS Module:
+   - Sử dụng CSS Grid/Flexbox.
+   - Tạo mixin responsive: Mobile (&lt; 640px), Tablet (640px - 1024px), Desktop (&gt; 1024px).
+   - Màu badge status: UPCOMING (Xanh dương), ONGOING (Xanh lá), ENDED (Xám).
+
+[Constraint]
+- Sử dụng Next.js Image component (next/image).
+- Code rõ ràng, ngắn gọn, có comment giải thích các phần quan trọng.
+</code></pre>
+<ul>
+<li><strong>Checklist kiểm duyệt code AI trước khi commit:</strong><ul>
+<li>Có kiểu <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">any</code> hoặc thiếu kiểu cho props không? Chạy <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">npx tsc --noEmit</code> để chắc chắn.</li>
+<li>Union type có đủ 3 trạng thái, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Record&lt;EventStatus, string&gt;</code> có thiếu key nào không?</li>
+<li>AI có hard-code màu/kích thước thay vì dùng biến SCSS không?</li>
+<li>Dùng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">next/image</code> đúng cách (<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">alt</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">fill</code> + <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">sizes</code> hoặc <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">width</code>/<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">height</code>)?</li>
+<li>Thu nhỏ trình duyệt qua 375px, 768px, 1440px: lưới có đổi 1–2–3 cột, có tràn ngang không?</li>
+</ul>
+</li>
+</ul>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">📌 Tóm tắt &amp; điểm cần nhớ</h3>
+            <ul>
+<li>🔹 <strong>Design Token trước, component sau:</strong> màu, spacing, typography, shadow nằm trong <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">_variables.scss</code>; responsive nằm trong <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">@mixin respond-to</code>.</li>
+<li>🔹 <strong>CSS Modules + BEM:</strong> hash tên class chống xung đột toàn cục, BEM giúp đọc hiểu cấu trúc.</li>
+<li>🔹 <strong><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">interface</code> cho Props/Data Model, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">type</code> cho Union:</strong> <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">type EventStatus = &#39;UPCOMING&#39; | &#39;ONGOING&#39; | &#39;ENDED&#39;</code>.</li>
+<li>🔹 <strong>Strict mode, không <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">any</code>:</strong> lỗi kiểu phải được bắt lúc viết code, không phải lúc demo.</li>
+<li>🔹 <strong>Prompt 3 bước + <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">.cursorrules</code>:</strong> AI sinh khung, người học kiểm duyệt và chịu trách nhiệm về code cuối cùng.</li>
+</ul>
+        </div>
+    </div>
+</details>
+
+<details style="border: 1px solid #28a745; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #eafaf1; color: #28a745; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>💡 3. Hoạt động &amp; Thực hành trên lớp</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <p style="margin-top: 0;">Thực hiện các hoạt động sau để vận dụng kiến thức của buổi học:</p>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #28a745;">🧑‍💻 Thực hành trên lớp</h3>
+            <table style="width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 14px;">
+<thead>
+<tr>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Phần</th>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Thời lượng</th>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Nhiệm vụ</th>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Output mong muốn</th>
+</tr>
+</thead>
+<tbody><tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Guided Practice</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">45 phút</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Dùng prompt mẫu sinh <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">EventCard.tsx</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">EventCard.module.scss</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">types/event.ts</code>; sửa lỗi type mismatch do AI gợi ý sai</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Card hiển thị đúng dữ liệu từ Props, không lỗi TS, co giãn không vỡ</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Unguided Practice</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">45 phút</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Tự xây <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">HeaderNavigationBar.tsx</code> với TypeScript strict và SCSS Module</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Header sticky, link hover mượt, Interface tách ra <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">types/</code></td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Team Challenge</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">60 phút</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Khởi tạo Git repo nhóm, Design Token System, Mixin dùng chung, PR &amp; review chéo</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">1 repo chuẩn cấu trúc, biến SCSS được import thành công, PR merge thành công</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Tổng kết</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">15 phút</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Giải đáp, nhận xét PR tiêu biểu, giao BTVN</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Danh sách lỗi thường gặp, BTVN đã rõ</td>
+</tr>
+</tbody></table>
+<p><strong>Guided (45&#39;):</strong> giảng viên làm mẫu từng bước theo prompt ở mục 2.5. Sau khi AI trả kết quả, cả lớp đối chiếu với code mục 2.4, chỉ ra chỗ AI dùng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">string</code> thay vì union type hoặc quên <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">sizes</code> cho ảnh.</p>
+<p><strong>Unguided (45&#39;):</strong> tự thiết kế <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">HeaderNavigationBar.tsx</code> gồm Logo &quot;Smart Event Hub&quot;, menu (Trang chủ, Sự kiện, Bảng tin, Liên hệ), khung tìm kiếm nhanh, nút Đăng nhập/Đăng ký. Tạo Interface <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">NavMenuItem</code> cho danh sách menu, hiệu ứng <strong>sticky header</strong> (<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">position: sticky; top: 0</code>) và hover animation bằng SCSS. Prompt gợi ý:</p>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">Tạo giúp tôi Component HeaderNavigationBar.tsx bằng Next.js App Router và TypeScript.
+- Yêu cầu UI: Gồm Logo bên trái, Search Input ở giữa, Menu điều hướng và nút Auth bên phải.
+- Yêu cầu TypeScript: Định nghĩa interface NavItem { label: string; href: string; isExternal?: boolean }.
+- Yêu cầu SCSS Module: Viết hiệu ứng Sticky Navigation khi scroll và hiệu ứng Hover underline mượt mà cho Menu Link.
+- Viết theo chuẩn Clean Code, không xài any.
+</code></pre>
+<p><strong>Team Challenge (60&#39;):</strong> nhóm 3–4 sinh viên khởi tạo repo chung, thiết lập Branch Strategy <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">main</code> – <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">dev</code> – <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">feature/&lt;ten&gt;</code>. Phân công dựng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">styles/_variables.scss</code> (Color Palette, Typography, Spacing, Shadows) và <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">styles/_mixins.scss</code> (Responsive Breakpoints, Flex Alignment, Text Truncate) bằng prompt AI. Mỗi thành viên push lên nhánh riêng, tạo Pull Request và review chéo để không xảy ra conflict.</p>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">git checkout -b dev &amp;&amp; git push -u origin dev
+git checkout -b feature/an-design-tokens
+git add styles/ &amp;&amp; git commit -m &quot;feat(styles): add design tokens and shared mixins&quot;
+git push -u origin feature/an-design-tokens   # sau đó mở PR vào nhánh dev
+</code></pre>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #28a745;">❓ Kiểm tra nhanh (Self-Assessment)</h3>
+            <p><strong>Câu 1:</strong> Trường hợp nào nên dùng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">type</code> thay vì <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">interface</code> trong TypeScript?</p>
+<ul>
+<li>A. Khai báo Props cho component cần mở rộng bằng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">extends</code></li>
+<li>B. Khai báo tập giá trị trạng thái <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&#39;UPCOMING&#39; | &#39;ONGOING&#39; | &#39;ENDED&#39;</code></li>
+<li>C. Khai báo class có constructor</li>
+<li>D. Khai báo biến môi trường trong <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">.env</code></li>
+</ul>
+<details style="margin: 6px 0 14px 0; padding: 8px 12px; background-color: #ffffff; border: 1px dashed #adb5bd; border-radius: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #495057;">👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> B<br>
+<b>Giải thích:</b> Union type chỉ khai báo được bằng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">type</code>. <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">interface</code> phù hợp cho Props và Data Model nhờ khả năng mở rộng qua <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">extends</code>.
+</details>
+
+<p><strong>Câu 2:</strong> Vì sao CSS Modules giải quyết được vấn đề Global CSS pollution?</p>
+<ul>
+<li>A. Vì nó tự động xóa các class không sử dụng</li>
+<li>B. Vì nó bắt buộc dùng inline style</li>
+<li>C. Vì nó mã hóa (hash) tên class theo từng file, tạo scope cục bộ</li>
+<li>D. Vì nó chuyển toàn bộ CSS sang JavaScript lúc chạy</li>
+</ul>
+<details style="margin: 6px 0 14px 0; padding: 8px 12px; background-color: #ffffff; border: 1px dashed #adb5bd; border-radius: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #495057;">👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> C<br>
+<b>Giải thích:</b> Class <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">.title</code> trong <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">EventCard.module.scss</code> được đổi thành tên dạng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">EventCard_title__hash</code>, nên không đụng với <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">.title</code> của file khác.
+</details>
+
+<p><strong>Câu 3:</strong> Với mixin <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">respond-to</code> viết theo <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">min-width</code> và map <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">(&#39;mobile&#39;: 640px, &#39;tablet&#39;: 768px, &#39;desktop&#39;: 1024px)</code>, đoạn <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">@include respond-to(&#39;desktop&#39;) { grid-template-columns: repeat(3, 1fr); }</code> có hiệu lực khi nào?</p>
+<ul>
+<li>A. Màn hình rộng từ 1024px trở lên</li>
+<li>B. Màn hình rộng dưới 1024px</li>
+<li>C. Chỉ khi màn hình đúng bằng 1024px</li>
+<li>D. Màn hình từ 640px đến 768px</li>
+</ul>
+<details style="margin: 6px 0 14px 0; padding: 8px 12px; background-color: #ffffff; border: 1px dashed #adb5bd; border-radius: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #495057;">👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> A<br>
+<b>Giải thích:</b> Mixin sinh <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">@media (min-width: 1024px)</code>, tức áp dụng từ 1024px trở lên. Đây là cách viết mobile-first.
+</details>
+
+<p><strong>Câu 4:</strong> Trong prompt 3 bước, câu &quot;Sử dụng next/image, không dùng type any&quot; thuộc thành phần nào?</p>
+<ul>
+<li>A. Context</li>
+<li>B. Requirement</li>
+<li>C. Output format</li>
+<li>D. Constraint</li>
+</ul>
+<details style="margin: 6px 0 14px 0; padding: 8px 12px; background-color: #ffffff; border: 1px dashed #adb5bd; border-radius: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #495057;">👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> D<br>
+<b>Giải thích:</b> Constraint là các ràng buộc kỹ thuật mà code sinh ra bắt buộc tuân theo, giúp AI không "sáng tạo" ngoài quy ước của nhóm.
+</details>
+
+<blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #28a745; border-radius: 0 8px 8px 0; color: #212529;">
+<p>Bộ 10+ câu đầy đủ: Quiz Bài 01 trên LMS</p>
+</blockquote>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #28a745;">💬 Thảo luận &amp; 📤 Nộp bài</h3>
+            <ul>
+<li><strong>Chủ đề thảo luận Diễn đàn (Forum Discussion):</strong> Khi dùng AI sinh <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">EventCard</code>, bạn đã gặp lỗi gì (sai kiểu, hard-code màu, quên responsive, dùng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&lt;img&gt;</code> thay vì <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">next/image</code>…)? Hãy dán đoạn code lỗi, giải thích vì sao nó sai và câu prompt bạn đã sửa để AI trả kết quả tốt hơn. Bình luận cho ít nhất 2 bài của bạn khác.</li>
+<li><strong>Yêu cầu nộp bài (Bài tập về nhà):</strong> Phát triển độc lập 3 component tĩnh cho Smart Event Hub:<ol>
+<li><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Footer.tsx</code>: thông tin bản quyền, liên kết mạng xã hội, form Đăng ký nhận bản tin (Newsletter).</li>
+<li><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">EventCategoryBadge.tsx</code>: badge thể loại sự kiện (Âm nhạc, Công nghệ, Thể thao, Workshop) kèm icon tương ứng.</li>
+<li><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">SearchBar.tsx</code>: thanh tìm kiếm sự kiện nâng cao kèm dropdown chọn địa điểm (Hà Nội, TP.HCM, Đà Nẵng).</li>
+</ol>
+<ul>
+<li><strong>Output:</strong> mỗi component có Type Safety (Interface trong <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">types/</code>) và SCSS Module riêng; không có <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">any</code>.</li>
+<li><strong>Hạn nộp:</strong> trước buổi học tiếp theo, dưới dạng Pull Request cá nhân vào nhánh <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">dev</code> của nhóm; nộp link PR lên LMS.</li>
+<li><strong>Quy tắc đặt tên:</strong> nhánh <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">feature/&lt;ho-ten-khong-dau&gt;-bai01</code>, tiêu đề PR <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">feat(ui): add Footer, EventCategoryBadge, SearchBar</code>.</li>
+</ul>
+</li>
+</ul>
+        </div>
+    </div>
+</details>
+
+<details style="border: 1px solid #6f42c1; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #f3e5f5; color: #6f42c1; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>🆘 4. Góc trợ giúp và mở rộng</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <ul>
+<li><strong>📚 Tài liệu đọc &amp; tham khảo:</strong><ul>
+<li>Sass Official Documentation: <a href="https://sass-lang.com/documentation/" target="_blank" rel="noopener noreferrer" style="color: #6f42c1;">https://sass-lang.com/documentation/</a></li>
+<li>TypeScript Handbook for React: <a href="https://www.typescriptlang.org/docs/handbook/react.html" target="_blank" rel="noopener noreferrer" style="color: #6f42c1;">https://www.typescriptlang.org/docs/handbook/react.html</a></li>
+<li>Next.js CSS Modules: <a href="https://nextjs.org/docs/app/building-your-application/styling/css-modules" target="_blank" rel="noopener noreferrer" style="color: #6f42c1;">https://nextjs.org/docs/app/building-your-application/styling/css-modules</a></li>
+<li>BEM Methodology: <a href="https://getbem.com/" target="_blank" rel="noopener noreferrer" style="color: #6f42c1;">https://getbem.com/</a></li>
+<li><strong>Câu hỏi tự kiểm tra khi đọc:</strong> Khác biệt cốt lõi giữa <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">interface</code> và <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">type</code> là gì, khi nào dùng loại nào? Tại sao CSS Modules giải quyết được xung đột CSS toàn cục?</li>
+</ul>
+</li>
+</ul>
+        <p><strong>Hỗ trợ kỹ thuật:</strong> Gặp lỗi cài đặt (Node.js, Git, Next.js) hoặc lỗi build, hãy đăng câu hỏi lên diễn đàn môn học kèm ảnh chụp lỗi, lệnh đã chạy và link repository. Giảng viên và bạn học sẽ phản hồi trước buổi học tiếp theo.</p>
+        <p><strong>Nguyên tắc Vibe Coding:</strong> AI sinh khung code, các bạn chịu trách nhiệm đọc hiểu, kiểm tra kiểu dữ liệu và sửa lỗi. Mọi đoạn code nộp lên đều có thể được hỏi phản biện.</p>
+    </div>
+</details>

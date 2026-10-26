@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 02 - Tư duy Wireframe/Modeling UI &amp; chuyển Figma thành Next.js Component | Lập trình Front-End - Khoa CNTT - Đại học Lạc Hồng</title>
+  <meta name="description" content="Bài 02 - Tư duy Wireframe/Modeling UI &amp; chuyển Figma thành Next.js Component - Lập trình Front-End (Next.js, TypeScript &amp; Vibe Coding). Thời lượng: 5 tiết (225 phút) · Hình thức: Lớp học đảo ngược · Chuẩn đầu ra: PI 1.4 (CLO1), PI 2.3 (CLO2)Dự án xuyên suốt: Smart Event Hub – Mô hình hóa Wireframe 5">
+
+  <!-- Tailwind CSS CDN (kèm plugin typography cho nội dung Markdown) -->
+  <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6.4.0 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Highlight.js 11.9.0 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            asu: { maroon: '#8C1D40', gold: '#FFC627', dark: '#5C142B', light: '#FAEDF0' },
+            lhu: { blue: '#013D88', sky: '#007BFF', dark: '#01295C', light: '#EEF5FC' },
+            fe: { indigo: '#6366F1', dark: '#312E81', light: '#EEF2FF' }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .lesson h2, .lesson h3, .lesson h4 { scroll-margin-top: 90px; }
+    .lesson h3 { padding-bottom: .4rem; border-bottom: 2px solid #EEF2FF; }
+    .lesson blockquote { border-left: 4px solid #6366F1; background: #F5F7FF; border-radius: 0 12px 12px 0; padding: .6rem 1rem; font-style: normal; color: #1e293b; }
+    .lesson blockquote p:first-of-type::before, .lesson blockquote p:last-of-type::after { content: none; }
+    .lesson pre { border-radius: 12px; padding: 0; background: #0d1117; }
+    .lesson pre code.hljs { border-radius: 12px; padding: 1rem 1.1rem; font-size: 13px; line-height: 1.6; }
+    .lesson :not(pre) > code { background: #EEF2FF; color: #3730A3; padding: .1rem .35rem; border-radius: 6px; font-weight: 500; }
+    .lesson :not(pre) > code::before, .lesson :not(pre) > code::after { content: none; }
+    .lesson table { display: block; overflow-x: auto; font-size: 14px; }
+    .lesson thead th { background: #F1F5F9; }
+    .lesson th, .lesson td { border: 1px solid #E2E8F0; padding: .5rem .7rem !important; vertical-align: top; }
+    .lesson details { border: 1px solid #C7D2FE; border-radius: 10px; padding: .6rem .9rem; margin: .5rem 0 1.2rem; background: #FAFAFF; }
+    .lesson details summary { cursor: pointer; font-weight: 600; color: #4338CA; }
+    .lesson details[open] summary { margin-bottom: .4rem; }
+    .lesson hr { border-color: #E2E8F0; margin: 2rem 0; }
+    @media print {
+      header, footer, .no-print { display: none !important; }
+      details { break-inside: avoid; margin-bottom: 20px; }
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans antialiased selection:bg-asu-gold selection:text-slate-900 min-h-screen flex flex-col">
+
+  <!-- TOP BAR -->
+  <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800 no-print">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+      <div class="flex items-center gap-2">
+        <span class="text-asu-gold font-semibold"><i class="fa-solid fa-certificate mr-1"></i> CHUẨN KIỂM ĐỊNH ABET (USA)</span>
+        <span class="text-slate-600 hidden sm:inline">•</span>
+        <span class="hidden sm:inline">Lớp học đảo ngược • Vibe Coding</span>
+      </div>
+      <div class="flex items-center gap-4 text-xs font-mono">
+        <span>Thời lượng: <strong class="text-white">60 tiết (12 buổi)</strong></span>
+        <span>LT/TH: <strong class="text-asu-gold">30% / 70%</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="sticky top-0 z-40 bg-white shadow-sm border-b border-slate-200 no-print">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2.5 text-slate-800 hover:text-lhu-blue transition-colors">
+        <img src="LHU_ASU_VI_Small_Ngang.png" alt="Logo LHU" class="h-8 w-auto">
+        <div class="border-l border-slate-300 pl-2.5">
+          <div class="text-[11px] font-bold text-slate-500 uppercase">Khoa CNTT - LHU</div>
+          <div class="text-xs font-extrabold text-lhu-blue">LẬP TRÌNH FRONT-END</div>
+        </div>
+      </a>
+      <div class="flex items-center gap-3 text-xs">
+        <a href="index.html" class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-arrow-left"></i>
+          <span class="hidden sm:inline">Về Landing Page</span>
+        </a>
+        <button onclick="window.print()" class="hidden sm:flex px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-all items-center gap-1.5" title="In hoặc lưu file PDF">
+          <i class="fa-solid fa-print"></i>
+          <span>In / PDF</span>
+        </button>
+        <a href="https://learn.lhu.edu.vn" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-lhu-blue hover:bg-lhu-dark text-white font-bold rounded-xl shadow transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-graduation-cap text-asu-gold"></i>
+          <span>Vào lớp LMS</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="flex-grow max-w-5xl w-full mx-auto px-4 sm:px-6 py-8">
+
+    <!-- Title Card -->
+    <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 mb-8">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-5">
+        <div>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-fe-light text-fe-dark font-bold text-xs uppercase tracking-wider mb-2">
+            <i class="fa-solid fa-code"></i> CHƯƠNG 1: NỀN TẢNG &amp; MÔ HÌNH HÓA GIAO DIỆN
+          </span>
+          <h1 class="text-2xl sm:text-3xl font-black text-slate-900 leading-tight">
+            Bài 02 - Tư duy Wireframe/Modeling UI &amp; chuyển Figma thành Next.js Component
+          </h1>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1 font-mono">
+            Học phần: Lập trình Front-End (Next.js, TypeScript & Vibe Coding) • Khoa CNTT - Đại học Lạc Hồng
+          </p>
+        </div>
+        <div class="flex-shrink-0 flex sm:flex-col items-center sm:items-end justify-between gap-1 text-xs">
+          <span class="px-3 py-1.5 bg-emerald-50 text-emerald-700 font-bold rounded-lg border border-emerald-200">
+            <i class="fa-solid fa-check-circle mr-1"></i> Lưu hành nội bộ 2026
+          </span>
+          <span class="text-slate-400 text-[11px]">Định dạng LMS Lecture</span>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between pt-4 text-xs no-print">
+        <span class="text-slate-500">
+          <i class="fa-solid fa-circle-info text-blue-500 mr-1"></i>
+          Bấm vào các khối thu gọn để xem đáp án hoặc chi tiết.
+        </span>
+        <div class="flex items-center gap-2">
+          <button onclick="toggleAllDetails(true)" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg transition-colors">Mở tất cả</button>
+          <button onclick="toggleAllDetails(false)" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg transition-colors">Thu gọn</button>
+        </div>
+      </div>
+      <nav class="mt-5 pt-4 border-t border-slate-100 no-print">
+        <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">Nội dung trang</div>
+        <div class="flex flex-wrap gap-2">
+          <a href="#1-dat-van-de-dan-nhap-introduction-hook" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">📝 1. ĐẶT VẤN ĐỀ &amp; DẪN NHẬP (Introduction / Hook)</a>
+          <a href="#2-noi-dung-cot-loi-core-content" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">📖 2. NỘI DUNG CỐT LÕI (Core Content)</a>
+          <a href="#3-tom-tat-diem-can-nho-key-takeaways" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">📌 3. TÓM TẮT &amp; ĐIỂM CẦN NHỚ (Key Takeaways)</a>
+          <a href="#4-hoat-dong-kiem-tra-nhanh-self-assessment-quiz" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">❓ 4. HOẠT ĐỘNG KIỂM TRA NHANH (Self-Assessment / Quiz)</a>
+          <a href="#5-nhiem-vu-hoc-tap-thao-luan-lms-discussion-assignment" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">💬 5. NHIỆM VỤ HỌC TẬP &amp; THẢO LUẬN (LMS Discussion / Assignment)</a>
+        </div>
+      </nav>
+    </div>
+
+    <!-- Content -->
+    <article class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 lesson prose prose-slate max-w-none prose-headings:font-extrabold prose-h3:text-lhu-dark prose-h4:text-fe-dark prose-a:text-lhu-blue">
+<blockquote>
+<p><strong>Thời lượng:</strong> 5 tiết (225 phút) · <strong>Hình thức:</strong> Lớp học đảo ngược · <strong>Chuẩn đầu ra:</strong> PI 1.4 (CLO1), PI 2.3 (CLO2)<br><strong>Dự án xuyên suốt:</strong> Smart Event Hub – Mô hình hóa Wireframe 5 màn hình chính và chuyển hóa sang React Component bằng AI.</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>🎯 <strong>MỤC TIÊU BÀI HỌC (Learning Objectives)</strong><br>Sau khi hoàn thành bài học này, người học có thể:</p>
+<ul>
+<li><strong>[Bloom 1/2 - Kiến thức]:</strong> Trình bày được quy tắc phân rã giao diện thành các khối Layout và năm cấp độ của Atomic Design (Atoms → Molecules → Organisms → Templates → Pages).</li>
+<li><strong>[Bloom 3/4 - Kỹ năng]:</strong> Phân tích một bản Wireframe thành cây DOM Semantic và cây component; dùng Vision AI (v0.dev, Claude, Cursor) sinh khung TSX/SCSS từ ảnh Wireframe.</li>
+<li><strong>[Bloom 5/6 - Năng lực]:</strong> Đánh giá và refactor code AI sinh ra (tách component, bỏ inline style, thay magic number bằng biến); cùng nhóm hoàn thiện bộ Wireframe 5 màn hình làm cơ sở cho PI 1.4.</li>
+</ul>
+</blockquote>
+<hr>
+<h3 id="1-dat-van-de-dan-nhap-introduction-hook">📝 1. ĐẶT VẤN ĐỀ &amp; DẪN NHẬP (Introduction / Hook)</h3>
+<p>Một bạn trong nhóm chụp ảnh màn hình Trang chủ của một website bán vé nổi tiếng, dán vào AI và nhận về 400 dòng TSX trong một file duy nhất. Trang chạy được, nhìn khá giống. Nhưng tuần sau, khi cần dùng lại khung tìm kiếm ở trang Danh sách sự kiện, cả nhóm không tách được, vì nút bấm, ô nhập và danh sách card dính chặt vào nhau, màu sắc thì viết thẳng <code>style={{ color: &#39;#ff6600&#39; }}</code> ở khắp nơi.</p>
+<p>Câu hỏi đặt ra cho buổi học: <strong>trước khi đưa ảnh cho AI, chúng ta cần &quot;nhìn&quot; giao diện như thế nào để code sinh ra có thể tái sử dụng?</strong> Câu trả lời nằm ở tư duy Wireframe và mô hình hóa UI theo Atomic Design.</p>
+<blockquote>
+<p>🧭 <strong>Trước giờ học (Flipped Classroom):</strong></p>
+<ul>
+<li>Xem video Nguyên tắc UX Wireframing và Cấu trúc UI Layout (Header, Content, Sidebar, Footer).</li>
+<li>Đọc Atomic Design Methodology (Brad Frost) và tài liệu v0.dev ở mục 5.</li>
+<li>Tạo tài khoản Figma (gói miễn phí) và v0.dev; làm Quiz nhanh 5–10 câu trên LMS.</li>
+</ul>
+</blockquote>
+<hr>
+<h3 id="2-noi-dung-cot-loi-core-content">📖 2. NỘI DUNG CỐT LÕI (Core Content)</h3>
+<h4 id="2-1-tu-duy-wireframing-phan-ra-giao-dien-thanh-khoi-layout">2.1. Tư duy Wireframing: phân rã giao diện thành khối Layout</h4>
+<ul>
+<li><strong>Khái niệm:</strong> Wireframe là bản phác thảo trắng đen thể hiện <strong>bố cục và thứ tự thông tin</strong>, chưa quan tâm màu sắc hay hình ảnh thật. Mục tiêu là trả lời &quot;cái gì nằm ở đâu&quot; trước khi hỏi &quot;trông nó ra sao&quot;.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li>Quy tắc phân rã từ ngoài vào trong: <strong>Header → Hero Section → Main Content → Sidebar → Footer</strong>, sau đó mới chia nhỏ từng khối.</li>
+<li>Mỗi khối Layout được ánh xạ sang một thẻ HTML Semantic: <code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;aside&gt;</code>, <code>&lt;footer&gt;</code>. Làm bước này <strong>trước khi gõ code</strong> giúp trang dễ đọc với trình đọc màn hình và tốt cho SEO.</li>
+<li>Ghi chú lên Wireframe: tỉ lệ cột (70/30), phần tử cố định khi cuộn (sticky), hành vi trên mobile (cột phải xuống dưới).</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-text">Wireframe &quot;Chi tiết Sự kiện&quot; → cây DOM Semantic
+&lt;header&gt;                    Logo · Menu · Nút Đăng nhập
+&lt;main&gt;
+  &lt;section&gt; Hero            Banner 16:9 + Tiêu đề sự kiện
+  &lt;div&gt; 2 cột
+    &lt;article&gt; 70%           Thông tin BTC · Diễn giả · Nội dung chi tiết · Sơ đồ vé
+    &lt;aside&gt; 30% (sticky)    Giá vé · Hạn đặt · Nút &quot;Đặt vé ngay&quot;
+&lt;footer&gt;                    Bản quyền · Mạng xã hội
+</code></pre>
+<ul>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote>
+<p>Khi phân tích trang Chi tiết sự kiện, nhóm nhận ra khung đặt vé bên phải cũng xuất hiện ở trang Giỏ hàng. Ghi chú điều này ngay trên Wireframe giúp nhóm quyết định tách nó thành component <code>BookingSidebar</code> từ đầu, thay vì viết hai lần.</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="2-2-mo-hinh-hoa-ui-theo-atomic-design">2.2. Mô hình hóa UI theo Atomic Design</h4>
+<ul>
+<li><strong>Khái niệm:</strong> Atomic Design (Brad Frost) chia giao diện thành 5 cấp độ, từ nhỏ đến lớn. Cấp lớn được ghép từ cấp nhỏ hơn, giống nguyên tử ghép thành phân tử.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li><strong>Atoms:</strong> phần tử nhỏ nhất, không chia được nữa: <code>Button</code>, <code>Input</code>, <code>Badge</code>.</li>
+<li><strong>Molecules:</strong> nhóm atom có một chức năng: <code>SearchBar</code> = <code>Input</code> + <code>Button</code>; <code>EventCard</code>.</li>
+<li><strong>Organisms:</strong> khối giao diện hoàn chỉnh: <code>Header</code> = Logo + Nav + <code>SearchBar</code>; <code>EventGrid</code>.</li>
+<li><strong>Templates:</strong> khung bố cục trang, chưa có dữ liệu thật. <strong>Pages:</strong> template đổ dữ liệu cụ thể.</li>
+<li>Lợi ích tái sử dụng: sửa <code>Button</code> một lần, mọi <code>SearchBar</code>, <code>Header</code>, <code>BookingSidebar</code> dùng nó đều được cập nhật.</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-text">components/
+  ├── ui/          (Atoms: Button.tsx, Badge.tsx, Input.tsx)
+  ├── molecules/   (SearchBar.tsx, EventCard.tsx)
+  └── organisms/   (Header.tsx, EventGrid.tsx, HeroBanner.tsx)
+</code></pre>
+<pre><code class="language-tsx">// components/molecules/SearchBar.tsx – Molecule ghép từ 2 Atom
+import Button from &#39;@/components/ui/Button&#39;;
+import Input from &#39;@/components/ui/Input&#39;;
+import styles from &#39;./SearchBar.module.scss&#39;;
+
+interface SearchBarProps {
+  placeholder?: string;
+}
+
+export default function SearchBar({ placeholder = &#39;Tìm sự kiện, nghệ sĩ, địa điểm...&#39; }: SearchBarProps) {
+  return (
+    &lt;form role=&quot;search&quot; action=&quot;/events/search&quot; className={styles.searchBar}&gt;
+      &lt;Input name=&quot;q&quot; placeholder={placeholder} aria-label=&quot;Từ khóa tìm kiếm&quot; /&gt;
+      &lt;Button type=&quot;submit&quot;&gt;Tìm kiếm&lt;/Button&gt;
+    &lt;/form&gt;
+  );
+}
+</code></pre>
+<blockquote>
+<p><strong>Gợi ý:</strong> <code>Button</code> và <code>Input</code> nên nhận toàn bộ thuộc tính HTML gốc bằng cách mở rộng <code>ButtonHTMLAttributes&lt;HTMLButtonElement&gt;</code> và <code>InputHTMLAttributes&lt;HTMLInputElement&gt;</code>. Kỹ thuật này sẽ được trình bày kỹ ở Bài 04.</p>
+</blockquote>
+<h4 id="2-3-workflow-chuyen-wireframe-figma-sang-next-js-bang-vision-ai">2.3. Workflow chuyển Wireframe/Figma sang Next.js bằng Vision AI</h4>
+<ul>
+<li><p><strong>Khái niệm:</strong> Multimodal AI Prompting là gửi <strong>ảnh</strong> (Wireframe, ảnh chụp Figma, SVG export) kèm <strong>văn bản mô tả</strong> cho các mô hình có khả năng đọc hình như Claude, v0.dev hoặc Cursor để khởi tạo mã React TSX.</p>
+</li>
+<li><p><strong>Chi tiết kỹ thuật / Quy trình 5 bước:</strong></p>
+<ol>
+<li><strong>Chuẩn bị ảnh:</strong> export frame Figma (PNG 2x) hoặc copy SVG; chụp ảnh giấy phải rõ nét, thẳng góc.</li>
+<li><strong>Viết prompt có cấu trúc:</strong> nêu vai trò, tên các component cần tách, công nghệ style, yêu cầu Semantic và Mock Data.</li>
+<li><strong>Sinh code:</strong> v0.dev cho phép xem trước giao diện ngay; Cursor/Claude phù hợp khi muốn sinh thẳng vào dự án.</li>
+<li><strong>Đối chiếu:</strong> đặt ảnh Wireframe cạnh trình duyệt, đánh giá độ giống (mục tiêu &gt;85%).</li>
+<li><strong>Refactor:</strong> tách component, đổi tên biến, thay inline style và magic number (mục 2.4).</li>
+</ol>
+</li>
+<li><p><strong>💡 Ví dụ thực tế (Real-world Example):</strong></p>
+<blockquote>
+<p>v0.dev thường sinh code bằng Tailwind và các component của shadcn/ui. Nếu nhóm đã chọn SCSS Module, hãy ghi rõ ràng buộc &quot;chỉ dùng SCSS Module, không dùng Tailwind&quot; trong prompt, nếu không các bạn sẽ mất thời gian chuyển đổi lại toàn bộ class.</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="2-4-clean-up-code-ai-bo-inline-style-va-magic-number">2.4. Clean-up code AI: bỏ inline style và magic number</h4>
+<ul>
+<li><strong>Khái niệm:</strong> Code AI sinh từ ảnh thường &quot;đúng hình nhưng sai cấu trúc&quot;: một file quá dài, tên biến chung chung (<code>data</code>, <code>item1</code>), style viết trực tiếp, số đo cố định khắp nơi.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li>Chuyển <code>style={{ ... }}</code> sang class trong SCSS Module.</li>
+<li>Thay magic number (<code>#ff6600</code>, <code>24px</code>, <code>1140px</code>) bằng biến trong <code>_variables.scss</code> của Bài 01.</li>
+<li>Tách component khi file vượt khoảng 150 dòng hoặc có khối lặp lại.</li>
+<li>Đổi tên theo nghiệp vụ: <code>data</code> → <code>featuredEvents</code>, <code>Box1</code> → <code>HeroBanner</code>.</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-tsx">// ❌ Trước: code AI sinh ra
+&lt;div style={{ display: &#39;flex&#39;, gap: 24, background: &#39;#ff6600&#39;, padding: &#39;12px 32px&#39; }}&gt;
+  &lt;button style={{ color: &#39;#fff&#39; }}&gt;Đặt vé ngay&lt;/button&gt;
+&lt;/div&gt;
+
+// ✅ Sau: dùng SCSS Module + biến dùng chung
+&lt;div className={styles.bookingBar}&gt;
+  &lt;Button variant=&quot;primary&quot;&gt;Đặt vé ngay&lt;/Button&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-scss">// BookingSidebar.module.scss – bố cục 70/30 với khung đặt vé sticky
+@use &#39;../../styles/variables&#39; as *;
+@use &#39;../../styles/mixins&#39; as *;
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr;          // Mobile: khung đặt vé nằm dưới nội dung
+  gap: $space-lg;
+  @include respond-to(&#39;desktop&#39;) { grid-template-columns: 7fr 3fr; }
+}
+
+.sidebar {
+  align-self: start;                   // cần thiết để sticky hoạt động trong grid
+  @include respond-to(&#39;desktop&#39;) { position: sticky; top: 88px; } // chừa chiều cao Header
+}
+</code></pre>
+<blockquote>
+<p><strong>Lưu ý:</strong> <code>position: sticky</code> sẽ không hoạt động nếu một phần tử cha có <code>overflow: hidden</code> hoặc nếu <code>aside</code> bị kéo giãn bằng chiều cao cột trái. Đây là lỗi AI hay mắc nhất khi sinh &quot;Sticky Sidebar&quot;.</p>
+</blockquote>
+<h4 id="2-5-vibe-coding-prompt-mau-cach-kiem-duyet-code-ai">2.5. Vibe Coding – Prompt mẫu &amp; cách kiểm duyệt code AI</h4>
+<p>Prompt dùng trong phần Guided (gửi kèm ảnh Wireframe Trang chủ):</p>
+<pre><code class="language-text">[Gửi kèm ảnh phác thảo Wireframe màn hình Trang chủ]
+Bạn là một Senior UI/UX Developer. Hãy chuyển đổi hình ảnh Wireframe này thành React Component (Next.js App Router, TypeScript).
+
+Yêu cầu chi tiết:
+1. Hãy phân rã giao diện thành 3 Component nhỏ: HeroBanner, FeaturedEventsSection, CategoryFilter.
+2. Sử dụng TailwindCSS hoặc SCSS Module để tái hiện lại chính xác bố cục lưới (Grid) như ảnh.
+3. Tạo dữ liệu giả (Mock Data) bằng TypeScript với 4 phần tử mẫu.
+4. Đảm bảo cấu trúc HTML chuẩn Semantic (&lt;header&gt;, &lt;main&gt;, &lt;section&gt;, &lt;article&gt;).
+</code></pre>
+<p>Prompt ngắn cho màn hình Chi tiết sự kiện (tài liệu lý thuyết):</p>
+<pre><code class="language-text">Tôi gửi kèm ảnh phác thảo Wireframe màn hình Chi tiết sự kiện. Hãy chuyển thành React Component
+Next.js App Router sử dụng SCSS Module. Phân rã thành 2 cột: Cột trái (70%) chứa thông tin,
+Cột phải (30%) là Sticky Sidebar đặt vé.
+</code></pre>
+<ul>
+<li><strong>Checklist refactor code AI sinh từ hình ảnh:</strong><ul>
+<li>Đã tách đúng các component được yêu cầu, mỗi file một trách nhiệm?</li>
+<li>Còn <code>style={{ }}</code> hoặc mã màu/kích thước cứng nào không?</li>
+<li>Thẻ Semantic đúng chỗ (<code>&lt;main&gt;</code> chỉ một lần, card là <code>&lt;article&gt;</code>, khung phụ là <code>&lt;aside&gt;</code>)?</li>
+<li>Mock Data có Interface (dùng lại <code>EventItem</code> trong <code>types/event.ts</code>), không có <code>any</code>?</li>
+<li>Ảnh có <code>alt</code>, dùng <code>next/image</code>; bố cục co về 1 cột trên mobile?</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-6-thuc-hanh-tren-lop">2.6. Thực hành trên lớp</h4>
+<table>
+<thead>
+<tr>
+<th>Phần</th>
+<th>Thời lượng</th>
+<th>Nhiệm vụ</th>
+<th>Output mong muốn</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Guided Practice</td>
+<td>45 phút</td>
+<td>GV phác thảo Figma &quot;Trang chủ Danh sách Sự kiện&quot;; SV đưa ảnh/SVG vào v0.dev hoặc Claude sinh code, sau đó refactor</td>
+<td>File TSX giống &gt;85% bản Figma, không còn inline style rác</td>
+</tr>
+<tr>
+<td>Unguided Practice</td>
+<td>45 phút</td>
+<td>Tự phác thảo màn hình &quot;Chi tiết Sự kiện&quot; và dùng Vibe Coding sinh <code>EventDetailPageView.tsx</code></td>
+<td>Bố cục hoàn chỉnh, khung đặt vé sticky khi cuộn</td>
+</tr>
+<tr>
+<td>Team Challenge</td>
+<td>60 phút</td>
+<td>Thống nhất Wireframe 5 màn hình chính, lưu vào <code>docs/wireframes/</code></td>
+<td>Bộ Wireframe 5 màn hình đầy đủ thành phần UI trên repo nhóm</td>
+</tr>
+<tr>
+<td>Tổng kết</td>
+<td>15 phút</td>
+<td>Nhận xét Wireframe các nhóm, giao BTVN</td>
+<td>Danh sách chỉnh sửa cho từng nhóm</td>
+</tr>
+</tbody></table>
+<p><strong>Guided (45&#39;):</strong> giảng viên vẽ mẫu Trang chủ trên Figma, hướng dẫn copy SVG hoặc chụp ảnh đưa vào AI bằng prompt mục 2.5. Sinh viên đọc hiểu code trả về, đổi tên biến, tách component nhỏ nếu code quá dài.</p>
+<p><strong>Unguided (45&#39;):</strong> tự phác thảo (giấy hoặc phần mềm Wireframe) màn hình Chi tiết sự kiện gồm: ảnh banner lớn, thông tin Ban tổ chức, nội dung chi tiết, sơ đồ vé, khung đặt vé cố định. Sau đó dùng prompt gợi ý:</p>
+<pre><code class="language-text">Tôi có ý tưởng thiết kế Màn hình Chi tiết Sự kiện như sau:
+- Cột bên trái (70%): Banner sự kiện (16:9), Tiêu đề lớn, Thông tin chi tiết diễn giả (Avatar, Tên, Bio), Bài viết mô tả nội dung.
+- Cột bên phải (30%): Thẻ Sticky chứa Giá vé từ X đồng, Hạn đặt vé, Nút &quot;Đặt vé ngay&quot; màu cam nổi bật.
+
+Hãy sinh mã nguồn Next.js TypeScript và SCSS/Tailwind cho màn hình này.
+</code></pre>
+<p><strong>Team Challenge (60&#39;):</strong> nhóm họp và thống nhất Wireframe hoàn chỉnh cho 5 màn hình: (1) Trang chủ – Home Page; (2) Danh sách &amp; Lọc sự kiện – Event Listing; (3) Chi tiết sự kiện – Event Detail; (4) Giỏ hàng &amp; Đặt vé – Checkout &amp; Booking; (5) Trang quản lý cá nhân – Ticket History. Nhóm nào còn thời gian phác thảo thêm Admin Dashboard để chuẩn bị cho Bài 03. Xuất file thiết kế hoặc ảnh chụp rõ nét vào <code>docs/wireframes/</code> trên repo nhóm. Bộ Wireframe này là <strong>cơ sở chấm tiêu chí &quot;Mô hình hóa Wireframe UI&quot; (1.5đ, PI 1.4)</strong> ở Buổi 7 và Buổi 12.</p>
+<hr>
+<h3 id="3-tom-tat-diem-can-nho-key-takeaways">📌 3. TÓM TẮT &amp; ĐIỂM CẦN NHỚ (Key Takeaways)</h3>
+<ul>
+<li>🔹 <strong>Wireframe trước, code sau:</strong> phân rã Header → Hero → Main → Sidebar → Footer và ánh xạ sang thẻ Semantic.</li>
+<li>🔹 <strong>Atomic Design:</strong> Atoms → Molecules → Organisms → Templates → Pages; cấp lớn ghép từ cấp nhỏ, tăng khả năng tái sử dụng.</li>
+<li>🔹 <strong>Vision AI chỉ sinh khung:</strong> prompt phải nêu tên component cần tách, công nghệ style và Mock Data có kiểu.</li>
+<li>🔹 <strong>Refactor là bắt buộc:</strong> bỏ inline style, thay magic number bằng biến, đổi tên theo nghiệp vụ.</li>
+<li>🔹 <strong>Sticky Sidebar:</strong> cần <code>align-self: start</code> trong grid và không có cha <code>overflow: hidden</code>.</li>
+</ul>
+<hr>
+<h3 id="4-hoat-dong-kiem-tra-nhanh-self-assessment-quiz">❓ 4. HOẠT ĐỘNG KIỂM TRA NHANH (Self-Assessment / Quiz)</h3>
+<p><strong>Câu 1:</strong> Theo Atomic Design, component <code>SearchBar</code> gồm một <code>Input</code> và một <code>Button</code> thuộc cấp độ nào?</p>
+<ul>
+<li>A. Atom</li>
+<li>B. Molecule</li>
+<li>C. Organism</li>
+<li>D. Template</li>
+</ul>
+<details>
+<summary>👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> B<br>
+<b>Giải thích:</b> Molecule là nhóm các Atom kết hợp để thực hiện một chức năng. <code>Header</code> chứa <code>SearchBar</code> mới là Organism.
+</details>
+
+<p><strong>Câu 2:</strong> Khối &quot;Giá vé + Nút Đặt vé ngay&quot; nằm ở cột phải trang Chi tiết sự kiện nên dùng thẻ Semantic nào?</p>
+<ul>
+<li>A. <code>&lt;header&gt;</code></li>
+<li>B. <code>&lt;footer&gt;</code></li>
+<li>C. <code>&lt;aside&gt;</code></li>
+<li>D. <code>&lt;nav&gt;</code></li>
+</ul>
+<details>
+<summary>👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> C<br>
+<b>Giải thích:</b> <code>&lt;aside&gt;</code> dành cho nội dung bổ trợ, nằm cạnh nội dung chính trong <code>&lt;article&gt;</code>.
+</details>
+
+<p><strong>Câu 3:</strong> AI sinh <code>style={{ background: &#39;#ff6600&#39;, padding: 24 }}</code> lặp lại ở nhiều nơi. Cách refactor phù hợp nhất là gì?</p>
+<ul>
+<li>A. Giữ nguyên vì code vẫn chạy đúng</li>
+<li>B. Chuyển sang class SCSS Module và dùng biến trong <code>_variables.scss</code></li>
+<li>C. Chuyển toàn bộ sang <code>!important</code> trong file CSS global</li>
+<li>D. Đổi mã màu sang dạng <code>rgb()</code> cho dễ đọc</li>
+</ul>
+<details>
+<summary>👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> B<br>
+<b>Giải thích:</b> Inline style và magic number khiến code khó bảo trì. Class SCSS Module kết hợp Design Token giúp đổi giao diện tập trung.
+</details>
+
+<p><strong>Câu 4:</strong> Khung đặt vé có <code>position: sticky; top: 88px</code> nhưng không dính khi cuộn. Nguyên nhân nào có khả năng nhất?</p>
+<ul>
+<li>A. Thiếu thuộc tính <code>z-index</code></li>
+<li>B. Dùng <code>next/image</code> trong trang</li>
+<li>C. Thẻ <code>&lt;aside&gt;</code> không hỗ trợ sticky</li>
+<li>D. Phần tử cha có <code>overflow: hidden</code> hoặc <code>aside</code> bị kéo giãn hết chiều cao cột</li>
+</ul>
+<details>
+<summary>👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> D<br>
+<b>Giải thích:</b> Sticky cần phần tử có khoảng trống để "trượt" trong cha và không bị cha cắt bởi <code>overflow</code>. Trong grid, thêm <code>align-self: start</code> cho <code>aside</code>.
+</details>
+
+<blockquote>
+<p>Bộ 10+ câu đầy đủ: <code>quiz/quiz-bai-02-aiken.txt</code></p>
+</blockquote>
+<hr>
+<h3 id="5-nhiem-vu-hoc-tap-thao-luan-lms-discussion-assignment">💬 5. NHIỆM VỤ HỌC TẬP &amp; THẢO LUẬN (LMS Discussion / Assignment)</h3>
+<ul>
+<li><strong>Chủ đề thảo luận Diễn đàn (Forum Discussion):</strong> Đăng ảnh Wireframe màn hình Chi tiết sự kiện của bạn kèm cây component Atomic Design tương ứng. Theo bạn, những phần nào trong code AI sinh ra phải refactor nhiều nhất và vì sao? Nếu được viết lại prompt, bạn sẽ thêm ràng buộc gì?</li>
+<li><strong>Yêu cầu nộp bài (Bài tập về nhà):</strong><ul>
+<li>Hoàn thiện 5 file Wireframe (Figma hoặc ảnh chụp) theo góp ý của giảng viên, lưu trong <code>docs/wireframes/</code>.</li>
+<li>Chuyển toàn bộ 5 Wireframe thành trang giao diện mẫu tĩnh (Static Component) trong thư mục <code>app/dev-preview/</code> của dự án Next.js, tổ chức component theo <code>components/ui</code>, <code>components/molecules</code>, <code>components/organisms</code>.</li>
+<li><strong>Output:</strong> mọi thành viên truy cập được <code>/dev-preview/home</code>, <code>/dev-preview/listing</code>, <code>/dev-preview/detail</code>, <code>/dev-preview/checkout</code>, <code>/dev-preview/profile</code> để xem dàn trang tĩnh.</li>
+<li><strong>Hạn nộp:</strong> trước buổi học tiếp theo; mỗi thành viên mở Pull Request vào nhánh <code>dev</code>, nộp link PR lên LMS.</li>
+<li><strong>Quy tắc đặt tên:</strong> nhánh <code>feature/&lt;ho-ten-khong-dau&gt;-dev-preview</code>, ảnh wireframe <code>01-home.png</code> … <code>05-profile.png</code>.</li>
+</ul>
+</li>
+<li><strong>📚 Tài liệu đọc &amp; tham khảo:</strong><ul>
+<li>Atomic Design Methodology by Brad Frost: <a href="https://atomicdesign.bradfrost.com/" target="_blank" rel="noopener noreferrer">https://atomicdesign.bradfrost.com/</a></li>
+<li>v0.dev Generative UI Documentation: <a href="https://v0.dev/docs" target="_blank" rel="noopener noreferrer">https://v0.dev/docs</a></li>
+<li>MDN – HTML elements reference (Semantic): <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element" target="_blank" rel="noopener noreferrer">https://developer.mozilla.org/en-US/docs/Web/HTML/Element</a></li>
+<li><strong>Câu hỏi tự kiểm tra khi đọc:</strong> Tại sao phân rã giao diện theo Atomic Design giúp tăng khả năng tái sử dụng code? Cần chú ý những điểm gì khi refactor JSX/TSX do AI sinh ra từ hình ảnh Wireframe?</li>
+</ul>
+</li>
+</ul>
+
+    </article>
+
+    <!-- Bottom Navigation -->
+    <div class="flex items-center justify-between gap-4 mt-8 no-print text-xs font-bold">
+      <a href="bai-01.html" class="px-4 py-2.5 bg-white border border-slate-200 hover:border-lhu-blue text-slate-700 hover:text-lhu-blue rounded-xl shadow-sm transition-all flex items-center gap-2"><i class="fa-solid fa-chevron-left"></i> Bài trước</a>
+      <a href="index.html#lo-trinh" class="px-4 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-800 rounded-xl transition-all flex items-center gap-2">
+        <i class="fa-solid fa-table-cells-large"></i> Danh mục bài học
+      </a>
+      <a href="bai-03.html" class="px-4 py-2.5 bg-white border border-slate-200 hover:border-lhu-blue text-slate-700 hover:text-lhu-blue rounded-xl shadow-sm transition-all flex items-center gap-2">Bài tiếp theo <i class="fa-solid fa-chevron-right"></i></a>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-slate-200 py-6 text-xs text-slate-500 mt-12 no-print">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <strong>Khoa Công nghệ Thông tin - Trường Đại học Lạc Hồng</strong><br>
+        Phòng B301 - B302, Cơ sở 1, Số 10 Huỳnh Văn Nghệ, P. Bửu Long, TP. Biên Hòa, Đồng Nai.
+      </div>
+      <div class="sm:text-right">
+        <span>Email: cntt@lhu.edu.vn • Hotline: (0251) 3952 251</span><br>
+        <span>Hệ thống LMS: <a href="https://learn.lhu.edu.vn" target="_blank" rel="noopener noreferrer" class="text-lhu-blue font-bold">learn.lhu.edu.vn</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleAllDetails(open) {
+      document.querySelectorAll("details").forEach(d => {
+        if (open) d.setAttribute("open", ""); else d.removeAttribute("open");
+      });
+    }
+    if (window.hljs) hljs.highlightAll();
+  </script>
+
+</body>
+</html>

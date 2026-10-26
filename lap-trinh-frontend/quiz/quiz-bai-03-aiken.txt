@@ -1,0 +1,84 @@
+Trong Next.js App Router, file nào định nghĩa giao diện dùng chung không bị re-render khi chuyển giữa các trang con?
+A. page.tsx
+B. layout.tsx
+C. loading.tsx
+D. error.tsx
+ANSWER: B
+
+Một thư mục trong app/ chỉ trở thành route truy cập được qua URL khi nào?
+A. Khi thư mục đó chứa file page.tsx
+B. Khi thư mục đó chứa file layout.tsx
+C. Khi tên thư mục đặt trong ngoặc tròn
+D. Khi thư mục đó có file index.ts
+ANSWER: A
+
+File app/(auth)/register/page.tsx tương ứng với URL nào?
+A. /auth/register
+B. /(auth)/register
+C. /auth
+D. /register
+ANSWER: D
+
+Mặc định, một component đặt trong thư mục app/ của Next.js App Router là loại component nào?
+A. Client Component
+B. Static HTML không có React
+C. Server Component
+D. Error Boundary
+ANSWER: C
+
+Trường hợp nào bắt buộc phải thêm chỉ thị 'use client' vào đầu file component?
+A. Component hiển thị tiêu đề và mô tả tĩnh
+B. Component dùng useState và xử lý sự kiện onClick
+C. Component chỉ import Link từ next/link
+D. Root Layout chứa thẻ html và body
+ANSWER: B
+
+Lợi ích chính của Server Component so với Client Component là gì?
+A. Giảm JavaScript gửi về trình duyệt và có thể truy cập dữ liệu, secret trực tiếp trên server
+B. Cho phép dùng useEffect và localStorage
+C. Tự động thêm hiệu ứng animation
+D. Không cần khai báo kiểu TypeScript
+ANSWER: A
+
+Nhóm đặt Header và Footer trong app/layout.tsx rồi tạo app/(auth)/layout.tsx chỉ chứa Logo và Form. Khi mở /login, điều gì xảy ra?
+A. AuthLayout thay thế Root Layout nên không còn Header/Footer
+B. Next.js báo lỗi trùng layout
+C. Trang /login vẫn hiện Header/Footer vì layout lồng nhau được cộng dồn
+D. Trang /login hiển thị trang 404
+ANSWER: C
+
+Theo quy ước App Router, file nào bắt buộc phải là Client Component?
+A. layout.tsx
+B. not-found.tsx
+C. page.tsx
+D. error.tsx
+ANSWER: D
+
+File global-error.tsx khác error.tsx ở điểm nào?
+A. global-error.tsx bắt lỗi ở mức Root Layout nên phải tự khai báo thẻ html và body
+B. global-error.tsx chỉ chạy ở chế độ dev
+C. global-error.tsx là Server Component
+D. global-error.tsx chỉ dùng để hiển thị trang 404
+ANSWER: A
+
+Vì sao menu HeaderNavigationBar nên dùng Link từ next/link thay vì thẻ a href thông thường?
+A. Vì thẻ a không hỗ trợ thuộc tính href trong TSX
+B. Vì Link chuyển trang phía client không reload toàn trang và có thể prefetch route
+C. Vì Link tự động bảo vệ Private Routes
+D. Vì Link bắt buộc phải dùng trong Server Component
+ANSWER: B
+
+Bạn muốn hiển thị Skeleton khi chuyển giữa các trang /admin/dashboard và /admin/users. Cách làm phù hợp với App Router là gì?
+A. Thêm useEffect vào mọi trang admin để tự ẩn hiện Skeleton
+B. Đặt Skeleton trong file not-found.tsx
+C. Tạo file loading.tsx trong thư mục route admin
+D. Viết Skeleton trong global-error.tsx
+ANSWER: C
+
+Để chặn người chưa đăng nhập truy cập /admin/* trong Next.js 15, cách nào gọn và đúng nhất?
+A. Ẩn link Admin trên menu là đủ
+B. Đặt tên thư mục admin trong ngoặc tròn
+C. Thêm 'use client' vào AdminLayout
+D. Dùng middleware.ts kiểm tra cookie và redirect về /login với matcher '/admin/:path*'
+ANSWER: D
+

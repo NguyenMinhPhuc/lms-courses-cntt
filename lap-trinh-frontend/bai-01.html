@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 01 - SCSS nâng cao, TypeScript căn bản &amp; thiết lập Vibe Coding | Lập trình Front-End - Khoa CNTT - Đại học Lạc Hồng</title>
+  <meta name="description" content="Bài 01 - SCSS nâng cao, TypeScript căn bản &amp; thiết lập Vibe Coding - Lập trình Front-End (Next.js, TypeScript &amp; Vibe Coding). Thời lượng: 5 tiết (225 phút) · Hình thức: Lớp học đảo ngược · Chuẩn đầu ra: PI 1.4 (CLO1), PI 2.3 (CLO2)Dự án xuyên suốt: Smart Event Hub – Khởi tạo dự án, dựng Design Token">
+
+  <!-- Tailwind CSS CDN (kèm plugin typography cho nội dung Markdown) -->
+  <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6.4.0 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Highlight.js 11.9.0 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            asu: { maroon: '#8C1D40', gold: '#FFC627', dark: '#5C142B', light: '#FAEDF0' },
+            lhu: { blue: '#013D88', sky: '#007BFF', dark: '#01295C', light: '#EEF5FC' },
+            fe: { indigo: '#6366F1', dark: '#312E81', light: '#EEF2FF' }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .lesson h2, .lesson h3, .lesson h4 { scroll-margin-top: 90px; }
+    .lesson h3 { padding-bottom: .4rem; border-bottom: 2px solid #EEF2FF; }
+    .lesson blockquote { border-left: 4px solid #6366F1; background: #F5F7FF; border-radius: 0 12px 12px 0; padding: .6rem 1rem; font-style: normal; color: #1e293b; }
+    .lesson blockquote p:first-of-type::before, .lesson blockquote p:last-of-type::after { content: none; }
+    .lesson pre { border-radius: 12px; padding: 0; background: #0d1117; }
+    .lesson pre code.hljs { border-radius: 12px; padding: 1rem 1.1rem; font-size: 13px; line-height: 1.6; }
+    .lesson :not(pre) > code { background: #EEF2FF; color: #3730A3; padding: .1rem .35rem; border-radius: 6px; font-weight: 500; }
+    .lesson :not(pre) > code::before, .lesson :not(pre) > code::after { content: none; }
+    .lesson table { display: block; overflow-x: auto; font-size: 14px; }
+    .lesson thead th { background: #F1F5F9; }
+    .lesson th, .lesson td { border: 1px solid #E2E8F0; padding: .5rem .7rem !important; vertical-align: top; }
+    .lesson details { border: 1px solid #C7D2FE; border-radius: 10px; padding: .6rem .9rem; margin: .5rem 0 1.2rem; background: #FAFAFF; }
+    .lesson details summary { cursor: pointer; font-weight: 600; color: #4338CA; }
+    .lesson details[open] summary { margin-bottom: .4rem; }
+    .lesson hr { border-color: #E2E8F0; margin: 2rem 0; }
+    @media print {
+      header, footer, .no-print { display: none !important; }
+      details { break-inside: avoid; margin-bottom: 20px; }
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans antialiased selection:bg-asu-gold selection:text-slate-900 min-h-screen flex flex-col">
+
+  <!-- TOP BAR -->
+  <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800 no-print">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+      <div class="flex items-center gap-2">
+        <span class="text-asu-gold font-semibold"><i class="fa-solid fa-certificate mr-1"></i> CHUẨN KIỂM ĐỊNH ABET (USA)</span>
+        <span class="text-slate-600 hidden sm:inline">•</span>
+        <span class="hidden sm:inline">Lớp học đảo ngược • Vibe Coding</span>
+      </div>
+      <div class="flex items-center gap-4 text-xs font-mono">
+        <span>Thời lượng: <strong class="text-white">60 tiết (12 buổi)</strong></span>
+        <span>LT/TH: <strong class="text-asu-gold">30% / 70%</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="sticky top-0 z-40 bg-white shadow-sm border-b border-slate-200 no-print">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2.5 text-slate-800 hover:text-lhu-blue transition-colors">
+        <img src="LHU_ASU_VI_Small_Ngang.png" alt="Logo LHU" class="h-8 w-auto">
+        <div class="border-l border-slate-300 pl-2.5">
+          <div class="text-[11px] font-bold text-slate-500 uppercase">Khoa CNTT - LHU</div>
+          <div class="text-xs font-extrabold text-lhu-blue">LẬP TRÌNH FRONT-END</div>
+        </div>
+      </a>
+      <div class="flex items-center gap-3 text-xs">
+        <a href="index.html" class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-arrow-left"></i>
+          <span class="hidden sm:inline">Về Landing Page</span>
+        </a>
+        <button onclick="window.print()" class="hidden sm:flex px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-all items-center gap-1.5" title="In hoặc lưu file PDF">
+          <i class="fa-solid fa-print"></i>
+          <span>In / PDF</span>
+        </button>
+        <a href="https://learn.lhu.edu.vn" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-lhu-blue hover:bg-lhu-dark text-white font-bold rounded-xl shadow transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-graduation-cap text-asu-gold"></i>
+          <span>Vào lớp LMS</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="flex-grow max-w-5xl w-full mx-auto px-4 sm:px-6 py-8">
+
+    <!-- Title Card -->
+    <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 mb-8">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-5">
+        <div>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-fe-light text-fe-dark font-bold text-xs uppercase tracking-wider mb-2">
+            <i class="fa-solid fa-code"></i> CHƯƠNG 1: NỀN TẢNG &amp; MÔ HÌNH HÓA GIAO DIỆN
+          </span>
+          <h1 class="text-2xl sm:text-3xl font-black text-slate-900 leading-tight">
+            Bài 01 - SCSS nâng cao, TypeScript căn bản &amp; thiết lập Vibe Coding
+          </h1>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1 font-mono">
+            Học phần: Lập trình Front-End (Next.js, TypeScript & Vibe Coding) • Khoa CNTT - Đại học Lạc Hồng
+          </p>
+        </div>
+        <div class="flex-shrink-0 flex sm:flex-col items-center sm:items-end justify-between gap-1 text-xs">
+          <span class="px-3 py-1.5 bg-emerald-50 text-emerald-700 font-bold rounded-lg border border-emerald-200">
+            <i class="fa-solid fa-check-circle mr-1"></i> Lưu hành nội bộ 2026
+          </span>
+          <span class="text-slate-400 text-[11px]">Định dạng LMS Lecture</span>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between pt-4 text-xs no-print">
+        <span class="text-slate-500">
+          <i class="fa-solid fa-circle-info text-blue-500 mr-1"></i>
+          Bấm vào các khối thu gọn để xem đáp án hoặc chi tiết.
+        </span>
+        <div class="flex items-center gap-2">
+          <button onclick="toggleAllDetails(true)" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg transition-colors">Mở tất cả</button>
+          <button onclick="toggleAllDetails(false)" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg transition-colors">Thu gọn</button>
+        </div>
+      </div>
+      <nav class="mt-5 pt-4 border-t border-slate-100 no-print">
+        <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">Nội dung trang</div>
+        <div class="flex flex-wrap gap-2">
+          <a href="#1-dat-van-de-dan-nhap-introduction-hook" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">📝 1. ĐẶT VẤN ĐỀ &amp; DẪN NHẬP (Introduction / Hook)</a>
+          <a href="#2-noi-dung-cot-loi-core-content" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">📖 2. NỘI DUNG CỐT LÕI (Core Content)</a>
+          <a href="#3-tom-tat-diem-can-nho-key-takeaways" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">📌 3. TÓM TẮT &amp; ĐIỂM CẦN NHỚ (Key Takeaways)</a>
+          <a href="#4-hoat-dong-kiem-tra-nhanh-self-assessment-quiz" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">❓ 4. HOẠT ĐỘNG KIỂM TRA NHANH (Self-Assessment / Quiz)</a>
+          <a href="#5-nhiem-vu-hoc-tap-thao-luan-lms-discussion-assignment" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">💬 5. NHIỆM VỤ HỌC TẬP &amp; THẢO LUẬN (LMS Discussion / Assignment)</a>
+        </div>
+      </nav>
+    </div>
+
+    <!-- Content -->
+    <article class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 lesson prose prose-slate max-w-none prose-headings:font-extrabold prose-h3:text-lhu-dark prose-h4:text-fe-dark prose-a:text-lhu-blue">
+<blockquote>
+<p><strong>Thời lượng:</strong> 5 tiết (225 phút) · <strong>Hình thức:</strong> Lớp học đảo ngược · <strong>Chuẩn đầu ra:</strong> PI 1.4 (CLO1), PI 2.3 (CLO2)<br><strong>Dự án xuyên suốt:</strong> Smart Event Hub – Khởi tạo dự án, dựng Design Token SCSS, Layout Banner và Card sự kiện.</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>🎯 <strong>MỤC TIÊU BÀI HỌC (Learning Objectives)</strong><br>Sau khi hoàn thành bài học này, người học có thể:</p>
+<ul>
+<li><strong>[Bloom 1/2 - Kiến thức]:</strong> Giải thích được Variables, Nesting, Mixins, Breakpoints trong SCSS; quy tắc BEM kết hợp CSS Modules; khác biệt giữa <code>interface</code> và <code>type</code> trong TypeScript.</li>
+<li><strong>[Bloom 3/4 - Kỹ năng]:</strong> Áp dụng Mixin <code>respond-to</code> và TypeScript Interface để xây dựng component <code>EventCard</code> responsive, không có lỗi <code>implicit any</code>.</li>
+<li><strong>[Bloom 5/6 - Năng lực]:</strong> Viết Prompt theo cấu trúc Context → Requirement → Constraint, đánh giá và sửa code do AI sinh ra; phối hợp nhóm qua Git (branch, Pull Request, review chéo).</li>
+</ul>
+</blockquote>
+<hr>
+<h3 id="1-dat-van-de-dan-nhap-introduction-hook">📝 1. ĐẶT VẤN ĐỀ &amp; DẪN NHẬP (Introduction / Hook)</h3>
+<p>Hãy hình dung nhóm các bạn có bốn thành viên, mỗi người tự đặt màu chủ đạo cho phần mình làm. Người dùng <code>#3b82f6</code>, người dùng <code>blue</code>, người khác lại viết <code>.title</code> trùng tên với file CSS của bạn cùng nhóm. Đến ngày ghép code, giao diện &quot;Smart Event Hub&quot; trông như bốn website khác nhau, còn card sự kiện thì vỡ khung trên điện thoại. Nguyên nhân không nằm ở kỹ năng gõ code, mà ở chỗ nhóm chưa có một <strong>hệ thống biến dùng chung</strong>, chưa có <strong>kiểu dữ liệu thống nhất</strong> cho đối tượng sự kiện và chưa có <strong>quy tắc làm việc với AI</strong>.</p>
+<p>Vậy làm thế nào để AI sinh code nhanh mà vẫn đúng kiểu, đúng màu, đúng breakpoint của cả nhóm? Buổi học này trả lời câu hỏi đó bằng ba công cụ: SCSS có tổ chức, TypeScript chặt chẽ và một quy trình Vibe Coding có kiểm soát.</p>
+<blockquote>
+<p>🧭 <strong>Trước giờ học (Flipped Classroom):</strong></p>
+<ul>
+<li>Xem video SCSS Flexbox/Grid Mixin và video TypeScript Interface vs Type do giảng viên đăng trên LMS.</li>
+<li>Cài đặt VS Code, Node.js (bản LTS), Git và Cursor AI hoặc extension GitHub Copilot.</li>
+<li>Đọc tài liệu Sass, TypeScript for React, Next.js CSS Modules (mục 5) và làm Quiz nhanh 5–10 câu trên LMS.</li>
+</ul>
+</blockquote>
+<hr>
+<h3 id="2-noi-dung-cot-loi-core-content">📖 2. NỘI DUNG CỐT LÕI (Core Content)</h3>
+<h4 id="2-1-scss-nang-cao-variables-nesting-mixins-breakpoints">2.1. SCSS nâng cao: Variables, Nesting, Mixins &amp; Breakpoints</h4>
+<ul>
+<li><strong>Khái niệm:</strong> SCSS là cú pháp mở rộng của CSS, cho phép khai báo biến, lồng selector và đóng gói đoạn CSS lặp lại bằng <code>@mixin</code>. Mã SCSS được biên dịch thành CSS thuần trước khi chạy trên trình duyệt.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li><strong>Variable System:</strong> gom màu sắc, spacing, font size, shadow vào một file <code>_variables.scss</code> (Design Token). Đổi một biến, toàn bộ dự án thay đổi theo.</li>
+<li><strong>Nesting:</strong> viết selector con bên trong selector cha, nhưng không nên lồng quá 3 cấp để tránh CSS khó ghi đè.</li>
+<li><strong>Mixin &amp; Breakpoints:</strong> <code>@mixin respond-to($breakpoint)</code> dùng map để quản lý responsive tập trung tại các mốc 640px, 768px, 1024px. Mixin viết theo hướng <strong>mobile-first</strong> (<code>min-width</code>): style gốc dành cho điện thoại, các mốc lớn hơn bổ sung dần.</li>
+<li>Dart Sass hiện khuyến nghị <code>@use</code> thay cho <code>@import</code> và <code>map.get</code> (module <code>sass:map</code>) thay cho hàm cũ <code>map-get</code>; hai cách cho kết quả như nhau.</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-scss">// styles/_variables.scss – Design Token dùng chung cho cả nhóm
+$color-primary: #6366f1;
+$color-upcoming: #3b82f6;
+$color-ongoing: #22c55e;
+$color-ended: #9ca3af;
+$color-text: #1f2937;
+
+$space-sm: 8px;
+$space-md: 16px;
+$space-lg: 24px;
+
+$font-size-base: 16px;
+$font-size-lg: 20px;
+$radius-md: 12px;
+$shadow-card: 0 4px 16px rgba(0, 0, 0, 0.08);
+</code></pre>
+<pre><code class="language-scss">// styles/_mixins.scss
+@use &#39;sass:map&#39;;
+
+$breakpoints: (&#39;mobile&#39;: 640px, &#39;tablet&#39;: 768px, &#39;desktop&#39;: 1024px);
+
+@mixin respond-to($breakpoint) {
+  $value: map.get($breakpoints, $breakpoint);
+  @if $value {
+    @media (min-width: $value) { @content; }
+  } @else {
+    @warn &quot;Breakpoint `#{$breakpoint}` không tồn tại.&quot;;
+  }
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin text-truncate($lines: 1) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+</code></pre>
+<ul>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote>
+<p>Khách hàng yêu cầu đổi màu thương hiệu Smart Event Hub từ tím sang cam ngay trước buổi demo. Nhờ <code>$color-primary</code> nằm trong <code>_variables.scss</code>, nhóm chỉ sửa đúng một dòng thay vì dò tìm hàng chục mã màu rải rác trong 20 file.</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="2-2-bem-naming-convention-css-modules-trong-next-js">2.2. BEM Naming Convention &amp; CSS Modules trong Next.js</h4>
+<ul>
+<li><strong>Khái niệm:</strong> BEM (<code>Block__Element--Modifier</code>) là quy tắc đặt tên class giúp đọc tên là hiểu cấu trúc. CSS Modules (<code>filename.module.scss</code>) tự động mã hóa (hash) tên class, ví dụ <code>.card</code> thành <code>EventCard_card__x7Ab2</code>, nên style chỉ có hiệu lực trong component import nó.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li>Block: <code>card</code>; Element: <code>card__title</code>, <code>card__image</code>; Modifier: <code>badge--upcoming</code>, <code>badge--ended</code>.</li>
+<li>Trong TSX, truy cập class có ký tự đặc biệt bằng ngoặc vuông: <code>styles[&#39;card__title&#39;]</code>.</li>
+<li>CSS Modules giải quyết <strong>Global CSS pollution</strong>: hai component cùng có class <code>.title</code> không còn ghi đè lẫn nhau, vì sau khi build chúng mang hai tên hash khác nhau.</li>
+<li>Next.js hỗ trợ SCSS sẵn, chỉ cần cài thêm gói <code>sass</code>: <code>npm install -D sass</code>.</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>Lưu ý:</strong> CSS Modules không thay thế BEM. Hash tránh xung đột giữa các file, còn BEM giúp đồng đội đọc hiểu quan hệ giữa các class trong cùng một file.</p>
+</blockquote>
+<h4 id="2-3-typescript-can-ban-cho-react">2.3. TypeScript căn bản cho React</h4>
+<ul>
+<li><strong>Khái niệm:</strong> TypeScript bổ sung hệ thống kiểu tĩnh cho JavaScript. Lỗi sai kiểu được phát hiện ngay trong editor và lúc build, thay vì đợi người dùng gặp lỗi trên trình duyệt.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li><strong>Primitives &amp; Array/Object typing:</strong> <code>string</code>, <code>number</code>, <code>boolean</code>, <code>string[]</code>, <code>{ id: string; price: number }</code>.</li>
+<li><strong>Interface vs Type:</strong> <code>interface</code> mở rộng được qua <code>extends</code>, hợp với React Props và Data Model. <code>type</code> hợp với <strong>Union Types</strong> như <code>&#39;UPCOMING&#39; | &#39;ONGOING&#39; | &#39;ENDED&#39;</code>.</li>
+<li><strong>Enum:</strong> cũng biểu diễn được trạng thái, nhưng sinh thêm mã JavaScript lúc chạy. Trong dự án Next.js, union type gọn hơn và tương thích JSON từ API tốt hơn.</li>
+<li><strong>Strict mode &amp; Generics:</strong> bật <code>&quot;strict&quot;: true</code> trong <code>tsconfig.json</code> (mặc định khi tạo dự án Next.js), tuyệt đối tránh <code>any</code>. Dùng Generics <code>&lt;T&gt;</code> cho hàm/component tái sử dụng.</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-ts">// types/event.ts
+export type EventStatus = &#39;UPCOMING&#39; | &#39;ONGOING&#39; | &#39;ENDED&#39;;
+
+export interface EventItem {
+  id: string;
+  title: string;
+  imageUrl: string;
+  startDate: string; // ISO 8601, ví dụ &#39;2026-12-20T19:00:00+07:00&#39;
+  location: string;
+  price: number;
+  status: EventStatus;
+}
+
+export interface EventProps {
+  event: EventItem;
+}
+
+// Cách viết bằng enum (tham khảo) – sinh thêm object JS khi chạy
+export enum EventStatusEnum {
+  UPCOMING = &#39;UPCOMING&#39;,
+  ONGOING = &#39;ONGOING&#39;,
+  ENDED = &#39;ENDED&#39;,
+}
+
+// Generics: một hàm dùng được cho mọi kiểu phần tử
+export function getFirst&lt;T&gt;(items: T[]): T | undefined {
+  return items[0];
+}
+</code></pre>
+<h4 id="2-4-ghep-lai-component-eventcard-responsive">2.4. Ghép lại: Component EventCard responsive</h4>
+<p>Hãy quan sát cách ba mảnh kiến thức trên kết hợp trong một component thật của dự án. Card hiển thị ảnh bìa, tiêu đề, ngày giờ, giá vé và badge trạng thái; lưới card hiển thị 1 cột trên mobile, 2 cột từ 640px và 3 cột từ 1024px.</p>
+<pre><code class="language-tsx">// components/EventCard/EventCard.tsx
+import Image from &#39;next/image&#39;;
+import type { ReactNode } from &#39;react&#39;;
+import type { EventProps, EventStatus } from &#39;@/types/event&#39;;
+import styles from &#39;./EventCard.module.scss&#39;;
+
+const STATUS_LABEL: Record&lt;EventStatus, string&gt; = {
+  UPCOMING: &#39;Sắp diễn ra&#39;,
+  ONGOING: &#39;Đang diễn ra&#39;,
+  ENDED: &#39;Đã kết thúc&#39;,
+};
+
+const formatPrice = (price: number): string =&gt;
+  price === 0
+    ? &#39;Miễn phí&#39;
+    : new Intl.NumberFormat(&#39;vi-VN&#39;, { style: &#39;currency&#39;, currency: &#39;VND&#39; }).format(price);
+
+export default function EventCard({ event }: EventProps) {
+  const { title, imageUrl, startDate, location, price, status } = event;
+
+  return (
+    &lt;article className={styles.card}&gt;
+      &lt;div className={styles[&#39;card__image&#39;]}&gt;
+        {/* fill + sizes: next/image tự chọn kích thước ảnh phù hợp từng màn hình */}
+        &lt;Image src={imageUrl} alt={title} fill sizes=&quot;(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw&quot; /&gt;
+        &lt;span className={`${styles.badge} ${styles[`badge--${status.toLowerCase()}`]}`}&gt;
+          {STATUS_LABEL[status]}
+        &lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div className={styles[&#39;card__body&#39;]}&gt;
+        &lt;h3 className={styles[&#39;card__title&#39;]}&gt;{title}&lt;/h3&gt;
+        &lt;p&gt;{new Date(startDate).toLocaleString(&#39;vi-VN&#39;)} · {location}&lt;/p&gt;
+        &lt;p className={styles[&#39;card__price&#39;]}&gt;{formatPrice(price)}&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/article&gt;
+  );
+}
+
+export function EventCardGrid({ children }: { children: ReactNode }) {
+  return &lt;div className={styles.grid}&gt;{children}&lt;/div&gt;;
+}
+</code></pre>
+<pre><code class="language-scss">// components/EventCard/EventCard.module.scss
+@use &#39;../../styles/variables&#39; as *;
+@use &#39;../../styles/mixins&#39; as *;
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;            // Mobile (&lt; 640px): 1 cột
+  gap: $space-lg;
+  @include respond-to(&#39;mobile&#39;) { grid-template-columns: repeat(2, 1fr); }  // Tablet: 2 cột
+  @include respond-to(&#39;desktop&#39;) { grid-template-columns: repeat(3, 1fr); } // Desktop: 3 cột
+}
+
+.card {
+  border-radius: $radius-md;
+  box-shadow: $shadow-card;
+  overflow: hidden;
+  background: #fff;
+  transition: transform 0.2s ease;
+  &amp;:hover { transform: translateY(-4px); }
+
+  &amp;__image { position: relative; aspect-ratio: 16 / 9; img { object-fit: cover; } }
+  &amp;__body { padding: $space-md; color: $color-text; }
+  &amp;__title { font-size: $font-size-lg; @include text-truncate(2); }
+  &amp;__price { font-weight: 700; color: $color-primary; }
+}
+
+.badge {
+  position: absolute; top: $space-sm; left: $space-sm;
+  padding: 4px $space-sm; border-radius: 999px; color: #fff; font-size: 12px;
+  &amp;--upcoming { background: $color-upcoming; }
+  &amp;--ongoing { background: $color-ongoing; }
+  &amp;--ended { background: $color-ended; }
+}
+</code></pre>
+<blockquote>
+<p><strong>Cấu hình ảnh từ xa:</strong> nếu <code>imageUrl</code> trỏ tới domain ngoài (CDN của Backend), cần khai báo domain đó trong <code>images.remotePatterns</code> của <code>next.config.ts</code>, nếu không <code>next/image</code> sẽ báo lỗi.</p>
+</blockquote>
+<h4 id="2-5-vibe-coding-prompt-mau-cach-kiem-duyet-code-ai">2.5. Vibe Coding – Prompt mẫu &amp; cách kiểm duyệt code AI</h4>
+<ul>
+<li><strong>Khái niệm:</strong> Vibe Coding là cách làm việc trong đó <strong>AI sinh khung code (boilerplate)</strong>, còn <strong>sinh viên chịu trách nhiệm kiểm duyệt</strong> Type Safety, logic và refactor. Các bạn đóng vai Architect, AI là trợ lý gõ phím.</li>
+<li><strong>Thiết lập Rule cho AI:</strong> tạo file <code>.cursorrules</code> ở thư mục gốc (Cursor đọc tự động; với Copilot dùng <code>.github/copilot-instructions.md</code>) để AI luôn tuân theo quy ước của nhóm:</li>
+</ul>
+<pre><code class="language-text"># .cursorrules – Smart Event Hub
+- Stack: Next.js 15 App Router, TypeScript strict, SCSS Modules.
+- Không dùng kiểu any. Interface/Type đặt trong thư mục types/.
+- Style: dùng biến trong styles/_variables.scss và mixin trong styles/_mixins.scss, không hard-code màu.
+- Đặt tên class theo BEM. Không viết inline style.
+- Ảnh dùng next/image, link nội bộ dùng next/link.
+- Comment tiếng Việt ngắn gọn ở các đoạn logic quan trọng.
+</code></pre>
+<ul>
+<li><strong>Prompt 3 bước – Context → Requirement → Constraint.</strong> Prompt hướng dẫn trong phần Guided:</li>
+</ul>
+<pre><code class="language-text">[Context] Hãy đóng vai một Chuyên gia Front-End Developer kinh nghiệm với Next.js và TypeScript.
+Hãy viết cho tôi một Component React tên là EventCard.tsx kèm theo file SCSS Module EventCard.module.scss.
+
+[Requirement]
+1. TypeScript Interface EventProps:
+   - id: string
+   - title: string
+   - imageUrl: string
+   - startDate: string
+   - location: string
+   - price: number
+   - status: &#39;UPCOMING&#39; | &#39;ONGOING&#39; | &#39;ENDED&#39;
+2. SCSS Module:
+   - Sử dụng CSS Grid/Flexbox.
+   - Tạo mixin responsive: Mobile (&lt; 640px), Tablet (640px - 1024px), Desktop (&gt; 1024px).
+   - Màu badge status: UPCOMING (Xanh dương), ONGOING (Xanh lá), ENDED (Xám).
+
+[Constraint]
+- Sử dụng Next.js Image component (next/image).
+- Code rõ ràng, ngắn gọn, có comment giải thích các phần quan trọng.
+</code></pre>
+<ul>
+<li><strong>Checklist kiểm duyệt code AI trước khi commit:</strong><ul>
+<li>Có kiểu <code>any</code> hoặc thiếu kiểu cho props không? Chạy <code>npx tsc --noEmit</code> để chắc chắn.</li>
+<li>Union type có đủ 3 trạng thái, <code>Record&lt;EventStatus, string&gt;</code> có thiếu key nào không?</li>
+<li>AI có hard-code màu/kích thước thay vì dùng biến SCSS không?</li>
+<li>Dùng <code>next/image</code> đúng cách (<code>alt</code>, <code>fill</code> + <code>sizes</code> hoặc <code>width</code>/<code>height</code>)?</li>
+<li>Thu nhỏ trình duyệt qua 375px, 768px, 1440px: lưới có đổi 1–2–3 cột, có tràn ngang không?</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-6-thuc-hanh-tren-lop">2.6. Thực hành trên lớp</h4>
+<table>
+<thead>
+<tr>
+<th>Phần</th>
+<th>Thời lượng</th>
+<th>Nhiệm vụ</th>
+<th>Output mong muốn</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Guided Practice</td>
+<td>45 phút</td>
+<td>Dùng prompt mẫu sinh <code>EventCard.tsx</code>, <code>EventCard.module.scss</code>, <code>types/event.ts</code>; sửa lỗi type mismatch do AI gợi ý sai</td>
+<td>Card hiển thị đúng dữ liệu từ Props, không lỗi TS, co giãn không vỡ</td>
+</tr>
+<tr>
+<td>Unguided Practice</td>
+<td>45 phút</td>
+<td>Tự xây <code>HeaderNavigationBar.tsx</code> với TypeScript strict và SCSS Module</td>
+<td>Header sticky, link hover mượt, Interface tách ra <code>types/</code></td>
+</tr>
+<tr>
+<td>Team Challenge</td>
+<td>60 phút</td>
+<td>Khởi tạo Git repo nhóm, Design Token System, Mixin dùng chung, PR &amp; review chéo</td>
+<td>1 repo chuẩn cấu trúc, biến SCSS được import thành công, PR merge thành công</td>
+</tr>
+<tr>
+<td>Tổng kết</td>
+<td>15 phút</td>
+<td>Giải đáp, nhận xét PR tiêu biểu, giao BTVN</td>
+<td>Danh sách lỗi thường gặp, BTVN đã rõ</td>
+</tr>
+</tbody></table>
+<p><strong>Guided (45&#39;):</strong> giảng viên làm mẫu từng bước theo prompt ở mục 2.5. Sau khi AI trả kết quả, cả lớp đối chiếu với code mục 2.4, chỉ ra chỗ AI dùng <code>string</code> thay vì union type hoặc quên <code>sizes</code> cho ảnh.</p>
+<p><strong>Unguided (45&#39;):</strong> tự thiết kế <code>HeaderNavigationBar.tsx</code> gồm Logo &quot;Smart Event Hub&quot;, menu (Trang chủ, Sự kiện, Bảng tin, Liên hệ), khung tìm kiếm nhanh, nút Đăng nhập/Đăng ký. Tạo Interface <code>NavMenuItem</code> cho danh sách menu, hiệu ứng <strong>sticky header</strong> (<code>position: sticky; top: 0</code>) và hover animation bằng SCSS. Prompt gợi ý:</p>
+<pre><code class="language-text">Tạo giúp tôi Component HeaderNavigationBar.tsx bằng Next.js App Router và TypeScript.
+- Yêu cầu UI: Gồm Logo bên trái, Search Input ở giữa, Menu điều hướng và nút Auth bên phải.
+- Yêu cầu TypeScript: Định nghĩa interface NavItem { label: string; href: string; isExternal?: boolean }.
+- Yêu cầu SCSS Module: Viết hiệu ứng Sticky Navigation khi scroll và hiệu ứng Hover underline mượt mà cho Menu Link.
+- Viết theo chuẩn Clean Code, không xài any.
+</code></pre>
+<p><strong>Team Challenge (60&#39;):</strong> nhóm 3–4 sinh viên khởi tạo repo chung, thiết lập Branch Strategy <code>main</code> – <code>dev</code> – <code>feature/&lt;ten&gt;</code>. Phân công dựng <code>styles/_variables.scss</code> (Color Palette, Typography, Spacing, Shadows) và <code>styles/_mixins.scss</code> (Responsive Breakpoints, Flex Alignment, Text Truncate) bằng prompt AI. Mỗi thành viên push lên nhánh riêng, tạo Pull Request và review chéo để không xảy ra conflict.</p>
+<pre><code class="language-bash">git checkout -b dev &amp;&amp; git push -u origin dev
+git checkout -b feature/an-design-tokens
+git add styles/ &amp;&amp; git commit -m &quot;feat(styles): add design tokens and shared mixins&quot;
+git push -u origin feature/an-design-tokens   # sau đó mở PR vào nhánh dev
+</code></pre>
+<hr>
+<h3 id="3-tom-tat-diem-can-nho-key-takeaways">📌 3. TÓM TẮT &amp; ĐIỂM CẦN NHỚ (Key Takeaways)</h3>
+<ul>
+<li>🔹 <strong>Design Token trước, component sau:</strong> màu, spacing, typography, shadow nằm trong <code>_variables.scss</code>; responsive nằm trong <code>@mixin respond-to</code>.</li>
+<li>🔹 <strong>CSS Modules + BEM:</strong> hash tên class chống xung đột toàn cục, BEM giúp đọc hiểu cấu trúc.</li>
+<li>🔹 <strong><code>interface</code> cho Props/Data Model, <code>type</code> cho Union:</strong> <code>type EventStatus = &#39;UPCOMING&#39; | &#39;ONGOING&#39; | &#39;ENDED&#39;</code>.</li>
+<li>🔹 <strong>Strict mode, không <code>any</code>:</strong> lỗi kiểu phải được bắt lúc viết code, không phải lúc demo.</li>
+<li>🔹 <strong>Prompt 3 bước + <code>.cursorrules</code>:</strong> AI sinh khung, người học kiểm duyệt và chịu trách nhiệm về code cuối cùng.</li>
+</ul>
+<hr>
+<h3 id="4-hoat-dong-kiem-tra-nhanh-self-assessment-quiz">❓ 4. HOẠT ĐỘNG KIỂM TRA NHANH (Self-Assessment / Quiz)</h3>
+<p><strong>Câu 1:</strong> Trường hợp nào nên dùng <code>type</code> thay vì <code>interface</code> trong TypeScript?</p>
+<ul>
+<li>A. Khai báo Props cho component cần mở rộng bằng <code>extends</code></li>
+<li>B. Khai báo tập giá trị trạng thái <code>&#39;UPCOMING&#39; | &#39;ONGOING&#39; | &#39;ENDED&#39;</code></li>
+<li>C. Khai báo class có constructor</li>
+<li>D. Khai báo biến môi trường trong <code>.env</code></li>
+</ul>
+<details>
+<summary>👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> B<br>
+<b>Giải thích:</b> Union type chỉ khai báo được bằng <code>type</code>. <code>interface</code> phù hợp cho Props và Data Model nhờ khả năng mở rộng qua <code>extends</code>.
+</details>
+
+<p><strong>Câu 2:</strong> Vì sao CSS Modules giải quyết được vấn đề Global CSS pollution?</p>
+<ul>
+<li>A. Vì nó tự động xóa các class không sử dụng</li>
+<li>B. Vì nó bắt buộc dùng inline style</li>
+<li>C. Vì nó mã hóa (hash) tên class theo từng file, tạo scope cục bộ</li>
+<li>D. Vì nó chuyển toàn bộ CSS sang JavaScript lúc chạy</li>
+</ul>
+<details>
+<summary>👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> C<br>
+<b>Giải thích:</b> Class <code>.title</code> trong <code>EventCard.module.scss</code> được đổi thành tên dạng <code>EventCard_title__hash</code>, nên không đụng với <code>.title</code> của file khác.
+</details>
+
+<p><strong>Câu 3:</strong> Với mixin <code>respond-to</code> viết theo <code>min-width</code> và map <code>(&#39;mobile&#39;: 640px, &#39;tablet&#39;: 768px, &#39;desktop&#39;: 1024px)</code>, đoạn <code>@include respond-to(&#39;desktop&#39;) { grid-template-columns: repeat(3, 1fr); }</code> có hiệu lực khi nào?</p>
+<ul>
+<li>A. Màn hình rộng từ 1024px trở lên</li>
+<li>B. Màn hình rộng dưới 1024px</li>
+<li>C. Chỉ khi màn hình đúng bằng 1024px</li>
+<li>D. Màn hình từ 640px đến 768px</li>
+</ul>
+<details>
+<summary>👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> A<br>
+<b>Giải thích:</b> Mixin sinh <code>@media (min-width: 1024px)</code>, tức áp dụng từ 1024px trở lên. Đây là cách viết mobile-first.
+</details>
+
+<p><strong>Câu 4:</strong> Trong prompt 3 bước, câu &quot;Sử dụng next/image, không dùng type any&quot; thuộc thành phần nào?</p>
+<ul>
+<li>A. Context</li>
+<li>B. Requirement</li>
+<li>C. Output format</li>
+<li>D. Constraint</li>
+</ul>
+<details>
+<summary>👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> D<br>
+<b>Giải thích:</b> Constraint là các ràng buộc kỹ thuật mà code sinh ra bắt buộc tuân theo, giúp AI không "sáng tạo" ngoài quy ước của nhóm.
+</details>
+
+<blockquote>
+<p>Bộ 10+ câu đầy đủ: <code>quiz/quiz-bai-01-aiken.txt</code></p>
+</blockquote>
+<hr>
+<h3 id="5-nhiem-vu-hoc-tap-thao-luan-lms-discussion-assignment">💬 5. NHIỆM VỤ HỌC TẬP &amp; THẢO LUẬN (LMS Discussion / Assignment)</h3>
+<ul>
+<li><strong>Chủ đề thảo luận Diễn đàn (Forum Discussion):</strong> Khi dùng AI sinh <code>EventCard</code>, bạn đã gặp lỗi gì (sai kiểu, hard-code màu, quên responsive, dùng <code>&lt;img&gt;</code> thay vì <code>next/image</code>…)? Hãy dán đoạn code lỗi, giải thích vì sao nó sai và câu prompt bạn đã sửa để AI trả kết quả tốt hơn. Bình luận cho ít nhất 2 bài của bạn khác.</li>
+<li><strong>Yêu cầu nộp bài (Bài tập về nhà):</strong> Phát triển độc lập 3 component tĩnh cho Smart Event Hub:<ol>
+<li><code>Footer.tsx</code>: thông tin bản quyền, liên kết mạng xã hội, form Đăng ký nhận bản tin (Newsletter).</li>
+<li><code>EventCategoryBadge.tsx</code>: badge thể loại sự kiện (Âm nhạc, Công nghệ, Thể thao, Workshop) kèm icon tương ứng.</li>
+<li><code>SearchBar.tsx</code>: thanh tìm kiếm sự kiện nâng cao kèm dropdown chọn địa điểm (Hà Nội, TP.HCM, Đà Nẵng).</li>
+</ol>
+<ul>
+<li><strong>Output:</strong> mỗi component có Type Safety (Interface trong <code>types/</code>) và SCSS Module riêng; không có <code>any</code>.</li>
+<li><strong>Hạn nộp:</strong> trước buổi học tiếp theo, dưới dạng Pull Request cá nhân vào nhánh <code>dev</code> của nhóm; nộp link PR lên LMS.</li>
+<li><strong>Quy tắc đặt tên:</strong> nhánh <code>feature/&lt;ho-ten-khong-dau&gt;-bai01</code>, tiêu đề PR <code>feat(ui): add Footer, EventCategoryBadge, SearchBar</code>.</li>
+</ul>
+</li>
+<li><strong>📚 Tài liệu đọc &amp; tham khảo:</strong><ul>
+<li>Sass Official Documentation: <a href="https://sass-lang.com/documentation/" target="_blank" rel="noopener noreferrer">https://sass-lang.com/documentation/</a></li>
+<li>TypeScript Handbook for React: <a href="https://www.typescriptlang.org/docs/handbook/react.html" target="_blank" rel="noopener noreferrer">https://www.typescriptlang.org/docs/handbook/react.html</a></li>
+<li>Next.js CSS Modules: <a href="https://nextjs.org/docs/app/building-your-application/styling/css-modules" target="_blank" rel="noopener noreferrer">https://nextjs.org/docs/app/building-your-application/styling/css-modules</a></li>
+<li>BEM Methodology: <a href="https://getbem.com/" target="_blank" rel="noopener noreferrer">https://getbem.com/</a></li>
+<li><strong>Câu hỏi tự kiểm tra khi đọc:</strong> Khác biệt cốt lõi giữa <code>interface</code> và <code>type</code> là gì, khi nào dùng loại nào? Tại sao CSS Modules giải quyết được xung đột CSS toàn cục?</li>
+</ul>
+</li>
+</ul>
+
+    </article>
+
+    <!-- Bottom Navigation -->
+    <div class="flex items-center justify-between gap-4 mt-8 no-print text-xs font-bold">
+      <a href="thong-tin-hoc-phan.html" class="px-4 py-2.5 bg-white border border-slate-200 hover:border-lhu-blue text-slate-700 hover:text-lhu-blue rounded-xl shadow-sm transition-all flex items-center gap-2"><i class="fa-solid fa-chevron-left"></i> Bài trước</a>
+      <a href="index.html#lo-trinh" class="px-4 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-800 rounded-xl transition-all flex items-center gap-2">
+        <i class="fa-solid fa-table-cells-large"></i> Danh mục bài học
+      </a>
+      <a href="bai-02.html" class="px-4 py-2.5 bg-white border border-slate-200 hover:border-lhu-blue text-slate-700 hover:text-lhu-blue rounded-xl shadow-sm transition-all flex items-center gap-2">Bài tiếp theo <i class="fa-solid fa-chevron-right"></i></a>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-slate-200 py-6 text-xs text-slate-500 mt-12 no-print">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <strong>Khoa Công nghệ Thông tin - Trường Đại học Lạc Hồng</strong><br>
+        Phòng B301 - B302, Cơ sở 1, Số 10 Huỳnh Văn Nghệ, P. Bửu Long, TP. Biên Hòa, Đồng Nai.
+      </div>
+      <div class="sm:text-right">
+        <span>Email: cntt@lhu.edu.vn • Hotline: (0251) 3952 251</span><br>
+        <span>Hệ thống LMS: <a href="https://learn.lhu.edu.vn" target="_blank" rel="noopener noreferrer" class="text-lhu-blue font-bold">learn.lhu.edu.vn</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleAllDetails(open) {
+      document.querySelectorAll("details").forEach(d => {
+        if (open) d.setAttribute("open", ""); else d.removeAttribute("open");
+      });
+    }
+    if (window.hljs) hljs.highlightAll();
+  </script>
+
+</body>
+</html>

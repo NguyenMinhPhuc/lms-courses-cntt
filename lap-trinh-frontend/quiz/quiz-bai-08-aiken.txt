@@ -1,0 +1,84 @@
+Trong Next.js App Router, cách lấy dữ liệu nào giúp HTML trả về đã có sẵn dữ liệu, tốt cho SEO?
+A. Gọi Axios trong useEffect của Client Component
+B. Dùng async/await fetch trực tiếp trong Server Component
+C. Đọc dữ liệu từ localStorage khi trang tải xong
+D. Gọi API trong sự kiện onClick của nút bấm
+ANSWER: B
+
+Trong Next.js 15, nếu không khai báo tùy chọn cache, hàm fetch trong Server Component hoạt động thế nào?
+A. Luôn cache vĩnh viễn kết quả
+B. Tự động revalidate mỗi 60 giây
+C. Không được cache mặc định, muốn cache phải khai báo rõ ràng
+D. Chỉ chạy được trong Client Component
+ANSWER: C
+
+Tùy chọn fetch(url, { next: { revalidate: 3600 } }) có ý nghĩa gì?
+A. Dùng lại dữ liệu đã cache tối đa 3600 giây rồi mới làm mới
+B. Gọi lại API mỗi 3600 mili-giây trên trình duyệt
+C. Hủy request nếu quá 3600 giây chưa có phản hồi
+D. Giới hạn tối đa 3600 request mỗi giờ
+ANSWER: A
+
+Khai báo interface ApiResponse<T> { statusCode: number; message: string; data: T; } thể hiện kỹ thuật TypeScript nào?
+A. Union Type
+B. Enum
+C. Type Assertion
+D. Generic Interface
+ANSWER: D
+
+DTO (Data Transfer Object) trong tích hợp API Front-End dùng để làm gì?
+A. Lưu trữ token đăng nhập trong trình duyệt
+B. Mô tả đúng hình dạng dữ liệu JSON mà Backend trả về
+C. Định nghĩa style SCSS cho component
+D. Thay thế hoàn toàn cho ViewModel hiển thị
+ANSWER: B
+
+Khi Swagger cho biết trường avatarUrl của ban tổ chức có thể rỗng, khai báo TypeScript nào chính xác nhất?
+A. avatarUrl: any;
+B. avatarUrl: string;
+C. avatarUrl: string | null;
+D. avatarUrl: object;
+ANSWER: C
+
+Trong Next.js 15, cách lấy id ở trang app/events/[id]/page.tsx (Server Component) nào là đúng?
+A. const { id } = await params;
+B. const id = params.id; với params là object đồng bộ
+C. const id = window.location.id;
+D. const id = useParams(); trong Server Component async
+ANSWER: A
+
+Đoạn code try { const e = await getEvent(id); if (!e) notFound(); } catch { return null; } gặp vấn đề gì?
+A. Không có vấn đề gì
+B. notFound() chỉ dùng được trong Client Component
+C. Server Component không được dùng await
+D. notFound() hoạt động bằng cách ném lỗi đặc biệt nên bị catch nuốt, trang 404 không hiển thị
+ANSWER: D
+
+File error.tsx dùng để bắt lỗi của một route trong App Router có yêu cầu bắt buộc nào?
+A. Phải là Server Component async
+B. Phải là Client Component có 'use client', nhận props error và reset
+C. Phải đặt trong thư mục public/
+D. Phải export biến metadata
+ANSWER: B
+
+Trong Client Component gọi API bằng useEffect, biến cờ ignore được đặt true trong hàm cleanup nhằm mục đích gì?
+A. Bỏ qua cập nhật state khi kết quả trả về sau lúc component đã unmount
+B. Tăng tốc độ phản hồi của API
+C. Tự động retry khi API lỗi 500
+D. Bắt buộc request dùng phương thức POST
+ANSWER: A
+
+Vì sao nên gom các lời gọi API vào services/eventService.ts thay vì gọi axios trực tiếp trong từng component?
+A. Vì component React không được phép import axios
+B. Vì Axios chỉ chạy được trong thư mục services
+C. Vì tập trung URL, kiểu dữ liệu và xử lý lỗi một chỗ, dễ tái sử dụng và bảo trì
+D. Vì Next.js tự động cache mọi file trong thư mục services
+ANSWER: C
+
+Khi tích hợp POST /api/orders, giải pháp nào giúp tránh việc người dùng bấm Đặt vé nhiều lần tạo đơn trùng khi mạng chậm?
+A. Gọi API trong Server Component mỗi khi trang render
+B. Lưu đơn hàng vào localStorage trước khi gửi
+C. Bỏ qua lỗi và gọi lại API liên tục
+D. Bật trạng thái loading cho nút trong lúc chờ phản hồi để chặn thao tác bấm lặp
+ANSWER: D
+

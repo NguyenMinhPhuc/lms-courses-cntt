@@ -1,0 +1,84 @@
+Vì sao một dự án Next.js chạy bình thường với npm run dev vẫn có thể thất bại khi chạy npm run build?
+A. Vì npm run build dùng phiên bản React khác với npm run dev
+B. Vì dev chỉ compile route được truy cập và không chặn trang khi có lỗi type, còn build kiểm tra toàn bộ dự án
+C. Vì npm run build xóa toàn bộ thư mục node_modules trước khi chạy
+D. Vì chế độ dev không hỗ trợ file .tsx
+ANSWER: B
+
+Thứ tự kiểm tra lỗi tĩnh hợp lý nhất trước buổi báo cáo giữa kỳ là gì?
+A. npm run build → npm install → npm run dev
+B. npm run start → npm run lint → git push
+C. npm run lint → npm run build → npm run start
+D. npm run dev → git commit → npm run lint
+ANSWER: C
+
+Commit message nào tuân thủ đúng quy ước Conventional Commits?
+A. feat(auth): add login form validation
+B. Update login page final
+C. FIX BUG LOGIN!!!
+D. login - sửa lần 3
+ANSWER: A
+
+Trong Conventional Commits, type nào phù hợp nhất cho commit xóa các câu lệnh console.log và file không còn được import?
+A. feat
+B. fix
+C. docs
+D. chore
+ANSWER: D
+
+Khi chạy npm run build, terminal báo "useSearchParams() should be wrapped in a suspense boundary". Cách sửa đúng là gì?
+A. Xóa dòng 'use client' khỏi component
+B. Thêm // @ts-ignore phía trên dòng useSearchParams
+C. Bọc Client Component dùng useSearchParams trong Suspense có fallback
+D. Chuyển useSearchParams sang file next.config.ts
+ANSWER: C
+
+Nhóm viết import Header from './header' trong khi file tên là Header.tsx; máy Windows chạy bình thường nhưng build trên Vercel báo Module not found. Nguyên nhân là gì?
+A. Môi trường build Linux phân biệt chữ hoa chữ thường trong đường dẫn file
+B. Vercel không hỗ trợ component tên Header
+C. File .tsx phải đặt trong thư mục pages/
+D. Next.js 15 cấm import đường dẫn tương đối
+ANSWER: A
+
+Rule ESLint nào giúp build tự chặn khi trong code còn khai báo kiểu any?
+A. no-console
+B. react-hooks/exhaustive-deps
+C. @next/next/no-img-element
+D. @typescript-eslint/no-explicit-any
+ANSWER: D
+
+Theo yêu cầu giữa kỳ, README.md của đồ án Smart Event Hub KHÔNG bắt buộc phải có nội dung nào sau đây?
+A. Bảng thành viên & phân công công việc
+B. Toàn bộ mã nguồn của các component chính
+C. Hướng dẫn cài đặt và chạy dự án ở local
+D. Link file thiết kế Wireframe Figma
+ANSWER: B
+
+Rubric giữa kỳ gồm Wireframe 1.5đ, UI chuyên nghiệp 2.0đ, Routing & Component 1.0đ, Git & phối hợp 0.5đ. Nhóm đạt 1.5 + 1.5 + 0.75 + 0.25 thì điểm quy đổi thang 10 là bao nhiêu?
+A. 8.0
+B. 4.0
+C. 7.5
+D. 9.0
+ANSWER: A
+
+Trong 15 phút báo cáo giữa kỳ của mỗi nhóm, thời lượng được phân bổ như thế nào?
+A. 15 phút thuyết trình, không có phản biện
+B. 5 phút thuyết trình và 10 phút phản biện nhóm
+C. 8 phút thuyết trình và 7 phút chấm code tự động
+D. 10 phút thuyết trình & demo live và 5 phút phản biện cá nhân
+ANSWER: D
+
+Lệnh nào giúp nhanh chóng thống kê số commit của từng thành viên để làm minh chứng đóng góp cá nhân?
+A. git status
+B. git shortlog -sn --all
+C. git stash list
+D. git diff --staged
+ANSWER: B
+
+Với Next.js 15, cách dùng dynamic(() => import('./DatePicker'), { ssr: false }) nào là đúng để tránh Hydration Error?
+A. Đặt trực tiếp trong app/checkout/page.tsx là Server Component
+B. Đặt trong file layout.tsx gốc để áp dụng cho mọi trang
+C. Đặt trong một Client Component có 'use client' rồi import component đó vào page
+D. Đặt trong file next.config.ts ở mục experimental
+ANSWER: C
+

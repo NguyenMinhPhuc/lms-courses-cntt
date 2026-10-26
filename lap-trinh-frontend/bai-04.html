@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 04 - Dynamic Routing &amp; kiến trúc Reusable Components | Lập trình Front-End - Khoa CNTT - Đại học Lạc Hồng</title>
+  <meta name="description" content="Bài 04 - Dynamic Routing &amp; kiến trúc Reusable Components - Lập trình Front-End (Next.js, TypeScript &amp; Vibe Coding). Thời lượng: 5 tiết (225 phút) · Hình thức: Lớp học đảo ngược · Chuẩn đầu ra: PI 2.3 (CLO2)Dự án xuyên suốt: Smart Event Hub – Xây dựng trang Chi tiết sự kiện /events/[id], trang Danh m">
+
+  <!-- Tailwind CSS CDN (kèm plugin typography cho nội dung Markdown) -->
+  <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6.4.0 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Highlight.js 11.9.0 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            asu: { maroon: '#8C1D40', gold: '#FFC627', dark: '#5C142B', light: '#FAEDF0' },
+            lhu: { blue: '#013D88', sky: '#007BFF', dark: '#01295C', light: '#EEF5FC' },
+            fe: { indigo: '#6366F1', dark: '#312E81', light: '#EEF2FF' }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .lesson h2, .lesson h3, .lesson h4 { scroll-margin-top: 90px; }
+    .lesson h3 { padding-bottom: .4rem; border-bottom: 2px solid #EEF2FF; }
+    .lesson blockquote { border-left: 4px solid #6366F1; background: #F5F7FF; border-radius: 0 12px 12px 0; padding: .6rem 1rem; font-style: normal; color: #1e293b; }
+    .lesson blockquote p:first-of-type::before, .lesson blockquote p:last-of-type::after { content: none; }
+    .lesson pre { border-radius: 12px; padding: 0; background: #0d1117; }
+    .lesson pre code.hljs { border-radius: 12px; padding: 1rem 1.1rem; font-size: 13px; line-height: 1.6; }
+    .lesson :not(pre) > code { background: #EEF2FF; color: #3730A3; padding: .1rem .35rem; border-radius: 6px; font-weight: 500; }
+    .lesson :not(pre) > code::before, .lesson :not(pre) > code::after { content: none; }
+    .lesson table { display: block; overflow-x: auto; font-size: 14px; }
+    .lesson thead th { background: #F1F5F9; }
+    .lesson th, .lesson td { border: 1px solid #E2E8F0; padding: .5rem .7rem !important; vertical-align: top; }
+    .lesson details { border: 1px solid #C7D2FE; border-radius: 10px; padding: .6rem .9rem; margin: .5rem 0 1.2rem; background: #FAFAFF; }
+    .lesson details summary { cursor: pointer; font-weight: 600; color: #4338CA; }
+    .lesson details[open] summary { margin-bottom: .4rem; }
+    .lesson hr { border-color: #E2E8F0; margin: 2rem 0; }
+    @media print {
+      header, footer, .no-print { display: none !important; }
+      details { break-inside: avoid; margin-bottom: 20px; }
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans antialiased selection:bg-asu-gold selection:text-slate-900 min-h-screen flex flex-col">
+
+  <!-- TOP BAR -->
+  <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800 no-print">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+      <div class="flex items-center gap-2">
+        <span class="text-asu-gold font-semibold"><i class="fa-solid fa-certificate mr-1"></i> CHUẨN KIỂM ĐỊNH ABET (USA)</span>
+        <span class="text-slate-600 hidden sm:inline">•</span>
+        <span class="hidden sm:inline">Lớp học đảo ngược • Vibe Coding</span>
+      </div>
+      <div class="flex items-center gap-4 text-xs font-mono">
+        <span>Thời lượng: <strong class="text-white">60 tiết (12 buổi)</strong></span>
+        <span>LT/TH: <strong class="text-asu-gold">30% / 70%</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="sticky top-0 z-40 bg-white shadow-sm border-b border-slate-200 no-print">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2.5 text-slate-800 hover:text-lhu-blue transition-colors">
+        <img src="LHU_ASU_VI_Small_Ngang.png" alt="Logo LHU" class="h-8 w-auto">
+        <div class="border-l border-slate-300 pl-2.5">
+          <div class="text-[11px] font-bold text-slate-500 uppercase">Khoa CNTT - LHU</div>
+          <div class="text-xs font-extrabold text-lhu-blue">LẬP TRÌNH FRONT-END</div>
+        </div>
+      </a>
+      <div class="flex items-center gap-3 text-xs">
+        <a href="index.html" class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-arrow-left"></i>
+          <span class="hidden sm:inline">Về Landing Page</span>
+        </a>
+        <button onclick="window.print()" class="hidden sm:flex px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-all items-center gap-1.5" title="In hoặc lưu file PDF">
+          <i class="fa-solid fa-print"></i>
+          <span>In / PDF</span>
+        </button>
+        <a href="https://learn.lhu.edu.vn" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-lhu-blue hover:bg-lhu-dark text-white font-bold rounded-xl shadow transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-graduation-cap text-asu-gold"></i>
+          <span>Vào lớp LMS</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="flex-grow max-w-5xl w-full mx-auto px-4 sm:px-6 py-8">
+
+    <!-- Title Card -->
+    <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 mb-8">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-5">
+        <div>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-fe-light text-fe-dark font-bold text-xs uppercase tracking-wider mb-2">
+            <i class="fa-solid fa-code"></i> CHƯƠNG 2: NEXT.JS CORE – ROUTING &amp; KIẾN TRÚC COMPONENT
+          </span>
+          <h1 class="text-2xl sm:text-3xl font-black text-slate-900 leading-tight">
+            Bài 04 - Dynamic Routing &amp; kiến trúc Reusable Components
+          </h1>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1 font-mono">
+            Học phần: Lập trình Front-End (Next.js, TypeScript & Vibe Coding) • Khoa CNTT - Đại học Lạc Hồng
+          </p>
+        </div>
+        <div class="flex-shrink-0 flex sm:flex-col items-center sm:items-end justify-between gap-1 text-xs">
+          <span class="px-3 py-1.5 bg-emerald-50 text-emerald-700 font-bold rounded-lg border border-emerald-200">
+            <i class="fa-solid fa-check-circle mr-1"></i> Lưu hành nội bộ 2026
+          </span>
+          <span class="text-slate-400 text-[11px]">Định dạng LMS Lecture</span>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between pt-4 text-xs no-print">
+        <span class="text-slate-500">
+          <i class="fa-solid fa-circle-info text-blue-500 mr-1"></i>
+          Bấm vào các khối thu gọn để xem đáp án hoặc chi tiết.
+        </span>
+        <div class="flex items-center gap-2">
+          <button onclick="toggleAllDetails(true)" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg transition-colors">Mở tất cả</button>
+          <button onclick="toggleAllDetails(false)" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg transition-colors">Thu gọn</button>
+        </div>
+      </div>
+      <nav class="mt-5 pt-4 border-t border-slate-100 no-print">
+        <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">Nội dung trang</div>
+        <div class="flex flex-wrap gap-2">
+          <a href="#1-dat-van-de-dan-nhap-introduction-hook" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">📝 1. ĐẶT VẤN ĐỀ &amp; DẪN NHẬP (Introduction / Hook)</a>
+          <a href="#2-noi-dung-cot-loi-core-content" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">📖 2. NỘI DUNG CỐT LÕI (Core Content)</a>
+          <a href="#3-tom-tat-diem-can-nho-key-takeaways" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">📌 3. TÓM TẮT &amp; ĐIỂM CẦN NHỚ (Key Takeaways)</a>
+          <a href="#4-hoat-dong-kiem-tra-nhanh-self-assessment-quiz" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">❓ 4. HOẠT ĐỘNG KIỂM TRA NHANH (Self-Assessment / Quiz)</a>
+          <a href="#5-nhiem-vu-hoc-tap-thao-luan-lms-discussion-assignment" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">💬 5. NHIỆM VỤ HỌC TẬP &amp; THẢO LUẬN (LMS Discussion / Assignment)</a>
+        </div>
+      </nav>
+    </div>
+
+    <!-- Content -->
+    <article class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 lesson prose prose-slate max-w-none prose-headings:font-extrabold prose-h3:text-lhu-dark prose-h4:text-fe-dark prose-a:text-lhu-blue">
+<blockquote>
+<p><strong>Thời lượng:</strong> 5 tiết (225 phút) · <strong>Hình thức:</strong> Lớp học đảo ngược · <strong>Chuẩn đầu ra:</strong> PI 2.3 (CLO2)<br><strong>Dự án xuyên suốt:</strong> Smart Event Hub – Xây dựng trang Chi tiết sự kiện <code>/events/[id]</code>, trang Danh mục động <code>/category/[slug]</code> và bộ UI component dùng chung.</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>🎯 <strong>MỤC TIÊU BÀI HỌC (Learning Objectives)</strong><br>Sau khi hoàn thành bài học này, người học có thể:</p>
+<ul>
+<li><strong>[Bloom 1/2 - Kiến thức]:</strong> Giải thích được cú pháp Dynamic Segment <code>[id]</code>, Catch-all <code>[...slug]</code>, Optional Catch-all <code>[[...slug]]</code> và sự khác nhau giữa <code>params</code>, <code>searchParams</code> với các hook <code>useParams</code>, <code>useSearchParams</code>, <code>usePathname</code>.</li>
+<li><strong>[Bloom 3/4 - Kỹ năng]:</strong> Xây dựng được trang động đọc tham số URL theo chuẩn Next.js 15 (<code>params</code> là <code>Promise</code>) và thiết kế component tái sử dụng có <code>variant</code>, <code>size</code>, <code>isLoading</code> mở rộng từ HTML attributes.</li>
+<li><strong>[Bloom 5/6 - Năng lực]:</strong> Đánh giá và tái cấu trúc thư mục <code>components/</code> theo nguyên tắc DRY, kiểm duyệt được component do AI sinh ra trước khi đưa vào dự án nhóm.</li>
+</ul>
+</blockquote>
+<hr>
+<h3 id="1-dat-van-de-dan-nhap-introduction-hook">📝 1. ĐẶT VẤN ĐỀ &amp; DẪN NHẬP (Introduction / Hook)</h3>
+<p>Smart Event Hub hiện có 3 sự kiện mẫu, nhưng Backend sắp trả về vài trăm sự kiện. Nếu mỗi sự kiện cần một thư mục <code>app/events/ev-101/</code>, <code>app/events/ev-102/</code>… thì dự án sẽ phình ra không kiểm soát được. Cùng lúc đó, nhìn lại code Buổi 3, các bạn sẽ thấy nút &quot;Mua vé&quot;, nút &quot;Xem chi tiết&quot;, nút &quot;Đăng nhập&quot; mỗi nơi viết một kiểu CSS, sửa màu thương hiệu phải đi tìm ở cả chục file.</p>
+<p><strong>Làm sao để một file <code>page.tsx</code> duy nhất phục vụ được mọi sự kiện, và một component <code>Button</code> duy nhất phục vụ được mọi nút bấm?</strong> Đó chính là hai câu hỏi bài học này trả lời: Dynamic Routing cho phần URL và Reusable Component cho phần giao diện.</p>
+<blockquote>
+<p>🧭 <strong>Trước giờ học (Flipped Classroom):</strong> Xem video/slide về Next.js Dynamic Routes (params) và Component Props &amp; Reusability pattern do giảng viên chia sẻ trên LMS. Đọc trước hai tài liệu ở mục 5. Làm quiz nhanh 5–10 câu trên <code>https://learn.lhu.edu.vn</code>. Chuẩn bị dự án Next.js của nhóm từ Buổi 3 (đã có <code>app/events/page.tsx</code>).</p>
+</blockquote>
+<hr>
+<h3 id="2-noi-dung-cot-loi-core-content">📖 2. NỘI DUNG CỐT LÕI (Core Content)</h3>
+<h4 id="2-1-dynamic-segments-id-slug-va-slug">2.1. Dynamic Segments: <code>[id]</code>, <code>[...slug]</code> và <code>[[...slug]]</code></h4>
+<ul>
+<li><strong>Khái niệm:</strong> Dynamic Segment là thư mục có tên đặt trong ngoặc vuông. Next.js dùng phần URL tương ứng làm tham số và truyền vào <code>page.tsx</code>.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li><code>app/events/[id]/page.tsx</code> khớp <code>/events/123</code>, <code>/events/ev-101</code> → <code>{ id: &#39;ev-101&#39; }</code>.</li>
+<li><code>app/docs/[...slug]/page.tsx</code> (Catch-all) khớp <code>/docs/a</code>, <code>/docs/a/b/c</code> → <code>{ slug: [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;] }</code>, nhưng <strong>không</strong> khớp <code>/docs</code>.</li>
+<li><code>app/shop/[[...slug]]/page.tsx</code> (Optional Catch-all) khớp cả <code>/shop</code> → <code>{ slug: undefined }</code>.</li>
+<li>Tên trong ngoặc là tên thuộc tính trong <code>params</code>, nên đặt rõ nghĩa (<code>[eventId]</code> tốt hơn <code>[x]</code>).</li>
+</ul>
+</li>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote>
+<p>Trang Shopee dùng <code>/product/[shopId]/[productId]</code>; Smart Event Hub cần <code>/events/[id]</code> cho chi tiết, <code>/category/[slug]</code> cho danh mục và <code>/checkout/[id]</code> cho thanh toán. Ba thư mục động thay cho hàng trăm thư mục tĩnh.</p>
+</blockquote>
+</li>
+</ul>
+<pre><code class="language-text">app/
+├── events/
+│   ├── page.tsx              → /events
+│   └── [id]/page.tsx         → /events/ev-101
+├── category/[slug]/page.tsx  → /category/music?page=1&amp;sort=latest
+├── checkout/[id]/page.tsx    → /checkout/ev-101
+└── docs/[...slug]/page.tsx   → /docs/huong-dan/dat-ve
+</code></pre>
+<h4 id="2-2-params-va-searchparams-trong-server-component-next-js-15">2.2. <code>params</code> và <code>searchParams</code> trong Server Component (Next.js 15)</h4>
+<ul>
+<li><strong>Khái niệm:</strong> Trong App Router, <code>page.tsx</code> nhận hai props: <code>params</code> (tham số động trên đường dẫn) và <code>searchParams</code> (query string <code>?page=1&amp;sort=desc</code>).</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li>Từ Next.js 15, <strong>cả hai đều là <code>Promise</code></strong>. Phải <code>await</code> trước khi dùng; viết <code>params.id</code> trực tiếp là cách cũ của Next.js 14.</li>
+<li>Giá trị query có thể là <code>string</code>, <code>string[]</code> (khi lặp <code>?tag=a&amp;tag=b</code>) hoặc <code>undefined</code>, nên cần kiểm tra kiểu.</li>
+<li>Gọi <code>notFound()</code> từ <code>next/navigation</code> khi không tìm thấy dữ liệu để hiển thị <code>not-found.tsx</code> đã làm ở Buổi 3.</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-tsx">// app/events/[id]/page.tsx (Server Component)
+import Link from &#39;next/link&#39;;
+import { notFound } from &#39;next/navigation&#39;;
+import { getEventById } from &#39;@/lib/events&#39;;
+
+interface PageProps {
+  params: Promise&lt;{ id: string }&gt;;
+}
+
+export default async function EventDetailPage({ params }: PageProps) {
+  const { id } = await params;
+  const event = getEventById(id);
+
+  if (!event) notFound(); // notFound() trả về never → TS tự thu hẹp kiểu
+
+  return (
+    &lt;main&gt;
+      &lt;h1&gt;{event.title}&lt;/h1&gt;
+      &lt;p&gt;Mã sự kiện: {id}&lt;/p&gt;
+      &lt;Link href={`/category/${event.categorySlug}`}&gt;{event.categoryName}&lt;/Link&gt;
+      &lt;Link href={`/checkout/${event.id}`}&gt;Mua vé&lt;/Link&gt;
+    &lt;/main&gt;
+  );
+}
+</code></pre>
+<pre><code class="language-tsx">// app/category/[slug]/page.tsx (Server Component)
+interface CategoryPageProps {
+  params: Promise&lt;{ slug: string }&gt;;
+  searchParams: Promise&lt;{ [key: string]: string | string[] | undefined }&gt;;
+}
+
+export default async function CategoryPage({ params, searchParams }: CategoryPageProps) {
+  const { slug } = await params;
+  const query = await searchParams;
+  const sort = typeof query.sort === &#39;string&#39; ? query.sort : &#39;latest&#39;;
+  const page = Number(typeof query.page === &#39;string&#39; ? query.page : &#39;1&#39;) || 1;
+
+  return &lt;h1&gt;Danh mục: {slug} · sắp xếp: {sort} · trang {page}&lt;/h1&gt;;
+}
+</code></pre>
+<h4 id="2-3-navigation-hooks-trong-client-component">2.3. Navigation Hooks trong Client Component</h4>
+<ul>
+<li><strong>Khái niệm:</strong> Khi component cần tương tác (đổi bộ lọc, highlight menu đang chọn), ta dùng hook của <code>next/navigation</code>. Các hook này chỉ chạy trong file có <code>&#39;use client&#39;</code>.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li><code>useParams()</code> → đọc tham số động (<code>{ slug: &#39;music&#39; }</code>), trả về đồng bộ, không cần <code>await</code>.</li>
+<li><code>useSearchParams()</code> → đọc query (<code>searchParams.get(&#39;sort&#39;)</code>), là đối tượng chỉ đọc.</li>
+<li><code>usePathname()</code> → đường dẫn hiện tại (<code>/category/music</code>), hay dùng cho menu active.</li>
+<li><code>useRouter()</code> → điều hướng bằng code: <code>router.push(...)</code>, <code>router.replace(...)</code>.</li>
+<li>Component dùng <code>useSearchParams</code> nên được bọc trong <code>&lt;Suspense&gt;</code>; nếu không, <code>npm run build</code> có thể báo lỗi ở trang render tĩnh.</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-tsx">// app/category/[slug]/SortSelect.tsx
+&#39;use client&#39;;
+
+import { usePathname, useRouter, useSearchParams } from &#39;next/navigation&#39;;
+
+export default function SortSelect() {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const currentSort = searchParams.get(&#39;sort&#39;) ?? &#39;latest&#39;;
+
+  const handleChange = (value: string) =&gt; {
+    const next = new URLSearchParams(searchParams.toString());
+    next.set(&#39;sort&#39;, value);
+    next.set(&#39;page&#39;, &#39;1&#39;);
+    router.push(`${pathname}?${next.toString()}`);
+  };
+
+  return (
+    &lt;select value={currentSort} onChange={(e) =&gt; handleChange(e.target.value)}&gt;
+      &lt;option value=&quot;latest&quot;&gt;Mới nhất&lt;/option&gt;
+      &lt;option value=&quot;price-asc&quot;&gt;Giá tăng dần&lt;/option&gt;
+      &lt;option value=&quot;price-desc&quot;&gt;Giá giảm dần&lt;/option&gt;
+    &lt;/select&gt;
+  );
+}
+</code></pre>
+<pre><code class="language-tsx">// Trong CategoryPage (Server Component)
+import { Suspense } from &#39;react&#39;;
+import SortSelect from &#39;./SortSelect&#39;;
+// ...
+&lt;Suspense fallback={&lt;span&gt;Đang tải bộ lọc...&lt;/span&gt;}&gt;
+  &lt;SortSelect /&gt;
+&lt;/Suspense&gt;
+</code></pre>
+<blockquote>
+<p><strong>Ghi nhớ nhanh:</strong> Server Component đọc query bằng prop <code>searchParams</code> (phải <code>await</code>). Client Component đọc query bằng hook <code>useSearchParams()</code>. Đừng trộn lẫn hai cách trong cùng một file.</p>
+</blockquote>
+<h4 id="2-4-mock-data-co-kieu-du-lieu-chat-che">2.4. Mock Data có kiểu dữ liệu chặt chẽ</h4>
+<ul>
+<li><strong>Khái niệm:</strong> Trước khi có API thật (Buổi 8), chúng ta dùng file JSON giả lập nhưng vẫn khai báo đúng <code>interface</code> để khi đổi sang API không phải sửa giao diện.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong> Đặt dữ liệu ở <code>data/mock-events.json</code>, gom hàm truy vấn vào <code>lib/events.ts</code>. Trang chỉ gọi hàm, không tự lọc mảng.</li>
+</ul>
+<pre><code class="language-ts">// types/event.ts
+export type EventStatus = &#39;UPCOMING&#39; | &#39;ONGOING&#39; | &#39;ENDED&#39;;
+
+export interface EventItem {
+  id: string;
+  title: string;
+  price: number;
+  status: EventStatus;
+  categorySlug: string;
+  categoryName: string;
+  startDate: string; // ISO 8601
+}
+</code></pre>
+<pre><code class="language-ts">// lib/events.ts
+import rawEvents from &#39;@/data/mock-events.json&#39;;
+import type { EventItem } from &#39;@/types/event&#39;;
+
+const events = rawEvents as EventItem[];
+
+export function getEventById(id: string): EventItem | undefined {
+  return events.find((event) =&gt; event.id === id);
+}
+
+export function getEventsByCategory(slug: string): EventItem[] {
+  return events.filter((event) =&gt; event.categorySlug === slug);
+}
+</code></pre>
+<pre><code class="language-json">[
+  { &quot;id&quot;: &quot;ev-101&quot;, &quot;title&quot;: &quot;Tech Summit 2025&quot;, &quot;price&quot;: 500000, &quot;status&quot;: &quot;UPCOMING&quot;,
+    &quot;categorySlug&quot;: &quot;technology&quot;, &quot;categoryName&quot;: &quot;Công nghệ&quot;, &quot;startDate&quot;: &quot;2025-12-05T08:00:00Z&quot; },
+  { &quot;id&quot;: &quot;ev-102&quot;, &quot;title&quot;: &quot;Đêm nhạc Acoustic&quot;, &quot;price&quot;: 300000, &quot;status&quot;: &quot;UPCOMING&quot;,
+    &quot;categorySlug&quot;: &quot;music&quot;, &quot;categoryName&quot;: &quot;Âm nhạc&quot;, &quot;startDate&quot;: &quot;2025-12-12T19:30:00Z&quot; }
+]
+</code></pre>
+<h4 id="2-5-reusable-component-composition-variant-mapping-va-polymorphic">2.5. Reusable Component: Composition, Variant Mapping và Polymorphic</h4>
+<ul>
+<li><strong>Khái niệm:</strong> Component tái sử dụng là component nhận cấu hình qua props thay vì sao chép code (nguyên tắc <strong>DRY – Don&#39;t Repeat Yourself</strong>). Ba kỹ thuật chính: <code>children</code> prop (Composition), bản đồ <code>variant</code>/<code>size</code> sang class, và prop <code>as</code> (Polymorphic).</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li>Mở rộng <code>ButtonHTMLAttributes&lt;HTMLButtonElement&gt;</code> để component nhận sẵn <code>onClick</code>, <code>type</code>, <code>disabled</code>, <code>aria-*</code> mà không phải khai báo lại.</li>
+<li>Dùng union type cho <code>variant</code> và <code>size</code> để TypeScript chặn giá trị sai ngay khi gõ.</li>
+<li>Đặt giá trị mặc định khi destructure, gộp <code>className</code> từ bên ngoài để người dùng component vẫn tùy biến được.</li>
+<li><code>Button</code> không dùng hook nên không bắt buộc <code>&#39;use client&#39;</code>. Tuy nhiên, khi cần truyền <code>onClick</code>, hãy dùng nó bên trong một Client Component, vì Server Component không truyền được hàm.</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-tsx">// components/ui/Button.tsx
+import type { ButtonHTMLAttributes, ReactNode } from &#39;react&#39;;
+import styles from &#39;./Button.module.scss&#39;;
+
+type ButtonVariant = &#39;primary&#39; | &#39;secondary&#39; | &#39;danger&#39; | &#39;outline&#39;;
+type ButtonSize = &#39;sm&#39; | &#39;md&#39; | &#39;lg&#39;;
+
+export interface ButtonProps extends ButtonHTMLAttributes&lt;HTMLButtonElement&gt; {
+  variant?: ButtonVariant;
+  size?: ButtonSize;
+  isLoading?: boolean;
+  leftIcon?: ReactNode;
+}
+
+export function Button({
+  variant = &#39;primary&#39;,
+  size = &#39;md&#39;,
+  isLoading = false,
+  leftIcon,
+  disabled,
+  className,
+  type = &#39;button&#39;,
+  children,
+  ...rest
+}: ButtonProps) {
+  const classes = [styles.btn, styles[variant], styles[size], className].filter(Boolean).join(&#39; &#39;);
+
+  return (
+    &lt;button type={type} className={classes} disabled={disabled || isLoading} aria-busy={isLoading} {...rest}&gt;
+      {isLoading ? &lt;span className={styles.spinner} aria-hidden=&quot;true&quot; /&gt; : leftIcon}
+      {children}
+    &lt;/button&gt;
+  );
+}
+</code></pre>
+<pre><code class="language-scss">// components/ui/Button.module.scss
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, opacity 0.2s;
+  &amp;:disabled { opacity: 0.6; cursor: not-allowed; }
+}
+.primary   { background: #6366f1; color: #fff; }
+.secondary { background: #e0e7ff; color: #3730a3; }
+.danger    { background: #ef4444; color: #fff; }
+.outline   { background: transparent; color: #6366f1; border-color: #6366f1; }
+.sm { padding: 4px 12px;  font-size: 13px; }
+.md { padding: 8px 16px;  font-size: 14px; }
+.lg { padding: 12px 24px; font-size: 16px; }
+.spinner {
+  width: 1em; height: 1em;
+  border: 2px solid currentColor; border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+</code></pre>
+<p>Composition và Polymorphic giúp một component &quot;khung&quot; dùng được ở nhiều ngữ cảnh:</p>
+<pre><code class="language-tsx">// components/ui/Card.tsx – Polymorphic + children
+import type { ComponentPropsWithoutRef, ElementType, ReactNode } from &#39;react&#39;;
+
+type CardProps&lt;C extends ElementType&gt; = {
+  as?: C;
+  title?: ReactNode;
+  footer?: ReactNode;
+  children: ReactNode;
+} &amp; Omit&lt;ComponentPropsWithoutRef&lt;C&gt;, &#39;as&#39; | &#39;title&#39; | &#39;children&#39;&gt;;
+
+export function Card&lt;C extends ElementType = &#39;div&#39;&gt;({ as, title, footer, children, ...rest }: CardProps&lt;C&gt;) {
+  const Component: ElementType = as ?? &#39;div&#39;;
+  return (
+    &lt;Component className=&quot;card&quot; {...rest}&gt;
+      {title &amp;&amp; &lt;header className=&quot;card__title&quot;&gt;{title}&lt;/header&gt;}
+      &lt;div className=&quot;card__body&quot;&gt;{children}&lt;/div&gt;
+      {footer &amp;&amp; &lt;footer className=&quot;card__footer&quot;&gt;{footer}&lt;/footer&gt;}
+    &lt;/Component&gt;
+  );
+}
+
+// Sử dụng: &lt;Card as=&quot;article&quot; title=&quot;Tech Summit 2025&quot; footer={&lt;BuyButton /&gt;}&gt;...&lt;/Card&gt;
+</code></pre>
+<ul>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote>
+<p>Ant Design, MUI hay shadcn/ui đều thiết kế <code>Button</code> theo đúng mô hình này: một component, nhiều <code>variant</code>/<code>size</code>, nhận thêm mọi thuộc tính HTML gốc. Khi phòng Marketing đổi màu thương hiệu, nhóm chỉ sửa một file SCSS.</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="2-6-vibe-coding-prompt-mau-cach-kiem-duyet-code-ai">2.6. Vibe Coding – Prompt mẫu &amp; cách kiểm duyệt code AI</h4>
+<p>Prompt mẫu cho Guided Practice (Button):</p>
+<pre><code class="language-text">Hãy thiết kế cho tôi một Reusable Component tên là Button.tsx trong Next.js TypeScript.
+
+Yêu cầu:
+1. Props Interface ButtonProps mở rộng từ React.ButtonHTMLAttributes&lt;HTMLButtonElement&gt;:
+   - variant: &#39;primary&#39; | &#39;secondary&#39; | &#39;danger&#39; | &#39;outline&#39;
+   - size: &#39;sm&#39; | &#39;md&#39; | &#39;lg&#39;
+   - isLoading?: boolean
+   - leftIcon?: React.ReactNode
+2. Xử lý SCSS Module / TailwindCSS tương ứng với các biến thể.
+3. Khi isLoading = true, vô hiệu hóa button (disabled) và hiển thị Spinner.
+</code></pre>
+<p>Prompt mẫu cho Unguided Practice (Category):</p>
+<pre><code class="language-text">Tạo giúp tôi trang Dynamic Route /category/[slug]/page.tsx trong Next.js 15 App Router.
+- Sử dụng params để lấy tên danh mục (music, technology, sports).
+- Sử dụng searchParams để lấy thông tin phân trang page và sắp xếp sort.
+- Render dữ liệu mock tương ứng với danh mục đó.
+- Đảm bảo viết chuẩn TypeScript Interface cho PageProps trong Next.js 15
+  (params và searchParams đều là Promise). Không dùng any.
+</code></pre>
+<p>Prompt mẫu cho Polymorphic Component:</p>
+<pre><code class="language-text">Viết component Card.tsx dạng Polymorphic (prop &quot;as&quot; nhận ElementType, mặc định &quot;div&quot;)
+bằng TypeScript strict. Props kế thừa thuộc tính của thẻ được chọn qua
+ComponentPropsWithoutRef&lt;C&gt;, có slot title, footer và children. Không dùng any.
+</code></pre>
+<blockquote>
+<p><strong>Checklist kiểm duyệt code AI trước khi commit:</strong></p>
+<ol>
+<li><code>params</code>/<code>searchParams</code> có được khai báo là <code>Promise</code> và <code>await</code> chưa? AI hay sinh <code>params.id</code> kiểu Next.js 14.</li>
+<li>Union type có dùng dấu <code>|</code> đúng chưa, có lọt <code>any</code> hay <code>as any</code> không?</li>
+<li>Hook <code>useSearchParams</code>/<code>useParams</code> chỉ nằm trong file <code>&#39;use client&#39;</code>, và đã bọc <code>&lt;Suspense&gt;</code>?</li>
+<li>Button có <code>type=&quot;button&quot;</code> mặc định (tránh vô tình submit form), có <code>disabled</code> khi <code>isLoading</code>?</li>
+<li>Có trường hợp không tìm thấy dữ liệu → gọi <code>notFound()</code> chưa?</li>
+<li>Chạy thử với id sai (<code>/events/abc</code>) và query lạ (<code>?page=xyz</code>) xem trang có vỡ không.</li>
+</ol>
+</blockquote>
+<h4 id="2-7-thuc-hanh-tren-lop">2.7. Thực hành trên lớp</h4>
+<table>
+<thead>
+<tr>
+<th>Phần</th>
+<th>Thời lượng</th>
+<th>Nhiệm vụ</th>
+<th>Output mong muốn</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Guided Practice</td>
+<td>45&#39;</td>
+<td>Tạo <code>/events/[id]/page.tsx</code> và <code>components/ui/Button.tsx</code> nhiều biến thể; GV cùng SV dùng AI thiết kế <code>EventCard</code> nhận props <code>EventItem</code></td>
+<td>Đổi <code>/events/ev-101</code> → <code>/events/ev-102</code> hiển thị đúng sự kiện; Button chạy đúng mọi props</td>
+</tr>
+<tr>
+<td>Unguided Practice</td>
+<td>45&#39;</td>
+<td>Tự xây <code>/category/[slug]/page.tsx</code>, đọc <code>page</code>, <code>sort</code> từ URL, mock data dạng key-value theo slug</td>
+<td>Hiển thị được <code>slug</code> và <code>sort</code> trên giao diện, danh sách lọc đúng danh mục</td>
+</tr>
+<tr>
+<td>Team Challenge</td>
+<td>60&#39;</td>
+<td>Thiết kế <code>data/mock-events.json</code> cho toàn hệ thống, nối luồng Trang chủ → Danh mục → Chi tiết → Đặt vé</td>
+<td>User Flow liên tục, dữ liệu khớp giữa các màn hình</td>
+</tr>
+<tr>
+<td>Tổng kết</td>
+<td>15&#39;</td>
+<td>GV chữa lỗi điển hình, giải đáp, giao BTVN</td>
+<td>SV nắm lỗi thường gặp và yêu cầu bài về nhà</td>
+</tr>
+</tbody></table>
+<p><strong>Guided (45&#39;):</strong> Tạo route động <code>/events/[id]</code> lấy <code>id</code> từ <code>params</code> (nhớ <code>await</code>), tra cứu trong mock data, gọi <code>notFound()</code> khi không có. Viết <code>Button.tsx</code> hỗ trợ <code>variant</code> (primary, secondary, danger, outline), <code>size</code> (sm, md, lg), <code>isLoading</code>, <code>leftIcon</code>. Dùng AI sinh <code>EventCard</code> nhận prop <code>event: EventItem</code> và đặt vào trang chi tiết.</p>
+<p><strong>Unguided (45&#39;):</strong> Tạo <code>/category/[slug]/page.tsx</code> cho các danh mục <code>music</code>, <code>technology</code>, <code>sports</code> (có thể thêm <code>workshop</code>). Đọc thông số lọc như <code>/category/music?page=1&amp;sort=latest</code>: dùng prop <code>searchParams</code> ở Server Component, kết hợp một Client Component dùng <code>useSearchParams</code> để đổi cách sắp xếp. Mock data tổ chức dạng <code>Record&lt;string, { title: string; events: EventItem[] }&gt;</code>.</p>
+<p><strong>Team Challenge (60&#39;):</strong> Nhóm thống nhất một file <code>data/mock-events.json</code> duy nhất. Xây luồng điều hướng: bấm Card ở Trang chủ → <code>/events/[id]</code>; bấm Badge thể loại → <code>/category/[slug]</code>; bấm &quot;Mua vé&quot; → <code>/checkout/[id]</code>. Mỗi thành viên phụ trách một route, merge qua Pull Request.</p>
+<hr>
+<h3 id="3-tom-tat-diem-can-nho-key-takeaways">📌 3. TÓM TẮT &amp; ĐIỂM CẦN NHỚ (Key Takeaways)</h3>
+<ul>
+<li>🔹 <strong>Dynamic Segment:</strong> <code>[id]</code> cho một tham số, <code>[...slug]</code> bắt nhiều đoạn (bắt buộc có ít nhất một), <code>[[...slug]]</code> cho phép rỗng.</li>
+<li>🔹 <strong>Next.js 15:</strong> <code>params</code> và <code>searchParams</code> là <code>Promise</code> → luôn <code>const { id } = await params;</code>.</li>
+<li>🔹 <strong>Server vs Client:</strong> Server Component dùng props <code>params</code>/<code>searchParams</code>; Client Component dùng <code>useParams</code>, <code>useSearchParams</code> (bọc <code>Suspense</code>), <code>usePathname</code>, <code>useRouter</code>.</li>
+<li>🔹 <strong>Reusable Component:</strong> mở rộng HTML attributes, dùng union type cho <code>variant</code>/<code>size</code>, đặt mặc định hợp lý, cho phép ghi đè <code>className</code>.</li>
+<li>🔹 <strong>Composition &amp; Polymorphic:</strong> <code>children</code> và prop <code>as</code> giúp một component khung phục vụ nhiều ngữ cảnh mà không nhân bản code.</li>
+<li>🔹 <strong>Tổ chức thư mục:</strong> <code>components/ui</code> (nguyên tử) · <code>components/common</code> (bố cục chung) · <code>components/features</code> (theo nghiệp vụ).</li>
+</ul>
+<hr>
+<h3 id="4-hoat-dong-kiem-tra-nhanh-self-assessment-quiz">❓ 4. HOẠT ĐỘNG KIỂM TRA NHANH (Self-Assessment / Quiz)</h3>
+<p><strong>Câu 1:</strong> Trong Next.js 15, cách lấy <code>id</code> đúng trong <code>app/events/[id]/page.tsx</code> (Server Component) là gì?</p>
+<ul>
+<li>A. <code>const id = params.id;</code></li>
+<li>B. <code>const { id } = useParams();</code></li>
+<li>C. <code>const { id } = await params;</code></li>
+<li>D. <code>const id = router.query.id;</code></li>
+</ul>
+<details>
+<summary>👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> C<br>
+<b>Giải thích:</b> Từ Next.js 15, <code>params</code> là Promise nên phải <code>await</code>. <code>useParams</code> chỉ dùng trong Client Component, còn <code>router.query</code> thuộc Pages Router cũ.
+</details>
+
+<p><strong>Câu 2:</strong> Thư mục <code>app/docs/[...slug]/page.tsx</code> sẽ KHÔNG khớp với URL nào?</p>
+<ul>
+<li>A. <code>/docs</code></li>
+<li>B. <code>/docs/a</code></li>
+<li>C. <code>/docs/a/b</code></li>
+<li>D. <code>/docs/huong-dan/dat-ve</code></li>
+</ul>
+<details>
+<summary>👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> A<br>
+<b>Giải thích:</b> Catch-all <code>[...slug]</code> cần ít nhất một đoạn sau <code>/docs</code>. Muốn khớp cả <code>/docs</code> phải dùng Optional Catch-all <code>[[...slug]]</code>.
+</details>
+
+<p><strong>Câu 3:</strong> Vì sao nên khai báo <code>interface ButtonProps extends ButtonHTMLAttributes&lt;HTMLButtonElement&gt;</code>?</p>
+<ul>
+<li>A. Để Button tự động chuyển thành Server Component</li>
+<li>B. Để Button nhận sẵn mọi thuộc tính HTML gốc như <code>onClick</code>, <code>type</code>, <code>disabled</code>, <code>aria-*</code></li>
+<li>C. Để bắt buộc mọi Button phải có <code>variant</code></li>
+<li>D. Để Next.js tự sinh CSS cho Button</li>
+</ul>
+<details>
+<summary>👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> B<br>
+<b>Giải thích:</b> Kế thừa HTML attributes giúp component dùng như thẻ <code>button</code> thật, không phải khai báo lại từng thuộc tính, đồng thời vẫn được TypeScript kiểm tra kiểu.
+</details>
+
+<p><strong>Câu 4:</strong> Một Client Component cần đọc <code>?sort=latest</code> trên URL. Lựa chọn nào đúng?</p>
+<ul>
+<li>A. Dùng <code>useSearchParams()</code> và bọc component trong <code>&lt;Suspense&gt;</code></li>
+<li>B. Khai báo prop <code>searchParams</code> rồi <code>await</code> trong Client Component</li>
+<li>C. Đọc <code>window.location</code> trong thân component khi render</li>
+<li>D. Dùng <code>usePathname()</code> rồi tách chuỗi sau dấu <code>?</code></li>
+</ul>
+<details>
+<summary>👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> A<br>
+<b>Giải thích:</b> <code>useSearchParams</code> là hook chuẩn cho Client Component. <code>usePathname</code> không chứa query string, còn đọc <code>window</code> khi render gây lỗi trên server và hydration mismatch.
+</details>
+
+<p><em>Bộ 10+ câu đầy đủ: <code>quiz/quiz-bai-04-aiken.txt</code></em></p>
+<hr>
+<h3 id="5-nhiem-vu-hoc-tap-thao-luan-lms-discussion-assignment">💬 5. NHIỆM VỤ HỌC TẬP &amp; THẢO LUẬN (LMS Discussion / Assignment)</h3>
+<ul>
+<li><strong>Chủ đề thảo luận Diễn đàn (Forum Discussion):</strong> Bộ lọc danh mục (sắp xếp, trang hiện tại) nên lưu ở URL (<code>searchParams</code>) hay ở state cục bộ (<code>useState</code>)? Hãy nêu ít nhất một lợi ích và một bất lợi của mỗi cách, kèm tình huống cụ thể trong Smart Event Hub (ví dụ: người dùng gửi link danh mục cho bạn bè qua Zalo).</li>
+<li><strong>Yêu cầu nộp bài (Bài tập về nhà):</strong><ul>
+<li>Tổ chức lại toàn bộ thư mục component theo chuẩn: <code>components/ui/</code> (Button, Input, Modal, Badge) · <code>components/common/</code> (Header, Footer, Sidebar – tương đương <code>shared</code> trong đề cương) · <code>components/features/</code> (EventCard, SeatPicker, CheckoutForm).</li>
+<li>Bổ sung ít nhất 3 component nguyên tử còn thiếu (Input, Modal, Badge) có props interface rõ ràng, không <code>any</code>.</li>
+<li><strong>Output:</strong> Thư mục dự án gọn gàng, không còn code trùng lặp; ảnh chụp cây thư mục dán vào mô tả PR.</li>
+<li><strong>Hạn nộp:</strong> trước buổi học tiếp theo. Nộp link Pull Request trên LMS. Đặt tên nhánh <code>feat/b04-&lt;mssv&gt;-components</code>, tiêu đề PR <code>[B04] &lt;Họ tên&gt; – Refactor components</code>, commit theo Conventional Commits (ví dụ <code>refactor(ui): move Button to components/ui</code>).</li>
+</ul>
+</li>
+<li><strong>📚 Tài liệu đọc &amp; tham khảo:</strong><ul>
+<li>Next.js Dynamic Routes Guide: <a href="https://nextjs.org/docs/app/building-your-application/routing/dynamic-routes" target="_blank" rel="noopener noreferrer">https://nextjs.org/docs/app/building-your-application/routing/dynamic-routes</a></li>
+<li>TypeScript Component Props Patterns: <a href="https://react-typescript-cheatsheet.netlify.app/docs/basic/getting-started/basic_type_example/" target="_blank" rel="noopener noreferrer">https://react-typescript-cheatsheet.netlify.app/docs/basic/getting-started/basic_type_example/</a></li>
+<li>Next.js – <code>useSearchParams</code>: <a href="https://nextjs.org/docs/app/api-reference/functions/use-search-params" target="_blank" rel="noopener noreferrer">https://nextjs.org/docs/app/api-reference/functions/use-search-params</a></li>
+<li><strong>Câu hỏi tự kiểm tra khi đọc:</strong> (1) Làm thế nào để lấy Query Parameters (<code>?category=music</code>) trong một Client Component và trong một Server Component? (2) Tại sao nên mở rộng Props Component từ HTML Native Attributes (ví dụ <code>ButtonHTMLAttributes&lt;HTMLButtonElement&gt;</code>)?</li>
+</ul>
+</li>
+</ul>
+
+    </article>
+
+    <!-- Bottom Navigation -->
+    <div class="flex items-center justify-between gap-4 mt-8 no-print text-xs font-bold">
+      <a href="bai-03.html" class="px-4 py-2.5 bg-white border border-slate-200 hover:border-lhu-blue text-slate-700 hover:text-lhu-blue rounded-xl shadow-sm transition-all flex items-center gap-2"><i class="fa-solid fa-chevron-left"></i> Bài trước</a>
+      <a href="index.html#lo-trinh" class="px-4 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-800 rounded-xl transition-all flex items-center gap-2">
+        <i class="fa-solid fa-table-cells-large"></i> Danh mục bài học
+      </a>
+      <a href="bai-05.html" class="px-4 py-2.5 bg-white border border-slate-200 hover:border-lhu-blue text-slate-700 hover:text-lhu-blue rounded-xl shadow-sm transition-all flex items-center gap-2">Bài tiếp theo <i class="fa-solid fa-chevron-right"></i></a>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-slate-200 py-6 text-xs text-slate-500 mt-12 no-print">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <strong>Khoa Công nghệ Thông tin - Trường Đại học Lạc Hồng</strong><br>
+        Phòng B301 - B302, Cơ sở 1, Số 10 Huỳnh Văn Nghệ, P. Bửu Long, TP. Biên Hòa, Đồng Nai.
+      </div>
+      <div class="sm:text-right">
+        <span>Email: cntt@lhu.edu.vn • Hotline: (0251) 3952 251</span><br>
+        <span>Hệ thống LMS: <a href="https://learn.lhu.edu.vn" target="_blank" rel="noopener noreferrer" class="text-lhu-blue font-bold">learn.lhu.edu.vn</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleAllDetails(open) {
+      document.querySelectorAll("details").forEach(d => {
+        if (open) d.setAttribute("open", ""); else d.removeAttribute("open");
+      });
+    }
+    if (window.hljs) hljs.highlightAll();
+  </script>
+
+</body>
+</html>

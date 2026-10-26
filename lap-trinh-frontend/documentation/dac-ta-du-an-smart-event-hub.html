@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LẬP TRÌNH FRONT-END (NEXT.JS, TYPESCRIPT &amp; VIBE CODING) | Lập trình Front-End - Khoa CNTT - Đại học Lạc Hồng</title>
+  <meta name="description" content="Tài liệu hướng dẫn: LẬP TRÌNH FRONT-END (NEXT.JS, TYPESCRIPT &amp; VIBE CODING) - Lập trình Front-End (Next.js, TypeScript &amp; Vibe Coding)">
+
+  <!-- Tailwind CSS CDN (kèm plugin typography cho nội dung Markdown) -->
+  <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6.4.0 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Highlight.js 11.9.0 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            asu: { maroon: '#8C1D40', gold: '#FFC627', dark: '#5C142B', light: '#FAEDF0' },
+            lhu: { blue: '#013D88', sky: '#007BFF', dark: '#01295C', light: '#EEF5FC' },
+            fe: { indigo: '#6366F1', dark: '#312E81', light: '#EEF2FF' }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .lesson h2, .lesson h3, .lesson h4 { scroll-margin-top: 90px; }
+    .lesson h3 { padding-bottom: .4rem; border-bottom: 2px solid #EEF2FF; }
+    .lesson blockquote { border-left: 4px solid #6366F1; background: #F5F7FF; border-radius: 0 12px 12px 0; padding: .6rem 1rem; font-style: normal; color: #1e293b; }
+    .lesson blockquote p:first-of-type::before, .lesson blockquote p:last-of-type::after { content: none; }
+    .lesson pre { border-radius: 12px; padding: 0; background: #0d1117; }
+    .lesson pre code.hljs { border-radius: 12px; padding: 1rem 1.1rem; font-size: 13px; line-height: 1.6; }
+    .lesson :not(pre) > code { background: #EEF2FF; color: #3730A3; padding: .1rem .35rem; border-radius: 6px; font-weight: 500; }
+    .lesson :not(pre) > code::before, .lesson :not(pre) > code::after { content: none; }
+    .lesson table { display: block; overflow-x: auto; font-size: 14px; }
+    .lesson thead th { background: #F1F5F9; }
+    .lesson th, .lesson td { border: 1px solid #E2E8F0; padding: .5rem .7rem !important; vertical-align: top; }
+    .lesson details { border: 1px solid #C7D2FE; border-radius: 10px; padding: .6rem .9rem; margin: .5rem 0 1.2rem; background: #FAFAFF; }
+    .lesson details summary { cursor: pointer; font-weight: 600; color: #4338CA; }
+    .lesson details[open] summary { margin-bottom: .4rem; }
+    .lesson hr { border-color: #E2E8F0; margin: 2rem 0; }
+    @media print {
+      header, footer, .no-print { display: none !important; }
+      details { break-inside: avoid; margin-bottom: 20px; }
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans antialiased selection:bg-asu-gold selection:text-slate-900 min-h-screen flex flex-col">
+
+  <!-- TOP BAR -->
+  <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800 no-print">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+      <div class="flex items-center gap-2">
+        <span class="text-asu-gold font-semibold"><i class="fa-solid fa-certificate mr-1"></i> CHUẨN KIỂM ĐỊNH ABET (USA)</span>
+        <span class="text-slate-600 hidden sm:inline">•</span>
+        <span class="hidden sm:inline">Lớp học đảo ngược • Vibe Coding</span>
+      </div>
+      <div class="flex items-center gap-4 text-xs font-mono">
+        <span>Thời lượng: <strong class="text-white">60 tiết (12 buổi)</strong></span>
+        <span>LT/TH: <strong class="text-asu-gold">30% / 70%</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="sticky top-0 z-40 bg-white shadow-sm border-b border-slate-200 no-print">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <a href="../index.html" class="flex items-center gap-2.5 text-slate-800 hover:text-lhu-blue transition-colors">
+        <img src="../LHU_ASU_VI_Small_Ngang.png" alt="Logo LHU" class="h-8 w-auto">
+        <div class="border-l border-slate-300 pl-2.5">
+          <div class="text-[11px] font-bold text-slate-500 uppercase">Khoa CNTT - LHU</div>
+          <div class="text-xs font-extrabold text-lhu-blue">LẬP TRÌNH FRONT-END</div>
+        </div>
+      </a>
+      <div class="flex items-center gap-3 text-xs">
+        <a href="../index.html" class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-arrow-left"></i>
+          <span class="hidden sm:inline">Về Landing Page</span>
+        </a>
+        <button onclick="window.print()" class="hidden sm:flex px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-all items-center gap-1.5" title="In hoặc lưu file PDF">
+          <i class="fa-solid fa-print"></i>
+          <span>In / PDF</span>
+        </button>
+        <a href="https://learn.lhu.edu.vn" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-lhu-blue hover:bg-lhu-dark text-white font-bold rounded-xl shadow transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-graduation-cap text-asu-gold"></i>
+          <span>Vào lớp LMS</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="flex-grow max-w-5xl w-full mx-auto px-4 sm:px-6 py-8">
+
+    <!-- Title Card -->
+    <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 mb-8">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-5">
+        <div>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-fe-light text-fe-dark font-bold text-xs uppercase tracking-wider mb-2">
+            <i class="fa-solid fa-code"></i> Tài liệu hướng dẫn
+          </span>
+          <h1 class="text-2xl sm:text-3xl font-black text-slate-900 leading-tight">
+            LẬP TRÌNH FRONT-END (NEXT.JS, TYPESCRIPT &amp; VIBE CODING)
+          </h1>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1 font-mono">
+            Học phần: Lập trình Front-End (Next.js, TypeScript & Vibe Coding) • Khoa CNTT - Đại học Lạc Hồng
+          </p>
+        </div>
+        <div class="flex-shrink-0 flex sm:flex-col items-center sm:items-end justify-between gap-1 text-xs">
+          <span class="px-3 py-1.5 bg-emerald-50 text-emerald-700 font-bold rounded-lg border border-emerald-200">
+            <i class="fa-solid fa-check-circle mr-1"></i> Lưu hành nội bộ 2026
+          </span>
+          <span class="text-slate-400 text-[11px]">Định dạng LMS Lecture</span>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between pt-4 text-xs no-print">
+        <span class="text-slate-500">
+          <i class="fa-solid fa-circle-info text-blue-500 mr-1"></i>
+          Bấm vào các khối thu gọn để xem đáp án hoặc chi tiết.
+        </span>
+        <div class="flex items-center gap-2">
+          <button onclick="toggleAllDetails(true)" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg transition-colors">Mở tất cả</button>
+          <button onclick="toggleAllDetails(false)" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg transition-colors">Thu gọn</button>
+        </div>
+      </div>
+      <nav class="mt-5 pt-4 border-t border-slate-100 no-print">
+        <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">Nội dung trang</div>
+        <div class="flex flex-wrap gap-2">
+          <a href="#dac-ta-du-an-xuyen-suot-smart-event-hub" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">ĐẶC TẢ DỰ ÁN XUYÊN SUỐT: SMART EVENT HUB</a>
+          <a href="#1-muc-tieu-du-an" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">1. MỤC TIÊU DỰ ÁN</a>
+          <a href="#2-nam-man-hinh-chinh" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">2. NĂM MÀN HÌNH CHÍNH</a>
+          <a href="#3-danh-sach-route" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">3. DANH SÁCH ROUTE</a>
+          <a href="#4-cau-truc-thu-muc-du-an-goi-y" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">4. CẤU TRÚC THƯ MỤC DỰ ÁN GỢI Ý</a>
+          <a href="#5-kieu-du-lieu-typescript-chinh" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">5. KIỂU DỮ LIỆU TYPESCRIPT CHÍNH</a>
+          <a href="#6-api-endpoint" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">6. API ENDPOINT</a>
+          <a href="#7-lo-trinh-tinh-nang-theo-buoi" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">7. LỘ TRÌNH TÍNH NĂNG THEO BUỔI</a>
+          <a href="#8-definition-of-done-dieu-kien-hoan-thanh" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">8. DEFINITION OF DONE (ĐIỀU KIỆN HOÀN THÀNH)</a>
+          <a href="#9-moi-truong-cau-hinh" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">9. MÔI TRƯỜNG &amp; CẤU HÌNH</a>
+        </div>
+      </nav>
+    </div>
+
+    <!-- Content -->
+    <article class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 lesson prose prose-slate max-w-none prose-headings:font-extrabold prose-h3:text-lhu-dark prose-h4:text-fe-dark prose-a:text-lhu-blue">
+<h2 id="dac-ta-du-an-xuyen-suot-smart-event-hub">ĐẶC TẢ DỰ ÁN XUYÊN SUỐT: SMART EVENT HUB</h2>
+<blockquote>
+<p><strong>Tên đầy đủ:</strong> Smart Event Hub – Hệ thống Đặt vé &amp; Quản lý Sự kiện trực tuyến<br><strong>Quy mô:</strong> Nhóm 3–4 sinh viên · <strong>Thời gian:</strong> Buổi 1 → Buổi 12 · <strong>Đánh giá:</strong> Giữa kỳ 30% (Buổi 7, 50% tiến độ) · Cuối kỳ 40% (Buổi 12)<br><strong>Công nghệ:</strong> Next.js 15 (App Router) · TypeScript strict · SCSS Module · Ant Design v5 · React Hook Form + Zod · Axios · Vercel</p>
+</blockquote>
+<hr>
+<h2 id="1-muc-tieu-du-an">1. MỤC TIÊU DỰ ÁN</h2>
+<h4 id="san-pham-can-dat">Sản phẩm cần đạt</h4>
+<p>Các bạn xây dựng phần <strong>Front-End</strong> của một nền tảng bán vé sự kiện: người dùng tìm sự kiện, xem chi tiết, chọn hạng vé hoặc chỗ ngồi, đặt vé và lưu sự kiện yêu thích; quản trị viên quản lý sự kiện và đơn đặt vé. Sản phẩm cuối cùng phải được deploy trên Vercel, gọi dữ liệu thật từ Backend, đạt Lighthouse Performance &gt; 85 và SEO &gt; 90.</p>
+<p><strong>Backend không thuộc phạm vi của sinh viên.</strong> Giảng viên cung cấp sẵn một RESTful API kèm tài liệu Swagger UI. Địa chỉ API, tài khoản thử nghiệm và đặc tả chính xác của từng endpoint được GV công bố trên LMS; tài liệu này không ghi URL thật.</p>
+<h4 id="muc-tieu-hoc-tap-gan-voi-du-an">Mục tiêu học tập gắn với dự án</h4>
+<table>
+<thead>
+<tr>
+<th>Chuẩn đầu ra</th>
+<th>Thể hiện trong dự án</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CLO1 – PI 1.4</td>
+<td>Wireframe 5 màn hình, cây component theo Atomic Design, sơ đồ route</td>
+</tr>
+<tr>
+<td>CLO2 – PI 2.3</td>
+<td>Giao diện Next.js + TypeScript + SCSS/AntD, state với Hooks, gọi REST API, form + Zod, dùng AI có kiểm soát</td>
+</tr>
+<tr>
+<td>CLO3 – PI 3.1</td>
+<td>README, báo cáo Word/PDF, thuyết trình demo giữa kỳ và cuối kỳ</td>
+</tr>
+<tr>
+<td>CLO4 – PI 5.1</td>
+<td>Git branch/PR/review, CI/CD Vercel, SEO Metadata, Lighthouse</td>
+</tr>
+</tbody></table>
+<h4 id="doi-tuong-su-dung-he-thong">Đối tượng sử dụng hệ thống</h4>
+<ul>
+<li><strong>Khách (Guest):</strong> xem trang chủ, danh sách, danh mục, chi tiết sự kiện.</li>
+<li><strong>Người dùng đã đăng nhập (User):</strong> đặt vé, chọn ghế, xem trang cá nhân và lịch sử vé, quản lý Wishlist.</li>
+<li><strong>Quản trị viên (Admin):</strong> xem dashboard, quản lý sự kiện, tạo sự kiện mới, quản lý đơn hàng, người dùng.</li>
+</ul>
+<h4 id="ngoai-pham-vi">Ngoài phạm vi</h4>
+<p>Thanh toán trực tuyến thật (cổng thanh toán), viết Backend/cơ sở dữ liệu, gửi email/SMS. Bước &quot;Thanh toán&quot; trong dự án dừng ở việc gửi đơn <code>POST /api/orders</code> và hiển thị kết quả.</p>
+<hr>
+<h2 id="2-nam-man-hinh-chinh">2. NĂM MÀN HÌNH CHÍNH</h2>
+<h4 id="danh-sach-man-hinh-va-thanh-phan">Danh sách màn hình và thành phần</h4>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Màn hình</th>
+<th>Route chính</th>
+<th>Thành phần UI chính</th>
+<th>Buổi xây dựng</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td><strong>Trang chủ</strong></td>
+<td><code>/</code> (kèm <code>/events</code>)</td>
+<td>HeroBanner (Carousel), CategoryFilter (Tabs), FeaturedEventsSection, lưới EventCard, EventFilterBar, Header, Footer</td>
+<td>1, 2, 5, 6, 8</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Chi tiết sự kiện</strong></td>
+<td><code>/events/[id]</code></td>
+<td>Banner 16:9, tiêu đề, thông tin ban tổ chức/diễn giả, mô tả, bảng hạng vé, Sticky Sidebar đặt vé, Rate</td>
+<td>2, 4, 8, 11</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Đặt vé</strong></td>
+<td><code>/checkout/[id]</code></td>
+<td>TicketQuantitySelector (VVIP/VIP/Standard), SeatMatrixPicker 5×8, BookingModal, tóm tắt đơn, nút thanh toán</td>
+<td>5, 6, 8</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Trang cá nhân</strong></td>
+<td><code>/user/profile</code> (kèm <code>/user/wishlist</code>)</td>
+<td>Thông tin tài khoản, lịch sử vé, danh sách Wishlist</td>
+<td>3, 9</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>Admin Dashboard</strong></td>
+<td><code>/admin/dashboard</code> (kèm <code>/admin/orders</code>, <code>/admin/manage-events</code>, <code>/admin/create-event</code>)</td>
+<td>AdminLayout có Sidebar, Table đơn hàng + Tag trạng thái, form tạo sự kiện</td>
+<td>3, 5, 9</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>📝 <strong>Về danh sách màn hình:</strong> kế hoạch Buổi 2 liệt kê &quot;Danh sách &amp; Lọc sự kiện&quot; như một màn hình riêng thay cho Admin Dashboard. Đặc tả này theo đề cương (5 màn hình như bảng trên); phần danh sách và lọc được xem là một phần của Trang chủ/<code>/events</code>. Nhóm vẽ thêm wireframe cho màn hình Listing là điểm cộng.</p>
+</blockquote>
+<h4 id="luong-nguoi-dung-chinh-user-flow">Luồng người dùng chính (User Flow)</h4>
+<pre><code class="language-text">Trang chủ (/)
+  ├─ bấm Badge thể loại ──► /category/[slug] ──┐
+  ├─ tìm kiếm / lọc ─────► /events?search=…  ──┤
+  └─ bấm EventCard ─────────────────────────────┴─► /events/[id]
+                                                      └─ bấm &quot;Đặt vé ngay&quot; ─► /checkout/[id]
+                                                            (chưa đăng nhập ─► /login ─► quay lại)
+                                                            └─ gửi đơn POST /api/orders ─► thông báo thành công ─► /user/profile
+</code></pre>
+<hr>
+<h2 id="3-danh-sach-route">3. DANH SÁCH ROUTE</h2>
+<h4 id="bang-route-day-du">Bảng route đầy đủ</h4>
+<table>
+<thead>
+<tr>
+<th>URL</th>
+<th>File trong <code>app/</code></th>
+<th>Nhóm layout</th>
+<th>Server/Client</th>
+<th>Buổi</th>
+<th>Ghi chú</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/</code></td>
+<td><code>(main)/page.tsx</code></td>
+<td>MainLayout</td>
+<td>Server (fetch)</td>
+<td>2, 8</td>
+<td>Trang chủ</td>
+</tr>
+<tr>
+<td><code>/events</code></td>
+<td><code>(main)/events/page.tsx</code></td>
+<td>MainLayout</td>
+<td>Server + Client filter</td>
+<td>3, 8</td>
+<td>Danh sách, tìm kiếm, phân trang</td>
+</tr>
+<tr>
+<td><code>/events/categories</code></td>
+<td><code>(main)/events/categories/page.tsx</code></td>
+<td>MainLayout</td>
+<td>Server</td>
+<td>3</td>
+<td>Nested route (Guided Buổi 3)</td>
+</tr>
+<tr>
+<td><code>/events/search</code></td>
+<td><code>(main)/events/search/page.tsx</code></td>
+<td>MainLayout</td>
+<td>Server + Client</td>
+<td>3</td>
+<td>Nested route (Guided Buổi 3)</td>
+</tr>
+<tr>
+<td><code>/events/[id]</code></td>
+<td><code>(main)/events/[id]/page.tsx</code></td>
+<td>MainLayout</td>
+<td>Server</td>
+<td>4, 8, 11</td>
+<td><code>generateMetadata</code> động</td>
+</tr>
+<tr>
+<td><code>/category/[slug]</code></td>
+<td><code>(main)/category/[slug]/page.tsx</code></td>
+<td>MainLayout</td>
+<td>Server</td>
+<td>4</td>
+<td><code>slug</code>: music, technology, sports, workshop</td>
+</tr>
+<tr>
+<td><code>/checkout/[id]</code></td>
+<td><code>(main)/checkout/[id]/page.tsx</code></td>
+<td>MainLayout</td>
+<td>Server + Client</td>
+<td>4, 6, 8</td>
+<td>Khung <code>/checkout</code> tạo ở Buổi 3, chuyển thành route động ở Buổi 4</td>
+</tr>
+<tr>
+<td><code>/about</code></td>
+<td><code>(main)/about/page.tsx</code></td>
+<td>MainLayout</td>
+<td>Server</td>
+<td>3</td>
+<td>Trang giới thiệu</td>
+</tr>
+<tr>
+<td><code>/user/profile</code></td>
+<td><code>(main)/user/profile/page.tsx</code></td>
+<td>MainLayout</td>
+<td>Client</td>
+<td>3, 9</td>
+<td>Cần đăng nhập</td>
+</tr>
+<tr>
+<td><code>/user/wishlist</code></td>
+<td><code>(main)/user/wishlist/page.tsx</code></td>
+<td>MainLayout</td>
+<td>Client</td>
+<td>9</td>
+<td>Đọc <code>localStorage</code></td>
+</tr>
+<tr>
+<td><code>/login</code></td>
+<td><code>(auth)/login/page.tsx</code></td>
+<td>AuthLayout</td>
+<td>Client (form)</td>
+<td>3, 9</td>
+<td>Đề cương ghi <code>/auth/login</code> – xem ghi chú</td>
+</tr>
+<tr>
+<td><code>/register</code></td>
+<td><code>(auth)/register/page.tsx</code></td>
+<td>AuthLayout</td>
+<td>Client (form)</td>
+<td>3, 9</td>
+<td></td>
+</tr>
+<tr>
+<td><code>/admin/dashboard</code></td>
+<td><code>(admin)/admin/dashboard/page.tsx</code></td>
+<td>AdminLayout</td>
+<td>Server</td>
+<td>3</td>
+<td></td>
+</tr>
+<tr>
+<td><code>/admin/manage-events</code></td>
+<td><code>(admin)/admin/manage-events/page.tsx</code></td>
+<td>AdminLayout</td>
+<td>Server + Client</td>
+<td>3</td>
+<td>Kế hoạch Buổi 3 gọi là <code>/admin/events-management</code></td>
+</tr>
+<tr>
+<td><code>/admin/create-event</code></td>
+<td><code>(admin)/admin/create-event/page.tsx</code></td>
+<td>AdminLayout</td>
+<td>Client (form)</td>
+<td>9</td>
+<td>Form + Zod <code>.refine()</code></td>
+</tr>
+<tr>
+<td><code>/admin/orders</code></td>
+<td><code>(admin)/admin/orders/page.tsx</code></td>
+<td>AdminLayout</td>
+<td>Client (Table)</td>
+<td>5</td>
+<td>AntD Table, Tag, filter, pagination</td>
+</tr>
+<tr>
+<td><code>/admin/users</code></td>
+<td><code>(admin)/admin/users/page.tsx</code></td>
+<td>AdminLayout</td>
+<td>Server</td>
+<td>3</td>
+<td></td>
+</tr>
+<tr>
+<td><code>/dev-preview/*</code></td>
+<td><code>dev-preview/…/page.tsx</code></td>
+<td>–</td>
+<td>Server</td>
+<td>2</td>
+<td>Trang tĩnh tạm thời; xóa trước khi deploy Production</td>
+</tr>
+<tr>
+<td>(URL sai)</td>
+<td><code>not-found.tsx</code></td>
+<td>–</td>
+<td>Server</td>
+<td>3</td>
+<td>Trang 404 tùy chỉnh</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>🧭 <strong>Vì sao cần nhóm <code>(main)</code>?</strong> Layout cha luôn bọc layout con. Nếu đặt Header/Footer trong <code>app/layout.tsx</code>, các trang <code>(auth)</code> và <code>(admin)</code> cũng sẽ có Header/Footer chính. Vì vậy Root Layout chỉ chứa <code>&lt;html&gt;</code>, <code>&lt;body&gt;</code> và các provider (AntdRegistry, ConfigProvider); Header/Footer nằm trong <code>(main)/layout.tsx</code>; AuthLayout và AdminLayout nằm trong nhóm của riêng chúng. Tên group không xuất hiện trên URL.</p>
+</blockquote>
+<blockquote>
+<p>📝 <strong>Về <code>/login</code> và <code>/auth/login</code>:</strong> đề cương (Buổi 3) nhắc <code>/auth/login</code>, còn kế hoạch chi tiết và tài liệu lý thuyết dùng Route Group <code>(auth)</code> cho ra <code>/login</code>, <code>/register</code>. Đặc tả này chọn <code>/login</code>, <code>/register</code>. Nhóm nào đã làm <code>/auth/login</code> thì giữ nguyên nhưng phải dùng thống nhất cho cả <code>/auth/register</code>.</p>
+</blockquote>
+<hr>
+<h2 id="4-cau-truc-thu-muc-du-an-goi-y">4. CẤU TRÚC THƯ MỤC DỰ ÁN GỢI Ý</h2>
+<h4 id="cay-thu-muc">Cây thư mục</h4>
+<pre><code class="language-text">smart-event-hub/
+├── app/
+│   ├── layout.tsx               # Root: html, body, AntdRegistry, AntdProvider, metadata gốc
+│   ├── not-found.tsx            # 404 tùy chỉnh
+│   ├── error.tsx                # &#39;use client&#39; – lỗi runtime, nút Thử lại
+│   ├── global-error.tsx         # Lỗi ở mức Root Layout
+│   ├── globals.scss
+│   ├── (main)/
+│   │   ├── layout.tsx           # Header + Footer
+│   │   ├── page.tsx             # /
+│   │   ├── loading.tsx
+│   │   ├── events/
+│   │   │   ├── page.tsx
+│   │   │   ├── categories/page.tsx
+│   │   │   ├── search/page.tsx
+│   │   │   └── [id]/
+│   │   │       ├── page.tsx
+│   │   │       └── loading.tsx
+│   │   ├── category/[slug]/page.tsx
+│   │   ├── checkout/[id]/page.tsx
+│   │   ├── about/page.tsx
+│   │   └── user/
+│   │       ├── profile/page.tsx
+│   │       └── wishlist/page.tsx
+│   ├── (auth)/
+│   │   ├── layout.tsx           # AuthLayout: logo + form giữa màn hình
+│   │   ├── login/page.tsx
+│   │   └── register/page.tsx
+│   └── (admin)/
+│       └── admin/
+│           ├── layout.tsx       # AdminLayout: Sidebar + Header admin
+│           ├── loading.tsx      # Skeleton khi chuyển trang admin
+│           ├── dashboard/page.tsx
+│           ├── manage-events/page.tsx
+│           ├── create-event/page.tsx
+│           ├── orders/page.tsx
+│           └── users/page.tsx
+├── components/
+│   ├── ui/                      # Atom: Button, Input, Modal, Badge
+│   ├── common/                  # Header(NavigationBar), Footer, Sidebar, SearchBar
+│   ├── features/                # EventCard, EventFilterBar, TicketQuantitySelector, SeatMatrixPicker, BookingModal, LoginForm
+│   └── providers/               # AntdProvider (&#39;use client&#39;)
+├── hooks/                       # useDebounce, useLocalStorage, useWishlist
+├── services/                    # apiClient.ts, eventService.ts, categoryService.ts, orderService.ts, authService.ts
+├── schemas/                     # loginSchema, registerSchema, createEventSchema (Zod)
+├── types/                       # event.ts, category.ts, order.ts, api.ts, auth.ts
+├── styles/                      # _variables.scss, _mixins.scss
+├── data/                        # mock-events.json (Buổi 4–7)
+├── public/                      # ảnh tĩnh, favicon
+├── docs/
+│   ├── wireframes/              # Ảnh/link Figma 5 màn hình
+│   └── Test_Cases_Scenario.md
+├── .env.example
+├── .cursorrules
+├── next.config.ts
+├── tsconfig.json                # &quot;strict&quot;: true
+└── README.md
+</code></pre>
+<p>Đề cương gọi thư mục <code>components/shared/</code>; kế hoạch Buổi 4 gọi <code>components/common/</code>. Hai tên tương đương, nhóm chọn một và dùng thống nhất.</p>
+<hr>
+<h2 id="5-kieu-du-lieu-typescript-chinh">5. KIỂU DỮ LIỆU TYPESCRIPT CHÍNH</h2>
+<h4 id="quy-uoc">Quy ước</h4>
+<p>Các kiểu dưới đây là <strong>hợp đồng dữ liệu gợi ý</strong> để nhóm làm mock data từ Buổi 4 và thống nhất tên gọi. Từ Buổi 8, các bạn phải <strong>đối chiếu với response thật trên Swagger</strong> và chỉnh tên trường cho khớp (có thể nhờ AI sinh interface từ JSON rồi review lại). Không dùng <code>any</code>; trường có thể vắng mặt thì đánh dấu <code>?</code>.</p>
+<pre><code class="language-ts">// types/event.ts
+export type EventStatus = &#39;UPCOMING&#39; | &#39;ONGOING&#39; | &#39;ENDED&#39;;
+
+export type TicketTierType = &#39;VVIP&#39; | &#39;VIP&#39; | &#39;STANDARD&#39;;
+
+export interface TicketTier {
+  type: TicketTierType;
+  name: string;          // Ví dụ: &quot;Vé VVIP&quot;
+  price: number;         // VND
+  available: number;     // Số vé còn lại
+  maxPerOrder: number;   // Giới hạn mỗi lần đặt
+}
+
+export interface Organizer {
+  id: string;
+  name: string;
+  avatarUrl?: string;
+  bio?: string;
+}
+
+export interface EventItem {
+  id: string;
+  title: string;
+  imageUrl: string;
+  startDate: string;     // ISO 8601
+  endDate: string;       // ISO 8601
+  location: string;
+  price: number;         // Giá thấp nhất để hiển thị &quot;Từ … đ&quot;
+  status: EventStatus;
+  categorySlug: string;
+}
+
+export interface EventDetail extends EventItem {
+  description: string;
+  bannerUrl?: string;
+  organizer: Organizer;
+  ticketTiers: TicketTier[];
+}
+</code></pre>
+<pre><code class="language-ts">// types/category.ts
+export type CategorySlug = &#39;music&#39; | &#39;technology&#39; | &#39;sports&#39; | &#39;workshop&#39;;
+
+export interface Category {
+  id: string;
+  name: string;          // &quot;Âm nhạc&quot;, &quot;Công nghệ&quot;, &quot;Thể thao&quot;, &quot;Workshop&quot;
+  slug: CategorySlug;
+  icon?: string;
+}
+</code></pre>
+<pre><code class="language-ts">// types/order.ts
+import type { TicketTierType } from &#39;./event&#39;;
+
+export type OrderStatus = &#39;PENDING&#39; | &#39;SUCCESS&#39; | &#39;CANCELLED&#39;;
+
+export type SeatStatus = &#39;AVAILABLE&#39; | &#39;SELECTED&#39; | &#39;SOLD&#39;;
+
+export interface OrderItem {
+  tier: TicketTierType;
+  quantity: number;
+  unitPrice: number;
+}
+
+export interface Order {
+  id: string;
+  eventId: string;
+  eventTitle: string;
+  customerName: string;
+  items: OrderItem[];
+  seats?: string[];      // Ví dụ: [&#39;A1&#39;, &#39;A2&#39;]
+  totalAmount: number;
+  status: OrderStatus;
+  createdAt: string;
+}
+
+export interface CreateOrderPayload {
+  eventId: string;
+  items: Array&lt;Pick&lt;OrderItem, &#39;tier&#39; | &#39;quantity&#39;&gt;&gt;;
+  seats?: string[];
+  attendDate?: string;
+  note?: string;
+}
+</code></pre>
+<pre><code class="language-ts">// types/api.ts
+export interface ApiResponse&lt;T&gt; {
+  statusCode: number;
+  message: string;
+  data: T;
+}
+
+export interface PaginatedData&lt;T&gt; {
+  items: T[];
+  total: number;
+  page: number;
+  limit: number;
+}
+
+export interface EventQuery {
+  page?: number;
+  limit?: number;
+  search?: string;
+  category?: string;
+  sort?: &#39;latest&#39; | &#39;price_asc&#39; | &#39;price_desc&#39;;
+}
+</code></pre>
+<pre><code class="language-ts">// types/auth.ts
+export type UserRole = &#39;USER&#39; | &#39;ADMIN&#39;;
+
+export interface UserProfile {
+  id: string;
+  fullName: string;
+  email: string;
+  role: UserRole;
+}
+
+export interface LoginPayload {
+  email: string;
+  password: string;
+}
+
+export interface LoginResult {
+  accessToken: string;
+  user: UserProfile;
+}
+</code></pre>
+<blockquote>
+<p>📝 Kế hoạch Buổi 8 dùng tên có tiền tố <code>I</code> (<code>IEvent</code>, <code>IEventItem</code>, <code>IOrganizer</code>) và <code>PaginatedResponse&lt;T&gt;</code>. Đặc tả này dùng <code>EventItem</code>, <code>Organizer</code>, <code>PaginatedData&lt;T&gt;</code> theo tài liệu lý thuyết. Nhóm chọn một quy ước và áp dụng thống nhất.</p>
+</blockquote>
+<hr>
+<h2 id="6-api-endpoint">6. API ENDPOINT</h2>
+<h4 id="nguyen-tac">Nguyên tắc</h4>
+<ul>
+<li><strong>Base URL</strong> lấy từ biến môi trường <code>NEXT_PUBLIC_API_URL</code> – giá trị do GV cung cấp. Không viết cứng địa chỉ API trong code.</li>
+<li>Đường dẫn dưới đây là các endpoint được nhắc trong tài liệu học phần. <strong>Tên chính xác, tiền tố phiên bản</strong> (ví dụ <code>/api/v1/events</code> như kế hoạch Buổi 8 hay <code>/api/events</code> như đề cương) <strong>và cấu trúc response theo Swagger của GV.</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Phương thức</th>
+<th>Đường dẫn</th>
+<th>Mô tả</th>
+<th>Tham số / Body</th>
+<th>Response (gợi ý)</th>
+<th>Buổi</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GET</td>
+<td><code>/api/events</code></td>
+<td>Danh sách sự kiện, tìm kiếm, phân trang</td>
+<td>Query: <code>page</code>, <code>limit</code>, <code>search</code> (có thể thêm <code>category</code>, <code>sort</code>)</td>
+<td><code>ApiResponse&lt;PaginatedData&lt;EventItem&gt;&gt;</code></td>
+<td>8</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/api/events/{id}</code></td>
+<td>Chi tiết một sự kiện</td>
+<td>Path: <code>id</code></td>
+<td><code>ApiResponse&lt;EventDetail&gt;</code>; 404 nếu không có</td>
+<td>8, 11</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/api/categories</code></td>
+<td>Danh mục sự kiện cho Filter Bar/Dropdown</td>
+<td>–</td>
+<td><code>ApiResponse&lt;Category[]&gt;</code></td>
+<td>8</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/api/orders</code></td>
+<td>Tạo đơn đặt vé</td>
+<td>Body: <code>CreateOrderPayload</code>; header <code>Authorization: Bearer &lt;token&gt;</code> nếu API yêu cầu</td>
+<td><code>ApiResponse&lt;Order&gt;</code></td>
+<td>8</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><em>(endpoint đăng nhập theo Swagger)</em></td>
+<td>Đăng nhập, nhận JWT</td>
+<td>Body: <code>LoginPayload</code></td>
+<td><code>ApiResponse&lt;LoginResult&gt;</code></td>
+<td>9</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>⚠️ Tài liệu học phần chỉ ghi &quot;gọi API Login&quot; mà không nêu đường dẫn. Hãy tra Swagger để lấy đúng endpoint đăng nhập (và đăng ký, nếu có) trước Buổi 9.</p>
+</blockquote>
+<h4 id="mau-service-goi-api">Mẫu service gọi API</h4>
+<pre><code class="language-ts">// services/eventService.ts – dùng trong Server Component
+import type { ApiResponse, EventQuery, PaginatedData } from &#39;@/types/api&#39;;
+import type { EventDetail, EventItem } from &#39;@/types/event&#39;;
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
+export async function getEvents(query: EventQuery = {}): Promise&lt;PaginatedData&lt;EventItem&gt;&gt; {
+  const params = new URLSearchParams();
+  Object.entries(query).forEach(([key, value]) =&gt; {
+    if (value !== undefined &amp;&amp; value !== &#39;&#39;) params.set(key, String(value));
+  });
+
+  const res = await fetch(`${API_URL}/api/events?${params.toString()}`, {
+    next: { revalidate: 60 },
+  });
+  if (!res.ok) throw new Error(`Không tải được danh sách sự kiện (HTTP ${res.status})`);
+
+  const json: ApiResponse&lt;PaginatedData&lt;EventItem&gt;&gt; = await res.json();
+  return json.data;
+}
+
+export async function getEventById(id: string): Promise&lt;EventDetail | null&gt; {
+  const res = await fetch(`${API_URL}/api/events/${encodeURIComponent(id)}`, {
+    next: { revalidate: 60 },
+  });
+  if (res.status === 404) return null;
+  if (!res.ok) throw new Error(`Không tải được sự kiện (HTTP ${res.status})`);
+
+  const json: ApiResponse&lt;EventDetail&gt; = await res.json();
+  return json.data;
+}
+</code></pre>
+<pre><code class="language-tsx">// app/(main)/events/[id]/page.tsx
+import type { Metadata } from &#39;next&#39;;
+import { notFound } from &#39;next/navigation&#39;;
+import { getEventById } from &#39;@/services/eventService&#39;;
+
+interface PageProps {
+  params: Promise&lt;{ id: string }&gt;;
+}
+
+export async function generateMetadata({ params }: PageProps): Promise&lt;Metadata&gt; {
+  const { id } = await params;
+  const event = await getEventById(id);
+  if (!event) return { title: &#39;Không tìm thấy sự kiện | Smart Event Hub&#39; };
+
+  return {
+    title: `${event.title} | Smart Event Hub`,
+    description: event.description.slice(0, 150),
+    openGraph: {
+      title: event.title,
+      images: [event.bannerUrl ?? event.imageUrl],
+    },
+  };
+}
+
+export default async function EventDetailPage({ params }: PageProps) {
+  const { id } = await params;
+  const event = await getEventById(id);
+  if (!event) notFound();
+
+  return (
+    &lt;main&gt;
+      &lt;h1&gt;{event.title}&lt;/h1&gt;
+      &lt;p&gt;{event.location}&lt;/p&gt;
+    &lt;/main&gt;
+  );
+}
+</code></pre>
+<pre><code class="language-ts">// services/apiClient.ts – dùng trong Client Component (Axios)
+import axios from &#39;axios&#39;;
+
+export const apiClient = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
+  timeout: 10000,
+});
+
+apiClient.interceptors.request.use((config) =&gt; {
+  if (typeof window !== &#39;undefined&#39;) {
+    const token = window.localStorage.getItem(&#39;accessToken&#39;);
+    if (token) config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
+</code></pre>
+<pre><code class="language-ts">// services/orderService.ts
+import { apiClient } from &#39;./apiClient&#39;;
+import type { ApiResponse } from &#39;@/types/api&#39;;
+import type { CreateOrderPayload, Order } from &#39;@/types/order&#39;;
+
+export async function createOrder(payload: CreateOrderPayload): Promise&lt;Order&gt; {
+  const res = await apiClient.post&lt;ApiResponse&lt;Order&gt;&gt;(&#39;/api/orders&#39;, payload);
+  return res.data.data;
+}
+</code></pre>
+<hr>
+<h2 id="7-lo-trinh-tinh-nang-theo-buoi">7. LỘ TRÌNH TÍNH NĂNG THEO BUỔI</h2>
+<h4 id="bang-buoi-tinh-nang-deliverable">Bảng Buổi → Tính năng → Deliverable</h4>
+<table>
+<thead>
+<tr>
+<th>Buổi</th>
+<th>Tính năng xây dựng</th>
+<th>Deliverable của nhóm</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Repo, branch <code>main</code>/<code>dev</code>/<code>feature/*</code>; Design Token SCSS; <code>types/event.ts</code>; EventCard, HeaderNavigationBar</td>
+<td>Repo + PR đầu tiên được merge; Footer, EventCategoryBadge, SearchBar (BTVN)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Wireframe 5 màn hình; chuyển wireframe sang TSX bằng v0.dev/Claude; EventDetailPageView</td>
+<td><code>docs/wireframes/</code>; trang <code>/dev-preview/*</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td>App Router, <code>(main)</code>, <code>(auth)</code>, <code>(admin)</code>; nested route; <code>loading.tsx</code>, <code>not-found.tsx</code></td>
+<td>Sơ đồ routing đầy đủ; 404 tùy chỉnh; <code>error.tsx</code>, <code>global-error.tsx</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>/events/[id]</code>, <code>/category/[slug]</code>; Button đa biến thể; <code>data/mock-events.json</code>; luồng Trang chủ → Danh mục → Chi tiết → Đặt vé</td>
+<td>User Flow liên tục với mock data; thư mục <code>components/ui</code>, <code>common</code>, <code>features</code></td>
+</tr>
+<tr>
+<td>5</td>
+<td>AntD + <code>AntdRegistry</code> + Theme; BookingModal; <code>/admin/orders</code>; refactor 5 màn hình sang AntD + SCSS</td>
+<td>Giao diện đồng bộ, responsive Tablet/Mobile</td>
+</tr>
+<tr>
+<td>6</td>
+<td>TicketQuantitySelector (VVIP/VIP/Standard), EventFilterBar + debounce, SeatMatrixPicker 5×8 (tối đa 6 ghế)</td>
+<td>Ứng dụng tích hợp 50%, slide giữa kỳ</td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>npm run build</code> sạch, README chuẩn, cross-review</td>
+<td><strong>Báo cáo giữa kỳ</strong>: Wireframe, repo, demo giao diện</td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>services/</code>, <code>getEvents</code>, <code>getEventById</code>, <code>GET /api/categories</code>, <code>POST /api/orders</code>, Spin/Skeleton</td>
+<td>Mock JSON được thay bằng API thật; xử lý Network Error/500</td>
+</tr>
+<tr>
+<td>9</td>
+<td>LoginForm + Zod, lưu token; <code>/admin/create-event</code> + <code>.refine()</code>; Wishlist + <code>/user/wishlist</code></td>
+<td>Form validation chuẩn; Wishlist giữ được sau F5; tài khoản Vercel sẵn sàng</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Responsive 375/768/1440px; Drawer/Collapse trên mobile; refactor DRY; Zero Console Warnings</td>
+<td>Biên bản nghiệm thu PBL 1; Test Cases Scenario</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Metadata tĩnh + <code>generateMetadata</code>; <code>next/image</code>, <code>next/font</code>, <code>next/dynamic</code>; deploy Vercel + <code>NEXT_PUBLIC_API_URL</code>; Lighthouse</td>
+<td>Link Vercel Live; Lighthouse Performance &gt; 85, SEO &gt; 90; báo cáo Word/PDF + slide</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Hoàn thiện, demo live, Cross-Testing</td>
+<td><strong>Final Showcase</strong>: thuyết trình 8&#39;, Q&amp;A 5&#39;</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="8-definition-of-done-dieu-kien-hoan-thanh">8. DEFINITION OF DONE (ĐIỀU KIỆN HOÀN THÀNH)</h2>
+<h4 id="mot-tinh-nang-mot-pr-duoc-coi-la-xong-khi">Một tính năng (một PR) được coi là xong khi</h4>
+<ul>
+<li><input disabled="" type="checkbox"> Đáp ứng đúng yêu cầu và output của bài tập/tính năng tương ứng.</li>
+<li><input disabled="" type="checkbox"> TypeScript strict, không có <code>any</code>; props, dữ liệu API có kiểu rõ ràng trong <code>types/</code>.</li>
+<li><input disabled="" type="checkbox"> <code>npm run lint</code> và <code>npm run build</code> chạy thành công.</li>
+<li><input disabled="" type="checkbox"> Hiển thị đúng ở Mobile 375px, Tablet 768px, Desktop 1440px; không tràn ngang.</li>
+<li><input disabled="" type="checkbox"> Có trạng thái loading và thông báo lỗi khi gọi API (từ Buổi 8).</li>
+<li><input disabled="" type="checkbox"> Không còn <code>console.log</code>, code chết, inline-style rác; dùng biến/mixin chung.</li>
+<li><input disabled="" type="checkbox"> Commit theo Conventional Commits; PR vào <code>dev</code> có mô tả, mục &quot;Phần có dùng AI&quot;, ảnh chụp UI.</li>
+<li><input disabled="" type="checkbox"> Được ít nhất 1 thành viên khác review và approve.</li>
+<li><input disabled="" type="checkbox"> Tác giả giải thích được toàn bộ code trong PR.</li>
+</ul>
+<h4 id="moc-giua-ky-buoi-7-duoc-coi-la-dat-khi">Mốc giữa kỳ (Buổi 7) được coi là đạt khi</h4>
+<ul>
+<li><input disabled="" type="checkbox"> Wireframe đủ 5 màn hình trong <code>docs/wireframes/</code> và link Figma.</li>
+<li><input disabled="" type="checkbox"> Routing đầy đủ, điều hướng bằng <code>next/link</code> không reload trang; có 404.</li>
+<li><input disabled="" type="checkbox"> Giao diện dùng AntD + SCSS custom, responsive; Console không còn lỗi Hydration.</li>
+<li><input disabled="" type="checkbox"> <code>main</code> build thành công; README có mô tả, phân công, hướng dẫn cài đặt, cấu trúc thư mục.</li>
+<li><input disabled="" type="checkbox"> Git log cho thấy mọi thành viên đều có commit tính năng.</li>
+</ul>
+<h4 id="moc-cuoi-ky-buoi-12-duoc-coi-la-dat-khi">Mốc cuối kỳ (Buổi 12) được coi là đạt khi</h4>
+<ul>
+<li><input disabled="" type="checkbox"> Toàn bộ dữ liệu lấy từ API thật; đặt vé gửi được <code>POST /api/orders</code>.</li>
+<li><input disabled="" type="checkbox"> Đăng nhập với Zod validation; Wishlist bằng <code>localStorage</code> an toàn với SSR.</li>
+<li><input disabled="" type="checkbox"> Deploy Vercel từ <code>main</code>, biến môi trường cấu hình đúng; trang <code>/dev-preview/*</code> đã gỡ.</li>
+<li><input disabled="" type="checkbox"> SEO Metadata động cho <code>/events/[id]</code>; Lighthouse Performance &gt; 85, SEO &gt; 90.</li>
+<li><input disabled="" type="checkbox"> Có Test Cases Scenario, báo cáo Word/PDF và slide theo mẫu.</li>
+</ul>
+<hr>
+<h2 id="9-moi-truong-cau-hinh">9. MÔI TRƯỜNG &amp; CẤU HÌNH</h2>
+<h4 id="bien-moi-truong">Biến môi trường</h4>
+<table>
+<thead>
+<tr>
+<th>Biến</th>
+<th>Ý nghĩa</th>
+<th>Nơi khai báo</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>NEXT_PUBLIC_API_URL</code></td>
+<td>Base URL của Backend API (Swagger) do GV cung cấp</td>
+<td><code>.env.local</code> (máy cá nhân); Vercel <em>Project Settings → Environment Variables</em> cho Development, Preview, Production</td>
+</tr>
+</tbody></table>
+<pre><code class="language-bash"># .env.example – commit file này lên repo, KHÔNG chứa giá trị thật
+NEXT_PUBLIC_API_URL=
+
+# .env.local – mỗi thành viên tự tạo, đã nằm trong .gitignore
+NEXT_PUBLIC_API_URL=&lt;địa chỉ API do giảng viên cung cấp&gt;
+</code></pre>
+<ul>
+<li>Biến có tiền tố <code>NEXT_PUBLIC_</code> được nhúng vào mã gửi xuống trình duyệt. Chỉ đặt giá trị công khai (như địa chỉ API); không bao giờ đặt khóa bí mật vào biến này.</li>
+<li>Sau khi thêm hoặc đổi biến môi trường trên Vercel, phải <strong>Redeploy</strong> để giá trị mới có hiệu lực.</li>
+<li>Kiểm tra <code>.gitignore</code> có <code>.env*.local</code> trước lần commit đầu tiên.</li>
+</ul>
+<h4 id="moi-truong-phat-trien">Môi trường phát triển</h4>
+<table>
+<thead>
+<tr>
+<th>Thành phần</th>
+<th>Yêu cầu</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Node.js</td>
+<td>Bản LTS hiện hành</td>
+</tr>
+<tr>
+<td>Next.js</td>
+<td>15, App Router</td>
+</tr>
+<tr>
+<td>TypeScript</td>
+<td><code>&quot;strict&quot;: true</code> trong <code>tsconfig.json</code></td>
+</tr>
+<tr>
+<td>Thư viện</td>
+<td><code>sass</code>, <code>antd</code>, <code>@ant-design/nextjs-registry</code>, <code>axios</code>, <code>react-hook-form</code>, <code>zod</code>, <code>@hookform/resolvers</code></td>
+</tr>
+<tr>
+<td>Lệnh</td>
+<td><code>npm run dev</code> (phát triển) · <code>npm run lint</code> · <code>npm run build</code> (bắt buộc trước khi merge vào <code>main</code>)</td>
+</tr>
+<tr>
+<td>Triển khai</td>
+<td>Vercel kết nối GitHub, tự deploy khi push lên <code>main</code>; mỗi PR có Preview Deployment</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>🔒 <strong>Tài khoản thử nghiệm API</strong> (nếu Backend yêu cầu đăng nhập) do GV cấp riêng qua LMS. Không ghi tài khoản/mật khẩu vào README hay commit lên repo công khai.</p>
+</blockquote>
+
+    </article>
+
+    <!-- Bottom Navigation -->
+    <div class="flex items-center justify-between gap-4 mt-8 no-print text-xs font-bold">
+      <span></span>
+      <a href="../index.html#lo-trinh" class="px-4 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-800 rounded-xl transition-all flex items-center gap-2">
+        <i class="fa-solid fa-table-cells-large"></i> Danh mục bài học
+      </a>
+      <span></span>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-slate-200 py-6 text-xs text-slate-500 mt-12 no-print">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <strong>Khoa Công nghệ Thông tin - Trường Đại học Lạc Hồng</strong><br>
+        Phòng B301 - B302, Cơ sở 1, Số 10 Huỳnh Văn Nghệ, P. Bửu Long, TP. Biên Hòa, Đồng Nai.
+      </div>
+      <div class="sm:text-right">
+        <span>Email: cntt@lhu.edu.vn • Hotline: (0251) 3952 251</span><br>
+        <span>Hệ thống LMS: <a href="https://learn.lhu.edu.vn" target="_blank" rel="noopener noreferrer" class="text-lhu-blue font-bold">learn.lhu.edu.vn</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleAllDetails(open) {
+      document.querySelectorAll("details").forEach(d => {
+        if (open) d.setAttribute("open", ""); else d.removeAttribute("open");
+      });
+    }
+    if (window.hljs) hljs.highlightAll();
+  </script>
+
+</body>
+</html>

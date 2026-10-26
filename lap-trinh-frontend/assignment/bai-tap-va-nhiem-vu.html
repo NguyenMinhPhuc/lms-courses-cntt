@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LẬP TRÌNH FRONT-END (NEXT.JS, TYPESCRIPT &amp; VIBE CODING) | Lập trình Front-End - Khoa CNTT - Đại học Lạc Hồng</title>
+  <meta name="description" content="Bài tập &amp; Nhiệm vụ: LẬP TRÌNH FRONT-END (NEXT.JS, TYPESCRIPT &amp; VIBE CODING) - Lập trình Front-End (Next.js, TypeScript &amp; Vibe Coding)">
+
+  <!-- Tailwind CSS CDN (kèm plugin typography cho nội dung Markdown) -->
+  <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6.4.0 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Highlight.js 11.9.0 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            asu: { maroon: '#8C1D40', gold: '#FFC627', dark: '#5C142B', light: '#FAEDF0' },
+            lhu: { blue: '#013D88', sky: '#007BFF', dark: '#01295C', light: '#EEF5FC' },
+            fe: { indigo: '#6366F1', dark: '#312E81', light: '#EEF2FF' }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .lesson h2, .lesson h3, .lesson h4 { scroll-margin-top: 90px; }
+    .lesson h3 { padding-bottom: .4rem; border-bottom: 2px solid #EEF2FF; }
+    .lesson blockquote { border-left: 4px solid #6366F1; background: #F5F7FF; border-radius: 0 12px 12px 0; padding: .6rem 1rem; font-style: normal; color: #1e293b; }
+    .lesson blockquote p:first-of-type::before, .lesson blockquote p:last-of-type::after { content: none; }
+    .lesson pre { border-radius: 12px; padding: 0; background: #0d1117; }
+    .lesson pre code.hljs { border-radius: 12px; padding: 1rem 1.1rem; font-size: 13px; line-height: 1.6; }
+    .lesson :not(pre) > code { background: #EEF2FF; color: #3730A3; padding: .1rem .35rem; border-radius: 6px; font-weight: 500; }
+    .lesson :not(pre) > code::before, .lesson :not(pre) > code::after { content: none; }
+    .lesson table { display: block; overflow-x: auto; font-size: 14px; }
+    .lesson thead th { background: #F1F5F9; }
+    .lesson th, .lesson td { border: 1px solid #E2E8F0; padding: .5rem .7rem !important; vertical-align: top; }
+    .lesson details { border: 1px solid #C7D2FE; border-radius: 10px; padding: .6rem .9rem; margin: .5rem 0 1.2rem; background: #FAFAFF; }
+    .lesson details summary { cursor: pointer; font-weight: 600; color: #4338CA; }
+    .lesson details[open] summary { margin-bottom: .4rem; }
+    .lesson hr { border-color: #E2E8F0; margin: 2rem 0; }
+    @media print {
+      header, footer, .no-print { display: none !important; }
+      details { break-inside: avoid; margin-bottom: 20px; }
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans antialiased selection:bg-asu-gold selection:text-slate-900 min-h-screen flex flex-col">
+
+  <!-- TOP BAR -->
+  <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800 no-print">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+      <div class="flex items-center gap-2">
+        <span class="text-asu-gold font-semibold"><i class="fa-solid fa-certificate mr-1"></i> CHUẨN KIỂM ĐỊNH ABET (USA)</span>
+        <span class="text-slate-600 hidden sm:inline">•</span>
+        <span class="hidden sm:inline">Lớp học đảo ngược • Vibe Coding</span>
+      </div>
+      <div class="flex items-center gap-4 text-xs font-mono">
+        <span>Thời lượng: <strong class="text-white">60 tiết (12 buổi)</strong></span>
+        <span>LT/TH: <strong class="text-asu-gold">30% / 70%</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="sticky top-0 z-40 bg-white shadow-sm border-b border-slate-200 no-print">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <a href="../index.html" class="flex items-center gap-2.5 text-slate-800 hover:text-lhu-blue transition-colors">
+        <img src="../LHU_ASU_VI_Small_Ngang.png" alt="Logo LHU" class="h-8 w-auto">
+        <div class="border-l border-slate-300 pl-2.5">
+          <div class="text-[11px] font-bold text-slate-500 uppercase">Khoa CNTT - LHU</div>
+          <div class="text-xs font-extrabold text-lhu-blue">LẬP TRÌNH FRONT-END</div>
+        </div>
+      </a>
+      <div class="flex items-center gap-3 text-xs">
+        <a href="../index.html" class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-arrow-left"></i>
+          <span class="hidden sm:inline">Về Landing Page</span>
+        </a>
+        <button onclick="window.print()" class="hidden sm:flex px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-all items-center gap-1.5" title="In hoặc lưu file PDF">
+          <i class="fa-solid fa-print"></i>
+          <span>In / PDF</span>
+        </button>
+        <a href="https://learn.lhu.edu.vn" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-lhu-blue hover:bg-lhu-dark text-white font-bold rounded-xl shadow transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-graduation-cap text-asu-gold"></i>
+          <span>Vào lớp LMS</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="flex-grow max-w-5xl w-full mx-auto px-4 sm:px-6 py-8">
+
+    <!-- Title Card -->
+    <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 mb-8">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-5">
+        <div>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-fe-light text-fe-dark font-bold text-xs uppercase tracking-wider mb-2">
+            <i class="fa-solid fa-code"></i> Bài tập &amp; Nhiệm vụ
+          </span>
+          <h1 class="text-2xl sm:text-3xl font-black text-slate-900 leading-tight">
+            LẬP TRÌNH FRONT-END (NEXT.JS, TYPESCRIPT &amp; VIBE CODING)
+          </h1>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1 font-mono">
+            Học phần: Lập trình Front-End (Next.js, TypeScript & Vibe Coding) • Khoa CNTT - Đại học Lạc Hồng
+          </p>
+        </div>
+        <div class="flex-shrink-0 flex sm:flex-col items-center sm:items-end justify-between gap-1 text-xs">
+          <span class="px-3 py-1.5 bg-emerald-50 text-emerald-700 font-bold rounded-lg border border-emerald-200">
+            <i class="fa-solid fa-check-circle mr-1"></i> Lưu hành nội bộ 2026
+          </span>
+          <span class="text-slate-400 text-[11px]">Định dạng LMS Lecture</span>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between pt-4 text-xs no-print">
+        <span class="text-slate-500">
+          <i class="fa-solid fa-circle-info text-blue-500 mr-1"></i>
+          Bấm vào các khối thu gọn để xem đáp án hoặc chi tiết.
+        </span>
+        <div class="flex items-center gap-2">
+          <button onclick="toggleAllDetails(true)" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg transition-colors">Mở tất cả</button>
+          <button onclick="toggleAllDetails(false)" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg transition-colors">Thu gọn</button>
+        </div>
+      </div>
+      <nav class="mt-5 pt-4 border-t border-slate-100 no-print">
+        <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">Nội dung trang</div>
+        <div class="flex flex-wrap gap-2">
+          <a href="#bai-tap-nhiem-vu-hoc-tap-assignments" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">BÀI TẬP &amp; NHIỆM VỤ HỌC TẬP (Assignments)</a>
+          <a href="#phan-a-quy-dinh-nop-bai-chung" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">PHẦN A. QUY ĐỊNH NỘP BÀI CHUNG</a>
+          <a href="#phan-b-bang-tong-hop-moc-nop-toan-hoc-phan" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">PHẦN B. BẢNG TỔNG HỢP MỐC NỘP TOÀN HỌC PHẦN</a>
+          <a href="#phan-c-bai-tap-chi-tiet-theo-tung-bai" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">PHẦN C. BÀI TẬP CHI TIẾT THEO TỪNG BÀI</a>
+          <a href="#phan-d-dac-ta-deliverable-giua-ky-buoi-7-30" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">PHẦN D. ĐẶC TẢ DELIVERABLE GIỮA KỲ (BUỔI 7 – 30%)</a>
+          <a href="#phan-e-dac-ta-deliverable-cuoi-ky-buoi-12-40" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">PHẦN E. ĐẶC TẢ DELIVERABLE CUỐI KỲ (BUỔI 12 – 40%)</a>
+        </div>
+      </nav>
+    </div>
+
+    <!-- Content -->
+    <article class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 lesson prose prose-slate max-w-none prose-headings:font-extrabold prose-h3:text-lhu-dark prose-h4:text-fe-dark prose-a:text-lhu-blue">
+<h2 id="bai-tap-nhiem-vu-hoc-tap-assignments">BÀI TẬP &amp; NHIỆM VỤ HỌC TẬP (Assignments)</h2>
+<blockquote>
+<p><strong>Phạm vi:</strong> 12 bài · <strong>Dự án xuyên suốt:</strong> Smart Event Hub · <strong>Đánh giá:</strong> Quá trình 30% · Giữa kỳ 30% (Buổi 7) · Cuối kỳ 40% (Buổi 12)<br><strong>Mỗi buổi gồm:</strong> Guided Practice 45&#39; · Unguided Practice 45&#39; · Team Challenge 60&#39; (xem <code>discussion/</code>) · Bài tập về nhà (BTVN) cá nhân</p>
+</blockquote>
+<hr>
+<h2 id="phan-a-quy-dinh-nop-bai-chung">PHẦN A. QUY ĐỊNH NỘP BÀI CHUNG</h2>
+<h3 id="a-1-ba-hinh-thuc-nop">A.1. Ba hình thức nộp</h3>
+<h4 id="chon-hinh-thuc-theo-loai-san-pham">Chọn hình thức theo loại sản phẩm</h4>
+<table>
+<thead>
+<tr>
+<th>Loại sản phẩm</th>
+<th>Hình thức nộp</th>
+<th>Nộp gì lên LMS</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Code tính năng, BTVN có code</td>
+<td><strong>Pull Request vào branch <code>dev</code></strong> của repo nhóm</td>
+<td>Link PR (dán vào ô Online text của Assignment)</td>
+</tr>
+<tr>
+<td>Sản phẩm cả nhóm (wireframe, repo, link deploy)</td>
+<td><strong>Link repository / link Figma / link Vercel</strong></td>
+<td>Link, kèm tên nhánh hoặc commit hash nếu GV yêu cầu</td>
+</tr>
+<tr>
+<td>Tài liệu (slide, báo cáo, test case)</td>
+<td><strong>File</strong> đặt tên <code>[MãLớp]_[Nhóm/MSSV]_[TênBài]</code></td>
+<td>File <code>.pdf</code>, <code>.docx</code>, <code>.pptx</code> hoặc <code>.md</code></td>
+</tr>
+</tbody></table>
+<p><strong>Quy tắc đặt tên file:</strong> không dấu, không khoảng trắng, tên bài viết liền kiểu PascalCase.</p>
+<pre><code class="language-text">24CT111_Nhom02_BaoCaoGiuaKy.pdf        (nộp theo nhóm)
+24CT111_Nhom02_TestCasesScenario.md    (nộp theo nhóm)
+24CT111_2211xxxx_PhanTuCaNhan.pdf      (nộp cá nhân, dùng MSSV)
+</code></pre>
+<blockquote>
+<p>📝 Mã lớp <code>24CT111</code> chỉ là ví dụ minh họa; các bạn thay bằng mã lớp học phần của mình.</p>
+</blockquote>
+<p><strong>Tiêu đề PR</strong> theo Conventional Commits, có ghi số bài: <code>feat(ui): BTVN Bai01 - Footer, EventCategoryBadge, SearchBar</code>.</p>
+<h3 id="a-2-han-nop-va-tieu-chi-dat-chung">A.2. Hạn nộp và tiêu chí đạt chung</h3>
+<h4 id="han-nop">Hạn nộp</h4>
+<ul>
+<li><strong>BTVN:</strong> trước giờ bắt đầu <strong>buổi học tiếp theo</strong>. Thời điểm đóng cụ thể do GV đặt bằng <em>Group overrides</em> trên LMS theo lịch của từng lớp.</li>
+<li><strong>Guided/Unguided:</strong> commit và push lên nhánh <code>feature/*</code> của mình <strong>trước khi kết thúc buổi</strong>; GV kiểm tra trực tiếp tại máy hoặc qua commit.</li>
+<li><strong>Quiz trước giờ học</strong> (5–10 câu): hoàn thành trên LMS trước khi buổi học bắt đầu.</li>
+</ul>
+<h4 id="tieu-chi-dat-ap-dung-cho-moi-bai-co-code">Tiêu chí đạt áp dụng cho mọi bài có code</h4>
+<ul>
+<li><input disabled="" type="checkbox"> <code>npm run lint</code> và <code>npm run build</code> không lỗi (bắt buộc từ Bài 07 trở đi, khuyến khích từ Bài 01).</li>
+<li><input disabled="" type="checkbox"> TypeScript strict, <strong>không có <code>any</code></strong>; Props và dữ liệu có interface/type rõ ràng.</li>
+<li><input disabled="" type="checkbox"> Style dùng SCSS Module hoặc thư viện UI đã chọn; dùng biến/mixin chung trong <code>styles/</code>.</li>
+<li><input disabled="" type="checkbox"> Không vỡ khung ở Mobile 375px.</li>
+<li><input disabled="" type="checkbox"> Commit theo Conventional Commits; PR có mô tả, có mục &quot;Phần có dùng AI&quot;.</li>
+<li><input disabled="" type="checkbox"> Tự giải thích được code của mình khi GV hỏi.</li>
+</ul>
+<hr>
+<h2 id="phan-b-bang-tong-hop-moc-nop-toan-hoc-phan">PHẦN B. BẢNG TỔNG HỢP MỐC NỘP TOÀN HỌC PHẦN</h2>
+<table>
+<thead>
+<tr>
+<th>Buổi</th>
+<th>Nhiệm vụ cần nộp</th>
+<th>Cá nhân / Nhóm</th>
+<th>Hình thức nộp</th>
+<th>Hạn</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Mọi buổi</td>
+<td>Quiz LMS trước giờ học</td>
+<td>Cá nhân</td>
+<td>Làm trên LMS</td>
+<td>Trước buổi học</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Link PR Team Challenge (Design Token)</td>
+<td>Nhóm</td>
+<td>Link PR</td>
+<td>Cuối Buổi 1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>BTVN: Footer, EventCategoryBadge, SearchBar</td>
+<td>Cá nhân</td>
+<td>PR vào <code>dev</code></td>
+<td>Trước Buổi 2</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Wireframe 5 màn hình (<code>docs/wireframes/</code>)</td>
+<td>Nhóm</td>
+<td>Link Figma/repo</td>
+<td>Cuối Buổi 2 (bản nháp)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>BTVN: hoàn thiện Wireframe + trang <code>/dev-preview/*</code></td>
+<td>Cá nhân (theo màn hình phụ trách)</td>
+<td>PR vào <code>dev</code> + link Figma</td>
+<td>Trước Buổi 3</td>
+</tr>
+<tr>
+<td>3</td>
+<td>BTVN: <code>error.tsx</code>, <code>global-error.tsx</code>, Loading Skeleton</td>
+<td>Cá nhân</td>
+<td>PR vào <code>dev</code></td>
+<td>Trước Buổi 4</td>
+</tr>
+<tr>
+<td>4</td>
+<td>BTVN: tổ chức lại thư mục <code>components/</code></td>
+<td>Cá nhân</td>
+<td>PR vào <code>dev</code></td>
+<td>Trước Buổi 5</td>
+</tr>
+<tr>
+<td>5</td>
+<td>BTVN: responsive toàn bộ component AntD</td>
+<td>Cá nhân</td>
+<td>PR vào <code>dev</code> + ảnh 375px/1440px</td>
+<td>Trước Buổi 6</td>
+</tr>
+<tr>
+<td>6</td>
+<td>BTVN: tích hợp 50% + slide giữa kỳ</td>
+<td>Nhóm (mỗi người có PR riêng)</td>
+<td>PR + link repo</td>
+<td>Trước Buổi 7</td>
+</tr>
+<tr>
+<td><strong>7</strong></td>
+<td><strong>Báo cáo giữa kỳ (30%)</strong></td>
+<td><strong>Nhóm + cá nhân</strong></td>
+<td>Link repo, Figma, file slide</td>
+<td><strong>Tại Buổi 7</strong></td>
+</tr>
+<tr>
+<td>7</td>
+<td>BTVN: sửa theo góp ý giữa kỳ; đọc Swagger</td>
+<td>Cá nhân</td>
+<td>PR vào <code>dev</code></td>
+<td>Trước Buổi 8</td>
+</tr>
+<tr>
+<td>8</td>
+<td>BTVN: xử lý lỗi API (Network Error, 500)</td>
+<td>Cá nhân</td>
+<td>PR vào <code>dev</code></td>
+<td>Trước Buổi 9</td>
+</tr>
+<tr>
+<td>9</td>
+<td>BTVN: tài khoản Vercel + kết nối repo</td>
+<td>Cá nhân</td>
+<td>Ảnh chụp Vercel Dashboard</td>
+<td>Trước Buổi 10</td>
+</tr>
+<tr>
+<td>10</td>
+<td>BTVN: kịch bản kiểm thử toàn hệ thống</td>
+<td>Nhóm</td>
+<td>File <code>[MãLớp]_[Nhóm]_TestCasesScenario</code></td>
+<td>Trước Buổi 11</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Link Vercel Live + ảnh Lighthouse</td>
+<td>Nhóm</td>
+<td>Link + ảnh</td>
+<td>Cuối Buổi 11</td>
+</tr>
+<tr>
+<td>11</td>
+<td>BTVN: Báo cáo Word/PDF + slide cuối kỳ</td>
+<td>Nhóm</td>
+<td>File <code>[MãLớp]_[Nhóm]_BaoCaoCuoiKy</code>, <code>..._SlideCuoiKy</code></td>
+<td>Trước Buổi 12</td>
+</tr>
+<tr>
+<td><strong>12</strong></td>
+<td><strong>Hackathon &amp; Final Showcase (40%)</strong></td>
+<td><strong>Nhóm + cá nhân</strong></td>
+<td>Demo live, phản biện</td>
+<td><strong>Tại Buổi 12</strong></td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="phan-c-bai-tap-chi-tiet-theo-tung-bai">PHẦN C. BÀI TẬP CHI TIẾT THEO TỪNG BÀI</h2>
+<h3 id="bai-01-scss-nang-cao-typescript-can-ban-thiet-lap-vibe-coding">Bài 01: SCSS nâng cao, TypeScript căn bản &amp; thiết lập Vibe Coding</h3>
+<h4 id="guided-practice-45-39-component-eventcard-scss-module-responsive">🛠️ Guided Practice (45&#39;): Component <code>EventCard</code> + SCSS Module responsive</h4>
+<ul>
+<li><strong>Yêu cầu:</strong><ul>
+<li>Tạo <code>EventCard.tsx</code> hiển thị ảnh bìa, tiêu đề, ngày giờ, giá vé, badge trạng thái.</li>
+<li>Tạo <code>EventCard.module.scss</code> có mixin responsive: Desktop 3 cột, Tablet 2 cột, Mobile 1 cột.</li>
+<li>Định nghĩa interface <code>EventProps</code> trong <code>types/event.ts</code>, <code>status</code> là union <code>&#39;UPCOMING&#39; | &#39;ONGOING&#39; | &#39;ENDED&#39;</code>.</li>
+<li>Dùng <code>next/image</code>; sửa các lỗi type mismatch do AI gợi ý sai.</li>
+</ul>
+</li>
+<li><strong>Output:</strong> Component hiển thị đúng dữ liệu từ props, co giãn không vỡ.</li>
+<li><strong>Tiêu chí đạt:</strong> không lỗi TypeScript (no implicit any); badge đổi màu theo trạng thái (xanh dương / xanh lá / xám).</li>
+</ul>
+<h4 id="unguided-practice-45-39-headernavigationbar">🧩 Unguided Practice (45&#39;): <code>HeaderNavigationBar</code></h4>
+<ul>
+<li><strong>Yêu cầu:</strong> Logo &quot;Smart Event Hub&quot;, menu (Trang chủ, Sự kiện, Bảng tin, Liên hệ), ô tìm kiếm nhanh, nút Đăng nhập/Đăng ký. Interface <code>NavItem { label: string; href: string; isExternal?: boolean }</code> đặt trong <code>types/</code>. Sticky header khi cuộn và hover underline bằng SCSS.</li>
+<li><strong>Output:</strong> Thanh điều hướng cố định trên đỉnh trang, link có hiệu ứng hover mượt.</li>
+<li><strong>Tiêu chí đạt:</strong> TypeScript strict, không <code>any</code>; interface tách khỏi file component.</li>
+</ul>
+<h4 id="btvn-ca-nhan-3-component-tinh-cho-du-an">🏠 BTVN (cá nhân): 3 component tĩnh cho dự án</h4>
+<ul>
+<li><strong>Yêu cầu:</strong><ol>
+<li><code>Footer.tsx</code>: thông tin bản quyền, liên kết mạng xã hội, form đăng ký nhận bản tin (Newsletter).</li>
+<li><code>EventCategoryBadge.tsx</code>: badge thể loại (Âm nhạc, Công nghệ, Thể thao, Workshop) kèm icon tương ứng.</li>
+<li><code>SearchBar.tsx</code>: thanh tìm kiếm sự kiện kèm dropdown chọn địa điểm (Hà Nội, TP.HCM, Đà Nẵng).</li>
+</ol>
+</li>
+<li><strong>Output:</strong> Mỗi component có interface Props và SCSS Module riêng.</li>
+<li><strong>Tiêu chí đạt:</strong> dùng biến/mixin trong <code>styles/_variables.scss</code>, <code>styles/_mixins.scss</code> của nhóm; không <code>any</code>; hiển thị ổn ở 375px.</li>
+<li><strong>Hạn nộp:</strong> trước Buổi 2.</li>
+<li><strong>Cách nộp:</strong> PR cá nhân từ <code>feature/&lt;tên&gt;-static-components</code> vào <code>dev</code>; dán link PR lên LMS.</li>
+</ul>
+<hr>
+<h3 id="bai-02-tu-duy-wireframe-modeling-ui-chuyen-figma-thanh-next-js-component">Bài 02: Tư duy Wireframe/Modeling UI &amp; chuyển Figma thành Next.js Component</h3>
+<h4 id="guided-practice-45-39-trang-chu-tu-wireframe-sang-tsx">🛠️ Guided Practice (45&#39;): Trang chủ từ Wireframe sang TSX</h4>
+<ul>
+<li><strong>Yêu cầu:</strong> Từ bản phác thảo Figma &quot;Trang chủ Danh sách sự kiện&quot; của GV, đưa ảnh/SVG vào v0.dev hoặc Claude để sinh code Next.js. Phân rã thành <code>HeroBanner</code>, <code>FeaturedEventsSection</code>, <code>CategoryFilter</code>; tạo mock data 4 phần tử bằng TypeScript; dùng thẻ semantic. Sau đó refactor: đổi tên biến, tách component dài, bỏ inline-style.</li>
+<li><strong>Output:</strong> Giao diện giống &gt;85% bản phác thảo.</li>
+<li><strong>Tiêu chí đạt:</strong> không còn inline-style rác; cấu trúc <code>header</code>, <code>main</code>, <code>section</code>, <code>article</code> đúng chỗ.</li>
+</ul>
+<h4 id="unguided-practice-45-39-man-hinh-chi-tiet-su-kien">🧩 Unguided Practice (45&#39;): Màn hình Chi tiết sự kiện</h4>
+<ul>
+<li><strong>Yêu cầu:</strong> Tự phác thảo (giấy hoặc phần mềm) màn hình Event Detail gồm banner lớn, thông tin ban tổ chức, nội dung chi tiết, sơ đồ vé, khung đặt vé cố định. Dùng Vibe Coding chuyển thành <code>EventDetailPageView.tsx</code> (cột trái 70%, cột phải 30% sticky).</li>
+<li><strong>Output:</strong> Màn hình hoàn chỉnh về bố cục.</li>
+<li><strong>Tiêu chí đạt:</strong> khung đặt vé bám theo khi cuộn (Sticky Sidebar); trên Mobile hai cột xếp dọc.</li>
+</ul>
+<h4 id="btvn-ca-nhan-theo-man-hinh-phu-trach-wireframe-hoan-chinh-trang-dev-preview">🏠 BTVN (cá nhân theo màn hình phụ trách): Wireframe hoàn chỉnh &amp; trang dev-preview</h4>
+<ul>
+<li><strong>Yêu cầu:</strong><ul>
+<li>Hoàn thiện file Wireframe Figma cho màn hình mình phụ trách trong bộ 5 màn hình của nhóm.</li>
+<li>Chuyển wireframe đó thành trang giao diện tĩnh trong <code>app/dev-preview/</code> (ví dụ <code>/dev-preview/home</code>, <code>/dev-preview/detail</code>, <code>/dev-preview/checkout</code>, <code>/dev-preview/profile</code>, <code>/dev-preview/admin</code>) và tạo các component mẫu tương ứng.</li>
+</ul>
+</li>
+<li><strong>Output:</strong> Mọi thành viên truy cập được các đường dẫn <code>/dev-preview/*</code> để xem bố cục tĩnh.</li>
+<li><strong>Tiêu chí đạt:</strong> bố cục khớp wireframe; component đặt đúng thư mục; ảnh wireframe đã có trong <code>docs/wireframes/</code>.</li>
+<li><strong>Hạn nộp:</strong> trước Buổi 3.</li>
+<li><strong>Cách nộp:</strong> PR vào <code>dev</code> + link Figma (dán vào LMS).</li>
+</ul>
+<hr>
+<h3 id="bai-03-next-js-app-router-cau-truc-thu-muc-index-nested-routing">Bài 03: Next.js App Router – cấu trúc thư mục, Index &amp; Nested Routing</h3>
+<h4 id="guided-practice-45-39-khoi-tao-du-an-va-layout-chung">🛠️ Guided Practice (45&#39;): Khởi tạo dự án và Layout chung</h4>
+<ul>
+<li><strong>Yêu cầu:</strong> Tạo dự án Next.js App Router + TypeScript; thiết lập layout chung chứa Header và Footer cho các trang người dùng; Route Group <code>(auth)</code> với <code>/login</code>, <code>/register</code> dùng AuthLayout riêng (chỉ Logo và form ở giữa); Nested Route <code>/events</code>, <code>/events/categories</code>, <code>/events/search</code>.</li>
+<li><strong>Output:</strong> Hệ thống route chuyển đổi trơn tru.</li>
+<li><strong>Tiêu chí đạt:</strong> trang thuộc <code>(auth)</code> không hiển thị Header/Footer chính; URL không chứa tên group.</li>
+</ul>
+<blockquote>
+<p>🧭 Layout cha luôn bọc layout con, nên nếu đặt Header/Footer ngay trong <code>app/layout.tsx</code> thì trang <code>(auth)</code> cũng bị kế thừa. Cách làm khuyến nghị: Root Layout chỉ chứa <code>&lt;html&gt;</code>, <code>&lt;body&gt;</code> và provider; Header/Footer đặt trong <code>app/(main)/layout.tsx</code> (xem <code>documentation/dac-ta-du-an-smart-event-hub.md</code>, mục 3).</p>
+</blockquote>
+<h4 id="unguided-practice-45-39-khu-vuc-quan-tri-admin">🧩 Unguided Practice (45&#39;): Khu vực quản trị <code>(admin)</code></h4>
+<ul>
+<li><strong>Yêu cầu:</strong> Route Group <code>(admin)</code> gồm <code>/admin/dashboard</code>, <code>/admin/manage-events</code>, <code>/admin/users</code>; AdminLayout có Sidebar trái; <code>loading.tsx</code> hiển thị Skeleton khi chuyển trang. Bổ sung khung trang <code>/checkout</code>, <code>/user/profile</code> bằng Vibe Coding.</li>
+<li><strong>Output:</strong> <code>/admin/dashboard</code> hiển thị layout quản trị riêng; có Skeleton khi chuyển route.</li>
+<li><strong>Tiêu chí đạt:</strong> đúng file convention (<code>layout.tsx</code>, <code>page.tsx</code>, <code>loading.tsx</code>); TypeScript cho props layout.</li>
+</ul>
+<blockquote>
+<p>📝 Kế hoạch buổi học dùng tên <code>/admin/events-management</code>, đề cương dùng <code>/admin/manage-events</code>. Bộ học liệu thống nhất dùng <code>/admin/manage-events</code>.</p>
+</blockquote>
+<h4 id="btvn-ca-nhan-xu-ly-loi-va-trang-thai-cho">🏠 BTVN (cá nhân): Xử lý lỗi và trạng thái chờ</h4>
+<ul>
+<li><strong>Yêu cầu:</strong><ul>
+<li><code>app/error.tsx</code> (Client Component) bắt lỗi runtime, có nút &quot;Thử lại (Try Again)&quot; gọi <code>reset()</code>.</li>
+<li><code>app/global-error.tsx</code> bắt lỗi ở mức Root Layout.</li>
+<li><code>loading.tsx</code> dạng Skeleton cho các route mình đã tạo.</li>
+</ul>
+</li>
+<li><strong>Output:</strong> Khi gặp sự cố runtime, màn hình hiện thông báo lỗi lịch sự kèm nút thử lại; khi chuyển trang có Skeleton.</li>
+<li><strong>Tiêu chí đạt:</strong> <code>error.tsx</code> có <code>&#39;use client&#39;</code>; <code>global-error.tsx</code> tự khai báo <code>&lt;html&gt;</code> và <code>&lt;body&gt;</code>; Skeleton không gây nhảy layout.</li>
+<li><strong>Hạn nộp:</strong> trước Buổi 4.</li>
+<li><strong>Cách nộp:</strong> PR vào <code>dev</code>.</li>
+</ul>
+<hr>
+<h3 id="bai-04-dynamic-routing-kien-truc-reusable-components">Bài 04: Dynamic Routing &amp; kiến trúc Reusable Components</h3>
+<h4 id="guided-practice-45-39-events-id-va-button-da-bien-the">🛠️ Guided Practice (45&#39;): <code>/events/[id]</code> và <code>Button</code> đa biến thể</h4>
+<ul>
+<li><strong>Yêu cầu:</strong> Tạo <code>app/events/[id]/page.tsx</code> đọc <code>id</code> bằng <code>const { id } = await params;</code> (Next.js 15). Tạo <code>Button.tsx</code> mở rộng <code>ButtonHTMLAttributes&lt;HTMLButtonElement&gt;</code> với <code>variant: &#39;primary&#39; | &#39;secondary&#39; | &#39;danger&#39; | &#39;outline&#39;</code>, <code>size: &#39;sm&#39; | &#39;md&#39; | &#39;lg&#39;</code>, <code>isLoading</code>, <code>leftIcon</code>.</li>
+<li><strong>Output:</strong> Đổi URL <code>/events/ev-101</code>, <code>/events/ev-102</code> hiển thị đúng id; Button đúng với mọi props.</li>
+<li><strong>Tiêu chí đạt:</strong> khi <code>isLoading</code> thì nút bị <code>disabled</code> và hiện spinner; interface <code>PageProps</code> khai báo <code>params: Promise&lt;{ id: string }&gt;</code>.</li>
+</ul>
+<h4 id="unguided-practice-45-39-category-slug-voi-searchparams">🧩 Unguided Practice (45&#39;): <code>/category/[slug]</code> với searchParams</h4>
+<ul>
+<li><strong>Yêu cầu:</strong> Tạo <code>app/category/[slug]/page.tsx</code>; đọc <code>slug</code> (<code>music</code>, <code>technology</code>, <code>sports</code>, <code>workshop</code>) và <code>searchParams</code> (<code>page</code>, <code>sort</code>), ví dụ <code>/category/music?page=1&amp;sort=latest</code>; mock data dạng map theo slug.</li>
+<li><strong>Output:</strong> Hiển thị cả <code>slug</code> và <code>sort</code> trên giao diện; danh sách lọc đúng danh mục.</li>
+<li><strong>Tiêu chí đạt:</strong> <code>searchParams</code> cũng là <code>Promise</code> và được <code>await</code>; slug không tồn tại gọi <code>notFound()</code>.</li>
+</ul>
+<h4 id="btvn-ca-nhan-to-chuc-lai-thu-muc-components">🏠 BTVN (cá nhân): Tổ chức lại thư mục components</h4>
+<ul>
+<li><strong>Yêu cầu:</strong> Sắp xếp toàn bộ component theo:<ul>
+<li><code>components/ui/</code> – atom: Button, Input, Modal, Badge.</li>
+<li><code>components/common/</code> – Header, Footer, Sidebar (đề cương gọi là <code>shared/</code>, hai tên tương đương; nhóm chọn một và dùng thống nhất).</li>
+<li><code>components/features/</code> – EventCard, SeatPicker, CheckoutForm.</li>
+</ul>
+</li>
+<li><strong>Output:</strong> Thư mục dự án gọn, không còn component trùng lặp.</li>
+<li><strong>Tiêu chí đạt:</strong> mọi import cập nhật đúng, <code>npm run build</code> thành công; không có hai component làm cùng một việc.</li>
+<li><strong>Hạn nộp:</strong> trước Buổi 5.</li>
+<li><strong>Cách nộp:</strong> PR vào <code>dev</code>, mô tả rõ các file đã di chuyển/gộp.</li>
+</ul>
+<hr>
+<h3 id="bai-05-giao-dien-chuyen-nghiep-voi-ant-design-bootstrap-tailwind-tuy-bien-theme">Bài 05: Giao diện chuyên nghiệp với Ant Design, Bootstrap/Tailwind &amp; tùy biến Theme</h3>
+<h4 id="guided-practice-45-39-cai-antd-cau-hinh-theme-bookingmodal">🛠️ Guided Practice (45&#39;): Cài AntD, cấu hình Theme, <code>BookingModal</code></h4>
+<ul>
+<li><strong>Yêu cầu:</strong> Cài <code>antd</code> và <code>@ant-design/nextjs-registry</code>; bọc <code>AntdRegistry</code> + <code>ConfigProvider</code> trong <code>app/layout.tsx</code> với <code>colorPrimary: &#39;#6366F1&#39;</code>, <code>borderRadius: 8</code>. Xây <code>BookingModal.tsx</code> dùng <code>Modal</code>, <code>Form</code>, <code>Select</code> (loại vé), <code>InputNumber</code> (1–10), <code>DatePicker</code>, ghi chú.</li>
+<li><strong>Output:</strong> Modal mở mượt, màu nút và viền theo Theme.</li>
+<li><strong>Tiêu chí đạt:</strong> không lỗi SSR/Hydration mismatch trên Console.</li>
+</ul>
+<h4 id="unguided-practice-45-39-trang-admin-orders">🧩 Unguided Practice (45&#39;): Trang <code>/admin/orders</code></h4>
+<ul>
+<li><strong>Yêu cầu:</strong> Dùng <code>Table</code> và <code>Tag</code> của AntD; cột: Mã đơn, Tên khách hàng, Tên sự kiện, Ngày đặt, Tổng tiền, Trạng thái (SUCCESS xanh lá, PENDING cam, CANCELLED đỏ), Action &quot;Xem chi tiết&quot;. Interface <code>OrderType</code>, mock 10 đơn, lọc theo trạng thái, phân trang 5 mục/trang.</li>
+<li><strong>Output:</strong> Bảng dữ liệu căn chỉnh đẹp, lọc và chuyển trang hoạt động.</li>
+<li><strong>Tiêu chí đạt:</strong> <code>columns</code> có kiểu <code>ColumnsType&lt;OrderType&gt;</code> (hoặc <code>TableProps&lt;OrderType&gt;[&#39;columns&#39;]</code>); không <code>any</code>.</li>
+</ul>
+<h4 id="btvn-ca-nhan-responsive-cho-component-antd">🏠 BTVN (cá nhân): Responsive cho component AntD</h4>
+<ul>
+<li><strong>Yêu cầu:</strong> Rà soát các component AntD mình đã dùng; dùng <code>Row</code>/<code>Col</code> với <code>xs</code>, <code>sm</code>, <code>md</code>, <code>lg</code> để bố cục co giãn; sửa mọi lỗi vỡ khung ở 5 màn hình chính.</li>
+<li><strong>Output:</strong> Không có thanh cuộn ngang trên di động.</li>
+<li><strong>Tiêu chí đạt:</strong> kiểm tra ở 375px, 768px, 1440px bằng Chrome DevTools; đính kèm ảnh trước/sau.</li>
+<li><strong>Hạn nộp:</strong> trước Buổi 6.</li>
+<li><strong>Cách nộp:</strong> PR vào <code>dev</code> kèm ảnh chụp màn hình trong mô tả PR.</li>
+</ul>
+<hr>
+<h3 id="bai-06-logic-state-management-voi-react-hooks">Bài 06: Logic &amp; State Management với React Hooks</h3>
+<h4 id="guided-practice-45-39-ticketquantityselector">🛠️ Guided Practice (45&#39;): <code>TicketQuantitySelector</code></h4>
+<ul>
+<li><strong>Yêu cầu:</strong> Client Component quản lý danh sách hạng vé (VVIP, VIP, Standard), mỗi hạng có <code>price</code>, <code>quantity</code>, <code>max</code>; hàm <code>handleIncrease(id)</code>, <code>handleDecrease(id)</code>; tính <code>totalAmount</code>, <code>totalTickets</code> bằng <code>useMemo</code>.</li>
+<li><strong>Output:</strong> Tổng tiền và số vé cập nhật ngay khi tăng/giảm.</li>
+<li><strong>Tiêu chí đạt:</strong> không giảm dưới 0, không vượt <code>max</code>; nút &quot;Thanh toán&quot; bị disable khi <code>totalTickets === 0</code>.</li>
+</ul>
+<h4 id="unguided-practice-45-39-eventfilterbar-co-debounce">🧩 Unguided Practice (45&#39;): <code>EventFilterBar</code> có Debounce</h4>
+<ul>
+<li><strong>Yêu cầu:</strong> Ô tìm kiếm từ khóa, dropdown khoảng giá, lọc theo ngày (theo danh mục nếu cần); state <code>searchKeyword</code>, <code>priceRange</code>, <code>selectedDate</code>; debounce 200ms bằng custom hook <code>useDebounce</code>; trả kết quả lên cha qua <code>onFilterChange(filters)</code>.</li>
+<li><strong>Output:</strong> Lọc mượt, gõ phím không giật.</li>
+<li><strong>Tiêu chí đạt:</strong> kiểu <code>Filters</code> rõ ràng; <code>useEffect</code> của debounce có hàm dọn dẹp <code>clearTimeout</code>.</li>
+</ul>
+<h4 id="btvn-nhom-moi-thanh-vien-co-pr-rieng-tich-hop-50-va-chuan-bi-giua-ky">🏠 BTVN (nhóm, mỗi thành viên có PR riêng): Tích hợp 50% và chuẩn bị giữa kỳ</h4>
+<ul>
+<li><strong>Yêu cầu:</strong><ul>
+<li>Ghép toàn bộ State, UI, Dynamic Route, Reusable Component từ Bài 01–06 thành ứng dụng chạy được.</li>
+<li>Chuẩn bị slide báo cáo và để source code trên GitHub (GV có quyền truy cập).</li>
+</ul>
+</li>
+<li><strong>Output:</strong> Dự án chạy ổn định, không có màn hình lỗi đỏ (Runtime Error), sẵn sàng demo.</li>
+<li><strong>Tiêu chí đạt:</strong> <code>dev</code> đã merge vào <code>main</code>; mỗi thành viên có commit tính năng; README có bảng phân công.</li>
+<li><strong>Hạn nộp:</strong> trước Buổi 7.</li>
+<li><strong>Cách nộp:</strong> link repo + link PR tích hợp trên LMS.</li>
+</ul>
+<hr>
+<h3 id="bai-07-kiem-tra-giua-ky-bao-cao-tien-do-50-du-an">Bài 07: Kiểm tra giữa kỳ – Báo cáo tiến độ 50% dự án</h3>
+<h4 id="guided-practice-45-39-dong-goi-bao-cao">🛠️ Guided Practice (45&#39;): Đóng gói báo cáo</h4>
+<ul>
+<li><strong>Yêu cầu:</strong> Chạy <code>npm run lint</code> và <code>npm run build</code>, sửa toàn bộ lỗi TypeScript/ESLint ẩn. Viết <code>README.md</code> gồm: mô tả dự án, thành viên &amp; phân công (Họ tên, MSSV, Vai trò, Tính năng), hướng dẫn cài đặt, cấu trúc thư mục, link Wireframe Figma. Tổng hợp link preview/demo Bài 01–06.</li>
+<li><strong>Output:</strong> README ở root repo; build pass 100%.</li>
+<li><strong>Tiêu chí đạt:</strong> không còn lỗi Compile/Type Error.</li>
+</ul>
+<h4 id="unguided-practice-45-39-cross-review-va-hot-reload">🧩 Unguided Practice (45&#39;): Cross-review và Hot Reload</h4>
+<ul>
+<li><strong>Yêu cầu:</strong> Review chéo giữa các trang (Trang chủ, Chi tiết sự kiện, Đặt vé, Dashboard Admin); sửa console warning, hydration mismatch còn tồn đọng; chuẩn bị slide 5–7 trang.</li>
+<li><strong>Output:</strong> Ứng dụng chạy mượt, Console không còn cảnh báo đỏ/vàng.</li>
+<li><strong>Tiêu chí đạt:</strong> chạy lại <code>npm run build</code> thành công sau khi sửa.</li>
+</ul>
+<h4 id="btvn-ca-nhan-cap-nhat-theo-gop-y-va-chuan-bi-tich-hop-api">🏠 BTVN (cá nhân): Cập nhật theo góp ý và chuẩn bị tích hợp API</h4>
+<ul>
+<li><strong>Yêu cầu:</strong> Sửa UI/codebase theo nhận xét của GV ở buổi báo cáo; đọc trước tài liệu RESTful API/Swagger UI của Smart Event Hub do GV cung cấp, ghi lại các endpoint mình sẽ phụ trách.</li>
+<li><strong>Output:</strong> Codebase sạch, sẵn sàng ghép nối Backend.</li>
+<li><strong>Tiêu chí đạt:</strong> mỗi góp ý có commit/PR xử lý tương ứng.</li>
+<li><strong>Hạn nộp:</strong> trước Buổi 8.</li>
+<li><strong>Cách nộp:</strong> PR vào <code>dev</code>; liệt kê các góp ý đã xử lý trong mô tả PR.</li>
+</ul>
+<blockquote>
+<p>📋 Đặc tả đầy đủ sản phẩm nộp giữa kỳ: xem <strong>Phần D</strong>.</p>
+</blockquote>
+<hr>
+<h3 id="bai-08-data-fetching-tich-hop-restful-api">Bài 08: Data Fetching &amp; tích hợp RESTful API</h3>
+<h4 id="guided-practice-45-39-getevents-va-trang-chu-du-lieu-that">🛠️ Guided Practice (45&#39;): <code>getEvents()</code> và Trang chủ dữ liệu thật</h4>
+<ul>
+<li><strong>Yêu cầu:</strong> Thả JSON response mẫu của endpoint danh sách sự kiện trên Swagger vào AI để sinh interface (<code>EventItem</code>, <code>Organizer</code>…); viết <code>services/eventService.ts</code> với <code>getEvents(params)</code> (query <code>page</code>, <code>limit</code>, <code>search</code>); fetch trong Server Component <code>app/page.tsx</code> và truyền props cho <code>EventList</code>.</li>
+<li><strong>Output:</strong> Trang chủ hiển thị danh sách sự kiện lấy từ Backend.</li>
+<li><strong>Tiêu chí đạt:</strong> base URL lấy từ <code>process.env.NEXT_PUBLIC_API_URL</code>; không <code>any</code>; response bọc trong <code>ApiResponse&lt;T&gt;</code>.</li>
+</ul>
+<h4 id="unguided-practice-45-39-geteventbyid-id-cho-trang-chi-tiet">🧩 Unguided Practice (45&#39;): <code>getEventById(id)</code> cho trang chi tiết</h4>
+<ul>
+<li><strong>Yêu cầu:</strong> Viết <code>getEventById(id: string)</code> (đề cương gọi <code>getEventDetail</code>); tích hợp vào <code>/events/[id]</code>; hiển thị banner, tên, giá, ban tổ chức; API trả 404 thì gọi <code>notFound()</code>; bọc <code>try/catch</code> lỗi kết nối.</li>
+<li><strong>Output:</strong> Bấm từng Card, trang chi tiết tải đúng dữ liệu theo id.</li>
+<li><strong>Tiêu chí đạt:</strong> id không tồn tại hiển thị trang 404 của dự án.</li>
+</ul>
+<h4 id="btvn-ca-nhan-xu-ly-su-co-api">🏠 BTVN (cá nhân): Xử lý sự cố API</h4>
+<ul>
+<li><strong>Yêu cầu:</strong> Hiển thị giao diện phù hợp khi API gặp Network Error hoặc Server 500, kết hợp <code>notification</code>/<code>Alert</code> của AntD hoặc <code>error.tsx</code>; giữ Loading Spinner/Skeleton khi đang tải.</li>
+<li><strong>Output:</strong> Web app có thông báo lỗi lịch sự khi server gián đoạn, không trắng trang.</li>
+<li><strong>Tiêu chí đạt:</strong> thử bằng cách đổi <code>NEXT_PUBLIC_API_URL</code> sai hoặc tắt mạng trong DevTools; mô tả cách thử trong PR.</li>
+<li><strong>Hạn nộp:</strong> trước Buổi 9.</li>
+<li><strong>Cách nộp:</strong> PR vào <code>dev</code>.</li>
+</ul>
+<hr>
+<h3 id="bai-09-form-validation-react-hook-form-zod-local-storage-complex-ui-state">Bài 09: Form Validation (React Hook Form + Zod), Local Storage &amp; Complex UI State</h3>
+<h4 id="guided-practice-45-39-loginform">🛠️ Guided Practice (45&#39;): <code>LoginForm</code></h4>
+<ul>
+<li><strong>Yêu cầu:</strong> Cài <code>react-hook-form</code>, <code>zod</code>, <code>@hookform/resolvers</code>; tạo <code>loginSchema</code> (email đúng định dạng, password ≥ 6 ký tự); <code>LoginForm.tsx</code> dùng <code>useForm</code> + <code>zodResolver</code>, hiển thị lỗi dưới từng ô; submit gọi API đăng nhập, lưu token vào <code>localStorage</code> (khóa <code>accessToken</code>), hiện <code>message.success</code> và chuyển về Trang chủ.</li>
+<li><strong>Output:</strong> Form báo lỗi ngay khi nhập sai; đăng nhập thành công lưu token và điều hướng.</li>
+<li><strong>Tiêu chí đạt:</strong> kiểu dữ liệu form lấy từ <code>z.infer&lt;typeof loginSchema&gt;</code>.</li>
+</ul>
+<h4 id="unguided-practice-45-39-form-quot-tao-su-kien-moi-quot-admin-create-event">🧩 Unguided Practice (45&#39;): Form &quot;Tạo sự kiện mới&quot; <code>/admin/create-event</code></h4>
+<ul>
+<li><strong>Yêu cầu:</strong> <code>createEventSchema</code> gồm tên (≥ 5 ký tự), địa điểm, ngày bắt đầu/kết thúc (DatePicker), giá vé (&gt; 0), ảnh bìa (URL), số lượng vé, mô tả; dùng <code>.refine()</code> bắt buộc ngày kết thúc sau ngày bắt đầu.</li>
+<li><strong>Output:</strong> Form bắt được trường hợp ngày không hợp lệ.</li>
+<li><strong>Tiêu chí đạt:</strong> thông báo lỗi gắn đúng ô <code>endDate</code>; nút submit bị khóa khi đang gửi.</li>
+</ul>
+<h4 id="btvn-ca-nhan-san-sang-cho-pbl">🏠 BTVN (cá nhân): Sẵn sàng cho PBL</h4>
+<ul>
+<li><strong>Yêu cầu:</strong> Đăng ký tài khoản Vercel và GitHub (nếu chưa có); đẩy code mới nhất lên GitHub; kiểm tra kết nối repository với Vercel Dashboard.</li>
+<li><strong>Output:</strong> 100% thành viên có tài khoản Vercel sẵn sàng kết nối CI/CD.</li>
+<li><strong>Tiêu chí đạt:</strong> import thử repo vào Vercel thấy được danh sách nhánh.</li>
+<li><strong>Hạn nộp:</strong> trước Buổi 10.</li>
+<li><strong>Cách nộp:</strong> ảnh chụp Vercel Dashboard đã thấy repo, nộp lên LMS.</li>
+</ul>
+<hr>
+<h3 id="bai-10-pbl-1-refactoring-optimization-responsive-polish">Bài 10: PBL 1 – Refactoring, Optimization &amp; Responsive Polish</h3>
+<blockquote>
+<p>Buổi PBL không chia Guided/Unguided. Sau 30 phút định hướng, nhóm làm 3 phần liên tiếp (mỗi phần 60&#39;), GV làm mentor tại từng nhóm.</p>
+</blockquote>
+<h4 id="pbl-phan-1-60-39-responsive-polish">🛠️ PBL Phần 1 (60&#39;): Responsive Polish</h4>
+<ul>
+<li><strong>Yêu cầu:</strong> Kiểm tra Home, Listing, Event Detail, Booking Modal, Admin Orders ở 375px, 768px, 1440px; sửa tràn ngang; chuyển Menu/Filter Bar sang <code>Drawer</code>/<code>Collapse</code> trên di động.</li>
+<li><strong>Tiêu chí đạt:</strong> không có thanh cuộn ngang; nút/link đủ lớn để chạm trên Mobile.</li>
+</ul>
+<h4 id="pbl-phan-2-60-39-phan-3-60-39-refactoring-va-zero-warning">🧩 PBL Phần 2 (60&#39;) &amp; Phần 3 (60&#39;): Refactoring và Zero Warning</h4>
+<ul>
+<li><strong>Yêu cầu Phần 2:</strong> tách code lặp thành Reusable Component; xóa biến không dùng, <code>console.log</code>, <code>any</code>; gom SCSS lặp thành mixin/biến chung.</li>
+<li><strong>Yêu cầu Phần 3:</strong> chạy dev kiểm tra Hot Reload; sửa warning (<code>React does not recognize prop…</code>, <code>Hydration failed…</code>); GV review code và nghiệm thu danh sách bug đã sửa.</li>
+<li><strong>Tiêu chí đạt:</strong> codebase giảm &gt;20% số dòng mà không đổi logic; TypeScript strict pass; Zero Console Warnings; có biên bản nghiệm thu PBL 1.</li>
+</ul>
+<h4 id="btvn-nhom-kich-ban-kiem-thu-toan-he-thong">🏠 BTVN (nhóm): Kịch bản kiểm thử toàn hệ thống</h4>
+<ul>
+<li><strong>Yêu cầu:</strong> Viết file kịch bản chạy thử (<code>Test_Cases_Scenario</code>) cho các luồng chính, mỗi ca gồm: Mã ca, Chức năng, Tiền điều kiện, Các bước, Dữ liệu vào, Kết quả mong đợi, Kết quả thực tế, Trạng thái. Chuẩn bị repo GitHub ở nhánh <code>main</code> cho buổi PBL 2.</li>
+<li><strong>Output:</strong> Tài liệu test sẵn sàng để chạy trên bản deploy.</li>
+<li><strong>Tiêu chí đạt:</strong> tối thiểu bao phủ: xem danh sách/lọc, chi tiết sự kiện, chọn vé/ghế, đặt vé, đăng nhập, Wishlist, trang Admin.</li>
+<li><strong>Hạn nộp:</strong> trước Buổi 11.</li>
+<li><strong>Cách nộp:</strong> file <code>[MãLớp]_[Nhóm]_TestCasesScenario.docx</code> hoặc <code>.md</code> lên LMS (đồng thời lưu trong <code>docs/</code> của repo).</li>
+</ul>
+<hr>
+<h3 id="bai-11-pbl-2-ci-cd-deploy-vercel-seo-performance">Bài 11: PBL 2 – CI/CD, Deploy Vercel, SEO &amp; Performance</h3>
+<h4 id="pbl-phan-1-60-39-seo-metadata-dong">🛠️ PBL Phần 1 (60&#39;): SEO &amp; Metadata động</h4>
+<ul>
+<li><strong>Yêu cầu:</strong> Metadata tĩnh ở Root Layout (title, description, keywords, openGraph); <code>generateMetadata</code> cho <code>/events/[id]</code> lấy dữ liệu bằng <code>getEventById(id)</code> (nhớ <code>await params</code>), có metadata dự phòng khi không tìm thấy; thay toàn bộ <code>&lt;img&gt;</code> bằng <code>next/image</code> với <code>sizes</code>, <code>priority</code> phù hợp.</li>
+<li><strong>Tiêu chí đạt:</strong> chia sẻ link lên Zalo/Facebook hiện đúng ảnh và tiêu đề sự kiện.</li>
+</ul>
+<h4 id="pbl-phan-2-60-39-phan-3-60-39-deploy-vercel-va-lighthouse">🧩 PBL Phần 2 (60&#39;) &amp; Phần 3 (60&#39;): Deploy Vercel và Lighthouse</h4>
+<ul>
+<li><strong>Yêu cầu Phần 2:</strong> đẩy code lên <code>main</code>; kết nối repo với Vercel; khai báo <code>NEXT_PUBLIC_API_URL</code>; build &amp; deploy, xử lý Build Fail nếu có.</li>
+<li><strong>Yêu cầu Phần 3:</strong> chạy Lighthouse trên link Vercel; phân tích Performance, Accessibility, Best Practices, SEO; dùng Vibe Coding tìm giải pháp tối ưu.</li>
+<li><strong>Tiêu chí đạt:</strong> link dạng <code>*.vercel.app</code> hoạt động, gọi API và LocalStorage ổn định; Performance &gt; 85, SEO &gt; 90.</li>
+</ul>
+<h4 id="btvn-nhom-bao-cao-van-ban-slide-cuoi-ky">🏠 BTVN (nhóm): Báo cáo văn bản &amp; slide cuối kỳ</h4>
+<ul>
+<li><strong>Yêu cầu:</strong> Viết báo cáo Word/PDF theo mẫu (xem dàn ý ở Phần E): kiến trúc dự án, sơ đồ Wireframe, mô tả API tích hợp, phân công công việc, minh chứng Git commit, link Vercel Live. Chuẩn bị slide thuyết trình cho Buổi 12.</li>
+<li><strong>Output:</strong> File báo cáo hoàn chỉnh và slide sẵn sàng cho buổi bảo vệ.</li>
+<li><strong>Tiêu chí đạt:</strong> đúng cấu trúc; hình ảnh có chú thích; minh chứng Git thể hiện đóng góp từng thành viên.</li>
+<li><strong>Hạn nộp:</strong> trước Buổi 12.</li>
+<li><strong>Cách nộp:</strong> <code>[MãLớp]_[Nhóm]_BaoCaoCuoiKy.pdf</code> và <code>[MãLớp]_[Nhóm]_SlideCuoiKy.pptx</code> (hoặc <code>.pdf</code>) lên LMS.</li>
+</ul>
+<hr>
+<h3 id="bai-12-thi-hackathon-final-showcase">Bài 12: Thi Hackathon &amp; Final Showcase</h3>
+<h4 id="nhiem-vu-tai-buoi-225-39">🎤 Nhiệm vụ tại buổi (225&#39;)</h4>
+<ul>
+<li><strong>Triển lãm Live Products (30&#39;):</strong> mở link Vercel để GV và các nhóm khác trải nghiệm chéo (Cross-Testing).</li>
+<li><strong>Thuyết trình (8&#39;) + Q&amp;A phản biện (5&#39;) mỗi nhóm:</strong> thể hiện Wireframe → Vercel App, kỹ thuật Vibe Coding đã dùng, minh chứng Git commit.</li>
+<li><strong>Tổng kết &amp; trao giải (35&#39;):</strong> GV công bố điểm, trao giải nhóm có UI/UX Vibe Coding xuất sắc nhất.</li>
+</ul>
+<p>Bài 12 không có BTVN. Sau buổi, các bạn hoàn thành bài đăng phản tư trên diễn đàn (xem <code>discussion/</code>).</p>
+<blockquote>
+<p>📋 Đặc tả đầy đủ sản phẩm nộp cuối kỳ: xem <strong>Phần E</strong>.</p>
+</blockquote>
+<hr>
+<h2 id="phan-d-dac-ta-deliverable-giua-ky-buoi-7-30">PHẦN D. ĐẶC TẢ DELIVERABLE GIỮA KỲ (BUỔI 7 – 30%)</h2>
+<h4 id="san-pham-phai-nop">Sản phẩm phải nộp</h4>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Sản phẩm</th>
+<th>Yêu cầu</th>
+<th>Cách nộp</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Wireframe 5 màn hình</td>
+<td>Trang chủ, Chi tiết sự kiện, Đặt vé, Trang cá nhân, Admin Dashboard; chuẩn Header/Footer/Content</td>
+<td>Link Figma + ảnh trong <code>docs/wireframes/</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td>Source code</td>
+<td>Repo Git có commit đầy đủ của các thành viên; <code>npm run build</code> thành công; README chuẩn</td>
+<td>Link repository (nhánh <code>main</code>)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Giao diện demo</td>
+<td>Giao diện đã áp dụng Ant Design/SCSS responsive; demo trực tiếp trên máy hoặc link preview nếu nhóm đã deploy thử</td>
+<td>Demo tại lớp (link nếu có)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Slide báo cáo</td>
+<td>5–7 slide tóm tắt kết quả đạt được</td>
+<td>File <code>[MãLớp]_[Nhóm]_SlideGiuaKy.pdf</code></td>
+</tr>
+</tbody></table>
+<h4 id="hinh-thuc-va-rubric">Hình thức và rubric</h4>
+<p>Mỗi nhóm có <strong>10 phút</strong> thuyết trình &amp; demo, sau đó <strong>5 phút</strong> GV hỏi phản biện cá nhân (kiểm tra code từng người đảm nhiệm). Nội dung demo bắt buộc: Wireframe 5 màn hình, giao diện responsive Mobile/Desktop, luồng routing, Git commit log từng cá nhân.</p>
+<table>
+<thead>
+<tr>
+<th>Tiêu chí</th>
+<th>Điểm tối đa</th>
+<th>Minh chứng</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Wireframe đủ 5 màn hình &amp; cấu trúc chuẩn</td>
+<td>1.5</td>
+<td>Figma/ảnh, khớp với giao diện thật</td>
+</tr>
+<tr>
+<td>UI chuyên nghiệp (AntD/Bootstrap + Responsive + Hot Reload)</td>
+<td>2.0</td>
+<td>Demo ở nhiều kích thước, Console sạch</td>
+</tr>
+<tr>
+<td>Routing &amp; Component Architecture</td>
+<td>1.0</td>
+<td>Cây <code>app/</code>, thư mục <code>components/ui</code>, <code>common</code>, <code>features</code></td>
+</tr>
+<tr>
+<td>Git Commit &amp; phối hợp nhóm</td>
+<td>0.5</td>
+<td>Commit log, PR có review</td>
+</tr>
+<tr>
+<td><strong>Tổng</strong></td>
+<td><strong>5.0</strong></td>
+<td>GV quy đổi sang trọng số 30%</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="phan-e-dac-ta-deliverable-cuoi-ky-buoi-12-40">PHẦN E. ĐẶC TẢ DELIVERABLE CUỐI KỲ (BUỔI 12 – 40%)</h2>
+<h4 id="san-pham-phai-nop-1">Sản phẩm phải nộp</h4>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Sản phẩm</th>
+<th>Yêu cầu</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Link Vercel Live</td>
+<td>Bản deploy từ nhánh <code>main</code>, gọi API thật, biến môi trường cấu hình đúng</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Repository GitHub</td>
+<td>Commit log riêng từng thành viên, PR có review, README cập nhật</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Báo cáo Word/PDF</td>
+<td>Theo dàn ý bên dưới, file <code>[MãLớp]_[Nhóm]_BaoCaoCuoiKy.pdf</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td>Slide thuyết trình</td>
+<td>Dùng cho 8 phút trình bày, file <code>[MãLớp]_[Nhóm]_SlideCuoiKy</code></td>
+</tr>
+<tr>
+<td>5</td>
+<td>Minh chứng chất lượng</td>
+<td>Ảnh Lighthouse (Performance &gt; 85, SEO &gt; 90), file Test Cases Scenario</td>
+</tr>
+</tbody></table>
+<h4 id="dan-y-bao-cao-goi-y">Dàn ý báo cáo gợi ý</h4>
+<ol>
+<li>Giới thiệu dự án Smart Event Hub, mục tiêu, phạm vi.</li>
+<li>Phân tích yêu cầu và Wireframe 5 màn hình (ảnh có chú thích).</li>
+<li>Kiến trúc: công nghệ, cây thư mục <code>app/</code>, sơ đồ component, danh sách route.</li>
+<li>Mô tả API tích hợp: endpoint, kiểu dữ liệu TypeScript, xử lý loading/lỗi.</li>
+<li>Các tính năng chính và logic xử lý (đặt vé, chọn ghế, form + Zod, Wishlist).</li>
+<li>Vibe Coding: prompt tiêu biểu, phần AI sinh và phần nhóm đã sửa.</li>
+<li>Triển khai: Vercel, biến môi trường, SEO, kết quả Lighthouse, kết quả test case.</li>
+<li>Phân công công việc và minh chứng Git commit từng thành viên.</li>
+<li>Kết luận, hạn chế, hướng phát triển.</li>
+</ol>
+<h4 id="rubric-va-cach-tinh-diem">Rubric và cách tính điểm</h4>
+<table>
+<thead>
+<tr>
+<th>Tiêu chí</th>
+<th>Trọng số</th>
+<th>PI</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Mô hình hóa UI &amp; Wireframe</td>
+<td>15% (1.5đ)</td>
+<td>PI 1.4 (CLO1)</td>
+</tr>
+<tr>
+<td>Giao diện &amp; Vibe Coding</td>
+<td>20% (2.0đ)</td>
+<td>PI 2.3 (CLO2)</td>
+</tr>
+<tr>
+<td>Logic, TypeScript &amp; REST API</td>
+<td>20% (2.0đ)</td>
+<td>PI 2.3 (CLO2)</td>
+</tr>
+<tr>
+<td>Deploy Vercel, SEO &amp; Lighthouse</td>
+<td>15% (1.5đ)</td>
+<td>PI 5.1 (CLO4)</td>
+</tr>
+<tr>
+<td>Báo cáo văn bản &amp; minh chứng Git</td>
+<td>15% (1.5đ)</td>
+<td>PI 3.1 (CLO3), PI 5.1</td>
+</tr>
+<tr>
+<td>Thuyết trình Showcase &amp; phản biện Q&amp;A</td>
+<td>15% (1.5đ)</td>
+<td>PI 3.1 (CLO3), PI 5.1</td>
+</tr>
+</tbody></table>
+<pre><code class="language-text">Điểm cuối kỳ cá nhân = (Điểm đồ án nhóm × 0.7) + (Điểm phản biện cá nhân × 0.3)
+</code></pre>
+<p><strong>Điểm thưởng Vibe Coding (+0.5 đến +1.0 vào điểm quá trình):</strong> Vibe Coding Master (prompt workflow riêng, hiệu quả), UI Innovation (Dark/Light Mode, micro-interactions), Ultra Performance (Lighthouse Performance 100/100).</p>
+<blockquote>
+<p>📌 Bảng mô tả mức Xuất sắc/Khá/Trung bình/Yếu của từng tiêu chí nằm trong thư mục <code>assessment/</code>.</p>
+</blockquote>
+
+    </article>
+
+    <!-- Bottom Navigation -->
+    <div class="flex items-center justify-between gap-4 mt-8 no-print text-xs font-bold">
+      <span></span>
+      <a href="../index.html#lo-trinh" class="px-4 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-800 rounded-xl transition-all flex items-center gap-2">
+        <i class="fa-solid fa-table-cells-large"></i> Danh mục bài học
+      </a>
+      <span></span>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-slate-200 py-6 text-xs text-slate-500 mt-12 no-print">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <strong>Khoa Công nghệ Thông tin - Trường Đại học Lạc Hồng</strong><br>
+        Phòng B301 - B302, Cơ sở 1, Số 10 Huỳnh Văn Nghệ, P. Bửu Long, TP. Biên Hòa, Đồng Nai.
+      </div>
+      <div class="sm:text-right">
+        <span>Email: cntt@lhu.edu.vn • Hotline: (0251) 3952 251</span><br>
+        <span>Hệ thống LMS: <a href="https://learn.lhu.edu.vn" target="_blank" rel="noopener noreferrer" class="text-lhu-blue font-bold">learn.lhu.edu.vn</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleAllDetails(open) {
+      document.querySelectorAll("details").forEach(d => {
+        if (open) d.setAttribute("open", ""); else d.removeAttribute("open");
+      });
+    }
+    if (window.hljs) hljs.highlightAll();
+  </script>
+
+</body>
+</html>

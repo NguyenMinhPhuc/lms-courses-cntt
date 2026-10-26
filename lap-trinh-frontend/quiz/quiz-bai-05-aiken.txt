@@ -1,0 +1,84 @@
+Gói @ant-design/nextjs-registry (AntdRegistry) được dùng trong Next.js App Router nhằm mục đích chính nào?
+A. Thu gom CSS-in-JS ở phía server để tránh FOUC khi tải trang
+B. Đăng ký bản quyền sử dụng Ant Design
+C. Tự động chuyển mọi component antd thành Server Component
+D. Thay thế ConfigProvider trong việc đổi màu chủ đạo
+ANSWER: A
+
+Cú pháp ConfigProvider nào đúng để đặt màu chủ đạo #6366F1 và bo góc 8px?
+A. theme={{ token: {{ colorPrimary: '#6366F1', borderRadius: 8 }} }}
+B. theme={{ colorPrimary: '#6366F1', radius: 8 }}
+C. theme={{ token: { colorPrimary: '#6366F1', borderRadius: 8 } }}
+D. token={{ primary: '#6366F1', borderRadius: '8' }}
+ANSWER: C
+
+Grid system của Ant Design chia một hàng (Row) thành bao nhiêu cột?
+A. 12 cột
+B. 24 cột
+C. 16 cột
+D. 10 cột
+ANSWER: B
+
+Muốn thẻ sự kiện chiếm cả hàng trên điện thoại nhưng hiển thị 4 thẻ một hàng trên màn hình lớn, cấu hình Col nào đúng?
+A. Col xs={6} lg={24}
+B. Col xs={12} lg={4}
+C. Col span={4}
+D. Col xs={24} lg={6}
+ANSWER: D
+
+AI sinh code Modal visible={isOpen} cho dự án dùng Ant Design v5. Bạn cần sửa thế nào?
+A. Đổi thành open={isOpen} vì visible là API cũ của v4
+B. Giữ nguyên vì v5 vẫn khuyến nghị visible
+C. Đổi thành show={isOpen}
+D. Xóa prop này vì Modal tự quản lý trạng thái mở
+ANSWER: A
+
+Trong Ant Design v5, component Tabs nên được khai báo các tab theo cách nào?
+A. Lồng nhiều Tabs.TabPane bên trong children
+B. Truyền mảng cấu hình qua prop items
+C. Dùng prop tabs nhận chuỗi phân cách bằng dấu phẩy
+D. Mỗi tab là một component Tab riêng đặt cạnh Tabs
+ANSWER: B
+
+Trang /admin/orders có cấu hình columns chứa hàm render và onFilter. Cách tổ chức file nào đúng trong App Router?
+A. Để page.tsx là Server Component và truyền columns có hàm xuống Table
+B. Thêm 'use server' vào đầu page.tsx
+C. Tách OrdersTable.tsx có 'use client' chứa columns, page.tsx vẫn là Server Component
+D. Đặt columns trong file JSON để Next.js tự đọc
+ANSWER: C
+
+Cách nào ghi đè style tiêu đề của riêng Modal đặt vé mà không ảnh hưởng các Modal khác?
+A. Sửa .ant-modal-title trong globals.scss
+B. Đổi colorPrimary trong ConfigProvider
+C. Thêm !important cho mọi thuộc tính trong globals.scss
+D. Gán className từ SCSS Module cho Modal và dùng :global(.ant-modal-title) bên trong class đó
+ANSWER: D
+
+Dự án Next.js 15 (React 19) dùng antd v5, gọi message.success() nhưng thông báo không hiện. Hướng xử lý phù hợp là gì?
+A. Cài và import @ant-design/v5-patch-for-react-19 ở phía client, hoặc dùng App.useApp()
+B. Hạ Next.js xuống phiên bản 12
+C. Thêm import 'antd/dist/antd.css' vào layout
+D. Chuyển toàn bộ ứng dụng sang Pages Router
+ANSWER: A
+
+So với Ant Design, đặc điểm nào đúng với Tailwind CSS?
+A. Cung cấp sẵn Table, DatePicker, Form hoàn chỉnh
+B. Bắt buộc dùng ConfigProvider để đổi màu
+C. Là thư viện utility-first, không có component dựng sẵn, phải tự dựng component
+D. Chỉ hoạt động với Pages Router
+ANSWER: C
+
+Prop nào của Table giúp bảng nhiều cột cuộn ngang bên trong khung thay vì làm cả trang tràn ngang trên điện thoại?
+A. pagination={{ pageSize: 5 }}
+B. size="small"
+C. bordered
+D. scroll={{ x: 800 }}
+ANSWER: D
+
+Component Ant Design nào phù hợp nhất để hiển thị trạng thái chờ tải dữ liệu theo đúng bố cục nội dung (placeholder)?
+A. Carousel
+B. Skeleton
+C. Rate
+D. Tag
+ANSWER: B
+

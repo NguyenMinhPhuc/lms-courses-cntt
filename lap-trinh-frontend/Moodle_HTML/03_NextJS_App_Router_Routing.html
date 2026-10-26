@@ -1,0 +1,474 @@
+<details open="" style="border: 1px solid #007bff; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #e7f1ff; color: #007bff; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>📘 1. Tổng quan bài học</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <p style="margin-top: 0;"><strong>BÀI 03 - Next.js App Router: cấu trúc thư mục, Index &amp; Nested Routing (5 tiết)</strong></p>
+        <p style="margin: 0 0 8px 0; color: #6c757d;">CHƯƠNG 2: NEXT.JS CORE – ROUTING &amp; KIẾN TRÚC COMPONENT</p>
+        <p><strong>Thời lượng:</strong> 5 tiết (225 phút) · <strong>Hình thức:</strong> Lớp học đảo ngược · <strong>Chuẩn đầu ra:</strong> PI 2.3 (CLO2)<br><strong>Dự án xuyên suốt:</strong> Smart Event Hub – Thiết lập kiến trúc thư mục App Router, Layout chung, Route Groups (auth), (admin) và trang 404.</p>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #f3f8ff; border: 1px solid #cfe2ff; border-radius: 8px;">
+            <p>🎯 <strong>MỤC TIÊU BÀI HỌC (Learning Objectives)</strong><br>Sau khi hoàn thành bài học này, người học có thể:</p>
+<ul>
+<li><strong>[Bloom 1/2 - Kiến thức]:</strong> Giải thích được vai trò các file đặc biệt <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">page.tsx</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">layout.tsx</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">loading.tsx</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">error.tsx</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">not-found.tsx</code>; phân biệt Server Component và Client Component, SSR và CSR.</li>
+<li><strong>[Bloom 3/4 - Kỹ năng]:</strong> Xây dựng Index Route, Nested Route, Route Groups và điều hướng bằng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">next/link</code> cho dự án Smart Event Hub.</li>
+<li><strong>[Bloom 5/6 - Năng lực]:</strong> Thiết kế và đánh giá cấu trúc thư mục App Router cho nhiều Layout (site chính, auth, admin), có xử lý Loading, Error, 404 và bảo vệ Private Routes.</li>
+</ul>
+        </div>
+        <p><strong>📝 Đặt vấn đề &amp; dẫn nhập</strong></p>
+        <p>Sau hai buổi, nhóm các bạn đã có bộ component và 5 trang dàn tĩnh trong <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/dev-preview</code>. Bây giờ khách hàng muốn trang Đăng nhập chỉ có logo và form ở giữa màn hình, không có menu; khu Quản trị phải có Sidebar riêng; còn người dùng gõ sai đường dẫn thì không được thấy trang trắng. Nếu mỗi trang tự import Header, Footer, Sidebar, các bạn sẽ phải sửa hàng chục file mỗi khi đổi menu.</p>
+<p>Vậy Next.js tổ chức thư mục thế nào để <strong>một thay đổi ở Layout áp dụng cho đúng nhóm trang</strong>, mà URL vẫn gọn gàng như <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/login</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/admin/dashboard</code>? Buổi học này giải quyết bài toán đó bằng App Router.</p>
+<blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #007bff; border-radius: 0 8px 8px 0; color: #212529;">
+<p>🧭 <strong>Trước giờ học (Flipped Classroom):</strong></p>
+<ul>
+<li>Xem video Next.js App Router architecture (<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">page.tsx</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">layout.tsx</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">loading.tsx</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">error.tsx</code>).</li>
+<li>Đọc Next.js Routing Docs và React Server Components Guide ở mục 5.</li>
+<li>Cài Node.js LTS, thử chạy <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">npx create-next-app@latest</code> tại nhà; làm Quiz nhanh 5–10 câu trên LMS.</li>
+</ul>
+</blockquote>
+    </div>
+</details>
+
+<details style="border: 1px solid #fd7e14; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #fff5eb; color: #fd7e14; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>📚 2. Học liệu chính</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.1. Kiến trúc App Router &amp; các file đặc biệt</h3>
+            <ul>
+<li><strong>Khái niệm:</strong> App Router dùng <strong>directory-based routing</strong>: mỗi thư mục trong <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">app/</code> là một đoạn URL (segment), và thư mục chỉ trở thành route truy cập được khi có file <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">page.tsx</code>.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">page.tsx</code>: giao diện duy nhất của một route. <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">app/page.tsx</code> là <strong>Index Route</strong> <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/</code>.</li>
+<li><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">layout.tsx</code>: giao diện bọc chung, <strong>không bị re-render</strong> khi chuyển giữa các trang con, giữ nguyên state (ví dụ ô tìm kiếm trên Header). <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">app/layout.tsx</code> (Root Layout) bắt buộc có thẻ <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&lt;html&gt;</code> và <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&lt;body&gt;</code>.</li>
+<li><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">loading.tsx</code>: UI chờ (Skeleton) hiển thị tức thì trong lúc trang đang tải, dựa trên React Suspense.</li>
+<li><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">error.tsx</code>: Error Boundary bắt lỗi runtime của route, <strong>bắt buộc là Client Component</strong>.</li>
+<li><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">not-found.tsx</code>: trang 404. <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">global-error.tsx</code>: bắt lỗi xảy ra ngay trong Root Layout.</li>
+</ul>
+</li>
+</ul>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// app/layout.tsx – Root Layout: chỉ chứa html/body và style toàn cục
+import type { Metadata } from &#39;next&#39;;
+import type { ReactNode } from &#39;react&#39;;
+import &#39;./globals.scss&#39;;
+
+export const metadata: Metadata = {
+  title: &#39;Smart Event Hub&#39;,
+  description: &#39;Hệ thống đặt vé &amp; quản lý sự kiện trực tuyến&#39;,
+};
+
+export default function RootLayout({ children }: { children: ReactNode }) {
+  return (
+    &lt;html lang=&quot;vi&quot;&gt;
+      &lt;body&gt;{children}&lt;/body&gt;
+    &lt;/html&gt;
+  );
+}
+</code></pre>
+<ul>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #fd7e14; border-radius: 0 8px 8px 0; color: #212529;">
+<p>Người dùng đang gõ từ khóa trong ô tìm kiếm trên Header rồi bấm sang trang Sự kiện. Vì Header nằm trong <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">layout.tsx</code>, nó không bị render lại, nên từ khóa vẫn còn nguyên; nếu Header đặt trong từng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">page.tsx</code>, ô tìm kiếm sẽ bị xóa trắng mỗi lần chuyển trang.</p>
+</blockquote>
+</li>
+</ul>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.2. Server Components (RSC) và Client Components</h3>
+            <ul>
+<li><strong>Khái niệm:</strong> Mặc định <strong>mọi component trong <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">app/</code> là Server Component</strong>: render hoàn toàn trên server, không gửi JavaScript của nó về trình duyệt. Client Component được đánh dấu bằng chỉ thị <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&#39;use client&#39;</code> ở dòng đầu file.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li>Server Component giảm kích thước bundle, gọi dữ liệu trực tiếp trên server (sẽ học ở Bài 08) và giữ bí mật API key.</li>
+<li><strong>Bắt buộc <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&#39;use client&#39;</code></strong> khi component cần: sự kiện người dùng (<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">onClick</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">onChange</code>), React Hooks (<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useState</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useEffect</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">usePathname</code>) hoặc Browser APIs (<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">window</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">localStorage</code>).</li>
+<li>Chiến lược tốt: giữ trang là Server Component, chỉ tách <strong>phần nhỏ cần tương tác</strong> thành Client Component.</li>
+<li>Liên hệ cơ chế render: Server Component tương ứng tư duy <strong>SSR</strong> (HTML tạo sẵn trên server), còn phần tương tác chạy theo <strong>CSR</strong> (JavaScript thực thi trên trình duyệt).</li>
+</ul>
+</li>
+</ul>
+<table style="width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 14px;">
+<thead>
+<tr>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Tiêu chí</th>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Server Component</th>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Client Component (<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&#39;use client&#39;</code>)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Nơi render</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Server</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Server (HTML ban đầu) + trình duyệt (hydrate)</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Dùng Hooks, onClick</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Không</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Có</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Gọi dữ liệu trực tiếp, dùng secret</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Có</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Không nên</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">JavaScript gửi về client</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Không</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Có</td>
+</tr>
+</tbody></table>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// app/(main)/events/page.tsx – Server Component
+import ClientFilter from &#39;./ClientFilter&#39;;
+
+export default async function EventsPage() {
+  // Có thể fetch dữ liệu trực tiếp trên server tại đây (Bài 08)
+  return (
+    &lt;section&gt;
+      &lt;h1&gt;Tất cả sự kiện&lt;/h1&gt;
+      &lt;ClientFilter /&gt;
+    &lt;/section&gt;
+  );
+}
+</code></pre>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// app/(main)/events/ClientFilter.tsx – Client Component
+&#39;use client&#39;;
+
+import { useState } from &#39;react&#39;;
+
+const CATEGORIES = [&#39;Tất cả&#39;, &#39;Âm nhạc&#39;, &#39;Công nghệ&#39;, &#39;Workshop&#39;] as const;
+type Category = (typeof CATEGORIES)[number];
+
+export default function ClientFilter() {
+  const [active, setActive] = useState&lt;Category&gt;(&#39;Tất cả&#39;);
+
+  return (
+    &lt;div role=&quot;group&quot; aria-label=&quot;Lọc theo thể loại&quot;&gt;
+      {CATEGORIES.map((category) =&gt; (
+        &lt;button key={category} type=&quot;button&quot; aria-pressed={active === category} onClick={() =&gt; setActive(category)}&gt;
+          {category}
+        &lt;/button&gt;
+      ))}
+    &lt;/div&gt;
+  );
+}
+</code></pre>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.3. Routing System: Index, Nested, Route Groups &amp; Private Routes</h3>
+            <ul>
+<li><strong>Khái niệm:</strong> Hệ thống route được suy ra từ cây thư mục. Thư mục lồng nhau tạo <strong>Nested Route</strong> (<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/events/categories</code>); thư mục có ngoặc tròn <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">(group)</code> tạo <strong>Route Group</strong>, gom trang dùng chung Layout mà <strong>không xuất hiện trên URL</strong>.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li><strong>Index Route:</strong> <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">app/(main)/page.tsx</code> → <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/</code>; <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">app/(main)/events/page.tsx</code> → <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/events</code>.</li>
+<li><strong>Nested Route &amp; Nested Layout:</strong> <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">events/categories/page.tsx</code> → <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/events/categories</code>; nếu có <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">events/layout.tsx</code>, nó bọc mọi trang con của <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/events</code>.</li>
+<li><strong>Route Groups:</strong> <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">(auth)/login/page.tsx</code> vẫn là <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/login</code>. Mỗi group có <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">layout.tsx</code> riêng; file phải tên là <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">layout.tsx</code>, còn tên hàm có thể là <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">AuthLayout</code>.</li>
+<li><strong>Lưu ý quan trọng:</strong> Layout lồng nhau <strong>cộng dồn</strong> chứ không thay thế. Nếu đặt Header/Footer trong Root Layout, trang <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">(auth)</code> vẫn hiện Header. Vì vậy, Header/Footer được đặt trong group <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">(main)</code>, còn Root Layout chỉ chứa <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">html</code>/<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">body</code>.</li>
+</ul>
+</li>
+</ul>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">app/
+├── layout.tsx                  Root Layout (html, body) – không Header/Footer
+├── not-found.tsx               404 tùy chỉnh
+├── global-error.tsx            Bắt lỗi ở mức Root Layout
+├── (main)/
+│   ├── layout.tsx              Header + Footer chung
+│   ├── page.tsx                /
+│   ├── error.tsx               Error Boundary cho site chính
+│   └── events/
+│       ├── page.tsx            /events
+│       ├── categories/page.tsx /events/categories
+│       └── search/page.tsx     /events/search
+├── (auth)/
+│   ├── layout.tsx              AuthLayout: Logo + Form giữa màn hình
+│   ├── login/page.tsx          /login
+│   └── register/page.tsx       /register
+└── (admin)/
+    ├── layout.tsx              AdminLayout: Sidebar trái + Header Admin
+    └── admin/
+        ├── loading.tsx         Skeleton khi chuyển trang Admin
+        ├── dashboard/page.tsx          /admin/dashboard
+        ├── events-management/page.tsx  /admin/events-management
+        └── users/page.tsx              /admin/users
+</code></pre>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// app/(auth)/layout.tsx
+import type { ReactNode } from &#39;react&#39;;
+import Link from &#39;next/link&#39;;
+import styles from &#39;./auth.module.scss&#39;;
+
+export default function AuthLayout({ children }: { children: ReactNode }) {
+  return (
+    &lt;main className={styles.authWrapper}&gt;
+      &lt;Link href=&quot;/&quot; className={styles.logo}&gt;Smart Event Hub&lt;/Link&gt;
+      &lt;div className={styles.formCard}&gt;{children}&lt;/div&gt;
+    &lt;/main&gt;
+  );
+}
+</code></pre>
+<ul>
+<li><strong>Private Routes:</strong> các trang <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/admin/*</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/user/*</code> chỉ dành cho người đã đăng nhập. Trong Next.js 15, cách gọn nhất là dùng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">middleware.ts</code> ở thư mục gốc để chuyển hướng trước khi trang được render:</li>
+</ul>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// middleware.ts
+import { NextResponse, type NextRequest } from &#39;next/server&#39;;
+
+export function middleware(request: NextRequest) {
+  const token = request.cookies.get(&#39;access_token&#39;)?.value;
+  if (!token) {
+    const loginUrl = new URL(&#39;/login&#39;, request.url);
+    loginUrl.searchParams.set(&#39;redirect&#39;, request.nextUrl.pathname);
+    return NextResponse.redirect(loginUrl);
+  }
+  return NextResponse.next();
+}
+
+export const config = { matcher: [&#39;/admin/:path*&#39;, &#39;/user/:path*&#39;] };
+</code></pre>
+<blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #fd7e14; border-radius: 0 8px 8px 0; color: #212529;">
+<p>Ở buổi này <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">access_token</code> chỉ là cookie giả lập để thử luồng chuyển hướng. Việc lưu token thật sau khi gọi API Login sẽ được làm ở Bài 09.</p>
+</blockquote>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.4. Điều hướng, Loading, Error &amp; 404</h3>
+            <ul>
+<li><strong>Khái niệm:</strong> <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Link</code> từ <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">next/link</code> chuyển trang phía client, <strong>không reload toàn trang</strong> và tự prefetch route khi link xuất hiện trong khung nhìn. Thẻ <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&lt;a href&gt;</code> thường sẽ tải lại toàn bộ ứng dụng.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li>Đánh dấu menu đang active cần <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">usePathname()</code>, nên Sidebar Admin hoặc NavLink phải là Client Component.</li>
+<li><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">loading.tsx</code> đặt cùng cấp với <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">page.tsx</code> sẽ bọc trang đó và các trang con.</li>
+<li><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">error.tsx</code> nhận <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">error</code> và hàm <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">reset()</code> để thử render lại; <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">global-error.tsx</code> phải tự khai báo <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&lt;html&gt;</code> và <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&lt;body&gt;</code> vì nó thay thế cả Root Layout.</li>
+</ul>
+</li>
+</ul>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// app/(admin)/admin/loading.tsx – Skeleton đơn giản
+import styles from &#39;./admin.module.scss&#39;;
+
+export default function AdminLoading() {
+  return (
+    &lt;div className={styles.skeletonList} aria-busy=&quot;true&quot; aria-label=&quot;Đang tải&quot;&gt;
+      {Array.from({ length: 4 }, (_, i) =&gt; (
+        &lt;div key={i} className={styles.skeletonRow} /&gt;
+      ))}
+    &lt;/div&gt;
+  );
+}
+</code></pre>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// app/not-found.tsx
+import Link from &#39;next/link&#39;;
+
+export default function NotFound() {
+  return (
+    &lt;main style={{ textAlign: &#39;center&#39;, padding: &#39;80px 16px&#39; }}&gt;
+      &lt;h1&gt;404 – Không tìm thấy trang&lt;/h1&gt;
+      &lt;p&gt;Sự kiện bạn tìm có thể đã kết thúc hoặc đường dẫn không đúng.&lt;/p&gt;
+      &lt;Link href=&quot;/&quot;&gt;Quay lại trang chủ&lt;/Link&gt;
+    &lt;/main&gt;
+  );
+}
+</code></pre>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// app/(main)/error.tsx – bắt buộc là Client Component
+&#39;use client&#39;;
+
+import { useEffect } from &#39;react&#39;;
+
+export default function ErrorBoundary({ error, reset }: { error: Error &amp; { digest?: string }; reset: () =&gt; void }) {
+  useEffect(() =&gt; {
+    console.error(error); // thay bằng dịch vụ ghi log khi triển khai thật
+  }, [error]);
+
+  return (
+    &lt;section role=&quot;alert&quot;&gt;
+      &lt;h2&gt;Đã có lỗi xảy ra&lt;/h2&gt;
+      &lt;p&gt;Xin lỗi vì sự bất tiện. Vui lòng thử lại.&lt;/p&gt;
+      &lt;button type=&quot;button&quot; onClick={() =&gt; reset()}&gt;Thử lại (Try Again)&lt;/button&gt;
+    &lt;/section&gt;
+  );
+}
+</code></pre>
+<blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #fd7e14; border-radius: 0 8px 8px 0; color: #212529;">
+<p>Ví dụ <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">not-found.tsx</code> dùng inline style cho ngắn gọn; trong dự án, hãy chuyển sang SCSS Module như đã thống nhất ở Bài 02.</p>
+</blockquote>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.5. Vibe Coding – Prompt mẫu &amp; cách kiểm duyệt code AI</h3>
+            <p>AI rất nhanh trong việc sinh cây thư mục theo Clean Architecture, nhưng hay mắc lỗi với các phiên bản Next.js cũ (thư mục <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">pages/</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">getServerSideProps</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">next/router</code>). Prompt Guided:</p>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">Hãy hướng dẫn tạo cấu trúc thư mục Next.js App Router cho dự án &quot;Smart Event Hub&quot; với các yêu cầu:
+1. Root Layout chứa Header và Footer chung.
+2. Route Group (auth) có AuthLayout riêng (chỉ chứa Logo và Form ở trung tâm màn hình) cho các trang /login và /register.
+3. Nested Route /events và /events/categories.
+Hãy cho tôi sơ đồ cây thư mục chi tiết và nội dung mã nguồn của các file layout.tsx tương ứng.
+Ràng buộc: Next.js 15 App Router, TypeScript strict, không dùng thư mục pages/.
+</code></pre>
+<blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #fd7e14; border-radius: 0 8px 8px 0; color: #212529;">
+<p><strong>Bài tập phản biện:</strong> yêu cầu số 1 trong prompt trên sẽ khiến trang <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/login</code> vẫn hiện Header. Hãy xem AI có phát hiện ra không; nếu không, sửa lại theo cấu trúc group <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">(main)</code> ở mục 2.3.</p>
+</blockquote>
+<ul>
+<li><strong>Checklist kiểm duyệt code AI:</strong><ul>
+<li>Có dùng nhầm API cũ: <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">pages/</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">next/router</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">getServerSideProps</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">next/head</code>?</li>
+<li>Tên file đặc biệt đúng chưa (<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">layout.tsx</code>, không phải <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">AuthLayout.tsx</code>)? Root Layout có <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&lt;html&gt;</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&lt;body&gt;</code>?</li>
+<li><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&#39;use client&#39;</code> chỉ đặt ở file thật sự cần hook/sự kiện, không gắn bừa lên mọi trang?</li>
+<li><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">error.tsx</code> có <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&#39;use client&#39;</code>; <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">global-error.tsx</code> có <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&lt;html&gt;</code>/<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&lt;body&gt;</code>?</li>
+<li>Menu dùng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Link</code> từ <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">next/link</code> thay vì <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&lt;a href&gt;</code>; gõ thử <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/abc-xyz</code> ra đúng trang 404?</li>
+</ul>
+</li>
+</ul>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">📌 Tóm tắt &amp; điểm cần nhớ</h3>
+            <ul>
+<li>🔹 <strong>Thư mục = URL, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">page.tsx</code> = route:</strong> thư mục không có <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">page.tsx</code> không truy cập được.</li>
+<li>🔹 <strong>Layout cộng dồn và không re-render:</strong> Root Layout chỉ giữ <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">html</code>/<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">body</code>; Header/Footer đặt trong group <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">(main)</code>.</li>
+<li>🔹 <strong>Route Groups <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">(name)</code>:</strong> tách Layout cho site chính, auth, admin mà không đổi URL.</li>
+<li>🔹 <strong>Server Component mặc định:</strong> chỉ thêm <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&#39;use client&#39;</code> khi cần hooks, sự kiện hoặc Browser API.</li>
+<li>🔹 <strong>Đủ trạng thái giao diện:</strong> <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">loading.tsx</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">error.tsx</code> (Client), <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">not-found.tsx</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">global-error.tsx</code>; Private Routes chặn bằng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">middleware.ts</code>.</li>
+</ul>
+        </div>
+    </div>
+</details>
+
+<details style="border: 1px solid #28a745; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #eafaf1; color: #28a745; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>💡 3. Hoạt động &amp; Thực hành trên lớp</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <p style="margin-top: 0;">Thực hiện các hoạt động sau để vận dụng kiến thức của buổi học:</p>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #28a745;">🧑‍💻 Thực hành trên lớp</h3>
+            <table style="width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 14px;">
+<thead>
+<tr>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Phần</th>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Thời lượng</th>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Nhiệm vụ</th>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Output mong muốn</th>
+</tr>
+</thead>
+<tbody><tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Guided Practice</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">45 phút</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Khởi tạo dự án Next.js, Layout chung có Header/Footer, Route Group (auth) và Nested Route /events</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Chuyển route trơn tru; trang (auth) dùng AuthLayout riêng</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Unguided Practice</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">45 phút</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Xây khu Quản trị với Route Group (admin), AdminLayout có Sidebar, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">loading.tsx</code> Skeleton</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">/admin/dashboard có layout riêng, Skeleton khi chuyển trang</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Team Challenge</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">60 phút</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Tích hợp route của cả nhóm vào <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">main</code>, Navigation dùng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">next/link</code>, trang 404 tùy chỉnh</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Sơ đồ Routing hoàn chỉnh; /abc-xyz hiện đúng 404</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Tổng kết</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">15 phút</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Rà lỗi cấu trúc thư mục phổ biến, giao BTVN</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Mỗi nhóm có danh sách route đã chốt</td>
+</tr>
+</tbody></table>
+<p><strong>Guided (45&#39;):</strong> chạy lệnh khởi tạo, chọn TypeScript, ESLint, App Router, thư mục <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">src/</code> tùy nhóm, alias <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">@/*</code>. Tạo group <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">(main)</code> chứa Header/Footer, group <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">(auth)</code> với <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/login</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/register</code>, và Nested Route <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/events/categories</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/events/search</code>.</p>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">npx create-next-app@latest smart-event-hub --typescript --eslint --app
+cd smart-event-hub &amp;&amp; npm install -D sass &amp;&amp; npm run dev
+</code></pre>
+<blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #28a745; border-radius: 0 8px 8px 0; color: #212529;">
+<p><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">create-next-app</code> sinh sẵn <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">app/page.tsx</code>. Hãy chuyển file này vào <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">app/(main)/page.tsx</code>; nếu để cả hai, Next.js báo lỗi vì hai trang cùng trỏ tới <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/</code>.</p>
+</blockquote>
+<p><strong>Unguided (45&#39;):</strong> xây khu Quản trị với Route Group <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">(admin)</code> tại <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/admin/dashboard</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/admin/events-management</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/admin/users</code>. <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">AdminLayout</code> có Sidebar trái để chuyển trang, thêm <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">loading.tsx</code> hiển thị Skeleton. Nhóm nào xong sớm bổ sung <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/checkout</code> và <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/user/profile</code>. Prompt gợi ý:</p>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">Tạo giúp tôi cấu trúc Route Group (admin) trong Next.js App Router.
+- AdminLayout: Gồm Sidebar bên trái (Dashboard, Quản lý sự kiện, Quản lý người dùng) và Header Admin ở trên.
+- Tạo file loading.tsx sử dụng hiệu ứng Skeleton UI đơn giản bằng SCSS/Tailwind.
+- Viết bằng TypeScript.
+</code></pre>
+<p><strong>Team Challenge (60&#39;):</strong> tích hợp toàn bộ route của từng cá nhân vào nhánh <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">main</code> qua Pull Request. Đảm bảo <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">HeaderNavigationBar</code> (Bài 01) dùng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Link</code> của <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">next/link</code> để điều hướng tới mọi route mà không reload trang. Xây <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">not-found.tsx</code> thân thiện có nút &quot;Quay lại trang chủ&quot;; kiểm tra bằng cách gõ <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/abc-xyz</code>.</p>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #28a745;">❓ Kiểm tra nhanh (Self-Assessment)</h3>
+            <p><strong>Câu 1:</strong> File <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">app/(auth)/login/page.tsx</code> tương ứng với URL nào?</p>
+<ul>
+<li>A. <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/auth/login</code></li>
+<li>B. <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/(auth)/login</code></li>
+<li>C. <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/login</code></li>
+<li>D. <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/auth</code></li>
+</ul>
+<details style="margin: 6px 0 14px 0; padding: 8px 12px; background-color: #ffffff; border: 1px dashed #adb5bd; border-radius: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #495057;">👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> C<br>
+<b>Giải thích:</b> Thư mục trong ngoặc tròn là Route Group, chỉ dùng để tổ chức và gán Layout, không xuất hiện trên URL.
+</details>
+
+<p><strong>Câu 2:</strong> Component nào sau đây <strong>bắt buộc</strong> có <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&#39;use client&#39;</code>?</p>
+<ul>
+<li>A. Trang hiển thị danh sách sự kiện tĩnh</li>
+<li>B. Nút &quot;Yêu thích&quot; dùng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useState</code> và <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">onClick</code></li>
+<li>C. Root Layout chứa thẻ <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&lt;html&gt;</code></li>
+<li>D. Trang <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">not-found.tsx</code> chỉ có chữ và <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Link</code></li>
+</ul>
+<details style="margin: 6px 0 14px 0; padding: 8px 12px; background-color: #ffffff; border: 1px dashed #adb5bd; border-radius: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #495057;">👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> B<br>
+<b>Giải thích:</b> Hooks và sự kiện người dùng chỉ chạy trong Client Component. Các trường hợp còn lại giữ là Server Component để giảm JavaScript gửi về trình duyệt.
+</details>
+
+<p><strong>Câu 3:</strong> Nhóm đặt Header/Footer trong <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">app/layout.tsx</code> rồi tạo <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">app/(auth)/layout.tsx</code>. Kết quả khi mở <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/login</code> là gì?</p>
+<ul>
+<li>A. Trang <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/login</code> vẫn hiện Header/Footer vì Layout lồng nhau cộng dồn</li>
+<li>B. AuthLayout thay thế hoàn toàn Root Layout</li>
+<li>C. Next.js báo lỗi vì có hai file <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">layout.tsx</code></li>
+<li>D. Trang <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/login</code> trả về 404</li>
+</ul>
+<details style="margin: 6px 0 14px 0; padding: 8px 12px; background-color: #ffffff; border: 1px dashed #adb5bd; border-radius: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #495057;">👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> A<br>
+<b>Giải thích:</b> Layout con được render bên trong Layout cha. Muốn trang auth không có Header, hãy chuyển Header/Footer vào một group riêng như <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">(main)</code>.
+</details>
+
+<p><strong>Câu 4:</strong> Điều nào đúng về file <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">error.tsx</code> trong App Router?</p>
+<ul>
+<li>A. Là Server Component và chỉ bắt lỗi 404</li>
+<li>B. Phải khai báo <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&lt;html&gt;</code> và <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&lt;body&gt;</code></li>
+<li>C. Chỉ hoạt động khi đặt trong thư mục <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">pages/</code></li>
+<li>D. Phải là Client Component, nhận <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">error</code> và hàm <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">reset()</code></li>
+</ul>
+<details style="margin: 6px 0 14px 0; padding: 8px 12px; background-color: #ffffff; border: 1px dashed #adb5bd; border-radius: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #495057;">👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> D<br>
+<b>Giải thích:</b> <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">error.tsx</code> là Error Boundary nên cần <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">'use client'</code>. Thẻ <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&lt;html&gt;</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&lt;body&gt;</code> chỉ bắt buộc ở <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">global-error.tsx</code>.
+</details>
+
+<blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #28a745; border-radius: 0 8px 8px 0; color: #212529;">
+<p>Bộ 10+ câu đầy đủ: Quiz Bài 03 trên LMS</p>
+</blockquote>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #28a745;">💬 Thảo luận &amp; 📤 Nộp bài</h3>
+            <ul>
+<li><strong>Chủ đề thảo luận Diễn đàn (Forum Discussion):</strong> Hãy chia sẻ cây thư mục <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">app/</code> của nhóm bạn. Nhóm đã dùng những Route Group nào, vì sao? Có trang nào các bạn phân vân giữa Server Component và Client Component không? Đề xuất cách tách phần tương tác ra khỏi trang để giữ phần còn lại là Server Component.</li>
+<li><strong>Yêu cầu nộp bài (Bài tập về nhà):</strong><ul>
+<li>Tạo <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">error.tsx</code> (Client Component) xử lý lỗi ngoại lệ cho các nhóm route và <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">global-error.tsx</code> bắt lỗi ở mức Root Layout.</li>
+<li>Bổ sung <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">loading.tsx</code> dạng Skeleton UI cho từng nhóm route đã tạo (<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">(main)</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">(auth)</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">(admin)</code>), hoàn thiện trang 404.</li>
+<li><strong>Output:</strong> khi ứng dụng gặp sự cố runtime (thử <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">throw new Error(&#39;test&#39;)</code> trong một trang), màn hình hiển thị thông báo lỗi văn minh kèm nút &quot;Thử lại (Try Again)&quot;.</li>
+<li><strong>Hạn nộp:</strong> trước buổi học tiếp theo; Pull Request cá nhân vào nhánh <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">dev</code>, kèm ảnh chụp màn hình trang lỗi và trang 404; nộp link PR lên LMS.</li>
+<li><strong>Quy tắc đặt tên:</strong> nhánh <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">feature/&lt;ho-ten-khong-dau&gt;-error-handling</code>, commit theo dạng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">feat(routing): add error and loading boundaries</code>.</li>
+</ul>
+</li>
+</ul>
+        </div>
+    </div>
+</details>
+
+<details style="border: 1px solid #6f42c1; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #f3e5f5; color: #6f42c1; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>🆘 4. Góc trợ giúp và mở rộng</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <ul>
+<li><strong>📚 Tài liệu đọc &amp; tham khảo:</strong><ul>
+<li>Next.js App Router Routing Docs: <a href="https://nextjs.org/docs/app/building-your-application/routing" target="_blank" rel="noopener noreferrer" style="color: #6f42c1;">https://nextjs.org/docs/app/building-your-application/routing</a></li>
+<li>React Server Components Conceptual Guide: <a href="https://react.dev/reference/rsc/server-components" target="_blank" rel="noopener noreferrer" style="color: #6f42c1;">https://react.dev/reference/rsc/server-components</a></li>
+<li>React – <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&#39;use client&#39;</code> directive: <a href="https://react.dev/reference/rsc/use-client" target="_blank" rel="noopener noreferrer" style="color: #6f42c1;">https://react.dev/reference/rsc/use-client</a></li>
+<li>Next.js File Conventions: <a href="https://nextjs.org/docs/app/api-reference/file-conventions" target="_blank" rel="noopener noreferrer" style="color: #6f42c1;">https://nextjs.org/docs/app/api-reference/file-conventions</a></li>
+<li><strong>Câu hỏi tự kiểm tra khi đọc:</strong> Khi nào bắt buộc phải thêm <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&#39;use client&#39;</code> vào đầu tệp component? Lợi ích của Route Groups <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">(group_name)</code> trong việc tổ chức Layout dự án là gì?</li>
+</ul>
+</li>
+</ul>
+        <p><strong>Hỗ trợ kỹ thuật:</strong> Gặp lỗi cài đặt (Node.js, Git, Next.js) hoặc lỗi build, hãy đăng câu hỏi lên diễn đàn môn học kèm ảnh chụp lỗi, lệnh đã chạy và link repository. Giảng viên và bạn học sẽ phản hồi trước buổi học tiếp theo.</p>
+        <p><strong>Nguyên tắc Vibe Coding:</strong> AI sinh khung code, các bạn chịu trách nhiệm đọc hiểu, kiểm tra kiểu dữ liệu và sửa lỗi. Mọi đoạn code nộp lên đều có thể được hỏi phản biện.</p>
+    </div>
+</details>

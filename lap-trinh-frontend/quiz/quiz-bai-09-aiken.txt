@@ -1,0 +1,84 @@
+React Hook Form giúp giảm số lần re-render khi gõ phím nhờ cơ chế nào?
+A. Lưu mọi giá trị input trong Redux store
+B. Quản lý form theo kiểu Uncontrolled Component, giá trị nằm trong ref
+C. Gửi dữ liệu lên server sau mỗi ký tự
+D. Render form hoàn toàn trên server
+ANSWER: B
+
+Kiểu z.infer<typeof loginSchema> trong Zod dùng để làm gì?
+A. Chạy validation và trả về danh sách lỗi
+B. Chuyển schema thành JSON để gửi lên Backend
+C. Tự động sinh TypeScript type từ schema
+D. Tạo giá trị mặc định cho form
+ANSWER: C
+
+Thư viện và hàm nào kết nối Zod Schema với useForm của React Hook Form?
+A. Hàm zodResolver từ @hookform/resolvers/zod
+B. Hàm useZodForm từ zod/react
+C. Hàm connectZod từ react-hook-form/zod
+D. Hàm zodRules từ antd/form
+ANSWER: A
+
+Để lỗi "Mật khẩu nhập lại không khớp" hiển thị dưới ô confirmPassword, cần khai báo gì khi dùng .refine() trên object schema?
+A. mode: 'onBlur' trong useForm
+B. message bên trong z.string()
+C. Gọi .refine() hai lần liên tiếp
+D. path: ['confirmPassword'] trong tham số thứ hai
+ANSWER: D
+
+Trong createEventSchema, ràng buộc "Ngày kết thúc phải sau Ngày bắt đầu" nên viết bằng cách nào?
+A. Dùng .min() trên trường endDate
+B. Dùng .refine() trên cả object, so sánh endDate với startDate
+C. Dùng .email() trên trường startDate
+D. Kiểm tra bằng pseudo-class CSS :invalid
+ANSWER: B
+
+Tùy chọn mode nào của useForm kiểm tra lỗi ngay khi người dùng đang gõ?
+A. 'onSubmit'
+B. 'onBlur'
+C. 'onChange'
+D. 'onReset'
+ANSWER: C
+
+Vì sao cần dùng Controller khi kết hợp React Hook Form với Input, DatePicker, InputNumber của Ant Design?
+A. Vì đây là component có API value/onChange riêng, Controller nối chúng vào form state của RHF
+B. Vì Ant Design không hỗ trợ TypeScript
+C. Vì Controller tự động gọi API khi submit
+D. Vì Controller thay thế cho Zod Schema
+ANSWER: A
+
+Đoạn useState(JSON.parse(localStorage.getItem('wishlist') ?? '[]')) trong Client Component Next.js gây ra vấn đề gì?
+A. Không có vấn đề vì file đã có 'use client'
+B. localStorage bị xóa sau mỗi lần render
+C. Chỉ làm trang chậm hơn một chút
+D. Lỗi localStorage is not defined khi prerender trên server hoặc Hydration Mismatch
+ANSWER: D
+
+Trong hook useLocalStorage an toàn, vì sao cần cờ isHydrated trước khi ghi dữ liệu vào localStorage?
+A. Để tránh ghi đè giá trị mặc định lên dữ liệu thật trước khi kịp đọc từ storage
+B. Để localStorage lưu được nhiều hơn 5MB
+C. Để dữ liệu tự gửi kèm mọi request
+D. Để hook chạy được trong Server Component
+ANSWER: A
+
+Loại dữ liệu nào phù hợp nhất để lưu trong localStorage?
+A. Mật khẩu người dùng dạng văn bản thô
+B. Danh sách ID sự kiện yêu thích (Wishlist)
+C. Số thẻ ngân hàng của khách hàng
+D. Khóa bí mật API của server
+ANSWER: B
+
+Thả tim ở EventCard nhưng bộ đếm Wishlist trên Header không đổi vì mỗi component tự gọi useLocalStorage riêng. Giải pháp phù hợp là gì?
+A. Gọi window.location.reload() sau mỗi lần thả tim
+B. Chuyển Wishlist sang sessionStorage
+C. Nâng state lên một Context Provider dùng chung và đọc qua hook useWishlist()
+D. Lưu Wishlist trong biến toàn cục window.wishlist
+ANSWER: C
+
+Trong Next.js 15, cách đọc cookie accessToken trong Server Component nào là đúng?
+A. const token = localStorage.getItem('accessToken');
+B. const token = document.cookie;
+C. const token = cookies().accessToken; với cookies() đồng bộ
+D. const token = (await cookies()).get('accessToken')?.value;
+ANSWER: D
+

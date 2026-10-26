@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 03 - Next.js App Router: cấu trúc thư mục, Index &amp; Nested Routing | Lập trình Front-End - Khoa CNTT - Đại học Lạc Hồng</title>
+  <meta name="description" content="Bài 03 - Next.js App Router: cấu trúc thư mục, Index &amp; Nested Routing - Lập trình Front-End (Next.js, TypeScript &amp; Vibe Coding). Thời lượng: 5 tiết (225 phút) · Hình thức: Lớp học đảo ngược · Chuẩn đầu ra: PI 2.3 (CLO2)Dự án xuyên suốt: Smart Event Hub – Thiết lập kiến trúc thư mục App Router, Layou">
+
+  <!-- Tailwind CSS CDN (kèm plugin typography cho nội dung Markdown) -->
+  <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6.4.0 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Highlight.js 11.9.0 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            asu: { maroon: '#8C1D40', gold: '#FFC627', dark: '#5C142B', light: '#FAEDF0' },
+            lhu: { blue: '#013D88', sky: '#007BFF', dark: '#01295C', light: '#EEF5FC' },
+            fe: { indigo: '#6366F1', dark: '#312E81', light: '#EEF2FF' }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .lesson h2, .lesson h3, .lesson h4 { scroll-margin-top: 90px; }
+    .lesson h3 { padding-bottom: .4rem; border-bottom: 2px solid #EEF2FF; }
+    .lesson blockquote { border-left: 4px solid #6366F1; background: #F5F7FF; border-radius: 0 12px 12px 0; padding: .6rem 1rem; font-style: normal; color: #1e293b; }
+    .lesson blockquote p:first-of-type::before, .lesson blockquote p:last-of-type::after { content: none; }
+    .lesson pre { border-radius: 12px; padding: 0; background: #0d1117; }
+    .lesson pre code.hljs { border-radius: 12px; padding: 1rem 1.1rem; font-size: 13px; line-height: 1.6; }
+    .lesson :not(pre) > code { background: #EEF2FF; color: #3730A3; padding: .1rem .35rem; border-radius: 6px; font-weight: 500; }
+    .lesson :not(pre) > code::before, .lesson :not(pre) > code::after { content: none; }
+    .lesson table { display: block; overflow-x: auto; font-size: 14px; }
+    .lesson thead th { background: #F1F5F9; }
+    .lesson th, .lesson td { border: 1px solid #E2E8F0; padding: .5rem .7rem !important; vertical-align: top; }
+    .lesson details { border: 1px solid #C7D2FE; border-radius: 10px; padding: .6rem .9rem; margin: .5rem 0 1.2rem; background: #FAFAFF; }
+    .lesson details summary { cursor: pointer; font-weight: 600; color: #4338CA; }
+    .lesson details[open] summary { margin-bottom: .4rem; }
+    .lesson hr { border-color: #E2E8F0; margin: 2rem 0; }
+    @media print {
+      header, footer, .no-print { display: none !important; }
+      details { break-inside: avoid; margin-bottom: 20px; }
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans antialiased selection:bg-asu-gold selection:text-slate-900 min-h-screen flex flex-col">
+
+  <!-- TOP BAR -->
+  <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800 no-print">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+      <div class="flex items-center gap-2">
+        <span class="text-asu-gold font-semibold"><i class="fa-solid fa-certificate mr-1"></i> CHUẨN KIỂM ĐỊNH ABET (USA)</span>
+        <span class="text-slate-600 hidden sm:inline">•</span>
+        <span class="hidden sm:inline">Lớp học đảo ngược • Vibe Coding</span>
+      </div>
+      <div class="flex items-center gap-4 text-xs font-mono">
+        <span>Thời lượng: <strong class="text-white">60 tiết (12 buổi)</strong></span>
+        <span>LT/TH: <strong class="text-asu-gold">30% / 70%</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="sticky top-0 z-40 bg-white shadow-sm border-b border-slate-200 no-print">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2.5 text-slate-800 hover:text-lhu-blue transition-colors">
+        <img src="LHU_ASU_VI_Small_Ngang.png" alt="Logo LHU" class="h-8 w-auto">
+        <div class="border-l border-slate-300 pl-2.5">
+          <div class="text-[11px] font-bold text-slate-500 uppercase">Khoa CNTT - LHU</div>
+          <div class="text-xs font-extrabold text-lhu-blue">LẬP TRÌNH FRONT-END</div>
+        </div>
+      </a>
+      <div class="flex items-center gap-3 text-xs">
+        <a href="index.html" class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-arrow-left"></i>
+          <span class="hidden sm:inline">Về Landing Page</span>
+        </a>
+        <button onclick="window.print()" class="hidden sm:flex px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-all items-center gap-1.5" title="In hoặc lưu file PDF">
+          <i class="fa-solid fa-print"></i>
+          <span>In / PDF</span>
+        </button>
+        <a href="https://learn.lhu.edu.vn" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-lhu-blue hover:bg-lhu-dark text-white font-bold rounded-xl shadow transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-graduation-cap text-asu-gold"></i>
+          <span>Vào lớp LMS</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="flex-grow max-w-5xl w-full mx-auto px-4 sm:px-6 py-8">
+
+    <!-- Title Card -->
+    <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 mb-8">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-5">
+        <div>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-fe-light text-fe-dark font-bold text-xs uppercase tracking-wider mb-2">
+            <i class="fa-solid fa-code"></i> CHƯƠNG 2: NEXT.JS CORE – ROUTING &amp; KIẾN TRÚC COMPONENT
+          </span>
+          <h1 class="text-2xl sm:text-3xl font-black text-slate-900 leading-tight">
+            Bài 03 - Next.js App Router: cấu trúc thư mục, Index &amp; Nested Routing
+          </h1>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1 font-mono">
+            Học phần: Lập trình Front-End (Next.js, TypeScript & Vibe Coding) • Khoa CNTT - Đại học Lạc Hồng
+          </p>
+        </div>
+        <div class="flex-shrink-0 flex sm:flex-col items-center sm:items-end justify-between gap-1 text-xs">
+          <span class="px-3 py-1.5 bg-emerald-50 text-emerald-700 font-bold rounded-lg border border-emerald-200">
+            <i class="fa-solid fa-check-circle mr-1"></i> Lưu hành nội bộ 2026
+          </span>
+          <span class="text-slate-400 text-[11px]">Định dạng LMS Lecture</span>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between pt-4 text-xs no-print">
+        <span class="text-slate-500">
+          <i class="fa-solid fa-circle-info text-blue-500 mr-1"></i>
+          Bấm vào các khối thu gọn để xem đáp án hoặc chi tiết.
+        </span>
+        <div class="flex items-center gap-2">
+          <button onclick="toggleAllDetails(true)" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg transition-colors">Mở tất cả</button>
+          <button onclick="toggleAllDetails(false)" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg transition-colors">Thu gọn</button>
+        </div>
+      </div>
+      <nav class="mt-5 pt-4 border-t border-slate-100 no-print">
+        <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">Nội dung trang</div>
+        <div class="flex flex-wrap gap-2">
+          <a href="#1-dat-van-de-dan-nhap-introduction-hook" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">📝 1. ĐẶT VẤN ĐỀ &amp; DẪN NHẬP (Introduction / Hook)</a>
+          <a href="#2-noi-dung-cot-loi-core-content" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">📖 2. NỘI DUNG CỐT LÕI (Core Content)</a>
+          <a href="#3-tom-tat-diem-can-nho-key-takeaways" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">📌 3. TÓM TẮT &amp; ĐIỂM CẦN NHỚ (Key Takeaways)</a>
+          <a href="#4-hoat-dong-kiem-tra-nhanh-self-assessment-quiz" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">❓ 4. HOẠT ĐỘNG KIỂM TRA NHANH (Self-Assessment / Quiz)</a>
+          <a href="#5-nhiem-vu-hoc-tap-thao-luan-lms-discussion-assignment" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">💬 5. NHIỆM VỤ HỌC TẬP &amp; THẢO LUẬN (LMS Discussion / Assignment)</a>
+        </div>
+      </nav>
+    </div>
+
+    <!-- Content -->
+    <article class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 lesson prose prose-slate max-w-none prose-headings:font-extrabold prose-h3:text-lhu-dark prose-h4:text-fe-dark prose-a:text-lhu-blue">
+<blockquote>
+<p><strong>Thời lượng:</strong> 5 tiết (225 phút) · <strong>Hình thức:</strong> Lớp học đảo ngược · <strong>Chuẩn đầu ra:</strong> PI 2.3 (CLO2)<br><strong>Dự án xuyên suốt:</strong> Smart Event Hub – Thiết lập kiến trúc thư mục App Router, Layout chung, Route Groups (auth), (admin) và trang 404.</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>🎯 <strong>MỤC TIÊU BÀI HỌC (Learning Objectives)</strong><br>Sau khi hoàn thành bài học này, người học có thể:</p>
+<ul>
+<li><strong>[Bloom 1/2 - Kiến thức]:</strong> Giải thích được vai trò các file đặc biệt <code>page.tsx</code>, <code>layout.tsx</code>, <code>loading.tsx</code>, <code>error.tsx</code>, <code>not-found.tsx</code>; phân biệt Server Component và Client Component, SSR và CSR.</li>
+<li><strong>[Bloom 3/4 - Kỹ năng]:</strong> Xây dựng Index Route, Nested Route, Route Groups và điều hướng bằng <code>next/link</code> cho dự án Smart Event Hub.</li>
+<li><strong>[Bloom 5/6 - Năng lực]:</strong> Thiết kế và đánh giá cấu trúc thư mục App Router cho nhiều Layout (site chính, auth, admin), có xử lý Loading, Error, 404 và bảo vệ Private Routes.</li>
+</ul>
+</blockquote>
+<hr>
+<h3 id="1-dat-van-de-dan-nhap-introduction-hook">📝 1. ĐẶT VẤN ĐỀ &amp; DẪN NHẬP (Introduction / Hook)</h3>
+<p>Sau hai buổi, nhóm các bạn đã có bộ component và 5 trang dàn tĩnh trong <code>/dev-preview</code>. Bây giờ khách hàng muốn trang Đăng nhập chỉ có logo và form ở giữa màn hình, không có menu; khu Quản trị phải có Sidebar riêng; còn người dùng gõ sai đường dẫn thì không được thấy trang trắng. Nếu mỗi trang tự import Header, Footer, Sidebar, các bạn sẽ phải sửa hàng chục file mỗi khi đổi menu.</p>
+<p>Vậy Next.js tổ chức thư mục thế nào để <strong>một thay đổi ở Layout áp dụng cho đúng nhóm trang</strong>, mà URL vẫn gọn gàng như <code>/login</code>, <code>/admin/dashboard</code>? Buổi học này giải quyết bài toán đó bằng App Router.</p>
+<blockquote>
+<p>🧭 <strong>Trước giờ học (Flipped Classroom):</strong></p>
+<ul>
+<li>Xem video Next.js App Router architecture (<code>page.tsx</code>, <code>layout.tsx</code>, <code>loading.tsx</code>, <code>error.tsx</code>).</li>
+<li>Đọc Next.js Routing Docs và React Server Components Guide ở mục 5.</li>
+<li>Cài Node.js LTS, thử chạy <code>npx create-next-app@latest</code> tại nhà; làm Quiz nhanh 5–10 câu trên LMS.</li>
+</ul>
+</blockquote>
+<hr>
+<h3 id="2-noi-dung-cot-loi-core-content">📖 2. NỘI DUNG CỐT LÕI (Core Content)</h3>
+<h4 id="2-1-kien-truc-app-router-cac-file-dac-biet">2.1. Kiến trúc App Router &amp; các file đặc biệt</h4>
+<ul>
+<li><strong>Khái niệm:</strong> App Router dùng <strong>directory-based routing</strong>: mỗi thư mục trong <code>app/</code> là một đoạn URL (segment), và thư mục chỉ trở thành route truy cập được khi có file <code>page.tsx</code>.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li><code>page.tsx</code>: giao diện duy nhất của một route. <code>app/page.tsx</code> là <strong>Index Route</strong> <code>/</code>.</li>
+<li><code>layout.tsx</code>: giao diện bọc chung, <strong>không bị re-render</strong> khi chuyển giữa các trang con, giữ nguyên state (ví dụ ô tìm kiếm trên Header). <code>app/layout.tsx</code> (Root Layout) bắt buộc có thẻ <code>&lt;html&gt;</code> và <code>&lt;body&gt;</code>.</li>
+<li><code>loading.tsx</code>: UI chờ (Skeleton) hiển thị tức thì trong lúc trang đang tải, dựa trên React Suspense.</li>
+<li><code>error.tsx</code>: Error Boundary bắt lỗi runtime của route, <strong>bắt buộc là Client Component</strong>.</li>
+<li><code>not-found.tsx</code>: trang 404. <code>global-error.tsx</code>: bắt lỗi xảy ra ngay trong Root Layout.</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-tsx">// app/layout.tsx – Root Layout: chỉ chứa html/body và style toàn cục
+import type { Metadata } from &#39;next&#39;;
+import type { ReactNode } from &#39;react&#39;;
+import &#39;./globals.scss&#39;;
+
+export const metadata: Metadata = {
+  title: &#39;Smart Event Hub&#39;,
+  description: &#39;Hệ thống đặt vé &amp; quản lý sự kiện trực tuyến&#39;,
+};
+
+export default function RootLayout({ children }: { children: ReactNode }) {
+  return (
+    &lt;html lang=&quot;vi&quot;&gt;
+      &lt;body&gt;{children}&lt;/body&gt;
+    &lt;/html&gt;
+  );
+}
+</code></pre>
+<ul>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote>
+<p>Người dùng đang gõ từ khóa trong ô tìm kiếm trên Header rồi bấm sang trang Sự kiện. Vì Header nằm trong <code>layout.tsx</code>, nó không bị render lại, nên từ khóa vẫn còn nguyên; nếu Header đặt trong từng <code>page.tsx</code>, ô tìm kiếm sẽ bị xóa trắng mỗi lần chuyển trang.</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="2-2-server-components-rsc-va-client-components">2.2. Server Components (RSC) và Client Components</h4>
+<ul>
+<li><strong>Khái niệm:</strong> Mặc định <strong>mọi component trong <code>app/</code> là Server Component</strong>: render hoàn toàn trên server, không gửi JavaScript của nó về trình duyệt. Client Component được đánh dấu bằng chỉ thị <code>&#39;use client&#39;</code> ở dòng đầu file.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li>Server Component giảm kích thước bundle, gọi dữ liệu trực tiếp trên server (sẽ học ở Bài 08) và giữ bí mật API key.</li>
+<li><strong>Bắt buộc <code>&#39;use client&#39;</code></strong> khi component cần: sự kiện người dùng (<code>onClick</code>, <code>onChange</code>), React Hooks (<code>useState</code>, <code>useEffect</code>, <code>usePathname</code>) hoặc Browser APIs (<code>window</code>, <code>localStorage</code>).</li>
+<li>Chiến lược tốt: giữ trang là Server Component, chỉ tách <strong>phần nhỏ cần tương tác</strong> thành Client Component.</li>
+<li>Liên hệ cơ chế render: Server Component tương ứng tư duy <strong>SSR</strong> (HTML tạo sẵn trên server), còn phần tương tác chạy theo <strong>CSR</strong> (JavaScript thực thi trên trình duyệt).</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Tiêu chí</th>
+<th>Server Component</th>
+<th>Client Component (<code>&#39;use client&#39;</code>)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Nơi render</td>
+<td>Server</td>
+<td>Server (HTML ban đầu) + trình duyệt (hydrate)</td>
+</tr>
+<tr>
+<td>Dùng Hooks, onClick</td>
+<td>Không</td>
+<td>Có</td>
+</tr>
+<tr>
+<td>Gọi dữ liệu trực tiếp, dùng secret</td>
+<td>Có</td>
+<td>Không nên</td>
+</tr>
+<tr>
+<td>JavaScript gửi về client</td>
+<td>Không</td>
+<td>Có</td>
+</tr>
+</tbody></table>
+<pre><code class="language-tsx">// app/(main)/events/page.tsx – Server Component
+import ClientFilter from &#39;./ClientFilter&#39;;
+
+export default async function EventsPage() {
+  // Có thể fetch dữ liệu trực tiếp trên server tại đây (Bài 08)
+  return (
+    &lt;section&gt;
+      &lt;h1&gt;Tất cả sự kiện&lt;/h1&gt;
+      &lt;ClientFilter /&gt;
+    &lt;/section&gt;
+  );
+}
+</code></pre>
+<pre><code class="language-tsx">// app/(main)/events/ClientFilter.tsx – Client Component
+&#39;use client&#39;;
+
+import { useState } from &#39;react&#39;;
+
+const CATEGORIES = [&#39;Tất cả&#39;, &#39;Âm nhạc&#39;, &#39;Công nghệ&#39;, &#39;Workshop&#39;] as const;
+type Category = (typeof CATEGORIES)[number];
+
+export default function ClientFilter() {
+  const [active, setActive] = useState&lt;Category&gt;(&#39;Tất cả&#39;);
+
+  return (
+    &lt;div role=&quot;group&quot; aria-label=&quot;Lọc theo thể loại&quot;&gt;
+      {CATEGORIES.map((category) =&gt; (
+        &lt;button key={category} type=&quot;button&quot; aria-pressed={active === category} onClick={() =&gt; setActive(category)}&gt;
+          {category}
+        &lt;/button&gt;
+      ))}
+    &lt;/div&gt;
+  );
+}
+</code></pre>
+<h4 id="2-3-routing-system-index-nested-route-groups-private-routes">2.3. Routing System: Index, Nested, Route Groups &amp; Private Routes</h4>
+<ul>
+<li><strong>Khái niệm:</strong> Hệ thống route được suy ra từ cây thư mục. Thư mục lồng nhau tạo <strong>Nested Route</strong> (<code>/events/categories</code>); thư mục có ngoặc tròn <code>(group)</code> tạo <strong>Route Group</strong>, gom trang dùng chung Layout mà <strong>không xuất hiện trên URL</strong>.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li><strong>Index Route:</strong> <code>app/(main)/page.tsx</code> → <code>/</code>; <code>app/(main)/events/page.tsx</code> → <code>/events</code>.</li>
+<li><strong>Nested Route &amp; Nested Layout:</strong> <code>events/categories/page.tsx</code> → <code>/events/categories</code>; nếu có <code>events/layout.tsx</code>, nó bọc mọi trang con của <code>/events</code>.</li>
+<li><strong>Route Groups:</strong> <code>(auth)/login/page.tsx</code> vẫn là <code>/login</code>. Mỗi group có <code>layout.tsx</code> riêng; file phải tên là <code>layout.tsx</code>, còn tên hàm có thể là <code>AuthLayout</code>.</li>
+<li><strong>Lưu ý quan trọng:</strong> Layout lồng nhau <strong>cộng dồn</strong> chứ không thay thế. Nếu đặt Header/Footer trong Root Layout, trang <code>(auth)</code> vẫn hiện Header. Vì vậy, Header/Footer được đặt trong group <code>(main)</code>, còn Root Layout chỉ chứa <code>html</code>/<code>body</code>.</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-text">app/
+├── layout.tsx                  Root Layout (html, body) – không Header/Footer
+├── not-found.tsx               404 tùy chỉnh
+├── global-error.tsx            Bắt lỗi ở mức Root Layout
+├── (main)/
+│   ├── layout.tsx              Header + Footer chung
+│   ├── page.tsx                /
+│   ├── error.tsx               Error Boundary cho site chính
+│   └── events/
+│       ├── page.tsx            /events
+│       ├── categories/page.tsx /events/categories
+│       └── search/page.tsx     /events/search
+├── (auth)/
+│   ├── layout.tsx              AuthLayout: Logo + Form giữa màn hình
+│   ├── login/page.tsx          /login
+│   └── register/page.tsx       /register
+└── (admin)/
+    ├── layout.tsx              AdminLayout: Sidebar trái + Header Admin
+    └── admin/
+        ├── loading.tsx         Skeleton khi chuyển trang Admin
+        ├── dashboard/page.tsx          /admin/dashboard
+        ├── events-management/page.tsx  /admin/events-management
+        └── users/page.tsx              /admin/users
+</code></pre>
+<pre><code class="language-tsx">// app/(auth)/layout.tsx
+import type { ReactNode } from &#39;react&#39;;
+import Link from &#39;next/link&#39;;
+import styles from &#39;./auth.module.scss&#39;;
+
+export default function AuthLayout({ children }: { children: ReactNode }) {
+  return (
+    &lt;main className={styles.authWrapper}&gt;
+      &lt;Link href=&quot;/&quot; className={styles.logo}&gt;Smart Event Hub&lt;/Link&gt;
+      &lt;div className={styles.formCard}&gt;{children}&lt;/div&gt;
+    &lt;/main&gt;
+  );
+}
+</code></pre>
+<ul>
+<li><strong>Private Routes:</strong> các trang <code>/admin/*</code>, <code>/user/*</code> chỉ dành cho người đã đăng nhập. Trong Next.js 15, cách gọn nhất là dùng <code>middleware.ts</code> ở thư mục gốc để chuyển hướng trước khi trang được render:</li>
+</ul>
+<pre><code class="language-ts">// middleware.ts
+import { NextResponse, type NextRequest } from &#39;next/server&#39;;
+
+export function middleware(request: NextRequest) {
+  const token = request.cookies.get(&#39;access_token&#39;)?.value;
+  if (!token) {
+    const loginUrl = new URL(&#39;/login&#39;, request.url);
+    loginUrl.searchParams.set(&#39;redirect&#39;, request.nextUrl.pathname);
+    return NextResponse.redirect(loginUrl);
+  }
+  return NextResponse.next();
+}
+
+export const config = { matcher: [&#39;/admin/:path*&#39;, &#39;/user/:path*&#39;] };
+</code></pre>
+<blockquote>
+<p>Ở buổi này <code>access_token</code> chỉ là cookie giả lập để thử luồng chuyển hướng. Việc lưu token thật sau khi gọi API Login sẽ được làm ở Bài 09.</p>
+</blockquote>
+<h4 id="2-4-dieu-huong-loading-error-404">2.4. Điều hướng, Loading, Error &amp; 404</h4>
+<ul>
+<li><strong>Khái niệm:</strong> <code>Link</code> từ <code>next/link</code> chuyển trang phía client, <strong>không reload toàn trang</strong> và tự prefetch route khi link xuất hiện trong khung nhìn. Thẻ <code>&lt;a href&gt;</code> thường sẽ tải lại toàn bộ ứng dụng.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li>Đánh dấu menu đang active cần <code>usePathname()</code>, nên Sidebar Admin hoặc NavLink phải là Client Component.</li>
+<li><code>loading.tsx</code> đặt cùng cấp với <code>page.tsx</code> sẽ bọc trang đó và các trang con.</li>
+<li><code>error.tsx</code> nhận <code>error</code> và hàm <code>reset()</code> để thử render lại; <code>global-error.tsx</code> phải tự khai báo <code>&lt;html&gt;</code> và <code>&lt;body&gt;</code> vì nó thay thế cả Root Layout.</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-tsx">// app/(admin)/admin/loading.tsx – Skeleton đơn giản
+import styles from &#39;./admin.module.scss&#39;;
+
+export default function AdminLoading() {
+  return (
+    &lt;div className={styles.skeletonList} aria-busy=&quot;true&quot; aria-label=&quot;Đang tải&quot;&gt;
+      {Array.from({ length: 4 }, (_, i) =&gt; (
+        &lt;div key={i} className={styles.skeletonRow} /&gt;
+      ))}
+    &lt;/div&gt;
+  );
+}
+</code></pre>
+<pre><code class="language-tsx">// app/not-found.tsx
+import Link from &#39;next/link&#39;;
+
+export default function NotFound() {
+  return (
+    &lt;main style={{ textAlign: &#39;center&#39;, padding: &#39;80px 16px&#39; }}&gt;
+      &lt;h1&gt;404 – Không tìm thấy trang&lt;/h1&gt;
+      &lt;p&gt;Sự kiện bạn tìm có thể đã kết thúc hoặc đường dẫn không đúng.&lt;/p&gt;
+      &lt;Link href=&quot;/&quot;&gt;Quay lại trang chủ&lt;/Link&gt;
+    &lt;/main&gt;
+  );
+}
+</code></pre>
+<pre><code class="language-tsx">// app/(main)/error.tsx – bắt buộc là Client Component
+&#39;use client&#39;;
+
+import { useEffect } from &#39;react&#39;;
+
+export default function ErrorBoundary({ error, reset }: { error: Error &amp; { digest?: string }; reset: () =&gt; void }) {
+  useEffect(() =&gt; {
+    console.error(error); // thay bằng dịch vụ ghi log khi triển khai thật
+  }, [error]);
+
+  return (
+    &lt;section role=&quot;alert&quot;&gt;
+      &lt;h2&gt;Đã có lỗi xảy ra&lt;/h2&gt;
+      &lt;p&gt;Xin lỗi vì sự bất tiện. Vui lòng thử lại.&lt;/p&gt;
+      &lt;button type=&quot;button&quot; onClick={() =&gt; reset()}&gt;Thử lại (Try Again)&lt;/button&gt;
+    &lt;/section&gt;
+  );
+}
+</code></pre>
+<blockquote>
+<p>Ví dụ <code>not-found.tsx</code> dùng inline style cho ngắn gọn; trong dự án, hãy chuyển sang SCSS Module như đã thống nhất ở Bài 02.</p>
+</blockquote>
+<h4 id="2-5-vibe-coding-prompt-mau-cach-kiem-duyet-code-ai">2.5. Vibe Coding – Prompt mẫu &amp; cách kiểm duyệt code AI</h4>
+<p>AI rất nhanh trong việc sinh cây thư mục theo Clean Architecture, nhưng hay mắc lỗi với các phiên bản Next.js cũ (thư mục <code>pages/</code>, <code>getServerSideProps</code>, <code>next/router</code>). Prompt Guided:</p>
+<pre><code class="language-text">Hãy hướng dẫn tạo cấu trúc thư mục Next.js App Router cho dự án &quot;Smart Event Hub&quot; với các yêu cầu:
+1. Root Layout chứa Header và Footer chung.
+2. Route Group (auth) có AuthLayout riêng (chỉ chứa Logo và Form ở trung tâm màn hình) cho các trang /login và /register.
+3. Nested Route /events và /events/categories.
+Hãy cho tôi sơ đồ cây thư mục chi tiết và nội dung mã nguồn của các file layout.tsx tương ứng.
+Ràng buộc: Next.js 15 App Router, TypeScript strict, không dùng thư mục pages/.
+</code></pre>
+<blockquote>
+<p><strong>Bài tập phản biện:</strong> yêu cầu số 1 trong prompt trên sẽ khiến trang <code>/login</code> vẫn hiện Header. Hãy xem AI có phát hiện ra không; nếu không, sửa lại theo cấu trúc group <code>(main)</code> ở mục 2.3.</p>
+</blockquote>
+<ul>
+<li><strong>Checklist kiểm duyệt code AI:</strong><ul>
+<li>Có dùng nhầm API cũ: <code>pages/</code>, <code>next/router</code>, <code>getServerSideProps</code>, <code>next/head</code>?</li>
+<li>Tên file đặc biệt đúng chưa (<code>layout.tsx</code>, không phải <code>AuthLayout.tsx</code>)? Root Layout có <code>&lt;html&gt;</code>, <code>&lt;body&gt;</code>?</li>
+<li><code>&#39;use client&#39;</code> chỉ đặt ở file thật sự cần hook/sự kiện, không gắn bừa lên mọi trang?</li>
+<li><code>error.tsx</code> có <code>&#39;use client&#39;</code>; <code>global-error.tsx</code> có <code>&lt;html&gt;</code>/<code>&lt;body&gt;</code>?</li>
+<li>Menu dùng <code>Link</code> từ <code>next/link</code> thay vì <code>&lt;a href&gt;</code>; gõ thử <code>/abc-xyz</code> ra đúng trang 404?</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-6-thuc-hanh-tren-lop">2.6. Thực hành trên lớp</h4>
+<table>
+<thead>
+<tr>
+<th>Phần</th>
+<th>Thời lượng</th>
+<th>Nhiệm vụ</th>
+<th>Output mong muốn</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Guided Practice</td>
+<td>45 phút</td>
+<td>Khởi tạo dự án Next.js, Layout chung có Header/Footer, Route Group (auth) và Nested Route /events</td>
+<td>Chuyển route trơn tru; trang (auth) dùng AuthLayout riêng</td>
+</tr>
+<tr>
+<td>Unguided Practice</td>
+<td>45 phút</td>
+<td>Xây khu Quản trị với Route Group (admin), AdminLayout có Sidebar, <code>loading.tsx</code> Skeleton</td>
+<td>/admin/dashboard có layout riêng, Skeleton khi chuyển trang</td>
+</tr>
+<tr>
+<td>Team Challenge</td>
+<td>60 phút</td>
+<td>Tích hợp route của cả nhóm vào <code>main</code>, Navigation dùng <code>next/link</code>, trang 404 tùy chỉnh</td>
+<td>Sơ đồ Routing hoàn chỉnh; /abc-xyz hiện đúng 404</td>
+</tr>
+<tr>
+<td>Tổng kết</td>
+<td>15 phút</td>
+<td>Rà lỗi cấu trúc thư mục phổ biến, giao BTVN</td>
+<td>Mỗi nhóm có danh sách route đã chốt</td>
+</tr>
+</tbody></table>
+<p><strong>Guided (45&#39;):</strong> chạy lệnh khởi tạo, chọn TypeScript, ESLint, App Router, thư mục <code>src/</code> tùy nhóm, alias <code>@/*</code>. Tạo group <code>(main)</code> chứa Header/Footer, group <code>(auth)</code> với <code>/login</code>, <code>/register</code>, và Nested Route <code>/events/categories</code>, <code>/events/search</code>.</p>
+<pre><code class="language-bash">npx create-next-app@latest smart-event-hub --typescript --eslint --app
+cd smart-event-hub &amp;&amp; npm install -D sass &amp;&amp; npm run dev
+</code></pre>
+<blockquote>
+<p><code>create-next-app</code> sinh sẵn <code>app/page.tsx</code>. Hãy chuyển file này vào <code>app/(main)/page.tsx</code>; nếu để cả hai, Next.js báo lỗi vì hai trang cùng trỏ tới <code>/</code>.</p>
+</blockquote>
+<p><strong>Unguided (45&#39;):</strong> xây khu Quản trị với Route Group <code>(admin)</code> tại <code>/admin/dashboard</code>, <code>/admin/events-management</code>, <code>/admin/users</code>. <code>AdminLayout</code> có Sidebar trái để chuyển trang, thêm <code>loading.tsx</code> hiển thị Skeleton. Nhóm nào xong sớm bổ sung <code>/checkout</code> và <code>/user/profile</code>. Prompt gợi ý:</p>
+<pre><code class="language-text">Tạo giúp tôi cấu trúc Route Group (admin) trong Next.js App Router.
+- AdminLayout: Gồm Sidebar bên trái (Dashboard, Quản lý sự kiện, Quản lý người dùng) và Header Admin ở trên.
+- Tạo file loading.tsx sử dụng hiệu ứng Skeleton UI đơn giản bằng SCSS/Tailwind.
+- Viết bằng TypeScript.
+</code></pre>
+<p><strong>Team Challenge (60&#39;):</strong> tích hợp toàn bộ route của từng cá nhân vào nhánh <code>main</code> qua Pull Request. Đảm bảo <code>HeaderNavigationBar</code> (Bài 01) dùng <code>Link</code> của <code>next/link</code> để điều hướng tới mọi route mà không reload trang. Xây <code>not-found.tsx</code> thân thiện có nút &quot;Quay lại trang chủ&quot;; kiểm tra bằng cách gõ <code>/abc-xyz</code>.</p>
+<hr>
+<h3 id="3-tom-tat-diem-can-nho-key-takeaways">📌 3. TÓM TẮT &amp; ĐIỂM CẦN NHỚ (Key Takeaways)</h3>
+<ul>
+<li>🔹 <strong>Thư mục = URL, <code>page.tsx</code> = route:</strong> thư mục không có <code>page.tsx</code> không truy cập được.</li>
+<li>🔹 <strong>Layout cộng dồn và không re-render:</strong> Root Layout chỉ giữ <code>html</code>/<code>body</code>; Header/Footer đặt trong group <code>(main)</code>.</li>
+<li>🔹 <strong>Route Groups <code>(name)</code>:</strong> tách Layout cho site chính, auth, admin mà không đổi URL.</li>
+<li>🔹 <strong>Server Component mặc định:</strong> chỉ thêm <code>&#39;use client&#39;</code> khi cần hooks, sự kiện hoặc Browser API.</li>
+<li>🔹 <strong>Đủ trạng thái giao diện:</strong> <code>loading.tsx</code>, <code>error.tsx</code> (Client), <code>not-found.tsx</code>, <code>global-error.tsx</code>; Private Routes chặn bằng <code>middleware.ts</code>.</li>
+</ul>
+<hr>
+<h3 id="4-hoat-dong-kiem-tra-nhanh-self-assessment-quiz">❓ 4. HOẠT ĐỘNG KIỂM TRA NHANH (Self-Assessment / Quiz)</h3>
+<p><strong>Câu 1:</strong> File <code>app/(auth)/login/page.tsx</code> tương ứng với URL nào?</p>
+<ul>
+<li>A. <code>/auth/login</code></li>
+<li>B. <code>/(auth)/login</code></li>
+<li>C. <code>/login</code></li>
+<li>D. <code>/auth</code></li>
+</ul>
+<details>
+<summary>👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> C<br>
+<b>Giải thích:</b> Thư mục trong ngoặc tròn là Route Group, chỉ dùng để tổ chức và gán Layout, không xuất hiện trên URL.
+</details>
+
+<p><strong>Câu 2:</strong> Component nào sau đây <strong>bắt buộc</strong> có <code>&#39;use client&#39;</code>?</p>
+<ul>
+<li>A. Trang hiển thị danh sách sự kiện tĩnh</li>
+<li>B. Nút &quot;Yêu thích&quot; dùng <code>useState</code> và <code>onClick</code></li>
+<li>C. Root Layout chứa thẻ <code>&lt;html&gt;</code></li>
+<li>D. Trang <code>not-found.tsx</code> chỉ có chữ và <code>Link</code></li>
+</ul>
+<details>
+<summary>👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> B<br>
+<b>Giải thích:</b> Hooks và sự kiện người dùng chỉ chạy trong Client Component. Các trường hợp còn lại giữ là Server Component để giảm JavaScript gửi về trình duyệt.
+</details>
+
+<p><strong>Câu 3:</strong> Nhóm đặt Header/Footer trong <code>app/layout.tsx</code> rồi tạo <code>app/(auth)/layout.tsx</code>. Kết quả khi mở <code>/login</code> là gì?</p>
+<ul>
+<li>A. Trang <code>/login</code> vẫn hiện Header/Footer vì Layout lồng nhau cộng dồn</li>
+<li>B. AuthLayout thay thế hoàn toàn Root Layout</li>
+<li>C. Next.js báo lỗi vì có hai file <code>layout.tsx</code></li>
+<li>D. Trang <code>/login</code> trả về 404</li>
+</ul>
+<details>
+<summary>👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> A<br>
+<b>Giải thích:</b> Layout con được render bên trong Layout cha. Muốn trang auth không có Header, hãy chuyển Header/Footer vào một group riêng như <code>(main)</code>.
+</details>
+
+<p><strong>Câu 4:</strong> Điều nào đúng về file <code>error.tsx</code> trong App Router?</p>
+<ul>
+<li>A. Là Server Component và chỉ bắt lỗi 404</li>
+<li>B. Phải khai báo <code>&lt;html&gt;</code> và <code>&lt;body&gt;</code></li>
+<li>C. Chỉ hoạt động khi đặt trong thư mục <code>pages/</code></li>
+<li>D. Phải là Client Component, nhận <code>error</code> và hàm <code>reset()</code></li>
+</ul>
+<details>
+<summary>👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> D<br>
+<b>Giải thích:</b> <code>error.tsx</code> là Error Boundary nên cần <code>'use client'</code>. Thẻ <code>&lt;html&gt;</code>, <code>&lt;body&gt;</code> chỉ bắt buộc ở <code>global-error.tsx</code>.
+</details>
+
+<blockquote>
+<p>Bộ 10+ câu đầy đủ: <code>quiz/quiz-bai-03-aiken.txt</code></p>
+</blockquote>
+<hr>
+<h3 id="5-nhiem-vu-hoc-tap-thao-luan-lms-discussion-assignment">💬 5. NHIỆM VỤ HỌC TẬP &amp; THẢO LUẬN (LMS Discussion / Assignment)</h3>
+<ul>
+<li><strong>Chủ đề thảo luận Diễn đàn (Forum Discussion):</strong> Hãy chia sẻ cây thư mục <code>app/</code> của nhóm bạn. Nhóm đã dùng những Route Group nào, vì sao? Có trang nào các bạn phân vân giữa Server Component và Client Component không? Đề xuất cách tách phần tương tác ra khỏi trang để giữ phần còn lại là Server Component.</li>
+<li><strong>Yêu cầu nộp bài (Bài tập về nhà):</strong><ul>
+<li>Tạo <code>error.tsx</code> (Client Component) xử lý lỗi ngoại lệ cho các nhóm route và <code>global-error.tsx</code> bắt lỗi ở mức Root Layout.</li>
+<li>Bổ sung <code>loading.tsx</code> dạng Skeleton UI cho từng nhóm route đã tạo (<code>(main)</code>, <code>(auth)</code>, <code>(admin)</code>), hoàn thiện trang 404.</li>
+<li><strong>Output:</strong> khi ứng dụng gặp sự cố runtime (thử <code>throw new Error(&#39;test&#39;)</code> trong một trang), màn hình hiển thị thông báo lỗi văn minh kèm nút &quot;Thử lại (Try Again)&quot;.</li>
+<li><strong>Hạn nộp:</strong> trước buổi học tiếp theo; Pull Request cá nhân vào nhánh <code>dev</code>, kèm ảnh chụp màn hình trang lỗi và trang 404; nộp link PR lên LMS.</li>
+<li><strong>Quy tắc đặt tên:</strong> nhánh <code>feature/&lt;ho-ten-khong-dau&gt;-error-handling</code>, commit theo dạng <code>feat(routing): add error and loading boundaries</code>.</li>
+</ul>
+</li>
+<li><strong>📚 Tài liệu đọc &amp; tham khảo:</strong><ul>
+<li>Next.js App Router Routing Docs: <a href="https://nextjs.org/docs/app/building-your-application/routing" target="_blank" rel="noopener noreferrer">https://nextjs.org/docs/app/building-your-application/routing</a></li>
+<li>React Server Components Conceptual Guide: <a href="https://react.dev/reference/rsc/server-components" target="_blank" rel="noopener noreferrer">https://react.dev/reference/rsc/server-components</a></li>
+<li>React – <code>&#39;use client&#39;</code> directive: <a href="https://react.dev/reference/rsc/use-client" target="_blank" rel="noopener noreferrer">https://react.dev/reference/rsc/use-client</a></li>
+<li>Next.js File Conventions: <a href="https://nextjs.org/docs/app/api-reference/file-conventions" target="_blank" rel="noopener noreferrer">https://nextjs.org/docs/app/api-reference/file-conventions</a></li>
+<li><strong>Câu hỏi tự kiểm tra khi đọc:</strong> Khi nào bắt buộc phải thêm <code>&#39;use client&#39;</code> vào đầu tệp component? Lợi ích của Route Groups <code>(group_name)</code> trong việc tổ chức Layout dự án là gì?</li>
+</ul>
+</li>
+</ul>
+
+    </article>
+
+    <!-- Bottom Navigation -->
+    <div class="flex items-center justify-between gap-4 mt-8 no-print text-xs font-bold">
+      <a href="bai-02.html" class="px-4 py-2.5 bg-white border border-slate-200 hover:border-lhu-blue text-slate-700 hover:text-lhu-blue rounded-xl shadow-sm transition-all flex items-center gap-2"><i class="fa-solid fa-chevron-left"></i> Bài trước</a>
+      <a href="index.html#lo-trinh" class="px-4 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-800 rounded-xl transition-all flex items-center gap-2">
+        <i class="fa-solid fa-table-cells-large"></i> Danh mục bài học
+      </a>
+      <a href="bai-04.html" class="px-4 py-2.5 bg-white border border-slate-200 hover:border-lhu-blue text-slate-700 hover:text-lhu-blue rounded-xl shadow-sm transition-all flex items-center gap-2">Bài tiếp theo <i class="fa-solid fa-chevron-right"></i></a>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-slate-200 py-6 text-xs text-slate-500 mt-12 no-print">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <strong>Khoa Công nghệ Thông tin - Trường Đại học Lạc Hồng</strong><br>
+        Phòng B301 - B302, Cơ sở 1, Số 10 Huỳnh Văn Nghệ, P. Bửu Long, TP. Biên Hòa, Đồng Nai.
+      </div>
+      <div class="sm:text-right">
+        <span>Email: cntt@lhu.edu.vn • Hotline: (0251) 3952 251</span><br>
+        <span>Hệ thống LMS: <a href="https://learn.lhu.edu.vn" target="_blank" rel="noopener noreferrer" class="text-lhu-blue font-bold">learn.lhu.edu.vn</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleAllDetails(open) {
+      document.querySelectorAll("details").forEach(d => {
+        if (open) d.setAttribute("open", ""); else d.removeAttribute("open");
+      });
+    }
+    if (window.hljs) hljs.highlightAll();
+  </script>
+
+</body>
+</html>

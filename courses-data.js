@@ -27,6 +27,31 @@ window.DEFAULT_COURSES = [
     "icon": "fa-solid fa-book-bookmark"
   },
   {
+    "id": "lap-trinh-frontend",
+    "code": "CNTT",
+    "title": "Lập Trình Front-End",
+    "englishTitle": "Front-End Programming (Next.js, TypeScript & Vibe Coding)",
+    "credits": 3,
+    "hours": "60 tiết (12 buổi)",
+    "semester": "Chương trình Đào tạo CNTT",
+    "folder": "lap-trinh-frontend",
+    "entryFile": "index.html",
+    "courseLanding": null,
+    "syllabusFile": "thong-tin-hoc-phan.html",
+    "assessmentFile": "danh-gia-hoc-phan.html",
+    "description": "Học phần Lập trình Front-End (Next.js, TypeScript & Vibe Coding) - Đại học Lạc Hồng. 60 tiết theo mô hình lớp học đảo ngược, 70% thực hành, xây dựng dự án Smart Event Hub từ Wireframe đến Deploy Vercel với Ant Design, REST API và AI.",
+    "instructor": "Bộ môn CNTT - LHU",
+    "tags": [
+      "ABET",
+      "AI-First",
+      "Vibe Coding",
+      "Next.js",
+      "Chuyên ngành"
+    ],
+    "badgeColor": "blue",
+    "icon": "fa-solid fa-code"
+  },
+  {
     "id": "nhap-mon-nganh",
     "code": "111106",
     "title": "Nhập Môn Công Nghệ Thông Tin",
@@ -39,7 +64,7 @@ window.DEFAULT_COURSES = [
     "courseLanding": "course-landingpage.html",
     "syllabusFile": "thong-tin-hoc-phan.html",
     "assessmentFile": "danh-gia-hoc-phan.html",
-    "description": "Trang tuyển sinh ngành Công nghệ Thông tin Đại học Lạc Hồng (LHU). Đạt chuẩn quốc tế ABET (Hoa Kỳ), tiên phong AI-First & Vibe Coding, cam kết 100% việc làm, học bổng lên đến 100%.",
+    "description": "Khóa học Nhập Môn Công Nghệ Thông Tin - Đại học Lạc Hồng (LHU). Chuẩn kiểm định ABET Hoa Kỳ, tiên phong AI-First & Vibe Coding, làm chủ ChatGPT, Gemini, tư duy Clean Code và định hình lộ trình 4 năm đại học.",
     "instructor": "ThS. Nguyễn Minh Phúc",
     "tags": [
       "ABET",
