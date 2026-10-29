@@ -1,0 +1,69 @@
+Sau khi đăng nhập thành công, API LHU Food trả về những gì cho ứng dụng?
+A. Access token ngắn hạn và refresh token dài hạn
+B. Mật khẩu của người dùng
+C. Chuỗi kết nối SQL Server
+D. Toàn bộ bảng Users
+ANSWER: A
+
+Mật khẩu của người dùng được lưu trong SQL Server dưới dạng nào?
+A. Mật khẩu gốc
+B. Không lưu, người dùng nhập lại mỗi lần
+C. Mật khẩu viết ngược
+D. Chuỗi băm (hash) tạo bằng bcrypt ở backend
+ANSWER: D
+
+Vì sao access token nên có thời hạn ngắn (khoảng 15 phút)?
+A. Để ứng dụng chạy nhanh hơn
+B. Để giảm thiệt hại nếu token bị lộ
+C. Vì SQL Server không lưu được token dài
+D. Để người dùng phải đăng nhập lại mỗi 15 phút
+ANSWER: B
+
+Trên điện thoại, token đăng nhập nên được lưu ở đâu?
+A. AsyncStorage
+B. Expo SecureStore
+C. Biến môi trường EXPO_PUBLIC_
+D. Một file văn bản trong thư mục assets
+ANSWER: B
+
+Mỗi request cần đăng nhập gửi token lên API bằng header nào?
+A. Content-Type: Bearer token
+B. Cookie: password
+C. Authorization: Bearer token
+D. Accept: token
+ANSWER: C
+
+Trong API tạo đơn hàng, mã người dùng nên lấy từ đâu?
+A. Từ body do ứng dụng gửi lên
+B. Từ tham số trên URL
+C. Từ token đã được AuthGuard kiểm tra (req.user.sub)
+D. Từ ô nhập trên giao diện
+ANSWER: C
+
+Ứng dụng ẩn nút "Quản lý đơn" với khách hàng nhưng API không kiểm tra quyền. Rủi ro là gì?
+A. Không có rủi ro vì nút đã bị ẩn
+B. SQL Server tự chặn yêu cầu
+C. Ứng dụng sẽ chạy chậm hơn
+D. Người không có quyền vẫn có thể gọi thẳng API để thao tác
+ANSWER: D
+
+Tài khoản SQL Server mà API dùng nên được cấp quyền như thế nào?
+A. Chỉ có quyền EXECUTE để chạy stored procedure
+B. Dùng tài khoản sa để không bị lỗi quyền
+C. Quyền xóa và tạo bảng
+D. Không cần mật khẩu
+ANSWER: A
+
+Vì sao không được đặt khóa bí mật JWT trong biến EXPO_PUBLIC_ của ứng dụng?
+A. Vì JWT không dùng khóa bí mật
+B. Vì Expo không đọc được biến môi trường
+C. Vì khóa bí mật quá dài
+D. Vì biến EXPO_PUBLIC_ được đưa vào ứng dụng và có thể bị đọc ra từ file APK
+ANSWER: D
+
+Sau khi đăng nhập xong, nên chuyển sang màn hình chính bằng lệnh nào để nút Back không quay về màn hình đăng nhập?
+A. router.replace('/')
+B. router.back()
+C. router.push('/')
+D. router.reload()
+ANSWER: A

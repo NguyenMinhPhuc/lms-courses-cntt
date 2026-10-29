@@ -1,16 +1,16 @@
 Lợi ích lớn nhất của kỹ thuật "Role Prompting" (Yêu cầu AI đóng vai chuyên gia cụ thể) là gì?
-A. Khiến AI tự động gửi tin nhắn cho bạn bè
-B. Thiết lập miền tri thức chuyên sâu, điều chỉnh góc nhìn và văn phong trả lời phù hợp với tiêu chuẩn của một chuyên gia thực thụ
+A. Tăng tốc độ đường truyền internet
+B. Khiến AI tự động gửi tin nhắn cho bạn bè
 C. Giúp máy tính khởi động nhanh hơn
-D. Tăng tốc độ đường truyền internet
-ANSWER: B
+D. Thiết lập miền tri thức chuyên sâu, điều chỉnh góc nhìn và văn phong trả lời phù hợp với tiêu chuẩn của một chuyên gia thực thụ
+ANSWER: D
 
 Kỹ thuật Prompting "Chain-of-Thought" (Chuỗi suy luận từng bước) hoạt động dựa trên nguyên lý nào?
-A. Yêu cầu AI bỏ qua các bước trung gian để đoán ngay kết quả
-B. Hướng dẫn AI tư duy và phân tích tuần tự từng bước logic trước khi đưa ra kết luận cuối cùng, giúp giảm thiểu sai sót trong các bài toán phức tạp
+A. Hướng dẫn AI tư duy và phân tích tuần tự từng bước logic trước khi đưa ra kết luận cuối cùng, giúp giảm thiểu sai sót trong các bài toán phức tạp
+B. Yêu cầu AI bỏ qua các bước trung gian để đoán ngay kết quả
 C. Yêu cầu AI chỉ trả lời bằng thơ
 D. Bắt AI lặp lại câu hỏi 5 lần
-ANSWER: B
+ANSWER: A
 
 Sự khác biệt căn bản giữa "Zero-Shot Prompting" và "Few-Shot Prompting" là gì?
 A. Zero-shot không mất tiền, Few-shot phải trả phí
@@ -20,32 +20,32 @@ D. Zero-shot chỉ dùng được vào ban ngày
 ANSWER: B
 
 Khi gặp thông báo lỗi biên dịch mã nguồn (Compiler Error) trong bài tập lập trình C++, cách đưa dữ liệu nào lên AI là tối ưu nhất?
-A. Chỉ nhắn: "Code của tôi bị lỗi rồi, hãy sửa giúp tôi"
-B. Đưa đoạn code liên quan kèm toàn bộ nội dung thông báo lỗi nguyên văn (Compiler message, mã lỗi và số dòng báo lỗi)
+A. Đưa đoạn code liên quan kèm toàn bộ nội dung thông báo lỗi nguyên văn (Compiler message, mã lỗi và số dòng báo lỗi)
+B. Chỉ nhắn: "Code của tôi bị lỗi rồi, hãy sửa giúp tôi"
 C. Chụp ảnh màn hình nghiêng 45 độ mờ nhạt
 D. Xóa toàn bộ dự án và cài lại hệ điều hành
-ANSWER: B
+ANSWER: A
 
 Khi yêu cầu AI tái cấu trúc mã nguồn (Refactoring) theo chuẩn Clean Code, mục tiêu hướng tới là gì?
 A. Làm cho đoạn code dài thêm gấp ba lần
-B. Nâng cao tính rõ ràng, dễ bảo trì, loại bỏ mã trùng lặp (DRY) và tối ưu hiệu năng mà không làm thay đổi hành vi đúng đắn của phần mềm
-C. Đổi hết tên biến sang ký hiệu toán học bí mật
-D. Xóa bỏ hết các bài kiểm thử
-ANSWER: B
+B. Xóa bỏ hết các bài kiểm thử
+C. Nâng cao tính rõ ràng, dễ bảo trì, loại bỏ mã trùng lặp (DRY) và tối ưu hiệu năng mà không làm thay đổi hành vi đúng đắn của phần mềm
+D. Đổi hết tên biến sang ký hiệu toán học bí mật
+ANSWER: C
 
 Khi yêu cầu AI sinh bộ kiểm thử đơn vị (Unit Test Cases) cho một hàm tính toán, lập trình viên cần đặc biệt lưu ý kiểm tra các trường hợp nào?
-A. Chỉ kiểm tra trường hợp dữ liệu bình thường dễ dãi
-B. Kiểm tra toàn diện cả trường hợp thông thường (Happy path), các trường hợp giá trị biên (Edge cases) và trường hợp dữ liệu sai/bất thường
+A. Không cần chạy kiểm thử nếu code do AI viết
+B. Chỉ kiểm tra trường hợp dữ liệu bình thường dễ dãi
 C. Chỉ kiểm tra khi có sự cho phép của hiệu trưởng
-D. Không cần chạy kiểm thử nếu code do AI viết
-ANSWER: B
+D. Kiểm tra toàn diện cả trường hợp thông thường (Happy path), các trường hợp giá trị biên (Edge cases) và trường hợp dữ liệu sai/bất thường
+ANSWER: D
 
 Công cụ Generative AI nào hiện nay rất phổ biến trong việc biến văn bản dàn ý thành bài trình chiếu (Slide) trực quan chỉ trong vài giây?
-A. Gamma.app
+A. Calculator
 B. Notepad Windows
 C. Paint
-D. Calculator
-ANSWER: A
+D. Gamma.app
+ANSWER: D
 
 Cú pháp khai báo dạng văn bản mở nào thường được AI sử dụng để tự động vẽ sơ đồ luồng (Flowchart) hoặc sơ đồ kiến trúc hệ thống ngay trong file Markdown?
 A. MP3
@@ -56,15 +56,14 @@ ANSWER: B
 
 Nguyên tắc an toàn bảo mật tối quan trọng nào sinh viên KHÔNG ĐƯỢC vi phạm khi dán mã nguồn lên các công cụ AI trực tuyến?
 A. Luôn viết hoa tên biến
-B. Tuyệt đối không dán mật khẩu, chuỗi kết nối cơ sở dữ liệu (connection string), mã khóa bí mật (API Key) hoặc dữ liệu riêng tư của người dùng
-C. Phải bình luận đầy đủ trước khi dán code
+B. Phải bình luận đầy đủ trước khi dán code
+C. Tuyệt đối không dán mật khẩu, chuỗi kết nối cơ sở dữ liệu (connection string), mã khóa bí mật (API Key) hoặc dữ liệu riêng tư của người dùng
 D. Chỉ được dán mã nguồn vào buổi tối
-ANSWER: B
+ANSWER: C
 
 Tinh thần cốt lõi của phương pháp "Vibe Coding" trong đào tạo kỹ sư công nghệ tại LHU là gì?
-A. Phó mặc 100% cho AI viết code mà bản thân không cần hiểu và không cần kiểm tra
-B. Lập trình viên đóng vai trò kiến trúc sư trưởng, làm chủ AI Agents để tăng tốc lập trình, đồng thời luôn đọc hiểu, thẩm định và chịu trách nhiệm về chất lượng sản phẩm
+A. Lập trình viên đóng vai trò kiến trúc sư trưởng, làm chủ AI Agents để tăng tốc lập trình, đồng thời luôn đọc hiểu, thẩm định và chịu trách nhiệm về chất lượng sản phẩm
+B. Coi lập trình là một trò chơi may rủi
 C. Từ bỏ hoàn toàn các môn học thuật toán và kiến trúc máy tính
-D. Coi lập trình là một trò chơi may rủi
-ANSWER: B
-
+D. Phó mặc 100% cho AI viết code mà bản thân không cần hiểu và không cần kiểm tra
+ANSWER: A

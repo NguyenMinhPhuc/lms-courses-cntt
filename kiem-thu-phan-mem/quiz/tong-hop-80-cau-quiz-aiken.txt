@@ -1,0 +1,559 @@
+Phát biểu nào mô tả đúng nhất mục tiêu của kiểm thử phần mềm?
+A. Chứng minh tuyệt đối rằng phần mềm không còn lỗi
+B. Đánh giá, xác minh sản phẩm để tìm lỗi, kiểm tra mức độ đáp ứng yêu cầu và cung cấp thông tin về chất lượng
+C. Thay thế hoàn toàn khâu viết mã của lập trình viên
+D. Chỉ kiểm tra giao diện ngay trước ngày phát hành
+ANSWER: B
+
+Người kiểm thử nhập một ghi chú vào Notepad Cải Tiến rồi xác nhận nội dung hiển thị chính xác mà không cần biết mã nguồn bên trong. Đây là cách tiếp cận nào?
+A. Kiểm thử hộp trắng
+B. Kiểm thử hộp xám
+C. Kiểm thử hộp đen
+D. Kiểm thử đơn vị
+ANSWER: C
+
+Kiểm thử hộp trắng dựa chủ yếu vào thông tin nào?
+A. Phản hồi khảo sát của người dùng
+B. Cấu trúc mã nguồn bên trong
+C. Chỉ đầu vào và đầu ra quan sát được
+D. Tài liệu hướng dẫn sử dụng
+ANSWER: B
+
+Kiểm thử hộp xám được hiểu là gì?
+A. Kiểm thử chỉ dùng công cụ tự động
+B. Kiểm thử chỉ tập trung vào màu sắc giao diện
+C. Kết hợp thông tin bên trong hệ thống với kiểm tra hành vi bên ngoài
+D. Kiểm thử do khách hàng thực hiện sau khi phát hành
+ANSWER: C
+
+Cấp độ kiểm thử nào tập trung vào sự tương tác giữa các thành phần?
+A. Kiểm thử đơn vị
+B. Kiểm thử chấp nhận
+C. Kiểm thử hệ thống
+D. Kiểm thử tích hợp
+ANSWER: D
+
+Cấp độ kiểm thử nào nhằm xác nhận sản phẩm phù hợp với nhu cầu người dùng?
+A. Kiểm thử đơn vị
+B. Kiểm thử tích hợp
+C. Kiểm thử hệ thống
+D. Kiểm thử chấp nhận
+ANSWER: D
+
+Tình huống nào phù hợp nhất để thực hiện kiểm thử thủ công?
+A. Chạy lại cùng một bộ kiểm thử hồi quy cho mỗi bản build
+B. Kiểm tra lặp lại việc lọc hàng nghìn công việc
+C. Quan sát nút xóa trên màn hình nhỏ và đánh giá thao tác tạo công việc của Todo App
+D. Xử lý khối lượng dữ liệu kiểm thử rất lớn
+ANSWER: C
+
+Đâu là hạn chế của kiểm thử thủ công được nêu trong bài?
+A. Tốn thời gian khi lặp lại, phụ thuộc người thực hiện và có thể bỏ sót thao tác
+B. Không quan sát được trải nghiệm thực tế của người dùng
+C. Bắt buộc phải viết script trước khi kiểm thử
+D. Không thể dùng để kiểm thử giao diện
+ANSWER: A
+
+Vì sao việc phát hiện lỗi sớm có giá trị đối với dự án?
+A. Làm tăng số lượng test case cần viết
+B. Thường giúp giảm công sức và chi phí xử lý
+C. Giúp nhóm không cần kiểm thử lại sau khi sửa
+D. Loại bỏ hoàn toàn rủi ro sau phát hành
+ANSWER: B
+
+Nhận định nào đúng về các cách phân loại kiểm thử trong bài?
+A. Các nhóm phân loại không loại trừ nhau; một kiểm thử có thể vừa thủ công, vừa hộp đen, vừa ở cấp hệ thống
+B. Mỗi hoạt động kiểm thử chỉ thuộc đúng một nhóm phân loại
+C. Kiểm thử hộp đen luôn phải thực hiện tự động
+D. Kiểm thử chấp nhận luôn là kiểm thử hộp trắng
+ANSWER: A
+
+Test Plan là gì?
+A. Danh sách lỗi đã phát hiện trong quá trình kiểm thử
+B. Mã nguồn của các script kiểm thử tự động
+C. Bảng ghi kết quả Pass/Fail của từng test case
+D. Tài liệu mô tả mục tiêu, phạm vi, phương pháp, nguồn lực, lịch trình và cách kiểm soát hoạt động kiểm thử
+ANSWER: D
+
+Test Plan của Notepad Cải Tiến ghi "tính năng đồng bộ đám mây nằm ngoài phạm vi phiên bản đầu". Nội dung này thuộc thành phần nào?
+A. Tiêu chí tạm dừng
+B. Rủi ro và giảm thiểu
+C. Vai trò và trách nhiệm
+D. Mục tiêu và phạm vi
+ANSWER: D
+
+"Build đã được triển khai và môi trường kiểm thử sẵn sàng" là ví dụ của tiêu chí nào?
+A. Tiêu chí hoàn thành
+B. Tiêu chí chất lượng
+C. Tiêu chí bắt đầu
+D. Tiêu chí tạm dừng
+ANSWER: C
+
+Theo quy trình trong bài, bước đầu tiên khi lập Test Plan là gì?
+A. Viết test case cho tất cả chức năng
+B. Ước lượng chi phí công cụ kiểm thử tự động
+C. Đọc PRD và trao đổi với bên liên quan để hiểu mục tiêu sản phẩm
+D. Gửi kế hoạch cho quản lý phê duyệt
+ANSWER: C
+
+Tiêu chí hoàn thành nào đo lường được?
+A. Không còn lỗi nghiêm trọng chưa xử lý và thao tác lọc nằm trong ngưỡng thời gian nhóm đã thống nhất
+B. Ứng dụng chạy nhanh
+C. Kiểm thử đầy đủ mọi chức năng
+D. Người dùng cảm thấy hài lòng
+ANSWER: A
+
+Bài học nêu các chỉ số như "90% test case đạt". Nên hiểu các chỉ số này như thế nào?
+A. Là mục tiêu ví dụ; nhóm cần thống nhất định nghĩa và căn cứ chọn ngưỡng cho dự án cụ thể
+B. Là ngưỡng bắt buộc cho mọi dự án
+C. Là kết quả đo được sau khi phát hành
+D. Chỉ áp dụng cho kiểm thử tự động
+ANSWER: A
+
+Todo App có rủi ro hiển thị sai trên Firefox. Biện pháp giảm thiểu nào phù hợp nhất?
+A. Bỏ Firefox ra khỏi phạm vi mà không ghi lý do
+B. Tăng số test case trên Chrome
+C. Chờ người dùng báo lỗi sau phát hành
+D. Kiểm thử đa trình duyệt sớm
+ANSWER: D
+
+Khi phạm vi hoặc yêu cầu dự án thay đổi giữa chừng, nhóm kiểm thử nên làm gì với Test Plan?
+A. Ghi nhận tác động, trao đổi với bên liên quan và cập nhật kế hoạch
+B. Tiếp tục theo kế hoạch cũ cho đến hết dự án
+C. Hủy Test Plan và chuyển sang kiểm thử tự do
+D. Chỉ cập nhật sau khi phát hành
+ANSWER: A
+
+Tích hợp Google Calendar chưa thuộc yêu cầu của phiên bản Todo App hiện tại. Cách xử lý đúng trong Test Plan là gì?
+A. Vẫn đưa vào phạm vi để kiểm thử cho chắc
+B. Xếp vào ngoài phạm vi và ghi rõ lý do
+C. Không nhắc tới trong Test Plan
+D. Chuyển thành rủi ro mức cao
+ANSWER: B
+
+Thành phần "Vai trò và trách nhiệm" của Test Plan mô tả điều gì?
+A. Danh sách thiết bị và trình duyệt dùng để kiểm thử
+B. Nhiệm vụ của QA, nhà phát triển, quản lý dự án và các bên liên quan
+C. Các lỗi đã phát hiện và người sửa
+D. Thời điểm phát hành sản phẩm
+ANSWER: B
+
+Yêu cầu kiểm thử (Test Requirement) mô tả điều gì?
+A. Lịch làm việc của nhóm kiểm thử
+B. Các bước thao tác chi tiết của một test case
+C. Danh sách lỗi cần sửa trước khi phát hành
+D. Điều kiện, hành vi hoặc đặc tính của sản phẩm cần được xác minh
+ANSWER: D
+
+Trong các yêu cầu của Todo App, yêu cầu nào là phi chức năng?
+A. Tạo công việc mới
+B. Tương thích với Chrome và Firefox
+C. Xác nhận trước khi xóa công việc
+D. Lọc công việc theo trạng thái
+ANSWER: B
+
+Câu yêu cầu nào có thể kiểm chứng được?
+A. Với bộ dữ liệu 10.000 ghi chú trên môi trường đã thống nhất, thao tác tìm kiếm hoàn tất trong không quá 0,5 giây
+B. Giao diện tìm kiếm phải dễ dùng
+C. Tìm kiếm phải nhanh
+D. Tìm kiếm phải hoạt động đầy đủ
+ANSWER: A
+
+Khi viết yêu cầu kiểm thử, nên tránh nhóm từ nào nếu chưa có cách đo hoặc định nghĩa chung?
+A. "Nhanh", "dễ dùng", "đầy đủ"
+B. "Lưu", "mở", "xóa"
+C. "Chrome", "Firefox", "Windows 10"
+D. "Tạo", "lọc", "tìm kiếm"
+ANSWER: A
+
+Ma trận truy xuất yêu cầu (RTM) dùng để làm gì?
+A. Thay thế cho Test Plan
+B. Theo dõi giờ làm việc của từng tester
+C. Lưu trữ mã nguồn của sản phẩm
+D. Liên kết yêu cầu với test case và kết quả thực thi
+ANSWER: D
+
+Chuỗi truy xuất nào đúng thứ tự theo bài học?
+A. Test case → PRD → yêu cầu kiểm thử → lỗi
+B. Yêu cầu kiểm thử → PRD → kết quả thực thi → test case
+C. Lỗi → test case → PRD → yêu cầu kiểm thử
+D. PRD → yêu cầu kiểm thử (TR) → test case (TC) → kết quả thực thi → lỗi/khuyến nghị
+ANSWER: D
+
+Khi gặp một yêu cầu mơ hồ hoặc mâu thuẫn, người kiểm thử nên làm gì?
+A. Tự chọn cách hiểu hợp lý nhất và kiểm thử ngay
+B. Bỏ qua yêu cầu đó
+C. Đặt câu hỏi cụ thể, thống nhất định nghĩa và ghi lại quyết định
+D. Đánh dấu yêu cầu là đã đạt
+ANSWER: C
+
+Một yêu cầu thay đổi sau khi đã có test case. Việc cần làm là gì?
+A. Giữ nguyên test case vì đã được duyệt
+B. Đánh giá tác động tới test case, dữ liệu, lịch trình và RTM; cập nhật phiên bản tài liệu
+C. Xóa toàn bộ test case cũ và viết lại từ đầu
+D. Chỉ báo cho lập trình viên
+ANSWER: B
+
+Thành phần nào KHÔNG cần thiết để một yêu cầu kiểm thử rõ ràng, có thể kiểm chứng?
+A. Tên lập trình viên viết tính năng đó
+B. Một hành vi hoặc đặc tính cụ thể
+C. Tiêu chí xác minh
+D. Mã định danh duy nhất
+ANSWER: A
+
+Nhờ RTM, nhóm có thể phát hiện vấn đề nào sau đây?
+A. Máy chủ bị quá tải
+B. Lập trình viên viết mã chậm
+C. Yêu cầu chưa có test case nào kiểm thử
+D. Người dùng không thích màu giao diện
+ANSWER: C
+
+Test case là gì?
+A. Báo cáo một lỗi đã phát hiện
+B. Bản tóm tắt kết quả kiểm thử của cả dự án
+C. Danh sách yêu cầu trong PRD
+D. Tập hợp thông tin mô tả mục tiêu, điều kiện, thao tác và kết quả mong đợi để xác minh một yêu cầu hoặc hành vi cụ thể
+ANSWER: D
+
+Trường "Requirement ID" trong test case dùng để làm gì?
+A. Ghi tên người thực thi test case
+B. Ghi phiên bản trình duyệt
+C. Liên kết test case với yêu cầu hoặc tiêu chí chấp nhận được kiểm tra
+D. Đánh số thứ tự các bước
+ANSWER: C
+
+Khi một test case không thể thực thi do trở ngại (ví dụ môi trường chưa sẵn sàng), trạng thái phù hợp là gì?
+A. Pass
+B. Fail
+C. Closed
+D. Blocked
+ANSWER: D
+
+Yêu cầu: tiêu đề công việc tối đa 200 ký tự. Test case nhập tiêu đề có đúng 200 ký tự thuộc loại nào?
+A. Trường hợp bình thường
+B. Trường hợp biên
+C. Trường hợp hiệu năng
+D. Trường hợp bảo mật
+ANSWER: B
+
+Test case để trống tiêu đề rồi nhấn "Thêm" thuộc loại nào?
+A. Trường hợp bình thường
+B. Trường hợp lỗi/không hợp lệ
+C. Trường hợp tương thích
+D. Trường hợp hồi quy
+ANSWER: B
+
+Với TC-002 (chặn tạo công việc khi tiêu đề rỗng), kết quả mong đợi nào phù hợp?
+A. Công việc không được tạo và thông báo phù hợp được hiển thị
+B. Công việc rỗng được tạo ở cuối danh sách
+C. Ứng dụng tự đóng
+D. Tiêu đề được tự điền là "Công việc mới"
+ANSWER: A
+
+Vì sao test case chỉ ghi "kiểm tra chức năng lọc hoạt động đúng" chưa đủ để thực thi?
+A. Vì thiếu mã định danh lỗi
+B. Vì quá ngắn so với quy định số chữ
+C. Vì thiếu dữ liệu, bước cụ thể và kết quả mong đợi quan sát được
+D. Vì chưa ghi tên người duyệt
+ANSWER: C
+
+Đặc điểm nào là của một test case tốt?
+A. Phụ thuộc vào kết quả của test case trước đó mà không ghi rõ
+B. Chỉ người viết mới thực thi được
+C. Gộp nhiều mục tiêu kiểm thử vào một test case
+D. Không phụ thuộc ngầm vào test case khác và dễ cập nhật
+ANSWER: D
+
+Sản phẩm bổ sung trạng thái công việc "đang xử lý". Nhóm kiểm thử cần làm gì?
+A. Rà soát test case lọc, dữ liệu kiểm thử và ma trận truy xuất liên quan
+B. Không cần làm gì vì test case cũ vẫn chạy được
+C. Chỉ cập nhật Test Report
+D. Xóa các test case về lọc
+ANSWER: A
+
+Kỹ thuật nào giúp chọn các giá trị tại và sát giới hạn cho phép để thiết kế test case?
+A. Phân tích giá trị biên
+B. Kiểm thử thăm dò
+C. Kiểm thử tải
+D. Rà soát mã nguồn
+ANSWER: A
+
+Test Report là tài liệu như thế nào?
+A. Tài liệu mô tả kiến trúc hệ thống
+B. Tài liệu tổng hợp trạng thái và kết quả kiểm thử tại một thời điểm hoặc trong một phạm vi phát hành
+C. Kế hoạch kiểm thử trước khi dự án bắt đầu
+D. Danh sách yêu cầu chức năng của sản phẩm
+ANSWER: B
+
+Đã thực thi 5 test case: 4 Pass, 1 Fail. Tỷ lệ Pass trên số test case đã thực thi là bao nhiêu?
+A. 20%
+B. 75%
+C. 80%
+D. 100%
+ANSWER: C
+
+Bộ kiểm thử có 10 test case: 6 Pass, 2 Fail, 2 Not Run. Tỷ lệ Pass tính trên số đã thực thi (Pass / (Pass + Fail)) là bao nhiêu?
+A. 75%
+B. 60%
+C. 80%
+D. 100%
+ANSWER: A
+
+Các test case Blocked hoặc Not Run nên được trình bày thế nào trong Test Report?
+A. Gộp vào số Pass để báo cáo đẹp hơn
+B. Tính là Fail
+C. Bỏ khỏi báo cáo
+D. Báo riêng, không gộp vào số đã thực thi
+ANSWER: D
+
+Vì sao 95% test case Pass chưa đủ để kết luận sản phẩm có thể phát hành?
+A. Vì tỷ lệ phải đạt 100%
+B. Vì một lỗi nghiêm trọng ở chức năng cốt lõi hoặc phạm vi chưa kiểm thử vẫn có thể là rủi ro phát hành
+C. Vì Test Report không được dùng để ra quyết định
+D. Vì cần thêm ít nhất 5% test case Blocked
+ANSWER: B
+
+Mục "Độ bao phủ" trong Test Report trình bày nội dung gì?
+A. Số giờ làm việc của nhóm
+B. Mã nguồn đã thay đổi
+C. Danh sách thiết bị đã mua
+D. Yêu cầu đã kiểm thử, chưa kiểm thử và tham chiếu ma trận truy xuất
+ANSWER: D
+
+Nguyên tắc "Minh bạch" khi báo cáo yêu cầu điều gì?
+A. Gửi báo cáo cho tất cả mọi người trong công ty
+B. Chỉ báo cáo các test case Pass
+C. Ẩn các lỗi chưa được xác nhận
+D. Nêu rõ phạm vi chưa kiểm thử, dữ liệu thiếu và giới hạn môi trường
+ANSWER: D
+
+Nguyên tắc "Chính xác" khi lập Test Report nghĩa là gì?
+A. Báo cáo càng dài càng tốt
+B. Làm tròn mọi tỷ lệ lên 100%
+C. Số liệu khớp với nguồn thực thi và lỗi không bị đếm lặp
+D. Chỉ dùng biểu đồ, không dùng số
+ANSWER: C
+
+Dữ liệu chưa cho biết lỗi lọc chậm đã được sửa hay chưa. Test Report nên ghi thế nào?
+A. Ghi trạng thái cần xác minh, không tự giả định lỗi đã được sửa
+B. Ghi lỗi đã được sửa
+C. Bỏ lỗi đó khỏi báo cáo
+D. Đổi lỗi thành mức thấp
+ANSWER: A
+
+Theo quy trình trong bài, bước đầu tiên khi lập Test Report là gì?
+A. Chốt phạm vi, phiên bản, môi trường và thời điểm báo cáo
+B. Viết khuyến nghị phát hành
+C. Gửi báo cáo cho quản lý
+D. Tính tỷ lệ Pass/Fail
+ANSWER: A
+
+Nút "Lưu" bị khuất trên màn hình điện thoại khiến người dùng không hoàn tất thao tác. Lỗi này thuộc nhóm nào?
+A. Lỗi giao diện và trải nghiệm người dùng (UI/UX)
+B. Lỗi hiệu năng
+C. Lỗi bảo mật
+D. Lỗi tích hợp
+ANSWER: A
+
+Chọn bộ lọc "Hoàn thành" nhưng danh sách vẫn hiển thị công việc chưa hoàn thành. Đây là nhóm lỗi nào?
+A. Lỗi UI/UX
+B. Lỗi tích hợp
+C. Lỗi hiệu năng
+D. Lỗi chức năng
+ANSWER: D
+
+Trường tiêu đề rỗng vẫn được hệ thống chấp nhận dù yêu cầu bắt buộc phải nhập. Lỗi này thuộc nhóm nào?
+A. Lỗi hiệu năng và tải
+B. Lỗi xác thực và dữ liệu đầu vào
+C. Lỗi tích hợp/hệ thống
+D. Lỗi căn chỉnh giao diện
+ANSWER: B
+
+RAM và CPU tăng dần trong quá trình sử dụng khiến ứng dụng chậm rồi treo. Hiện tượng này thường được gọi là gì?
+A. Lỗi chính tả
+B. Rò rỉ bộ nhớ, thuộc nhóm lỗi hiệu năng
+C. Lỗi phân quyền
+D. Lỗi responsive
+ANSWER: B
+
+API trả về dữ liệu JSON sai cấu trúc khiến giao diện không hiển thị được. Lỗi này thuộc nhóm nào?
+A. Lỗi UI/UX
+B. Lỗi xác thực đầu vào
+C. Lỗi tích hợp/hệ thống
+D. Lỗi tính toán
+ANSWER: C
+
+Ứng dụng làm lộ token đăng nhập của người dùng trong phản hồi. Đây là nhóm lỗi nào?
+A. Lỗi responsive
+B. Lỗi hiệu năng
+C. Lỗi bảo mật
+D. Lỗi tính toán
+ANSWER: C
+
+Giao diện báo "lưu thành công" nhưng dữ liệu không có trong cơ sở dữ liệu. Cách tiếp cận phù hợp là gì?
+A. Kết luận ngay đây là lỗi giao diện
+B. Chỉ chụp màn hình thông báo thành công
+C. Đóng lỗi vì không tái hiện được trên máy lập trình viên
+D. Thu thập thông tin ở từng ranh giới giao diện, API và cơ sở dữ liệu để khoanh vùng
+ANSWER: D
+
+Nhận định nào đúng về quan hệ giữa loại lỗi và mức độ nghiêm trọng?
+A. Phân loại loại lỗi không đồng nghĩa với đánh giá mức độ nghiêm trọng hay độ ưu tiên
+B. Lỗi UI luôn có mức độ thấp
+C. Lỗi chức năng luôn có độ ưu tiên cao nhất
+D. Mỗi loại lỗi có một mức độ nghiêm trọng cố định
+ANSWER: A
+
+Theo bài học, kiểm thử bảo mật chỉ nên thực hiện trong điều kiện nào?
+A. Trên hệ thống thật của bất kỳ đơn vị nào để có kết quả chính xác
+B. Bất cứ khi nào phát hiện ô nhập liệu
+C. Khi giảng viên vắng mặt
+D. Trong môi trường và phạm vi được cho phép
+ANSWER: D
+
+Khi báo cáo lỗi hiệu năng như lọc 10.000 ghi chú quá lâu, cần ghi rõ những thông tin nào?
+A. Quy mô dữ liệu, môi trường, số lần đo và ngưỡng đánh giá
+B. Chỉ cần ghi "ứng dụng chậm"
+C. Tên lập trình viên phụ trách tính năng
+D. Ảnh chụp màn hình trang chủ
+ANSWER: A
+
+Biểu mẫu nào cho biết yêu cầu nào đã được bao phủ bởi test case và kết quả nào đã được ghi nhận?
+A. Bug Report
+B. Test Plan
+C. Ma trận truy xuất yêu cầu (RTM)
+D. Biên bản họp nhóm
+ANSWER: C
+
+Biểu mẫu nào ghi lại ai đã kiểm thử, trên build/môi trường nào và kết quả của một lần chạy cụ thể?
+A. Test Requirements
+B. Nhật ký thực thi (Test Execution Log)
+C. Test Plan
+D. Test Report
+ANSWER: B
+
+Khi một test case có kết quả Fail, biểu mẫu nào cần được tạo tiếp theo?
+A. Test Plan mới
+B. Biên bản phê duyệt phát hành
+C. Danh sách yêu cầu kiểm thử mới
+D. Bug Report
+ANSWER: D
+
+Luồng sử dụng biểu mẫu nào đúng theo bài học?
+A. Test Report → Test Case → Test Plan → Bug Report
+B. Bug Report → Test Plan → RTM → Test Requirements
+C. Test Plan → Test Requirements → RTM → Test Case → Execution Log → Bug Report (khi Fail) → Test Report
+D. Test Case → Test Plan → Test Report → Test Requirements
+ANSWER: C
+
+Biểu mẫu Test Report dùng công thức nào để tính tỷ lệ Pass trên số đã thực thi?
+A. Pass / (Pass + Fail) x 100%
+B. Pass / Tổng test case x 100%
+C. (Pass + Blocked) / Tổng test case x 100%
+D. Fail / Pass x 100%
+ANSWER: A
+
+Trường "Severity/Priority" xuất hiện trong biểu mẫu nào?
+A. Danh sách yêu cầu kiểm thử
+B. Test Plan
+C. Test Execution Log
+D. Bug Report
+ANSWER: D
+
+Một yêu cầu kiểm thử chưa có test case nào. Biểu mẫu nào sẽ thể hiện điều này và cần được cập nhật sau khi bổ sung test case?
+A. Ma trận truy xuất yêu cầu (RTM)
+B. Bug Report
+C. Biên bản họp
+D. Trang bìa báo cáo
+ANSWER: A
+
+Khi nộp sản phẩm, các trường bắt buộc trong biểu mẫu phải ở trạng thái nào?
+A. Có thể giữ nguyên placeholder như [Tên] để giảng viên tự điền
+B. Để trống nếu chưa chắc chắn
+C. Đã được điền thông tin thật, không để ở dạng placeholder
+D. Ghi "xem phụ lục" cho mọi trường
+ANSWER: C
+
+TR-002 được bao phủ bởi TC-004; lần chạy trên build 1.0 cho kết quả Fail và tạo BUG-007. Việc cần làm tiếp theo là gì?
+A. Xóa TC-004 khỏi bộ kiểm thử
+B. Ghi liên kết BUG-007 vào RTM và tóm tắt trạng thái cùng khuyến nghị kiểm thử lại trong Test Report
+C. Đánh dấu TR-002 là đã đạt
+D. Chờ phiên bản sau mới ghi nhận
+ANSWER: B
+
+Khi ghi kết quả thực thi, nhóm cần phân biệt những trạng thái nào?
+A. Mới, Cũ, Đã xem
+B. Pass, Fail, Blocked, Not Run
+C. Cao, Trung bình, Thấp
+D. Open, Closed
+ANSWER: B
+
+Báo cáo cuối kỳ học phần Kiểm thử phần mềm được thực hiện theo nhóm bao nhiêu sinh viên?
+A. 2–3 sinh viên
+B. Làm cá nhân
+C. 6–8 sinh viên
+D. 4–5 sinh viên
+ANSWER: D
+
+Báo cáo viết cuối kỳ có yêu cầu nào về định dạng và độ dài?
+A. File PDF, 10–15 trang nội dung, không tính trang bìa, mục lục và phụ lục
+B. File Word, tối thiểu 30 trang
+C. File PDF, đúng 5 trang
+D. File PowerPoint, 20 slide
+ANSWER: A
+
+Phần báo cáo cuối kỳ chiếm bao nhiêu phần trăm điểm học phần theo quy định?
+A. 30% (báo cáo viết 20%, thuyết trình 10%)
+B. 40% (báo cáo viết 30%, thuyết trình 10%)
+C. 50% (báo cáo viết 40%, thuyết trình 10%)
+D. 100%
+ANSWER: B
+
+Nhóm phải thiết kế tối thiểu bao nhiêu test case cho các tính năng chính?
+A. 15
+B. 10
+C. 5
+D. 30
+ANSWER: A
+
+Yêu cầu tối thiểu về lỗi cần mô tả trong phần thực thi kiểm thử là gì?
+A. 1 lỗi bất kỳ
+B. 5 lỗi mức Critical
+C. 3 lỗi: 1 lỗi nghiêm trọng (Critical/High) và 2 lỗi không nghiêm trọng (Medium/Low)
+D. Không bắt buộc mô tả lỗi
+ANSWER: C
+
+Tên file PDF báo cáo nào đúng quy định?
+A. BaoCao_CuoiKy.pdf
+B. [MSSV]_Testing.pdf
+C. Final_Report_[Ngày_nộp].pdf
+D. [Tên_Nhóm]_Final_Report_Software_Testing.pdf
+ANSWER: D
+
+Nhóm phải họp ít nhất bao nhiêu lần và lưu biên bản đưa vào phụ lục?
+A. 1 lần
+B. 2 lần
+C. 6 lần
+D. 3 lần
+ANSWER: D
+
+Yêu cầu về phần thuyết trình là gì?
+A. 30 slide, 45 phút, chỉ trưởng nhóm trình bày
+B. 10–12 slide, thời lượng 10–15 phút bao gồm hỏi đáp, tất cả thành viên tham gia
+C. Không cần slide, chỉ trình bày miệng
+D. 5 slide, 5 phút, không có hỏi đáp
+ANSWER: B
+
+Nếu nhóm thực hiện kiểm thử mô phỏng thay vì đo trên sản phẩm thật, báo cáo phải trình bày thế nào?
+A. Trình bày như kết quả đo thật để báo cáo thuyết phục hơn
+B. Không đưa kết quả mô phỏng vào báo cáo
+C. Nêu rõ đây là kết quả giả định theo yêu cầu bài tập
+D. Chỉ ghi chú trong phần phụ lục
+ANSWER: C
+
+Theo tài liệu quy định, nộp báo cáo trễ hạn bị xử lý thế nào?
+A. Trừ 10% điểm cho mỗi ngày trễ
+B. Không bị trừ điểm
+C. Bị 0 điểm ngay lập tức
+D. Trừ 1 điểm cho cả bài
+ANSWER: A

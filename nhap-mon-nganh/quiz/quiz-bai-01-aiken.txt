@@ -7,10 +7,10 @@ ANSWER: B
 
 Triết lý hành động cốt lõi của Khoa Công nghệ Thông tin - Đại học Lạc Hồng là gì?
 A. Tiên phong – Hội nhập – Đột phá
-B. Đạo đức – Trí tuệ – Sáng tạo
-C. Chuyên nghiệp – Kỷ luật – Thực chiến
+B. Chuyên nghiệp – Kỷ luật – Thực chiến
+C. Đạo đức – Trí tuệ – Sáng tạo
 D. Công nghệ – Tương lai – Phát triển
-ANSWER: B
+ANSWER: C
 
 Văn phòng Khoa Công nghệ Thông tin - Đại học Lạc Hồng hiện đặt tại vị trí nào?
 A. Phòng A101, Cơ sở 1, Số 10 Huỳnh Văn Nghệ, Biên Hòa, Đồng Nai
@@ -20,51 +20,50 @@ D. Tầng 4, Tòa nhà Trung tâm Khởi nghiệp LHU
 ANSWER: B
 
 Chương trình đào tạo ngành Công nghệ Thông tin của Đại học Lạc Hồng đạt chuẩn kiểm định quốc tế uy tín nào của Hoa Kỳ?
-A. AUN-QA
-B. ABET
-C. AACSB
+A. AACSB
+B. AUN-QA
+C. ABET
 D. ISO 9001
-ANSWER: B
+ANSWER: C
 
 Trong chiến lược phát triển chương trình chuẩn quốc tế, Khoa CNTT - LHU hợp tác toàn diện với trường đại học hàng đầu nào của Hoa Kỳ?
-A. Arizona State University (ASU)
-B. Stanford University
+A. Stanford University
+B. Massachusetts Institute of Technology (MIT)
 C. Harvard University
-D. Massachusetts Institute of Technology (MIT)
-ANSWER: A
+D. Arizona State University (ASU)
+ANSWER: D
 
 Mã tuyển sinh chính thức của ngành Công nghệ Thông tin tại Trường Đại học Lạc Hồng là gì?
 A. 7480101
-B. 7480201
-C. 7480202
-D. 7480104
-ANSWER: B
+B. 7480202
+C. 7480104
+D. 7480201
+ANSWER: D
 
 Mã trường chính thức của Trường Đại học Lạc Hồng trong cổng tuyển sinh quốc gia là gì?
 A. DDL
-B. DLH
-C. LHU
+B. LHU
+C. DLH
 D. DNT
-ANSWER: B
+ANSWER: C
 
 Tỷ lệ sinh viên tốt nghiệp ngành Công nghệ Thông tin tại Đại học Lạc Hồng có việc làm theo công bố chính thức là bao nhiêu?
-A. 85%
+A. 100%
 B. 90%
 C. 95%
-D. 100%
-ANSWER: D
-
-Sinh viên Khoa CNTT - LHU có thể tìm kiếm sự hỗ trợ trực tiếp về học vụ và thủ tục sinh viên ở đâu?
-A. Cố vấn học tập và Văn phòng Khoa (Phòng B301-B302 Cơ sở 1)
-B. Phòng Bảo vệ cơ sở
-C. Canteen trường
-D. Văn phòng Đoàn phường
+D. 85%
 ANSWER: A
 
-Hệ thống quản lý học tập trực tuyến (LMS) chính thức của Đại học Lạc Hồng có địa chỉ truy cập là gì?
-A. moodle.org
-B. learn.lhu.edu.vn
-C. elearning.edu.vn
-D. online.lhu.vn
+Sinh viên Khoa CNTT - LHU có thể tìm kiếm sự hỗ trợ trực tiếp về học vụ và thủ tục sinh viên ở đâu?
+A. Văn phòng Đoàn phường
+B. Cố vấn học tập và Văn phòng Khoa (Phòng B301-B302 Cơ sở 1)
+C. Canteen trường
+D. Phòng Bảo vệ cơ sở
 ANSWER: B
 
+Hệ thống quản lý học tập trực tuyến (LMS) chính thức của Đại học Lạc Hồng có địa chỉ truy cập là gì?
+A. learn.lhu.edu.vn
+B. elearning.edu.vn
+C. moodle.org
+D. online.lhu.vn
+ANSWER: A

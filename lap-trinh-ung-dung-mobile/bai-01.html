@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 01 - Tổng quan phát triển ứng dụng di động & khởi động dự án | Khoa CNTT - Đại học Lạc Hồng</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome 6.4.0 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            asu: {
+              maroon: '#8C1D40',
+              gold: '#FFC627',
+              dark: '#5C142B',
+              light: '#FAEDF0'
+            },
+            lhu: {
+              blue: '#013D88',
+              sky: '#007BFF',
+              dark: '#01295C',
+              light: '#EEF5FC'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    @media print {
+      header, footer, .no-print {
+        display: none !important;
+      }
+      details {
+        break-inside: avoid;
+        margin-bottom: 20px;
+      }
+      details[open] summary {
+        border-bottom: 1px solid #ccc;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-slate-100 text-slate-800 font-sans antialiased selection:bg-asu-gold selection:text-slate-900 min-h-screen flex flex-col">
+
+  <!-- TOP BAR -->
+  <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800 no-print">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+      <div class="flex items-center gap-2">
+        <span class="text-asu-gold font-semibold"><i class="fa-solid fa-certificate mr-1"></i> CHUẨN KIỂM ĐỊNH ABET (USA)</span>
+        <span class="text-slate-600 hidden sm:inline">•</span>
+        <span class="hidden sm:inline">Đối tác chiến lược: <strong>Arizona State University (ASU)</strong></span>
+      </div>
+      <div class="flex items-center gap-4 text-xs font-mono">
+        <span>Mã học phần: <strong class="text-white">111114</strong></span>
+        <span>Số tín chỉ: <strong class="text-asu-gold">3</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="sticky top-0 z-40 bg-white shadow-sm border-b border-slate-200 no-print">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="index.html" class="flex items-center gap-2.5 text-slate-800 hover:text-lhu-blue transition-colors">
+          <img src="../nhap-mon-nganh/LHU_ASU_VI_Small_Ngang.png" alt="Logo LHU" class="h-8 w-auto">
+          <div class="border-l border-slate-300 pl-2.5">
+            <div class="text-[11px] font-bold text-slate-500 uppercase">Khoa CNTT - LHU</div>
+            <div class="text-xs font-extrabold text-lhu-blue">LẬP TRÌNH DI ĐỘNG (111114)</div>
+          </div>
+        </a>
+      </div>
+
+      <div class="flex items-center gap-3 text-xs">
+        <a href="index.html" class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-arrow-left"></i>
+          <span>Về Landing Page</span>
+        </a>
+        <button onclick="window.print()" class="hidden sm:flex px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-all items-center gap-1.5" title="In hoặc lưu file PDF">
+          <i class="fa-solid fa-print"></i>
+          <span>In Đề Cương</span>
+        </button>
+        <a href="https://learn.lhu.edu.vn" target="_blank" class="px-4 py-2 bg-lhu-blue hover:bg-lhu-dark text-white font-bold rounded-xl shadow transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-graduation-cap text-asu-gold"></i>
+          <span>Vào lớp LMS</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="flex-grow max-w-5xl w-full mx-auto px-4 sm:px-6 py-8">
+    
+    <!-- Title Card -->
+    <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 mb-8">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-5">
+        <div>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 text-lhu-blue font-bold text-xs uppercase tracking-wider mb-2">
+            <i class="fa-solid fa-book-open"></i> ĐẠI HỌC LẠC HỒNG • KHOA CÔNG NGHỆ THÔNG TIN
+          </span>
+          <h1 class="text-2xl sm:text-3xl font-black text-slate-900 leading-tight">
+            Bài 01 - Tổng quan phát triển ứng dụng di động & khởi động dự án
+          </h1>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1 font-mono">
+            Học phần: Lập trình ứng dụng di động • Mã môn: 111114 • PBL · Vibe Coding
+          </p>
+        </div>
+
+        <div class="flex-shrink-0 flex sm:flex-col items-center sm:items-end justify-between gap-1 text-xs">
+          <span class="px-3 py-1.5 bg-emerald-50 text-emerald-700 font-bold rounded-lg border border-emerald-200">
+            <i class="fa-solid fa-check-circle mr-1"></i> Lưu hành nội bộ 2026
+          </span>
+          <span class="text-slate-400 text-[11px]">Định dạng LMS Accordion</span>
+        </div>
+      </div>
+
+      <!-- Quick Action Controls for Accordions -->
+      <div class="flex items-center justify-between pt-4 text-xs no-print">
+        <span class="text-slate-500">
+          <i class="fa-solid fa-circle-info text-blue-500 mr-1"></i>
+          Nhấp vào từng thanh tiêu đề để đóng/mở nội dung chi tiết.
+        </span>
+        <div class="flex items-center gap-2">
+          <button onclick="toggleAllDetails(true)" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg transition-colors">
+            Mở tất cả
+          </button>
+          <button onclick="toggleAllDetails(false)" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg transition-colors">
+            Thu gọn
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Accordion Blocks -->
+    <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200">
+      <details open="" style="border: 1px solid #007bff; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #e7f1ff; color: #007bff; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>📘 1. Tổng quan bài học</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <p><strong>BÀI 01 - Tổng quan phát triển ứng dụng di động &amp; khởi động dự án (5 tiết: 2 LT / 3 TH)</strong></p>
+        <p><em>Bạn đã viết được web app bằng React. Vậy cần học thêm gì để cùng một nhóm kỹ năng đó chạy được trên điện thoại Android, và làm sao để AI giúp bạn nhanh hơn mà không làm bạn mất kiểm soát mã nguồn?</em></p>
+        <p><strong>Mục tiêu:</strong> So sánh được các hướng phát triển ứng dụng di động; giải thích được kiến trúc React Native và vai trò của Expo; thiết lập được môi trường, quy trình vibe coding và bảng phân vai của nhóm dự án.</p>
+        <p><strong>Nội dung:</strong></p>
+        <ul>
+            <li><strong>Ý chính 1 - Ba hướng phát triển:</strong> Native, cross-platform và PWA; vì sao chọn React Native khi đã biết React.</li>
+            <li><strong>Ý chính 2 - Kiến trúc React Native &amp; Expo:</strong> Mã JavaScript điều khiển component native; Expo Go, development build và EAS.</li>
+            <li><strong>Ý chính 3 - Từ React web sang React Native:</strong> <code>View</code>/<code>Text</code> thay cho thẻ HTML, <code>StyleSheet</code> thay cho file CSS, <code>onPress</code> thay cho <code>onClick</code>.</li>
+            <li><strong>Ý chính 4 - Vibe coding có kiểm soát:</strong> <code>AGENTS.md</code>, prompt có ngữ cảnh, review mã AI sinh ra, ghi <code>PROMPTS.md</code>.</li>
+        </ul>
+        <p><strong>Kết quả cần đạt:</strong> Sinh viên chạy được ứng dụng Expo đầu tiên trên điện thoại Android, đẩy mã lên GitHub; nhóm có Project Brief, bảng phân vai và repo chung.</p>
+        <p style="margin-bottom: 0;"><strong>CLO liên quan:</strong> CLO1, CLO4.</p>
+    </div>
+</details>
+
+<details style="border: 1px solid #fd7e14; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #fff5eb; color: #fd7e14; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>📚 2. Học liệu chính</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.1. Ba hướng phát triển ứng dụng di động</h3>
+            <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+                <thead><tr style="background-color: #fff5eb;"><th style="padding: 8px; border: 1px solid #ffd6ad; text-align: left;">Hướng</th><th style="padding: 8px; border: 1px solid #ffd6ad; text-align: left;">Cách làm</th><th style="padding: 8px; border: 1px solid #ffd6ad; text-align: left;">Ưu điểm</th><th style="padding: 8px; border: 1px solid #ffd6ad; text-align: left;">Hạn chế</th></tr></thead>
+                <tbody>
+                    <tr><td style="padding: 8px; border: 1px solid #ffd6ad;"><strong>Native</strong></td><td style="padding: 8px; border: 1px solid #ffd6ad;">Kotlin cho Android, Swift cho iOS</td><td style="padding: 8px; border: 1px solid #ffd6ad;">Truy cập đầy đủ API thiết bị, hiệu năng tốt nhất</td><td style="padding: 8px; border: 1px solid #ffd6ad;">Hai mã nguồn, hai đội phát triển</td></tr>
+                    <tr><td style="padding: 8px; border: 1px solid #ffd6ad;"><strong>Cross-platform</strong></td><td style="padding: 8px; border: 1px solid #ffd6ad;">React Native, Flutter: một mã nguồn cho nhiều nền tảng</td><td style="padding: 8px; border: 1px solid #ffd6ad;">Viết một lần, chạy Android và iOS; giao diện là component native</td><td style="padding: 8px; border: 1px solid #ffd6ad;">Một số tính năng đặc thù cần thư viện native</td></tr>
+                    <tr><td style="padding: 8px; border: 1px solid #ffd6ad;"><strong>PWA</strong></td><td style="padding: 8px; border: 1px solid #ffd6ad;">Web app cài được lên màn hình chính</td><td style="padding: 8px; border: 1px solid #ffd6ad;">Dùng lại hoàn toàn kỹ năng web</td><td style="padding: 8px; border: 1px solid #ffd6ad;">Truy cập thiết bị hạn chế, trải nghiệm kém "native" hơn</td></tr>
+                </tbody>
+            </table>
+            <p style="margin-bottom: 0;"><strong>Vì sao chọn React Native?</strong> Bạn đã quen React: component, props, state, hook. React Native giữ nguyên cách tư duy đó, chỉ thay "đích hiển thị" từ trình duyệt sang giao diện native của điện thoại.</p>
+        </div>
+
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.2. React Native hoạt động thế nào? Expo giúp gì?</h3>
+            <ul>
+                <li><strong>React Native:</strong> mã JavaScript/TypeScript của bạn mô tả giao diện bằng component; React Native chuyển chúng thành <strong>view native</strong> của Android/iOS. Một <code>&lt;Text&gt;</code> trên Android là một <code>TextView</code> thật, không phải một trang web.</li>
+                <li><strong>New Architecture:</strong> các phiên bản React Native hiện nay dùng kiến trúc mới (JSI, Fabric, TurboModules), cho phép JavaScript gọi mã native trực tiếp và nhanh hơn.</li>
+                <li><strong>Expo:</strong> bộ công cụ và thư viện xây trên React Native, được tài liệu chính thức của React Native khuyến nghị để bắt đầu dự án mới.
+                    <ul>
+                        <li><strong>Expo Go:</strong> ứng dụng trên điện thoại để chạy thử dự án ngay, không cần build.</li>
+                        <li><strong>Development build:</strong> bản app riêng của bạn, dùng khi cần thư viện native mà Expo Go không có.</li>
+                        <li><strong>EAS (Build/Update):</strong> dịch vụ build file cài đặt (APK/AAB) và cập nhật ứng dụng qua mạng.</li>
+                    </ul>
+                </li>
+            </ul>
+            <p style="margin-bottom: 0;"><strong>💡 Trong học phần:</strong> Android là nền tảng <strong>bắt buộc</strong>; iOS là phần mở rộng. Mỗi sinh viên tự đăng ký <strong>tài khoản Expo miễn phí</strong>. Gói miễn phí giới hạn số lượt build, nên khi phát triển hãy dùng Expo Go, chỉ build APK khi cần nộp.</p>
+        </div>
+
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.3. Từ React web sang React Native</h3>
+            <table style="width: 100%; border-collapse: collapse; font-size: 14px; margin-bottom: 10px;">
+                <thead><tr style="background-color: #fff5eb;"><th style="padding: 8px; border: 1px solid #ffd6ad; text-align: left;">React web</th><th style="padding: 8px; border: 1px solid #ffd6ad; text-align: left;">React Native</th><th style="padding: 8px; border: 1px solid #ffd6ad; text-align: left;">Ghi chú</th></tr></thead>
+                <tbody>
+                    <tr><td style="padding: 8px; border: 1px solid #ffd6ad;"><code>&lt;div&gt;</code></td><td style="padding: 8px; border: 1px solid #ffd6ad;"><code>&lt;View&gt;</code></td><td style="padding: 8px; border: 1px solid #ffd6ad;">Khung chứa, mặc định xếp theo cột</td></tr>
+                    <tr><td style="padding: 8px; border: 1px solid #ffd6ad;"><code>&lt;p&gt;</code>, <code>&lt;span&gt;</code></td><td style="padding: 8px; border: 1px solid #ffd6ad;"><code>&lt;Text&gt;</code></td><td style="padding: 8px; border: 1px solid #ffd6ad;">Mọi chữ <strong>bắt buộc</strong> nằm trong <code>&lt;Text&gt;</code></td></tr>
+                    <tr><td style="padding: 8px; border: 1px solid #ffd6ad;"><code>&lt;img&gt;</code></td><td style="padding: 8px; border: 1px solid #ffd6ad;"><code>&lt;Image&gt;</code></td><td style="padding: 8px; border: 1px solid #ffd6ad;">Ảnh từ mạng cần khai báo kích thước</td></tr>
+                    <tr><td style="padding: 8px; border: 1px solid #ffd6ad;"><code>&lt;button onClick&gt;</code></td><td style="padding: 8px; border: 1px solid #ffd6ad;"><code>&lt;Pressable onPress&gt;</code></td><td style="padding: 8px; border: 1px solid #ffd6ad;">Sự kiện chạm thay cho click chuột</td></tr>
+                    <tr><td style="padding: 8px; border: 1px solid #ffd6ad;">File CSS, <code>className</code></td><td style="padding: 8px; border: 1px solid #ffd6ad;"><code>StyleSheet.create</code>, <code>style</code></td><td style="padding: 8px; border: 1px solid #ffd6ad;">Viết bằng JavaScript, tên thuộc tính dạng camelCase, không kế thừa như CSS</td></tr>
+                </tbody>
+            </table>
+            <p style="margin: 0 0 6px 0;"><strong>💡 Ví dụ:</strong> thẻ món ăn của LHU Food.</p>
+<pre style="background-color: #1e293b; color: #e2e8f0; padding: 12px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5;"><code>import { View, Text, Pressable, StyleSheet } from 'react-native';
+
+export function ProductCard({ name, price, onAdd }) {
+  return (
+    &lt;View style={styles.card}&gt;
+      &lt;Text style={styles.name}&gt;{name}&lt;/Text&gt;
+      &lt;Text&gt;{price.toLocaleString('vi-VN')} đ&lt;/Text&gt;
+      &lt;Pressable style={styles.button} onPress={onAdd}&gt;
+        &lt;Text style={styles.buttonText}&gt;Thêm vào giỏ&lt;/Text&gt;
+      &lt;/Pressable&gt;
+    &lt;/View&gt;
+  );
+}
+
+const styles = StyleSheet.create({
+  card: { padding: 16, borderRadius: 12, backgroundColor: '#fff' },
+  name: { fontSize: 18, fontWeight: 'bold' },
+  button: { marginTop: 8, padding: 10, borderRadius: 8, backgroundColor: '#013D88' },
+  buttonText: { color: '#fff', textAlign: 'center' },
+});</code></pre>
+            <p style="margin-bottom: 0;">Hãy để ý: cách viết component, props và hàm xử lý giống hệt React web. Thứ thay đổi chỉ là tên component và cách viết style.</p>
+        </div>
+
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.4. Vibe coding có kiểm soát</h3>
+            <p><strong>Vibe coding</strong> là cách lập trình trong đó bạn mô tả điều mình muốn bằng ngôn ngữ tự nhiên và để AI (Google Antigravity, GitHub Copilot Chat) sinh mã. AI viết nhanh, nhưng <strong>người chịu trách nhiệm về mã vẫn là bạn</strong>.</p>
+            <ol>
+                <li><strong>Cho AI ngữ cảnh:</strong> file <code>AGENTS.md</code> (và <code>.github/copilot-instructions.md</code> cho Copilot) mô tả dự án, thư viện được dùng, quy ước đặt tên.</li>
+                <li><strong>Prompt cụ thể:</strong> nêu màn hình nào, dữ liệu gì, tiêu chí hoàn thành ra sao.</li>
+                <li><strong>Đọc và chạy thử</strong> mã AI sinh ra; sửa chỗ sai thay vì chấp nhận nguyên văn.</li>
+                <li><strong>Ghi lại prompt</strong> chính vào <code>PROMPTS.md</code> kèm nhận xét: mã dùng được tới đâu, phải sửa gì.</li>
+                <li><strong>Không hiểu thì không merge:</strong> trước khi gộp vào nhánh chính, bạn phải giải thích được từng dòng.</li>
+            </ol>
+            <p style="margin: 0 0 6px 0;"><strong>💡 Ví dụ <code>AGENTS.md</code> rút gọn:</strong></p>
+<pre style="background-color: #1e293b; color: #e2e8f0; padding: 12px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5;"><code># LHU Food - Quy ước dự án
+- Ứng dụng React Native + Expo, TypeScript, điều hướng bằng Expo Router (thư mục app/).
+- Component dùng chung đặt trong components/, mỗi file một component, tên PascalCase.
+- Style dùng StyleSheet.create; màu và khoảng cách lấy từ constants/theme.ts.
+- Không thêm thư viện mới khi chưa hỏi nhóm.
+- Chuỗi hiển thị bằng tiếng Việt có dấu.</code></pre>
+        </div>
+
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.5. Dự án PBL và phân vai trong nhóm</h3>
+            <p>Mỗi nhóm 4–5 sinh viên phát triển một ứng dụng suốt 4 sprint. Khuyến khích chọn cùng đề tài với môn Lập trình ứng dụng Web để dùng chung backend NestJS + SQL Server.</p>
+            <ul>
+                <li><strong>Project Brief (1 trang):</strong> vấn đề cần giải quyết, người dùng, 5–7 tính năng chính, tính năng nào cần realtime.</li>
+                <li><strong>Vai trò gợi ý:</strong> mobile UI, mobile logic, backend API, CSDL và stored procedure, kiểm thử và phát hành. Mỗi người có ít nhất một vai chính; nhóm 4 người thì một người kiêm hai vai.</li>
+            </ul>
+            <p style="margin-bottom: 0;"><strong>💡 Vì sao phân vai rõ từ buổi đầu?</strong> Điểm CLO4 cuối kỳ chấm theo vai trò cá nhân, dựa trên lịch sử commit/PR và phần bạn tự trình bày. Vai trò mơ hồ thì minh chứng cũng mơ hồ.</p>
+        </div>
+
+        <div style="margin-top: 16px;">
+            <p style="margin: 0 0 8px 0; color: #fd7e14; font-weight: bold;">📄 Slide &amp; video bài giảng</p>
+            <a href="{{LINK_SLIDE_BAI_01}}" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
+                <span style="color: #fd7e14; font-weight: bold;">📄 Slide Bài 01: Tổng quan phát triển ứng dụng di động</span>
+            </a>
+            <a class="nomediaplugin" href="{{LINK_VIDEO_BAI_01}}" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
+                <span style="color: #fd7e14; font-weight: bold;">▶ Video 01: Cài đặt môi trường và chạy ứng dụng Expo đầu tiên</span>
+            </a>
+        </div>
+        <div style="margin-top: 16px;">
+            <p style="margin: 0 0 8px 0; color: #fd7e14; font-weight: bold;">📖 Tài liệu đọc thêm (chính thức)</p>
+            <a href="https://reactnative.dev/docs/getting-started" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
+                <span style="color: #fd7e14; font-weight: bold;">🔗 React Native - Introduction</span><br>
+                <span style="color: #6c757d; font-size: 13px;">Core components và cách React Native hiển thị giao diện native.</span>
+            </a>
+            <a href="https://docs.expo.dev/get-started/introduction/" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
+                <span style="color: #fd7e14; font-weight: bold;">🔗 Expo - Get started</span><br>
+                <span style="color: #6c757d; font-size: 13px;">Tạo dự án, chạy trên Expo Go và emulator Android.</span>
+            </a>
+        </div>
+    </div>
+</details>
+
+<details style="border: 1px solid #28a745; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #eafaf1; color: #28a745; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>💡 3. Hoạt động &amp; Thực hành trên lớp</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <div style="max-width: 760px; padding: 10px 12px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <p style="margin: 0 0 6px 0;"><strong style="color: #28a745;">🧑‍🏫 Thực hành có hướng dẫn (1,5 tiết): Khởi tạo LHU Food</strong></p>
+            <ol style="margin: 0 0 8px 0; color: #495057;">
+                <li>Kiểm tra Node.js bản LTS: <code>node -v</code>. Cài Expo Go trên điện thoại Android.</li>
+                <li>Đăng ký tài khoản Expo miễn phí tại expo.dev.</li>
+                <li>Tạo dự án: <code>npx create-expo-app@latest lhu-food</code>, sau đó <code>cd lhu-food</code>.</li>
+                <li>Chạy: <code>npx expo start</code>, quét mã QR bằng Expo Go (điện thoại và laptop cùng mạng Wi-Fi).</li>
+                <li>Đọc cấu trúc thư mục: <code>app/</code> (màn hình), <code>components/</code>, <code>assets/</code>, <code>app.json</code>, <code>package.json</code>.</li>
+                <li>Sửa nội dung màn hình đầu tiên, lưu file và quan sát app cập nhật ngay (Fast Refresh).</li>
+                <li>Dùng Antigravity hoặc Copilot Chat viết <code>AGENTS.md</code> từ mô tả dự án; tạo repo GitHub và commit đầu tiên.</li>
+            </ol>
+        </div>
+        <div style="max-width: 760px; padding: 10px 12px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <p style="margin: 0 0 6px 0;"><strong style="color: #28a745;">✍️ Thực hành không hướng dẫn (1 tiết): Thẻ giới thiệu bản thân</strong></p>
+            <p style="margin: 0 0 6px 0; color: #495057;">Tự tạo một ứng dụng Expo hiển thị thẻ giới thiệu bản thân: ảnh đại diện, họ tên, lớp, 3 kỹ năng, nút "Liên hệ" (bấm vào hiện thông báo bằng <code>Alert</code>).</p>
+            <p style="margin: 0 0 8px 0; color: #495057;"><strong>Hoàn thành khi:</strong> chạy được trên điện thoại Android; mã đẩy lên repo GitHub cá nhân; có <code>PROMPTS.md</code> ghi ít nhất 1 prompt đã dùng và nhận xét của bạn.</p>
+            <a href="{{LINK_NOP_BAI_01}}" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 6px 12px; background-color: #eafaf1; color: #28a745; border: 1px solid #28a745; border-radius: 6px; text-decoration: none; font-weight: bold;">Nộp link repo</a>
+        </div>
+        <div style="max-width: 760px; padding: 10px 12px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <p style="margin: 0 0 6px 0;"><strong style="color: #28a745;">👥 Thử thách nhóm (0,5 tiết + ở nhà): Khởi động dự án</strong></p>
+            <ul style="margin: 0; color: #495057;">
+                <li>Lập nhóm 4–5 người, chọn đề tài (khuyến khích dùng chung với môn Lập trình ứng dụng Web).</li>
+                <li>Viết <strong>Project Brief 1 trang</strong> và <strong>bảng phân vai</strong> (mỗi thành viên ít nhất 1 vai chính).</li>
+                <li>Tạo repo nhóm, mời giảng viên; thêm <code>AGENTS.md</code>, <code>.github/copilot-instructions.md</code>, <code>PROMPTS.md</code>.</li>
+            </ul>
+        </div>
+        <div style="max-width: 760px; padding: 10px 12px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <p style="margin: 0 0 6px 0;"><strong style="color: #28a745;">💬 Diễn đàn thảo luận</strong></p>
+            <p style="margin: 0 0 8px 0; color: #495057;">Ứng dụng di động nào bạn dùng hằng ngày mà bạn nghĩ có thể viết bằng React Native? Nêu một tính năng của nó cần truy cập phần cứng điện thoại và một tính năng cần dữ liệu thời gian thực.</p>
+            <a href="{{LINK_DIEN_DAN_BAI_01}}" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 6px 12px; background-color: #eafaf1; color: #28a745; border: 1px solid #28a745; border-radius: 6px; text-decoration: none; font-weight: bold;">Tham gia diễn đàn</a>
+        </div>
+        <div style="max-width: 760px; padding: 10px 12px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <p style="margin: 0 0 6px 0;"><strong style="color: #28a745;">📝 Trắc nghiệm nhanh (Quiz)</strong></p>
+            <p style="margin: 0 0 8px 0; color: #495057;">10 câu ôn tập các hướng phát triển mobile, React Native và Expo, khác biệt với React web và quy tắc vibe coding.</p>
+            <a href="{{LINK_QUIZ_BAI_01}}" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 6px 12px; background-color: #eafaf1; color: #28a745; border: 1px solid #28a745; border-radius: 6px; text-decoration: none; font-weight: bold;">Làm bài Quiz Bài 01</a>
+        </div>
+    </div>
+</details>
+
+<details style="border: 1px solid #6f42c1; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #f3e5f5; color: #6f42c1; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>🆘 4. Góc trợ giúp và mở rộng</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <p><strong>Expo Go không mở được dự án:</strong> kiểm tra điện thoại và laptop cùng một mạng Wi-Fi. Nếu mạng phòng lab chặn kết nối giữa các máy, chạy <code>npx expo start --tunnel</code>.</p>
+        <p><strong>Lỗi khi tạo dự án:</strong> dùng Node.js bản LTS; xóa thư mục <code>node_modules</code> rồi chạy lại <code>npm install</code>.</p>
+        <p><strong>Không có điện thoại Android:</strong> cài Android Studio, tạo emulator (Device Manager), rồi nhấn phím <code>a</code> trong cửa sổ <code>npx expo start</code>.</p>
+        <p><strong>Kiến thức mở rộng:</strong> Đọc phần "Core Components and Native Components" trong tài liệu React Native để hiểu cách một component được ánh xạ thành view native.</p>
+        <p style="margin-bottom: 0;"><strong>Tự đánh giá:</strong> Bạn có giải thích được vì sao chữ đặt trực tiếp trong <code>&lt;View&gt;</code> (không bọc <code>&lt;Text&gt;</code>) sẽ gây lỗi không?</p>
+    </div>
+</details>
+
+
+    </div>
+
+    <!-- Practice Quiz: luyện tập trực tiếp, chỉ báo số câu đúng/sai, không lưu và không hiển thị đáp án -->
+    <section id="luyen-tap" class="no-print mt-8 bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
+        <div>
+          <h2 class="text-lg sm:text-xl font-black text-slate-900 flex items-center gap-2">
+            <i class="fa-solid fa-pen-to-square text-emerald-600"></i> Luyện tập trắc nghiệm - Bài 01
+          </h2>
+          <p class="text-xs text-slate-500 mt-1">10 câu · Chấm ngay khi nộp · Không lưu kết quả · Không hiển thị đáp án</p>
+        </div>
+        <button type="button" id="pq-start" class="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold rounded-xl shadow transition-all flex items-center gap-2 justify-center">
+          <i class="fa-solid fa-play"></i> Bắt đầu làm bài
+        </button>
+      </div>
+
+      <form id="pq-form" class="hidden pt-5 space-y-5" novalidate></form>
+
+      <div id="pq-footer" class="hidden pt-5 mt-5 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <span id="pq-progress" class="text-sm text-slate-500"></span>
+        <button type="button" id="pq-submit" class="px-5 py-2.5 bg-lhu-blue hover:bg-lhu-dark text-white text-sm font-bold rounded-xl shadow transition-all flex items-center gap-2 justify-center">
+          <i class="fa-solid fa-check-double"></i> Nộp bài
+        </button>
+      </div>
+
+      <div id="pq-result" class="hidden mt-5 rounded-2xl border p-5" role="status" aria-live="polite"></div>
+    </section>
+
+    <script>
+      (function () {
+        // Dữ liệu sinh từ quiz/quiz-bai-01-aiken.txt. Đáp án được mã hóa nhẹ để không lộ khi xem nhanh;
+        // đây là bài luyện tập, không phải cơ chế chống gian lận.
+        const QUESTIONS = [{"q": "Hướng phát triển nào dùng một mã nguồn để chạy trên cả Android và iOS, với giao diện là component native?", "o": ["Native (Kotlin cho Android, Swift cho iOS)", "Cross-platform như React Native", "PWA (Progressive Web App)", "Website responsive thông thường"], "k": 2}, {"q": "Lý do chính để học phần chọn React Native là gì?", "o": ["React Native không cần lập trình", "React Native chỉ chạy trên iOS", "Sinh viên đã biết React nên dùng lại được cách tư duy component, props, state và hook", "React Native không cần kết nối backend"], "k": 2}, {"q": "Khi React Native hiển thị một component Text trên Android, kết quả là gì?", "o": ["Một trang web nhúng trong ứng dụng", "Một view native thật của Android", "Một hình ảnh tĩnh", "Một đoạn mã HTML"], "k": 0}, {"q": "Expo Go dùng để làm gì?", "o": ["Quản lý cơ sở dữ liệu SQL Server", "Thiết kế giao diện kéo thả", "Chạy thử dự án ngay trên điện thoại mà không cần build", "Đưa ứng dụng lên Google Play"], "k": 0}, {"q": "Khi nào cần dùng development build thay cho Expo Go?", "o": ["Khi muốn đổi màu chữ", "Khi viết component đầu tiên", "Khi điện thoại hết pin", "Khi dự án cần thư viện native mà Expo Go không có sẵn"], "k": 0}, {"q": "Trong React Native, thành phần nào thay cho thẻ div của HTML?", "o": ["Text", "Pressable", "Image", "View"], "k": 3}, {"q": "Đoạn chữ \"Xin chào\" được đặt trực tiếp trong View mà không bọc bằng Text. Điều gì xảy ra?", "o": ["Chữ hiển thị bình thường", "Chữ tự động in đậm", "Ứng dụng báo lỗi vì mọi chữ phải nằm trong component Text", "Chữ chỉ hiển thị trên iOS"], "k": 1}, {"q": "Trong React Native, sự kiện chạm vào nút được xử lý bằng thuộc tính nào?", "o": ["onPress", "onClick", "onHover", "onSubmit"], "k": 2}, {"q": "Theo quy tắc vibe coding của học phần, điều kiện nào bắt buộc trước khi merge một Pull Request?", "o": ["Mã phải do AI sinh ra hoàn toàn", "Người tạo PR phải giải thích được mọi đoạn mã và ghi prompt chính vào PROMPTS.md", "PR phải có ít nhất 1.000 dòng mã", "Chỉ trưởng nhóm được tạo PR"], "k": 2}, {"q": "File AGENTS.md trong repo của nhóm có tác dụng gì?", "o": ["Mô tả kiến trúc, thư viện và quy ước dự án để AI sinh mã nhất quán", "Lưu mật khẩu cơ sở dữ liệu", "Chứa file cài đặt APK", "Ghi điểm số của từng thành viên"], "k": 0}];
+        const decode = (q, i) => ((q.k - i * 3 - 5) % q.o.length + q.o.length) % q.o.length;
+
+        const form = document.getElementById("pq-form");
+        const footer = document.getElementById("pq-footer");
+        const progress = document.getElementById("pq-progress");
+        const result = document.getElementById("pq-result");
+        const startBtn = document.getElementById("pq-start");
+        const submitBtn = document.getElementById("pq-submit");
+        const LETTERS = "ABCDEFGH";
+
+        function shuffle(list) {
+          const a = list.slice();
+          for (let i = a.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [a[i], a[j]] = [a[j], a[i]];
+          }
+          return a;
+        }
+
+        function render() {
+          form.innerHTML = "";
+          shuffle(QUESTIONS.map((_, i) => i)).forEach((qi, pos) => {
+            const q = QUESTIONS[qi];
+            const box = document.createElement("fieldset");
+            box.className = "border border-slate-200 rounded-2xl p-4";
+            box.dataset.q = qi;
+            const legend = document.createElement("legend");
+            legend.className = "px-2 text-sm font-bold text-slate-800";
+            legend.textContent = "Câu " + (pos + 1) + ". " + q.q;
+            box.appendChild(legend);
+            shuffle(q.o.map((_, oi) => oi)).forEach((oi, shown) => {
+              const label = document.createElement("label");
+              label.className = "flex items-start gap-3 mt-2 p-2.5 rounded-xl border border-transparent hover:bg-slate-50 cursor-pointer text-sm text-slate-700 has-[:checked]:border-lhu-sky has-[:checked]:bg-blue-50";
+              const input = document.createElement("input");
+              input.type = "radio";
+              input.name = "q" + qi;
+              input.value = oi;
+              input.className = "mt-0.5 accent-blue-700";
+              input.addEventListener("change", updateProgress);
+              const text = document.createElement("span");
+              text.textContent = LETTERS[shown] + ". " + q.o[oi];
+              label.append(input, text);
+              box.appendChild(label);
+            });
+            form.appendChild(box);
+          });
+          form.classList.remove("hidden");
+          footer.classList.remove("hidden");
+          result.classList.add("hidden");
+          submitBtn.disabled = false;
+          submitBtn.classList.remove("opacity-50");
+          updateProgress();
+        }
+
+        function answeredCount() {
+          return QUESTIONS.filter((_, i) => form.querySelector('input[name="q' + i + '"]:checked')).length;
+        }
+
+        function updateProgress() {
+          progress.textContent = "Đã trả lời " + answeredCount() + "/" + QUESTIONS.length + " câu";
+        }
+
+        function submit() {
+          const blank = QUESTIONS.length - answeredCount();
+          if (blank > 0 && !confirm("Còn " + blank + " câu chưa trả lời. Bạn vẫn muốn nộp bài?")) return;
+          let correct = 0;
+          QUESTIONS.forEach((q, i) => {
+            const picked = form.querySelector('input[name="q' + i + '"]:checked');
+            if (picked && Number(picked.value) === decode(q, i)) correct++;
+          });
+          const wrong = QUESTIONS.length - correct - blank;
+          const percent = Math.round(correct * 100 / QUESTIONS.length);
+          const good = percent >= 80, ok = percent >= 50;
+          result.className = "mt-5 rounded-2xl border p-5 " + (good ? "bg-emerald-50 border-emerald-200" : ok ? "bg-amber-50 border-amber-200" : "bg-rose-50 border-rose-200");
+          result.innerHTML =
+            '<div class="flex flex-wrap items-center gap-3 text-sm font-bold">' +
+              '<span class="px-3 py-1.5 rounded-lg bg-emerald-600 text-white"><i class="fa-solid fa-check mr-1"></i>Đúng: ' + correct + '</span>' +
+              '<span class="px-3 py-1.5 rounded-lg bg-rose-600 text-white"><i class="fa-solid fa-xmark mr-1"></i>Sai: ' + wrong + '</span>' +
+              (blank ? '<span class="px-3 py-1.5 rounded-lg bg-slate-500 text-white">Bỏ trống: ' + blank + '</span>' : '') +
+              '<span class="text-slate-700">' + correct + "/" + QUESTIONS.length + " câu (" + percent + "%)</span>" +
+            "</div>" +
+            '<p class="text-sm text-slate-700 mt-3">' +
+              (good ? "Rất tốt! Bạn đã nắm vững nội dung bài học." : ok ? "Khá ổn. Hãy xem lại các phần còn chưa chắc trong bài học rồi làm lại." : "Bạn nên đọc lại phần Học liệu chính của bài trước khi làm lại.") +
+            "</p>" +
+            '<button type="button" id="pq-retry" class="mt-4 px-4 py-2 bg-white hover:bg-slate-100 border border-slate-300 text-slate-800 text-sm font-bold rounded-xl transition-all"><i class="fa-solid fa-rotate-right mr-1"></i> Làm lại (đổi thứ tự câu hỏi)</button>';
+          result.classList.remove("hidden");
+          form.querySelectorAll("input").forEach(input => input.disabled = true);
+          submitBtn.disabled = true;
+          submitBtn.classList.add("opacity-50");
+          document.getElementById("pq-retry").addEventListener("click", () => {
+            render();
+            document.getElementById("luyen-tap").scrollIntoView({ behavior: "smooth" });
+          });
+          result.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+
+        startBtn.addEventListener("click", () => {
+          startBtn.classList.add("hidden");
+          render();
+        });
+        submitBtn.addEventListener("click", submit);
+      })();
+    </script>
+
+    <!-- Bottom Navigation between lessons -->
+    <div class="flex items-center justify-between gap-4 mt-8 no-print text-xs font-bold">
+      <a href="thong-tin-hoc-phan.html" class="px-4 py-2.5 bg-white border border-slate-200 hover:border-lhu-blue text-slate-700 hover:text-lhu-blue rounded-xl shadow-sm transition-all flex items-center gap-2"><i class="fa-solid fa-chevron-left"></i> Bài trước</a>
+      
+      <a href="index.html" class="px-4 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-800 rounded-xl transition-all flex items-center gap-2">
+        <i class="fa-solid fa-table-cells-large"></i> Danh mục bài học
+      </a>
+
+      <a href="bai-02.html" class="px-4 py-2.5 bg-white border border-slate-200 hover:border-lhu-blue text-slate-700 hover:text-lhu-blue rounded-xl shadow-sm transition-all flex items-center gap-2">Bài tiếp theo <i class="fa-solid fa-chevron-right"></i></a>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-slate-200 py-6 text-xs text-slate-500 mt-12 no-print">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <strong>Khoa Công nghệ Thông tin - Trường Đại học Lạc Hồng</strong><br>
+        Phòng B301 - B302, Cơ sở 1, Số 10 Huỳnh Văn Nghệ, P. Bửu Long, TP. Biên Hòa, Đồng Nai.
+      </div>
+      <div class="text-right">
+        <span>Email: cntt@lhu.edu.vn • Hotline: (0251) 3952 251</span><br>
+        <span>Hệ thống LMS: <a href="https://learn.lhu.edu.vn" target="_blank" class="text-lhu-blue font-bold">learn.lhu.edu.vn</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleAllDetails(open) {
+      document.querySelectorAll("details").forEach(d => {
+        if (open) {
+          d.setAttribute("open", "");
+        } else {
+          d.removeAttribute("open");
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,69 @@
+Backend kết nối SQL Server trên server Khoa nên dùng tài khoản nào?
+A. Login riêng chỉ có quyền EXECUTE trên thủ tục
+B. Tài khoản Windows của giảng viên
+C. Tài khoản sa để không bị thiếu quyền
+D. Tài khoản có quyền SELECT, INSERT, UPDATE, DELETE trên mọi bảng
+ANSWER: A
+
+Vì sao không nên để API chạy bằng node dist/main.js trong một cửa sổ terminal trên server?
+A. Node.js không chạy được trên Windows
+B. Đóng cửa sổ hoặc khởi động lại server thì API dừng và không tự chạy lại
+C. Swagger không hoạt động
+D. Terminal làm chậm stored procedure
+ANSWER: B
+
+Swagger mở được trên server nhưng máy khác không truy cập được. Nguyên nhân hợp lý nhất là gì?
+A. Cổng chưa mở trên Windows Firewall hoặc API chỉ lắng nghe localhost
+B. Thiếu API key Google Maps
+C. Chưa chạy eas update
+D. versionCode chưa tăng
+ANSWER: A
+
+Thông tin nào KHÔNG được đặt trong biến EXPO_PUBLIC_*?
+A. Địa chỉ API
+B. Địa chỉ socket
+C. Tên môi trường
+D. Mật khẩu CSDL hoặc khóa bí mật
+ANSWER: D
+
+Profile preview trong eas.json của học phần tạo ra loại file nào?
+A. File .exe
+B. AAB chỉ dùng cho Google Play
+C. APK cài trực tiếp lên điện thoại
+D. File .ipa
+ANSWER: C
+
+Điều gì xảy ra nếu nhóm mất keystore dùng để ký ứng dụng?
+A. App tự ký lại bằng khóa mới
+B. Không cập nhật được ứng dụng đã phát hành trên cửa hàng
+C. Chỉ mất icon ứng dụng
+D. Không ảnh hưởng gì
+ANSWER: B
+
+Trường hợp nào được phép sửa bằng EAS Update thay vì build lại?
+A. Thêm thư viện có mã native
+B. Đổi icon ứng dụng
+C. Sửa lỗi hiển thị tổng tiền trong mã JavaScript
+D. Thêm quyền camera mới
+ANSWER: C
+
+APK báo lỗi mạng trong khi Expo Go chạy bình thường. Nguyên nhân nào thường gặp?
+A. Thủ tục thiếu tham số
+B. Bản build vẫn gọi địa chỉ máy cá nhân hoặc kết nối HTTP bị chặn
+C. Jest chưa được cài
+D. Thiếu accessibilityLabel
+ANSWER: B
+
+Bản đồ hiển thị trắng trong APK nhưng chạy được trong Expo Go. Cần kiểm tra gì?
+A. Lượt build miễn phí
+B. Quyền EXECUTE của login SQL
+C. Cấu hình socket room
+D. API key Google Maps cho Android trong cấu hình build
+ANSWER: D
+
+Chính sách quyền riêng tư trong hồ sơ cửa hàng phải nêu được điều gì?
+A. Dữ liệu ứng dụng thu thập, mục đích sử dụng, nơi lưu và cách xóa tài khoản
+B. Danh sách thành viên nhóm
+C. Số dòng mã của ứng dụng
+D. Phiên bản Node.js trên server
+ANSWER: A

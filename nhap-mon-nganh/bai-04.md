@@ -31,7 +31,7 @@
         <div style="margin-bottom: 16px;">
             <p style="margin: 0 0 8px 0; color: #fd7e14; font-weight: bold;">📄 Slide bài giảng Bài 04</p>
 
-            <a href="https://gamma.app/embed/ao8oqpb06ip45s3" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
+            <a href="{{LINK_SLIDE_BAI_04}}" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
                 <span style="color: #fd7e14; font-weight: bold;">📄 Slide bài giảng Bài 04: Kỹ năng học đại học &amp; Tư duy Clean Code</span><br>
                 <span style="color: #6c757d; font-size: 13px;">Hướng dẫn kỹ năng giao tiếp chuyên nghiệp, phương pháp tự học và triết lý viết mã sạch.</span>
             </a>
@@ -62,7 +62,7 @@
                 <span style="color: #fd7e14; font-weight: bold;">▶ Video 04.2 - Những nguyên lý lập trình nâng cao (SOLID) dành cho người mới</span>
             </a>
 
-            <a class="nomediaplugin" href="https://www.youtube.com/watch?v=wTzqk08X0i8" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
+            <a class="nomediaplugin" href="{{LINK_VIDEO_BAI_04_3}}" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
                 <span style="color: #fd7e14; font-weight: bold;">▶ Video 04.3 - Kỹ năng lập kế hoạch và làm việc nhóm hiệu quả với Google Sheets / Trello</span>
             </a>
         </div>

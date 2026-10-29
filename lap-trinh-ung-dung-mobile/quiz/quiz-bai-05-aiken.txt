@@ -1,0 +1,69 @@
+Theo kiến trúc của học phần, ứng dụng React Native lấy dữ liệu thực đơn bằng cách nào?
+A. Kết nối thẳng vào SQL Server
+B. Gọi API NestJS; API gọi stored procedure trên SQL Server
+C. Đọc file SQLite trên điện thoại
+D. Đọc trực tiếp file .mdf của SQL Server
+ANSWER: B
+
+Theo quy định của học phần, backend NestJS được phép truy cập dữ liệu SQL Server bằng cách nào?
+A. Viết câu SELECT trực tiếp trong service
+B. Dùng ORM để tự sinh truy vấn
+C. Chỉ gọi stored procedure có tham số bằng thư viện mssql
+D. Ghép chuỗi SQL từ dữ liệu người dùng gửi lên
+ANSWER: C
+
+Vì sao bảng OrderItems lưu thêm cột UnitPrice dù bảng Products đã có Price?
+A. Để đơn hàng cũ giữ đúng giá tại thời điểm đặt khi giá món thay đổi sau này
+B. Vì SQL Server bắt buộc mỗi bảng phải có cột giá
+C. Để tăng tốc độ đăng nhập
+D. Không cần thiết, đây là dữ liệu thừa
+ANSWER: A
+
+Quan hệ giữa Orders và Products được thể hiện qua bảng OrderItems với khóa chính gồm những cột nào?
+A. Chỉ OrderId
+B. Chỉ ProductId
+C. Quantity và UnitPrice
+D. OrderId và ProductId
+ANSWER: D
+
+Trong stored procedure sp_Product_GetList, mệnh đề nào dùng để phân trang?
+A. GROUP BY
+B. OFFSET ... ROWS FETCH NEXT ... ROWS ONLY
+C. HAVING
+D. TOP 100 PERCENT
+ANSWER: B
+
+Lệnh THROW 50404, N'Không tìm thấy món ăn', 1 trong stored procedure có tác dụng gì?
+A. Xóa món ăn khỏi bảng
+B. Ghi log vào file
+C. Tạo món ăn mới
+D. Báo lỗi với mã tự đặt để backend nhận biết và trả HTTP 404
+ANSWER: D
+
+Trong DatabaseService, giá trị tham số được truyền vào stored procedure bằng cách nào?
+A. Ghép trực tiếp vào chuỗi tên thủ tục
+B. Gửi qua Socket.IO
+C. Ghi vào biến môi trường
+D. request.input(tên, kiểu, giá trị) rồi request.execute(tên thủ tục)
+ANSWER: D
+
+Ứng dụng chạy trên điện thoại thật báo "Network request failed" khi gọi http://localhost:3000. Nguyên nhân hợp lý nhất là gì?
+A. Thiếu thư viện Zustand
+B. SQL Server chưa có dữ liệu
+C. localhost trên điện thoại là chính điện thoại, cần dùng IP LAN của máy chạy API
+D. Điện thoại không hỗ trợ JSON
+ANSWER: C
+
+Khi chạy ứng dụng trên Android emulator, địa chỉ nào trỏ về máy tính đang chạy API?
+A. 10.0.2.2
+B. 127.0.0.1
+C. 0.0.0.0
+D. 192.168.0.0
+ANSWER: A
+
+Sau khi đặt hàng thành công bằng useMutation, cần làm gì để danh sách đơn hàng hiển thị đơn mới?
+A. Gọi invalidateQueries với queryKey của danh sách đơn hàng
+B. Khởi động lại ứng dụng
+C. Xóa cache của trình duyệt
+D. Không cần làm gì, danh sách tự biết
+ANSWER: A

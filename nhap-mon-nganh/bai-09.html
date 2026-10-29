@@ -183,7 +183,7 @@
         <div style="margin-bottom: 16px;">
             <p style="margin: 0 0 8px 0; color: #fd7e14; font-weight: bold;">📄 Slide bài giảng Bài 09</p>
 
-            <a href="https://gamma.app/embed/xy9ypriwxyrmxp1" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
+            <a href="{{LINK_SLIDE_BAI_09}}" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
                 <span style="color: #fd7e14; font-weight: bold;">📄 Slide bài giảng Bài 09: Định hướng tương lai &amp; Hướng dẫn Báo cáo Đồ án cuối kỳ</span><br>
                 <span style="color: #6c757d; font-size: 13px;">Tổng kết học phần, tiêu chí chấm điểm báo cáo (Rubric) và hướng dẫn xây dựng Portfolio 4 năm.</span>
             </a>
@@ -206,7 +206,7 @@
         <div style="margin-bottom: 16px;">
             <p style="margin: 0 0 8px 0; color: #fd7e14; font-weight: bold;">🎥 Video hướng dẫn chi tiết</p>
 
-            <a class="nomediaplugin" href="https://www.youtube.com/watch?v=Oz3Y2xuvmhQ" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
+            <a class="nomediaplugin" href="{{LINK_VIDEO_BAI_09}}" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
                 <span style="color: #fd7e14; font-weight: bold;">▶ Video 09 - Nghệ thuật thuyết trình đồ án công nghệ ấn tượng trước Giảng viên và Doanh nghiệp</span>
             </a>
         </div>
@@ -289,6 +289,141 @@
 
 
     </div>
+
+    <!-- Practice Quiz: luyện tập trực tiếp, chỉ báo số câu đúng/sai, không lưu và không hiển thị đáp án -->
+    <section id="luyen-tap" class="no-print mt-8 bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
+        <div>
+          <h2 class="text-lg sm:text-xl font-black text-slate-900 flex items-center gap-2">
+            <i class="fa-solid fa-pen-to-square text-emerald-600"></i> Luyện tập trắc nghiệm - Bài 09
+          </h2>
+          <p class="text-xs text-slate-500 mt-1">10 câu · Chấm ngay khi nộp · Không lưu kết quả · Không hiển thị đáp án</p>
+        </div>
+        <button type="button" id="pq-start" class="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold rounded-xl shadow transition-all flex items-center gap-2 justify-center">
+          <i class="fa-solid fa-play"></i> Bắt đầu làm bài
+        </button>
+      </div>
+
+      <form id="pq-form" class="hidden pt-5 space-y-5" novalidate></form>
+
+      <div id="pq-footer" class="hidden pt-5 mt-5 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <span id="pq-progress" class="text-sm text-slate-500"></span>
+        <button type="button" id="pq-submit" class="px-5 py-2.5 bg-lhu-blue hover:bg-lhu-dark text-white text-sm font-bold rounded-xl shadow transition-all flex items-center gap-2 justify-center">
+          <i class="fa-solid fa-check-double"></i> Nộp bài
+        </button>
+      </div>
+
+      <div id="pq-result" class="hidden mt-5 rounded-2xl border p-5" role="status" aria-live="polite"></div>
+    </section>
+
+    <script>
+      (function () {
+        // Dữ liệu sinh từ quiz/quiz-bai-09-aiken.txt. Đáp án được mã hóa nhẹ để không lộ khi xem nhanh;
+        // đây là bài luyện tập, không phải cơ chế chống gian lận.
+        const QUESTIONS = [{"q": "Bản Kế hoạch học tập cá nhân (Personal Learning Plan - PLP) đóng vai trò gì đối với sinh viên suốt 4 năm đại học?", "o": ["Là kim chỉ nam giúp sinh viên chủ động đặt mục tiêu GPA, rèn luyện kỹ năng, chuẩn bị chứng chỉ và theo dõi tiến độ hoàn thành mục tiêu nghề nghiệp", "Là danh sách các quán ăn quanh trường", "Là giấy cam kết không được nghỉ học buổi nào", "Là thời khóa biểu do phụ huynh quyết định"], "k": 1}, {"q": "Chỉ số GPA (Grade Point Average) trong trường đại học dùng để đo lường điều gì?", "o": ["Số lượng bạn bè kết nối trên Facebook", "Điểm trung bình chung tích lũy kết quả học tập của sinh viên qua các học kỳ", "Số giờ sử dụng máy tính mỗi tuần", "Chiều cao và cân nặng của sinh viên"], "k": 1}, {"q": "Chứng chỉ ngoại ngữ nào dưới đây là điều kiện chuẩn đầu ra phổ biến và giúp kỹ sư CNTT mở rộng cơ hội làm việc trong môi trường toàn cầu?", "o": ["Chứng chỉ TOEIC hoặc IELTS quốc tế", "Bằng lái xe hạng B2", "Chứng chỉ bơi lội", "Giấy chứng nhận tham gia hội trại"], "k": 3}, {"q": "Các chứng chỉ công nghệ quốc tế uy tín (như AWS Certified Cloud, Cisco CCNA, Google Cloud) mang lại lợi thế gì cho sinh viên CNTT khi tốt nghiệp?", "o": ["Không mang lại giá trị gì trong mắt nhà tuyển dụng", "Được miễn toàn bộ học phí đại học", "Cho phép sinh viên tự in bằng tốt nghiệp tại nhà", "Minh chứng năng lực thực chiến đạt chuẩn công nghiệp quốc tế, giúp hồ sơ nổi bật và gia tăng mức lương khởi điểm khi ứng tuyển"], "k": 1}, {"q": "Lợi ích thực tế lớn nhất khi tham gia vào các Câu lạc bộ chuyên môn và không gian Maker Lab tại Khoa CNTT - LHU là gì?", "o": ["Được cọ xát với các dự án thực tế, rèn luyện kỹ năng làm việc nhóm, học hỏi từ các anh chị khóa trên và sẵn sàng tham gia các cuộc thi NCKH", "Tránh việc phải đi học trên lớp", "Được cộng điểm tối đa vào tất cả các môn học mà không cần thi", "Chỉ để giải trí và chơi game qua ngày"], "k": 1}, {"q": "Nguyên tắc thiết kế Slide thuyết trình đồ án công nghệ hiệu quả và chuyên nghiệp là gì?", "o": ["Để toàn bộ slide trắng trơn không có nội dung", "Dán toàn bộ trang sách với chữ chi chít dày đặc lên slide", "Dùng 15 màu sắc sặc sỡ và hiệu ứng hoạt họa rối mắt", "Slide trực quan, súc tích, tận dụng sơ đồ kiến trúc, hình ảnh demo rõ ràng và sử dụng định dạng bullet point ngắn gọn"], "k": 3}, {"q": "Khi nhận được câu hỏi phản biện hóc búa từ Hội đồng Giảng viên hoặc chuyên gia doanh nghiệp, thái độ chuyên nghiệp của sinh viên là gì?", "o": ["Lập tức tranh cãi gay gắt và đổ lỗi cho đồng đội trong nhóm", "Trả lời rằng mình không quan tâm đến câu hỏi đó", "Bỏ ra khỏi phòng thuyết trình ngay lập tức", "Bình tĩnh lắng nghe, ghi chép câu hỏi, trả lời chân thành đúng trọng tâm và khiêm tốn ghi nhận những điểm đề tài cần cải thiện thêm"], "k": 2}, {"q": "Bảng tiêu chí đánh giá (Rubric) đồ án nhóm cuối khóa thường bao hàm các khía cạnh toàn diện nào?", "o": ["Chỉ chấm điểm trang phục của nhóm trưởng", "Nhóm nào nộp bài sớm nhất thì được điểm tuyệt đối bất kể nội dung", "Chất lượng nội dung và sản phẩm công nghệ, tính sáng tạo và ứng dụng AI, kỹ năng làm việc nhóm và bản lĩnh thuyết trình phản biện", "Chỉ tính số trang giấy của bản báo cáo in ra"], "k": 0}, {"q": "Mạng lưới Cựu sinh viên (Alumni) Khoa CNTT - LHU đem lại giá trị kết nối to lớn nào cho các thế hệ sinh viên đang theo học?", "o": ["Cho sinh viên vay tiền mua trò chơi điện tử", "Thay sinh viên đi học điểm danh", "Chia sẻ kinh nghiệm thực tế tại doanh nghiệp, tiếp nhận thực tập OJT và mở ra các cơ hội việc làm chính thức", "Không có bất kỳ liên hệ nào với sinh viên"], "k": 3}, {"q": "Sau khi kết thúc học phần Nhập môn Công nghệ Thông tin, hành động thiết thực nhất mà mỗi sinh viên nên thực hiện ngay là gì?", "o": ["Tự mãn và nghỉ ngơi không học gì thêm trong suốt học kỳ 1", "Kích hoạt Kế hoạch học tập cá nhân, nghiêm túc rèn luyện tư duy lập trình với ngôn ngữ đầu tiên, tích cực học tiếng Anh và giữ vững kỷ luật tự học", "Bán hết sách vở và máy tính cá nhân", "Đợi đến năm thứ tư mới bắt đầu tìm hiểu về viết code"], "k": 1}];
+        const decode = (q, i) => ((q.k - i * 3 - 5) % q.o.length + q.o.length) % q.o.length;
+
+        const form = document.getElementById("pq-form");
+        const footer = document.getElementById("pq-footer");
+        const progress = document.getElementById("pq-progress");
+        const result = document.getElementById("pq-result");
+        const startBtn = document.getElementById("pq-start");
+        const submitBtn = document.getElementById("pq-submit");
+        const LETTERS = "ABCDEFGH";
+
+        function shuffle(list) {
+          const a = list.slice();
+          for (let i = a.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [a[i], a[j]] = [a[j], a[i]];
+          }
+          return a;
+        }
+
+        function render() {
+          form.innerHTML = "";
+          shuffle(QUESTIONS.map((_, i) => i)).forEach((qi, pos) => {
+            const q = QUESTIONS[qi];
+            const box = document.createElement("fieldset");
+            box.className = "border border-slate-200 rounded-2xl p-4";
+            box.dataset.q = qi;
+            const legend = document.createElement("legend");
+            legend.className = "px-2 text-sm font-bold text-slate-800";
+            legend.textContent = "Câu " + (pos + 1) + ". " + q.q;
+            box.appendChild(legend);
+            shuffle(q.o.map((_, oi) => oi)).forEach((oi, shown) => {
+              const label = document.createElement("label");
+              label.className = "flex items-start gap-3 mt-2 p-2.5 rounded-xl border border-transparent hover:bg-slate-50 cursor-pointer text-sm text-slate-700 has-[:checked]:border-lhu-sky has-[:checked]:bg-blue-50";
+              const input = document.createElement("input");
+              input.type = "radio";
+              input.name = "q" + qi;
+              input.value = oi;
+              input.className = "mt-0.5 accent-blue-700";
+              input.addEventListener("change", updateProgress);
+              const text = document.createElement("span");
+              text.textContent = LETTERS[shown] + ". " + q.o[oi];
+              label.append(input, text);
+              box.appendChild(label);
+            });
+            form.appendChild(box);
+          });
+          form.classList.remove("hidden");
+          footer.classList.remove("hidden");
+          result.classList.add("hidden");
+          submitBtn.disabled = false;
+          submitBtn.classList.remove("opacity-50");
+          updateProgress();
+        }
+
+        function answeredCount() {
+          return QUESTIONS.filter((_, i) => form.querySelector('input[name="q' + i + '"]:checked')).length;
+        }
+
+        function updateProgress() {
+          progress.textContent = "Đã trả lời " + answeredCount() + "/" + QUESTIONS.length + " câu";
+        }
+
+        function submit() {
+          const blank = QUESTIONS.length - answeredCount();
+          if (blank > 0 && !confirm("Còn " + blank + " câu chưa trả lời. Bạn vẫn muốn nộp bài?")) return;
+          let correct = 0;
+          QUESTIONS.forEach((q, i) => {
+            const picked = form.querySelector('input[name="q' + i + '"]:checked');
+            if (picked && Number(picked.value) === decode(q, i)) correct++;
+          });
+          const wrong = QUESTIONS.length - correct - blank;
+          const percent = Math.round(correct * 100 / QUESTIONS.length);
+          const good = percent >= 80, ok = percent >= 50;
+          result.className = "mt-5 rounded-2xl border p-5 " + (good ? "bg-emerald-50 border-emerald-200" : ok ? "bg-amber-50 border-amber-200" : "bg-rose-50 border-rose-200");
+          result.innerHTML =
+            '<div class="flex flex-wrap items-center gap-3 text-sm font-bold">' +
+              '<span class="px-3 py-1.5 rounded-lg bg-emerald-600 text-white"><i class="fa-solid fa-check mr-1"></i>Đúng: ' + correct + '</span>' +
+              '<span class="px-3 py-1.5 rounded-lg bg-rose-600 text-white"><i class="fa-solid fa-xmark mr-1"></i>Sai: ' + wrong + '</span>' +
+              (blank ? '<span class="px-3 py-1.5 rounded-lg bg-slate-500 text-white">Bỏ trống: ' + blank + '</span>' : '') +
+              '<span class="text-slate-700">' + correct + "/" + QUESTIONS.length + " câu (" + percent + "%)</span>" +
+            "</div>" +
+            '<p class="text-sm text-slate-700 mt-3">' +
+              (good ? "Rất tốt! Bạn đã nắm vững nội dung bài học." : ok ? "Khá ổn. Hãy xem lại các phần còn chưa chắc trong bài học rồi làm lại." : "Bạn nên đọc lại phần Học liệu chính của bài trước khi làm lại.") +
+            "</p>" +
+            '<button type="button" id="pq-retry" class="mt-4 px-4 py-2 bg-white hover:bg-slate-100 border border-slate-300 text-slate-800 text-sm font-bold rounded-xl transition-all"><i class="fa-solid fa-rotate-right mr-1"></i> Làm lại (đổi thứ tự câu hỏi)</button>';
+          result.classList.remove("hidden");
+          form.querySelectorAll("input").forEach(input => input.disabled = true);
+          submitBtn.disabled = true;
+          submitBtn.classList.add("opacity-50");
+          document.getElementById("pq-retry").addEventListener("click", () => {
+            render();
+            document.getElementById("luyen-tap").scrollIntoView({ behavior: "smooth" });
+          });
+          result.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+
+        startBtn.addEventListener("click", () => {
+          startBtn.classList.add("hidden");
+          render();
+        });
+        submitBtn.addEventListener("click", submit);
+      })();
+    </script>
 
     <!-- Bottom Navigation between lessons -->
     <div class="flex items-center justify-between gap-4 mt-8 no-print text-xs font-bold">

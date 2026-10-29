@@ -1,0 +1,69 @@
+Nút "Lưu" bị khuất trên màn hình điện thoại khiến người dùng không hoàn tất thao tác. Lỗi này thuộc nhóm nào?
+A. Lỗi giao diện và trải nghiệm người dùng (UI/UX)
+B. Lỗi hiệu năng
+C. Lỗi bảo mật
+D. Lỗi tích hợp
+ANSWER: A
+
+Chọn bộ lọc "Hoàn thành" nhưng danh sách vẫn hiển thị công việc chưa hoàn thành. Đây là nhóm lỗi nào?
+A. Lỗi UI/UX
+B. Lỗi tích hợp
+C. Lỗi hiệu năng
+D. Lỗi chức năng
+ANSWER: D
+
+Trường tiêu đề rỗng vẫn được hệ thống chấp nhận dù yêu cầu bắt buộc phải nhập. Lỗi này thuộc nhóm nào?
+A. Lỗi hiệu năng và tải
+B. Lỗi xác thực và dữ liệu đầu vào
+C. Lỗi tích hợp/hệ thống
+D. Lỗi căn chỉnh giao diện
+ANSWER: B
+
+RAM và CPU tăng dần trong quá trình sử dụng khiến ứng dụng chậm rồi treo. Hiện tượng này thường được gọi là gì?
+A. Lỗi chính tả
+B. Rò rỉ bộ nhớ, thuộc nhóm lỗi hiệu năng
+C. Lỗi phân quyền
+D. Lỗi responsive
+ANSWER: B
+
+API trả về dữ liệu JSON sai cấu trúc khiến giao diện không hiển thị được. Lỗi này thuộc nhóm nào?
+A. Lỗi UI/UX
+B. Lỗi xác thực đầu vào
+C. Lỗi tích hợp/hệ thống
+D. Lỗi tính toán
+ANSWER: C
+
+Ứng dụng làm lộ token đăng nhập của người dùng trong phản hồi. Đây là nhóm lỗi nào?
+A. Lỗi responsive
+B. Lỗi hiệu năng
+C. Lỗi bảo mật
+D. Lỗi tính toán
+ANSWER: C
+
+Giao diện báo "lưu thành công" nhưng dữ liệu không có trong cơ sở dữ liệu. Cách tiếp cận phù hợp là gì?
+A. Kết luận ngay đây là lỗi giao diện
+B. Chỉ chụp màn hình thông báo thành công
+C. Đóng lỗi vì không tái hiện được trên máy lập trình viên
+D. Thu thập thông tin ở từng ranh giới giao diện, API và cơ sở dữ liệu để khoanh vùng
+ANSWER: D
+
+Nhận định nào đúng về quan hệ giữa loại lỗi và mức độ nghiêm trọng?
+A. Phân loại loại lỗi không đồng nghĩa với đánh giá mức độ nghiêm trọng hay độ ưu tiên
+B. Lỗi UI luôn có mức độ thấp
+C. Lỗi chức năng luôn có độ ưu tiên cao nhất
+D. Mỗi loại lỗi có một mức độ nghiêm trọng cố định
+ANSWER: A
+
+Theo bài học, kiểm thử bảo mật chỉ nên thực hiện trong điều kiện nào?
+A. Trên hệ thống thật của bất kỳ đơn vị nào để có kết quả chính xác
+B. Bất cứ khi nào phát hiện ô nhập liệu
+C. Khi giảng viên vắng mặt
+D. Trong môi trường và phạm vi được cho phép
+ANSWER: D
+
+Khi báo cáo lỗi hiệu năng như lọc 10.000 ghi chú quá lâu, cần ghi rõ những thông tin nào?
+A. Quy mô dữ liệu, môi trường, số lần đo và ngưỡng đánh giá
+B. Chỉ cần ghi "ứng dụng chậm"
+C. Tên lập trình viên phụ trách tính năng
+D. Ảnh chụp màn hình trang chủ
+ANSWER: A

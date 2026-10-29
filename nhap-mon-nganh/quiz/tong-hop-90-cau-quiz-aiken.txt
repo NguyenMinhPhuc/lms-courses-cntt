@@ -1,4 +1,4 @@
-﻿Khoa Công nghệ Thông tin - Trường Đại học Lạc Hồng chính thức bắt đầu đào tạo các khóa đầu tiên từ năm học nào?
+Khoa Công nghệ Thông tin - Trường Đại học Lạc Hồng chính thức bắt đầu đào tạo các khóa đầu tiên từ năm học nào?
 A. 1995 - 1996
 B. 1997 - 1998
 C. 2000 - 2001
@@ -7,10 +7,10 @@ ANSWER: B
 
 Triết lý hành động cốt lõi của Khoa Công nghệ Thông tin - Đại học Lạc Hồng là gì?
 A. Tiên phong – Hội nhập – Đột phá
-B. Đạo đức – Trí tuệ – Sáng tạo
-C. Chuyên nghiệp – Kỷ luật – Thực chiến
+B. Chuyên nghiệp – Kỷ luật – Thực chiến
+C. Đạo đức – Trí tuệ – Sáng tạo
 D. Công nghệ – Tương lai – Phát triển
-ANSWER: B
+ANSWER: C
 
 Văn phòng Khoa Công nghệ Thông tin - Đại học Lạc Hồng hiện đặt tại vị trí nào?
 A. Phòng A101, Cơ sở 1, Số 10 Huỳnh Văn Nghệ, Biên Hòa, Đồng Nai
@@ -20,109 +20,109 @@ D. Tầng 4, Tòa nhà Trung tâm Khởi nghiệp LHU
 ANSWER: B
 
 Chương trình đào tạo ngành Công nghệ Thông tin của Đại học Lạc Hồng đạt chuẩn kiểm định quốc tế uy tín nào của Hoa Kỳ?
-A. AUN-QA
-B. ABET
-C. AACSB
+A. AACSB
+B. AUN-QA
+C. ABET
 D. ISO 9001
-ANSWER: B
+ANSWER: C
 
 Trong chiến lược phát triển chương trình chuẩn quốc tế, Khoa CNTT - LHU hợp tác toàn diện với trường đại học hàng đầu nào của Hoa Kỳ?
-A. Arizona State University (ASU)
-B. Stanford University
+A. Stanford University
+B. Massachusetts Institute of Technology (MIT)
 C. Harvard University
-D. Massachusetts Institute of Technology (MIT)
-ANSWER: A
+D. Arizona State University (ASU)
+ANSWER: D
 
 Mã tuyển sinh chính thức của ngành Công nghệ Thông tin tại Trường Đại học Lạc Hồng là gì?
 A. 7480101
-B. 7480201
-C. 7480202
-D. 7480104
-ANSWER: B
+B. 7480202
+C. 7480104
+D. 7480201
+ANSWER: D
 
 Mã trường chính thức của Trường Đại học Lạc Hồng trong cổng tuyển sinh quốc gia là gì?
 A. DDL
-B. DLH
-C. LHU
+B. LHU
+C. DLH
 D. DNT
-ANSWER: B
+ANSWER: C
 
 Tỷ lệ sinh viên tốt nghiệp ngành Công nghệ Thông tin tại Đại học Lạc Hồng có việc làm theo công bố chính thức là bao nhiêu?
-A. 85%
+A. 100%
 B. 90%
 C. 95%
-D. 100%
-ANSWER: D
-
-Sinh viên Khoa CNTT - LHU có thể tìm kiếm sự hỗ trợ trực tiếp về học vụ và thủ tục sinh viên ở đâu?
-A. Cố vấn học tập và Văn phòng Khoa (Phòng B301-B302 Cơ sở 1)
-B. Phòng Bảo vệ cơ sở
-C. Canteen trường
-D. Văn phòng Đoàn phường
+D. 85%
 ANSWER: A
 
-Hệ thống quản lý học tập trực tuyến (LMS) chính thức của Đại học Lạc Hồng có địa chỉ truy cập là gì?
-A. moodle.org
-B. learn.lhu.edu.vn
-C. elearning.edu.vn
-D. online.lhu.vn
+Sinh viên Khoa CNTT - LHU có thể tìm kiếm sự hỗ trợ trực tiếp về học vụ và thủ tục sinh viên ở đâu?
+A. Văn phòng Đoàn phường
+B. Cố vấn học tập và Văn phòng Khoa (Phòng B301-B302 Cơ sở 1)
+C. Canteen trường
+D. Phòng Bảo vệ cơ sở
 ANSWER: B
 
+Hệ thống quản lý học tập trực tuyến (LMS) chính thức của Đại học Lạc Hồng có địa chỉ truy cập là gì?
+A. learn.lhu.edu.vn
+B. elearning.edu.vn
+C. moodle.org
+D. online.lhu.vn
+ANSWER: A
+
 Tiêu chuẩn kiểm định ABET đánh giá chương trình đào tạo dựa trên nguyên lý cốt lõi nào?
-A. Số lượng phòng học và giảng đường lý thuyết
-B. Chuẩn đầu ra (Student Outcomes) và mức độ đáp ứng năng lực của người học
+A. Mức học phí của từng ngành học
+B. Số lượng phòng học và giảng đường lý thuyết
 C. Số năm thành lập trường đại học
-D. Mức học phí của từng ngành học
-ANSWER: B
+D. Chuẩn đầu ra (Student Outcomes) và mức độ đáp ứng năng lực của người học
+ANSWER: D
 
 Khái niệm "Vibe Coding" trong chương trình đào tạo Khoa CNTT - LHU nhấn mạnh điều gì?
 A. Chỉ học lý thuyết mà không cần thực hành viết code
-B. Lập trình viên hợp tác cùng AI Agents để tăng tốc phát triển, chuyển trọng tâm sang tư duy kiến trúc và giải quyết bài toán
+B. Không cần kiểm thử và bảo trì mã nguồn
 C. Học thuộc lòng toàn bộ cú pháp của mọi ngôn ngữ lập trình
-D. Không cần kiểm thử và bảo trì mã nguồn
-ANSWER: B
+D. Lập trình viên hợp tác cùng AI Agents để tăng tốc phát triển, chuyển trọng tâm sang tư duy kiến trúc và giải quyết bài toán
+ANSWER: D
 
 Trong 5 Trụ cột năng lực Kỹ sư kỷ nguyên AI tại LHU, trụ cột nào tập trung vào Large Language Models (LLM), RAG và Data Pipelines?
 A. Kiến trúc Cloud-Native & DevOps
-B. Chuyên sâu AI & Khoa học Dữ liệu
-C. An ninh mạng kỷ nguyên AI
-D. Tư duy Sản phẩm & Kỹ năng K-S-A
-ANSWER: B
+B. Tư duy Sản phẩm & Kỹ năng K-S-A
+C. Chuyên sâu AI & Khoa học Dữ liệu
+D. An ninh mạng kỷ nguyên AI
+ANSWER: C
 
 Kỹ thuật RAG (Retrieval-Augmented Generation) được học trong trụ cột AI & Dữ liệu có tác dụng chính là gì?
 A. Tự động tắt máy tính khi không dùng
-B. Kết hợp mô hình ngôn ngữ lớn với việc truy xuất tài liệu nội bộ để trả lời chính xác, tránh ảo giác AI
-C. Dịch tự động giao diện hệ điều hành Windows
+B. Dịch tự động giao diện hệ điều hành Windows
+C. Kết hợp mô hình ngôn ngữ lớn với việc truy xuất tài liệu nội bộ để trả lời chính xác, tránh ảo giác AI
 D. Nén dung lượng ổ đĩa cứng
-ANSWER: B
+ANSWER: C
 
 Trụ cột "An ninh mạng kỷ nguyên AI" đào tạo cho sinh viên phương pháp tiếp cận bảo mật hiện đại nào?
-A. Chỉ cài đặt phần mềm diệt virus thông thường
-B. DevSecOps, kiến trúc Zero Trust và bảo mật ứng dụng LLM
+A. DevSecOps, kiến trúc Zero Trust và bảo mật ứng dụng LLM
+B. Chỉ cài đặt phần mềm diệt virus thông thường
 C. Chia sẻ mật khẩu công khai trong nhóm dự án
 D. Bỏ qua các bước rà soát lỗ hổng mã nguồn
-ANSWER: B
-
-Trong trụ cột "Kiến trúc Cloud-Native & DevOps", sinh viên được thực hành trực tiếp trên các nền tảng và công nghệ nào?
-A. Microsoft Word và Excel văn phòng
-B. Docker, Kubernetes, CI/CD Pipelines và các đám mây lớn (AWS, Azure, GCP)
-C. Photoshop và Illustrator
-D. Bộ công cụ gõ văn bản Unikey
-ANSWER: B
-
-Mô hình năng lực toàn diện K-S-A trong Trụ cột thứ 5 là viết tắt của các yếu tố nào?
-A. Knowledge (Kiến thức) – Skills (Kỹ năng) – Attitude (Thái độ)
-B. Key – Software – Architecture
-C. Kernel – Security – Algorithm
-D. Knowledge – Speed – Action
 ANSWER: A
 
+Trong trụ cột "Kiến trúc Cloud-Native & DevOps", sinh viên được thực hành trực tiếp trên các nền tảng và công nghệ nào?
+A. Docker, Kubernetes, CI/CD Pipelines và các đám mây lớn (AWS, Azure, GCP)
+B. Microsoft Word và Excel văn phòng
+C. Photoshop và Illustrator
+D. Bộ công cụ gõ văn bản Unikey
+ANSWER: A
+
+Mô hình năng lực toàn diện K-S-A trong Trụ cột thứ 5 là viết tắt của các yếu tố nào?
+A. Knowledge – Speed – Action
+B. Key – Software – Architecture
+C. Kernel – Security – Algorithm
+D. Knowledge (Kiến thức) – Skills (Kỹ năng) – Attitude (Thái độ)
+ANSWER: D
+
 Sinh viên ngành CNTT tại Đại học Lạc Hồng bắt đầu tham gia chương trình thực tập doanh nghiệp (OJT) hưởng lương từ thời điểm nào?
-A. Học kỳ 1 Năm thứ nhất
-B. Học kỳ 1 Năm thứ hai
-C. Học kỳ 1 Năm thứ ba
+A. Học kỳ 1 Năm thứ ba
+B. Học kỳ 1 Năm thứ nhất
+C. Học kỳ 1 Năm thứ hai
 D. Sau khi đã nhận bằng tốt nghiệp
-ANSWER: C
+ANSWER: A
 
 Tại sao sinh viên cần đặc biệt chú ý đến các "Môn học tiên quyết" trong sơ đồ đào tạo 4 năm?
 A. Vì môn tiên quyết không tính điểm vào GPA
@@ -132,18 +132,18 @@ D. Vì môn tiên quyết không có bài thi cuối kỳ
 ANSWER: B
 
 Chuẩn đầu ra môn học (CLO - Course Learning Outcome) đóng vai trò gì đối với sinh viên?
-A. Là thước đo định lượng những kiến thức, kỹ năng và thái độ sinh viên phải đạt được sau khi hoàn thành học phần
-B. Là bảng xếp hạng điểm số giữa các lớp với nhau
-C. Là thông tin chỉ dành riêng cho phòng tài chính
+A. Là thông tin chỉ dành riêng cho phòng tài chính
+B. Là thước đo định lượng những kiến thức, kỹ năng và thái độ sinh viên phải đạt được sau khi hoàn thành học phần
+C. Là bảng xếp hạng điểm số giữa các lớp với nhau
 D. Là thời khóa biểu học tập hàng ngày
-ANSWER: A
+ANSWER: B
 
 Vị trí Frontend Developer trong một dự án phát triển phần mềm chịu trách nhiệm chính về phần nào?
 A. Thiết kế cơ sở dữ liệu và tối ưu hóa câu lệnh SQL
-B. Xây dựng giao diện tương tác người dùng (UI), hiệu ứng và trải nghiệm (UX) trên trình duyệt hoặc thiết bị
+B. Quản lý tài chính và hợp đồng doanh nghiệp
 C. Cấu hình máy chủ vật lý và hệ thống tường lửa
-D. Quản lý tài chính và hợp đồng doanh nghiệp
-ANSWER: B
+D. Xây dựng giao diện tương tác người dùng (UI), hiệu ứng và trải nghiệm (UX) trên trình duyệt hoặc thiết bị
+ANSWER: D
 
 Trách nhiệm cốt lõi của một Backend Developer là gì?
 A. Thiết kế poster quảng cáo cho sản phẩm
@@ -153,39 +153,39 @@ D. Tiếp nhận cuộc gọi khiếu nại của khách hàng
 ANSWER: B
 
 Khái niệm "Fullstack Developer" dùng để chỉ lập trình viên có khả năng nào?
-A. Chỉ chuyên viết tài liệu hướng dẫn sử dụng
-B. Có thể đảm nhiệm cả phần giao diện (Frontend) và phần xử lý logic máy chủ (Backend)
-C. Chỉ chuyên về cài đặt hệ điều hành máy tính
+A. Có thể đảm nhiệm cả phần giao diện (Frontend) và phần xử lý logic máy chủ (Backend)
+B. Chỉ chuyên về cài đặt hệ điều hành máy tính
+C. Chỉ chuyên viết tài liệu hướng dẫn sử dụng
 D. Chỉ chuyên kiểm thử lỗi thủ công
-ANSWER: B
+ANSWER: A
 
 Kỹ sư DevOps (Development and Operations) giữ vai trò then chốt nào trong quy trình phát triển phần mềm hiện đại?
-A. Viết bài PR sản phẩm lên mạng xã hội
-B. Tự động hóa quy trình tích hợp và triển khai mã nguồn (CI/CD), quản lý và tối ưu hóa hạ tầng đám mây
+A. Tự động hóa quy trình tích hợp và triển khai mã nguồn (CI/CD), quản lý và tối ưu hóa hạ tầng đám mây
+B. Trực tổng đài hỗ trợ bán hàng
 C. Thiết kế bao bì sản phẩm
-D. Trực tổng đài hỗ trợ bán hàng
-ANSWER: B
+D. Viết bài PR sản phẩm lên mạng xã hội
+ANSWER: A
 
 Vai trò của chuyên viên QA/QC (Quality Assurance / Quality Control) trong nhóm dự án là gì?
 A. Thu tiền đặt cọc của khách hàng
-B. Lập kế hoạch kiểm thử, phát hiện lỗi phần mềm và đảm bảo sản phẩm đáp ứng tiêu chuẩn chất lượng trước khi phát hành
+B. Quyết định sa thải nhân viên trong nhóm
 C. Viết lại toàn bộ mã nguồn của dự án
-D. Quyết định sa thải nhân viên trong nhóm
-ANSWER: B
+D. Lập kế hoạch kiểm thử, phát hiện lỗi phần mềm và đảm bảo sản phẩm đáp ứng tiêu chuẩn chất lượng trước khi phát hành
+ANSWER: D
 
 Trong mô hình làm việc Agile/Scrum, cuộc họp Daily Standup hàng ngày thường có đặc điểm gì?
-A. Kéo dài 3 đến 4 tiếng đồng hồ trong phòng họp kín
-B. Diễn ra nhanh chóng (khoảng 10 - 15 phút), mỗi thành viên chia sẻ: đã làm gì, sẽ làm gì và gặp vướng mắc gì
+A. Chỉ dành riêng cho giám đốc tài chính
+B. Kéo dài 3 đến 4 tiếng đồng hồ trong phòng họp kín
 C. Là buổi liên hoan ăn uống của toàn bộ công ty
-D. Chỉ dành riêng cho giám đốc tài chính
-ANSWER: B
+D. Diễn ra nhanh chóng (khoảng 10 - 15 phút), mỗi thành viên chia sẻ: đã làm gì, sẽ làm gì và gặp vướng mắc gì
+ANSWER: D
 
 Thứ tự thăng tiến theo lộ trình phát triển kỹ thuật (Technical Track) phổ biến trong ngành IT là gì?
-A. Intern &rarr; Fresher &rarr; Junior &rarr; Middle &rarr; Senior &rarr; Tech Lead / Software Architect
+A. Intern &rarr; Giám đốc &rarr; Junior &rarr; Senior
 B. Senior &rarr; Junior &rarr; Fresher &rarr; Intern
-C. Intern &rarr; Giám đốc &rarr; Junior &rarr; Senior
+C. Intern &rarr; Fresher &rarr; Junior &rarr; Middle &rarr; Senior &rarr; Tech Lead / Software Architect
 D. Fresher &rarr; Tester &rarr; Kế toán &rarr; Architect
-ANSWER: A
+ANSWER: C
 
 Tại sao hồ sơ GitHub cá nhân được ví như "bản CV thực chiến" của sinh viên IT khi đi ứng tuyển?
 A. Vì trên GitHub có hiển thị thông tin bằng tốt nghiệp THPT
@@ -203,17 +203,17 @@ ANSWER: A
 
 Hành động nào dưới đây giúp sinh viên năm nhất Khoa CNTT chuẩn bị tốt nhất cho sự nghiệp tương lai?
 A. Chỉ đợi đến năm thứ tư mới bắt đầu tìm hiểu về viết code
-B. Xây dựng thói quen code đều đặn, lưu trữ dự án trên GitHub, tích cực học tiếng Anh và tham gia CLB chuyên môn
-C. Tránh tham gia các hoạt động nhóm và hội thảo khoa học
+B. Tránh tham gia các hoạt động nhóm và hội thảo khoa học
+C. Xây dựng thói quen code đều đặn, lưu trữ dự án trên GitHub, tích cực học tiếng Anh và tham gia CLB chuyên môn
 D. Chỉ học vẹt cú pháp để đối phó các bài kiểm tra lý thuyết
-ANSWER: B
+ANSWER: C
 
 Tuyên ngôn nổi tiếng về tư duy "Clean Code" (Mã sạch) của tác giả Robert C. Martin (Uncle Bob) nhấn mạnh điều gì?
 A. Code chỉ cần máy tính chạy được là đủ, không cần người khác hiểu
-B. Bất kỳ kẻ ngốc nào cũng có thể viết code máy tính hiểu được, lập trình viên giỏi viết code cho con người đọc hiểu
-C. Code càng dài và càng khó đọc thì người viết càng có trình độ cao
-D. Lập trình viên không cần viết mã sạch khi làm việc trong công ty lớn
-ANSWER: B
+B. Code càng dài và càng khó đọc thì người viết càng có trình độ cao
+C. Lập trình viên không cần viết mã sạch khi làm việc trong công ty lớn
+D. Bất kỳ kẻ ngốc nào cũng có thể viết code máy tính hiểu được, lập trình viên giỏi viết code cho con người đọc hiểu
+ANSWER: D
 
 Theo nguyên tắc Clean Code, cách đặt tên biến nào dưới đây được xem là chuẩn mực nhất để lưu trữ số ngày đã trôi qua?
 A. int d;
@@ -223,18 +223,18 @@ D. int xyz;
 ANSWER: C
 
 Nguyên lý DRY trong kỹ thuật lập trình phần mềm là viết tắt của cụm từ nào?
-A. Do Repeat Yourself
-B. Don't Repeat Yourself
+A. Data Ready Yard
+B. Do Repeat Yourself
 C. Debug Right Yesterday
-D. Data Ready Yard
-ANSWER: B
+D. Don't Repeat Yourself
+ANSWER: D
 
 Chữ cái 'S' trong bộ nguyên lý thiết kế SOLID đại diện cho nguyên tắc nào?
-A. Single Responsibility Principle (Nguyên tắc đơn trách nhiệm - một hàm/lớp chỉ làm một việc duy nhất)
-B. Software Speed Principle
+A. Software Speed Principle
+B. Single Responsibility Principle (Nguyên tắc đơn trách nhiệm - một hàm/lớp chỉ làm một việc duy nhất)
 C. Security Service Principle
 D. Server Side Principle
-ANSWER: A
+ANSWER: B
 
 Phương pháp quản lý thời gian Pomodoro hoạt động theo chu kỳ chuẩn nào để tối ưu hóa sự tập trung?
 A. Học liên tục 4 tiếng không nghỉ
@@ -244,25 +244,25 @@ D. Chỉ học vào ban đêm sau 12 giờ
 ANSWER: B
 
 Ma trận Eisenhower phân loại các công việc cần xử lý dựa trên hai tiêu chí cơ bản nào?
-A. Độ dài của công việc và độ khó của đề bài
-B. Mức độ khẩn cấp (Urgent) và Mức độ quan trọng (Important)
+A. Mức độ khẩn cấp (Urgent) và Mức độ quan trọng (Important)
+B. Độ dài của công việc và độ khó của đề bài
 C. Mức học phí và tiền lương
 D. Số lượng người tham gia vào công việc
-ANSWER: B
+ANSWER: A
 
 Một email học thuật chuẩn mực gửi Giảng viên Khoa CNTT cần có thành phần nào dưới đây?
-A. Tiêu đề để trống, nội dung chỉ đính kèm file nộp bài
-B. Tiêu đề rõ ràng [Lớp - MSSV - Họ tên - Vấn đề], lời chào kính gửi trang trọng, nội dung ngắn gọn và chữ ký email đầy đủ
-C. Sử dụng ngôn ngữ viết tắt mạng xã hội (teencode) để tạo sự gần gũi
+A. Sử dụng ngôn ngữ viết tắt mạng xã hội (teencode) để tạo sự gần gũi
+B. Tiêu đề để trống, nội dung chỉ đính kèm file nộp bài
+C. Tiêu đề rõ ràng [Lớp - MSSV - Họ tên - Vấn đề], lời chào kính gửi trang trọng, nội dung ngắn gọn và chữ ký email đầy đủ
 D. Gửi email bằng biệt danh lạ không có họ tên
-ANSWER: B
+ANSWER: C
 
 Theo chuẩn Clean Code, một hàm (function) chất lượng cao nên có đặc điểm nào?
-A. Càng dài hàng trăm dòng càng tốt để gom mọi tính năng vào một chỗ
-B. Hàm phải ngắn gọn, chỉ thực hiện duy nhất một nhiệm vụ và tên hàm mô tả chính xác hành động đó
+A. Không được đặt tên hàm bằng tiếng Anh
+B. Càng dài hàng trăm dòng càng tốt để gom mọi tính năng vào một chỗ
 C. Phải chứa ít nhất 10 vòng lặp lồng nhau
-D. Không được đặt tên hàm bằng tiếng Anh
-ANSWER: B
+D. Hàm phải ngắn gọn, chỉ thực hiện duy nhất một nhiệm vụ và tên hàm mô tả chính xác hành động đó
+ANSWER: D
 
 Khái niệm "Self-documenting code" (Mã nguồn tự diễn giải) có nghĩa là gì?
 A. Mã nguồn được đặt tên biến, hàm rõ ràng và cấu trúc mạch lạc đến mức người đọc hiểu ngay mà không cần quá nhiều chú thích rườm rà
@@ -272,11 +272,11 @@ D. Phần mềm tự động gửi email cho khách hàng
 ANSWER: A
 
 Hành động nào dưới đây vi phạm nghiêm trọng chuẩn mực Liêm chính học thuật (Academic Integrity) của sinh viên CNTT?
-A. Tự đọc tài liệu và tự viết code giải bài toán
+A. Sao chép nguyên văn mã nguồn của bạn khác hoặc lấy trên mạng rồi nộp bài nhận là của mình
 B. Tham khảo thuật toán, tự tay viết lại và ghi rõ nguồn tài liệu tham khảo
-C. Sao chép nguyên văn mã nguồn của bạn khác hoặc lấy trên mạng rồi nộp bài nhận là của mình
-D. Thảo luận thuật toán cùng các bạn trong nhóm học tập
-ANSWER: C
+C. Thảo luận thuật toán cùng các bạn trong nhóm học tập
+D. Tự đọc tài liệu và tự viết code giải bài toán
+ANSWER: A
 
 Về bản chất kỹ thuật, các mô hình ngôn ngữ lớn (LLM) như ChatGPT và Google Gemini hoạt động dựa trên cơ chế nào?
 A. Tự có ý thức và cảm xúc như con người
@@ -287,24 +287,24 @@ ANSWER: B
 
 Tổ chức nghiên cứu và phát triển sản phẩm ChatGPT là đơn vị nào?
 A. Microsoft
-B. OpenAI
-C. Apple
+B. Apple
+C. OpenAI
 D. Meta
-ANSWER: B
+ANSWER: C
 
 Mô hình Trí tuệ nhân tạo tạo sinh đa phương thức (Multimodal AI) chủ lực của Google có tên gọi là gì?
-A. Claude
+A. Gemini
 B. DeepSeek
-C. Gemini
+C. Claude
 D. Copilot
-ANSWER: C
+ANSWER: A
 
 Khái niệm "Prompt Engineering" trong lĩnh vực Trí tuệ nhân tạo được hiểu là gì?
 A. Kỹ thuật sửa chữa phần cứng và thay thế chip vi xử lý
-B. Kỹ thuật thiết kế, tinh chỉnh và tối ưu hóa câu lệnh đầu vào để hướng dẫn AI tạo ra kết quả chính xác và chất lượng nhất
-C. Cài đặt hệ điều hành cho máy chủ AI
-D. Xóa bỏ hoàn toàn các mô hình ngôn ngữ lớn
-ANSWER: B
+B. Cài đặt hệ điều hành cho máy chủ AI
+C. Xóa bỏ hoàn toàn các mô hình ngôn ngữ lớn
+D. Kỹ thuật thiết kế, tinh chỉnh và tối ưu hóa câu lệnh đầu vào để hướng dẫn AI tạo ra kết quả chính xác và chất lượng nhất
+ANSWER: D
 
 Cấu trúc một câu lệnh (Prompt) chuẩn mực và đầy đủ để đạt kết quả tối ưu thường bao gồm 5 yếu tố nào?
 A. Chỉ cần duy nhất 1 từ khóa tiếng Anh
@@ -314,39 +314,39 @@ D. Đoạn mã lỗi mà không cần giải thích gì thêm
 ANSWER: B
 
 Kỹ thuật Prompting "ELI5" (Explain Like I'm 5) thường được sinh viên sử dụng hiệu quả cho mục đích nào?
-A. Yêu cầu AI tự động xóa tài khoản học tập
-B. Yêu cầu AI giải thích một thuật ngữ hoặc khái niệm công nghệ phức tạp bằng ngôn từ cực kỳ giản dị, trực quan như giải thích cho một đứa trẻ 5 tuổi
+A. Yêu cầu AI hack tài khoản của người khác
+B. Yêu cầu AI tự động xóa tài khoản học tập
 C. Yêu cầu AI viết bài luận tốt nghiệp đại học
-D. Yêu cầu AI hack tài khoản của người khác
-ANSWER: B
+D. Yêu cầu AI giải thích một thuật ngữ hoặc khái niệm công nghệ phức tạp bằng ngôn từ cực kỳ giản dị, trực quan như giải thích cho một đứa trẻ 5 tuổi
+ANSWER: D
 
 Biện pháp bảo mật quan trọng hàng đầu mà sinh viên nên thiết lập ngay sau khi tạo tài khoản ChatGPT và Google là gì?
 A. Chia sẻ mật khẩu công khai cho các bạn cùng phòng
-B. Kích hoạt tính năng xác thực hai yếu tố (2FA - Two-Factor Authentication)
+B. Sử dụng mật khẩu đơn giản như "123456"
 C. Tắt tính năng bảo mật của trình duyệt
-D. Sử dụng mật khẩu đơn giản như "123456"
-ANSWER: B
+D. Kích hoạt tính năng xác thực hai yếu tố (2FA - Two-Factor Authentication)
+ANSWER: D
 
 Khi câu trả lời ban đầu của ChatGPT hoặc Gemini chưa đúng trọng tâm mong muốn, người dùng nên làm gì?
-A. Tắt ngay trình duyệt và từ bỏ việc sử dụng AI
-B. Đưa ra câu hỏi nối tiếp (Follow-up prompt) làm rõ thêm bối cảnh, chỉ ra điểm chưa hài lòng và yêu cầu AI điều chỉnh lại
-C. Lặp lại y nguyên câu hỏi cũ nhiều lần liên tiếp
+A. Lặp lại y nguyên câu hỏi cũ nhiều lần liên tiếp
+B. Tắt ngay trình duyệt và từ bỏ việc sử dụng AI
+C. Đưa ra câu hỏi nối tiếp (Follow-up prompt) làm rõ thêm bối cảnh, chỉ ra điểm chưa hài lòng và yêu cầu AI điều chỉnh lại
 D. Chửi bới công cụ AI
-ANSWER: B
+ANSWER: C
 
 Khi muốn biến AI thành một "Gia sư ảo 1-1" (Personal Tutor) hướng dẫn học lập trình C++, câu lệnh mở đầu nào là phù hợp nhất?
-A. "Lập trình C++ là gì?"
-B. "Bạn là một gia sư lập trình C++ tận tâm. Hãy hướng dẫn tôi từng bước hiểu về khái niệm Con trỏ (Pointer), đưa ví dụ đời sống và sau đó đặt một câu hỏi kiểm tra độ hiểu bài của tôi."
+A. "Bạn là một gia sư lập trình C++ tận tâm. Hãy hướng dẫn tôi từng bước hiểu về khái niệm Con trỏ (Pointer), đưa ví dụ đời sống và sau đó đặt một câu hỏi kiểm tra độ hiểu bài của tôi."
+B. "Lập trình C++ là gì?"
 C. "Giải hết bài tập này cho tôi ngay lập tức."
 D. "C++ khó quá."
-ANSWER: B
+ANSWER: A
 
 Nguyên nhân phổ biến nhất khiến AI đưa ra câu trả lời chung chung, thiếu chiều sâu là gì?
-A. Do AI không biết tiếng Việt
-B. Do câu lệnh của người dùng quá ngắn, mơ hồ, thiếu bối cảnh và không nêu rõ định dạng đầu ra mong muốn
-C. Do máy tính không có card đồ họa rời
+A. Do câu lệnh của người dùng quá ngắn, mơ hồ, thiếu bối cảnh và không nêu rõ định dạng đầu ra mong muốn
+B. Do máy tính không có card đồ họa rời
+C. Do AI không biết tiếng Việt
 D. Do hệ thống LMS bị mất kết nối mạng
-ANSWER: B
+ANSWER: A
 
 Thuật ngữ "TL;DR" trong kỹ thuật tóm tắt văn bản bằng AI là viết tắt của cụm từ nào?
 A. Too Long; Didn't Read (Tóm tắt siêu ngắn gọn những ý cốt lõi nhất)
@@ -356,11 +356,11 @@ D. Time Limit Decision Right
 ANSWER: A
 
 Khi cần đọc một chương sách kỹ thuật chuyên ngành dài 30 trang, cách tiếp cận tóm tắt nào bằng AI là hiệu quả nhất?
-A. Chỉ yêu cầu AI viết đúng 1 dòng duy nhất
-B. Yêu cầu AI tóm tắt có cấu trúc: Luận điểm chính &rarr; Giải thích chi tiết &rarr; Ví dụ minh họa &rarr; Bảng đối chiếu thuật ngữ
+A. Bảo AI tự động xóa bớt các trang chẵn
+B. Chỉ yêu cầu AI viết đúng 1 dòng duy nhất
 C. Yêu cầu AI dịch toàn bộ sang tiếng La-tinh
-D. Bảo AI tự động xóa bớt các trang chẵn
-ANSWER: B
+D. Yêu cầu AI tóm tắt có cấu trúc: Luận điểm chính &rarr; Giải thích chi tiết &rarr; Ví dụ minh họa &rarr; Bảng đối chiếu thuật ngữ
+ANSWER: D
 
 Bảng "Glossary" mà sinh viên có thể yêu cầu AI trích xuất tự động từ một bài giảng mang ý nghĩa gì?
 A. Danh sách điểm số của các sinh viên trong lớp
@@ -377,53 +377,53 @@ D. Bật máy tính để AI tự học một mình
 ANSWER: B
 
 Phương pháp "Spaced Repetition" (Lặp lại ngắt quãng) thường được ứng dụng cùng công cụ nào để giúp sinh viên ghi nhớ kiến thức lập trình lâu dài?
-A. Bộ thẻ nhớ Flashcard trên các ứng dụng như Anki hoặc Quizlet
+A. Máy tính tính tiền siêu thị
 B. Trò chơi điện tử trực tuyến
-C. Các video giải trí ngắn trên TikTok
-D. Máy tính tính tiền siêu thị
-ANSWER: A
+C. Bộ thẻ nhớ Flashcard trên các ứng dụng như Anki hoặc Quizlet
+D. Các video giải trí ngắn trên TikTok
+ANSWER: C
 
 Để dễ dàng nhập (import) bộ câu hỏi - câu trả lời ôn tập từ ChatGPT vào ứng dụng Anki hoặc Quizlet, ta nên yêu cầu AI xuất ra định dạng nào?
 A. Định dạng file âm thanh MP3
-B. Định dạng bảng 2 cột dạng Markdown hoặc định dạng văn bản ngăn cách bởi dấu tab (TSV/CSV)
-C. Định dạng ảnh chụp màn hình bị mờ
+B. Định dạng ảnh chụp màn hình bị mờ
+C. Định dạng bảng 2 cột dạng Markdown hoặc định dạng văn bản ngăn cách bởi dấu tab (TSV/CSV)
 D. Đoạn văn liền một khối không ngắt dòng
-ANSWER: B
+ANSWER: C
 
 Khi một cuốn sách hoặc tài liệu quá dài vượt quá giới hạn cửa sổ ngữ cảnh (Context Window) của AI, giải pháp tối ưu là gì?
-A. Không sử dụng AI nữa
-B. Chia nhỏ tài liệu thành từng chương hoặc từng phần (1000 - 1500 từ) để yêu cầu AI xử lý và tóm tắt cuốn chiếu từng phần
+A. Đổi phông chữ tài liệu sang Times New Roman
+B. Không sử dụng AI nữa
 C. Dán toàn bộ vào một dòng duy nhất
-D. Đổi phông chữ tài liệu sang Times New Roman
-ANSWER: B
+D. Chia nhỏ tài liệu thành từng chương hoặc từng phần (1000 - 1500 từ) để yêu cầu AI xử lý và tóm tắt cuốn chiếu từng phần
+ANSWER: D
 
 Tại sao sinh viên nên có thói quen đổi tên (Rename) và phân loại các luồng trò chuyện (Chat Threads) trong ChatGPT/Gemini?
-A. Để trang web tải nhanh hơn
-B. Để lưu giữ ngữ cảnh riêng của từng môn học (ví dụ: [C++] - Con trỏ, [Toán rời rạc] - Đồ thị) và dễ dàng tra cứu lại khi ôn thi
+A. Để lưu giữ ngữ cảnh riêng của từng môn học (ví dụ: [C++] - Con trỏ, [Toán rời rạc] - Đồ thị) và dễ dàng tra cứu lại khi ôn thi
+B. Để trang web tải nhanh hơn
 C. Vì ChatGPT sẽ tự động khóa tài khoản nếu không đổi tên
 D. Để chia sẻ tài khoản cho người khác dùng chung
-ANSWER: B
+ANSWER: A
 
 Để tóm tắt một bài báo khoa học công nghệ quốc tế, cấu trúc chuẩn mực nào dưới đây giúp AI phân tích trọn vẹn giá trị bài báo?
-A. Tên tác giả + Giá tiền mua bài báo
-B. Mục tiêu nghiên cứu &rarr; Phương pháp tiếp cận &rarr; Kết quả đạt được &rarr; Đóng góp và Hạn chế của nghiên cứu
+A. Màu sắc hình ảnh minh họa trong bài báo
+B. Tên tác giả + Giá tiền mua bài báo
 C. Số lượng từ ngữ trong bài báo
-D. Màu sắc hình ảnh minh họa trong bài báo
-ANSWER: B
+D. Mục tiêu nghiên cứu &rarr; Phương pháp tiếp cận &rarr; Kết quả đạt được &rarr; Đóng góp và Hạn chế của nghiên cứu
+ANSWER: D
 
 Mục đích đúng đắn nhất khi sử dụng AI để tóm tắt sách và tài liệu học tập là gì?
-A. Thay thế hoàn toàn việc đọc sách và không cần bao giờ mở sách ra nữa
-B. Nhanh chóng nắm bắt bức tranh tổng thể và các luận điểm trọng tâm, từ đó định hướng đọc sâu vào những phần kiến thức quan trọng nhất
+A. Nhanh chóng nắm bắt bức tranh tổng thể và các luận điểm trọng tâm, từ đó định hướng đọc sâu vào những phần kiến thức quan trọng nhất
+B. Giảm thời gian ngủ của sinh viên
 C. Dùng bản tóm tắt nộp bài thay cho bài tập cá nhân
-D. Giảm thời gian ngủ của sinh viên
-ANSWER: B
+D. Thay thế hoàn toàn việc đọc sách và không cần bao giờ mở sách ra nữa
+ANSWER: A
 
 Quy tắc cốt lõi khi sử dụng AI để dịch thuật tài liệu tiếng Anh chuyên ngành CNTT là gì?
 A. Phải dịch từng từ một sang tiếng Việt thuần túy, kể cả tên lệnh
-B. Yêu cầu AI giữ nguyên các thuật ngữ kỹ thuật chuẩn quốc tế (như API, Framework, Polymorphism, Backend, Frontend...) để tránh hiểu sai bản chất
-C. Dịch ngẫu nhiên không cần kiểm tra lại
+B. Dịch ngẫu nhiên không cần kiểm tra lại
+C. Yêu cầu AI giữ nguyên các thuật ngữ kỹ thuật chuẩn quốc tế (như API, Framework, Polymorphism, Backend, Frontend...) để tránh hiểu sai bản chất
 D. Luôn dịch tên các ngôn ngữ lập trình sang tiếng Việt
-ANSWER: B
+ANSWER: C
 
 Tại sao việc ép dịch thuật ngữ công nghệ sang nghĩa đen tiếng Việt (như dịch "Thread" thành "sợi chỉ", "Port" thành "cảng biển") lại bị coi là sai lầm trong kỹ thuật phần mềm?
 A. Vì làm câu văn quá ngắn
@@ -434,45 +434,45 @@ ANSWER: B
 
 Hiện tượng "Ảo giác của AI" (AI Hallucination) trong các mô hình ngôn ngữ lớn được hiểu là gì?
 A. Màn hình máy tính bị rung lắc khi đang chat
-B. Mô hình AI tự tin đưa ra thông tin hoàn toàn sai sự thật, bịa đặt số liệu, trích dẫn tác giả hoặc thư viện code không hề tồn tại
-C. AI có khả năng nhìn thấy ma quái
-D. AI tự động tải virus về máy người dùng
-ANSWER: B
+B. AI có khả năng nhìn thấy ma quái
+C. AI tự động tải virus về máy người dùng
+D. Mô hình AI tự tin đưa ra thông tin hoàn toàn sai sự thật, bịa đặt số liệu, trích dẫn tác giả hoặc thư viện code không hề tồn tại
+ANSWER: D
 
 Nguyên nhân kỹ thuật chính dẫn đến hiện tượng AI Hallucination là gì?
 A. Do người dùng gõ sai bàn phím
-B. Do cơ chế mô hình LLM là dự đoán chuỗi từ ngữ có xác suất cao nhất về mặt ngữ pháp chứ không có khả năng tự kiểm chứng chân lý thực tế
-C. Do máy tính bị nóng quạt tản nhiệt
+B. Do máy tính bị nóng quạt tản nhiệt
+C. Do cơ chế mô hình LLM là dự đoán chuỗi từ ngữ có xác suất cao nhất về mặt ngữ pháp chứ không có khả năng tự kiểm chứng chân lý thực tế
 D. Do nhà cung cấp mạng viễn thông chặn dữ liệu
-ANSWER: B
+ANSWER: C
 
 Kỹ thuật Prompting nào dưới đây giúp hạn chế tối đa hiện tượng ảo giác khi nhờ AI giải đáp kiến thức?
-A. "Hãy trả lời thật dài và bịa thêm ví dụ nếu không biết."
-B. Cung cấp trực tiếp tài liệu nguồn và ràng buộc: "Chỉ trả lời dựa trên đoạn văn bản được cung cấp ở trên; nếu thông tin không có trong tài liệu, hãy trả lời 'Tài liệu không đề cập'."
+A. Cung cấp trực tiếp tài liệu nguồn và ràng buộc: "Chỉ trả lời dựa trên đoạn văn bản được cung cấp ở trên; nếu thông tin không có trong tài liệu, hãy trả lời 'Tài liệu không đề cập'."
+B. Yêu cầu AI trả lời bằng thơ lục bát
 C. Không cung cấp tài liệu gì và yêu cầu AI đoán mò
-D. Yêu cầu AI trả lời bằng thơ lục bát
-ANSWER: B
+D. "Hãy trả lời thật dài và bịa thêm ví dụ nếu không biết."
+ANSWER: A
 
 Quy trình kiểm chứng sự thật (Fact-checking) bắt buộc sinh viên phải làm gì đối với các trích dẫn tài liệu do AI cung cấp?
 A. Tin tưởng tuyệt đối 100% không cần kiểm tra
-B. Tra cứu đối chiếu chéo tên bài báo, tác giả, năm xuất bản và chỉ số DOI trên các cổng khoa học uy tín (như Google Scholar, IEEE, ACM)
-C. Chia sẻ ngay lên mạng xã hội
-D. Xóa bài viết của AI ngay lập tức
-ANSWER: B
+B. Chia sẻ ngay lên mạng xã hội
+C. Xóa bài viết của AI ngay lập tức
+D. Tra cứu đối chiếu chéo tên bài báo, tác giả, năm xuất bản và chỉ số DOI trên các cổng khoa học uy tín (như Google Scholar, IEEE, ACM)
+ANSWER: D
 
 Khi sử dụng AI để biên tập và nâng cao chất lượng bài viết báo cáo học thuật, câu lệnh nào dưới đây là phù hợp nhất?
-A. "Hãy viết lại toàn bộ theo ý của bạn và thay đổi hết ý tưởng của tôi."
-B. "Hãy rà soát lỗi chính tả, ngữ pháp và cải thiện sự mạch lạc của đoạn văn sau; giữ nguyên ý tưởng gốc và liệt kê rõ những chỗ đã chỉnh sửa kèm lý do."
+A. "Hãy rà soát lỗi chính tả, ngữ pháp và cải thiện sự mạch lạc của đoạn văn sau; giữ nguyên ý tưởng gốc và liệt kê rõ những chỗ đã chỉnh sửa kèm lý do."
+B. "Hãy viết lại toàn bộ theo ý của bạn và thay đổi hết ý tưởng của tôi."
 C. "Dịch đoạn này sang 5 thứ tiếng khác nhau."
 D. "Hãy viết đoạn văn này thật mơ hồ và khó hiểu."
-ANSWER: B
+ANSWER: A
 
 Cấu trúc chuẩn mực của một bản Báo cáo Đồ án Kỹ thuật CNTT thường theo trình tự logic nào?
-A. Kết luận &rarr; Mở đầu &rarr; Trò chơi giải trí &rarr; Bảng điểm
-B. Đặt vấn đề/Mục tiêu &rarr; Tổng quan/Cơ sở lý thuyết &rarr; Thiết kế hệ thống &rarr; Hiện thực &amp; Thực nghiệm &rarr; Đánh giá &amp; Kết luận
-C. Danh sách thành viên nhóm &rarr; Hình ảnh đi chơi &rarr; Lời cảm ơn
+A. Danh sách thành viên nhóm &rarr; Hình ảnh đi chơi &rarr; Lời cảm ơn
+B. Kết luận &rarr; Mở đầu &rarr; Trò chơi giải trí &rarr; Bảng điểm
+C. Đặt vấn đề/Mục tiêu &rarr; Tổng quan/Cơ sở lý thuyết &rarr; Thiết kế hệ thống &rarr; Hiện thực &amp; Thực nghiệm &rarr; Đánh giá &amp; Kết luận
 D. Bảng mã nguồn toàn bộ &rarr; Bìa báo cáo
-ANSWER: B
+ANSWER: C
 
 Nguyên tắc Liêm chính học thuật (Academic Integrity) tại Đại học Lạc Hồng quy định như thế nào về việc sử dụng AI trong bài tập và đồ án?
 A. Nghiêm cấm hoàn toàn, không được phép chạm vào máy tính
@@ -489,18 +489,18 @@ D. Diễn đàn truyện tranh
 ANSWER: B
 
 Lợi ích lớn nhất của kỹ thuật "Role Prompting" (Yêu cầu AI đóng vai chuyên gia cụ thể) là gì?
-A. Khiến AI tự động gửi tin nhắn cho bạn bè
-B. Thiết lập miền tri thức chuyên sâu, điều chỉnh góc nhìn và văn phong trả lời phù hợp với tiêu chuẩn của một chuyên gia thực thụ
+A. Tăng tốc độ đường truyền internet
+B. Khiến AI tự động gửi tin nhắn cho bạn bè
 C. Giúp máy tính khởi động nhanh hơn
-D. Tăng tốc độ đường truyền internet
-ANSWER: B
+D. Thiết lập miền tri thức chuyên sâu, điều chỉnh góc nhìn và văn phong trả lời phù hợp với tiêu chuẩn của một chuyên gia thực thụ
+ANSWER: D
 
 Kỹ thuật Prompting "Chain-of-Thought" (Chuỗi suy luận từng bước) hoạt động dựa trên nguyên lý nào?
-A. Yêu cầu AI bỏ qua các bước trung gian để đoán ngay kết quả
-B. Hướng dẫn AI tư duy và phân tích tuần tự từng bước logic trước khi đưa ra kết luận cuối cùng, giúp giảm thiểu sai sót trong các bài toán phức tạp
+A. Hướng dẫn AI tư duy và phân tích tuần tự từng bước logic trước khi đưa ra kết luận cuối cùng, giúp giảm thiểu sai sót trong các bài toán phức tạp
+B. Yêu cầu AI bỏ qua các bước trung gian để đoán ngay kết quả
 C. Yêu cầu AI chỉ trả lời bằng thơ
 D. Bắt AI lặp lại câu hỏi 5 lần
-ANSWER: B
+ANSWER: A
 
 Sự khác biệt căn bản giữa "Zero-Shot Prompting" và "Few-Shot Prompting" là gì?
 A. Zero-shot không mất tiền, Few-shot phải trả phí
@@ -510,32 +510,32 @@ D. Zero-shot chỉ dùng được vào ban ngày
 ANSWER: B
 
 Khi gặp thông báo lỗi biên dịch mã nguồn (Compiler Error) trong bài tập lập trình C++, cách đưa dữ liệu nào lên AI là tối ưu nhất?
-A. Chỉ nhắn: "Code của tôi bị lỗi rồi, hãy sửa giúp tôi"
-B. Đưa đoạn code liên quan kèm toàn bộ nội dung thông báo lỗi nguyên văn (Compiler message, mã lỗi và số dòng báo lỗi)
+A. Đưa đoạn code liên quan kèm toàn bộ nội dung thông báo lỗi nguyên văn (Compiler message, mã lỗi và số dòng báo lỗi)
+B. Chỉ nhắn: "Code của tôi bị lỗi rồi, hãy sửa giúp tôi"
 C. Chụp ảnh màn hình nghiêng 45 độ mờ nhạt
 D. Xóa toàn bộ dự án và cài lại hệ điều hành
-ANSWER: B
+ANSWER: A
 
 Khi yêu cầu AI tái cấu trúc mã nguồn (Refactoring) theo chuẩn Clean Code, mục tiêu hướng tới là gì?
 A. Làm cho đoạn code dài thêm gấp ba lần
-B. Nâng cao tính rõ ràng, dễ bảo trì, loại bỏ mã trùng lặp (DRY) và tối ưu hiệu năng mà không làm thay đổi hành vi đúng đắn của phần mềm
-C. Đổi hết tên biến sang ký hiệu toán học bí mật
-D. Xóa bỏ hết các bài kiểm thử
-ANSWER: B
+B. Xóa bỏ hết các bài kiểm thử
+C. Nâng cao tính rõ ràng, dễ bảo trì, loại bỏ mã trùng lặp (DRY) và tối ưu hiệu năng mà không làm thay đổi hành vi đúng đắn của phần mềm
+D. Đổi hết tên biến sang ký hiệu toán học bí mật
+ANSWER: C
 
 Khi yêu cầu AI sinh bộ kiểm thử đơn vị (Unit Test Cases) cho một hàm tính toán, lập trình viên cần đặc biệt lưu ý kiểm tra các trường hợp nào?
-A. Chỉ kiểm tra trường hợp dữ liệu bình thường dễ dãi
-B. Kiểm tra toàn diện cả trường hợp thông thường (Happy path), các trường hợp giá trị biên (Edge cases) và trường hợp dữ liệu sai/bất thường
+A. Không cần chạy kiểm thử nếu code do AI viết
+B. Chỉ kiểm tra trường hợp dữ liệu bình thường dễ dãi
 C. Chỉ kiểm tra khi có sự cho phép của hiệu trưởng
-D. Không cần chạy kiểm thử nếu code do AI viết
-ANSWER: B
+D. Kiểm tra toàn diện cả trường hợp thông thường (Happy path), các trường hợp giá trị biên (Edge cases) và trường hợp dữ liệu sai/bất thường
+ANSWER: D
 
 Công cụ Generative AI nào hiện nay rất phổ biến trong việc biến văn bản dàn ý thành bài trình chiếu (Slide) trực quan chỉ trong vài giây?
-A. Gamma.app
+A. Calculator
 B. Notepad Windows
 C. Paint
-D. Calculator
-ANSWER: A
+D. Gamma.app
+ANSWER: D
 
 Cú pháp khai báo dạng văn bản mở nào thường được AI sử dụng để tự động vẽ sơ đồ luồng (Flowchart) hoặc sơ đồ kiến trúc hệ thống ngay trong file Markdown?
 A. MP3
@@ -546,24 +546,24 @@ ANSWER: B
 
 Nguyên tắc an toàn bảo mật tối quan trọng nào sinh viên KHÔNG ĐƯỢC vi phạm khi dán mã nguồn lên các công cụ AI trực tuyến?
 A. Luôn viết hoa tên biến
-B. Tuyệt đối không dán mật khẩu, chuỗi kết nối cơ sở dữ liệu (connection string), mã khóa bí mật (API Key) hoặc dữ liệu riêng tư của người dùng
-C. Phải bình luận đầy đủ trước khi dán code
+B. Phải bình luận đầy đủ trước khi dán code
+C. Tuyệt đối không dán mật khẩu, chuỗi kết nối cơ sở dữ liệu (connection string), mã khóa bí mật (API Key) hoặc dữ liệu riêng tư của người dùng
 D. Chỉ được dán mã nguồn vào buổi tối
-ANSWER: B
+ANSWER: C
 
 Tinh thần cốt lõi của phương pháp "Vibe Coding" trong đào tạo kỹ sư công nghệ tại LHU là gì?
-A. Phó mặc 100% cho AI viết code mà bản thân không cần hiểu và không cần kiểm tra
-B. Lập trình viên đóng vai trò kiến trúc sư trưởng, làm chủ AI Agents để tăng tốc lập trình, đồng thời luôn đọc hiểu, thẩm định và chịu trách nhiệm về chất lượng sản phẩm
+A. Lập trình viên đóng vai trò kiến trúc sư trưởng, làm chủ AI Agents để tăng tốc lập trình, đồng thời luôn đọc hiểu, thẩm định và chịu trách nhiệm về chất lượng sản phẩm
+B. Coi lập trình là một trò chơi may rủi
 C. Từ bỏ hoàn toàn các môn học thuật toán và kiến trúc máy tính
-D. Coi lập trình là một trò chơi may rủi
-ANSWER: B
+D. Phó mặc 100% cho AI viết code mà bản thân không cần hiểu và không cần kiểm tra
+ANSWER: A
 
 Bản Kế hoạch học tập cá nhân (Personal Learning Plan - PLP) đóng vai trò gì đối với sinh viên suốt 4 năm đại học?
-A. Là giấy cam kết không được nghỉ học buổi nào
-B. Là kim chỉ nam giúp sinh viên chủ động đặt mục tiêu GPA, rèn luyện kỹ năng, chuẩn bị chứng chỉ và theo dõi tiến độ hoàn thành mục tiêu nghề nghiệp
-C. Là danh sách các quán ăn quanh trường
+A. Là kim chỉ nam giúp sinh viên chủ động đặt mục tiêu GPA, rèn luyện kỹ năng, chuẩn bị chứng chỉ và theo dõi tiến độ hoàn thành mục tiêu nghề nghiệp
+B. Là danh sách các quán ăn quanh trường
+C. Là giấy cam kết không được nghỉ học buổi nào
 D. Là thời khóa biểu do phụ huynh quyết định
-ANSWER: B
+ANSWER: A
 
 Chỉ số GPA (Grade Point Average) trong trường đại học dùng để đo lường điều gì?
 A. Số lượng bạn bè kết nối trên Facebook
@@ -573,53 +573,53 @@ D. Chiều cao và cân nặng của sinh viên
 ANSWER: B
 
 Chứng chỉ ngoại ngữ nào dưới đây là điều kiện chuẩn đầu ra phổ biến và giúp kỹ sư CNTT mở rộng cơ hội làm việc trong môi trường toàn cầu?
-A. Bằng lái xe hạng B2
-B. Chứng chỉ TOEIC hoặc IELTS quốc tế
+A. Chứng chỉ TOEIC hoặc IELTS quốc tế
+B. Bằng lái xe hạng B2
 C. Chứng chỉ bơi lội
 D. Giấy chứng nhận tham gia hội trại
-ANSWER: B
+ANSWER: A
 
 Các chứng chỉ công nghệ quốc tế uy tín (như AWS Certified Cloud, Cisco CCNA, Google Cloud) mang lại lợi thế gì cho sinh viên CNTT khi tốt nghiệp?
-A. Được miễn toàn bộ học phí đại học
-B. Minh chứng năng lực thực chiến đạt chuẩn công nghiệp quốc tế, giúp hồ sơ nổi bật và gia tăng mức lương khởi điểm khi ứng tuyển
+A. Không mang lại giá trị gì trong mắt nhà tuyển dụng
+B. Được miễn toàn bộ học phí đại học
 C. Cho phép sinh viên tự in bằng tốt nghiệp tại nhà
-D. Không mang lại giá trị gì trong mắt nhà tuyển dụng
-ANSWER: B
+D. Minh chứng năng lực thực chiến đạt chuẩn công nghiệp quốc tế, giúp hồ sơ nổi bật và gia tăng mức lương khởi điểm khi ứng tuyển
+ANSWER: D
 
 Lợi ích thực tế lớn nhất khi tham gia vào các Câu lạc bộ chuyên môn và không gian Maker Lab tại Khoa CNTT - LHU là gì?
-A. Chỉ để giải trí và chơi game qua ngày
-B. Được cọ xát với các dự án thực tế, rèn luyện kỹ năng làm việc nhóm, học hỏi từ các anh chị khóa trên và sẵn sàng tham gia các cuộc thi NCKH
+A. Được cọ xát với các dự án thực tế, rèn luyện kỹ năng làm việc nhóm, học hỏi từ các anh chị khóa trên và sẵn sàng tham gia các cuộc thi NCKH
+B. Tránh việc phải đi học trên lớp
 C. Được cộng điểm tối đa vào tất cả các môn học mà không cần thi
-D. Tránh việc phải đi học trên lớp
-ANSWER: B
+D. Chỉ để giải trí và chơi game qua ngày
+ANSWER: A
 
 Nguyên tắc thiết kế Slide thuyết trình đồ án công nghệ hiệu quả và chuyên nghiệp là gì?
-A. Dán toàn bộ trang sách với chữ chi chít dày đặc lên slide
-B. Slide trực quan, súc tích, tận dụng sơ đồ kiến trúc, hình ảnh demo rõ ràng và sử dụng định dạng bullet point ngắn gọn
+A. Để toàn bộ slide trắng trơn không có nội dung
+B. Dán toàn bộ trang sách với chữ chi chít dày đặc lên slide
 C. Dùng 15 màu sắc sặc sỡ và hiệu ứng hoạt họa rối mắt
-D. Để toàn bộ slide trắng trơn không có nội dung
-ANSWER: B
+D. Slide trực quan, súc tích, tận dụng sơ đồ kiến trúc, hình ảnh demo rõ ràng và sử dụng định dạng bullet point ngắn gọn
+ANSWER: D
 
 Khi nhận được câu hỏi phản biện hóc búa từ Hội đồng Giảng viên hoặc chuyên gia doanh nghiệp, thái độ chuyên nghiệp của sinh viên là gì?
 A. Lập tức tranh cãi gay gắt và đổ lỗi cho đồng đội trong nhóm
-B. Bình tĩnh lắng nghe, ghi chép câu hỏi, trả lời chân thành đúng trọng tâm và khiêm tốn ghi nhận những điểm đề tài cần cải thiện thêm
+B. Trả lời rằng mình không quan tâm đến câu hỏi đó
 C. Bỏ ra khỏi phòng thuyết trình ngay lập tức
-D. Trả lời rằng mình không quan tâm đến câu hỏi đó
-ANSWER: B
+D. Bình tĩnh lắng nghe, ghi chép câu hỏi, trả lời chân thành đúng trọng tâm và khiêm tốn ghi nhận những điểm đề tài cần cải thiện thêm
+ANSWER: D
 
 Bảng tiêu chí đánh giá (Rubric) đồ án nhóm cuối khóa thường bao hàm các khía cạnh toàn diện nào?
 A. Chỉ chấm điểm trang phục của nhóm trưởng
-B. Chất lượng nội dung và sản phẩm công nghệ, tính sáng tạo và ứng dụng AI, kỹ năng làm việc nhóm và bản lĩnh thuyết trình phản biện
-C. Chỉ tính số trang giấy của bản báo cáo in ra
-D. Nhóm nào nộp bài sớm nhất thì được điểm tuyệt đối bất kể nội dung
-ANSWER: B
+B. Nhóm nào nộp bài sớm nhất thì được điểm tuyệt đối bất kể nội dung
+C. Chất lượng nội dung và sản phẩm công nghệ, tính sáng tạo và ứng dụng AI, kỹ năng làm việc nhóm và bản lĩnh thuyết trình phản biện
+D. Chỉ tính số trang giấy của bản báo cáo in ra
+ANSWER: C
 
 Mạng lưới Cựu sinh viên (Alumni) Khoa CNTT - LHU đem lại giá trị kết nối to lớn nào cho các thế hệ sinh viên đang theo học?
-A. Chia sẻ kinh nghiệm thực tế tại doanh nghiệp, tiếp nhận thực tập OJT và mở ra các cơ hội việc làm chính thức
-B. Cho sinh viên vay tiền mua trò chơi điện tử
-C. Thay sinh viên đi học điểm danh
+A. Cho sinh viên vay tiền mua trò chơi điện tử
+B. Thay sinh viên đi học điểm danh
+C. Chia sẻ kinh nghiệm thực tế tại doanh nghiệp, tiếp nhận thực tập OJT và mở ra các cơ hội việc làm chính thức
 D. Không có bất kỳ liên hệ nào với sinh viên
-ANSWER: A
+ANSWER: C
 
 Sau khi kết thúc học phần Nhập môn Công nghệ Thông tin, hành động thiết thực nhất mà mỗi sinh viên nên thực hiện ngay là gì?
 A. Tự mãn và nghỉ ngơi không học gì thêm trong suốt học kỳ 1

@@ -183,7 +183,7 @@
         <div style="margin-bottom: 16px;">
             <p style="margin: 0 0 8px 0; color: #fd7e14; font-weight: bold;">📄 Slide bài giảng Bài 04</p>
 
-            <a href="https://gamma.app/embed/ao8oqpb06ip45s3" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
+            <a href="{{LINK_SLIDE_BAI_04}}" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
                 <span style="color: #fd7e14; font-weight: bold;">📄 Slide bài giảng Bài 04: Kỹ năng học đại học &amp; Tư duy Clean Code</span><br>
                 <span style="color: #6c757d; font-size: 13px;">Hướng dẫn kỹ năng giao tiếp chuyên nghiệp, phương pháp tự học và triết lý viết mã sạch.</span>
             </a>
@@ -214,7 +214,7 @@
                 <span style="color: #fd7e14; font-weight: bold;">▶ Video 04.2 - Những nguyên lý lập trình nâng cao (SOLID) dành cho người mới</span>
             </a>
 
-            <a class="nomediaplugin" href="https://www.youtube.com/watch?v=wTzqk08X0i8" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
+            <a class="nomediaplugin" href="{{LINK_VIDEO_BAI_04_3}}" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
                 <span style="color: #fd7e14; font-weight: bold;">▶ Video 04.3 - Kỹ năng lập kế hoạch và làm việc nhóm hiệu quả với Google Sheets / Trello</span>
             </a>
         </div>
@@ -295,6 +295,141 @@
 
 
     </div>
+
+    <!-- Practice Quiz: luyện tập trực tiếp, chỉ báo số câu đúng/sai, không lưu và không hiển thị đáp án -->
+    <section id="luyen-tap" class="no-print mt-8 bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
+        <div>
+          <h2 class="text-lg sm:text-xl font-black text-slate-900 flex items-center gap-2">
+            <i class="fa-solid fa-pen-to-square text-emerald-600"></i> Luyện tập trắc nghiệm - Bài 04
+          </h2>
+          <p class="text-xs text-slate-500 mt-1">10 câu · Chấm ngay khi nộp · Không lưu kết quả · Không hiển thị đáp án</p>
+        </div>
+        <button type="button" id="pq-start" class="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold rounded-xl shadow transition-all flex items-center gap-2 justify-center">
+          <i class="fa-solid fa-play"></i> Bắt đầu làm bài
+        </button>
+      </div>
+
+      <form id="pq-form" class="hidden pt-5 space-y-5" novalidate></form>
+
+      <div id="pq-footer" class="hidden pt-5 mt-5 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <span id="pq-progress" class="text-sm text-slate-500"></span>
+        <button type="button" id="pq-submit" class="px-5 py-2.5 bg-lhu-blue hover:bg-lhu-dark text-white text-sm font-bold rounded-xl shadow transition-all flex items-center gap-2 justify-center">
+          <i class="fa-solid fa-check-double"></i> Nộp bài
+        </button>
+      </div>
+
+      <div id="pq-result" class="hidden mt-5 rounded-2xl border p-5" role="status" aria-live="polite"></div>
+    </section>
+
+    <script>
+      (function () {
+        // Dữ liệu sinh từ quiz/quiz-bai-04-aiken.txt. Đáp án được mã hóa nhẹ để không lộ khi xem nhanh;
+        // đây là bài luyện tập, không phải cơ chế chống gian lận.
+        const QUESTIONS = [{"q": "Tuyên ngôn nổi tiếng về tư duy \"Clean Code\" (Mã sạch) của tác giả Robert C. Martin (Uncle Bob) nhấn mạnh điều gì?", "o": ["Code chỉ cần máy tính chạy được là đủ, không cần người khác hiểu", "Code càng dài và càng khó đọc thì người viết càng có trình độ cao", "Lập trình viên không cần viết mã sạch khi làm việc trong công ty lớn", "Bất kỳ kẻ ngốc nào cũng có thể viết code máy tính hiểu được, lập trình viên giỏi viết code cho con người đọc hiểu"], "k": 0}, {"q": "Theo nguyên tắc Clean Code, cách đặt tên biến nào dưới đây được xem là chuẩn mực nhất để lưu trữ số ngày đã trôi qua?", "o": ["int d;", "int temp1;", "int elapsedTimeInDays;", "int xyz;"], "k": 2}, {"q": "Nguyên lý DRY trong kỹ thuật lập trình phần mềm là viết tắt của cụm từ nào?", "o": ["Data Ready Yard", "Do Repeat Yourself", "Debug Right Yesterday", "Don't Repeat Yourself"], "k": 2}, {"q": "Chữ cái 'S' trong bộ nguyên lý thiết kế SOLID đại diện cho nguyên tắc nào?", "o": ["Software Speed Principle", "Single Responsibility Principle (Nguyên tắc đơn trách nhiệm - một hàm/lớp chỉ làm một việc duy nhất)", "Security Service Principle", "Server Side Principle"], "k": 3}, {"q": "Phương pháp quản lý thời gian Pomodoro hoạt động theo chu kỳ chuẩn nào để tối ưu hóa sự tập trung?", "o": ["Học liên tục 4 tiếng không nghỉ", "Làm việc tập trung cao độ 25 phút, sau đó nghỉ ngắn 5 phút", "Làm việc 5 phút, sau đó lướt mạng xã hội 25 phút", "Chỉ học vào ban đêm sau 12 giờ"], "k": 2}, {"q": "Ma trận Eisenhower phân loại các công việc cần xử lý dựa trên hai tiêu chí cơ bản nào?", "o": ["Mức độ khẩn cấp (Urgent) và Mức độ quan trọng (Important)", "Độ dài của công việc và độ khó của đề bài", "Mức học phí và tiền lương", "Số lượng người tham gia vào công việc"], "k": 0}, {"q": "Một email học thuật chuẩn mực gửi Giảng viên Khoa CNTT cần có thành phần nào dưới đây?", "o": ["Sử dụng ngôn ngữ viết tắt mạng xã hội (teencode) để tạo sự gần gũi", "Tiêu đề để trống, nội dung chỉ đính kèm file nộp bài", "Tiêu đề rõ ràng [Lớp - MSSV - Họ tên - Vấn đề], lời chào kính gửi trang trọng, nội dung ngắn gọn và chữ ký email đầy đủ", "Gửi email bằng biệt danh lạ không có họ tên"], "k": 1}, {"q": "Theo chuẩn Clean Code, một hàm (function) chất lượng cao nên có đặc điểm nào?", "o": ["Không được đặt tên hàm bằng tiếng Anh", "Càng dài hàng trăm dòng càng tốt để gom mọi tính năng vào một chỗ", "Phải chứa ít nhất 10 vòng lặp lồng nhau", "Hàm phải ngắn gọn, chỉ thực hiện duy nhất một nhiệm vụ và tên hàm mô tả chính xác hành động đó"], "k": 1}, {"q": "Khái niệm \"Self-documenting code\" (Mã nguồn tự diễn giải) có nghĩa là gì?", "o": ["Mã nguồn được đặt tên biến, hàm rõ ràng và cấu trúc mạch lạc đến mức người đọc hiểu ngay mà không cần quá nhiều chú thích rườm rà", "Mã nguồn tự động in ra giấy sau khi chạy", "Trình biên dịch tự động viết thay toàn bộ bài tập", "Phần mềm tự động gửi email cho khách hàng"], "k": 1}, {"q": "Hành động nào dưới đây vi phạm nghiêm trọng chuẩn mực Liêm chính học thuật (Academic Integrity) của sinh viên CNTT?", "o": ["Sao chép nguyên văn mã nguồn của bạn khác hoặc lấy trên mạng rồi nộp bài nhận là của mình", "Tham khảo thuật toán, tự tay viết lại và ghi rõ nguồn tài liệu tham khảo", "Thảo luận thuật toán cùng các bạn trong nhóm học tập", "Tự đọc tài liệu và tự viết code giải bài toán"], "k": 0}];
+        const decode = (q, i) => ((q.k - i * 3 - 5) % q.o.length + q.o.length) % q.o.length;
+
+        const form = document.getElementById("pq-form");
+        const footer = document.getElementById("pq-footer");
+        const progress = document.getElementById("pq-progress");
+        const result = document.getElementById("pq-result");
+        const startBtn = document.getElementById("pq-start");
+        const submitBtn = document.getElementById("pq-submit");
+        const LETTERS = "ABCDEFGH";
+
+        function shuffle(list) {
+          const a = list.slice();
+          for (let i = a.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [a[i], a[j]] = [a[j], a[i]];
+          }
+          return a;
+        }
+
+        function render() {
+          form.innerHTML = "";
+          shuffle(QUESTIONS.map((_, i) => i)).forEach((qi, pos) => {
+            const q = QUESTIONS[qi];
+            const box = document.createElement("fieldset");
+            box.className = "border border-slate-200 rounded-2xl p-4";
+            box.dataset.q = qi;
+            const legend = document.createElement("legend");
+            legend.className = "px-2 text-sm font-bold text-slate-800";
+            legend.textContent = "Câu " + (pos + 1) + ". " + q.q;
+            box.appendChild(legend);
+            shuffle(q.o.map((_, oi) => oi)).forEach((oi, shown) => {
+              const label = document.createElement("label");
+              label.className = "flex items-start gap-3 mt-2 p-2.5 rounded-xl border border-transparent hover:bg-slate-50 cursor-pointer text-sm text-slate-700 has-[:checked]:border-lhu-sky has-[:checked]:bg-blue-50";
+              const input = document.createElement("input");
+              input.type = "radio";
+              input.name = "q" + qi;
+              input.value = oi;
+              input.className = "mt-0.5 accent-blue-700";
+              input.addEventListener("change", updateProgress);
+              const text = document.createElement("span");
+              text.textContent = LETTERS[shown] + ". " + q.o[oi];
+              label.append(input, text);
+              box.appendChild(label);
+            });
+            form.appendChild(box);
+          });
+          form.classList.remove("hidden");
+          footer.classList.remove("hidden");
+          result.classList.add("hidden");
+          submitBtn.disabled = false;
+          submitBtn.classList.remove("opacity-50");
+          updateProgress();
+        }
+
+        function answeredCount() {
+          return QUESTIONS.filter((_, i) => form.querySelector('input[name="q' + i + '"]:checked')).length;
+        }
+
+        function updateProgress() {
+          progress.textContent = "Đã trả lời " + answeredCount() + "/" + QUESTIONS.length + " câu";
+        }
+
+        function submit() {
+          const blank = QUESTIONS.length - answeredCount();
+          if (blank > 0 && !confirm("Còn " + blank + " câu chưa trả lời. Bạn vẫn muốn nộp bài?")) return;
+          let correct = 0;
+          QUESTIONS.forEach((q, i) => {
+            const picked = form.querySelector('input[name="q' + i + '"]:checked');
+            if (picked && Number(picked.value) === decode(q, i)) correct++;
+          });
+          const wrong = QUESTIONS.length - correct - blank;
+          const percent = Math.round(correct * 100 / QUESTIONS.length);
+          const good = percent >= 80, ok = percent >= 50;
+          result.className = "mt-5 rounded-2xl border p-5 " + (good ? "bg-emerald-50 border-emerald-200" : ok ? "bg-amber-50 border-amber-200" : "bg-rose-50 border-rose-200");
+          result.innerHTML =
+            '<div class="flex flex-wrap items-center gap-3 text-sm font-bold">' +
+              '<span class="px-3 py-1.5 rounded-lg bg-emerald-600 text-white"><i class="fa-solid fa-check mr-1"></i>Đúng: ' + correct + '</span>' +
+              '<span class="px-3 py-1.5 rounded-lg bg-rose-600 text-white"><i class="fa-solid fa-xmark mr-1"></i>Sai: ' + wrong + '</span>' +
+              (blank ? '<span class="px-3 py-1.5 rounded-lg bg-slate-500 text-white">Bỏ trống: ' + blank + '</span>' : '') +
+              '<span class="text-slate-700">' + correct + "/" + QUESTIONS.length + " câu (" + percent + "%)</span>" +
+            "</div>" +
+            '<p class="text-sm text-slate-700 mt-3">' +
+              (good ? "Rất tốt! Bạn đã nắm vững nội dung bài học." : ok ? "Khá ổn. Hãy xem lại các phần còn chưa chắc trong bài học rồi làm lại." : "Bạn nên đọc lại phần Học liệu chính của bài trước khi làm lại.") +
+            "</p>" +
+            '<button type="button" id="pq-retry" class="mt-4 px-4 py-2 bg-white hover:bg-slate-100 border border-slate-300 text-slate-800 text-sm font-bold rounded-xl transition-all"><i class="fa-solid fa-rotate-right mr-1"></i> Làm lại (đổi thứ tự câu hỏi)</button>';
+          result.classList.remove("hidden");
+          form.querySelectorAll("input").forEach(input => input.disabled = true);
+          submitBtn.disabled = true;
+          submitBtn.classList.add("opacity-50");
+          document.getElementById("pq-retry").addEventListener("click", () => {
+            render();
+            document.getElementById("luyen-tap").scrollIntoView({ behavior: "smooth" });
+          });
+          result.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+
+        startBtn.addEventListener("click", () => {
+          startBtn.classList.add("hidden");
+          render();
+        });
+        submitBtn.addEventListener("click", submit);
+      })();
+    </script>
 
     <!-- Bottom Navigation between lessons -->
     <div class="flex items-center justify-between gap-4 mt-8 no-print text-xs font-bold">

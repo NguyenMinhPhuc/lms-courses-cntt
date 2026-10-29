@@ -1,9 +1,9 @@
 Tuyên ngôn nổi tiếng về tư duy "Clean Code" (Mã sạch) của tác giả Robert C. Martin (Uncle Bob) nhấn mạnh điều gì?
 A. Code chỉ cần máy tính chạy được là đủ, không cần người khác hiểu
-B. Bất kỳ kẻ ngốc nào cũng có thể viết code máy tính hiểu được, lập trình viên giỏi viết code cho con người đọc hiểu
-C. Code càng dài và càng khó đọc thì người viết càng có trình độ cao
-D. Lập trình viên không cần viết mã sạch khi làm việc trong công ty lớn
-ANSWER: B
+B. Code càng dài và càng khó đọc thì người viết càng có trình độ cao
+C. Lập trình viên không cần viết mã sạch khi làm việc trong công ty lớn
+D. Bất kỳ kẻ ngốc nào cũng có thể viết code máy tính hiểu được, lập trình viên giỏi viết code cho con người đọc hiểu
+ANSWER: D
 
 Theo nguyên tắc Clean Code, cách đặt tên biến nào dưới đây được xem là chuẩn mực nhất để lưu trữ số ngày đã trôi qua?
 A. int d;
@@ -13,18 +13,18 @@ D. int xyz;
 ANSWER: C
 
 Nguyên lý DRY trong kỹ thuật lập trình phần mềm là viết tắt của cụm từ nào?
-A. Do Repeat Yourself
-B. Don't Repeat Yourself
+A. Data Ready Yard
+B. Do Repeat Yourself
 C. Debug Right Yesterday
-D. Data Ready Yard
-ANSWER: B
+D. Don't Repeat Yourself
+ANSWER: D
 
 Chữ cái 'S' trong bộ nguyên lý thiết kế SOLID đại diện cho nguyên tắc nào?
-A. Single Responsibility Principle (Nguyên tắc đơn trách nhiệm - một hàm/lớp chỉ làm một việc duy nhất)
-B. Software Speed Principle
+A. Software Speed Principle
+B. Single Responsibility Principle (Nguyên tắc đơn trách nhiệm - một hàm/lớp chỉ làm một việc duy nhất)
 C. Security Service Principle
 D. Server Side Principle
-ANSWER: A
+ANSWER: B
 
 Phương pháp quản lý thời gian Pomodoro hoạt động theo chu kỳ chuẩn nào để tối ưu hóa sự tập trung?
 A. Học liên tục 4 tiếng không nghỉ
@@ -34,25 +34,25 @@ D. Chỉ học vào ban đêm sau 12 giờ
 ANSWER: B
 
 Ma trận Eisenhower phân loại các công việc cần xử lý dựa trên hai tiêu chí cơ bản nào?
-A. Độ dài của công việc và độ khó của đề bài
-B. Mức độ khẩn cấp (Urgent) và Mức độ quan trọng (Important)
+A. Mức độ khẩn cấp (Urgent) và Mức độ quan trọng (Important)
+B. Độ dài của công việc và độ khó của đề bài
 C. Mức học phí và tiền lương
 D. Số lượng người tham gia vào công việc
-ANSWER: B
+ANSWER: A
 
 Một email học thuật chuẩn mực gửi Giảng viên Khoa CNTT cần có thành phần nào dưới đây?
-A. Tiêu đề để trống, nội dung chỉ đính kèm file nộp bài
-B. Tiêu đề rõ ràng [Lớp - MSSV - Họ tên - Vấn đề], lời chào kính gửi trang trọng, nội dung ngắn gọn và chữ ký email đầy đủ
-C. Sử dụng ngôn ngữ viết tắt mạng xã hội (teencode) để tạo sự gần gũi
+A. Sử dụng ngôn ngữ viết tắt mạng xã hội (teencode) để tạo sự gần gũi
+B. Tiêu đề để trống, nội dung chỉ đính kèm file nộp bài
+C. Tiêu đề rõ ràng [Lớp - MSSV - Họ tên - Vấn đề], lời chào kính gửi trang trọng, nội dung ngắn gọn và chữ ký email đầy đủ
 D. Gửi email bằng biệt danh lạ không có họ tên
-ANSWER: B
+ANSWER: C
 
 Theo chuẩn Clean Code, một hàm (function) chất lượng cao nên có đặc điểm nào?
-A. Càng dài hàng trăm dòng càng tốt để gom mọi tính năng vào một chỗ
-B. Hàm phải ngắn gọn, chỉ thực hiện duy nhất một nhiệm vụ và tên hàm mô tả chính xác hành động đó
+A. Không được đặt tên hàm bằng tiếng Anh
+B. Càng dài hàng trăm dòng càng tốt để gom mọi tính năng vào một chỗ
 C. Phải chứa ít nhất 10 vòng lặp lồng nhau
-D. Không được đặt tên hàm bằng tiếng Anh
-ANSWER: B
+D. Hàm phải ngắn gọn, chỉ thực hiện duy nhất một nhiệm vụ và tên hàm mô tả chính xác hành động đó
+ANSWER: D
 
 Khái niệm "Self-documenting code" (Mã nguồn tự diễn giải) có nghĩa là gì?
 A. Mã nguồn được đặt tên biến, hàm rõ ràng và cấu trúc mạch lạc đến mức người đọc hiểu ngay mà không cần quá nhiều chú thích rườm rà
@@ -62,9 +62,8 @@ D. Phần mềm tự động gửi email cho khách hàng
 ANSWER: A
 
 Hành động nào dưới đây vi phạm nghiêm trọng chuẩn mực Liêm chính học thuật (Academic Integrity) của sinh viên CNTT?
-A. Tự đọc tài liệu và tự viết code giải bài toán
+A. Sao chép nguyên văn mã nguồn của bạn khác hoặc lấy trên mạng rồi nộp bài nhận là của mình
 B. Tham khảo thuật toán, tự tay viết lại và ghi rõ nguồn tài liệu tham khảo
-C. Sao chép nguyên văn mã nguồn của bạn khác hoặc lấy trên mạng rồi nộp bài nhận là của mình
-D. Thảo luận thuật toán cùng các bạn trong nhóm học tập
-ANSWER: C
-
+C. Thảo luận thuật toán cùng các bạn trong nhóm học tập
+D. Tự đọc tài liệu và tự viết code giải bài toán
+ANSWER: A

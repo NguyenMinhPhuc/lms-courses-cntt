@@ -1,0 +1,69 @@
+Hướng phát triển nào dùng một mã nguồn để chạy trên cả Android và iOS, với giao diện là component native?
+A. Native (Kotlin cho Android, Swift cho iOS)
+B. Cross-platform như React Native
+C. PWA (Progressive Web App)
+D. Website responsive thông thường
+ANSWER: B
+
+Lý do chính để học phần chọn React Native là gì?
+A. React Native không cần lập trình
+B. React Native chỉ chạy trên iOS
+C. Sinh viên đã biết React nên dùng lại được cách tư duy component, props, state và hook
+D. React Native không cần kết nối backend
+ANSWER: C
+
+Khi React Native hiển thị một component Text trên Android, kết quả là gì?
+A. Một trang web nhúng trong ứng dụng
+B. Một view native thật của Android
+C. Một hình ảnh tĩnh
+D. Một đoạn mã HTML
+ANSWER: B
+
+Expo Go dùng để làm gì?
+A. Quản lý cơ sở dữ liệu SQL Server
+B. Thiết kế giao diện kéo thả
+C. Chạy thử dự án ngay trên điện thoại mà không cần build
+D. Đưa ứng dụng lên Google Play
+ANSWER: C
+
+Khi nào cần dùng development build thay cho Expo Go?
+A. Khi muốn đổi màu chữ
+B. Khi viết component đầu tiên
+C. Khi điện thoại hết pin
+D. Khi dự án cần thư viện native mà Expo Go không có sẵn
+ANSWER: D
+
+Trong React Native, thành phần nào thay cho thẻ div của HTML?
+A. Text
+B. Pressable
+C. Image
+D. View
+ANSWER: D
+
+Đoạn chữ "Xin chào" được đặt trực tiếp trong View mà không bọc bằng Text. Điều gì xảy ra?
+A. Chữ hiển thị bình thường
+B. Chữ tự động in đậm
+C. Ứng dụng báo lỗi vì mọi chữ phải nằm trong component Text
+D. Chữ chỉ hiển thị trên iOS
+ANSWER: C
+
+Trong React Native, sự kiện chạm vào nút được xử lý bằng thuộc tính nào?
+A. onPress
+B. onClick
+C. onHover
+D. onSubmit
+ANSWER: A
+
+Theo quy tắc vibe coding của học phần, điều kiện nào bắt buộc trước khi merge một Pull Request?
+A. Mã phải do AI sinh ra hoàn toàn
+B. Người tạo PR phải giải thích được mọi đoạn mã và ghi prompt chính vào PROMPTS.md
+C. PR phải có ít nhất 1.000 dòng mã
+D. Chỉ trưởng nhóm được tạo PR
+ANSWER: B
+
+File AGENTS.md trong repo của nhóm có tác dụng gì?
+A. Mô tả kiến trúc, thư viện và quy ước dự án để AI sinh mã nhất quán
+B. Lưu mật khẩu cơ sở dữ liệu
+C. Chứa file cài đặt APK
+D. Ghi điểm số của từng thành viên
+ANSWER: A

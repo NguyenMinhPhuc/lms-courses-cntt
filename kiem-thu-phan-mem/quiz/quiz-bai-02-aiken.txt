@@ -1,0 +1,69 @@
+Test Plan là gì?
+A. Danh sách lỗi đã phát hiện trong quá trình kiểm thử
+B. Mã nguồn của các script kiểm thử tự động
+C. Bảng ghi kết quả Pass/Fail của từng test case
+D. Tài liệu mô tả mục tiêu, phạm vi, phương pháp, nguồn lực, lịch trình và cách kiểm soát hoạt động kiểm thử
+ANSWER: D
+
+Test Plan của Notepad Cải Tiến ghi "tính năng đồng bộ đám mây nằm ngoài phạm vi phiên bản đầu". Nội dung này thuộc thành phần nào?
+A. Tiêu chí tạm dừng
+B. Rủi ro và giảm thiểu
+C. Vai trò và trách nhiệm
+D. Mục tiêu và phạm vi
+ANSWER: D
+
+"Build đã được triển khai và môi trường kiểm thử sẵn sàng" là ví dụ của tiêu chí nào?
+A. Tiêu chí hoàn thành
+B. Tiêu chí chất lượng
+C. Tiêu chí bắt đầu
+D. Tiêu chí tạm dừng
+ANSWER: C
+
+Theo quy trình trong bài, bước đầu tiên khi lập Test Plan là gì?
+A. Viết test case cho tất cả chức năng
+B. Ước lượng chi phí công cụ kiểm thử tự động
+C. Đọc PRD và trao đổi với bên liên quan để hiểu mục tiêu sản phẩm
+D. Gửi kế hoạch cho quản lý phê duyệt
+ANSWER: C
+
+Tiêu chí hoàn thành nào đo lường được?
+A. Không còn lỗi nghiêm trọng chưa xử lý và thao tác lọc nằm trong ngưỡng thời gian nhóm đã thống nhất
+B. Ứng dụng chạy nhanh
+C. Kiểm thử đầy đủ mọi chức năng
+D. Người dùng cảm thấy hài lòng
+ANSWER: A
+
+Bài học nêu các chỉ số như "90% test case đạt". Nên hiểu các chỉ số này như thế nào?
+A. Là mục tiêu ví dụ; nhóm cần thống nhất định nghĩa và căn cứ chọn ngưỡng cho dự án cụ thể
+B. Là ngưỡng bắt buộc cho mọi dự án
+C. Là kết quả đo được sau khi phát hành
+D. Chỉ áp dụng cho kiểm thử tự động
+ANSWER: A
+
+Todo App có rủi ro hiển thị sai trên Firefox. Biện pháp giảm thiểu nào phù hợp nhất?
+A. Bỏ Firefox ra khỏi phạm vi mà không ghi lý do
+B. Tăng số test case trên Chrome
+C. Chờ người dùng báo lỗi sau phát hành
+D. Kiểm thử đa trình duyệt sớm
+ANSWER: D
+
+Khi phạm vi hoặc yêu cầu dự án thay đổi giữa chừng, nhóm kiểm thử nên làm gì với Test Plan?
+A. Ghi nhận tác động, trao đổi với bên liên quan và cập nhật kế hoạch
+B. Tiếp tục theo kế hoạch cũ cho đến hết dự án
+C. Hủy Test Plan và chuyển sang kiểm thử tự do
+D. Chỉ cập nhật sau khi phát hành
+ANSWER: A
+
+Tích hợp Google Calendar chưa thuộc yêu cầu của phiên bản Todo App hiện tại. Cách xử lý đúng trong Test Plan là gì?
+A. Vẫn đưa vào phạm vi để kiểm thử cho chắc
+B. Xếp vào ngoài phạm vi và ghi rõ lý do
+C. Không nhắc tới trong Test Plan
+D. Chuyển thành rủi ro mức cao
+ANSWER: B
+
+Thành phần "Vai trò và trách nhiệm" của Test Plan mô tả điều gì?
+A. Danh sách thiết bị và trình duyệt dùng để kiểm thử
+B. Nhiệm vụ của QA, nhà phát triển, quản lý dự án và các bên liên quan
+C. Các lỗi đã phát hiện và người sửa
+D. Thời điểm phát hành sản phẩm
+ANSWER: B

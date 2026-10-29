@@ -31,7 +31,7 @@
         <div style="margin-bottom: 16px;">
             <p style="margin: 0 0 8px 0; color: #fd7e14; font-weight: bold;">📄 Slide bài giảng Bài 08</p>
 
-            <a href="https://gamma.app/embed/ijwo95knnb284xg" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
+            <a href="{{LINK_SLIDE_BAI_08}}" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
                 <span style="color: #fd7e14; font-weight: bold;">📄 Slide bài giảng Bài 08: Kỹ thuật Prompt nâng cao &amp; Nhập môn Vibe Coding</span><br>
                 <span style="color: #6c757d; font-size: 13px;">Hướng dẫn Role prompting, Chain-of-thought, sửa lỗi code và trực quan hóa sản phẩm bằng Generative AI.</span>
             </a>
@@ -54,7 +54,7 @@
         <div style="margin-bottom: 16px;">
             <p style="margin: 0 0 8px 0; color: #fd7e14; font-weight: bold;">🎥 Video hướng dẫn chi tiết</p>
 
-            <a class="nomediaplugin" href="https://www.youtube.com/watch?v=yeMNk7ZUmFw" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
+            <a class="nomediaplugin" href="{{LINK_VIDEO_BAI_08}}" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
                 <span style="color: #fd7e14; font-weight: bold;">▶ Video 08 - Trải nghiệm Vibe Coding: Lập trình viên tương tác cùng AI để debug và tối ưu mã nguồn</span>
             </a>
         </div>

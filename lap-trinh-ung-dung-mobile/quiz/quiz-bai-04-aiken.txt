@@ -1,0 +1,69 @@
+Giỏ hàng cần được đọc và cập nhật ở cả màn hình Chi tiết món lẫn tab Giỏ hàng. Đây là loại trạng thái nào?
+A. Trạng thái cục bộ của một màn hình
+B. Hằng số cấu hình
+C. Trạng thái chỉ có trong SQL Server
+D. Trạng thái toàn cục dùng chung nhiều màn hình
+ANSWER: D
+
+Thư viện nào được dùng trong học phần để quản lý trạng thái toàn cục như giỏ hàng?
+A. mssql
+B. Socket.IO
+C. Zustand
+D. Expo Router
+ANSWER: C
+
+Trong Zustand, viết useCart((state) => state.items) thay vì lấy toàn bộ store có lợi ích gì?
+A. Giỏ hàng được lưu vào SQL Server
+B. Tự động mã hóa dữ liệu
+C. Không cần cài thư viện
+D. Màn hình chỉ vẽ lại khi phần state đã chọn thay đổi
+ANSWER: D
+
+Hàm thêm món vào giỏ hàng trong Zustand cần trả về gì để giao diện cập nhật đúng?
+A. Sửa trực tiếp mảng cũ bằng push
+B. Một mảng mới tạo bằng map, filter hoặc spread
+C. Chuỗi JSON của giỏ hàng
+D. Không cần trả về gì
+ANSWER: B
+
+Vì sao nên dùng FlatList thay vì ScrollView cho thực đơn 500 món?
+A. ScrollView không hiển thị được ảnh
+B. FlatList chỉ vẽ các phần tử đang hiển thị nên cuộn mượt và tốn ít bộ nhớ
+C. FlatList tự gọi API
+D. ScrollView chỉ chạy trên iOS
+ANSWER: B
+
+Giá trị nào phù hợp nhất cho keyExtractor của danh sách món ăn?
+A. Mã món (id) duy nhất và ổn định, chuyển thành chuỗi
+B. Một số ngẫu nhiên tạo mỗi lần vẽ
+C. Chỉ số của phần tử trong mảng
+D. Tên món ăn
+ANSWER: A
+
+Thuộc tính nào của FlatList hiển thị nội dung khi danh sách không có phần tử nào?
+A. onEndReached
+B. numColumns
+C. ListEmptyComponent
+D. keyExtractor
+ANSWER: C
+
+Trong form dùng React Hook Form + Zod, vai trò của Zod là gì?
+A. Vẽ ô nhập liệu
+B. Lưu token đăng nhập
+C. Gửi request lên API
+D. Mô tả quy tắc dữ liệu (schema) và thông báo lỗi
+ANSWER: D
+
+Muốn báo lỗi khi mật khẩu xác nhận không khớp với mật khẩu, trong Zod dùng cách nào?
+A. Dùng .refine so sánh hai trường và đặt path là trường xác nhận
+B. Thêm .max(8) cho trường xác nhận
+C. Dùng keyboardType="password"
+D. Không làm được bằng Zod
+ANSWER: A
+
+AI sinh biểu thức chính quy kiểm tra số điện thoại cho form đăng ký. Cách kiểm tra lại hiệu quả nhất là gì?
+A. Thử các trường hợp biên như 9, 10, 11 chữ số và số không bắt đầu bằng 0
+B. Tin ngay vì AI hiếm khi sai
+C. Chỉ thử một số điện thoại hợp lệ
+D. Xóa phần kiểm tra để form dễ dùng hơn
+ANSWER: A

@@ -1,0 +1,69 @@
+Vì sao nên đặt ràng buộc CHECK (Stock >= 0) ngay trong bảng Products của SQL Server?
+A. Để ứng dụng chạy nhanh hơn
+B. Vì NestJS không kiểm tra được số âm
+C. Để dữ liệu sai bị chặn dù request đến từ app, web hay công cụ khác
+D. Để không cần viết stored procedure
+ANSWER: C
+
+Chỉ mục (index) IX_Orders_UserId_CreatedAt giúp ích nhất cho truy vấn nào?
+A. Đổi mật khẩu người dùng
+B. Lấy lịch sử đơn hàng của một người, sắp xếp mới nhất trước
+C. Thêm món ăn mới
+D. Xóa toàn bộ bảng Orders
+ANSWER: B
+
+Giao dịch (transaction) trong sp_Order_Create đảm bảo điều gì?
+A. Đơn hàng được tạo nhanh hơn
+B. Tự động gửi thông báo cho nhân viên
+C. Mỗi người chỉ đặt được một đơn mỗi ngày
+D. Tạo đơn, tạo chi tiết đơn và trừ tồn kho hoặc cùng thành công, hoặc không có gì thay đổi
+ANSWER: D
+
+Trong khối BEGIN CATCH của sp_Order_Create, vì sao phải kiểm tra IF @@TRANCOUNT > 0 trước khi ROLLBACK?
+A. Để tăng tồn kho
+B. Để đếm số đơn hàng
+C. Để chỉ hoàn tác khi đang có giao dịch mở, tránh lỗi khi không còn giao dịch nào
+D. Vì SQL Server bắt buộc mọi thủ tục phải có dòng này
+ANSWER: C
+
+Lệnh THROW; (không tham số) trong khối CATCH có tác dụng gì?
+A. Ném lại đúng lỗi gốc, giữ nguyên mã lỗi như 50409 để backend xử lý
+B. Bỏ qua lỗi và tiếp tục chạy
+C. Xóa đơn hàng vừa tạo
+D. Ghi log vào file
+ANSWER: A
+
+Gợi ý khóa WITH (UPDLOCK, HOLDLOCK) khi kiểm tra tồn kho giải quyết vấn đề nào?
+A. Ứng dụng mất kết nối mạng
+B. Người dùng quên mật khẩu
+C. Ảnh món ăn quá lớn
+D. Hai người cùng đặt suất cuối của một món trong cùng thời điểm
+ANSWER: D
+
+Vì sao nên đánh số các file script như 01-tables.sql, 02-procedures.sql, 99-seed.sql?
+A. Để chạy lần lượt trên CSDL trống là tạo ra đúng CSDL của nhóm và dùng lại khi triển khai
+B. Để file đẹp hơn trong thư mục
+C. Vì SQL Server chỉ đọc file có số ở đầu
+D. Để không cần ERD
+ANSWER: A
+
+Optimistic update (cập nhật lạc quan) khi bấm nút yêu thích hoạt động thế nào?
+A. Chờ API trả kết quả rồi mới đổi giao diện
+B. Lưu món yêu thích vào CSDL trên điện thoại
+C. Đổi giao diện ngay, gửi API ở nền; nếu API lỗi thì trả giao diện về trạng thái cũ
+D. Không gọi API
+ANSWER: C
+
+Giỏ hàng chưa đặt của LHU Food được giữ lại khi tắt app bằng cách nào?
+A. Lưu vào bảng Carts trên điện thoại
+B. Middleware persist của Zustand lưu vào AsyncStorage
+C. Lưu trong Expo SecureStore cùng token
+D. Gửi lên Socket.IO
+ANSWER: B
+
+Theo nguyên tắc của học phần, nguồn dữ liệu chuẩn của đơn hàng và tồn kho nằm ở đâu?
+A. AsyncStorage trên điện thoại
+B. SQL Server, truy cập qua API và stored procedure
+C. Cache của TanStack Query
+D. File JSON trong thư mục assets
+ANSWER: B

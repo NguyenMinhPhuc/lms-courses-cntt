@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đánh giá học phần & Rubric (111114) | Khoa CNTT - Đại học Lạc Hồng</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome 6.4.0 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            asu: {
+              maroon: '#8C1D40',
+              gold: '#FFC627',
+              dark: '#5C142B',
+              light: '#FAEDF0'
+            },
+            lhu: {
+              blue: '#013D88',
+              sky: '#007BFF',
+              dark: '#01295C',
+              light: '#EEF5FC'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    @media print {
+      header, footer, .no-print {
+        display: none !important;
+      }
+      details {
+        break-inside: avoid;
+        margin-bottom: 20px;
+      }
+      details[open] summary {
+        border-bottom: 1px solid #ccc;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-slate-100 text-slate-800 font-sans antialiased selection:bg-asu-gold selection:text-slate-900 min-h-screen flex flex-col">
+
+  <!-- TOP BAR -->
+  <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800 no-print">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+      <div class="flex items-center gap-2">
+        <span class="text-asu-gold font-semibold"><i class="fa-solid fa-certificate mr-1"></i> CHUẨN KIỂM ĐỊNH ABET (USA)</span>
+        <span class="text-slate-600 hidden sm:inline">•</span>
+        <span class="hidden sm:inline">Đối tác chiến lược: <strong>Arizona State University (ASU)</strong></span>
+      </div>
+      <div class="flex items-center gap-4 text-xs font-mono">
+        <span>Mã học phần: <strong class="text-white">111114</strong></span>
+        <span>Số tín chỉ: <strong class="text-asu-gold">3</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="sticky top-0 z-40 bg-white shadow-sm border-b border-slate-200 no-print">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="index.html" class="flex items-center gap-2.5 text-slate-800 hover:text-lhu-blue transition-colors">
+          <img src="../nhap-mon-nganh/LHU_ASU_VI_Small_Ngang.png" alt="Logo LHU" class="h-8 w-auto">
+          <div class="border-l border-slate-300 pl-2.5">
+            <div class="text-[11px] font-bold text-slate-500 uppercase">Khoa CNTT - LHU</div>
+            <div class="text-xs font-extrabold text-lhu-blue">LẬP TRÌNH DI ĐỘNG (111114)</div>
+          </div>
+        </a>
+      </div>
+
+      <div class="flex items-center gap-3 text-xs">
+        <a href="index.html" class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-arrow-left"></i>
+          <span>Về Landing Page</span>
+        </a>
+        <button onclick="window.print()" class="hidden sm:flex px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-all items-center gap-1.5" title="In hoặc lưu file PDF">
+          <i class="fa-solid fa-print"></i>
+          <span>In Đề Cương</span>
+        </button>
+        <a href="https://learn.lhu.edu.vn" target="_blank" class="px-4 py-2 bg-lhu-blue hover:bg-lhu-dark text-white font-bold rounded-xl shadow transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-graduation-cap text-asu-gold"></i>
+          <span>Vào lớp LMS</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="flex-grow max-w-5xl w-full mx-auto px-4 sm:px-6 py-8">
+    
+    <!-- Title Card -->
+    <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 mb-8">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-5">
+        <div>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 text-lhu-blue font-bold text-xs uppercase tracking-wider mb-2">
+            <i class="fa-solid fa-book-open"></i> ĐẠI HỌC LẠC HỒNG • KHOA CÔNG NGHỆ THÔNG TIN
+          </span>
+          <h1 class="text-2xl sm:text-3xl font-black text-slate-900 leading-tight">
+            Đánh giá học phần & Rubric (111114)
+          </h1>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1 font-mono">
+            Học phần: Lập trình ứng dụng di động • Mã môn: 111114 • PBL · Vibe Coding
+          </p>
+        </div>
+
+        <div class="flex-shrink-0 flex sm:flex-col items-center sm:items-end justify-between gap-1 text-xs">
+          <span class="px-3 py-1.5 bg-emerald-50 text-emerald-700 font-bold rounded-lg border border-emerald-200">
+            <i class="fa-solid fa-check-circle mr-1"></i> Lưu hành nội bộ 2026
+          </span>
+          <span class="text-slate-400 text-[11px]">Định dạng LMS Accordion</span>
+        </div>
+      </div>
+
+      <!-- Quick Action Controls for Accordions -->
+      <div class="flex items-center justify-between pt-4 text-xs no-print">
+        <span class="text-slate-500">
+          <i class="fa-solid fa-circle-info text-blue-500 mr-1"></i>
+          Nhấp vào từng thanh tiêu đề để đóng/mở nội dung chi tiết.
+        </span>
+        <div class="flex items-center gap-2">
+          <button onclick="toggleAllDetails(true)" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg transition-colors">
+            Mở tất cả
+          </button>
+          <button onclick="toggleAllDetails(false)" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg transition-colors">
+            Thu gọn
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Accordion Blocks -->
+    <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200">
+      <details open="" style="border: 1px solid #007bff; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #e7f1ff; color: #007bff; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>📘 1. Tổng quan đánh giá học phần</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <p style="margin-top: 0;"><strong>ĐÁNH GIÁ HỌC PHẦN LẬP TRÌNH ỨNG DỤNG DI ĐỘNG (111114)</strong></p>
+        <p>Điểm học phần dựa trên những gì nhóm và từng cá nhân thực sự làm ra trong 4 sprint. Ứng dụng chạy được là điều kiện cần; bạn còn phải trình bày được thiết kế và giải thích được phần mã mình phụ trách.</p>
+        <table style="width: 100%; max-width: 760px; border-collapse: collapse; margin-bottom: 15px; font-size: 14px;">
+            <thead><tr style="background-color: #e7f1ff;"><th style="padding: 8px; border: 1px solid #b6d4fe; text-align: left;">Thành phần</th><th style="padding: 8px; border: 1px solid #b6d4fe; text-align: left;">Nội dung</th><th style="padding: 8px; border: 1px solid #b6d4fe; text-align: center;">Tỷ trọng</th></tr></thead>
+            <tbody>
+                <tr><td style="padding: 8px; border: 1px solid #b6d4fe;"><strong>Quá trình</strong></td><td style="padding: 8px; border: 1px solid #b6d4fe;">Chuyên cần, quiz từng bài, <code>PROMPTS.md</code>, sơ đồ thiết kế nộp theo sprint, tham gia review chéo</td><td style="padding: 8px; border: 1px solid #b6d4fe; text-align: center;"><strong>30%</strong></td></tr>
+                <tr style="background-color: #f8f9fa;"><td style="padding: 8px; border: 1px solid #b6d4fe;"><strong>Thực hành</strong></td><td style="padding: 8px; border: 1px solid #b6d4fe;">Bài thực hành không hướng dẫn của từng buổi; checkpoint sprint ở buổi 03, 06, 09</td><td style="padding: 8px; border: 1px solid #b6d4fe; text-align: center;"><strong>30%</strong></td></tr>
+                <tr><td style="padding: 8px; border: 1px solid #b6d4fe;"><strong>Cuối kỳ: đồ án nhóm</strong></td><td style="padding: 8px; border: 1px solid #b6d4fe;">Sản phẩm, báo cáo và Demo Day (buổi 12); chấm thang 10, tách điểm theo 4 CLO</td><td style="padding: 8px; border: 1px solid #b6d4fe; text-align: center;"><strong>40%</strong></td></tr>
+            </tbody>
+        </table>
+        <p style="margin-bottom: 0;"><strong>Đo mức đạt CLO:</strong> thực hiện ở bài đánh giá cuối kỳ. Một sinh viên <strong>đạt CLO</strong> khi được ít nhất <strong>50% điểm</strong> của CLO đó; CLO được xem là đạt ở cấp lớp khi <strong>ít nhất 75% số sinh viên</strong> đạt.</p>
+    </div>
+</details>
+
+<details style="border: 1px solid #fd7e14; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #fff5eb; color: #fd7e14; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>📚 2. Rubric cuối kỳ theo CLO (thang 10)</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.1. Điểm và minh chứng theo CLO</h3>
+            <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+                <thead><tr style="background-color: #fff5eb;"><th style="padding: 8px; border: 1px solid #ffd6ad; text-align: left;">CLO</th><th style="padding: 8px; border: 1px solid #ffd6ad; text-align: center;">Điểm tối đa</th><th style="padding: 8px; border: 1px solid #ffd6ad; text-align: left;">Minh chứng chấm</th><th style="padding: 8px; border: 1px solid #ffd6ad; text-align: center;">Đạt khi</th></tr></thead>
+                <tbody>
+                    <tr><td style="padding: 8px; border: 1px solid #ffd6ad;"><strong>CLO1</strong> Thiết kế thành phần chức năng</td><td style="padding: 8px; border: 1px solid #ffd6ad; text-align: center;">3</td><td style="padding: 8px; border: 1px solid #ffd6ad;">Sơ đồ chức năng và các thành phần của app đáp ứng đặc tả; luồng nghiệp vụ chính, xác thực, tính năng thiết bị và thông báo realtime chạy được trên Android</td><td style="padding: 8px; border: 1px solid #ffd6ad; text-align: center;">≥ 1,5</td></tr>
+                    <tr><td style="padding: 8px; border: 1px solid #ffd6ad;"><strong>CLO2</strong> Thiết kế CSDL</td><td style="padding: 8px; border: 1px solid #ffd6ad; text-align: center;">2</td><td style="padding: 8px; border: 1px solid #ffd6ad;">CSDL SQL Server: bảng, khóa, quan hệ, ràng buộc; bộ stored procedure phục vụ toàn bộ nghiệp vụ (tham số hóa, có giao dịch và xử lý lỗi cho nghiệp vụ chính); script tạo CSDL, thủ tục và dữ liệu mẫu chạy được trên server Khoa</td><td style="padding: 8px; border: 1px solid #ffd6ad; text-align: center;">≥ 1</td></tr>
+                    <tr><td style="padding: 8px; border: 1px solid #ffd6ad;"><strong>CLO3</strong> Trình bày thiết kế dữ liệu bằng đồ họa</td><td style="padding: 8px; border: 1px solid #ffd6ad; text-align: center;">2</td><td style="padding: 8px; border: 1px solid #ffd6ad;">ERD phiên bản cuối, sơ đồ tuần tự luồng realtime, sơ đồ luồng màn hình trong báo cáo và slide; rõ ràng và khớp với CSDL thật</td><td style="padding: 8px; border: 1px solid #ffd6ad; text-align: center;">≥ 1</td></tr>
+                    <tr><td style="padding: 8px; border: 1px solid #ffd6ad;"><strong>CLO4</strong> Vai trò cá nhân trong nhóm</td><td style="padding: 8px; border: 1px solid #ffd6ad; text-align: center;">3</td><td style="padding: 8px; border: 1px solid #ffd6ad;">Báo cáo vai trò cá nhân, lịch sử commit/PR, phần tự trình bày và trả lời câu hỏi kỹ thuật của từng thành viên ở Demo Day</td><td style="padding: 8px; border: 1px solid #ffd6ad; text-align: center;">≥ 1,5</td></tr>
+                    <tr style="background-color: #fff5eb;"><td style="padding: 8px; border: 1px solid #ffd6ad;"><strong>Tổng</strong></td><td style="padding: 8px; border: 1px solid #ffd6ad; text-align: center;"><strong>10</strong></td><td style="padding: 8px; border: 1px solid #ffd6ad;" colspan="2">Điểm cuối kỳ quy đổi vào 40% điểm học phần</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.2. Sản phẩm nộp cuối kỳ</h3>
+            <ul style="margin-bottom: 0;">
+                <li>File APK cài được trên máy Android ngoài nhóm, kết nối backend trên Windows Server của Khoa.</li>
+                <li>Link repo GitHub của app và của API; <code>PROMPTS.md</code>; README có hướng dẫn chạy và triển khai.</li>
+                <li>Script tạo CSDL, stored procedure và dữ liệu mẫu.</li>
+                <li>Bộ sơ đồ thiết kế: sơ đồ chức năng, luồng màn hình, ERD phiên bản cuối, sơ đồ tuần tự realtime.</li>
+                <li>Báo cáo cuối kỳ và báo cáo vai trò cá nhân của từng thành viên.</li>
+            </ul>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.3. Tiêu chí chung cho bài thực hành và checkpoint</h3>
+            <ul style="margin-bottom: 0;">
+                <li><strong>Chạy được:</strong> chạy trên Android thật hoặc emulator, không lỗi màn hình đỏ.</li>
+                <li><strong>Đúng đặc tả:</strong> đáp ứng đủ tiêu chí hoàn thành của bài.</li>
+                <li><strong>Giải thích được:</strong> trả lời được câu hỏi về mã đã nộp, kể cả phần do AI sinh ra.</li>
+                <li><strong>Đúng quy trình:</strong> nộp qua GitHub, commit rõ ràng, có prompt trong <code>PROMPTS.md</code>.</li>
+            </ul>
+        </div>
+    </div>
+</details>
+
+<details style="border: 1px solid #28a745; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #eafaf1; color: #28a745; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>💡 3. Hoạt động &amp; Cổng nộp bài</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <div style="max-width: 760px; padding: 10px 12px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <p style="margin: 0 0 6px 0;"><strong style="color: #28a745;">📤 Nộp sản phẩm cuối kỳ</strong></p>
+            <p style="margin: 0 0 8px 0; color: #495057;">Trưởng nhóm nộp APK, link repo, script CSDL, bộ sơ đồ và báo cáo nhóm.</p>
+            <a href="{{LINK_NOP_DO_AN_CUOI_KY}}" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 6px 12px; background-color: #eafaf1; color: #28a745; border: 1px solid #28a745; border-radius: 6px; text-decoration: none; font-weight: bold;">Nộp đồ án</a>
+        </div>
+        <div style="max-width: 760px; padding: 10px 12px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <p style="margin: 0 0 6px 0;"><strong style="color: #28a745;">👤 Nộp báo cáo vai trò cá nhân</strong></p>
+            <p style="margin: 0 0 8px 0; color: #495057;">Mỗi thành viên nộp riêng (1–2 trang): nhiệm vụ đảm nhận, PR/commit tiêu biểu, khó khăn đã giải quyết, phần AI hỗ trợ.</p>
+            <a href="{{LINK_NOP_BAO_CAO_CA_NHAN}}" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 6px 12px; background-color: #eafaf1; color: #28a745; border: 1px solid #28a745; border-radius: 6px; text-decoration: none; font-weight: bold;">Nộp báo cáo cá nhân</a>
+        </div>
+        <div style="max-width: 760px; padding: 10px 12px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <p style="margin: 0 0 6px 0;"><strong style="color: #28a745;">✅ Tự kiểm tra trước Demo Day</strong></p>
+            <p style="margin: 0; color: #495057;">Đối chiếu sản phẩm với từng dòng rubric ở mục 2.1. CLO nào chưa có minh chứng thì bổ sung trước hạn nộp.</p>
+        </div>
+    </div>
+</details>
+
+<details style="border: 1px solid #6f42c1; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #f3e5f5; color: #6f42c1; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>🆘 4. Quy định &amp; Liêm chính học thuật</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <p><strong>Sử dụng AI:</strong> Được dùng Google Antigravity và GitHub Copilot Chat. Phải ghi prompt trong <code>PROMPTS.md</code>; không giải thích được phần mã mình nộp thì phần đó không được tính điểm.</p>
+        <p><strong>Điểm cá nhân:</strong> Điểm CLO4 và phần bảo vệ kỹ thuật chấm riêng cho từng thành viên, dựa trên commit/PR và phần trả lời ở Demo Day.</p>
+        <p><strong>Sao chép:</strong> Không sao chép mã hoặc báo cáo của nhóm khác. Mã mẫu LHU Food chỉ để tham khảo, không nộp thay cho sản phẩm của nhóm.</p>
+        <p style="margin-bottom: 0;"><strong>Hạn nộp và thắc mắc về điểm:</strong> Theo thông báo của giảng viên trên Moodle.</p>
+    </div>
+</details>
+
+
+    </div>
+
+    <!-- Bottom Navigation between lessons -->
+    <div class="flex items-center justify-between gap-4 mt-8 no-print text-xs font-bold">
+      <a href="bai-12.html" class="px-4 py-2.5 bg-white border border-slate-200 hover:border-lhu-blue text-slate-700 hover:text-lhu-blue rounded-xl shadow-sm transition-all flex items-center gap-2"><i class="fa-solid fa-chevron-left"></i> Bài trước</a>
+      
+      <a href="index.html" class="px-4 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-800 rounded-xl transition-all flex items-center gap-2">
+        <i class="fa-solid fa-table-cells-large"></i> Danh mục bài học
+      </a>
+
+      <div></div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-slate-200 py-6 text-xs text-slate-500 mt-12 no-print">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <strong>Khoa Công nghệ Thông tin - Trường Đại học Lạc Hồng</strong><br>
+        Phòng B301 - B302, Cơ sở 1, Số 10 Huỳnh Văn Nghệ, P. Bửu Long, TP. Biên Hòa, Đồng Nai.
+      </div>
+      <div class="text-right">
+        <span>Email: cntt@lhu.edu.vn • Hotline: (0251) 3952 251</span><br>
+        <span>Hệ thống LMS: <a href="https://learn.lhu.edu.vn" target="_blank" class="text-lhu-blue font-bold">learn.lhu.edu.vn</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleAllDetails(open) {
+      document.querySelectorAll("details").forEach(d => {
+        if (open) {
+          d.setAttribute("open", "");
+        } else {
+          d.removeAttribute("open");
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
