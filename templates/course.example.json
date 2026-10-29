@@ -1,0 +1,19 @@
+{
+  "name": "Tên học phần (bắt buộc)",
+  "code": "123456",
+  "credits": "3 (2-1-0)",
+  "hours": "45 tiết (9 buổi)",
+  "semester": "Học kỳ 1 • Năm 2",
+  "instructor": "ThS. Họ Tên Giảng Viên",
+  "tags": ["ABET", "AI-First"],
+  "description": "Mô tả ngắn hiển thị trên portal (không bắt buộc, mặc định lấy từ meta description của index.html).",
+  "headerLabel": "TÊN VIẾT TẮT (123456)",
+  "subtitleTag": "Chuẩn ABET Hoa Kỳ",
+  "year": 2026,
+  "landingPage": "index.html",
+  "coursePages": true,
+  "slides": true,
+  "lessonTitles": {
+    "01": "Tên ngắn hiển thị cho bài 01 (không bắt buộc, mặc định lấy từ dòng BÀI 01 - ... trong bai-01.md)"
+  }
+}

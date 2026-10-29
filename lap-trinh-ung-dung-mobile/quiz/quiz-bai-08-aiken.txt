@@ -1,0 +1,69 @@
+Thời điểm phù hợp nhất để xin quyền camera là khi nào?
+A. Ngay khi mở ứng dụng lần đầu, xin tất cả quyền một lần
+B. Không cần xin, hệ điều hành tự cấp
+C. Sau khi người dùng đăng xuất
+D. Khi người dùng bấm vào chức năng cần chụp ảnh
+ANSWER: D
+
+Người dùng đã từ chối quyền camera và chọn không hỏi lại. Ứng dụng nên làm gì?
+A. Vẫn chạy bình thường và hướng dẫn mở Cài đặt bằng Linking.openSettings()
+B. Liên tục hiện hộp thoại xin quyền
+C. Tắt ứng dụng
+D. Xóa tài khoản người dùng
+ANSWER: A
+
+Hàm nào của expo-image-picker mở camera để chụp ảnh?
+A. launchImageLibraryAsync
+B. launchCameraAsync
+C. getCurrentPositionAsync
+D. scheduleNotificationAsync
+ANSWER: B
+
+Vì sao nên đặt quality: 0.6 và allowsEditing khi chọn ảnh đại diện?
+A. Để ảnh nhỏ hơn, tải lên nhanh hơn và được cắt đúng tỷ lệ
+B. Để ảnh có màu đẹp hơn
+C. Vì server chỉ nhận ảnh đen trắng
+D. Để không cần quyền truy cập
+ANSWER: A
+
+Khi tải ảnh lên bằng FormData, vì sao không nên tự đặt header Content-Type: multipart/form-data?
+A. Vì Android không hỗ trợ header
+B. Vì multipart/form-data không hỗ trợ ảnh
+C. Vì fetch cần tự thêm phần boundary vào header; đặt tay thường thiếu boundary làm server không đọc được file
+D. Vì ảnh phải gửi qua Socket.IO
+ANSWER: C
+
+Phía NestJS, ảnh đại diện được lưu như thế nào theo bài học?
+A. Nội dung ảnh lưu thẳng vào cột của bảng Users
+B. Ảnh lưu trong AsyncStorage
+C. Ảnh lưu trên điện thoại, server không lưu gì
+D. File lưu trong thư mục uploads trên server, SQL Server chỉ lưu đường dẫn qua stored procedure
+ANSWER: D
+
+Vì sao server tự đặt tên file ảnh theo mã người dùng và thời điểm thay vì dùng tên file do app gửi lên?
+A. Để tên file ngắn hơn
+B. Vì SQL Server không lưu được tên file tiếng Việt
+C. Vì app không gửi được tên file
+D. Không tin dữ liệu từ client: tên file có thể trùng hoặc chứa ký tự gây hại
+ANSWER: D
+
+Với bản đồ quầy căn tin, ứng dụng nên xin loại quyền vị trí nào?
+A. Vị trí nền (background) để theo dõi liên tục
+B. Vị trí khi dùng ứng dụng (foreground)
+C. Không cần quyền vị trí
+D. Quyền truy cập danh bạ
+ANSWER: B
+
+Khi nào bắt buộc phải dùng development build thay cho Expo Go?
+A. Khi dùng expo-image-picker
+B. Khi đổi màu nút
+C. Khi dùng thư viện native ngoài Expo SDK hoặc cần thông báo đẩy từ xa
+D. Khi chạy trên emulator Android
+ANSWER: C
+
+Bản cài đặt Android dùng bản đồ Google của react-native-maps cần cấu hình gì thêm?
+A. Google Maps API key trong app.json
+B. Mật khẩu SQL Server trong app.json
+C. Quyền camera
+D. Không cần cấu hình gì
+ANSWER: A

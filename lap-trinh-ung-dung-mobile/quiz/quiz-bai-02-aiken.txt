@@ -1,0 +1,69 @@
+Trong React Native, giá trị mặc định của flexDirection là gì?
+A. row
+B. wrap
+C. row-reverse
+D. column
+ANSWER: D
+
+Muốn xếp ba nút nằm ngang trên cùng một hàng, cần đặt thuộc tính nào cho View cha?
+A. position: 'absolute'
+B. flexDirection: 'column'
+C. textAlign: 'center'
+D. flexDirection: 'row'
+ANSWER: D
+
+Thuộc tính flex: 1 cho một View có ý nghĩa gì?
+A. Ẩn View khỏi màn hình
+B. View có chiều rộng đúng 1 dp
+C. View chiếm phần không gian còn lại trong View cha
+D. View chỉ hiển thị trên Android
+ANSWER: C
+
+Hiển thị ảnh từ một URL trên mạng bằng component Image, điều kiện nào cần có để ảnh hiện ra?
+A. Ảnh phải có định dạng GIF
+B. Ảnh phải nằm trong thư mục node_modules
+C. Phải khai báo width và height trong style
+D. Phải bọc Image trong Text
+ANSWER: C
+
+Hook nào cho biết chiều rộng màn hình hiện tại để đổi số cột của lưới món ăn?
+A. useWindowDimensions
+B. useState
+C. useEffect
+D. useColorScheme
+ANSWER: A
+
+Vì sao nên gom màu, cỡ chữ và khoảng cách vào file constants/theme.ts?
+A. Để đổi một chỗ là cả ứng dụng đổi theo và AI sinh mã đúng màu của nhóm
+B. Để ứng dụng chạy nhanh hơn trên iOS
+C. Vì React Native không hỗ trợ màu viết trực tiếp
+D. Để giảm dung lượng file APK
+ANSWER: A
+
+Component nào giúp nội dung không bị che bởi tai thỏ và thanh trạng thái của điện thoại?
+A. ScrollView
+B. TextInput
+C. Pressable
+D. SafeAreaView
+ANSWER: D
+
+Khi dùng AI sinh màn hình từ ảnh Figma, bước kiểm tra nào quan trọng nhất trước khi chấp nhận mã?
+A. Chạy thử và đặt cạnh ảnh thiết kế để so khoảng cách, cỡ chữ, màu và căn lề
+B. Đếm số dòng mã AI sinh ra
+C. Đổi tên tất cả biến thành tiếng Anh
+D. Xóa file theme.ts
+ANSWER: A
+
+Số không có đơn vị trong style của React Native (ví dụ padding: 16) được tính theo đơn vị nào?
+A. Pixel vật lý của màn hình
+B. dp (điểm độc lập mật độ), tự co giãn theo mật độ điểm ảnh
+C. Phần trăm chiều rộng màn hình
+D. Centimet
+ANSWER: B
+
+Sơ đồ chức năng của ứng dụng dùng để làm gì?
+A. Mô tả cấu hình máy chủ triển khai
+B. Chia ứng dụng thành các nhóm chức năng và chức năng con làm cơ sở thiết kế màn hình, API và dữ liệu
+C. Ghi lịch sử commit của nhóm
+D. Liệt kê màu sắc của giao diện
+ANSWER: B

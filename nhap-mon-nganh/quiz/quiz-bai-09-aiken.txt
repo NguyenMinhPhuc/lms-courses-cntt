@@ -1,9 +1,9 @@
 Bản Kế hoạch học tập cá nhân (Personal Learning Plan - PLP) đóng vai trò gì đối với sinh viên suốt 4 năm đại học?
-A. Là giấy cam kết không được nghỉ học buổi nào
-B. Là kim chỉ nam giúp sinh viên chủ động đặt mục tiêu GPA, rèn luyện kỹ năng, chuẩn bị chứng chỉ và theo dõi tiến độ hoàn thành mục tiêu nghề nghiệp
-C. Là danh sách các quán ăn quanh trường
+A. Là kim chỉ nam giúp sinh viên chủ động đặt mục tiêu GPA, rèn luyện kỹ năng, chuẩn bị chứng chỉ và theo dõi tiến độ hoàn thành mục tiêu nghề nghiệp
+B. Là danh sách các quán ăn quanh trường
+C. Là giấy cam kết không được nghỉ học buổi nào
 D. Là thời khóa biểu do phụ huynh quyết định
-ANSWER: B
+ANSWER: A
 
 Chỉ số GPA (Grade Point Average) trong trường đại học dùng để đo lường điều gì?
 A. Số lượng bạn bè kết nối trên Facebook
@@ -13,53 +13,53 @@ D. Chiều cao và cân nặng của sinh viên
 ANSWER: B
 
 Chứng chỉ ngoại ngữ nào dưới đây là điều kiện chuẩn đầu ra phổ biến và giúp kỹ sư CNTT mở rộng cơ hội làm việc trong môi trường toàn cầu?
-A. Bằng lái xe hạng B2
-B. Chứng chỉ TOEIC hoặc IELTS quốc tế
+A. Chứng chỉ TOEIC hoặc IELTS quốc tế
+B. Bằng lái xe hạng B2
 C. Chứng chỉ bơi lội
 D. Giấy chứng nhận tham gia hội trại
-ANSWER: B
+ANSWER: A
 
 Các chứng chỉ công nghệ quốc tế uy tín (như AWS Certified Cloud, Cisco CCNA, Google Cloud) mang lại lợi thế gì cho sinh viên CNTT khi tốt nghiệp?
-A. Được miễn toàn bộ học phí đại học
-B. Minh chứng năng lực thực chiến đạt chuẩn công nghiệp quốc tế, giúp hồ sơ nổi bật và gia tăng mức lương khởi điểm khi ứng tuyển
+A. Không mang lại giá trị gì trong mắt nhà tuyển dụng
+B. Được miễn toàn bộ học phí đại học
 C. Cho phép sinh viên tự in bằng tốt nghiệp tại nhà
-D. Không mang lại giá trị gì trong mắt nhà tuyển dụng
-ANSWER: B
+D. Minh chứng năng lực thực chiến đạt chuẩn công nghiệp quốc tế, giúp hồ sơ nổi bật và gia tăng mức lương khởi điểm khi ứng tuyển
+ANSWER: D
 
 Lợi ích thực tế lớn nhất khi tham gia vào các Câu lạc bộ chuyên môn và không gian Maker Lab tại Khoa CNTT - LHU là gì?
-A. Chỉ để giải trí và chơi game qua ngày
-B. Được cọ xát với các dự án thực tế, rèn luyện kỹ năng làm việc nhóm, học hỏi từ các anh chị khóa trên và sẵn sàng tham gia các cuộc thi NCKH
+A. Được cọ xát với các dự án thực tế, rèn luyện kỹ năng làm việc nhóm, học hỏi từ các anh chị khóa trên và sẵn sàng tham gia các cuộc thi NCKH
+B. Tránh việc phải đi học trên lớp
 C. Được cộng điểm tối đa vào tất cả các môn học mà không cần thi
-D. Tránh việc phải đi học trên lớp
-ANSWER: B
+D. Chỉ để giải trí và chơi game qua ngày
+ANSWER: A
 
 Nguyên tắc thiết kế Slide thuyết trình đồ án công nghệ hiệu quả và chuyên nghiệp là gì?
-A. Dán toàn bộ trang sách với chữ chi chít dày đặc lên slide
-B. Slide trực quan, súc tích, tận dụng sơ đồ kiến trúc, hình ảnh demo rõ ràng và sử dụng định dạng bullet point ngắn gọn
+A. Để toàn bộ slide trắng trơn không có nội dung
+B. Dán toàn bộ trang sách với chữ chi chít dày đặc lên slide
 C. Dùng 15 màu sắc sặc sỡ và hiệu ứng hoạt họa rối mắt
-D. Để toàn bộ slide trắng trơn không có nội dung
-ANSWER: B
+D. Slide trực quan, súc tích, tận dụng sơ đồ kiến trúc, hình ảnh demo rõ ràng và sử dụng định dạng bullet point ngắn gọn
+ANSWER: D
 
 Khi nhận được câu hỏi phản biện hóc búa từ Hội đồng Giảng viên hoặc chuyên gia doanh nghiệp, thái độ chuyên nghiệp của sinh viên là gì?
 A. Lập tức tranh cãi gay gắt và đổ lỗi cho đồng đội trong nhóm
-B. Bình tĩnh lắng nghe, ghi chép câu hỏi, trả lời chân thành đúng trọng tâm và khiêm tốn ghi nhận những điểm đề tài cần cải thiện thêm
+B. Trả lời rằng mình không quan tâm đến câu hỏi đó
 C. Bỏ ra khỏi phòng thuyết trình ngay lập tức
-D. Trả lời rằng mình không quan tâm đến câu hỏi đó
-ANSWER: B
+D. Bình tĩnh lắng nghe, ghi chép câu hỏi, trả lời chân thành đúng trọng tâm và khiêm tốn ghi nhận những điểm đề tài cần cải thiện thêm
+ANSWER: D
 
 Bảng tiêu chí đánh giá (Rubric) đồ án nhóm cuối khóa thường bao hàm các khía cạnh toàn diện nào?
 A. Chỉ chấm điểm trang phục của nhóm trưởng
-B. Chất lượng nội dung và sản phẩm công nghệ, tính sáng tạo và ứng dụng AI, kỹ năng làm việc nhóm và bản lĩnh thuyết trình phản biện
-C. Chỉ tính số trang giấy của bản báo cáo in ra
-D. Nhóm nào nộp bài sớm nhất thì được điểm tuyệt đối bất kể nội dung
-ANSWER: B
+B. Nhóm nào nộp bài sớm nhất thì được điểm tuyệt đối bất kể nội dung
+C. Chất lượng nội dung và sản phẩm công nghệ, tính sáng tạo và ứng dụng AI, kỹ năng làm việc nhóm và bản lĩnh thuyết trình phản biện
+D. Chỉ tính số trang giấy của bản báo cáo in ra
+ANSWER: C
 
 Mạng lưới Cựu sinh viên (Alumni) Khoa CNTT - LHU đem lại giá trị kết nối to lớn nào cho các thế hệ sinh viên đang theo học?
-A. Chia sẻ kinh nghiệm thực tế tại doanh nghiệp, tiếp nhận thực tập OJT và mở ra các cơ hội việc làm chính thức
-B. Cho sinh viên vay tiền mua trò chơi điện tử
-C. Thay sinh viên đi học điểm danh
+A. Cho sinh viên vay tiền mua trò chơi điện tử
+B. Thay sinh viên đi học điểm danh
+C. Chia sẻ kinh nghiệm thực tế tại doanh nghiệp, tiếp nhận thực tập OJT và mở ra các cơ hội việc làm chính thức
 D. Không có bất kỳ liên hệ nào với sinh viên
-ANSWER: A
+ANSWER: C
 
 Sau khi kết thúc học phần Nhập môn Công nghệ Thông tin, hành động thiết thực nhất mà mỗi sinh viên nên thực hiện ngay là gì?
 A. Tự mãn và nghỉ ngơi không học gì thêm trong suốt học kỳ 1
@@ -67,4 +67,3 @@ B. Kích hoạt Kế hoạch học tập cá nhân, nghiêm túc rèn luyện t�
 C. Bán hết sách vở và máy tính cá nhân
 D. Đợi đến năm thứ tư mới bắt đầu tìm hiểu về viết code
 ANSWER: B
-

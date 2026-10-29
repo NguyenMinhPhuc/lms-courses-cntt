@@ -1,0 +1,69 @@
+Biểu mẫu nào cho biết yêu cầu nào đã được bao phủ bởi test case và kết quả nào đã được ghi nhận?
+A. Bug Report
+B. Test Plan
+C. Ma trận truy xuất yêu cầu (RTM)
+D. Biên bản họp nhóm
+ANSWER: C
+
+Biểu mẫu nào ghi lại ai đã kiểm thử, trên build/môi trường nào và kết quả của một lần chạy cụ thể?
+A. Test Requirements
+B. Nhật ký thực thi (Test Execution Log)
+C. Test Plan
+D. Test Report
+ANSWER: B
+
+Khi một test case có kết quả Fail, biểu mẫu nào cần được tạo tiếp theo?
+A. Test Plan mới
+B. Biên bản phê duyệt phát hành
+C. Danh sách yêu cầu kiểm thử mới
+D. Bug Report
+ANSWER: D
+
+Luồng sử dụng biểu mẫu nào đúng theo bài học?
+A. Test Report → Test Case → Test Plan → Bug Report
+B. Bug Report → Test Plan → RTM → Test Requirements
+C. Test Plan → Test Requirements → RTM → Test Case → Execution Log → Bug Report (khi Fail) → Test Report
+D. Test Case → Test Plan → Test Report → Test Requirements
+ANSWER: C
+
+Biểu mẫu Test Report dùng công thức nào để tính tỷ lệ Pass trên số đã thực thi?
+A. Pass / (Pass + Fail) x 100%
+B. Pass / Tổng test case x 100%
+C. (Pass + Blocked) / Tổng test case x 100%
+D. Fail / Pass x 100%
+ANSWER: A
+
+Trường "Severity/Priority" xuất hiện trong biểu mẫu nào?
+A. Danh sách yêu cầu kiểm thử
+B. Test Plan
+C. Test Execution Log
+D. Bug Report
+ANSWER: D
+
+Một yêu cầu kiểm thử chưa có test case nào. Biểu mẫu nào sẽ thể hiện điều này và cần được cập nhật sau khi bổ sung test case?
+A. Ma trận truy xuất yêu cầu (RTM)
+B. Bug Report
+C. Biên bản họp
+D. Trang bìa báo cáo
+ANSWER: A
+
+Khi nộp sản phẩm, các trường bắt buộc trong biểu mẫu phải ở trạng thái nào?
+A. Có thể giữ nguyên placeholder như [Tên] để giảng viên tự điền
+B. Để trống nếu chưa chắc chắn
+C. Đã được điền thông tin thật, không để ở dạng placeholder
+D. Ghi "xem phụ lục" cho mọi trường
+ANSWER: C
+
+TR-002 được bao phủ bởi TC-004; lần chạy trên build 1.0 cho kết quả Fail và tạo BUG-007. Việc cần làm tiếp theo là gì?
+A. Xóa TC-004 khỏi bộ kiểm thử
+B. Ghi liên kết BUG-007 vào RTM và tóm tắt trạng thái cùng khuyến nghị kiểm thử lại trong Test Report
+C. Đánh dấu TR-002 là đã đạt
+D. Chờ phiên bản sau mới ghi nhận
+ANSWER: B
+
+Khi ghi kết quả thực thi, nhóm cần phân biệt những trạng thái nào?
+A. Mới, Cũ, Đã xem
+B. Pass, Fail, Blocked, Not Run
+C. Cao, Trung bình, Thấp
+D. Open, Closed
+ANSWER: B

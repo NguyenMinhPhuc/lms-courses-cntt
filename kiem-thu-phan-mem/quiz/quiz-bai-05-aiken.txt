@@ -1,0 +1,69 @@
+Test Report là tài liệu như thế nào?
+A. Tài liệu mô tả kiến trúc hệ thống
+B. Tài liệu tổng hợp trạng thái và kết quả kiểm thử tại một thời điểm hoặc trong một phạm vi phát hành
+C. Kế hoạch kiểm thử trước khi dự án bắt đầu
+D. Danh sách yêu cầu chức năng của sản phẩm
+ANSWER: B
+
+Đã thực thi 5 test case: 4 Pass, 1 Fail. Tỷ lệ Pass trên số test case đã thực thi là bao nhiêu?
+A. 20%
+B. 75%
+C. 80%
+D. 100%
+ANSWER: C
+
+Bộ kiểm thử có 10 test case: 6 Pass, 2 Fail, 2 Not Run. Tỷ lệ Pass tính trên số đã thực thi (Pass / (Pass + Fail)) là bao nhiêu?
+A. 75%
+B. 60%
+C. 80%
+D. 100%
+ANSWER: A
+
+Các test case Blocked hoặc Not Run nên được trình bày thế nào trong Test Report?
+A. Gộp vào số Pass để báo cáo đẹp hơn
+B. Tính là Fail
+C. Bỏ khỏi báo cáo
+D. Báo riêng, không gộp vào số đã thực thi
+ANSWER: D
+
+Vì sao 95% test case Pass chưa đủ để kết luận sản phẩm có thể phát hành?
+A. Vì tỷ lệ phải đạt 100%
+B. Vì một lỗi nghiêm trọng ở chức năng cốt lõi hoặc phạm vi chưa kiểm thử vẫn có thể là rủi ro phát hành
+C. Vì Test Report không được dùng để ra quyết định
+D. Vì cần thêm ít nhất 5% test case Blocked
+ANSWER: B
+
+Mục "Độ bao phủ" trong Test Report trình bày nội dung gì?
+A. Số giờ làm việc của nhóm
+B. Mã nguồn đã thay đổi
+C. Danh sách thiết bị đã mua
+D. Yêu cầu đã kiểm thử, chưa kiểm thử và tham chiếu ma trận truy xuất
+ANSWER: D
+
+Nguyên tắc "Minh bạch" khi báo cáo yêu cầu điều gì?
+A. Gửi báo cáo cho tất cả mọi người trong công ty
+B. Chỉ báo cáo các test case Pass
+C. Ẩn các lỗi chưa được xác nhận
+D. Nêu rõ phạm vi chưa kiểm thử, dữ liệu thiếu và giới hạn môi trường
+ANSWER: D
+
+Nguyên tắc "Chính xác" khi lập Test Report nghĩa là gì?
+A. Báo cáo càng dài càng tốt
+B. Làm tròn mọi tỷ lệ lên 100%
+C. Số liệu khớp với nguồn thực thi và lỗi không bị đếm lặp
+D. Chỉ dùng biểu đồ, không dùng số
+ANSWER: C
+
+Dữ liệu chưa cho biết lỗi lọc chậm đã được sửa hay chưa. Test Report nên ghi thế nào?
+A. Ghi trạng thái cần xác minh, không tự giả định lỗi đã được sửa
+B. Ghi lỗi đã được sửa
+C. Bỏ lỗi đó khỏi báo cáo
+D. Đổi lỗi thành mức thấp
+ANSWER: A
+
+Theo quy trình trong bài, bước đầu tiên khi lập Test Report là gì?
+A. Chốt phạm vi, phiên bản, môi trường và thời điểm báo cáo
+B. Viết khuyến nghị phát hành
+C. Gửi báo cáo cho quản lý
+D. Tính tỷ lệ Pass/Fail
+ANSWER: A

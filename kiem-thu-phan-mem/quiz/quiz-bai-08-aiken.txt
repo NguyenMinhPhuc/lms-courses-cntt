@@ -1,0 +1,69 @@
+Báo cáo cuối kỳ học phần Kiểm thử phần mềm được thực hiện theo nhóm bao nhiêu sinh viên?
+A. 2–3 sinh viên
+B. Làm cá nhân
+C. 6–8 sinh viên
+D. 4–5 sinh viên
+ANSWER: D
+
+Báo cáo viết cuối kỳ có yêu cầu nào về định dạng và độ dài?
+A. File PDF, 10–15 trang nội dung, không tính trang bìa, mục lục và phụ lục
+B. File Word, tối thiểu 30 trang
+C. File PDF, đúng 5 trang
+D. File PowerPoint, 20 slide
+ANSWER: A
+
+Phần báo cáo cuối kỳ chiếm bao nhiêu phần trăm điểm học phần theo quy định?
+A. 30% (báo cáo viết 20%, thuyết trình 10%)
+B. 40% (báo cáo viết 30%, thuyết trình 10%)
+C. 50% (báo cáo viết 40%, thuyết trình 10%)
+D. 100%
+ANSWER: B
+
+Nhóm phải thiết kế tối thiểu bao nhiêu test case cho các tính năng chính?
+A. 15
+B. 10
+C. 5
+D. 30
+ANSWER: A
+
+Yêu cầu tối thiểu về lỗi cần mô tả trong phần thực thi kiểm thử là gì?
+A. 1 lỗi bất kỳ
+B. 5 lỗi mức Critical
+C. 3 lỗi: 1 lỗi nghiêm trọng (Critical/High) và 2 lỗi không nghiêm trọng (Medium/Low)
+D. Không bắt buộc mô tả lỗi
+ANSWER: C
+
+Tên file PDF báo cáo nào đúng quy định?
+A. BaoCao_CuoiKy.pdf
+B. [MSSV]_Testing.pdf
+C. Final_Report_[Ngày_nộp].pdf
+D. [Tên_Nhóm]_Final_Report_Software_Testing.pdf
+ANSWER: D
+
+Nhóm phải họp ít nhất bao nhiêu lần và lưu biên bản đưa vào phụ lục?
+A. 1 lần
+B. 2 lần
+C. 6 lần
+D. 3 lần
+ANSWER: D
+
+Yêu cầu về phần thuyết trình là gì?
+A. 30 slide, 45 phút, chỉ trưởng nhóm trình bày
+B. 10–12 slide, thời lượng 10–15 phút bao gồm hỏi đáp, tất cả thành viên tham gia
+C. Không cần slide, chỉ trình bày miệng
+D. 5 slide, 5 phút, không có hỏi đáp
+ANSWER: B
+
+Nếu nhóm thực hiện kiểm thử mô phỏng thay vì đo trên sản phẩm thật, báo cáo phải trình bày thế nào?
+A. Trình bày như kết quả đo thật để báo cáo thuyết phục hơn
+B. Không đưa kết quả mô phỏng vào báo cáo
+C. Nêu rõ đây là kết quả giả định theo yêu cầu bài tập
+D. Chỉ ghi chú trong phần phụ lục
+ANSWER: C
+
+Theo tài liệu quy định, nộp báo cáo trễ hạn bị xử lý thế nào?
+A. Trừ 10% điểm cho mỗi ngày trễ
+B. Không bị trừ điểm
+C. Bị 0 điểm ngay lập tức
+D. Trừ 1 điểm cho cả bài
+ANSWER: A

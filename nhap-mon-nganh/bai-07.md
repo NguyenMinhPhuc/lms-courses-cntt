@@ -31,7 +31,7 @@
         <div style="margin-bottom: 16px;">
             <p style="margin: 0 0 8px 0; color: #fd7e14; font-weight: bold;">📄 Slide bài giảng Bài 07</p>
 
-            <a href="https://gamma.app/embed/nzh005civnxyxff" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
+            <a href="{{LINK_SLIDE_BAI_07}}" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
                 <span style="color: #fd7e14; font-weight: bold;">📄 Slide bài giảng Bài 07: Dịch thuật kỹ thuật &amp; Biên tập báo cáo với AI</span><br>
                 <span style="color: #6c757d; font-size: 13px;">Kỹ thuật dịch thuật chuyên sâu, bảo toàn thuật ngữ và các phương pháp kiểm chứng ảo giác AI.</span>
             </a>
@@ -54,7 +54,7 @@
         <div style="margin-bottom: 16px;">
             <p style="margin: 0 0 8px 0; color: #fd7e14; font-weight: bold;">🎥 Video hướng dẫn chi tiết</p>
 
-            <a class="nomediaplugin" href="https://www.youtube.com/watch?v=Oz3Y2xuvmhQ" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
+            <a class="nomediaplugin" href="{{LINK_VIDEO_BAI_07}}" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
                 <span style="color: #fd7e14; font-weight: bold;">▶ Video 07 - Nghệ thuật viết báo cáo học thuật chuẩn mực và bí quyết bắt lỗi ảo giác AI</span>
             </a>
         </div>

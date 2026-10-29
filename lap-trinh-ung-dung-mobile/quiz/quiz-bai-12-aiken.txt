@@ -1,0 +1,69 @@
+Mỗi nhóm có bao nhiêu thời gian ở Demo Day?
+A. 10 phút trình bày và 5 phút hỏi đáp
+B. 5 phút trình bày, không hỏi đáp
+C. 30 phút trình bày
+D. Chỉ nộp video, không trình bày
+ANSWER: A
+
+Ứng dụng phải được demo trong điều kiện nào?
+A. Expo Go trên máy cá nhân, API chạy localhost
+B. APK trên điện thoại Android thật, kết nối backend trên server Khoa
+C. Chỉ chiếu ảnh chụp màn hình
+D. Trình duyệt web trên máy tính
+ANSWER: B
+
+Ở phần bảo vệ kỹ thuật, ai trả lời câu hỏi về một đoạn mã?
+A. Trưởng nhóm trả lời thay cả nhóm
+B. Bất kỳ thành viên nào xung phong
+C. Nhóm khác trả lời
+D. Thành viên đã commit đoạn mã đó
+ANSWER: D
+
+Phần mã chạy đúng nhưng thành viên không giải thích được thì được xử lý thế nào?
+A. Vẫn được tính đủ điểm
+B. Không được tính điểm
+C. Được trả lời lại vào tuần sau
+D. Được cộng điểm vì dùng AI hiệu quả
+ANSWER: B
+
+ERD trình bày ở Demo Day phải thỏa yêu cầu nào?
+A. Chỉ cần vẽ ở Sprint 1
+B. Giống hệt ERD của LHU Food
+C. Khớp với CSDL đang chạy trên server Khoa
+D. Không cần có khóa ngoại
+ANSWER: C
+
+Điểm tối đa và ngưỡng đạt của CLO1 trong rubric cuối kỳ là bao nhiêu?
+A. 3 điểm, đạt khi ≥ 1,5
+B. 2 điểm, đạt khi ≥ 1
+C. 4 điểm, đạt khi ≥ 3
+D. 10 điểm, đạt khi ≥ 5
+ANSWER: A
+
+Sơ đồ tuần tự luồng realtime là minh chứng chính cho CLO nào?
+A. CLO4 - Vai trò cá nhân
+B. CLO2 - Thiết kế CSDL
+C. CLO3 - Trình bày thiết kế dữ liệu bằng đồ họa
+D. Không thuộc CLO nào
+ANSWER: C
+
+Minh chứng nào được dùng để chấm CLO4?
+A. Số lượng màn hình của ứng dụng
+B. Số lượt tải APK
+C. Báo cáo vai trò cá nhân, commit/PR và phần trình bày, trả lời của từng thành viên
+D. Điểm review chéo của nhóm khác
+ANSWER: C
+
+Sản phẩm nào KHÔNG nằm trong danh sách nộp cuối kỳ?
+A. File APK kết nối backend trên server Khoa
+B. Script CSDL, stored procedure và dữ liệu mẫu
+C. PROMPTS.md và link repo app, API
+D. File CSDL SQLite trên điện thoại
+ANSWER: D
+
+Phương án dự phòng nào nên chuẩn bị cho phần demo?
+A. Xin dời buổi Demo Day
+B. Video demo đầy đủ và thiết bị thứ hai đã cài APK
+C. Dùng dữ liệu "test1", "aaa" cho nhanh
+D. Chỉ trình bày slide, không demo
+ANSWER: B

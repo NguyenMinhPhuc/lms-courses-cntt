@@ -1,0 +1,69 @@
+Preset nào được dùng để cấu hình Jest cho dự án Expo theo hướng dẫn chính thức?
+A. react-scripts
+B. jest-android
+C. jest-expo
+D. nest-jest
+ANSWER: C
+
+Trong React Native Testing Library, cách tìm phần tử nào được khuyến nghị?
+A. Theo tên biến trong mã nguồn
+B. Theo tên file component
+C. Theo thứ tự khai báo state
+D. Theo chữ người dùng nhìn thấy hoặc accessibilityLabel
+ANSWER: D
+
+Vì sao cần đặt lại store giỏ hàng trong beforeEach khi test Zustand?
+A. Store dùng chung giữa các test, không đặt lại thì kết quả phụ thuộc thứ tự chạy
+B. Vì Jest không hỗ trợ Zustand
+C. Để test chạy nhanh hơn
+D. Để xóa dữ liệu trong SQL Server
+ANSWER: A
+
+Khi test một màn hình có gọi API, tại sao nên mock lib/api?
+A. Để tăng lượt build EAS
+B. Vì API thật luôn trả lỗi
+C. Để test không phụ thuộc server và dữ liệu trả về được kiểm soát
+D. Vì Jest không chạy được fetch
+ANSWER: C
+
+Kịch bản T-SQL kiểm thử sp_Order_Create nên chạy trên đâu?
+A. Một CSDL kiểm thử riêng tạo từ thư mục database/
+B. Bộ nhớ của điện thoại
+C. Expo Go
+D. CSDL thật trên server Khoa
+ANSWER: A
+
+Ca kiểm thử "đặt đúng bằng số lượng tồn kho" thuộc kỹ thuật nào?
+A. Kiểm thử hiệu năng
+B. Kiểm thử bảo mật
+C. Giá trị biên
+D. Kiểm thử giao diện
+ANSWER: C
+
+Theo quy trình xử lý lỗi, bước nào thực hiện ngay trước khi sửa mã?
+A. Xóa bug log
+B. Viết test tái hiện lỗi và thấy test đỏ
+C. Build APK mới
+D. Gửi EAS Update
+ANSWER: B
+
+Vì sao React.memo cho ProductCard có thể vô tác dụng nếu không dùng useCallback?
+A. Vì React.memo chỉ chạy trên iOS
+B. Vì useCallback làm tăng kích thước bundle
+C. Vì FlatList không hỗ trợ memo
+D. Vì hàm truyền vào props được tạo mới mỗi lần vẽ nên props luôn khác
+ANSWER: D
+
+Nút chỉ có biểu tượng trái tim cần thêm thuộc tính nào để TalkBack đọc được?
+A. keyExtractor
+B. accessibilityLabel
+C. hitSlop
+D. initialNumToRender
+ANSWER: B
+
+Mutation thủ công dùng để kiểm chứng điều gì?
+A. Ứng dụng chạy nhanh hơn sau khi tối ưu
+B. Stored procedure có giao dịch
+C. Ứng dụng hỗ trợ cỡ chữ lớn
+D. Bộ test thật sự phát hiện được lỗi khi logic bị cố ý sửa sai
+ANSWER: D

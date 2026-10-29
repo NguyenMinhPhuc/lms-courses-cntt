@@ -183,7 +183,7 @@
         <div style="margin-bottom: 16px;">
             <p style="margin: 0 0 8px 0; color: #fd7e14; font-weight: bold;">📄 Slide bài giảng Bài 06</p>
 
-            <a href="https://gamma.app/embed/6jxifow57ntbh8a" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
+            <a href="{{LINK_SLIDE_BAI_06}}" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
                 <span style="color: #fd7e14; font-weight: bold;">📄 Slide bài giảng Bài 06: Tóm tắt thông minh &amp; Kỹ thuật Active Recall với AI</span><br>
                 <span style="color: #6c757d; font-size: 13px;">Hướng dẫn các mẫu câu lệnh tóm tắt tài liệu, tạo đề cương môn học và sinh flashcard ôn thi.</span>
             </a>
@@ -206,7 +206,7 @@
         <div style="margin-bottom: 16px;">
             <p style="margin: 0 0 8px 0; color: #fd7e14; font-weight: bold;">🎥 Video hướng dẫn chi tiết</p>
 
-            <a class="nomediaplugin" href="https://www.youtube.com/watch?v=1JuYQgpbrW0" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
+            <a class="nomediaplugin" href="{{LINK_VIDEO_BAI_06}}" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
                 <span style="color: #fd7e14; font-weight: bold;">▶ Video 06 - Hướng dẫn tóm tắt PDF/Sách kỹ thuật và nhập Flashcard vào Quizlet/Anki</span>
             </a>
         </div>
@@ -288,6 +288,141 @@
 
 
     </div>
+
+    <!-- Practice Quiz: luyện tập trực tiếp, chỉ báo số câu đúng/sai, không lưu và không hiển thị đáp án -->
+    <section id="luyen-tap" class="no-print mt-8 bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
+        <div>
+          <h2 class="text-lg sm:text-xl font-black text-slate-900 flex items-center gap-2">
+            <i class="fa-solid fa-pen-to-square text-emerald-600"></i> Luyện tập trắc nghiệm - Bài 06
+          </h2>
+          <p class="text-xs text-slate-500 mt-1">10 câu · Chấm ngay khi nộp · Không lưu kết quả · Không hiển thị đáp án</p>
+        </div>
+        <button type="button" id="pq-start" class="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold rounded-xl shadow transition-all flex items-center gap-2 justify-center">
+          <i class="fa-solid fa-play"></i> Bắt đầu làm bài
+        </button>
+      </div>
+
+      <form id="pq-form" class="hidden pt-5 space-y-5" novalidate></form>
+
+      <div id="pq-footer" class="hidden pt-5 mt-5 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <span id="pq-progress" class="text-sm text-slate-500"></span>
+        <button type="button" id="pq-submit" class="px-5 py-2.5 bg-lhu-blue hover:bg-lhu-dark text-white text-sm font-bold rounded-xl shadow transition-all flex items-center gap-2 justify-center">
+          <i class="fa-solid fa-check-double"></i> Nộp bài
+        </button>
+      </div>
+
+      <div id="pq-result" class="hidden mt-5 rounded-2xl border p-5" role="status" aria-live="polite"></div>
+    </section>
+
+    <script>
+      (function () {
+        // Dữ liệu sinh từ quiz/quiz-bai-06-aiken.txt. Đáp án được mã hóa nhẹ để không lộ khi xem nhanh;
+        // đây là bài luyện tập, không phải cơ chế chống gian lận.
+        const QUESTIONS = [{"q": "Thuật ngữ \"TL;DR\" trong kỹ thuật tóm tắt văn bản bằng AI là viết tắt của cụm từ nào?", "o": ["Too Long; Didn't Read (Tóm tắt siêu ngắn gọn những ý cốt lõi nhất)", "Test Logic Data Record", "Total Line Direct Read", "Time Limit Decision Right"], "k": 1}, {"q": "Khi cần đọc một chương sách kỹ thuật chuyên ngành dài 30 trang, cách tiếp cận tóm tắt nào bằng AI là hiệu quả nhất?", "o": ["Bảo AI tự động xóa bớt các trang chẵn", "Chỉ yêu cầu AI viết đúng 1 dòng duy nhất", "Yêu cầu AI dịch toàn bộ sang tiếng La-tinh", "Yêu cầu AI tóm tắt có cấu trúc: Luận điểm chính &rarr; Giải thích chi tiết &rarr; Ví dụ minh họa &rarr; Bảng đối chiếu thuật ngữ"], "k": 3}, {"q": "Bảng \"Glossary\" mà sinh viên có thể yêu cầu AI trích xuất tự động từ một bài giảng mang ý nghĩa gì?", "o": ["Danh sách điểm số của các sinh viên trong lớp", "Bảng danh mục các thuật ngữ chuyên ngành mới xuất hiện kèm định nghĩa giải thích ngắn gọn, dễ hiểu", "Lịch thi cuối kỳ của học phần", "Danh sách các bài hát thịnh hành"], "k": 0}, {"q": "Phương pháp học tập chủ động \"Active Recall\" (Gợi nhớ chủ động) được kết hợp với ChatGPT/Gemini như thế nào?", "o": ["Bảo AI viết sẵn toàn bộ câu trả lời rồi đọc thuộc lòng", "Yêu cầu AI đóng vai giám khảo, lần lượt đặt từng câu hỏi về bài học để sinh viên tự suy nghĩ trả lời, sau đó AI mới nhận xét và sửa lỗi", "Chép đi chép lại câu trả lời của AI vào tập 10 lần", "Bật máy tính để AI tự học một mình"], "k": 3}, {"q": "Phương pháp \"Spaced Repetition\" (Lặp lại ngắt quãng) thường được ứng dụng cùng công cụ nào để giúp sinh viên ghi nhớ kiến thức lập trình lâu dài?", "o": ["Máy tính tính tiền siêu thị", "Trò chơi điện tử trực tuyến", "Bộ thẻ nhớ Flashcard trên các ứng dụng như Anki hoặc Quizlet", "Các video giải trí ngắn trên TikTok"], "k": 3}, {"q": "Để dễ dàng nhập (import) bộ câu hỏi - câu trả lời ôn tập từ ChatGPT vào ứng dụng Anki hoặc Quizlet, ta nên yêu cầu AI xuất ra định dạng nào?", "o": ["Định dạng file âm thanh MP3", "Định dạng ảnh chụp màn hình bị mờ", "Định dạng bảng 2 cột dạng Markdown hoặc định dạng văn bản ngăn cách bởi dấu tab (TSV/CSV)", "Đoạn văn liền một khối không ngắt dòng"], "k": 2}, {"q": "Khi một cuốn sách hoặc tài liệu quá dài vượt quá giới hạn cửa sổ ngữ cảnh (Context Window) của AI, giải pháp tối ưu là gì?", "o": ["Đổi phông chữ tài liệu sang Times New Roman", "Không sử dụng AI nữa", "Dán toàn bộ vào một dòng duy nhất", "Chia nhỏ tài liệu thành từng chương hoặc từng phần (1000 - 1500 từ) để yêu cầu AI xử lý và tóm tắt cuốn chiếu từng phần"], "k": 2}, {"q": "Tại sao sinh viên nên có thói quen đổi tên (Rename) và phân loại các luồng trò chuyện (Chat Threads) trong ChatGPT/Gemini?", "o": ["Để lưu giữ ngữ cảnh riêng của từng môn học (ví dụ: [C++] - Con trỏ, [Toán rời rạc] - Đồ thị) và dễ dàng tra cứu lại khi ôn thi", "Để trang web tải nhanh hơn", "Vì ChatGPT sẽ tự động khóa tài khoản nếu không đổi tên", "Để chia sẻ tài khoản cho người khác dùng chung"], "k": 2}, {"q": "Để tóm tắt một bài báo khoa học công nghệ quốc tế, cấu trúc chuẩn mực nào dưới đây giúp AI phân tích trọn vẹn giá trị bài báo?", "o": ["Màu sắc hình ảnh minh họa trong bài báo", "Tên tác giả + Giá tiền mua bài báo", "Số lượng từ ngữ trong bài báo", "Mục tiêu nghiên cứu &rarr; Phương pháp tiếp cận &rarr; Kết quả đạt được &rarr; Đóng góp và Hạn chế của nghiên cứu"], "k": 0}, {"q": "Mục đích đúng đắn nhất khi sử dụng AI để tóm tắt sách và tài liệu học tập là gì?", "o": ["Nhanh chóng nắm bắt bức tranh tổng thể và các luận điểm trọng tâm, từ đó định hướng đọc sâu vào những phần kiến thức quan trọng nhất", "Giảm thời gian ngủ của sinh viên", "Dùng bản tóm tắt nộp bài thay cho bài tập cá nhân", "Thay thế hoàn toàn việc đọc sách và không cần bao giờ mở sách ra nữa"], "k": 0}];
+        const decode = (q, i) => ((q.k - i * 3 - 5) % q.o.length + q.o.length) % q.o.length;
+
+        const form = document.getElementById("pq-form");
+        const footer = document.getElementById("pq-footer");
+        const progress = document.getElementById("pq-progress");
+        const result = document.getElementById("pq-result");
+        const startBtn = document.getElementById("pq-start");
+        const submitBtn = document.getElementById("pq-submit");
+        const LETTERS = "ABCDEFGH";
+
+        function shuffle(list) {
+          const a = list.slice();
+          for (let i = a.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [a[i], a[j]] = [a[j], a[i]];
+          }
+          return a;
+        }
+
+        function render() {
+          form.innerHTML = "";
+          shuffle(QUESTIONS.map((_, i) => i)).forEach((qi, pos) => {
+            const q = QUESTIONS[qi];
+            const box = document.createElement("fieldset");
+            box.className = "border border-slate-200 rounded-2xl p-4";
+            box.dataset.q = qi;
+            const legend = document.createElement("legend");
+            legend.className = "px-2 text-sm font-bold text-slate-800";
+            legend.textContent = "Câu " + (pos + 1) + ". " + q.q;
+            box.appendChild(legend);
+            shuffle(q.o.map((_, oi) => oi)).forEach((oi, shown) => {
+              const label = document.createElement("label");
+              label.className = "flex items-start gap-3 mt-2 p-2.5 rounded-xl border border-transparent hover:bg-slate-50 cursor-pointer text-sm text-slate-700 has-[:checked]:border-lhu-sky has-[:checked]:bg-blue-50";
+              const input = document.createElement("input");
+              input.type = "radio";
+              input.name = "q" + qi;
+              input.value = oi;
+              input.className = "mt-0.5 accent-blue-700";
+              input.addEventListener("change", updateProgress);
+              const text = document.createElement("span");
+              text.textContent = LETTERS[shown] + ". " + q.o[oi];
+              label.append(input, text);
+              box.appendChild(label);
+            });
+            form.appendChild(box);
+          });
+          form.classList.remove("hidden");
+          footer.classList.remove("hidden");
+          result.classList.add("hidden");
+          submitBtn.disabled = false;
+          submitBtn.classList.remove("opacity-50");
+          updateProgress();
+        }
+
+        function answeredCount() {
+          return QUESTIONS.filter((_, i) => form.querySelector('input[name="q' + i + '"]:checked')).length;
+        }
+
+        function updateProgress() {
+          progress.textContent = "Đã trả lời " + answeredCount() + "/" + QUESTIONS.length + " câu";
+        }
+
+        function submit() {
+          const blank = QUESTIONS.length - answeredCount();
+          if (blank > 0 && !confirm("Còn " + blank + " câu chưa trả lời. Bạn vẫn muốn nộp bài?")) return;
+          let correct = 0;
+          QUESTIONS.forEach((q, i) => {
+            const picked = form.querySelector('input[name="q' + i + '"]:checked');
+            if (picked && Number(picked.value) === decode(q, i)) correct++;
+          });
+          const wrong = QUESTIONS.length - correct - blank;
+          const percent = Math.round(correct * 100 / QUESTIONS.length);
+          const good = percent >= 80, ok = percent >= 50;
+          result.className = "mt-5 rounded-2xl border p-5 " + (good ? "bg-emerald-50 border-emerald-200" : ok ? "bg-amber-50 border-amber-200" : "bg-rose-50 border-rose-200");
+          result.innerHTML =
+            '<div class="flex flex-wrap items-center gap-3 text-sm font-bold">' +
+              '<span class="px-3 py-1.5 rounded-lg bg-emerald-600 text-white"><i class="fa-solid fa-check mr-1"></i>Đúng: ' + correct + '</span>' +
+              '<span class="px-3 py-1.5 rounded-lg bg-rose-600 text-white"><i class="fa-solid fa-xmark mr-1"></i>Sai: ' + wrong + '</span>' +
+              (blank ? '<span class="px-3 py-1.5 rounded-lg bg-slate-500 text-white">Bỏ trống: ' + blank + '</span>' : '') +
+              '<span class="text-slate-700">' + correct + "/" + QUESTIONS.length + " câu (" + percent + "%)</span>" +
+            "</div>" +
+            '<p class="text-sm text-slate-700 mt-3">' +
+              (good ? "Rất tốt! Bạn đã nắm vững nội dung bài học." : ok ? "Khá ổn. Hãy xem lại các phần còn chưa chắc trong bài học rồi làm lại." : "Bạn nên đọc lại phần Học liệu chính của bài trước khi làm lại.") +
+            "</p>" +
+            '<button type="button" id="pq-retry" class="mt-4 px-4 py-2 bg-white hover:bg-slate-100 border border-slate-300 text-slate-800 text-sm font-bold rounded-xl transition-all"><i class="fa-solid fa-rotate-right mr-1"></i> Làm lại (đổi thứ tự câu hỏi)</button>';
+          result.classList.remove("hidden");
+          form.querySelectorAll("input").forEach(input => input.disabled = true);
+          submitBtn.disabled = true;
+          submitBtn.classList.add("opacity-50");
+          document.getElementById("pq-retry").addEventListener("click", () => {
+            render();
+            document.getElementById("luyen-tap").scrollIntoView({ behavior: "smooth" });
+          });
+          result.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+
+        startBtn.addEventListener("click", () => {
+          startBtn.classList.add("hidden");
+          render();
+        });
+        submitBtn.addEventListener("click", submit);
+      })();
+    </script>
 
     <!-- Bottom Navigation between lessons -->
     <div class="flex items-center justify-between gap-4 mt-8 no-print text-xs font-bold">

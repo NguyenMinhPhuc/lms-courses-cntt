@@ -1,0 +1,69 @@
+Yêu cầu kiểm thử (Test Requirement) mô tả điều gì?
+A. Lịch làm việc của nhóm kiểm thử
+B. Các bước thao tác chi tiết của một test case
+C. Danh sách lỗi cần sửa trước khi phát hành
+D. Điều kiện, hành vi hoặc đặc tính của sản phẩm cần được xác minh
+ANSWER: D
+
+Trong các yêu cầu của Todo App, yêu cầu nào là phi chức năng?
+A. Tạo công việc mới
+B. Tương thích với Chrome và Firefox
+C. Xác nhận trước khi xóa công việc
+D. Lọc công việc theo trạng thái
+ANSWER: B
+
+Câu yêu cầu nào có thể kiểm chứng được?
+A. Với bộ dữ liệu 10.000 ghi chú trên môi trường đã thống nhất, thao tác tìm kiếm hoàn tất trong không quá 0,5 giây
+B. Giao diện tìm kiếm phải dễ dùng
+C. Tìm kiếm phải nhanh
+D. Tìm kiếm phải hoạt động đầy đủ
+ANSWER: A
+
+Khi viết yêu cầu kiểm thử, nên tránh nhóm từ nào nếu chưa có cách đo hoặc định nghĩa chung?
+A. "Nhanh", "dễ dùng", "đầy đủ"
+B. "Lưu", "mở", "xóa"
+C. "Chrome", "Firefox", "Windows 10"
+D. "Tạo", "lọc", "tìm kiếm"
+ANSWER: A
+
+Ma trận truy xuất yêu cầu (RTM) dùng để làm gì?
+A. Thay thế cho Test Plan
+B. Theo dõi giờ làm việc của từng tester
+C. Lưu trữ mã nguồn của sản phẩm
+D. Liên kết yêu cầu với test case và kết quả thực thi
+ANSWER: D
+
+Chuỗi truy xuất nào đúng thứ tự theo bài học?
+A. Test case → PRD → yêu cầu kiểm thử → lỗi
+B. Yêu cầu kiểm thử → PRD → kết quả thực thi → test case
+C. Lỗi → test case → PRD → yêu cầu kiểm thử
+D. PRD → yêu cầu kiểm thử (TR) → test case (TC) → kết quả thực thi → lỗi/khuyến nghị
+ANSWER: D
+
+Khi gặp một yêu cầu mơ hồ hoặc mâu thuẫn, người kiểm thử nên làm gì?
+A. Tự chọn cách hiểu hợp lý nhất và kiểm thử ngay
+B. Bỏ qua yêu cầu đó
+C. Đặt câu hỏi cụ thể, thống nhất định nghĩa và ghi lại quyết định
+D. Đánh dấu yêu cầu là đã đạt
+ANSWER: C
+
+Một yêu cầu thay đổi sau khi đã có test case. Việc cần làm là gì?
+A. Giữ nguyên test case vì đã được duyệt
+B. Đánh giá tác động tới test case, dữ liệu, lịch trình và RTM; cập nhật phiên bản tài liệu
+C. Xóa toàn bộ test case cũ và viết lại từ đầu
+D. Chỉ báo cho lập trình viên
+ANSWER: B
+
+Thành phần nào KHÔNG cần thiết để một yêu cầu kiểm thử rõ ràng, có thể kiểm chứng?
+A. Tên lập trình viên viết tính năng đó
+B. Một hành vi hoặc đặc tính cụ thể
+C. Tiêu chí xác minh
+D. Mã định danh duy nhất
+ANSWER: A
+
+Nhờ RTM, nhóm có thể phát hiện vấn đề nào sau đây?
+A. Máy chủ bị quá tải
+B. Lập trình viên viết mã chậm
+C. Yêu cầu chưa có test case nào kiểm thử
+D. Người dùng không thích màu giao diện
+ANSWER: C

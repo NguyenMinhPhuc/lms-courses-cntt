@@ -1,0 +1,69 @@
+Test case là gì?
+A. Báo cáo một lỗi đã phát hiện
+B. Bản tóm tắt kết quả kiểm thử của cả dự án
+C. Danh sách yêu cầu trong PRD
+D. Tập hợp thông tin mô tả mục tiêu, điều kiện, thao tác và kết quả mong đợi để xác minh một yêu cầu hoặc hành vi cụ thể
+ANSWER: D
+
+Trường "Requirement ID" trong test case dùng để làm gì?
+A. Ghi tên người thực thi test case
+B. Ghi phiên bản trình duyệt
+C. Liên kết test case với yêu cầu hoặc tiêu chí chấp nhận được kiểm tra
+D. Đánh số thứ tự các bước
+ANSWER: C
+
+Khi một test case không thể thực thi do trở ngại (ví dụ môi trường chưa sẵn sàng), trạng thái phù hợp là gì?
+A. Pass
+B. Fail
+C. Closed
+D. Blocked
+ANSWER: D
+
+Yêu cầu: tiêu đề công việc tối đa 200 ký tự. Test case nhập tiêu đề có đúng 200 ký tự thuộc loại nào?
+A. Trường hợp bình thường
+B. Trường hợp biên
+C. Trường hợp hiệu năng
+D. Trường hợp bảo mật
+ANSWER: B
+
+Test case để trống tiêu đề rồi nhấn "Thêm" thuộc loại nào?
+A. Trường hợp bình thường
+B. Trường hợp lỗi/không hợp lệ
+C. Trường hợp tương thích
+D. Trường hợp hồi quy
+ANSWER: B
+
+Với TC-002 (chặn tạo công việc khi tiêu đề rỗng), kết quả mong đợi nào phù hợp?
+A. Công việc không được tạo và thông báo phù hợp được hiển thị
+B. Công việc rỗng được tạo ở cuối danh sách
+C. Ứng dụng tự đóng
+D. Tiêu đề được tự điền là "Công việc mới"
+ANSWER: A
+
+Vì sao test case chỉ ghi "kiểm tra chức năng lọc hoạt động đúng" chưa đủ để thực thi?
+A. Vì thiếu mã định danh lỗi
+B. Vì quá ngắn so với quy định số chữ
+C. Vì thiếu dữ liệu, bước cụ thể và kết quả mong đợi quan sát được
+D. Vì chưa ghi tên người duyệt
+ANSWER: C
+
+Đặc điểm nào là của một test case tốt?
+A. Phụ thuộc vào kết quả của test case trước đó mà không ghi rõ
+B. Chỉ người viết mới thực thi được
+C. Gộp nhiều mục tiêu kiểm thử vào một test case
+D. Không phụ thuộc ngầm vào test case khác và dễ cập nhật
+ANSWER: D
+
+Sản phẩm bổ sung trạng thái công việc "đang xử lý". Nhóm kiểm thử cần làm gì?
+A. Rà soát test case lọc, dữ liệu kiểm thử và ma trận truy xuất liên quan
+B. Không cần làm gì vì test case cũ vẫn chạy được
+C. Chỉ cập nhật Test Report
+D. Xóa các test case về lọc
+ANSWER: A
+
+Kỹ thuật nào giúp chọn các giá trị tại và sát giới hạn cho phép để thiết kế test case?
+A. Phân tích giá trị biên
+B. Kiểm thử thăm dò
+C. Kiểm thử tải
+D. Rà soát mã nguồn
+ANSWER: A

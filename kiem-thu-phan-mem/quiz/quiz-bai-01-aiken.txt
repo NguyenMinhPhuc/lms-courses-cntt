@@ -1,0 +1,69 @@
+Phát biểu nào mô tả đúng nhất mục tiêu của kiểm thử phần mềm?
+A. Chứng minh tuyệt đối rằng phần mềm không còn lỗi
+B. Đánh giá, xác minh sản phẩm để tìm lỗi, kiểm tra mức độ đáp ứng yêu cầu và cung cấp thông tin về chất lượng
+C. Thay thế hoàn toàn khâu viết mã của lập trình viên
+D. Chỉ kiểm tra giao diện ngay trước ngày phát hành
+ANSWER: B
+
+Người kiểm thử nhập một ghi chú vào Notepad Cải Tiến rồi xác nhận nội dung hiển thị chính xác mà không cần biết mã nguồn bên trong. Đây là cách tiếp cận nào?
+A. Kiểm thử hộp trắng
+B. Kiểm thử hộp xám
+C. Kiểm thử hộp đen
+D. Kiểm thử đơn vị
+ANSWER: C
+
+Kiểm thử hộp trắng dựa chủ yếu vào thông tin nào?
+A. Phản hồi khảo sát của người dùng
+B. Cấu trúc mã nguồn bên trong
+C. Chỉ đầu vào và đầu ra quan sát được
+D. Tài liệu hướng dẫn sử dụng
+ANSWER: B
+
+Kiểm thử hộp xám được hiểu là gì?
+A. Kiểm thử chỉ dùng công cụ tự động
+B. Kiểm thử chỉ tập trung vào màu sắc giao diện
+C. Kết hợp thông tin bên trong hệ thống với kiểm tra hành vi bên ngoài
+D. Kiểm thử do khách hàng thực hiện sau khi phát hành
+ANSWER: C
+
+Cấp độ kiểm thử nào tập trung vào sự tương tác giữa các thành phần?
+A. Kiểm thử đơn vị
+B. Kiểm thử chấp nhận
+C. Kiểm thử hệ thống
+D. Kiểm thử tích hợp
+ANSWER: D
+
+Cấp độ kiểm thử nào nhằm xác nhận sản phẩm phù hợp với nhu cầu người dùng?
+A. Kiểm thử đơn vị
+B. Kiểm thử tích hợp
+C. Kiểm thử hệ thống
+D. Kiểm thử chấp nhận
+ANSWER: D
+
+Tình huống nào phù hợp nhất để thực hiện kiểm thử thủ công?
+A. Chạy lại cùng một bộ kiểm thử hồi quy cho mỗi bản build
+B. Kiểm tra lặp lại việc lọc hàng nghìn công việc
+C. Quan sát nút xóa trên màn hình nhỏ và đánh giá thao tác tạo công việc của Todo App
+D. Xử lý khối lượng dữ liệu kiểm thử rất lớn
+ANSWER: C
+
+Đâu là hạn chế của kiểm thử thủ công được nêu trong bài?
+A. Tốn thời gian khi lặp lại, phụ thuộc người thực hiện và có thể bỏ sót thao tác
+B. Không quan sát được trải nghiệm thực tế của người dùng
+C. Bắt buộc phải viết script trước khi kiểm thử
+D. Không thể dùng để kiểm thử giao diện
+ANSWER: A
+
+Vì sao việc phát hiện lỗi sớm có giá trị đối với dự án?
+A. Làm tăng số lượng test case cần viết
+B. Thường giúp giảm công sức và chi phí xử lý
+C. Giúp nhóm không cần kiểm thử lại sau khi sửa
+D. Loại bỏ hoàn toàn rủi ro sau phát hành
+ANSWER: B
+
+Nhận định nào đúng về các cách phân loại kiểm thử trong bài?
+A. Các nhóm phân loại không loại trừ nhau; một kiểm thử có thể vừa thủ công, vừa hộp đen, vừa ở cấp hệ thống
+B. Mỗi hoạt động kiểm thử chỉ thuộc đúng một nhóm phân loại
+C. Kiểm thử hộp đen luôn phải thực hiện tự động
+D. Kiểm thử chấp nhận luôn là kiểm thử hộp trắng
+ANSWER: A

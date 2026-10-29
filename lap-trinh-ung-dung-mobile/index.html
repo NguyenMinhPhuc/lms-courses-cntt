@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lập trình ứng dụng di động | Khoa CNTT - Đại học Lạc Hồng</title>
+  <meta name="description" content="Học phần Lập trình ứng dụng di động (Mã học phần: 111114): xây dựng ứng dụng Android bằng React Native + Expo theo PBL và vibe coding, kết nối API NestJS + SQL Server qua stored procedure, thông báo realtime với Socket.IO.">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
+          colors: {
+            asu: { maroon: '#8C1D40', gold: '#FFC627' },
+            lhu: { blue: '#013D88', sky: '#007BFF', dark: '#01295C', light: '#EEF5FC' }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .gradient-hero { background: linear-gradient(135deg, #01295C 0%, #013D88 50%, #8C1D40 100%); }
+  </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col">
+
+  <!-- TOP BAR -->
+  <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+      <span><i class="fa-solid fa-mobile-screen-button text-asu-gold mr-1"></i> Khoa Công nghệ Thông tin - Trường Đại học Lạc Hồng</span>
+      <div class="flex items-center gap-4 font-mono">
+        <span>Mã học phần: <strong class="text-white">111114</strong></span>
+        <span>60 tiết: <strong class="text-asu-gold">15 LT + 45 TH</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur shadow-sm border-b border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
+      <a href="../index.html" class="flex items-center gap-2.5 min-w-0">
+        <img src="../nhap-mon-nganh/LHU_ASU_VI_Small_Ngang.png" alt="Logo LHU" class="h-8 w-auto" onerror="this.style.display='none'">
+        <div class="border-l border-slate-300 pl-2.5 min-w-0">
+          <div class="text-[11px] font-bold text-slate-500 uppercase">Khoa CNTT - LHU</div>
+          <div class="text-xs font-extrabold text-lhu-blue truncate">LẬP TRÌNH DI ĐỘNG (111114)</div>
+        </div>
+      </a>
+      <div class="flex items-center gap-2 text-xs">
+        <a href="../index.html" class="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl flex items-center gap-1.5"><i class="fa-solid fa-arrow-left"></i><span class="hidden sm:inline">Danh mục học phần</span></a>
+        <a href="https://learn.lhu.edu.vn" target="_blank" rel="noopener noreferrer" class="px-3 py-2 bg-lhu-blue hover:bg-lhu-dark text-white font-bold rounded-xl flex items-center gap-1.5"><i class="fa-solid fa-graduation-cap text-asu-gold"></i><span class="hidden sm:inline">Vào lớp LMS</span></a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="gradient-hero text-white py-12 sm:py-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 grid lg:grid-cols-3 gap-8 items-center">
+      <div class="lg:col-span-2 space-y-4">
+        <div class="inline-flex flex-wrap items-center gap-2 text-xs font-semibold">
+          <span class="px-3 py-1 rounded-full bg-white/10 border border-white/20 text-asu-gold">Học kỳ 6</span>
+          <span class="px-3 py-1 rounded-full bg-white/10 border border-white/20">PBL · 4 sprint</span>
+          <span class="px-3 py-1 rounded-full bg-white/10 border border-white/20">Vibe coding</span>
+        </div>
+        <h1 class="text-3xl sm:text-5xl font-black leading-tight">Lập trình ứng dụng<br><span class="text-asu-gold">di động</span></h1>
+        <p class="text-sm sm:text-base text-slate-200 leading-relaxed max-w-2xl">
+          Xây dựng một ứng dụng Android hoàn chỉnh bằng <strong>React Native + Expo</strong>, kết nối backend <strong>NestJS + SQL Server</strong> do chính nhóm phát triển, có thông báo thời gian thực bằng <strong>Socket.IO</strong> và triển khai lên server của Khoa.
+        </p>
+        <div class="flex flex-wrap gap-3 pt-2 text-sm font-bold">
+          <a href="bai-01.html" class="px-5 py-2.5 bg-asu-gold text-slate-900 rounded-xl shadow hover:brightness-105"><i class="fa-solid fa-play mr-1"></i> Bắt đầu Bài 01</a>
+          <a href="thong-tin-hoc-phan.html" class="px-5 py-2.5 bg-white/10 border border-white/30 rounded-xl hover:bg-white/20"><i class="fa-solid fa-book-open mr-1"></i> Đề cương</a>
+          <a href="danh-gia-hoc-phan.html" class="px-5 py-2.5 bg-white/10 border border-white/30 rounded-xl hover:bg-white/20"><i class="fa-solid fa-clipboard-check mr-1"></i> Đánh giá</a>
+        </div>
+      </div>
+      <div class="bg-white/10 border border-white/20 rounded-3xl p-5 text-sm space-y-2">
+        <div><span class="text-slate-300">Giảng viên phụ trách</span><div class="font-bold">ThS. Nguyễn Minh Phúc</div></div>
+        <div><span class="text-slate-300">Cùng tham gia</span><div class="font-bold">Lê Minh Nhật, Lê Chân Thiện Tâm</div></div>
+        <div><span class="text-slate-300">Thời lượng</span><div class="font-bold">60 tiết · 12 buổi × 5 tiết</div></div>
+        <div><span class="text-slate-300">Ví dụ xuyên suốt</span><div class="font-bold">LHU Food: đặt món căn tin</div></div>
+      </div>
+    </div>
+  </section>
+
+  <main class="flex-grow max-w-6xl w-full mx-auto px-4 sm:px-6 py-10 space-y-10">
+
+    <!-- TECH -->
+    <section>
+      <h2 class="text-xl sm:text-2xl font-black text-slate-900 mb-4">Bạn sẽ làm việc với</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
+        <div class="bg-white border border-slate-200 rounded-2xl p-4"><i class="fa-brands fa-react text-sky-500 text-xl"></i><div class="font-bold mt-2">React Native + Expo</div><div class="text-slate-500 text-xs">Android bắt buộc, iOS mở rộng</div></div>
+        <div class="bg-white border border-slate-200 rounded-2xl p-4"><i class="fa-solid fa-server text-rose-600 text-xl"></i><div class="font-bold mt-2">NestJS + Socket.IO</div><div class="text-slate-500 text-xs">API và thông báo realtime</div></div>
+        <div class="bg-white border border-slate-200 rounded-2xl p-4"><i class="fa-solid fa-database text-amber-600 text-xl"></i><div class="font-bold mt-2">SQL Server</div><div class="text-slate-500 text-xs">Chỉ truy cập qua stored procedure</div></div>
+        <div class="bg-white border border-slate-200 rounded-2xl p-4"><i class="fa-solid fa-robot text-purple-600 text-xl"></i><div class="font-bold mt-2">Antigravity · Copilot</div><div class="text-slate-500 text-xs">Vibe coding có kiểm soát</div></div>
+      </div>
+    </section>
+
+    <!-- ROADMAP -->
+    <section>
+      <h2 class="text-xl sm:text-2xl font-black text-slate-900 mb-1">Lộ trình 12 buổi</h2>
+      <p class="text-sm text-slate-500 mb-4">Mỗi buổi: lý thuyết → thực hành có hướng dẫn → thực hành không hướng dẫn → thử thách nhóm. Cuối mỗi trang bài học có phần luyện tập trắc nghiệm.</p>
+      <div class="grid md:grid-cols-2 gap-4">
+
+        <div class="bg-white border border-slate-200 rounded-3xl p-5">
+          <div class="text-xs font-bold text-lhu-sky uppercase">Sprint 1</div>
+          <div class="font-black text-slate-900 mb-3">Nền tảng &amp; Giao diện</div>
+          <ul class="space-y-2 text-sm">
+            <li><a href="bai-01.html" class="flex items-center justify-between gap-2 p-2.5 rounded-xl bg-lhu-light hover:bg-blue-100"><span><strong>01</strong> · Tổng quan &amp; khởi động dự án</span><i class="fa-solid fa-arrow-right text-lhu-blue"></i></a></li>
+            <li><a href="bai-02.html" class="flex items-center justify-between gap-2 p-2.5 rounded-xl bg-lhu-light hover:bg-blue-100"><span><strong>02</strong> · Core Components &amp; Flexbox</span><i class="fa-solid fa-arrow-right text-lhu-blue"></i></a></li>
+            <li><a href="bai-03.html" class="flex items-center justify-between gap-2 p-2.5 rounded-xl bg-lhu-light hover:bg-blue-100"><span><strong>03</strong> · Điều hướng với Expo Router</span><i class="fa-solid fa-flag-checkered text-lhu-blue"></i></a></li>
+          </ul>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-3xl p-5">
+          <div class="text-xs font-bold text-emerald-600 uppercase">Sprint 2</div>
+          <div class="font-black text-slate-900 mb-3">Dữ liệu &amp; Người dùng</div>
+          <ul class="space-y-2 text-sm">
+            <li><a href="bai-04.html" class="flex items-center justify-between gap-2 p-2.5 rounded-xl bg-emerald-50 hover:bg-emerald-100"><span><strong>04</strong> · Trạng thái, danh sách &amp; form</span><i class="fa-solid fa-arrow-right text-emerald-700"></i></a></li>
+            <li><a href="bai-05.html" class="flex items-center justify-between gap-2 p-2.5 rounded-xl bg-emerald-50 hover:bg-emerald-100"><span><strong>05</strong> · CSDL, stored procedure &amp; API</span><i class="fa-solid fa-arrow-right text-emerald-700"></i></a></li>
+            <li><a href="bai-06.html" class="flex items-center justify-between gap-2 p-2.5 rounded-xl bg-emerald-50 hover:bg-emerald-100"><span><strong>06</strong> · Xác thực &amp; bảo mật</span><i class="fa-solid fa-flag-checkered text-emerald-700"></i></a></li>
+          </ul>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-3xl p-5">
+          <div class="text-xs font-bold text-amber-600 uppercase">Sprint 3</div>
+          <div class="font-black text-slate-900 mb-3">Dữ liệu nâng cao, Thiết bị &amp; Realtime</div>
+          <ul class="space-y-2 text-sm">
+            <li><a href="bai-07.html" class="flex items-center justify-between gap-2 p-2.5 rounded-xl bg-amber-50 hover:bg-amber-100"><span><strong>07</strong> · SQL Server nâng cao &amp; đồng bộ</span><i class="fa-solid fa-arrow-right text-amber-700"></i></a></li>
+            <li><a href="bai-08.html" class="flex items-center justify-between gap-2 p-2.5 rounded-xl bg-amber-50 hover:bg-amber-100"><span><strong>08</strong> · Camera, ảnh, vị trí &amp; bản đồ</span><i class="fa-solid fa-arrow-right text-amber-700"></i></a></li>
+            <li><a href="bai-09.html" class="flex items-center justify-between gap-2 p-2.5 rounded-xl bg-amber-50 hover:bg-amber-100"><span><strong>09</strong> · Thông báo realtime Socket.IO</span><i class="fa-solid fa-flag-checkered text-amber-700"></i></a></li>
+          </ul>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-3xl p-5">
+          <div class="text-xs font-bold text-asu-maroon uppercase">Sprint 4</div>
+          <div class="font-black text-slate-900 mb-3">Chất lượng &amp; Phát hành</div>
+          <ul class="space-y-2 text-sm">
+            <li><a href="bai-10.html" class="flex items-center justify-between gap-2 p-2.5 rounded-xl bg-rose-50 hover:bg-rose-100"><span><strong>10</strong> · Kiểm thử, gỡ lỗi &amp; hiệu năng</span><i class="fa-solid fa-arrow-right text-rose-700"></i></a></li>
+            <li><a href="bai-11.html" class="flex items-center justify-between gap-2 p-2.5 rounded-xl bg-rose-50 hover:bg-rose-100"><span><strong>11</strong> · Triển khai server Khoa &amp; build APK</span><i class="fa-solid fa-arrow-right text-rose-700"></i></a></li>
+            <li><a href="bai-12.html" class="flex items-center justify-between gap-2 p-2.5 rounded-xl bg-rose-50 hover:bg-rose-100"><span><strong>12</strong> · Demo Day</span><i class="fa-solid fa-flag-checkered text-rose-700"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- RULES -->
+    <section class="bg-lhu-light border border-blue-200 rounded-3xl p-6">
+      <h2 class="text-lg font-black text-lhu-dark mb-3"><i class="fa-solid fa-shield-halved mr-2"></i>Quy tắc của học phần</h2>
+      <ul class="text-sm space-y-2 text-slate-700">
+        <li><strong>Không hiểu thì không merge:</strong> mã do AI sinh ra vẫn phải được bạn giải thích được; prompt chính ghi trong <code>PROMPTS.md</code>.</li>
+        <li><strong>Dữ liệu chỉ trên SQL Server:</strong> backend chỉ gọi stored procedure có tham số bằng thư viện <code>mssql</code>.</li>
+        <li><strong>Android là bắt buộc:</strong> APK cuối kỳ phải chạy được trên máy ngoài nhóm, kết nối backend trên server Khoa.</li>
+        <li><strong>Vai trò rõ ràng:</strong> mỗi thành viên có vai chính; điểm CLO4 chấm theo commit/PR và phần tự trình bày.</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer class="bg-white border-t border-slate-200 py-6 text-xs text-slate-500">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div><strong>Khoa Công nghệ Thông tin - Trường Đại học Lạc Hồng</strong></div>
+      <div>Hệ thống LMS: <a href="https://learn.lhu.edu.vn" target="_blank" rel="noopener noreferrer" class="text-lhu-blue font-bold">learn.lhu.edu.vn</a></div>
+    </div>
+  </footer>
+</body>
+</html>

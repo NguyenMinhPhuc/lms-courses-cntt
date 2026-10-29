@@ -206,7 +206,7 @@
         <div style="margin-bottom: 16px;">
             <p style="margin: 0 0 8px 0; color: #fd7e14; font-weight: bold;">🎥 Video hướng dẫn chi tiết</p>
 
-            <a class="nomediaplugin" href="https://www.youtube.com/watch?v=LQiX-9w3UdM" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
+            <a class="nomediaplugin" href="{{LINK_VIDEO_BAI_03}}" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
                 <span style="color: #fd7e14; font-weight: bold;">▶ Video 03 - Một ngày làm việc của Kỹ sư phần mềm &amp; Lời khuyên cho Tân sinh viên</span>
             </a>
         </div>
@@ -285,6 +285,141 @@
 
 
     </div>
+
+    <!-- Practice Quiz: luyện tập trực tiếp, chỉ báo số câu đúng/sai, không lưu và không hiển thị đáp án -->
+    <section id="luyen-tap" class="no-print mt-8 bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
+        <div>
+          <h2 class="text-lg sm:text-xl font-black text-slate-900 flex items-center gap-2">
+            <i class="fa-solid fa-pen-to-square text-emerald-600"></i> Luyện tập trắc nghiệm - Bài 03
+          </h2>
+          <p class="text-xs text-slate-500 mt-1">10 câu · Chấm ngay khi nộp · Không lưu kết quả · Không hiển thị đáp án</p>
+        </div>
+        <button type="button" id="pq-start" class="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold rounded-xl shadow transition-all flex items-center gap-2 justify-center">
+          <i class="fa-solid fa-play"></i> Bắt đầu làm bài
+        </button>
+      </div>
+
+      <form id="pq-form" class="hidden pt-5 space-y-5" novalidate></form>
+
+      <div id="pq-footer" class="hidden pt-5 mt-5 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <span id="pq-progress" class="text-sm text-slate-500"></span>
+        <button type="button" id="pq-submit" class="px-5 py-2.5 bg-lhu-blue hover:bg-lhu-dark text-white text-sm font-bold rounded-xl shadow transition-all flex items-center gap-2 justify-center">
+          <i class="fa-solid fa-check-double"></i> Nộp bài
+        </button>
+      </div>
+
+      <div id="pq-result" class="hidden mt-5 rounded-2xl border p-5" role="status" aria-live="polite"></div>
+    </section>
+
+    <script>
+      (function () {
+        // Dữ liệu sinh từ quiz/quiz-bai-03-aiken.txt. Đáp án được mã hóa nhẹ để không lộ khi xem nhanh;
+        // đây là bài luyện tập, không phải cơ chế chống gian lận.
+        const QUESTIONS = [{"q": "Vị trí Frontend Developer trong một dự án phát triển phần mềm chịu trách nhiệm chính về phần nào?", "o": ["Thiết kế cơ sở dữ liệu và tối ưu hóa câu lệnh SQL", "Quản lý tài chính và hợp đồng doanh nghiệp", "Cấu hình máy chủ vật lý và hệ thống tường lửa", "Xây dựng giao diện tương tác người dùng (UI), hiệu ứng và trải nghiệm (UX) trên trình duyệt hoặc thiết bị"], "k": 0}, {"q": "Trách nhiệm cốt lõi của một Backend Developer là gì?", "o": ["Thiết kế poster quảng cáo cho sản phẩm", "Xử lý logic nghiệp vụ (business logic), xây dựng API, quản lý cơ sở dữ liệu và đảm bảo hiệu năng hệ thống", "Viết kịch bản video hướng dẫn người dùng", "Tiếp nhận cuộc gọi khiếu nại của khách hàng"], "k": 1}, {"q": "Khái niệm \"Fullstack Developer\" dùng để chỉ lập trình viên có khả năng nào?", "o": ["Có thể đảm nhiệm cả phần giao diện (Frontend) và phần xử lý logic máy chủ (Backend)", "Chỉ chuyên về cài đặt hệ điều hành máy tính", "Chỉ chuyên viết tài liệu hướng dẫn sử dụng", "Chỉ chuyên kiểm thử lỗi thủ công"], "k": 3}, {"q": "Kỹ sư DevOps (Development and Operations) giữ vai trò then chốt nào trong quy trình phát triển phần mềm hiện đại?", "o": ["Tự động hóa quy trình tích hợp và triển khai mã nguồn (CI/CD), quản lý và tối ưu hóa hạ tầng đám mây", "Trực tổng đài hỗ trợ bán hàng", "Thiết kế bao bì sản phẩm", "Viết bài PR sản phẩm lên mạng xã hội"], "k": 2}, {"q": "Vai trò của chuyên viên QA/QC (Quality Assurance / Quality Control) trong nhóm dự án là gì?", "o": ["Thu tiền đặt cọc của khách hàng", "Quyết định sa thải nhân viên trong nhóm", "Viết lại toàn bộ mã nguồn của dự án", "Lập kế hoạch kiểm thử, phát hiện lỗi phần mềm và đảm bảo sản phẩm đáp ứng tiêu chuẩn chất lượng trước khi phát hành"], "k": 0}, {"q": "Trong mô hình làm việc Agile/Scrum, cuộc họp Daily Standup hàng ngày thường có đặc điểm gì?", "o": ["Chỉ dành riêng cho giám đốc tài chính", "Kéo dài 3 đến 4 tiếng đồng hồ trong phòng họp kín", "Là buổi liên hoan ăn uống của toàn bộ công ty", "Diễn ra nhanh chóng (khoảng 10 - 15 phút), mỗi thành viên chia sẻ: đã làm gì, sẽ làm gì và gặp vướng mắc gì"], "k": 3}, {"q": "Thứ tự thăng tiến theo lộ trình phát triển kỹ thuật (Technical Track) phổ biến trong ngành IT là gì?", "o": ["Intern &rarr; Giám đốc &rarr; Junior &rarr; Senior", "Senior &rarr; Junior &rarr; Fresher &rarr; Intern", "Intern &rarr; Fresher &rarr; Junior &rarr; Middle &rarr; Senior &rarr; Tech Lead / Software Architect", "Fresher &rarr; Tester &rarr; Kế toán &rarr; Architect"], "k": 1}, {"q": "Tại sao hồ sơ GitHub cá nhân được ví như \"bản CV thực chiến\" của sinh viên IT khi đi ứng tuyển?", "o": ["Vì trên GitHub có hiển thị thông tin bằng tốt nghiệp THPT", "Vì nhà tuyển dụng có thể trực tiếp xem lịch sử commit, chất lượng mã nguồn và các dự án thực tế bạn đã xây dựng", "Vì tài khoản GitHub bắt buộc phải nộp phí thường niên", "Vì GitHub chỉ dành cho những người đã có bằng Thạc sĩ"], "k": 3}, {"q": "Chuyên viên Phân tích nghiệp vụ (Business Analyst - BA) đóng vai trò gì trong dự án công nghệ?", "o": ["Cầu nối giữa khách hàng/doanh nghiệp và đội ngũ kỹ thuật, giúp làm rõ và chuyển hóa yêu cầu thành tài liệu kỹ thuật", "Trực tiếp kéo dây mạng cho văn phòng", "Sửa chữa bo mạch chủ máy tính", "Bán cổ phần của công ty"], "k": 1}, {"q": "Hành động nào dưới đây giúp sinh viên năm nhất Khoa CNTT chuẩn bị tốt nhất cho sự nghiệp tương lai?", "o": ["Chỉ đợi đến năm thứ tư mới bắt đầu tìm hiểu về viết code", "Tránh tham gia các hoạt động nhóm và hội thảo khoa học", "Xây dựng thói quen code đều đặn, lưu trữ dự án trên GitHub, tích cực học tiếng Anh và tham gia CLB chuyên môn", "Chỉ học vẹt cú pháp để đối phó các bài kiểm tra lý thuyết"], "k": 2}];
+        const decode = (q, i) => ((q.k - i * 3 - 5) % q.o.length + q.o.length) % q.o.length;
+
+        const form = document.getElementById("pq-form");
+        const footer = document.getElementById("pq-footer");
+        const progress = document.getElementById("pq-progress");
+        const result = document.getElementById("pq-result");
+        const startBtn = document.getElementById("pq-start");
+        const submitBtn = document.getElementById("pq-submit");
+        const LETTERS = "ABCDEFGH";
+
+        function shuffle(list) {
+          const a = list.slice();
+          for (let i = a.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [a[i], a[j]] = [a[j], a[i]];
+          }
+          return a;
+        }
+
+        function render() {
+          form.innerHTML = "";
+          shuffle(QUESTIONS.map((_, i) => i)).forEach((qi, pos) => {
+            const q = QUESTIONS[qi];
+            const box = document.createElement("fieldset");
+            box.className = "border border-slate-200 rounded-2xl p-4";
+            box.dataset.q = qi;
+            const legend = document.createElement("legend");
+            legend.className = "px-2 text-sm font-bold text-slate-800";
+            legend.textContent = "Câu " + (pos + 1) + ". " + q.q;
+            box.appendChild(legend);
+            shuffle(q.o.map((_, oi) => oi)).forEach((oi, shown) => {
+              const label = document.createElement("label");
+              label.className = "flex items-start gap-3 mt-2 p-2.5 rounded-xl border border-transparent hover:bg-slate-50 cursor-pointer text-sm text-slate-700 has-[:checked]:border-lhu-sky has-[:checked]:bg-blue-50";
+              const input = document.createElement("input");
+              input.type = "radio";
+              input.name = "q" + qi;
+              input.value = oi;
+              input.className = "mt-0.5 accent-blue-700";
+              input.addEventListener("change", updateProgress);
+              const text = document.createElement("span");
+              text.textContent = LETTERS[shown] + ". " + q.o[oi];
+              label.append(input, text);
+              box.appendChild(label);
+            });
+            form.appendChild(box);
+          });
+          form.classList.remove("hidden");
+          footer.classList.remove("hidden");
+          result.classList.add("hidden");
+          submitBtn.disabled = false;
+          submitBtn.classList.remove("opacity-50");
+          updateProgress();
+        }
+
+        function answeredCount() {
+          return QUESTIONS.filter((_, i) => form.querySelector('input[name="q' + i + '"]:checked')).length;
+        }
+
+        function updateProgress() {
+          progress.textContent = "Đã trả lời " + answeredCount() + "/" + QUESTIONS.length + " câu";
+        }
+
+        function submit() {
+          const blank = QUESTIONS.length - answeredCount();
+          if (blank > 0 && !confirm("Còn " + blank + " câu chưa trả lời. Bạn vẫn muốn nộp bài?")) return;
+          let correct = 0;
+          QUESTIONS.forEach((q, i) => {
+            const picked = form.querySelector('input[name="q' + i + '"]:checked');
+            if (picked && Number(picked.value) === decode(q, i)) correct++;
+          });
+          const wrong = QUESTIONS.length - correct - blank;
+          const percent = Math.round(correct * 100 / QUESTIONS.length);
+          const good = percent >= 80, ok = percent >= 50;
+          result.className = "mt-5 rounded-2xl border p-5 " + (good ? "bg-emerald-50 border-emerald-200" : ok ? "bg-amber-50 border-amber-200" : "bg-rose-50 border-rose-200");
+          result.innerHTML =
+            '<div class="flex flex-wrap items-center gap-3 text-sm font-bold">' +
+              '<span class="px-3 py-1.5 rounded-lg bg-emerald-600 text-white"><i class="fa-solid fa-check mr-1"></i>Đúng: ' + correct + '</span>' +
+              '<span class="px-3 py-1.5 rounded-lg bg-rose-600 text-white"><i class="fa-solid fa-xmark mr-1"></i>Sai: ' + wrong + '</span>' +
+              (blank ? '<span class="px-3 py-1.5 rounded-lg bg-slate-500 text-white">Bỏ trống: ' + blank + '</span>' : '') +
+              '<span class="text-slate-700">' + correct + "/" + QUESTIONS.length + " câu (" + percent + "%)</span>" +
+            "</div>" +
+            '<p class="text-sm text-slate-700 mt-3">' +
+              (good ? "Rất tốt! Bạn đã nắm vững nội dung bài học." : ok ? "Khá ổn. Hãy xem lại các phần còn chưa chắc trong bài học rồi làm lại." : "Bạn nên đọc lại phần Học liệu chính của bài trước khi làm lại.") +
+            "</p>" +
+            '<button type="button" id="pq-retry" class="mt-4 px-4 py-2 bg-white hover:bg-slate-100 border border-slate-300 text-slate-800 text-sm font-bold rounded-xl transition-all"><i class="fa-solid fa-rotate-right mr-1"></i> Làm lại (đổi thứ tự câu hỏi)</button>';
+          result.classList.remove("hidden");
+          form.querySelectorAll("input").forEach(input => input.disabled = true);
+          submitBtn.disabled = true;
+          submitBtn.classList.add("opacity-50");
+          document.getElementById("pq-retry").addEventListener("click", () => {
+            render();
+            document.getElementById("luyen-tap").scrollIntoView({ behavior: "smooth" });
+          });
+          result.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+
+        startBtn.addEventListener("click", () => {
+          startBtn.classList.add("hidden");
+          render();
+        });
+        submitBtn.addEventListener("click", submit);
+      })();
+    </script>
 
     <!-- Bottom Navigation between lessons -->
     <div class="flex items-center justify-between gap-4 mt-8 no-print text-xs font-bold">

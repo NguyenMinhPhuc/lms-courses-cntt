@@ -42,6 +42,8 @@ def parse_course_folder(folder_path: Path):
     
     syllabus_file = "thong-tin-hoc-phan.html" if (folder_path / "thong-tin-hoc-phan.html").is_file() else None
     assessment_file = "danh-gia-hoc-phan.html" if (folder_path / "danh-gia-hoc-phan.html").is_file() else None
+    # Trang tải file Aiken cho giảng viên, sinh bởi build-quiz.py
+    quiz_bank = "quiz/index.html" if (folder_path / "quiz" / "index.html").is_file() else None
 
     # Title extraction
     title = ""
@@ -140,12 +142,36 @@ def parse_course_folder(folder_path: Path):
         "courseLanding": course_landing,
         "syllabusFile": syllabus_file,
         "assessmentFile": assessment_file,
+        "quizBank": quiz_bank,
         "description": desc or f"Học phần {title} thuộc chương trình đào tạo Khoa CNTT - Đại học Lạc Hồng.",
         "instructor": "Bộ môn CNTT - LHU",
         "tags": list(dict.fromkeys(tags)),
         "badgeColor": "blue",
         "icon": icon
     }
+
+def apply_course_config(course: dict, config_file: Path):
+    if not config_file.is_file():
+        return
+    try:
+        config = json.loads(config_file.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as e:
+        print(f"  [!] Bỏ qua {config_file.name} của {course['folder']}: {e}")
+        return
+
+    course["title"] = config.get("portalTitle") or config.get("name") or course["title"]
+    if config.get("code"):
+        course["code"] = config["code"]
+    credits_match = re.match(r"\s*(\d+)", str(config.get("credits", "")))
+    if credits_match:
+        course["credits"] = int(credits_match.group(1))
+        course["hours"] = f"{course['credits'] * 15} tiết"
+    for key in ("hours", "semester", "instructor", "tags", "description"):
+        if config.get(key):
+            course[key] = config[key]
+    if config.get("landingPage"):
+        course["courseLanding"] = config["landingPage"]
+
 
 def main():
     print(f"Scanning directory: {ROOT_DIR}")
@@ -158,19 +184,9 @@ def main():
                 courses.append(course_data)
                 print(f"  [+] Discovered course: {course_data['title']} ({course_data['folder']})")
 
-    # If nhap-mon-nganh has customized metadata, preserve it
+    # Metadata khai báo trong course.json được ưu tiên hơn giá trị đoán từ index.html
     for c in courses:
-        if c["id"] == "nhap-mon-nganh":
-            c["title"] = "Nhập Môn Công Nghệ Thông Tin"
-            c["code"] = "111106"
-            c["credits"] = 3
-            c["hours"] = "45 tiết (9 buổi)"
-            c["semester"] = "Học kỳ 1 • Năm 1"
-            c["instructor"] = "ThS. Nguyễn Minh Phúc"
-            c["tags"] = ["ABET", "AI-First", "Vibe Coding", "Cơ sở ngành"]
-            c["courseLanding"] = "course-landingpage.html"
-            c["syllabusFile"] = "thong-tin-hoc-phan.html"
-            c["assessmentFile"] = "danh-gia-hoc-phan.html"
+        apply_course_config(c, ROOT_DIR / c["folder"] / "course.json")
 
     # Write courses.json
     json_path = ROOT_DIR / "courses.json"

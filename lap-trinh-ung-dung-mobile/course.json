@@ -1,0 +1,23 @@
+{
+  "name": "Lập trình ứng dụng di động",
+  "portalTitle": "Lập trình ứng dụng di động",
+  "code": "111114",
+  "credits": "3",
+  "hours": "60 tiết (15 LT + 45 TH)",
+  "semester": "Học kỳ 6",
+  "instructor": "ThS. Nguyễn Minh Phúc",
+  "tags": ["React Native", "Expo", "PBL", "Vibe Coding", "SQL Server"],
+  "description": "Xây dựng ứng dụng di động Android (mở rộng iOS) bằng React Native + Expo theo hình thức PBL và vibe coding: giao diện, điều hướng, kết nối API NestJS + SQL Server qua stored procedure, thông báo realtime với Socket.IO, build và phát hành APK.",
+  "headerLabel": "LẬP TRÌNH DI ĐỘNG (111114)",
+  "subtitleTag": "PBL · Vibe Coding",
+  "year": 2026,
+  "landingPage": "index.html",
+  "coursePages": true,
+  "slides": true,
+  "srsProject": "LHU Food",
+  "lessonTitles": {
+    "01": "Tổng quan phát triển ứng dụng di động & khởi động dự án",
+    "02": "Core Components, Styling & Layout với Flexbox",
+    "03": "Điều hướng với Expo Router"
+  }
+}

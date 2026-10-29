@@ -1,0 +1,69 @@
+Kiểu điều hướng nào phù hợp nhất cho luồng Danh sách món → Chi tiết món, có thể quay lại bằng nút Back của Android?
+A. Drawer
+B. Tab
+C. Modal
+D. Stack
+ANSWER: D
+
+Kiểu điều hướng nào phù hợp cho các khu vực chính luôn hiển thị như Trang chủ, Giỏ hàng, Đơn hàng, Tài khoản?
+A. Modal
+B. Tab
+C. Deep link
+D. Route động
+ANSWER: B
+
+Trong Expo Router, file app/(tabs)/cart.tsx tương ứng với đường dẫn nào?
+A. /cart
+B. /(tabs)/cart
+C. /tabs/cart.tsx
+D. /app/cart
+ANSWER: A
+
+File _layout.tsx trong một thư mục của Expo Router có vai trò gì?
+A. Khai báo cách các màn hình trong thư mục được sắp xếp, ví dụ Stack hoặc Tabs
+B. Lưu dữ liệu giả cho màn hình
+C. Cấu hình kết nối SQL Server
+D. Chứa biểu tượng của ứng dụng
+ANSWER: A
+
+Màn hình app/product/[id].tsx đọc mã món từ đường dẫn bằng cách nào?
+A. useState
+B. useColorScheme
+C. useWindowDimensions
+D. useLocalSearchParams
+ANSWER: D
+
+Sau khi đăng nhập thành công, nên dùng lệnh nào để người dùng bấm Back không quay lại màn hình đăng nhập?
+A. router.push()
+B. router.back()
+C. router.reload()
+D. router.replace()
+ANSWER: D
+
+Muốn màn hình xác nhận đặt hàng trượt lên che màn hình hiện tại rồi đóng lại quay về đúng chỗ cũ, cần khai báo gì cho màn hình đó trong Stack?
+A. flexDirection: 'row'
+B. headerShown: true
+C. presentation: 'modal'
+D. title: 'Xác nhận'
+ANSWER: C
+
+Để đường dẫn lhufood://product/12 mở thẳng màn hình chi tiết món 12, cần khai báo gì trong app.json?
+A. "version": "12"
+B. "scheme": "lhufood"
+C. "orientation": "portrait"
+D. "icon": "lhufood.png"
+ANSWER: B
+
+Trong ERD sơ bộ của LHU Food, quan hệ giữa Đơn hàng và Món được thể hiện thế nào?
+A. Quan hệ n-n, tách qua bảng Chi tiết đơn (OrderItems)
+B. Quan hệ 1-1, gộp chung một bảng
+C. Không có quan hệ
+D. Quan hệ 1-n từ Món đến Đơn hàng, không cần bảng trung gian
+ANSWER: A
+
+Vì sao nên vẽ sơ đồ luồng màn hình trước khi viết mã điều hướng?
+A. Để giảm dung lượng ứng dụng
+B. Vì Expo Router tự sinh mã từ ảnh sơ đồ
+C. Để nhóm thống nhất các màn hình và cấu trúc thư mục app/ trước khi lập trình
+D. Vì sơ đồ luồng màn hình thay thế được ERD
+ANSWER: C

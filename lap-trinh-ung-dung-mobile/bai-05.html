@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 05 - Thiết kế CSDL, stored procedure, API NestJS & kết nối ứng dụng (5 tiết: 2 LT / 3 TH) | Khoa CNTT - Đại học Lạc Hồng</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome 6.4.0 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            asu: {
+              maroon: '#8C1D40',
+              gold: '#FFC627',
+              dark: '#5C142B',
+              light: '#FAEDF0'
+            },
+            lhu: {
+              blue: '#013D88',
+              sky: '#007BFF',
+              dark: '#01295C',
+              light: '#EEF5FC'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    @media print {
+      header, footer, .no-print {
+        display: none !important;
+      }
+      details {
+        break-inside: avoid;
+        margin-bottom: 20px;
+      }
+      details[open] summary {
+        border-bottom: 1px solid #ccc;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-slate-100 text-slate-800 font-sans antialiased selection:bg-asu-gold selection:text-slate-900 min-h-screen flex flex-col">
+
+  <!-- TOP BAR -->
+  <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800 no-print">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+      <div class="flex items-center gap-2">
+        <span class="text-asu-gold font-semibold"><i class="fa-solid fa-certificate mr-1"></i> CHUẨN KIỂM ĐỊNH ABET (USA)</span>
+        <span class="text-slate-600 hidden sm:inline">•</span>
+        <span class="hidden sm:inline">Đối tác chiến lược: <strong>Arizona State University (ASU)</strong></span>
+      </div>
+      <div class="flex items-center gap-4 text-xs font-mono">
+        <span>Mã học phần: <strong class="text-white">111114</strong></span>
+        <span>Số tín chỉ: <strong class="text-asu-gold">3</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="sticky top-0 z-40 bg-white shadow-sm border-b border-slate-200 no-print">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="index.html" class="flex items-center gap-2.5 text-slate-800 hover:text-lhu-blue transition-colors">
+          <img src="../nhap-mon-nganh/LHU_ASU_VI_Small_Ngang.png" alt="Logo LHU" class="h-8 w-auto">
+          <div class="border-l border-slate-300 pl-2.5">
+            <div class="text-[11px] font-bold text-slate-500 uppercase">Khoa CNTT - LHU</div>
+            <div class="text-xs font-extrabold text-lhu-blue">LẬP TRÌNH DI ĐỘNG (111114)</div>
+          </div>
+        </a>
+      </div>
+
+      <div class="flex items-center gap-3 text-xs">
+        <a href="index.html" class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-arrow-left"></i>
+          <span>Về Landing Page</span>
+        </a>
+        <button onclick="window.print()" class="hidden sm:flex px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-all items-center gap-1.5" title="In hoặc lưu file PDF">
+          <i class="fa-solid fa-print"></i>
+          <span>In Đề Cương</span>
+        </button>
+        <a href="https://learn.lhu.edu.vn" target="_blank" class="px-4 py-2 bg-lhu-blue hover:bg-lhu-dark text-white font-bold rounded-xl shadow transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-graduation-cap text-asu-gold"></i>
+          <span>Vào lớp LMS</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="flex-grow max-w-5xl w-full mx-auto px-4 sm:px-6 py-8">
+    
+    <!-- Title Card -->
+    <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 mb-8">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-5">
+        <div>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 text-lhu-blue font-bold text-xs uppercase tracking-wider mb-2">
+            <i class="fa-solid fa-book-open"></i> ĐẠI HỌC LẠC HỒNG • KHOA CÔNG NGHỆ THÔNG TIN
+          </span>
+          <h1 class="text-2xl sm:text-3xl font-black text-slate-900 leading-tight">
+            Bài 05 - Thiết kế CSDL, stored procedure, API NestJS & kết nối ứng dụng (5 tiết: 2 LT / 3 TH)
+          </h1>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1 font-mono">
+            Học phần: Lập trình ứng dụng di động • Mã môn: 111114 • PBL · Vibe Coding
+          </p>
+        </div>
+
+        <div class="flex-shrink-0 flex sm:flex-col items-center sm:items-end justify-between gap-1 text-xs">
+          <span class="px-3 py-1.5 bg-emerald-50 text-emerald-700 font-bold rounded-lg border border-emerald-200">
+            <i class="fa-solid fa-check-circle mr-1"></i> Lưu hành nội bộ 2026
+          </span>
+          <span class="text-slate-400 text-[11px]">Định dạng LMS Accordion</span>
+        </div>
+      </div>
+
+      <!-- Quick Action Controls for Accordions -->
+      <div class="flex items-center justify-between pt-4 text-xs no-print">
+        <span class="text-slate-500">
+          <i class="fa-solid fa-circle-info text-blue-500 mr-1"></i>
+          Nhấp vào từng thanh tiêu đề để đóng/mở nội dung chi tiết.
+        </span>
+        <div class="flex items-center gap-2">
+          <button onclick="toggleAllDetails(true)" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg transition-colors">
+            Mở tất cả
+          </button>
+          <button onclick="toggleAllDetails(false)" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg transition-colors">
+            Thu gọn
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Accordion Blocks -->
+    <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200">
+      <details open="" style="border: 1px solid #007bff; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #e7f1ff; color: #007bff; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>📘 1. Tổng quan bài học</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <p><strong>BÀI 05 - Thiết kế CSDL, stored procedure, API NestJS &amp; kết nối ứng dụng (5 tiết: 2 LT / 3 TH)</strong></p>
+        <p><em>Đến giờ LHU Food vẫn dùng dữ liệu giả trong một file TypeScript. Hôm nay dữ liệu chuyển về đúng chỗ của nó: SQL Server. Câu hỏi là: đi từ màn hình điện thoại tới một dòng trong bảng <code>Products</code> phải qua những lớp nào, và lớp nào được phép làm gì?</em></p>
+        <p><strong>Mục tiêu:</strong> Thiết kế được CSDL SQL Server đáp ứng đặc tả và trình bày bằng ERD; viết được stored procedure cho các thao tác dữ liệu; xây dựng được REST API NestJS chỉ truy cập CSDL qua stored procedure; tích hợp và quản lý được dữ liệu server trong ứng dụng.</p>
+        <p><strong>Nội dung:</strong></p>
+        <ul>
+            <li><strong>Ý chính 1 - Thiết kế CSDL:</strong> khóa chính/ngoại, quan hệ 1-n và n-n, ràng buộc cơ bản; hoàn thiện ERD từ bản sơ bộ ở bài 03.</li>
+            <li><strong>Ý chính 2 - Stored procedure:</strong> quy ước đặt tên, tham số, phân trang <code>OFFSET/FETCH</code>, báo lỗi bằng <code>THROW</code>; vì sao học phần bắt buộc dùng thủ tục.</li>
+            <li><strong>Ý chính 3 - API NestJS với mssql:</strong> module, controller, service, DTO; <code>DatabaseService</code> dùng chung để gọi <code>request.execute()</code>.</li>
+            <li><strong>Ý chính 4 - Kết nối ứng dụng:</strong> lớp <code>api</code> tập trung, địa chỉ API cho emulator và máy thật, TanStack Query (<code>useQuery</code>, <code>useMutation</code>, cuộn vô hạn).</li>
+        </ul>
+        <p><strong>Kết quả cần đạt:</strong> LHU Food hiển thị thực đơn và đặt hàng qua API thật; nhóm có ERD hoàn chỉnh, danh mục stored procedure và API có Swagger.</p>
+        <p style="margin-bottom: 0;"><strong>CLO liên quan:</strong> CLO1, CLO2, CLO3.</p>
+    </div>
+</details>
+
+<details style="border: 1px solid #fd7e14; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #fff5eb; color: #fd7e14; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>📚 2. Học liệu chính</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.1. Kiến trúc: dữ liệu đi qua những lớp nào?</h3>
+<pre style="background-color: #1e293b; color: #e2e8f0; padding: 12px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5;"><code>Ứng dụng (React Native)
+   │  HTTP + JSON   (useQuery / useMutation)
+   ▼
+API NestJS: Controller → Service → DatabaseService
+   │  mssql: request.input(...) + request.execute('sp_...')
+   ▼
+SQL Server: Stored procedure → Bảng</code></pre>
+            <ul style="margin-bottom: 0;">
+                <li><strong>App</strong> không bao giờ kết nối thẳng vào SQL Server; app chỉ gọi API.</li>
+                <li><strong>API</strong> không viết câu SQL; API chỉ gọi stored procedure có tham số.</li>
+                <li><strong>Stored procedure</strong> chứa toàn bộ câu lệnh đọc/ghi dữ liệu.</li>
+            </ul>
+        </div>
+
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.2. Hoàn thiện thiết kế CSDL</h3>
+            <p>Từ ERD sơ bộ ở bài 03, bổ sung kiểu dữ liệu, khóa và ràng buộc. Dùng <code>NVARCHAR</code> cho chuỗi tiếng Việt, <code>DECIMAL</code> cho tiền.</p>
+<pre style="background-color: #1e293b; color: #e2e8f0; padding: 12px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5;"><code>CREATE TABLE Categories (
+  CategoryId INT IDENTITY(1,1) PRIMARY KEY,
+  Name       NVARCHAR(100) NOT NULL UNIQUE
+);
+
+CREATE TABLE Products (
+  ProductId   INT IDENTITY(1,1) PRIMARY KEY,
+  CategoryId  INT NOT NULL REFERENCES Categories(CategoryId),
+  Name        NVARCHAR(150) NOT NULL,
+  Price       DECIMAL(12,0) NOT NULL CHECK (Price &gt;= 0),
+  ImageUrl    NVARCHAR(500) NULL,
+  IsAvailable BIT NOT NULL DEFAULT 1
+);
+
+CREATE TABLE Orders (
+  OrderId   INT IDENTITY(1,1) PRIMARY KEY,
+  UserId    INT NOT NULL,          -- khóa ngoại tới Users (bài 06)
+  Status    NVARCHAR(20) NOT NULL DEFAULT N'pending',
+  Note      NVARCHAR(200) NULL,
+  CreatedAt DATETIME2 NOT NULL DEFAULT SYSDATETIME()
+);
+
+CREATE TABLE OrderItems (
+  OrderId   INT NOT NULL REFERENCES Orders(OrderId),
+  ProductId INT NOT NULL REFERENCES Products(ProductId),
+  Quantity  INT NOT NULL CHECK (Quantity &gt; 0),
+  UnitPrice DECIMAL(12,0) NOT NULL,
+  PRIMARY KEY (OrderId, ProductId)
+);</code></pre>
+            <p style="margin-bottom: 0;"><strong>💡 Vì sao lưu <code>UnitPrice</code> trong <code>OrderItems</code>?</strong> Giá món có thể đổi sau này; đơn hàng cũ phải giữ đúng giá tại thời điểm đặt. Vẽ lại ERD hoàn chỉnh bằng dbdiagram.io hoặc draw.io và lưu vào <code>docs/</code>.</p>
+        </div>
+
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.3. Stored procedure: quy ước và ví dụ</h3>
+            <p><strong>Vì sao học phần bắt buộc dùng stored procedure?</strong></p>
+            <ul>
+                <li><strong>Tách logic dữ liệu</strong> khỏi mã nguồn backend; đổi câu truy vấn không cần build lại API.</li>
+                <li><strong>Phân quyền chặt:</strong> tài khoản SQL Server của API chỉ cần quyền <code>EXECUTE</code>, không đọc/ghi bảng trực tiếp (bài 06).</li>
+                <li><strong>Chống SQL injection:</strong> giá trị luôn đi vào tham số có kiểu, không ghép chuỗi.</li>
+            </ul>
+            <p><strong>Quy ước đặt tên:</strong> <code>sp_&lt;Thực thể&gt;_&lt;Hành động&gt;</code>, ví dụ <code>sp_Product_GetList</code>, <code>sp_Product_GetById</code>, <code>sp_Order_Create</code>, <code>sp_Order_GetHistory</code>.</p>
+<pre style="background-color: #1e293b; color: #e2e8f0; padding: 12px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5;"><code>CREATE OR ALTER PROCEDURE sp_Product_GetList
+  @CategoryId INT = NULL,
+  @Page       INT = 1,
+  @PageSize   INT = 20
+AS
+BEGIN
+  SET NOCOUNT ON;
+  SELECT ProductId AS id, CategoryId AS categoryId, Name AS name,
+         Price AS price, ImageUrl AS imageUrl
+  FROM Products
+  WHERE IsAvailable = 1
+    AND (@CategoryId IS NULL OR CategoryId = @CategoryId)
+  ORDER BY ProductId
+  OFFSET (@Page - 1) * @PageSize ROWS FETCH NEXT @PageSize ROWS ONLY;
+END;
+GO
+
+CREATE OR ALTER PROCEDURE sp_Product_GetById
+  @ProductId INT
+AS
+BEGIN
+  SET NOCOUNT ON;
+  IF NOT EXISTS (SELECT 1 FROM Products WHERE ProductId = @ProductId)
+    THROW 50404, N'Không tìm thấy món ăn', 1;
+
+  SELECT ProductId AS id, CategoryId AS categoryId, Name AS name,
+         Price AS price, ImageUrl AS imageUrl, IsAvailable AS isAvailable
+  FROM Products WHERE ProductId = @ProductId;
+END;
+GO</code></pre>
+            <p><strong>Bí danh camelCase</strong> (<code>ProductId AS id</code>): thủ tục trả dữ liệu cho app đặt tên cột theo quy ước JSON, để API trả thẳng kết quả mà app dùng được ngay, không cần viết mã chuyển đổi.</p>
+            <p style="margin-bottom: 0;"><strong>Mã lỗi tự đặt</strong> (từ 50000 trở lên) giúp backend biết lỗi gì để trả mã HTTP phù hợp: ví dụ 50404 → <code>404 Not Found</code>. Viết xong thủ tục nào, chạy thử ngay trong SSMS bằng <code>EXEC sp_Product_GetList @Page = 1;</code>.</p>
+        </div>
+
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.4. API NestJS gọi stored procedure bằng mssql</h3>
+            <p>Cài thư viện: <code>npm install mssql</code>. Tạo một <code>DatabaseService</code> dùng chung giữ <strong>connection pool</strong> và chỉ có một cách gọi CSDL: chạy thủ tục với tham số có kiểu.</p>
+<pre style="background-color: #1e293b; color: #e2e8f0; padding: 12px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5;"><code>// src/database/database.service.ts
+import { Injectable, OnModuleDestroy, OnModuleInit } from '@nestjs/common';
+import * as sql from 'mssql';
+
+type Param = { type: sql.ISqlType | (() =&gt; sql.ISqlType); value: unknown };
+
+@Injectable()
+export class DatabaseService implements OnModuleInit, OnModuleDestroy {
+  private pool!: sql.ConnectionPool;
+
+  async onModuleInit() {
+    this.pool = await new sql.ConnectionPool({
+      server: process.env.DB_SERVER!,
+      database: process.env.DB_NAME!,
+      user: process.env.DB_USER!,
+      password: process.env.DB_PASSWORD!,
+      options: { encrypt: false, trustServerCertificate: true },
+    }).connect();
+  }
+
+  async onModuleDestroy() {
+    await this.pool?.close();
+  }
+
+  async execute&lt;T&gt;(procedure: string, params: Record&lt;string, Param&gt; = {}): Promise&lt;T[]&gt; {
+    const request = this.pool.request();
+    for (const [name, p] of Object.entries(params)) {
+      request.input(name, p.type, p.value);
+    }
+    const result = await request.execute&lt;T&gt;(procedure);
+    return result.recordset;
+  }
+}</code></pre>
+<pre style="background-color: #1e293b; color: #e2e8f0; padding: 12px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5;"><code>// src/products/products.service.ts
+import { Injectable, NotFoundException } from '@nestjs/common';
+import * as sql from 'mssql';
+import { DatabaseService } from '../database/database.service';
+
+@Injectable()
+export class ProductsService {
+  constructor(private readonly db: DatabaseService) {}
+
+  findAll(page = 1, categoryId?: number) {
+    return this.db.execute('sp_Product_GetList', {
+      CategoryId: { type: sql.Int, value: categoryId ?? null },
+      Page: { type: sql.Int, value: page },
+      PageSize: { type: sql.Int, value: 20 },
+    });
+  }
+
+  async findOne(id: number) {
+    try {
+      const [product] = await this.db.execute('sp_Product_GetById', {
+        ProductId: { type: sql.Int, value: id },
+      });
+      return product;
+    } catch (err: any) {
+      if (err.number === 50404) throw new NotFoundException(err.message);
+      throw err;
+    }
+  }
+}</code></pre>
+            <ul style="margin-bottom: 0;">
+                <li><strong>Controller</strong> nhận request (<code>@Get()</code>, <code>@Get(':id')</code>, <code>@Post()</code>), kiểm tra dữ liệu bằng DTO + <code>ValidationPipe</code>, gọi service.</li>
+                <li><strong>Swagger</strong> (<code>@nestjs/swagger</code>) sinh tài liệu API tại <code>/api</code>, để người làm mobile biết endpoint và dữ liệu trả về.</li>
+                <li><strong>Vibe coding:</strong> đưa ERD cho Antigravity sinh thủ tục và service; <strong>review từng thủ tục</strong> (đủ tham số, có <code>SET NOCOUNT ON</code>, có kiểm tra tồn tại) và tìm trong mã backend chuỗi <code>SELECT</code>/<code>INSERT</code> để chắc chắn AI không viết SQL trực tiếp.</li>
+            </ul>
+        </div>
+
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.5. Kết nối ứng dụng với API</h3>
+            <p><strong>Địa chỉ API:</strong> khai báo trong file <code>.env</code> của dự án Expo: <code>EXPO_PUBLIC_API_URL=http://192.168.1.10:3000</code>. Biến có tiền tố <code>EXPO_PUBLIC_</code> được đưa vào ứng dụng, nên <strong>không bao giờ đặt mật khẩu hay khóa bí mật</strong> vào đây.</p>
+            <ul>
+                <li><strong>Điện thoại thật:</strong> dùng IP LAN của máy chạy API (<code>ipconfig</code>), không dùng <code>localhost</code> vì <code>localhost</code> trên điện thoại là chính điện thoại.</li>
+                <li><strong>Android emulator:</strong> dùng <code>10.0.2.2</code> để trỏ về máy tính đang chạy emulator.</li>
+                <li><strong>Tường lửa Windows</strong> có thể chặn cổng 3000; nếu điện thoại không gọi được, kiểm tra cổng đã được mở.</li>
+            </ul>
+<pre style="background-color: #1e293b; color: #e2e8f0; padding: 12px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5;"><code>// lib/api.ts
+const API_URL = process.env.EXPO_PUBLIC_API_URL;
+
+export async function api&lt;T&gt;(path: string, init?: RequestInit): Promise&lt;T&gt; {
+  const res = await fetch(`${API_URL}${path}`, {
+    ...init,
+    headers: { 'Content-Type': 'application/json', ...init?.headers },
+  });
+  if (!res.ok) {
+    const body = await res.json().catch(() =&gt; ({}));
+    throw new Error(body.message ?? `Lỗi ${res.status}`);
+  }
+  return res.json();
+}</code></pre>
+            <p><strong>TanStack Query</strong> lo phần khó: đang tải, lỗi, cache, tải lại. Bọc ứng dụng trong <code>QueryClientProvider</code> ở <code>app/_layout.tsx</code>, sau đó:</p>
+<pre style="background-color: #1e293b; color: #e2e8f0; padding: 12px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5;"><code>// Đọc dữ liệu
+const { data, isLoading, isError, refetch, isRefetching } = useQuery({
+  queryKey: ['products'],
+  queryFn: () =&gt; api&lt;Product[]&gt;('/products'),
+});
+
+// Ghi dữ liệu, xong thì làm mới danh sách đơn hàng
+const queryClient = useQueryClient();
+const createOrder = useMutation({
+  mutationFn: (body: NewOrder) =&gt;
+    api('/orders', { method: 'POST', body: JSON.stringify(body) }),
+  onSuccess: () =&gt; queryClient.invalidateQueries({ queryKey: ['orders'] }),
+});
+
+// Cuộn vô hạn cho lịch sử đơn hàng
+const orders = useInfiniteQuery({
+  queryKey: ['orders'],
+  initialPageParam: 1,
+  queryFn: ({ pageParam }) =&gt; api&lt;Order[]&gt;(`/orders?page=${pageParam}`),
+  getNextPageParam: (lastPage, pages) =&gt; (lastPage.length &lt; 20 ? undefined : pages.length + 1),
+});
+// &lt;FlatList data={orders.data?.pages.flat()} onEndReached={() =&gt; orders.hasNextPage &amp;&amp; orders.fetchNextPage()} /&gt;</code></pre>
+            <p style="margin-bottom: 0;">Luôn xử lý đủ <strong>4 trạng thái</strong> trên màn hình: đang tải, lỗi (kèm nút thử lại), rỗng, có dữ liệu.</p>
+        </div>
+
+        <div style="margin-top: 16px;">
+            <p style="margin: 0 0 8px 0; color: #fd7e14; font-weight: bold;">📄 Slide &amp; video bài giảng</p>
+            <a href="{{LINK_SLIDE_BAI_05}}" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
+                <span style="color: #fd7e14; font-weight: bold;">📄 Slide Bài 05: CSDL, stored procedure, API NestJS &amp; kết nối ứng dụng</span>
+            </a>
+            <a class="nomediaplugin" href="{{LINK_VIDEO_BAI_05}}" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
+                <span style="color: #fd7e14; font-weight: bold;">▶ Video 05: Dựng API LHU Food gọi stored procedure bằng mssql</span>
+            </a>
+        </div>
+        <div style="margin-top: 16px;">
+            <p style="margin: 0 0 8px 0; color: #fd7e14; font-weight: bold;">📖 Tài liệu đọc thêm (chính thức)</p>
+            <a href="https://www.npmjs.com/package/mssql" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
+                <span style="color: #fd7e14; font-weight: bold;">🔗 mssql (node-mssql)</span><br>
+                <span style="color: #6c757d; font-size: 13px;">Connection pool, kiểu dữ liệu tham số, gọi stored procedure với <code>execute</code>.</span>
+            </a>
+            <a href="https://docs.nestjs.com/controllers" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
+                <span style="color: #fd7e14; font-weight: bold;">🔗 NestJS - Controllers, Providers, Validation</span><br>
+                <span style="color: #6c757d; font-size: 13px;">Cấu trúc module, controller, service và kiểm tra dữ liệu bằng DTO.</span>
+            </a>
+            <a href="https://tanstack.com/query/latest/docs/framework/react/overview" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
+                <span style="color: #fd7e14; font-weight: bold;">🔗 TanStack Query</span><br>
+                <span style="color: #6c757d; font-size: 13px;">useQuery, useMutation, useInfiniteQuery và invalidate cache.</span>
+            </a>
+        </div>
+    </div>
+</details>
+
+<details style="border: 1px solid #28a745; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #eafaf1; color: #28a745; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>💡 3. Hoạt động &amp; Thực hành trên lớp</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <div style="max-width: 760px; padding: 10px 12px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <p style="margin: 0 0 6px 0;"><strong style="color: #28a745;">🧑‍🏫 Thực hành có hướng dẫn (1,5 tiết): API LHU Food</strong></p>
+            <ol style="margin: 0; color: #495057;">
+                <li>Chạy script tạo bảng (mục 2.2) và dữ liệu mẫu trong SSMS; vẽ ERD hoàn chỉnh.</li>
+                <li>Viết <code>sp_Product_GetList</code>, <code>sp_Product_GetById</code>, <code>sp_Category_GetList</code>, <code>sp_Order_Create</code> (bản đơn giản, chưa có giao dịch); chạy thử từng thủ tục bằng <code>EXEC</code>.</li>
+                <li>Tạo <code>DatabaseService</code>, module <code>products</code> và <code>orders</code> trong NestJS; bật Swagger; thử API bằng Swagger.</li>
+                <li>Trong app: tạo <code>lib/api.ts</code>, bọc <code>QueryClientProvider</code>, thay dữ liệu giả ở Trang chủ và Chi tiết món bằng <code>useQuery</code>.</li>
+                <li>Nút "Xác nhận đặt hàng" gọi <code>useMutation</code>; đặt xong xóa giỏ hàng và chuyển sang tab Đơn hàng.</li>
+            </ol>
+        </div>
+        <div style="max-width: 760px; padding: 10px 12px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <p style="margin: 0 0 6px 0;"><strong style="color: #28a745;">✍️ Thực hành không hướng dẫn (1 tiết): Lịch sử đơn hàng</strong></p>
+            <p style="margin: 0 0 6px 0; color: #495057;">Viết thủ tục <code>sp_Order_GetHistory</code> (tham số <code>@UserId</code>, <code>@Page</code>, <code>@PageSize</code>, sắp xếp mới nhất trước), endpoint <code>GET /orders?page=</code> và màn hình Lịch sử đơn hàng cuộn vô hạn.</p>
+            <p style="margin: 0 0 8px 0; color: #495057;"><strong>Hoàn thành khi:</strong> mã backend không có câu SQL trực tiếp; cuộn tới cuối tự tải trang tiếp và dừng khi hết dữ liệu; có đủ trạng thái đang tải, lỗi kèm nút thử lại, rỗng.</p>
+            <a href="{{LINK_NOP_BAI_05}}" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 6px 12px; background-color: #eafaf1; color: #28a745; border: 1px solid #28a745; border-radius: 6px; text-decoration: none; font-weight: bold;">Nộp bài</a>
+        </div>
+        <div style="max-width: 760px; padding: 10px 12px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <p style="margin: 0 0 6px 0;"><strong style="color: #28a745;">👥 Thử thách nhóm (0,5 tiết + ở nhà)</strong></p>
+            <ul style="margin: 0; color: #495057;">
+                <li><strong>ERD hoàn chỉnh</strong> của đề tài (file nguồn + ảnh) trong <code>docs/</code>.</li>
+                <li><strong>Danh mục stored procedure</strong>: tên, tham số, kết quả trả về, mã lỗi; và script tạo thủ tục trong repo.</li>
+                <li>API của nhóm có Swagger; app thay toàn bộ dữ liệu giả bằng API thật.</li>
+            </ul>
+        </div>
+        <div style="max-width: 760px; padding: 10px 12px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <p style="margin: 0 0 6px 0;"><strong style="color: #28a745;">💬 Diễn đàn thảo luận</strong></p>
+            <p style="margin: 0 0 8px 0; color: #495057;">Dán một stored procedure do AI sinh ra cho nhóm của bạn và chỉ ra ít nhất một điểm bạn đã phải sửa (thiếu kiểm tra, sai kiểu dữ liệu, thiếu phân trang…). Vì sao AI dễ bỏ sót điểm đó?</p>
+            <a href="{{LINK_DIEN_DAN_BAI_05}}" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 6px 12px; background-color: #eafaf1; color: #28a745; border: 1px solid #28a745; border-radius: 6px; text-decoration: none; font-weight: bold;">Tham gia diễn đàn</a>
+        </div>
+        <div style="max-width: 760px; padding: 10px 12px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <p style="margin: 0 0 6px 0;"><strong style="color: #28a745;">📝 Trắc nghiệm nhanh (Quiz)</strong></p>
+            <p style="margin: 0 0 8px 0; color: #495057;">10 câu ôn tập thiết kế CSDL, stored procedure, DatabaseService với mssql và TanStack Query.</p>
+            <a href="{{LINK_QUIZ_BAI_05}}" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 6px 12px; background-color: #eafaf1; color: #28a745; border: 1px solid #28a745; border-radius: 6px; text-decoration: none; font-weight: bold;">Làm bài Quiz Bài 05</a>
+        </div>
+    </div>
+</details>
+
+<details style="border: 1px solid #6f42c1; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #f3e5f5; color: #6f42c1; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>🆘 4. Góc trợ giúp và mở rộng</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <p><strong>App báo "Network request failed":</strong> đang dùng <code>localhost</code> trên điện thoại; hoặc điện thoại và máy tính khác mạng; hoặc tường lửa chặn cổng API. Thử mở <code>http://&lt;IP&gt;:3000/api</code> bằng trình duyệt trên điện thoại trước.</p>
+        <p><strong>API không kết nối được SQL Server:</strong> kiểm tra SQL Server đã bật TCP/IP và đăng nhập bằng SQL Server Authentication; tên server, cổng và mật khẩu trong <code>.env</code> đúng.</p>
+        <p><strong>Lỗi "Could not find stored procedure":</strong> thủ tục chưa được tạo trong đúng CSDL, hoặc tên gọi trong <code>execute()</code> sai chính tả.</p>
+        <p><strong>Kiến thức mở rộng:</strong> Tìm hiểu tham số OUTPUT của stored procedure và cách đọc bằng <code>request.output()</code> trong mssql.</p>
+        <p style="margin-bottom: 0;"><strong>Tự đánh giá:</strong> Nếu đổi tên cột <code>Price</code> thành <code>UnitPrice</code> trong bảng <code>Products</code>, bạn phải sửa những file nào? Câu trả lời đúng nên là: các stored procedure liên quan, không phải mã NestJS.</p>
+    </div>
+</details>
+
+
+    </div>
+
+    <!-- Practice Quiz: luyện tập trực tiếp, chỉ báo số câu đúng/sai, không lưu và không hiển thị đáp án -->
+    <section id="luyen-tap" class="no-print mt-8 bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
+        <div>
+          <h2 class="text-lg sm:text-xl font-black text-slate-900 flex items-center gap-2">
+            <i class="fa-solid fa-pen-to-square text-emerald-600"></i> Luyện tập trắc nghiệm - Bài 05
+          </h2>
+          <p class="text-xs text-slate-500 mt-1">10 câu · Chấm ngay khi nộp · Không lưu kết quả · Không hiển thị đáp án</p>
+        </div>
+        <button type="button" id="pq-start" class="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold rounded-xl shadow transition-all flex items-center gap-2 justify-center">
+          <i class="fa-solid fa-play"></i> Bắt đầu làm bài
+        </button>
+      </div>
+
+      <form id="pq-form" class="hidden pt-5 space-y-5" novalidate></form>
+
+      <div id="pq-footer" class="hidden pt-5 mt-5 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <span id="pq-progress" class="text-sm text-slate-500"></span>
+        <button type="button" id="pq-submit" class="px-5 py-2.5 bg-lhu-blue hover:bg-lhu-dark text-white text-sm font-bold rounded-xl shadow transition-all flex items-center gap-2 justify-center">
+          <i class="fa-solid fa-check-double"></i> Nộp bài
+        </button>
+      </div>
+
+      <div id="pq-result" class="hidden mt-5 rounded-2xl border p-5" role="status" aria-live="polite"></div>
+    </section>
+
+    <script>
+      (function () {
+        // Dữ liệu sinh từ quiz/quiz-bai-05-aiken.txt. Đáp án được mã hóa nhẹ để không lộ khi xem nhanh;
+        // đây là bài luyện tập, không phải cơ chế chống gian lận.
+        const QUESTIONS = [{"q": "Theo kiến trúc của học phần, ứng dụng React Native lấy dữ liệu thực đơn bằng cách nào?", "o": ["Kết nối thẳng vào SQL Server", "Gọi API NestJS; API gọi stored procedure trên SQL Server", "Đọc file SQLite trên điện thoại", "Đọc trực tiếp file .mdf của SQL Server"], "k": 2}, {"q": "Theo quy định của học phần, backend NestJS được phép truy cập dữ liệu SQL Server bằng cách nào?", "o": ["Viết câu SELECT trực tiếp trong service", "Dùng ORM để tự sinh truy vấn", "Chỉ gọi stored procedure có tham số bằng thư viện mssql", "Ghép chuỗi SQL từ dữ liệu người dùng gửi lên"], "k": 2}, {"q": "Vì sao bảng OrderItems lưu thêm cột UnitPrice dù bảng Products đã có Price?", "o": ["Để đơn hàng cũ giữ đúng giá tại thời điểm đặt khi giá món thay đổi sau này", "Vì SQL Server bắt buộc mỗi bảng phải có cột giá", "Để tăng tốc độ đăng nhập", "Không cần thiết, đây là dữ liệu thừa"], "k": 3}, {"q": "Quan hệ giữa Orders và Products được thể hiện qua bảng OrderItems với khóa chính gồm những cột nào?", "o": ["Chỉ OrderId", "Chỉ ProductId", "Quantity và UnitPrice", "OrderId và ProductId"], "k": 1}, {"q": "Trong stored procedure sp_Product_GetList, mệnh đề nào dùng để phân trang?", "o": ["GROUP BY", "OFFSET ... ROWS FETCH NEXT ... ROWS ONLY", "HAVING", "TOP 100 PERCENT"], "k": 2}, {"q": "Lệnh THROW 50404, N'Không tìm thấy món ăn', 1 trong stored procedure có tác dụng gì?", "o": ["Xóa món ăn khỏi bảng", "Ghi log vào file", "Tạo món ăn mới", "Báo lỗi với mã tự đặt để backend nhận biết và trả HTTP 404"], "k": 3}, {"q": "Trong DatabaseService, giá trị tham số được truyền vào stored procedure bằng cách nào?", "o": ["Ghép trực tiếp vào chuỗi tên thủ tục", "Gửi qua Socket.IO", "Ghi vào biến môi trường", "request.input(tên, kiểu, giá trị) rồi request.execute(tên thủ tục)"], "k": 2}, {"q": "Ứng dụng chạy trên điện thoại thật báo \"Network request failed\" khi gọi http://localhost:3000. Nguyên nhân hợp lý nhất là gì?", "o": ["Thiếu thư viện Zustand", "SQL Server chưa có dữ liệu", "localhost trên điện thoại là chính điện thoại, cần dùng IP LAN của máy chạy API", "Điện thoại không hỗ trợ JSON"], "k": 0}, {"q": "Khi chạy ứng dụng trên Android emulator, địa chỉ nào trỏ về máy tính đang chạy API?", "o": ["10.0.2.2", "127.0.0.1", "0.0.0.0", "192.168.0.0"], "k": 1}, {"q": "Sau khi đặt hàng thành công bằng useMutation, cần làm gì để danh sách đơn hàng hiển thị đơn mới?", "o": ["Gọi invalidateQueries với queryKey của danh sách đơn hàng", "Khởi động lại ứng dụng", "Xóa cache của trình duyệt", "Không cần làm gì, danh sách tự biết"], "k": 0}];
+        const decode = (q, i) => ((q.k - i * 3 - 5) % q.o.length + q.o.length) % q.o.length;
+
+        const form = document.getElementById("pq-form");
+        const footer = document.getElementById("pq-footer");
+        const progress = document.getElementById("pq-progress");
+        const result = document.getElementById("pq-result");
+        const startBtn = document.getElementById("pq-start");
+        const submitBtn = document.getElementById("pq-submit");
+        const LETTERS = "ABCDEFGH";
+
+        function shuffle(list) {
+          const a = list.slice();
+          for (let i = a.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [a[i], a[j]] = [a[j], a[i]];
+          }
+          return a;
+        }
+
+        function render() {
+          form.innerHTML = "";
+          shuffle(QUESTIONS.map((_, i) => i)).forEach((qi, pos) => {
+            const q = QUESTIONS[qi];
+            const box = document.createElement("fieldset");
+            box.className = "border border-slate-200 rounded-2xl p-4";
+            box.dataset.q = qi;
+            const legend = document.createElement("legend");
+            legend.className = "px-2 text-sm font-bold text-slate-800";
+            legend.textContent = "Câu " + (pos + 1) + ". " + q.q;
+            box.appendChild(legend);
+            shuffle(q.o.map((_, oi) => oi)).forEach((oi, shown) => {
+              const label = document.createElement("label");
+              label.className = "flex items-start gap-3 mt-2 p-2.5 rounded-xl border border-transparent hover:bg-slate-50 cursor-pointer text-sm text-slate-700 has-[:checked]:border-lhu-sky has-[:checked]:bg-blue-50";
+              const input = document.createElement("input");
+              input.type = "radio";
+              input.name = "q" + qi;
+              input.value = oi;
+              input.className = "mt-0.5 accent-blue-700";
+              input.addEventListener("change", updateProgress);
+              const text = document.createElement("span");
+              text.textContent = LETTERS[shown] + ". " + q.o[oi];
+              label.append(input, text);
+              box.appendChild(label);
+            });
+            form.appendChild(box);
+          });
+          form.classList.remove("hidden");
+          footer.classList.remove("hidden");
+          result.classList.add("hidden");
+          submitBtn.disabled = false;
+          submitBtn.classList.remove("opacity-50");
+          updateProgress();
+        }
+
+        function answeredCount() {
+          return QUESTIONS.filter((_, i) => form.querySelector('input[name="q' + i + '"]:checked')).length;
+        }
+
+        function updateProgress() {
+          progress.textContent = "Đã trả lời " + answeredCount() + "/" + QUESTIONS.length + " câu";
+        }
+
+        function submit() {
+          const blank = QUESTIONS.length - answeredCount();
+          if (blank > 0 && !confirm("Còn " + blank + " câu chưa trả lời. Bạn vẫn muốn nộp bài?")) return;
+          let correct = 0;
+          QUESTIONS.forEach((q, i) => {
+            const picked = form.querySelector('input[name="q' + i + '"]:checked');
+            if (picked && Number(picked.value) === decode(q, i)) correct++;
+          });
+          const wrong = QUESTIONS.length - correct - blank;
+          const percent = Math.round(correct * 100 / QUESTIONS.length);
+          const good = percent >= 80, ok = percent >= 50;
+          result.className = "mt-5 rounded-2xl border p-5 " + (good ? "bg-emerald-50 border-emerald-200" : ok ? "bg-amber-50 border-amber-200" : "bg-rose-50 border-rose-200");
+          result.innerHTML =
+            '<div class="flex flex-wrap items-center gap-3 text-sm font-bold">' +
+              '<span class="px-3 py-1.5 rounded-lg bg-emerald-600 text-white"><i class="fa-solid fa-check mr-1"></i>Đúng: ' + correct + '</span>' +
+              '<span class="px-3 py-1.5 rounded-lg bg-rose-600 text-white"><i class="fa-solid fa-xmark mr-1"></i>Sai: ' + wrong + '</span>' +
+              (blank ? '<span class="px-3 py-1.5 rounded-lg bg-slate-500 text-white">Bỏ trống: ' + blank + '</span>' : '') +
+              '<span class="text-slate-700">' + correct + "/" + QUESTIONS.length + " câu (" + percent + "%)</span>" +
+            "</div>" +
+            '<p class="text-sm text-slate-700 mt-3">' +
+              (good ? "Rất tốt! Bạn đã nắm vững nội dung bài học." : ok ? "Khá ổn. Hãy xem lại các phần còn chưa chắc trong bài học rồi làm lại." : "Bạn nên đọc lại phần Học liệu chính của bài trước khi làm lại.") +
+            "</p>" +
+            '<button type="button" id="pq-retry" class="mt-4 px-4 py-2 bg-white hover:bg-slate-100 border border-slate-300 text-slate-800 text-sm font-bold rounded-xl transition-all"><i class="fa-solid fa-rotate-right mr-1"></i> Làm lại (đổi thứ tự câu hỏi)</button>';
+          result.classList.remove("hidden");
+          form.querySelectorAll("input").forEach(input => input.disabled = true);
+          submitBtn.disabled = true;
+          submitBtn.classList.add("opacity-50");
+          document.getElementById("pq-retry").addEventListener("click", () => {
+            render();
+            document.getElementById("luyen-tap").scrollIntoView({ behavior: "smooth" });
+          });
+          result.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+
+        startBtn.addEventListener("click", () => {
+          startBtn.classList.add("hidden");
+          render();
+        });
+        submitBtn.addEventListener("click", submit);
+      })();
+    </script>
+
+    <!-- Bottom Navigation between lessons -->
+    <div class="flex items-center justify-between gap-4 mt-8 no-print text-xs font-bold">
+      <a href="bai-04.html" class="px-4 py-2.5 bg-white border border-slate-200 hover:border-lhu-blue text-slate-700 hover:text-lhu-blue rounded-xl shadow-sm transition-all flex items-center gap-2"><i class="fa-solid fa-chevron-left"></i> Bài trước</a>
+      
+      <a href="index.html" class="px-4 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-800 rounded-xl transition-all flex items-center gap-2">
+        <i class="fa-solid fa-table-cells-large"></i> Danh mục bài học
+      </a>
+
+      <a href="bai-06.html" class="px-4 py-2.5 bg-white border border-slate-200 hover:border-lhu-blue text-slate-700 hover:text-lhu-blue rounded-xl shadow-sm transition-all flex items-center gap-2">Bài tiếp theo <i class="fa-solid fa-chevron-right"></i></a>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-slate-200 py-6 text-xs text-slate-500 mt-12 no-print">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <strong>Khoa Công nghệ Thông tin - Trường Đại học Lạc Hồng</strong><br>
+        Phòng B301 - B302, Cơ sở 1, Số 10 Huỳnh Văn Nghệ, P. Bửu Long, TP. Biên Hòa, Đồng Nai.
+      </div>
+      <div class="text-right">
+        <span>Email: cntt@lhu.edu.vn • Hotline: (0251) 3952 251</span><br>
+        <span>Hệ thống LMS: <a href="https://learn.lhu.edu.vn" target="_blank" class="text-lhu-blue font-bold">learn.lhu.edu.vn</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleAllDetails(open) {
+      document.querySelectorAll("details").forEach(d => {
+        if (open) {
+          d.setAttribute("open", "");
+        } else {
+          d.removeAttribute("open");
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>

@@ -119,6 +119,11 @@
           <span class="hidden sm:inline">Hướng dẫn thêm môn</span>
         </button>
 
+        <a href="huong-dan-soan-bai-giang.html" class="px-3.5 py-2 bg-amber-50 hover:bg-amber-100 text-asu-maroon font-bold rounded-xl text-xs transition-all flex items-center gap-1.5" title="Quy trình soạn bài giảng, slide và quiz với Claude">
+          <i class="fa-solid fa-route"></i>
+          <span class="hidden sm:inline">Quy trình soạn bài giảng</span>
+        </a>
+
         <a href="https://learn.lhu.edu.vn" target="_blank" rel="noopener noreferrer" 
            class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-lhu-blue to-asu-maroon text-white text-xs sm:text-sm font-bold rounded-xl shadow hover:brightness-110 transition-all">
           <i class="fa-solid fa-graduation-cap text-asu-gold"></i>
@@ -165,6 +170,10 @@
             <i class="fa-solid fa-robot text-purple-300 text-base"></i>
             <span>AI-First &amp; Vibe Coding</span>
           </div>
+          <a href="huong-dan-soan-bai-giang.html" class="flex items-center gap-2 bg-asu-gold text-slate-900 px-3.5 py-1.5 rounded-xl font-bold hover:brightness-105 transition-all">
+            <i class="fa-solid fa-route text-base"></i>
+            <span>Quy trình soạn bài giảng</span>
+          </a>
         </div>
 
       </div>
@@ -746,6 +755,7 @@
         const landingUrl = course.courseLanding ? `${course.folder}/${course.courseLanding}` : entryUrl;
         const syllabusUrl = course.syllabusFile ? `${course.folder}/${course.syllabusFile}` : null;
         const assessmentUrl = course.assessmentFile ? `${course.folder}/${course.assessmentFile}` : null;
+        const quizBankUrl = course.quizBank ? `${course.folder}/${course.quizBank}` : null;
 
         const tagsHtml = (course.tags || []).map(t => 
           `<span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-100 text-slate-600 border border-slate-200">${t}</span>`
@@ -796,7 +806,7 @@
             <div class="pt-4 border-t border-slate-100 space-y-3">
               
               <!-- Sub links (Syllabus, Assessment, Landing) -->
-              <div class="flex items-center gap-2 text-[11px] font-bold">
+              <div class="flex flex-wrap items-center gap-2 text-[11px] font-bold">
                 ${syllabusUrl ? `
                   <a href="${syllabusUrl}" class="text-lhu-blue hover:underline flex items-center gap-1">
                     <i class="fa-solid fa-book-open"></i> Đề cương
@@ -807,6 +817,13 @@
                 ${assessmentUrl ? `
                   <a href="${assessmentUrl}" class="text-emerald-700 hover:underline flex items-center gap-1">
                     <i class="fa-solid fa-clipboard-check"></i> Đánh giá
+                  </a>
+                  <span class="text-slate-300">•</span>
+                ` : ''}
+
+                ${quizBankUrl ? `
+                  <a href="${quizBankUrl}" class="text-amber-700 hover:underline flex items-center gap-1" title="Tải file Aiken để import vào Moodle (dành cho giảng viên)">
+                    <i class="fa-solid fa-file-arrow-down"></i> Ngân hàng câu hỏi
                   </a>
                   <span class="text-slate-300">•</span>
                 ` : ''}

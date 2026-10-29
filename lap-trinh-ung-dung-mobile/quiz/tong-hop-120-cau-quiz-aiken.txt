@@ -1,0 +1,839 @@
+Hướng phát triển nào dùng một mã nguồn để chạy trên cả Android và iOS, với giao diện là component native?
+A. Native (Kotlin cho Android, Swift cho iOS)
+B. Cross-platform như React Native
+C. PWA (Progressive Web App)
+D. Website responsive thông thường
+ANSWER: B
+
+Lý do chính để học phần chọn React Native là gì?
+A. React Native không cần lập trình
+B. React Native chỉ chạy trên iOS
+C. Sinh viên đã biết React nên dùng lại được cách tư duy component, props, state và hook
+D. React Native không cần kết nối backend
+ANSWER: C
+
+Khi React Native hiển thị một component Text trên Android, kết quả là gì?
+A. Một trang web nhúng trong ứng dụng
+B. Một view native thật của Android
+C. Một hình ảnh tĩnh
+D. Một đoạn mã HTML
+ANSWER: B
+
+Expo Go dùng để làm gì?
+A. Quản lý cơ sở dữ liệu SQL Server
+B. Thiết kế giao diện kéo thả
+C. Chạy thử dự án ngay trên điện thoại mà không cần build
+D. Đưa ứng dụng lên Google Play
+ANSWER: C
+
+Khi nào cần dùng development build thay cho Expo Go?
+A. Khi muốn đổi màu chữ
+B. Khi viết component đầu tiên
+C. Khi điện thoại hết pin
+D. Khi dự án cần thư viện native mà Expo Go không có sẵn
+ANSWER: D
+
+Trong React Native, thành phần nào thay cho thẻ div của HTML?
+A. Text
+B. Pressable
+C. Image
+D. View
+ANSWER: D
+
+Đoạn chữ "Xin chào" được đặt trực tiếp trong View mà không bọc bằng Text. Điều gì xảy ra?
+A. Chữ hiển thị bình thường
+B. Chữ tự động in đậm
+C. Ứng dụng báo lỗi vì mọi chữ phải nằm trong component Text
+D. Chữ chỉ hiển thị trên iOS
+ANSWER: C
+
+Trong React Native, sự kiện chạm vào nút được xử lý bằng thuộc tính nào?
+A. onPress
+B. onClick
+C. onHover
+D. onSubmit
+ANSWER: A
+
+Theo quy tắc vibe coding của học phần, điều kiện nào bắt buộc trước khi merge một Pull Request?
+A. Mã phải do AI sinh ra hoàn toàn
+B. Người tạo PR phải giải thích được mọi đoạn mã và ghi prompt chính vào PROMPTS.md
+C. PR phải có ít nhất 1.000 dòng mã
+D. Chỉ trưởng nhóm được tạo PR
+ANSWER: B
+
+File AGENTS.md trong repo của nhóm có tác dụng gì?
+A. Mô tả kiến trúc, thư viện và quy ước dự án để AI sinh mã nhất quán
+B. Lưu mật khẩu cơ sở dữ liệu
+C. Chứa file cài đặt APK
+D. Ghi điểm số của từng thành viên
+ANSWER: A
+
+Trong React Native, giá trị mặc định của flexDirection là gì?
+A. row
+B. wrap
+C. row-reverse
+D. column
+ANSWER: D
+
+Muốn xếp ba nút nằm ngang trên cùng một hàng, cần đặt thuộc tính nào cho View cha?
+A. position: 'absolute'
+B. flexDirection: 'column'
+C. textAlign: 'center'
+D. flexDirection: 'row'
+ANSWER: D
+
+Thuộc tính flex: 1 cho một View có ý nghĩa gì?
+A. Ẩn View khỏi màn hình
+B. View có chiều rộng đúng 1 dp
+C. View chiếm phần không gian còn lại trong View cha
+D. View chỉ hiển thị trên Android
+ANSWER: C
+
+Hiển thị ảnh từ một URL trên mạng bằng component Image, điều kiện nào cần có để ảnh hiện ra?
+A. Ảnh phải có định dạng GIF
+B. Ảnh phải nằm trong thư mục node_modules
+C. Phải khai báo width và height trong style
+D. Phải bọc Image trong Text
+ANSWER: C
+
+Hook nào cho biết chiều rộng màn hình hiện tại để đổi số cột của lưới món ăn?
+A. useWindowDimensions
+B. useState
+C. useEffect
+D. useColorScheme
+ANSWER: A
+
+Vì sao nên gom màu, cỡ chữ và khoảng cách vào file constants/theme.ts?
+A. Để đổi một chỗ là cả ứng dụng đổi theo và AI sinh mã đúng màu của nhóm
+B. Để ứng dụng chạy nhanh hơn trên iOS
+C. Vì React Native không hỗ trợ màu viết trực tiếp
+D. Để giảm dung lượng file APK
+ANSWER: A
+
+Component nào giúp nội dung không bị che bởi tai thỏ và thanh trạng thái của điện thoại?
+A. ScrollView
+B. TextInput
+C. Pressable
+D. SafeAreaView
+ANSWER: D
+
+Khi dùng AI sinh màn hình từ ảnh Figma, bước kiểm tra nào quan trọng nhất trước khi chấp nhận mã?
+A. Chạy thử và đặt cạnh ảnh thiết kế để so khoảng cách, cỡ chữ, màu và căn lề
+B. Đếm số dòng mã AI sinh ra
+C. Đổi tên tất cả biến thành tiếng Anh
+D. Xóa file theme.ts
+ANSWER: A
+
+Số không có đơn vị trong style của React Native (ví dụ padding: 16) được tính theo đơn vị nào?
+A. Pixel vật lý của màn hình
+B. dp (điểm độc lập mật độ), tự co giãn theo mật độ điểm ảnh
+C. Phần trăm chiều rộng màn hình
+D. Centimet
+ANSWER: B
+
+Sơ đồ chức năng của ứng dụng dùng để làm gì?
+A. Mô tả cấu hình máy chủ triển khai
+B. Chia ứng dụng thành các nhóm chức năng và chức năng con làm cơ sở thiết kế màn hình, API và dữ liệu
+C. Ghi lịch sử commit của nhóm
+D. Liệt kê màu sắc của giao diện
+ANSWER: B
+
+Kiểu điều hướng nào phù hợp nhất cho luồng Danh sách món → Chi tiết món, có thể quay lại bằng nút Back của Android?
+A. Drawer
+B. Tab
+C. Modal
+D. Stack
+ANSWER: D
+
+Kiểu điều hướng nào phù hợp cho các khu vực chính luôn hiển thị như Trang chủ, Giỏ hàng, Đơn hàng, Tài khoản?
+A. Modal
+B. Tab
+C. Deep link
+D. Route động
+ANSWER: B
+
+Trong Expo Router, file app/(tabs)/cart.tsx tương ứng với đường dẫn nào?
+A. /cart
+B. /(tabs)/cart
+C. /tabs/cart.tsx
+D. /app/cart
+ANSWER: A
+
+File _layout.tsx trong một thư mục của Expo Router có vai trò gì?
+A. Khai báo cách các màn hình trong thư mục được sắp xếp, ví dụ Stack hoặc Tabs
+B. Lưu dữ liệu giả cho màn hình
+C. Cấu hình kết nối SQL Server
+D. Chứa biểu tượng của ứng dụng
+ANSWER: A
+
+Màn hình app/product/[id].tsx đọc mã món từ đường dẫn bằng cách nào?
+A. useState
+B. useColorScheme
+C. useWindowDimensions
+D. useLocalSearchParams
+ANSWER: D
+
+Sau khi đăng nhập thành công, nên dùng lệnh nào để người dùng bấm Back không quay lại màn hình đăng nhập?
+A. router.push()
+B. router.back()
+C. router.reload()
+D. router.replace()
+ANSWER: D
+
+Muốn màn hình xác nhận đặt hàng trượt lên che màn hình hiện tại rồi đóng lại quay về đúng chỗ cũ, cần khai báo gì cho màn hình đó trong Stack?
+A. flexDirection: 'row'
+B. headerShown: true
+C. presentation: 'modal'
+D. title: 'Xác nhận'
+ANSWER: C
+
+Để đường dẫn lhufood://product/12 mở thẳng màn hình chi tiết món 12, cần khai báo gì trong app.json?
+A. "version": "12"
+B. "scheme": "lhufood"
+C. "orientation": "portrait"
+D. "icon": "lhufood.png"
+ANSWER: B
+
+Trong ERD sơ bộ của LHU Food, quan hệ giữa Đơn hàng và Món được thể hiện thế nào?
+A. Quan hệ n-n, tách qua bảng Chi tiết đơn (OrderItems)
+B. Quan hệ 1-1, gộp chung một bảng
+C. Không có quan hệ
+D. Quan hệ 1-n từ Món đến Đơn hàng, không cần bảng trung gian
+ANSWER: A
+
+Vì sao nên vẽ sơ đồ luồng màn hình trước khi viết mã điều hướng?
+A. Để giảm dung lượng ứng dụng
+B. Vì Expo Router tự sinh mã từ ảnh sơ đồ
+C. Để nhóm thống nhất các màn hình và cấu trúc thư mục app/ trước khi lập trình
+D. Vì sơ đồ luồng màn hình thay thế được ERD
+ANSWER: C
+
+Giỏ hàng cần được đọc và cập nhật ở cả màn hình Chi tiết món lẫn tab Giỏ hàng. Đây là loại trạng thái nào?
+A. Trạng thái cục bộ của một màn hình
+B. Hằng số cấu hình
+C. Trạng thái chỉ có trong SQL Server
+D. Trạng thái toàn cục dùng chung nhiều màn hình
+ANSWER: D
+
+Thư viện nào được dùng trong học phần để quản lý trạng thái toàn cục như giỏ hàng?
+A. mssql
+B. Socket.IO
+C. Zustand
+D. Expo Router
+ANSWER: C
+
+Trong Zustand, viết useCart((state) => state.items) thay vì lấy toàn bộ store có lợi ích gì?
+A. Giỏ hàng được lưu vào SQL Server
+B. Tự động mã hóa dữ liệu
+C. Không cần cài thư viện
+D. Màn hình chỉ vẽ lại khi phần state đã chọn thay đổi
+ANSWER: D
+
+Hàm thêm món vào giỏ hàng trong Zustand cần trả về gì để giao diện cập nhật đúng?
+A. Sửa trực tiếp mảng cũ bằng push
+B. Một mảng mới tạo bằng map, filter hoặc spread
+C. Chuỗi JSON của giỏ hàng
+D. Không cần trả về gì
+ANSWER: B
+
+Vì sao nên dùng FlatList thay vì ScrollView cho thực đơn 500 món?
+A. ScrollView không hiển thị được ảnh
+B. FlatList chỉ vẽ các phần tử đang hiển thị nên cuộn mượt và tốn ít bộ nhớ
+C. FlatList tự gọi API
+D. ScrollView chỉ chạy trên iOS
+ANSWER: B
+
+Giá trị nào phù hợp nhất cho keyExtractor của danh sách món ăn?
+A. Mã món (id) duy nhất và ổn định, chuyển thành chuỗi
+B. Một số ngẫu nhiên tạo mỗi lần vẽ
+C. Chỉ số của phần tử trong mảng
+D. Tên món ăn
+ANSWER: A
+
+Thuộc tính nào của FlatList hiển thị nội dung khi danh sách không có phần tử nào?
+A. onEndReached
+B. numColumns
+C. ListEmptyComponent
+D. keyExtractor
+ANSWER: C
+
+Trong form dùng React Hook Form + Zod, vai trò của Zod là gì?
+A. Vẽ ô nhập liệu
+B. Lưu token đăng nhập
+C. Gửi request lên API
+D. Mô tả quy tắc dữ liệu (schema) và thông báo lỗi
+ANSWER: D
+
+Muốn báo lỗi khi mật khẩu xác nhận không khớp với mật khẩu, trong Zod dùng cách nào?
+A. Dùng .refine so sánh hai trường và đặt path là trường xác nhận
+B. Thêm .max(8) cho trường xác nhận
+C. Dùng keyboardType="password"
+D. Không làm được bằng Zod
+ANSWER: A
+
+AI sinh biểu thức chính quy kiểm tra số điện thoại cho form đăng ký. Cách kiểm tra lại hiệu quả nhất là gì?
+A. Thử các trường hợp biên như 9, 10, 11 chữ số và số không bắt đầu bằng 0
+B. Tin ngay vì AI hiếm khi sai
+C. Chỉ thử một số điện thoại hợp lệ
+D. Xóa phần kiểm tra để form dễ dùng hơn
+ANSWER: A
+
+Theo kiến trúc của học phần, ứng dụng React Native lấy dữ liệu thực đơn bằng cách nào?
+A. Kết nối thẳng vào SQL Server
+B. Gọi API NestJS; API gọi stored procedure trên SQL Server
+C. Đọc file SQLite trên điện thoại
+D. Đọc trực tiếp file .mdf của SQL Server
+ANSWER: B
+
+Theo quy định của học phần, backend NestJS được phép truy cập dữ liệu SQL Server bằng cách nào?
+A. Viết câu SELECT trực tiếp trong service
+B. Dùng ORM để tự sinh truy vấn
+C. Chỉ gọi stored procedure có tham số bằng thư viện mssql
+D. Ghép chuỗi SQL từ dữ liệu người dùng gửi lên
+ANSWER: C
+
+Vì sao bảng OrderItems lưu thêm cột UnitPrice dù bảng Products đã có Price?
+A. Để đơn hàng cũ giữ đúng giá tại thời điểm đặt khi giá món thay đổi sau này
+B. Vì SQL Server bắt buộc mỗi bảng phải có cột giá
+C. Để tăng tốc độ đăng nhập
+D. Không cần thiết, đây là dữ liệu thừa
+ANSWER: A
+
+Quan hệ giữa Orders và Products được thể hiện qua bảng OrderItems với khóa chính gồm những cột nào?
+A. Chỉ OrderId
+B. Chỉ ProductId
+C. Quantity và UnitPrice
+D. OrderId và ProductId
+ANSWER: D
+
+Trong stored procedure sp_Product_GetList, mệnh đề nào dùng để phân trang?
+A. GROUP BY
+B. OFFSET ... ROWS FETCH NEXT ... ROWS ONLY
+C. HAVING
+D. TOP 100 PERCENT
+ANSWER: B
+
+Lệnh THROW 50404, N'Không tìm thấy món ăn', 1 trong stored procedure có tác dụng gì?
+A. Xóa món ăn khỏi bảng
+B. Ghi log vào file
+C. Tạo món ăn mới
+D. Báo lỗi với mã tự đặt để backend nhận biết và trả HTTP 404
+ANSWER: D
+
+Trong DatabaseService, giá trị tham số được truyền vào stored procedure bằng cách nào?
+A. Ghép trực tiếp vào chuỗi tên thủ tục
+B. Gửi qua Socket.IO
+C. Ghi vào biến môi trường
+D. request.input(tên, kiểu, giá trị) rồi request.execute(tên thủ tục)
+ANSWER: D
+
+Ứng dụng chạy trên điện thoại thật báo "Network request failed" khi gọi http://localhost:3000. Nguyên nhân hợp lý nhất là gì?
+A. Thiếu thư viện Zustand
+B. SQL Server chưa có dữ liệu
+C. localhost trên điện thoại là chính điện thoại, cần dùng IP LAN của máy chạy API
+D. Điện thoại không hỗ trợ JSON
+ANSWER: C
+
+Khi chạy ứng dụng trên Android emulator, địa chỉ nào trỏ về máy tính đang chạy API?
+A. 10.0.2.2
+B. 127.0.0.1
+C. 0.0.0.0
+D. 192.168.0.0
+ANSWER: A
+
+Sau khi đặt hàng thành công bằng useMutation, cần làm gì để danh sách đơn hàng hiển thị đơn mới?
+A. Gọi invalidateQueries với queryKey của danh sách đơn hàng
+B. Khởi động lại ứng dụng
+C. Xóa cache của trình duyệt
+D. Không cần làm gì, danh sách tự biết
+ANSWER: A
+
+Sau khi đăng nhập thành công, API LHU Food trả về những gì cho ứng dụng?
+A. Access token ngắn hạn và refresh token dài hạn
+B. Mật khẩu của người dùng
+C. Chuỗi kết nối SQL Server
+D. Toàn bộ bảng Users
+ANSWER: A
+
+Mật khẩu của người dùng được lưu trong SQL Server dưới dạng nào?
+A. Mật khẩu gốc
+B. Không lưu, người dùng nhập lại mỗi lần
+C. Mật khẩu viết ngược
+D. Chuỗi băm (hash) tạo bằng bcrypt ở backend
+ANSWER: D
+
+Vì sao access token nên có thời hạn ngắn (khoảng 15 phút)?
+A. Để ứng dụng chạy nhanh hơn
+B. Để giảm thiệt hại nếu token bị lộ
+C. Vì SQL Server không lưu được token dài
+D. Để người dùng phải đăng nhập lại mỗi 15 phút
+ANSWER: B
+
+Trên điện thoại, token đăng nhập nên được lưu ở đâu?
+A. AsyncStorage
+B. Expo SecureStore
+C. Biến môi trường EXPO_PUBLIC_
+D. Một file văn bản trong thư mục assets
+ANSWER: B
+
+Mỗi request cần đăng nhập gửi token lên API bằng header nào?
+A. Content-Type: Bearer token
+B. Cookie: password
+C. Authorization: Bearer token
+D. Accept: token
+ANSWER: C
+
+Trong API tạo đơn hàng, mã người dùng nên lấy từ đâu?
+A. Từ body do ứng dụng gửi lên
+B. Từ tham số trên URL
+C. Từ token đã được AuthGuard kiểm tra (req.user.sub)
+D. Từ ô nhập trên giao diện
+ANSWER: C
+
+Ứng dụng ẩn nút "Quản lý đơn" với khách hàng nhưng API không kiểm tra quyền. Rủi ro là gì?
+A. Không có rủi ro vì nút đã bị ẩn
+B. SQL Server tự chặn yêu cầu
+C. Ứng dụng sẽ chạy chậm hơn
+D. Người không có quyền vẫn có thể gọi thẳng API để thao tác
+ANSWER: D
+
+Tài khoản SQL Server mà API dùng nên được cấp quyền như thế nào?
+A. Chỉ có quyền EXECUTE để chạy stored procedure
+B. Dùng tài khoản sa để không bị lỗi quyền
+C. Quyền xóa và tạo bảng
+D. Không cần mật khẩu
+ANSWER: A
+
+Vì sao không được đặt khóa bí mật JWT trong biến EXPO_PUBLIC_ của ứng dụng?
+A. Vì JWT không dùng khóa bí mật
+B. Vì Expo không đọc được biến môi trường
+C. Vì khóa bí mật quá dài
+D. Vì biến EXPO_PUBLIC_ được đưa vào ứng dụng và có thể bị đọc ra từ file APK
+ANSWER: D
+
+Sau khi đăng nhập xong, nên chuyển sang màn hình chính bằng lệnh nào để nút Back không quay về màn hình đăng nhập?
+A. router.replace('/')
+B. router.back()
+C. router.push('/')
+D. router.reload()
+ANSWER: A
+
+Vì sao nên đặt ràng buộc CHECK (Stock >= 0) ngay trong bảng Products của SQL Server?
+A. Để ứng dụng chạy nhanh hơn
+B. Vì NestJS không kiểm tra được số âm
+C. Để dữ liệu sai bị chặn dù request đến từ app, web hay công cụ khác
+D. Để không cần viết stored procedure
+ANSWER: C
+
+Chỉ mục (index) IX_Orders_UserId_CreatedAt giúp ích nhất cho truy vấn nào?
+A. Đổi mật khẩu người dùng
+B. Lấy lịch sử đơn hàng của một người, sắp xếp mới nhất trước
+C. Thêm món ăn mới
+D. Xóa toàn bộ bảng Orders
+ANSWER: B
+
+Giao dịch (transaction) trong sp_Order_Create đảm bảo điều gì?
+A. Đơn hàng được tạo nhanh hơn
+B. Tự động gửi thông báo cho nhân viên
+C. Mỗi người chỉ đặt được một đơn mỗi ngày
+D. Tạo đơn, tạo chi tiết đơn và trừ tồn kho hoặc cùng thành công, hoặc không có gì thay đổi
+ANSWER: D
+
+Trong khối BEGIN CATCH của sp_Order_Create, vì sao phải kiểm tra IF @@TRANCOUNT > 0 trước khi ROLLBACK?
+A. Để tăng tồn kho
+B. Để đếm số đơn hàng
+C. Để chỉ hoàn tác khi đang có giao dịch mở, tránh lỗi khi không còn giao dịch nào
+D. Vì SQL Server bắt buộc mọi thủ tục phải có dòng này
+ANSWER: C
+
+Lệnh THROW; (không tham số) trong khối CATCH có tác dụng gì?
+A. Ném lại đúng lỗi gốc, giữ nguyên mã lỗi như 50409 để backend xử lý
+B. Bỏ qua lỗi và tiếp tục chạy
+C. Xóa đơn hàng vừa tạo
+D. Ghi log vào file
+ANSWER: A
+
+Gợi ý khóa WITH (UPDLOCK, HOLDLOCK) khi kiểm tra tồn kho giải quyết vấn đề nào?
+A. Ứng dụng mất kết nối mạng
+B. Người dùng quên mật khẩu
+C. Ảnh món ăn quá lớn
+D. Hai người cùng đặt suất cuối của một món trong cùng thời điểm
+ANSWER: D
+
+Vì sao nên đánh số các file script như 01-tables.sql, 02-procedures.sql, 99-seed.sql?
+A. Để chạy lần lượt trên CSDL trống là tạo ra đúng CSDL của nhóm và dùng lại khi triển khai
+B. Để file đẹp hơn trong thư mục
+C. Vì SQL Server chỉ đọc file có số ở đầu
+D. Để không cần ERD
+ANSWER: A
+
+Optimistic update (cập nhật lạc quan) khi bấm nút yêu thích hoạt động thế nào?
+A. Chờ API trả kết quả rồi mới đổi giao diện
+B. Lưu món yêu thích vào CSDL trên điện thoại
+C. Đổi giao diện ngay, gửi API ở nền; nếu API lỗi thì trả giao diện về trạng thái cũ
+D. Không gọi API
+ANSWER: C
+
+Giỏ hàng chưa đặt của LHU Food được giữ lại khi tắt app bằng cách nào?
+A. Lưu vào bảng Carts trên điện thoại
+B. Middleware persist của Zustand lưu vào AsyncStorage
+C. Lưu trong Expo SecureStore cùng token
+D. Gửi lên Socket.IO
+ANSWER: B
+
+Theo nguyên tắc của học phần, nguồn dữ liệu chuẩn của đơn hàng và tồn kho nằm ở đâu?
+A. AsyncStorage trên điện thoại
+B. SQL Server, truy cập qua API và stored procedure
+C. Cache của TanStack Query
+D. File JSON trong thư mục assets
+ANSWER: B
+
+Thời điểm phù hợp nhất để xin quyền camera là khi nào?
+A. Ngay khi mở ứng dụng lần đầu, xin tất cả quyền một lần
+B. Không cần xin, hệ điều hành tự cấp
+C. Sau khi người dùng đăng xuất
+D. Khi người dùng bấm vào chức năng cần chụp ảnh
+ANSWER: D
+
+Người dùng đã từ chối quyền camera và chọn không hỏi lại. Ứng dụng nên làm gì?
+A. Vẫn chạy bình thường và hướng dẫn mở Cài đặt bằng Linking.openSettings()
+B. Liên tục hiện hộp thoại xin quyền
+C. Tắt ứng dụng
+D. Xóa tài khoản người dùng
+ANSWER: A
+
+Hàm nào của expo-image-picker mở camera để chụp ảnh?
+A. launchImageLibraryAsync
+B. launchCameraAsync
+C. getCurrentPositionAsync
+D. scheduleNotificationAsync
+ANSWER: B
+
+Vì sao nên đặt quality: 0.6 và allowsEditing khi chọn ảnh đại diện?
+A. Để ảnh nhỏ hơn, tải lên nhanh hơn và được cắt đúng tỷ lệ
+B. Để ảnh có màu đẹp hơn
+C. Vì server chỉ nhận ảnh đen trắng
+D. Để không cần quyền truy cập
+ANSWER: A
+
+Khi tải ảnh lên bằng FormData, vì sao không nên tự đặt header Content-Type: multipart/form-data?
+A. Vì Android không hỗ trợ header
+B. Vì multipart/form-data không hỗ trợ ảnh
+C. Vì fetch cần tự thêm phần boundary vào header; đặt tay thường thiếu boundary làm server không đọc được file
+D. Vì ảnh phải gửi qua Socket.IO
+ANSWER: C
+
+Phía NestJS, ảnh đại diện được lưu như thế nào theo bài học?
+A. Nội dung ảnh lưu thẳng vào cột của bảng Users
+B. Ảnh lưu trong AsyncStorage
+C. Ảnh lưu trên điện thoại, server không lưu gì
+D. File lưu trong thư mục uploads trên server, SQL Server chỉ lưu đường dẫn qua stored procedure
+ANSWER: D
+
+Vì sao server tự đặt tên file ảnh theo mã người dùng và thời điểm thay vì dùng tên file do app gửi lên?
+A. Để tên file ngắn hơn
+B. Vì SQL Server không lưu được tên file tiếng Việt
+C. Vì app không gửi được tên file
+D. Không tin dữ liệu từ client: tên file có thể trùng hoặc chứa ký tự gây hại
+ANSWER: D
+
+Với bản đồ quầy căn tin, ứng dụng nên xin loại quyền vị trí nào?
+A. Vị trí nền (background) để theo dõi liên tục
+B. Vị trí khi dùng ứng dụng (foreground)
+C. Không cần quyền vị trí
+D. Quyền truy cập danh bạ
+ANSWER: B
+
+Khi nào bắt buộc phải dùng development build thay cho Expo Go?
+A. Khi dùng expo-image-picker
+B. Khi đổi màu nút
+C. Khi dùng thư viện native ngoài Expo SDK hoặc cần thông báo đẩy từ xa
+D. Khi chạy trên emulator Android
+ANSWER: C
+
+Bản cài đặt Android dùng bản đồ Google của react-native-maps cần cấu hình gì thêm?
+A. Google Maps API key trong app.json
+B. Mật khẩu SQL Server trong app.json
+C. Quyền camera
+D. Không cần cấu hình gì
+ANSWER: A
+
+Nhược điểm chính của polling (app hỏi API định kỳ) so với WebSocket là gì?
+A. Chậm theo chu kỳ hỏi, tốn pin và tải server ngay cả khi không có gì mới
+B. Không gửi được JSON
+C. Không chạy trên Android
+D. Không cần server
+ANSWER: A
+
+Trong Socket.IO, room dùng để làm gì?
+A. Lưu dữ liệu vào SQL Server
+B. Nhóm các kết nối để server gửi sự kiện tới đúng người hoặc đúng nhóm
+C. Mã hóa mật khẩu
+D. Tăng tốc độ tải ảnh
+ANSWER: B
+
+Trong NotificationsGateway, mỗi người dùng được đưa vào room nào để nhận thông báo riêng?
+A. room user:<mã người dùng> lấy từ token
+B. room chung "all"
+C. room theo tên thiết bị
+D. room theo địa chỉ IP
+ANSWER: A
+
+Ứng dụng gửi JWT cho Socket.IO server khi kết nối bằng cách nào?
+A. Đặt token vào tên sự kiện
+B. Không cần gửi token
+C. Gửi token qua email
+D. Truyền qua tùy chọn auth: { token } khi gọi io()
+ANSWER: D
+
+Gateway xử lý thế nào khi kết nối không có token hợp lệ?
+A. Ngắt kết nối ngay bằng client.disconnect()
+B. Vẫn cho kết nối và gửi mọi thông báo
+C. Gửi lại token mới
+D. Đưa vào room staff
+ANSWER: A
+
+Vì sao thông báo được lưu vào SQL Server trước rồi mới gửi qua socket?
+A. Vì SQL Server tự gửi thông báo
+B. Vì socket không gửi được chữ tiếng Việt
+C. Để socket chạy nhanh hơn
+D. Để người dùng đang tắt app vẫn xem lại được lịch sử khi mở app
+ANSWER: D
+
+Khi nhận sự kiện order:status, ứng dụng nên làm gì với dữ liệu đơn hàng đang hiển thị?
+A. Không làm gì
+B. Đăng xuất người dùng
+C. Xóa toàn bộ cache
+D. Gọi invalidateQueries cho ['orders'] để màn hình đơn hàng tự tải lại
+ANSWER: D
+
+Theo bài học, vai trò của Socket.IO trong kiến trúc LHU Food là gì?
+A. Thay thế hoàn toàn REST API
+B. Kết nối trực tiếp ứng dụng với SQL Server
+C. Chỉ dùng để báo tin; mọi thao tác ghi vẫn đi qua API và stored procedure
+D. Lưu token đăng nhập
+ANSWER: C
+
+Muốn bấm vào thông báo mở đúng màn hình chi tiết đơn hàng, ứng dụng làm thế nào?
+A. Gửi email cho người dùng
+B. Khởi động lại ứng dụng
+C. Đặt đường dẫn vào content.data của thông báo và router.push khi nhận phản hồi bấm thông báo
+D. Không làm được trên Android
+ANSWER: C
+
+Sơ đồ nào phù hợp nhất để trình bày luồng nhân viên đổi trạng thái đơn → API → SQL Server → thông báo tới khách hàng?
+A. Sơ đồ chức năng
+B. Sơ đồ tuần tự (sequence diagram)
+C. ERD
+D. Sơ đồ luồng màn hình
+ANSWER: B
+
+Preset nào được dùng để cấu hình Jest cho dự án Expo theo hướng dẫn chính thức?
+A. react-scripts
+B. jest-android
+C. jest-expo
+D. nest-jest
+ANSWER: C
+
+Trong React Native Testing Library, cách tìm phần tử nào được khuyến nghị?
+A. Theo tên biến trong mã nguồn
+B. Theo tên file component
+C. Theo thứ tự khai báo state
+D. Theo chữ người dùng nhìn thấy hoặc accessibilityLabel
+ANSWER: D
+
+Vì sao cần đặt lại store giỏ hàng trong beforeEach khi test Zustand?
+A. Store dùng chung giữa các test, không đặt lại thì kết quả phụ thuộc thứ tự chạy
+B. Vì Jest không hỗ trợ Zustand
+C. Để test chạy nhanh hơn
+D. Để xóa dữ liệu trong SQL Server
+ANSWER: A
+
+Khi test một màn hình có gọi API, tại sao nên mock lib/api?
+A. Để tăng lượt build EAS
+B. Vì API thật luôn trả lỗi
+C. Để test không phụ thuộc server và dữ liệu trả về được kiểm soát
+D. Vì Jest không chạy được fetch
+ANSWER: C
+
+Kịch bản T-SQL kiểm thử sp_Order_Create nên chạy trên đâu?
+A. Một CSDL kiểm thử riêng tạo từ thư mục database/
+B. Bộ nhớ của điện thoại
+C. Expo Go
+D. CSDL thật trên server Khoa
+ANSWER: A
+
+Ca kiểm thử "đặt đúng bằng số lượng tồn kho" thuộc kỹ thuật nào?
+A. Kiểm thử hiệu năng
+B. Kiểm thử bảo mật
+C. Giá trị biên
+D. Kiểm thử giao diện
+ANSWER: C
+
+Theo quy trình xử lý lỗi, bước nào thực hiện ngay trước khi sửa mã?
+A. Xóa bug log
+B. Viết test tái hiện lỗi và thấy test đỏ
+C. Build APK mới
+D. Gửi EAS Update
+ANSWER: B
+
+Vì sao React.memo cho ProductCard có thể vô tác dụng nếu không dùng useCallback?
+A. Vì React.memo chỉ chạy trên iOS
+B. Vì useCallback làm tăng kích thước bundle
+C. Vì FlatList không hỗ trợ memo
+D. Vì hàm truyền vào props được tạo mới mỗi lần vẽ nên props luôn khác
+ANSWER: D
+
+Nút chỉ có biểu tượng trái tim cần thêm thuộc tính nào để TalkBack đọc được?
+A. keyExtractor
+B. accessibilityLabel
+C. hitSlop
+D. initialNumToRender
+ANSWER: B
+
+Mutation thủ công dùng để kiểm chứng điều gì?
+A. Ứng dụng chạy nhanh hơn sau khi tối ưu
+B. Stored procedure có giao dịch
+C. Ứng dụng hỗ trợ cỡ chữ lớn
+D. Bộ test thật sự phát hiện được lỗi khi logic bị cố ý sửa sai
+ANSWER: D
+
+Backend kết nối SQL Server trên server Khoa nên dùng tài khoản nào?
+A. Login riêng chỉ có quyền EXECUTE trên thủ tục
+B. Tài khoản Windows của giảng viên
+C. Tài khoản sa để không bị thiếu quyền
+D. Tài khoản có quyền SELECT, INSERT, UPDATE, DELETE trên mọi bảng
+ANSWER: A
+
+Vì sao không nên để API chạy bằng node dist/main.js trong một cửa sổ terminal trên server?
+A. Node.js không chạy được trên Windows
+B. Đóng cửa sổ hoặc khởi động lại server thì API dừng và không tự chạy lại
+C. Swagger không hoạt động
+D. Terminal làm chậm stored procedure
+ANSWER: B
+
+Swagger mở được trên server nhưng máy khác không truy cập được. Nguyên nhân hợp lý nhất là gì?
+A. Cổng chưa mở trên Windows Firewall hoặc API chỉ lắng nghe localhost
+B. Thiếu API key Google Maps
+C. Chưa chạy eas update
+D. versionCode chưa tăng
+ANSWER: A
+
+Thông tin nào KHÔNG được đặt trong biến EXPO_PUBLIC_*?
+A. Địa chỉ API
+B. Địa chỉ socket
+C. Tên môi trường
+D. Mật khẩu CSDL hoặc khóa bí mật
+ANSWER: D
+
+Profile preview trong eas.json của học phần tạo ra loại file nào?
+A. File .exe
+B. AAB chỉ dùng cho Google Play
+C. APK cài trực tiếp lên điện thoại
+D. File .ipa
+ANSWER: C
+
+Điều gì xảy ra nếu nhóm mất keystore dùng để ký ứng dụng?
+A. App tự ký lại bằng khóa mới
+B. Không cập nhật được ứng dụng đã phát hành trên cửa hàng
+C. Chỉ mất icon ứng dụng
+D. Không ảnh hưởng gì
+ANSWER: B
+
+Trường hợp nào được phép sửa bằng EAS Update thay vì build lại?
+A. Thêm thư viện có mã native
+B. Đổi icon ứng dụng
+C. Sửa lỗi hiển thị tổng tiền trong mã JavaScript
+D. Thêm quyền camera mới
+ANSWER: C
+
+APK báo lỗi mạng trong khi Expo Go chạy bình thường. Nguyên nhân nào thường gặp?
+A. Thủ tục thiếu tham số
+B. Bản build vẫn gọi địa chỉ máy cá nhân hoặc kết nối HTTP bị chặn
+C. Jest chưa được cài
+D. Thiếu accessibilityLabel
+ANSWER: B
+
+Bản đồ hiển thị trắng trong APK nhưng chạy được trong Expo Go. Cần kiểm tra gì?
+A. Lượt build miễn phí
+B. Quyền EXECUTE của login SQL
+C. Cấu hình socket room
+D. API key Google Maps cho Android trong cấu hình build
+ANSWER: D
+
+Chính sách quyền riêng tư trong hồ sơ cửa hàng phải nêu được điều gì?
+A. Dữ liệu ứng dụng thu thập, mục đích sử dụng, nơi lưu và cách xóa tài khoản
+B. Danh sách thành viên nhóm
+C. Số dòng mã của ứng dụng
+D. Phiên bản Node.js trên server
+ANSWER: A
+
+Mỗi nhóm có bao nhiêu thời gian ở Demo Day?
+A. 10 phút trình bày và 5 phút hỏi đáp
+B. 5 phút trình bày, không hỏi đáp
+C. 30 phút trình bày
+D. Chỉ nộp video, không trình bày
+ANSWER: A
+
+Ứng dụng phải được demo trong điều kiện nào?
+A. Expo Go trên máy cá nhân, API chạy localhost
+B. APK trên điện thoại Android thật, kết nối backend trên server Khoa
+C. Chỉ chiếu ảnh chụp màn hình
+D. Trình duyệt web trên máy tính
+ANSWER: B
+
+Ở phần bảo vệ kỹ thuật, ai trả lời câu hỏi về một đoạn mã?
+A. Trưởng nhóm trả lời thay cả nhóm
+B. Bất kỳ thành viên nào xung phong
+C. Nhóm khác trả lời
+D. Thành viên đã commit đoạn mã đó
+ANSWER: D
+
+Phần mã chạy đúng nhưng thành viên không giải thích được thì được xử lý thế nào?
+A. Vẫn được tính đủ điểm
+B. Không được tính điểm
+C. Được trả lời lại vào tuần sau
+D. Được cộng điểm vì dùng AI hiệu quả
+ANSWER: B
+
+ERD trình bày ở Demo Day phải thỏa yêu cầu nào?
+A. Chỉ cần vẽ ở Sprint 1
+B. Giống hệt ERD của LHU Food
+C. Khớp với CSDL đang chạy trên server Khoa
+D. Không cần có khóa ngoại
+ANSWER: C
+
+Điểm tối đa và ngưỡng đạt của CLO1 trong rubric cuối kỳ là bao nhiêu?
+A. 3 điểm, đạt khi ≥ 1,5
+B. 2 điểm, đạt khi ≥ 1
+C. 4 điểm, đạt khi ≥ 3
+D. 10 điểm, đạt khi ≥ 5
+ANSWER: A
+
+Sơ đồ tuần tự luồng realtime là minh chứng chính cho CLO nào?
+A. CLO4 - Vai trò cá nhân
+B. CLO2 - Thiết kế CSDL
+C. CLO3 - Trình bày thiết kế dữ liệu bằng đồ họa
+D. Không thuộc CLO nào
+ANSWER: C
+
+Minh chứng nào được dùng để chấm CLO4?
+A. Số lượng màn hình của ứng dụng
+B. Số lượt tải APK
+C. Báo cáo vai trò cá nhân, commit/PR và phần trình bày, trả lời của từng thành viên
+D. Điểm review chéo của nhóm khác
+ANSWER: C
+
+Sản phẩm nào KHÔNG nằm trong danh sách nộp cuối kỳ?
+A. File APK kết nối backend trên server Khoa
+B. Script CSDL, stored procedure và dữ liệu mẫu
+C. PROMPTS.md và link repo app, API
+D. File CSDL SQLite trên điện thoại
+ANSWER: D
+
+Phương án dự phòng nào nên chuẩn bị cho phần demo?
+A. Xin dời buổi Demo Day
+B. Video demo đầy đủ và thiết bị thứ hai đã cài APK
+C. Dùng dữ liệu "test1", "aaa" cho nhanh
+D. Chỉ trình bày slide, không demo
+ANSWER: B

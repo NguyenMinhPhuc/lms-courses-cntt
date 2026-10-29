@@ -1,0 +1,69 @@
+Nhược điểm chính của polling (app hỏi API định kỳ) so với WebSocket là gì?
+A. Chậm theo chu kỳ hỏi, tốn pin và tải server ngay cả khi không có gì mới
+B. Không gửi được JSON
+C. Không chạy trên Android
+D. Không cần server
+ANSWER: A
+
+Trong Socket.IO, room dùng để làm gì?
+A. Lưu dữ liệu vào SQL Server
+B. Nhóm các kết nối để server gửi sự kiện tới đúng người hoặc đúng nhóm
+C. Mã hóa mật khẩu
+D. Tăng tốc độ tải ảnh
+ANSWER: B
+
+Trong NotificationsGateway, mỗi người dùng được đưa vào room nào để nhận thông báo riêng?
+A. room user:<mã người dùng> lấy từ token
+B. room chung "all"
+C. room theo tên thiết bị
+D. room theo địa chỉ IP
+ANSWER: A
+
+Ứng dụng gửi JWT cho Socket.IO server khi kết nối bằng cách nào?
+A. Đặt token vào tên sự kiện
+B. Không cần gửi token
+C. Gửi token qua email
+D. Truyền qua tùy chọn auth: { token } khi gọi io()
+ANSWER: D
+
+Gateway xử lý thế nào khi kết nối không có token hợp lệ?
+A. Ngắt kết nối ngay bằng client.disconnect()
+B. Vẫn cho kết nối và gửi mọi thông báo
+C. Gửi lại token mới
+D. Đưa vào room staff
+ANSWER: A
+
+Vì sao thông báo được lưu vào SQL Server trước rồi mới gửi qua socket?
+A. Vì SQL Server tự gửi thông báo
+B. Vì socket không gửi được chữ tiếng Việt
+C. Để socket chạy nhanh hơn
+D. Để người dùng đang tắt app vẫn xem lại được lịch sử khi mở app
+ANSWER: D
+
+Khi nhận sự kiện order:status, ứng dụng nên làm gì với dữ liệu đơn hàng đang hiển thị?
+A. Không làm gì
+B. Đăng xuất người dùng
+C. Xóa toàn bộ cache
+D. Gọi invalidateQueries cho ['orders'] để màn hình đơn hàng tự tải lại
+ANSWER: D
+
+Theo bài học, vai trò của Socket.IO trong kiến trúc LHU Food là gì?
+A. Thay thế hoàn toàn REST API
+B. Kết nối trực tiếp ứng dụng với SQL Server
+C. Chỉ dùng để báo tin; mọi thao tác ghi vẫn đi qua API và stored procedure
+D. Lưu token đăng nhập
+ANSWER: C
+
+Muốn bấm vào thông báo mở đúng màn hình chi tiết đơn hàng, ứng dụng làm thế nào?
+A. Gửi email cho người dùng
+B. Khởi động lại ứng dụng
+C. Đặt đường dẫn vào content.data của thông báo và router.push khi nhận phản hồi bấm thông báo
+D. Không làm được trên Android
+ANSWER: C
+
+Sơ đồ nào phù hợp nhất để trình bày luồng nhân viên đổi trạng thái đơn → API → SQL Server → thông báo tới khách hàng?
+A. Sơ đồ chức năng
+B. Sơ đồ tuần tự (sequence diagram)
+C. ERD
+D. Sơ đồ luồng màn hình
+ANSWER: B

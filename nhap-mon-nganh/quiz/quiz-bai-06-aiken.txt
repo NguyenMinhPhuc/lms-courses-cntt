@@ -6,11 +6,11 @@ D. Time Limit Decision Right
 ANSWER: A
 
 Khi cần đọc một chương sách kỹ thuật chuyên ngành dài 30 trang, cách tiếp cận tóm tắt nào bằng AI là hiệu quả nhất?
-A. Chỉ yêu cầu AI viết đúng 1 dòng duy nhất
-B. Yêu cầu AI tóm tắt có cấu trúc: Luận điểm chính &rarr; Giải thích chi tiết &rarr; Ví dụ minh họa &rarr; Bảng đối chiếu thuật ngữ
+A. Bảo AI tự động xóa bớt các trang chẵn
+B. Chỉ yêu cầu AI viết đúng 1 dòng duy nhất
 C. Yêu cầu AI dịch toàn bộ sang tiếng La-tinh
-D. Bảo AI tự động xóa bớt các trang chẵn
-ANSWER: B
+D. Yêu cầu AI tóm tắt có cấu trúc: Luận điểm chính &rarr; Giải thích chi tiết &rarr; Ví dụ minh họa &rarr; Bảng đối chiếu thuật ngữ
+ANSWER: D
 
 Bảng "Glossary" mà sinh viên có thể yêu cầu AI trích xuất tự động từ một bài giảng mang ý nghĩa gì?
 A. Danh sách điểm số của các sinh viên trong lớp
@@ -27,44 +27,43 @@ D. Bật máy tính để AI tự học một mình
 ANSWER: B
 
 Phương pháp "Spaced Repetition" (Lặp lại ngắt quãng) thường được ứng dụng cùng công cụ nào để giúp sinh viên ghi nhớ kiến thức lập trình lâu dài?
-A. Bộ thẻ nhớ Flashcard trên các ứng dụng như Anki hoặc Quizlet
+A. Máy tính tính tiền siêu thị
 B. Trò chơi điện tử trực tuyến
-C. Các video giải trí ngắn trên TikTok
-D. Máy tính tính tiền siêu thị
-ANSWER: A
+C. Bộ thẻ nhớ Flashcard trên các ứng dụng như Anki hoặc Quizlet
+D. Các video giải trí ngắn trên TikTok
+ANSWER: C
 
 Để dễ dàng nhập (import) bộ câu hỏi - câu trả lời ôn tập từ ChatGPT vào ứng dụng Anki hoặc Quizlet, ta nên yêu cầu AI xuất ra định dạng nào?
 A. Định dạng file âm thanh MP3
-B. Định dạng bảng 2 cột dạng Markdown hoặc định dạng văn bản ngăn cách bởi dấu tab (TSV/CSV)
-C. Định dạng ảnh chụp màn hình bị mờ
+B. Định dạng ảnh chụp màn hình bị mờ
+C. Định dạng bảng 2 cột dạng Markdown hoặc định dạng văn bản ngăn cách bởi dấu tab (TSV/CSV)
 D. Đoạn văn liền một khối không ngắt dòng
-ANSWER: B
+ANSWER: C
 
 Khi một cuốn sách hoặc tài liệu quá dài vượt quá giới hạn cửa sổ ngữ cảnh (Context Window) của AI, giải pháp tối ưu là gì?
-A. Không sử dụng AI nữa
-B. Chia nhỏ tài liệu thành từng chương hoặc từng phần (1000 - 1500 từ) để yêu cầu AI xử lý và tóm tắt cuốn chiếu từng phần
+A. Đổi phông chữ tài liệu sang Times New Roman
+B. Không sử dụng AI nữa
 C. Dán toàn bộ vào một dòng duy nhất
-D. Đổi phông chữ tài liệu sang Times New Roman
-ANSWER: B
+D. Chia nhỏ tài liệu thành từng chương hoặc từng phần (1000 - 1500 từ) để yêu cầu AI xử lý và tóm tắt cuốn chiếu từng phần
+ANSWER: D
 
 Tại sao sinh viên nên có thói quen đổi tên (Rename) và phân loại các luồng trò chuyện (Chat Threads) trong ChatGPT/Gemini?
-A. Để trang web tải nhanh hơn
-B. Để lưu giữ ngữ cảnh riêng của từng môn học (ví dụ: [C++] - Con trỏ, [Toán rời rạc] - Đồ thị) và dễ dàng tra cứu lại khi ôn thi
+A. Để lưu giữ ngữ cảnh riêng của từng môn học (ví dụ: [C++] - Con trỏ, [Toán rời rạc] - Đồ thị) và dễ dàng tra cứu lại khi ôn thi
+B. Để trang web tải nhanh hơn
 C. Vì ChatGPT sẽ tự động khóa tài khoản nếu không đổi tên
 D. Để chia sẻ tài khoản cho người khác dùng chung
-ANSWER: B
+ANSWER: A
 
 Để tóm tắt một bài báo khoa học công nghệ quốc tế, cấu trúc chuẩn mực nào dưới đây giúp AI phân tích trọn vẹn giá trị bài báo?
-A. Tên tác giả + Giá tiền mua bài báo
-B. Mục tiêu nghiên cứu &rarr; Phương pháp tiếp cận &rarr; Kết quả đạt được &rarr; Đóng góp và Hạn chế của nghiên cứu
+A. Màu sắc hình ảnh minh họa trong bài báo
+B. Tên tác giả + Giá tiền mua bài báo
 C. Số lượng từ ngữ trong bài báo
-D. Màu sắc hình ảnh minh họa trong bài báo
-ANSWER: B
+D. Mục tiêu nghiên cứu &rarr; Phương pháp tiếp cận &rarr; Kết quả đạt được &rarr; Đóng góp và Hạn chế của nghiên cứu
+ANSWER: D
 
 Mục đích đúng đắn nhất khi sử dụng AI để tóm tắt sách và tài liệu học tập là gì?
-A. Thay thế hoàn toàn việc đọc sách và không cần bao giờ mở sách ra nữa
-B. Nhanh chóng nắm bắt bức tranh tổng thể và các luận điểm trọng tâm, từ đó định hướng đọc sâu vào những phần kiến thức quan trọng nhất
+A. Nhanh chóng nắm bắt bức tranh tổng thể và các luận điểm trọng tâm, từ đó định hướng đọc sâu vào những phần kiến thức quan trọng nhất
+B. Giảm thời gian ngủ của sinh viên
 C. Dùng bản tóm tắt nộp bài thay cho bài tập cá nhân
-D. Giảm thời gian ngủ của sinh viên
-ANSWER: B
-
+D. Thay thế hoàn toàn việc đọc sách và không cần bao giờ mở sách ra nữa
+ANSWER: A
