@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 07 - Kiểm tra giữa kỳ – Báo cáo tiến độ 50% dự án (Production build check, README, Conventional Commits) | Lập trình Front-End - Khoa CNTT - Đại học Lạc Hồng</title>
+  <meta name="description" content="Bài 07 - Kiểm tra giữa kỳ – Báo cáo tiến độ 50% dự án (Production build check, README, Conventional Commits) - Lập trình Front-End (Next.js, TypeScript &amp; Vibe Coding). Thời lượng: 5 tiết (225 phút) · Hình thức: Kiểm tra giữa kỳ (30% điểm học phần) – Báo cáo đồ án nhóm · Chuẩn đầu ra: PI 1.4 (CLO1), ">
+
+  <!-- Tailwind CSS CDN (kèm plugin typography cho nội dung Markdown) -->
+  <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6.4.0 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Highlight.js 11.9.0 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            asu: { maroon: '#8C1D40', gold: '#FFC627', dark: '#5C142B', light: '#FAEDF0' },
+            lhu: { blue: '#013D88', sky: '#007BFF', dark: '#01295C', light: '#EEF5FC' },
+            fe: { indigo: '#6366F1', dark: '#312E81', light: '#EEF2FF' }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .lesson h2, .lesson h3, .lesson h4 { scroll-margin-top: 90px; }
+    .lesson h3 { padding-bottom: .4rem; border-bottom: 2px solid #EEF2FF; }
+    .lesson blockquote { border-left: 4px solid #6366F1; background: #F5F7FF; border-radius: 0 12px 12px 0; padding: .6rem 1rem; font-style: normal; color: #1e293b; }
+    .lesson blockquote p:first-of-type::before, .lesson blockquote p:last-of-type::after { content: none; }
+    .lesson pre { border-radius: 12px; padding: 0; background: #0d1117; }
+    .lesson pre code.hljs { border-radius: 12px; padding: 1rem 1.1rem; font-size: 13px; line-height: 1.6; }
+    .lesson :not(pre) > code { background: #EEF2FF; color: #3730A3; padding: .1rem .35rem; border-radius: 6px; font-weight: 500; }
+    .lesson :not(pre) > code::before, .lesson :not(pre) > code::after { content: none; }
+    .lesson table { display: block; overflow-x: auto; font-size: 14px; }
+    .lesson thead th { background: #F1F5F9; }
+    .lesson th, .lesson td { border: 1px solid #E2E8F0; padding: .5rem .7rem !important; vertical-align: top; }
+    .lesson details { border: 1px solid #C7D2FE; border-radius: 10px; padding: .6rem .9rem; margin: .5rem 0 1.2rem; background: #FAFAFF; }
+    .lesson details summary { cursor: pointer; font-weight: 600; color: #4338CA; }
+    .lesson details[open] summary { margin-bottom: .4rem; }
+    .lesson hr { border-color: #E2E8F0; margin: 2rem 0; }
+    @media print {
+      header, footer, .no-print { display: none !important; }
+      details { break-inside: avoid; margin-bottom: 20px; }
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans antialiased selection:bg-asu-gold selection:text-slate-900 min-h-screen flex flex-col">
+
+  <!-- TOP BAR -->
+  <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800 no-print">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+      <div class="flex items-center gap-2">
+        <span class="text-asu-gold font-semibold"><i class="fa-solid fa-certificate mr-1"></i> CHUẨN KIỂM ĐỊNH ABET (USA)</span>
+        <span class="text-slate-600 hidden sm:inline">•</span>
+        <span class="hidden sm:inline">Lớp học đảo ngược • Vibe Coding</span>
+      </div>
+      <div class="flex items-center gap-4 text-xs font-mono">
+        <span>Thời lượng: <strong class="text-white">60 tiết (12 buổi)</strong></span>
+        <span>LT/TH: <strong class="text-asu-gold">30% / 70%</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="sticky top-0 z-40 bg-white shadow-sm border-b border-slate-200 no-print">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2.5 text-slate-800 hover:text-lhu-blue transition-colors">
+        <img src="LHU_ASU_VI_Small_Ngang.png" alt="Logo LHU" class="h-8 w-auto">
+        <div class="border-l border-slate-300 pl-2.5">
+          <div class="text-[11px] font-bold text-slate-500 uppercase">Khoa CNTT - LHU</div>
+          <div class="text-xs font-extrabold text-lhu-blue">LẬP TRÌNH FRONT-END</div>
+        </div>
+      </a>
+      <div class="flex items-center gap-3 text-xs">
+        <a href="index.html" class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-arrow-left"></i>
+          <span class="hidden sm:inline">Về Landing Page</span>
+        </a>
+        <button onclick="window.print()" class="hidden sm:flex px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-all items-center gap-1.5" title="In hoặc lưu file PDF">
+          <i class="fa-solid fa-print"></i>
+          <span>In / PDF</span>
+        </button>
+        <a href="https://learn.lhu.edu.vn" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-lhu-blue hover:bg-lhu-dark text-white font-bold rounded-xl shadow transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-graduation-cap text-asu-gold"></i>
+          <span>Vào lớp LMS</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="flex-grow max-w-5xl w-full mx-auto px-4 sm:px-6 py-8">
+
+    <!-- Title Card -->
+    <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 mb-8">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-5">
+        <div>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-fe-light text-fe-dark font-bold text-xs uppercase tracking-wider mb-2">
+            <i class="fa-solid fa-code"></i> CHƯƠNG 4: ĐÁNH GIÁ GIỮA KỲ
+          </span>
+          <h1 class="text-2xl sm:text-3xl font-black text-slate-900 leading-tight">
+            Bài 07 - Kiểm tra giữa kỳ – Báo cáo tiến độ 50% dự án (Production build check, README, Conventional Commits)
+          </h1>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1 font-mono">
+            Học phần: Lập trình Front-End (Next.js, TypeScript & Vibe Coding) • Khoa CNTT - Đại học Lạc Hồng
+          </p>
+        </div>
+        <div class="flex-shrink-0 flex sm:flex-col items-center sm:items-end justify-between gap-1 text-xs">
+          <span class="px-3 py-1.5 bg-emerald-50 text-emerald-700 font-bold rounded-lg border border-emerald-200">
+            <i class="fa-solid fa-check-circle mr-1"></i> Lưu hành nội bộ 2026
+          </span>
+          <span class="text-slate-400 text-[11px]">Định dạng LMS Lecture</span>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between pt-4 text-xs no-print">
+        <span class="text-slate-500">
+          <i class="fa-solid fa-circle-info text-blue-500 mr-1"></i>
+          Bấm vào các khối thu gọn để xem đáp án hoặc chi tiết.
+        </span>
+        <div class="flex items-center gap-2">
+          <button onclick="toggleAllDetails(true)" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg transition-colors">Mở tất cả</button>
+          <button onclick="toggleAllDetails(false)" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg transition-colors">Thu gọn</button>
+        </div>
+      </div>
+      <nav class="mt-5 pt-4 border-t border-slate-100 no-print">
+        <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">Nội dung trang</div>
+        <div class="flex flex-wrap gap-2">
+          <a href="#1-dat-van-de-dan-nhap-introduction-hook" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">📝 1. ĐẶT VẤN ĐỀ &amp; DẪN NHẬP (Introduction / Hook)</a>
+          <a href="#2-noi-dung-cot-loi-core-content" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">📖 2. NỘI DUNG CỐT LÕI (Core Content)</a>
+          <a href="#3-tom-tat-diem-can-nho-key-takeaways" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">📌 3. TÓM TẮT &amp; ĐIỂM CẦN NHỚ (Key Takeaways)</a>
+          <a href="#4-hoat-dong-kiem-tra-nhanh-self-assessment-quiz" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">❓ 4. HOẠT ĐỘNG KIỂM TRA NHANH (Self-Assessment / Quiz)</a>
+          <a href="#5-nhiem-vu-hoc-tap-thao-luan-lms-discussion-assignment" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">💬 5. NHIỆM VỤ HỌC TẬP &amp; THẢO LUẬN (LMS Discussion / Assignment)</a>
+        </div>
+      </nav>
+    </div>
+
+    <!-- Content -->
+    <article class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 lesson prose prose-slate max-w-none prose-headings:font-extrabold prose-h3:text-lhu-dark prose-h4:text-fe-dark prose-a:text-lhu-blue">
+<blockquote>
+<p><strong>Thời lượng:</strong> 5 tiết (225 phút) · <strong>Hình thức:</strong> Kiểm tra giữa kỳ (30% điểm học phần) – Báo cáo đồ án nhóm · <strong>Chuẩn đầu ra:</strong> PI 1.4 (CLO1), PI 2.3 (CLO2), PI 5.1 (CLO4)<br><strong>Dự án xuyên suốt:</strong> Smart Event Hub – nghiệm thu 50% tiến độ: Wireframe 5 màn hình, Routing, UI Layout (Ant Design + SCSS) và kiến trúc Component.</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>🎯 <strong>MỤC TIÊU BÀI HỌC (Learning Objectives)</strong><br>Sau khi hoàn thành bài học này, người học có thể:</p>
+<ul>
+<li><strong>[Bloom 1/2 - Kiến thức]:</strong> Giải thích được vì sao một dự án chạy tốt với <code>npm run dev</code> vẫn có thể thất bại khi <code>npm run build</code>; trình bày được cấu trúc README chuẩn và quy ước Conventional Commits.</li>
+<li><strong>[Bloom 3/4 - Kỹ năng]:</strong> Chạy <code>npm run lint</code> / <code>npm run build</code>, phân tích thông báo lỗi TypeScript/ESLint/Hydration và sửa dứt điểm; dọn dẹp code (console.log, dead code, <code>any</code>) trước khi báo cáo.</li>
+<li><strong>[Bloom 5/6 - Năng lực]:</strong> Đóng gói và trình bày sản phẩm nhóm trong 10 phút, bảo vệ phần code cá nhân trong 5 phút phản biện; tự đánh giá sản phẩm theo rubric giữa kỳ.</li>
+</ul>
+</blockquote>
+<hr>
+<h3 id="1-dat-van-de-dan-nhap-introduction-hook">📝 1. ĐẶT VẤN ĐỀ &amp; DẪN NHẬP (Introduction / Hook)</h3>
+<p>Tối hôm trước buổi báo cáo, nhóm của Minh chạy <code>npm run dev</code>, mở trình duyệt và thấy mọi trang Smart Event Hub hiển thị đẹp. Sáng hôm sau, giảng viên yêu cầu chạy <code>npm run build</code> ngay tại lớp. Terminal đỏ rực: <code>Type error: Property &#39;bannerUrl&#39; does not exist on type &#39;EventItem&#39;</code>, kèm hai lỗi ESLint <code>no-unused-vars</code> và một cảnh báo <code>useSearchParams() should be wrapped in a suspense boundary</code>. Nhóm mất 20 phút đầu buổi chỉ để sửa lỗi thay vì luyện demo.</p>
+<p><strong>Câu hỏi gợi mở:</strong> Nếu dev server không báo gì, tại sao build lại thất bại? Và khi giảng viên hỏi &quot;Phần nào trong repo là do em viết?&quot;, bạn sẽ chứng minh bằng cách nào ngoài lời kể? Buổi hôm nay trả lời cả hai câu hỏi đó, đồng thời là buổi <strong>kiểm tra giữa kỳ chiếm 30% điểm học phần</strong>.</p>
+<blockquote>
+<p>🧭 <strong>Trước giờ học (Flipped Classroom):</strong> Đọc <em>Next.js Production Checklist</em> và <em>Conventional Commits Specification</em> (link ở mục 5). Hoàn thành BTVN Buổi 6: chuẩn bị Slide, Wireframe, Source Code. Mỗi nhóm tự chạy thử <code>npm run lint</code> và <code>npm run build</code> ở nhà, ghi lại các lỗi gặp phải. Làm quiz ôn tập giai đoạn 1 (5–10 câu) trên LMS <code>https://learn.lhu.edu.vn</code>.</p>
+</blockquote>
+<hr>
+<h3 id="2-noi-dung-cot-loi-core-content">📖 2. NỘI DUNG CỐT LÕI (Core Content)</h3>
+<h4 id="2-1-quy-trinh-kiem-tra-production-build-vi-sao-dev-chay-duoc-ma-build-loi">2.1. Quy trình kiểm tra Production Build: vì sao dev chạy được mà build lỗi?</h4>
+<ul>
+<li><strong>Khái niệm:</strong> <strong>Production build</strong> là bước Next.js biên dịch toàn bộ dự án thành bản tối ưu để triển khai. Lệnh <code>npm run build</code> (tức <code>next build</code>) kích hoạt <strong>TypeScript type checker</strong> và <strong>ESLint</strong> trên mọi file, đồng thời prerender các trang tĩnh. Mọi lỗi type hoặc promise không được xử lý phải được giải quyết triệt để trước khi demo hay deploy.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li><strong>Dev biên dịch theo yêu cầu:</strong> <code>next dev</code> chỉ compile route bạn đang mở. Trang <code>/admin/manage-events</code> chưa ai truy cập thì lỗi trong đó vẫn &quot;ngủ yên&quot;.</li>
+<li><strong>Dev ưu tiên tốc độ:</strong> lỗi type thường chỉ hiện gạch đỏ trong VS Code, không chặn trang. Ngược lại, build dừng hẳn khi gặp lỗi type hoặc lỗi ESLint mức <code>error</code>.</li>
+<li><strong>Prerender lúc build:</strong> Server Component của trang tĩnh được thực thi ngay khi build. Code chạm vào <code>window</code>, <code>localStorage</code> ở cấp module sẽ văng lỗi <code>window is not defined</code>.</li>
+<li><strong>Môi trường khác nhau:</strong> Windows không phân biệt hoa thường trong đường dẫn, còn Linux (máy build của Vercel) thì có. <code>import Header from &#39;./header&#39;</code> trong khi file tên <code>Header.tsx</code> sẽ lỗi khi deploy.</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-bash"># Quy trình kiểm tra lỗi tĩnh trước khi báo cáo (chạy theo đúng thứ tự)
+npm run lint          # ESLint: unused vars, any, rules của Next.js
+npx tsc --noEmit      # (tùy chọn) chỉ kiểm tra type, không sinh file
+npm run build         # Type check + lint + build production
+npm run start         # Chạy thử bản build tại http://localhost:3000
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Lỗi thường gặp khi build</th>
+<th>Nguyên nhân</th>
+<th>Cách sửa</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Type error: Property &#39;x&#39; does not exist on type &#39;Y&#39;</code></td>
+<td>Interface lệch với dữ liệu thật, code AI tự thêm field</td>
+<td>Cập nhật interface trong <code>types/</code>, không ép kiểu bằng <code>any</code></td>
+</tr>
+<tr>
+<td><code>&#39;foo&#39; is defined but never used</code></td>
+<td>Biến, import thừa sau khi refactor</td>
+<td>Xóa bỏ, hoặc dùng <code>npm run lint -- --fix</code></td>
+</tr>
+<tr>
+<td><code>useSearchParams() should be wrapped in a suspense boundary</code></td>
+<td>Client Component dùng <code>useSearchParams</code> trên trang prerender</td>
+<td>Bọc component đó trong <code>&lt;Suspense fallback={...}&gt;</code></td>
+</tr>
+<tr>
+<td><code>ReferenceError: window is not defined</code></td>
+<td>Truy cập Browser API khi render trên server</td>
+<td>Chuyển vào <code>useEffect</code> hoặc dùng <code>dynamic(..., { ssr: false })</code> trong Client Component</td>
+</tr>
+<tr>
+<td><code>Module not found: Can&#39;t resolve &#39;./header&#39;</code></td>
+<td>Sai hoa thường tên file</td>
+<td>Đặt tên file và import trùng khớp tuyệt đối</td>
+</tr>
+</tbody></table>
+<ul>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote>
+<p>Nhóm Smart Event Hub dùng AI sinh <code>EventCard</code> với prop <code>bannerUrl</code>, nhưng interface <code>EventItem</code> chỉ có <code>imageUrl</code>. Ở dev, trang chủ vẫn hiện vì ảnh lỗi không làm vỡ layout. Khi build, TypeScript chặn ngay. Cách sửa đúng: thống nhất một tên field trong <code>types/event.ts</code>, không phải thêm <code>// @ts-ignore</code>.</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="2-2-clean-code-truoc-khi-bao-cao">2.2. Clean Code trước khi báo cáo</h4>
+<ul>
+<li><strong>Khái niệm:</strong> Clean code giai đoạn giữa kỳ tập trung vào ba việc: <strong>loại bỏ <code>console.log</code> và dead code</strong>, <strong>không còn <code>any</code></strong>, và <strong>đặt tên file/component nhất quán</strong>. Giảng viên sẽ mở code của từng thành viên, nên mã nguồn gọn gàng giúp bạn giải thích nhanh và tự tin hơn.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li><strong>Quy ước đặt tên:</strong> Component và file component dùng PascalCase (<code>EventCard.tsx</code>); hook bắt đầu bằng <code>use</code> (<code>useDebounce.ts</code>); thư mục route dùng chữ thường, gạch nối (<code>manage-events/</code>); SCSS Module đặt cùng tên component (<code>EventCard.module.scss</code>).</li>
+<li><strong>Để ESLint làm &quot;người gác cổng&quot;:</strong> nâng các rule quan trọng lên mức <code>error</code> để build tự chặn khi còn vi phạm.</li>
+<li><strong>Hydration warning cũng là lỗi:</strong> cảnh báo vàng/đỏ trong DevTools Console (ví dụ <code>Text content does not match server-rendered HTML</code>) phải được xử lý, không được bỏ qua khi demo.</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-js">// eslint.config.mjs (Next.js 15 – flat config do create-next-app sinh ra, bổ sung rules)
+import { dirname } from &#39;path&#39;;
+import { fileURLToPath } from &#39;url&#39;;
+import { FlatCompat } from &#39;@eslint/eslintrc&#39;;
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const compat = new FlatCompat({ baseDirectory: __dirname });
+
+const eslintConfig = [
+  ...compat.extends(&#39;next/core-web-vitals&#39;, &#39;next/typescript&#39;),
+  {
+    rules: {
+      &#39;no-console&#39;: [&#39;warn&#39;, { allow: [&#39;warn&#39;, &#39;error&#39;] }],
+      &#39;@typescript-eslint/no-explicit-any&#39;: &#39;error&#39;,
+      &#39;@typescript-eslint/no-unused-vars&#39;: &#39;error&#39;,
+    },
+  },
+];
+
+export default eslintConfig;
+</code></pre>
+<ul>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote>
+<p>Trước báo cáo, Lan chạy <code>npm run lint</code> và phát hiện 14 câu <code>console.log(&#39;data&#39;, data)</code> còn sót trong trang Đặt vé, cùng một component <code>OldSeatPicker.tsx</code> không còn được import ở đâu. Xóa toàn bộ, commit với message <code>chore(booking): remove debug logs and unused seat picker</code>. Lịch sử Git vừa sạch, vừa là minh chứng đóng góp.</p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>💡 <strong>Mẹo:</strong> Từ Next.js 15.5, lệnh <code>next lint</code> được đánh dấu deprecated. Nếu terminal hiện cảnh báo này, các bạn đổi script <code>&quot;lint&quot;</code> trong <code>package.json</code> thành <code>&quot;eslint .&quot;</code> – cấu hình <code>eslint.config.mjs</code> ở trên vẫn dùng được.</p>
+</blockquote>
+<h4 id="2-3-cau-truc-readme-md-chuan-cho-do-an">2.3. Cấu trúc README.md chuẩn cho đồ án</h4>
+<ul>
+<li><strong>Khái niệm:</strong> <code>README.md</code> đặt tại <strong>root của Git Repository</strong> là &quot;cửa trước&quot; của dự án. Người chấm mở repo sẽ đọc file này đầu tiên để biết dự án làm gì, ai làm phần nào và chạy thế nào.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong> README giữa kỳ bắt buộc có 5 phần:<ul>
+<li><strong>Tổng quan:</strong> tên dự án, mô tả 3–4 câu, công nghệ sử dụng.</li>
+<li><strong>Thành viên &amp; phân công:</strong> bảng gồm Họ tên, MSSV, Vai trò, Tính năng đã đảm nhiệm.</li>
+<li><strong>Hướng dẫn cài đặt:</strong> các lệnh chạy được ngay trên máy mới.</li>
+<li><strong>Sơ đồ thư mục:</strong> kiến trúc App Router đang dùng.</li>
+<li><strong>Thiết kế:</strong> link Figma Wireframe 5 màn hình (hoặc ảnh chụp trong <code>docs/wireframes/</code>) và link Preview/Demo.</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-markdown"># Smart Event Hub
+
+Hệ thống đặt vé &amp; quản lý sự kiện trực tuyến, xây dựng bằng Next.js 15 (App Router),
+TypeScript, Ant Design v5 và SCSS Module. Người dùng tìm kiếm sự kiện, xem chi tiết,
+chọn ghế và đặt vé; Admin quản lý sự kiện và đơn hàng.
+
+## Thành viên &amp; Phân công
+| Họ tên | MSSV | Vai trò | Tính năng đã đảm nhiệm |
+|---|---|---|---|
+| Nguyễn Văn A | 1234xxxx | Team Lead | Layout chung, Routing, Admin Dashboard |
+| Trần Thị B | 1234xxxx | Front-End Dev | Trang chủ, EventCard, Filter |
+
+## Cài đặt &amp; chạy local
+```bash
+git clone &lt;repo-url&gt;
+cd smart-event-hub
+npm install
+npm run dev   # http://localhost:3000
+```
+
+## Cấu trúc thư mục
+```text
+app/            # Routes (App Router): (auth), events/[id], checkout, admin...
+components/     # ui/ (atoms) · shared/ · organisms/
+styles/         # _variables.scss, _mixins.scss
+types/          # Interface &amp; type dùng chung
+```
+
+## Thiết kế &amp; Demo
+- Wireframe Figma: &lt;link&gt;
+- Preview: &lt;link&gt;
+</code></pre>
+<ul>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote>
+<p>Một nhóm ghi lệnh <code>yarn dev</code> trong README nhưng repo chỉ có <code>package-lock.json</code>. Giảng viên clone về, chạy theo hướng dẫn và gặp lỗi ngay bước đầu. Quy tắc: <strong>mỗi lệnh trong README phải được chính nhóm chạy thử trên một thư mục clone mới</strong>.</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="2-4-conventional-commits-minh-chung-dong-gop-git">2.4. Conventional Commits &amp; minh chứng đóng góp Git</h4>
+<ul>
+<li><strong>Khái niệm:</strong> <strong>Conventional Commits</strong> là quy ước viết commit message theo dạng <code>&lt;type&gt;(&lt;scope&gt;): &lt;mô tả ngắn&gt;</code>. Lịch sử commit rõ ràng giúp giảng viên nhận ra ai đã làm tính năng nào, thay vì chỉ thấy một chuỗi &quot;update&quot;, &quot;fix bug&quot;, &quot;abc&quot;.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li><code>feat</code>: thêm tính năng · <code>fix</code>: sửa lỗi · <code>refactor</code>: tái cấu trúc, không đổi hành vi · <code>style</code>: định dạng, SCSS · <code>docs</code>: tài liệu, README · <code>chore</code>: cấu hình, dọn dẹp.</li>
+<li><code>scope</code> là phân hệ: <code>auth</code>, <code>event</code>, <code>cart</code>, <code>ui</code>, <code>admin</code>…</li>
+<li>Mô tả viết ở thể mệnh lệnh, ngắn gọn, tiếng Anh hoặc tiếng Việt thống nhất trong nhóm.</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-bash"># Mẫu commit message chuẩn
+git commit -m &quot;feat(event): implement seat matrix selection logic&quot;
+git commit -m &quot;fix(cart): resolve total amount calculation bug&quot;
+git commit -m &quot;feat(auth): add login form validation&quot;
+git commit -m &quot;fix(ui): repair responsive layout on mobile&quot;
+
+# Lệnh trích xuất minh chứng đóng góp cá nhân
+git shortlog -sn --all                        # Số commit theo từng thành viên
+git log --author=&quot;Tran Thi B&quot; --oneline       # Commit của một người
+git log --graph --oneline --all               # Sơ đồ branch &amp; merge
+</code></pre>
+<ul>
+<li><strong>Minh chứng nên chuẩn bị:</strong> Git Commit Log từng cá nhân, danh sách Pull Request đã tạo/review trên GitHub, trang <em>Insights → Contributors</em> của repo, và bảng phân công trong README khớp với lịch sử commit.</li>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote>
+<p>Hai nhóm cùng hoàn thành trang Đặt vé. Nhóm thứ nhất có 3 commit &quot;update code&quot; do một người push. Nhóm thứ hai có 27 commit chia đều cho 4 thành viên, mỗi tính năng nằm trên một branch <code>feature/...</code> và được merge qua PR. Tiêu chí &quot;Git &amp; phối hợp&quot; sẽ phân biệt rõ hai nhóm này.</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="2-5-san-pham-can-nop-kich-ban-bao-cao-rubric-giua-ky">2.5. Sản phẩm cần nộp, kịch bản báo cáo &amp; Rubric giữa kỳ</h4>
+<ul>
+<li><strong>Sản phẩm cần nộp:</strong> (1) File Wireframe Figma 5 màn hình (Trang chủ, Chi tiết sự kiện, Đặt vé, Trang cá nhân, Admin Dashboard); (2) Source Code Repository Git có commit đầy đủ của các thành viên; (3) Link Preview/Demo giao diện đã áp dụng Ant Design/SCSS Responsive; (4) <code>README.md</code> chuẩn; (5) Slide báo cáo 5–7 slide.</li>
+<li><strong>Kịch bản 10 phút thuyết trình + 5 phút phản biện:</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Mốc thời gian</th>
+<th>Nội dung trình bày</th>
+<th>Người phụ trách gợi ý</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0&#39;–1&#39;</td>
+<td>Giới thiệu nhóm, mục tiêu dự án, phân công</td>
+<td>Team Lead</td>
+</tr>
+<tr>
+<td>1&#39;–3&#39;</td>
+<td>Trình diễn Wireframe 5 màn hình chính</td>
+<td>Thành viên phụ trách UI/UX</td>
+</tr>
+<tr>
+<td>3&#39;–7&#39;</td>
+<td>Demo live: Responsive Mobile/Desktop, Ant Design + SCSS Custom, luồng Routing mượt mà</td>
+<td>Mỗi người demo phần mình làm</td>
+</tr>
+<tr>
+<td>7&#39;–9&#39;</td>
+<td>Kiến trúc Component &amp; cấu trúc thư mục App Router</td>
+<td>Thành viên phụ trách kiến trúc</td>
+</tr>
+<tr>
+<td>9&#39;–10&#39;</td>
+<td>Git Commit Log từng cá nhân, kết quả <code>npm run build</code></td>
+<td>Team Lead</td>
+</tr>
+<tr>
+<td>10&#39;–15&#39;</td>
+<td><strong>Phản biện cá nhân:</strong> GV hỏi trực tiếp từng thành viên về code mình đảm nhiệm</td>
+<td>Từng cá nhân</td>
+</tr>
+</tbody></table>
+<ul>
+<li><strong>Rubric giữa kỳ (tổng 5 điểm, quy đổi sang thang 10):</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Tiêu chí</th>
+<th>Điểm tối đa</th>
+<th>Yêu cầu để đạt tối đa</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Wireframe UI</td>
+<td>1.5</td>
+<td>Đủ 5 màn hình, cấu trúc chuẩn Header/Content/Sidebar/Footer, khớp giao diện thực tế</td>
+</tr>
+<tr>
+<td>UI chuyên nghiệp</td>
+<td>2.0</td>
+<td>Ant Design/Bootstrap + SCSS Custom, Responsive Mobile/Desktop, Hot Reload không lỗi, Console sạch</td>
+</tr>
+<tr>
+<td>Routing &amp; Component Architecture</td>
+<td>1.0</td>
+<td>App Router đúng convention, Nested/Dynamic Route chạy mượt, component tái sử dụng tổ chức rõ ràng</td>
+</tr>
+<tr>
+<td>Git Commit &amp; phối hợp nhóm</td>
+<td>0.5</td>
+<td>Mỗi thành viên có commit riêng, message theo Conventional Commits, có branch/PR</td>
+</tr>
+<tr>
+<td><strong>Tổng</strong></td>
+<td><strong>5.0</strong></td>
+<td><strong>Điểm thang 10 = Tổng × 2</strong></td>
+</tr>
+</tbody></table>
+<ul>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote>
+<p>Nhóm đạt Wireframe 1.5 + UI 1.5 + Routing 1.0 + Git 0.5 = 4.5/5, quy đổi <strong>9.0/10</strong>, chiếm 30% điểm học phần. Phần phản biện 5 phút dùng để xác minh mỗi cá nhân thực sự hiểu và đã viết phần code được ghi trong bảng phân công.</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="2-6-vibe-coding-prompt-mau-cach-kiem-duyet-code-ai">2.6. Vibe Coding – Prompt mẫu &amp; cách kiểm duyệt code AI</h4>
+<p>AI rất hữu ích để soạn khung README và chẩn đoán lỗi hydration. Tuy vậy, nội dung báo cáo là <strong>trách nhiệm của nhóm</strong>: AI không biết MSSV, không biết ai làm gì, và có thể &quot;bịa&quot; tính năng chưa hề tồn tại.</p>
+<pre><code class="language-text">Hãy đóng vai một Technical Lead. Viết cho tôi nội dung file README.md bằng Markdown
+cho dự án &quot;Smart Event Hub&quot; (Next.js, TypeScript, Ant Design, SCSS).
+Yêu cầu chi tiết:
+1. Tên dự án &amp; Mô tả ngắn gọn (3-4 câu).
+2. Bảng phân công công việc nhóm 4 người (Cột: Họ tên, MSSV, Vai trò, Tính năng đã đảm nhiệm).
+3. Hướng dẫn chạy dự án ở local (npm install, npm run dev).
+4. Cấu trúc thư mục dự án (App Router architecture).
+5. Link đính kèm file thiết kế Wireframe Figma.
+</code></pre>
+<pre><code class="language-text">Tôi gặp lỗi Hydration Error trong Next.js App Router khi sử dụng Component DatePicker / Modal
+của Ant Design. Hãy giải thích nguyên nhân và đưa ra giải pháp sửa lỗi triệt để bằng cách
+sử dụng `dynamic import` với `{ ssr: false }` hoặc Hook `useEffect` để chỉ render ở Client-side.
+</code></pre>
+<p>Lưu ý quan trọng với Next.js 15: <code>dynamic(..., { ssr: false })</code> <strong>chỉ được gọi bên trong Client Component</strong>. Nếu AI đặt nó trong <code>page.tsx</code> (Server Component), build sẽ báo lỗi.</p>
+<pre><code class="language-tsx">// components/booking/BookingDatePickerNoSSR.tsx
+&#39;use client&#39;;
+
+import dynamic from &#39;next/dynamic&#39;;
+import { Skeleton } from &#39;antd&#39;;
+
+const BookingDatePickerNoSSR = dynamic(() =&gt; import(&#39;./BookingDatePicker&#39;), {
+  ssr: false,
+  loading: () =&gt; &lt;Skeleton.Input active block /&gt;,
+});
+
+export default BookingDatePickerNoSSR;
+</code></pre>
+<p><strong>Checklist kiểm duyệt output AI trước khi nộp:</strong></p>
+<ul>
+<li>README: thay toàn bộ tên, MSSV, link giả bằng thông tin thật; xóa tính năng nhóm chưa làm.</li>
+<li>Mọi lệnh trong README đã được chạy thử; cấu trúc thư mục khớp repo thực tế.</li>
+<li>Lời giải hydration: tìm đúng nguyên nhân gốc (<code>new Date()</code>, <code>Math.random()</code>, <code>localStorage</code> trong lúc render, thẻ <code>&lt;div&gt;</code> lồng trong <code>&lt;p&gt;</code>…) trước khi tắt SSR. <code>ssr: false</code> là giải pháp sau cùng, không phải mặc định.</li>
+<li>Sau khi sửa: <code>npm run lint</code> và <code>npm run build</code> đều pass, Console không còn cảnh báo.</li>
+</ul>
+<h4 id="2-7-lich-trinh-225-phut-cua-buoi-kiem-tra">2.7. Lịch trình 225 phút của buổi kiểm tra</h4>
+<table>
+<thead>
+<tr>
+<th>Phần</th>
+<th>Thời lượng</th>
+<th>Nhiệm vụ</th>
+<th>Output mong muốn</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Tổng kết giai đoạn 1 &amp; quy trình đánh giá</td>
+<td>60&#39;</td>
+<td>GV review Wireframe, App Router, Ant Design/SCSS Module, Clean Code TypeScript; phổ biến kịch bản báo cáo và rubric</td>
+<td>Nhóm nắm rõ tiêu chí chấm, thứ tự báo cáo</td>
+</tr>
+<tr>
+<td>Guided – Chuẩn bị &amp; đóng gói báo cáo</td>
+<td>45&#39;</td>
+<td>GV hướng dẫn từng nhóm chạy <code>npm run build</code>; hoàn thiện <code>README.md</code>; tổng hợp link Preview/Demo Buổi 1–6</td>
+<td>README chuẩn tại root repo; build pass 100%, không lỗi Compile/Type</td>
+</tr>
+<tr>
+<td>Unguided – Kiểm tra lỗi tự động &amp; Hot Reload</td>
+<td>45&#39;</td>
+<td>Cross-review 4 trang chính; sửa console warning, hydration mismatch; chuẩn bị Slide 5–7 slide</td>
+<td>App chạy mượt, Console không còn lỗi đỏ/vàng; Slide hoàn chỉnh</td>
+</tr>
+<tr>
+<td>Team Challenge – Báo cáo giữa kỳ</td>
+<td>60&#39;</td>
+<td>Mỗi nhóm 10&#39; thuyết trình &amp; demo live + 5&#39; phản biện cá nhân</td>
+<td>Điểm giữa kỳ ghi nhận theo rubric</td>
+</tr>
+<tr>
+<td>Tổng kết</td>
+<td>15&#39;</td>
+<td>GV nhận xét chung, công bố điểm, giao BTVN</td>
+<td>Danh sách góp ý cho từng nhóm</td>
+</tr>
+</tbody></table>
+<ul>
+<li><strong>Guided (45&#39;):</strong> Giảng viên đi từng nhóm, cùng chạy <code>npm run build</code> để phát hiện lỗi TypeScript/ESLint ẩn. Nhóm hoàn thiện README gồm mô tả dự án, thành viên &amp; phân công, hướng dẫn cài đặt, sơ đồ Wireframe (link Figma/ảnh chụp).</li>
+<li><strong>Unguided (45&#39;):</strong> Các nhóm tự review chéo giữa các trang Trang chủ, Chi tiết sự kiện, Đặt vé, Dashboard Admin. Kiểm tra Hot Reload, xử lý dứt điểm lỗi console và hydration còn tồn đọng, hoàn thiện Slide.</li>
+<li><strong>Team Challenge (60&#39;):</strong> Nội dung demo bắt buộc: Wireframe 5 màn hình chính; giao diện thực tế Responsive Mobile/Desktop với Ant Design + SCSS Custom; luồng điều hướng Routing; Git Commit Log từng cá nhân. Lịch báo cáo cụ thể của từng nhóm do giảng viên công bố trước buổi học.</li>
+</ul>
+<hr>
+<h3 id="3-tom-tat-diem-can-nho-key-takeaways">📌 3. TÓM TẮT &amp; ĐIỂM CẦN NHỚ (Key Takeaways)</h3>
+<ul>
+<li>🔹 <strong>Build mới là thước đo thật:</strong> <code>npm run dev</code> chỉ compile route đang mở; <code>npm run build</code> kiểm tra type, lint và prerender toàn bộ dự án.</li>
+<li>🔹 <strong>Thứ tự kiểm tra:</strong> <code>npm run lint</code> → <code>npm run build</code> → <code>npm run start</code>, và Console DevTools phải sạch lỗi đỏ/vàng.</li>
+<li>🔹 <strong>Clean code tối thiểu:</strong> không <code>console.log</code>, không dead code, không <code>any</code>, tên file/component nhất quán.</li>
+<li>🔹 <strong>README là cửa trước của repo:</strong> tổng quan, phân công, cài đặt, sơ đồ thư mục, link Wireframe/Demo – mọi lệnh phải chạy được.</li>
+<li>🔹 <strong>Conventional Commits = minh chứng đóng góp:</strong> <code>type(scope): mô tả</code>, commit đều đặn trên branch riêng, merge qua PR.</li>
+<li>🔹 <strong>Rubric giữa kỳ 5 điểm:</strong> Wireframe 1.5 · UI 2.0 · Routing &amp; Component 1.0 · Git 0.5, nhân 2 để quy đổi thang 10.</li>
+</ul>
+<hr>
+<h3 id="4-hoat-dong-kiem-tra-nhanh-self-assessment-quiz">❓ 4. HOẠT ĐỘNG KIỂM TRA NHANH (Self-Assessment / Quiz)</h3>
+<p><strong>Câu 1:</strong> Dự án chạy bình thường với <code>npm run dev</code> nhưng <code>npm run build</code> báo <code>Type error</code> ở trang <code>/admin/manage-events</code>. Nguyên nhân hợp lý nhất là gì?</p>
+<ul>
+<li>A. Máy tính thiếu RAM khi build</li>
+<li>B. Dev server chỉ compile route được truy cập và không chặn trang vì lỗi type</li>
+<li>C. Next.js không hỗ trợ TypeScript ở chế độ production</li>
+<li>D. Trang admin bắt buộc phải là Client Component</li>
+</ul>
+<details>
+<summary>👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> B<br>
+<b>Giải thích:</b> <code>next dev</code> biên dịch theo yêu cầu và ưu tiên tốc độ, còn <code>next build</code> kiểm tra type trên toàn bộ dự án nên lỗi "ngủ yên" ở trang chưa mở sẽ lộ ra.
+</details>
+
+<p><strong>Câu 2:</strong> Commit message nào tuân thủ Conventional Commits?</p>
+<ul>
+<li>A. <code>update code trang dat ve</code></li>
+<li>B. <code>Fixed bug!!!</code></li>
+<li>C. <code>fix(cart): resolve total amount calculation bug</code></li>
+<li>D. <code>cart - final version 2</code></li>
+</ul>
+<details>
+<summary>👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> C<br>
+<b>Giải thích:</b> Định dạng chuẩn là <code>type(scope): mô tả</code>. Phương án C có type <code>fix</code>, scope <code>cart</code> và mô tả rõ thay đổi.
+</details>
+
+<p><strong>Câu 3:</strong> Một nhóm đạt Wireframe 1.0, UI 2.0, Routing &amp; Component 0.75, Git 0.25. Điểm giữa kỳ quy đổi thang 10 là bao nhiêu?</p>
+<ul>
+<li>A. 8.0</li>
+<li>B. 4.0</li>
+<li>C. 7.5</li>
+<li>D. 9.0</li>
+</ul>
+<details>
+<summary>👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> A<br>
+<b>Giải thích:</b> Tổng 1.0 + 2.0 + 0.75 + 0.25 = 4.0/5, nhân 2 được 8.0/10.
+</details>
+
+<p><strong>Câu 4:</strong> AI đề xuất đặt <code>dynamic(() =&gt; import(&#39;./DatePicker&#39;), { ssr: false })</code> trực tiếp trong <code>app/checkout/page.tsx</code> (Server Component). Với Next.js 15, bạn xử lý thế nào?</p>
+<ul>
+<li>A. Giữ nguyên vì <code>ssr: false</code> dùng được ở mọi nơi</li>
+<li>B. Thêm <code>// @ts-ignore</code> phía trên dòng dynamic</li>
+<li>C. Xóa DatePicker khỏi trang để tránh lỗi</li>
+<li>D. Chuyển lời gọi <code>dynamic</code> vào một Client Component có <code>&#39;use client&#39;</code> rồi import component đó vào page</li>
+</ul>
+<details>
+<summary>👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> D<br>
+<b>Giải thích:</b> Next.js 15 không cho phép <code>ssr: false</code> trong Server Component. Cần bọc lời gọi <code>dynamic</code> trong một file Client Component riêng.
+</details>
+
+<blockquote>
+<p>Bộ 10+ câu đầy đủ: <code>quiz/quiz-bai-07-aiken.txt</code></p>
+</blockquote>
+<hr>
+<h3 id="5-nhiem-vu-hoc-tap-thao-luan-lms-discussion-assignment">💬 5. NHIỆM VỤ HỌC TẬP &amp; THẢO LUẬN (LMS Discussion / Assignment)</h3>
+<ul>
+<li><strong>Chủ đề thảo luận Diễn đàn (Forum Discussion):</strong> Sau buổi báo cáo, hãy chia sẻ một lỗi build hoặc lỗi hydration &quot;khó chịu&quot; nhất nhóm bạn gặp phải: dấu hiệu ra sao, nguyên nhân gốc là gì, AI gợi ý gì và gợi ý đó đúng hay sai? Theo bạn, nhóm nên thay đổi quy trình làm việc thế nào (ví dụ chạy build trước mỗi lần merge) để không lặp lại?</li>
+<li><strong>Yêu cầu nộp bài (Bài tập về nhà):</strong><ul>
+<li>Tiếp thu nhận xét/góp ý của giảng viên trong buổi báo cáo, cập nhật và tối ưu lại UI/Codebase trên branch <code>main</code>.</li>
+<li>Xem trước tài liệu RESTful API / Swagger UI của dự án Smart Event Hub để chuẩn bị cho Buổi 8 (Tích hợp API).</li>
+<li><strong>Output:</strong> Codebase sạch, <code>npm run build</code> pass, sẵn sàng ghép nối Backend API. Mỗi góp ý được xử lý trong một commit hoặc PR riêng, ví dụ <code>fix(ui): apply midterm feedback on event detail spacing</code>.</li>
+<li><strong>Hạn nộp:</strong> trước buổi học tiếp theo. Nộp link PR đã merge (tên PR: <code>[Midterm-Feedback] &lt;Tên nhóm&gt;</code>) lên LMS.</li>
+</ul>
+</li>
+<li><strong>📚 Tài liệu đọc &amp; tham khảo:</strong><ul>
+<li>Conventional Commits Specification: <a href="https://www.conventionalcommits.org/" target="_blank" rel="noopener noreferrer">https://www.conventionalcommits.org/</a></li>
+<li>Next.js Production Checklist: <a href="https://nextjs.org/docs/app/building-your-application/deploying/production-checklist" target="_blank" rel="noopener noreferrer">https://nextjs.org/docs/app/building-your-application/deploying/production-checklist</a></li>
+<li>Next.js – ESLint configuration: <a href="https://nextjs.org/docs/app/api-reference/config/eslint" target="_blank" rel="noopener noreferrer">https://nextjs.org/docs/app/api-reference/config/eslint</a></li>
+<li>Next.js – Hydration error: <a href="https://nextjs.org/docs/messages/react-hydration-error" target="_blank" rel="noopener noreferrer">https://nextjs.org/docs/messages/react-hydration-error</a></li>
+</ul>
+</li>
+</ul>
+
+    </article>
+
+    <!-- Bottom Navigation -->
+    <div class="flex items-center justify-between gap-4 mt-8 no-print text-xs font-bold">
+      <a href="bai-06.html" class="px-4 py-2.5 bg-white border border-slate-200 hover:border-lhu-blue text-slate-700 hover:text-lhu-blue rounded-xl shadow-sm transition-all flex items-center gap-2"><i class="fa-solid fa-chevron-left"></i> Bài trước</a>
+      <a href="index.html#lo-trinh" class="px-4 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-800 rounded-xl transition-all flex items-center gap-2">
+        <i class="fa-solid fa-table-cells-large"></i> Danh mục bài học
+      </a>
+      <a href="bai-08.html" class="px-4 py-2.5 bg-white border border-slate-200 hover:border-lhu-blue text-slate-700 hover:text-lhu-blue rounded-xl shadow-sm transition-all flex items-center gap-2">Bài tiếp theo <i class="fa-solid fa-chevron-right"></i></a>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-slate-200 py-6 text-xs text-slate-500 mt-12 no-print">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <strong>Khoa Công nghệ Thông tin - Trường Đại học Lạc Hồng</strong><br>
+        Phòng B301 - B302, Cơ sở 1, Số 10 Huỳnh Văn Nghệ, P. Bửu Long, TP. Biên Hòa, Đồng Nai.
+      </div>
+      <div class="sm:text-right">
+        <span>Email: cntt@lhu.edu.vn • Hotline: (0251) 3952 251</span><br>
+        <span>Hệ thống LMS: <a href="https://learn.lhu.edu.vn" target="_blank" rel="noopener noreferrer" class="text-lhu-blue font-bold">learn.lhu.edu.vn</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleAllDetails(open) {
+      document.querySelectorAll("details").forEach(d => {
+        if (open) d.setAttribute("open", ""); else d.removeAttribute("open");
+      });
+    }
+    if (window.hljs) hljs.highlightAll();
+  </script>
+
+</body>
+</html>

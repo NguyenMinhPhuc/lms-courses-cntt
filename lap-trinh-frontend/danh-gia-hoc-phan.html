@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chuyên đề Đánh giá học phần &amp; Rubrics | Lập trình Front-End - Khoa CNTT - Đại học Lạc Hồng</title>
+  <meta name="description" content="Chuyên đề Đánh giá học phần &amp; Rubrics - Lập trình Front-End (Next.js, TypeScript &amp; Vibe Coding)">
+
+  <!-- Tailwind CSS CDN (kèm plugin typography cho nội dung Markdown) -->
+  <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6.4.0 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Highlight.js 11.9.0 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            asu: { maroon: '#8C1D40', gold: '#FFC627', dark: '#5C142B', light: '#FAEDF0' },
+            lhu: { blue: '#013D88', sky: '#007BFF', dark: '#01295C', light: '#EEF5FC' },
+            fe: { indigo: '#6366F1', dark: '#312E81', light: '#EEF2FF' }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .lesson h2, .lesson h3, .lesson h4 { scroll-margin-top: 90px; }
+    .lesson h3 { padding-bottom: .4rem; border-bottom: 2px solid #EEF2FF; }
+    .lesson blockquote { border-left: 4px solid #6366F1; background: #F5F7FF; border-radius: 0 12px 12px 0; padding: .6rem 1rem; font-style: normal; color: #1e293b; }
+    .lesson blockquote p:first-of-type::before, .lesson blockquote p:last-of-type::after { content: none; }
+    .lesson pre { border-radius: 12px; padding: 0; background: #0d1117; }
+    .lesson pre code.hljs { border-radius: 12px; padding: 1rem 1.1rem; font-size: 13px; line-height: 1.6; }
+    .lesson :not(pre) > code { background: #EEF2FF; color: #3730A3; padding: .1rem .35rem; border-radius: 6px; font-weight: 500; }
+    .lesson :not(pre) > code::before, .lesson :not(pre) > code::after { content: none; }
+    .lesson table { display: block; overflow-x: auto; font-size: 14px; }
+    .lesson thead th { background: #F1F5F9; }
+    .lesson th, .lesson td { border: 1px solid #E2E8F0; padding: .5rem .7rem !important; vertical-align: top; }
+    .lesson details { border: 1px solid #C7D2FE; border-radius: 10px; padding: .6rem .9rem; margin: .5rem 0 1.2rem; background: #FAFAFF; }
+    .lesson details summary { cursor: pointer; font-weight: 600; color: #4338CA; }
+    .lesson details[open] summary { margin-bottom: .4rem; }
+    .lesson hr { border-color: #E2E8F0; margin: 2rem 0; }
+    @media print {
+      header, footer, .no-print { display: none !important; }
+      details { break-inside: avoid; margin-bottom: 20px; }
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans antialiased selection:bg-asu-gold selection:text-slate-900 min-h-screen flex flex-col">
+
+  <!-- TOP BAR -->
+  <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800 no-print">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+      <div class="flex items-center gap-2">
+        <span class="text-asu-gold font-semibold"><i class="fa-solid fa-certificate mr-1"></i> CHUẨN KIỂM ĐỊNH ABET (USA)</span>
+        <span class="text-slate-600 hidden sm:inline">•</span>
+        <span class="hidden sm:inline">Lớp học đảo ngược • Vibe Coding</span>
+      </div>
+      <div class="flex items-center gap-4 text-xs font-mono">
+        <span>Thời lượng: <strong class="text-white">60 tiết (12 buổi)</strong></span>
+        <span>LT/TH: <strong class="text-asu-gold">30% / 70%</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="sticky top-0 z-40 bg-white shadow-sm border-b border-slate-200 no-print">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2.5 text-slate-800 hover:text-lhu-blue transition-colors">
+        <img src="LHU_ASU_VI_Small_Ngang.png" alt="Logo LHU" class="h-8 w-auto">
+        <div class="border-l border-slate-300 pl-2.5">
+          <div class="text-[11px] font-bold text-slate-500 uppercase">Khoa CNTT - LHU</div>
+          <div class="text-xs font-extrabold text-lhu-blue">LẬP TRÌNH FRONT-END</div>
+        </div>
+      </a>
+      <div class="flex items-center gap-3 text-xs">
+        <a href="index.html" class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-arrow-left"></i>
+          <span class="hidden sm:inline">Về Landing Page</span>
+        </a>
+        <button onclick="window.print()" class="hidden sm:flex px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-all items-center gap-1.5" title="In hoặc lưu file PDF">
+          <i class="fa-solid fa-print"></i>
+          <span>In / PDF</span>
+        </button>
+        <a href="https://learn.lhu.edu.vn" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-lhu-blue hover:bg-lhu-dark text-white font-bold rounded-xl shadow transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-graduation-cap text-asu-gold"></i>
+          <span>Vào lớp LMS</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="flex-grow max-w-5xl w-full mx-auto px-4 sm:px-6 py-8">
+
+    <!-- Title Card -->
+    <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 mb-8">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-5">
+        <div>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-fe-light text-fe-dark font-bold text-xs uppercase tracking-wider mb-2">
+            <i class="fa-solid fa-code"></i> Đại học Lạc Hồng • Khoa Công nghệ Thông tin
+          </span>
+          <h1 class="text-2xl sm:text-3xl font-black text-slate-900 leading-tight">
+            Chuyên đề Đánh giá học phần &amp; Rubrics
+          </h1>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1 font-mono">
+            Học phần: Lập trình Front-End (Next.js, TypeScript & Vibe Coding) • Khoa CNTT - Đại học Lạc Hồng
+          </p>
+        </div>
+        <div class="flex-shrink-0 flex sm:flex-col items-center sm:items-end justify-between gap-1 text-xs">
+          <span class="px-3 py-1.5 bg-emerald-50 text-emerald-700 font-bold rounded-lg border border-emerald-200">
+            <i class="fa-solid fa-check-circle mr-1"></i> Lưu hành nội bộ 2026
+          </span>
+          <span class="text-slate-400 text-[11px]">Định dạng LMS Accordion</span>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between pt-4 text-xs no-print">
+        <span class="text-slate-500">
+          <i class="fa-solid fa-circle-info text-blue-500 mr-1"></i>
+          Bấm vào các khối thu gọn để xem đáp án hoặc chi tiết.
+        </span>
+        <div class="flex items-center gap-2">
+          <button onclick="toggleAllDetails(true)" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg transition-colors">Mở tất cả</button>
+          <button onclick="toggleAllDetails(false)" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg transition-colors">Thu gọn</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <article class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 ">
+<details open="" style="border: 1px solid #007bff; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #e7f1ff; color: #007bff; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>📘 1. Tổng quan đánh giá học phần</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <p><strong>CHUYÊN ĐỀ ĐÁNH GIÁ HỌC PHẦN - Lập trình Front-End (Next.js, TypeScript &amp; Vibe Coding) (Mã môn: Đang cập nhật)</strong></p>
+        <p><strong>Mục tiêu đánh giá:</strong> Đo đúng những gì các bạn làm được trên sản phẩm Smart Event Hub: bản vẽ Wireframe, giao diện chạy thật, code TypeScript kết nối API, lịch sử Git của từng người và khả năng giải thích chính đoạn code mình viết. Mọi cột điểm đều gắn với 4 Chuẩn đầu ra (CLO) theo tiêu chuẩn kiểm định ABET.</p>
+
+        <p><strong>Cơ cấu điểm số &amp; Thành phần đánh giá:</strong></p>
+        <table style="width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 13px;">
+            <thead>
+                <tr style="background-color: #e7f1ff; color: #007bff; text-align: left;">
+                    <th style="padding: 8px; border: 1px solid #cfe2ff; width: 22%;">Thành phần đánh giá</th>
+                    <th style="padding: 8px; border: 1px solid #cfe2ff; width: 10%; text-align: center;">Tỷ lệ</th>
+                    <th style="padding: 8px; border: 1px solid #cfe2ff;">Hình thức &amp; Nội dung kiểm tra</th>
+                    <th style="padding: 8px; border: 1px solid #cfe2ff; width: 15%; text-align: center;">Đáp ứng CLO</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="padding: 8px; border: 1px solid #dee2e6; font-weight: bold; color: #007bff;">1. Điểm Quá trình</td>
+                    <td style="padding: 8px; border: 1px solid #dee2e6; text-align: center; font-weight: bold; color: #007bff;">30%</td>
+                    <td style="padding: 8px; border: 1px solid #dee2e6;">
+                        - Quiz trước giờ học trên LMS (10%): 10 bài Quiz của Bài 01 - 06 và 08 - 11.<br>
+                        - Bài tập về nhà cá nhân (10%): minh chứng bằng commit/Pull Request trên GitHub.<br>
+                        - Tham gia trên lớp (10%): Guided, Unguided, Team Challenge và phiếu Cross-Testing Buổi 12.<br>
+                        - Điểm thưởng Vibe Coding xuất sắc: +0.5 đến +1.0 (tối đa 10 điểm).
+                    </td>
+                    <td style="padding: 8px; border: 1px solid #dee2e6; text-align: center;">CLO 1, 2, 4</td>
+                </tr>
+                <tr style="background-color: #f8f9fa;">
+                    <td style="padding: 8px; border: 1px solid #dee2e6; font-weight: bold; color: #d39e00;">2. Điểm Kiểm tra Giữa kỳ (Buổi 7)</td>
+                    <td style="padding: 8px; border: 1px solid #dee2e6; text-align: center; font-weight: bold; color: #d39e00;">30%</td>
+                    <td style="padding: 8px; border: 1px solid #dee2e6;">
+                        - Báo cáo tiến độ 50% dự án: nộp Wireframe Figma 5 màn hình, repository Git, link Preview/Demo.<br>
+                        - Mỗi nhóm 10 phút thuyết trình + demo và 5 phút giảng viên phản biện code cá nhân.<br>
+                        - Chấm theo Rubric 4 tiêu chí (tổng 5.0đ, quy đổi sang thang 10).
+                    </td>
+                    <td style="padding: 8px; border: 1px solid #dee2e6; text-align: center;">CLO 1, 2, 4</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; border: 1px solid #dee2e6; font-weight: bold; color: #dc3545;">3. Điểm Cuối kỳ (Buổi 12)</td>
+                    <td style="padding: 8px; border: 1px solid #dee2e6; text-align: center; font-weight: bold; color: #dc3545;">40%</td>
+                    <td style="padding: 8px; border: 1px solid #dee2e6;">
+                        - Thi Hackathon &amp; Final Showcase: sản phẩm Vercel Live, báo cáo Word/PDF, minh chứng Git.<br>
+                        - Mỗi nhóm 8 phút thuyết trình + demo live và 5 phút Q&amp;A phản biện.<br>
+                        - Chấm theo Rubric 6 tiêu chí × 4 mức; điểm cá nhân = Nhóm × 0.7 + Phản biện cá nhân × 0.3.
+                    </td>
+                    <td style="padding: 8px; border: 1px solid #dee2e6; text-align: center;">CLO 1, 2, 3, 4 (Tổng hợp)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p style="margin-top: 15px;"><strong>Ma trận Đánh giá - Chuẩn đầu ra (Assessment - CLO Matrix):</strong></p>
+        <table style="width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 13px;">
+            <thead>
+                <tr style="background-color: #e7f1ff; color: #007bff; text-align: center;">
+                    <th style="padding: 8px; border: 1px solid #cfe2ff; text-align: left;">Hoạt động / Tiêu chí đánh giá</th>
+                    <th style="padding: 8px; border: 1px solid #cfe2ff; width: 13%;">CLO1<br>(PI 1.4)</th>
+                    <th style="padding: 8px; border: 1px solid #cfe2ff; width: 13%;">CLO2<br>(PI 2.3)</th>
+                    <th style="padding: 8px; border: 1px solid #cfe2ff; width: 13%;">CLO3<br>(PI 3.1)</th>
+                    <th style="padding: 8px; border: 1px solid #cfe2ff; width: 13%;">CLO4<br>(PI 5.1)</th>
+                </tr>
+            </thead>
+            <tbody style="text-align: center;">
+                <tr>
+                    <td style="padding: 8px; border: 1px solid #dee2e6; text-align: left;">Quiz LMS trước giờ học</td>
+                    <td style="padding: 8px; border: 1px solid #dee2e6;">✔</td>
+                    <td style="padding: 8px; border: 1px solid #dee2e6;">✔</td>
+                    <td style="padding: 8px; border: 1px solid #dee2e6;"></td>
+                    <td style="padding: 8px; border: 1px solid #dee2e6;">✔</td>
+                </tr>
+                <tr style="background-color: #f8f9fa;">
+                    <td style="padding: 8px; border: 1px solid #dee2e6; text-align: left;">BTVN cá nhân + commit Git</td>
+                    <td style="padding: 8px; border: 1px solid #dee2e6;">✔</td>
+                    <td style="padding: 8px; border: 1px solid #dee2e6;">✔</td>
+                    <td style="padding: 8px; border: 1px solid #dee2e6;"></td>
+                    <td style="padding: 8px; border: 1px solid #dee2e6;">✔</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; border: 1px solid #dee2e6; text-align: left;">Team Challenge trên lớp</td>
+                    <td style="padding: 8px; border: 1px solid #dee2e6;"></td>
+                    <td style="padding: 8px; border: 1px solid #dee2e6;">✔</td>
+                    <td style="padding: 8px; border: 1px solid #dee2e6;"></td>
+                    <td style="padding: 8px; border: 1px solid #dee2e6;">✔</td>
+                </tr>
+                <tr style="background-color: #fff8e1;">
+                    <td style="padding: 8px; border: 1px solid #dee2e6; text-align: left;">GK - Wireframe đủ 5 màn hình (1.5đ)</td>
+                    <td style="padding: 8px; border: 1px solid #dee2e6; font-weight: bold; color: #007bff;">●</td>
+                    <td style="padding: 8px; border: 1px solid #dee2e6;"></td>
+                    <td style="padding: 8px; border: 1px solid #dee2e6;"></td>
+                    <td style="padding: 8px; border: 1px solid #dee2e6;"></td>
+                </tr>
+                <tr style="background-color: #fff8e1;">
+                    <td style="padding: 8px; border: 1px solid #dee2e6; text-align: left;">GK - UI chuyên nghiệp (2.0đ) &amp; Routing/Component (1.0đ)</td>
+                    <td style="padding: 8px; border: 1px solid #dee2e6;"></td>
+                    <td style="padding: 8px; border: 1px solid #dee2e6; font-weight: bold; color: #007bff;">●</td>
+                    <td style="padding: 8px; border: 1px solid #dee2e6;"></td>
+                    <td style="padding: 8px; border: 1px solid #dee2e6;"></td>
+                </tr>
+                <tr style="background-color: #fff8e1;">
+                    <td style="padding: 8px; border: 1px solid #dee2e6; text-align: left;">GK - Git Commit &amp; phối hợp nhóm (0.5đ)</td>
+                    <td style="padding: 8px; border: 1px solid #dee2e6;"></td>
+                    <td style="padding: 8px; border: 1px solid #dee2e6;"></td>
+                    <td style="padding: 8px; border: 1px solid #dee2e6;"></td>
+                    <td style="padding: 8px; border: 1px solid #dee2e6; font-weight: bold; color: #007bff;">●</td>
+                </tr>
+                <tr style="background-color: #fdecea;">
+                    <td style="padding: 8px; border: 1px solid #dee2e6; text-align: left;">CK - Tiêu chí 1: Mô hình hóa UI &amp; Wireframe</td>
+                    <td style="padding: 8px; border: 1px solid #dee2e6; font-weight: bold; color: #007bff;">●</td>
+                    <td style="padding: 8px; border: 1px solid #dee2e6;"></td>
+                    <td style="padding: 8px; border: 1px solid #dee2e6;"></td>
+                    <td style="padding: 8px; border: 1px solid #dee2e6;"></td>
+                </tr>
+                <tr style="background-color: #fdecea;">
+                    <td style="padding: 8px; border: 1px solid #dee2e6; text-align: left;">CK - Tiêu chí 2, 3: Giao diện &amp; Vibe Coding; Logic, TS &amp; REST API</td>
+                    <td style="padding: 8px; border: 1px solid #dee2e6;"></td>
+                    <td style="padding: 8px; border: 1px solid #dee2e6; font-weight: bold; color: #007bff;">●</td>
+                    <td style="padding: 8px; border: 1px solid #dee2e6;"></td>
+                    <td style="padding: 8px; border: 1px solid #dee2e6;"></td>
+                </tr>
+                <tr style="background-color: #fdecea;">
+                    <td style="padding: 8px; border: 1px solid #dee2e6; text-align: left;">CK - Tiêu chí 4: Deploy, SEO &amp; Performance</td>
+                    <td style="padding: 8px; border: 1px solid #dee2e6;"></td>
+                    <td style="padding: 8px; border: 1px solid #dee2e6;"></td>
+                    <td style="padding: 8px; border: 1px solid #dee2e6;"></td>
+                    <td style="padding: 8px; border: 1px solid #dee2e6; font-weight: bold; color: #007bff;">●</td>
+                </tr>
+                <tr style="background-color: #fdecea;">
+                    <td style="padding: 8px; border: 1px solid #dee2e6; text-align: left;">CK - Tiêu chí 5, 6: Báo cáo &amp; Git; Thuyết trình &amp; Q&amp;A</td>
+                    <td style="padding: 8px; border: 1px solid #dee2e6;"></td>
+                    <td style="padding: 8px; border: 1px solid #dee2e6;"></td>
+                    <td style="padding: 8px; border: 1px solid #dee2e6; font-weight: bold; color: #007bff;">●</td>
+                    <td style="padding: 8px; border: 1px solid #dee2e6;">✔</td>
+                </tr>
+            </tbody>
+        </table>
+        <p style="margin: 6px 0 0 0; font-size: 12px; color: #6c757d; font-style: italic;">● Đo lường chính thức CLO (dùng cho báo cáo ABET) · ✔ Đóng góp, hỗ trợ hình thành CLO.</p>
+
+        <p style="margin-top: 15px;"><strong>Kết quả cần đạt:</strong> Điểm học phần = Quá trình × 0.3 + Giữa kỳ × 0.3 + Cuối kỳ × 0.4 (thang điểm 10). Sinh viên cần tham gia đủ hai buổi đánh giá (Buổi 7, Buổi 12) và đạt điểm tổng kết từ 4.0 trở lên để hoàn thành học phần.</p>
+    </div>
+</details>
+
+
+<details style="border: 1px solid #fd7e14; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #fff5eb; color: #fd7e14; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>📚 2. Tiêu chí đánh giá chi tiết (Rubrics)</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+
+        <div style="margin-bottom: 16px;">
+            <p style="margin: 0 0 8px 0; color: #fd7e14; font-weight: bold;">📋 Rubric 1: Kiểm tra Giữa kỳ - Báo cáo tiến độ 50% dự án (Buổi 7, trọng số 30%)</p>
+            <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+                <thead>
+                    <tr style="background-color: #fff5eb; color: #fd7e14; text-align: left;">
+                        <th style="padding: 8px; border: 1px solid #ffd6ad; width: 18%;">Tiêu chí</th>
+                        <th style="padding: 8px; border: 1px solid #ffd6ad; width: 20.5%;">Xuất sắc (85-100%)</th>
+                        <th style="padding: 8px; border: 1px solid #ffd6ad; width: 20.5%;">Khá (70-84%)</th>
+                        <th style="padding: 8px; border: 1px solid #ffd6ad; width: 20.5%;">Trung bình (55-69%)</th>
+                        <th style="padding: 8px; border: 1px solid #ffd6ad; width: 20.5%;">Yếu (&lt; 55%)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding: 8px; border: 1px solid #dee2e6; font-weight: bold;">1. Wireframe 5 màn hình &amp; cấu trúc chuẩn<br><span style="color: #fd7e14;">Max 1.5đ · CLO1</span></td>
+                        <td style="padding: 8px; border: 1px solid #dee2e6;"><strong>1.3-1.5đ.</strong> Figma đủ 5 màn hình, vùng Header/Content/Sidebar/Footer rõ ràng, chú thích component; giao diện đã code khớp bản vẽ.</td>
+                        <td style="padding: 8px; border: 1px solid #dee2e6;"><strong>1.05-1.25đ.</strong> Đủ 5 màn hình, bố cục rõ; còn vài chi tiết chưa thống nhất với giao diện đã code.</td>
+                        <td style="padding: 8px; border: 1px solid #dee2e6;"><strong>0.85-1.0đ.</strong> Thiếu 1-2 màn hình hoặc vẽ tay sơ sài, chưa thể hiện cấu trúc layout.</td>
+                        <td style="padding: 8px; border: 1px solid #dee2e6;"><strong>0-0.8đ.</strong> Không có Wireframe hoặc bản vẽ không thể hiện được bố cục cơ bản.</td>
+                    </tr>
+                    <tr style="background-color: #f8f9fa;">
+                        <td style="padding: 8px; border: 1px solid #dee2e6; font-weight: bold;">2. UI chuyên nghiệp (AntD/Bootstrap + Responsive + Hot Reload)<br><span style="color: #fd7e14;">Max 2.0đ · CLO2</span></td>
+                        <td style="padding: 8px; border: 1px solid #dee2e6;"><strong>1.7-2.0đ.</strong> Theme tùy biến qua ConfigProvider/SCSS Module; responsive Mobile và Desktop; Hot Reload mượt, Console sạch, <code>npm run build</code> thành công.</td>
+                        <td style="padding: 8px; border: 1px solid #dee2e6;"><strong>1.4-1.65đ.</strong> Dùng thư viện UI đúng cách, theme cơ bản; còn lỗi nhỏ ở một kích thước màn hình hoặc vài warning.</td>
+                        <td style="padding: 8px; border: 1px solid #dee2e6;"><strong>1.1-1.35đ.</strong> Giao diện mặc định của thư viện, chưa tùy biến; bị tràn ngang trên di động; còn lỗi hydration.</td>
+                        <td style="padding: 8px; border: 1px solid #dee2e6;"><strong>0-1.0đ.</strong> Chưa áp dụng thư viện UI/SCSS, vỡ layout nghiêm trọng hoặc build thất bại.</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 8px; border: 1px solid #dee2e6; font-weight: bold;">3. Routing &amp; Component Architecture<br><span style="color: #fd7e14;">Max 1.0đ · CLO2</span></td>
+                        <td style="padding: 8px; border: 1px solid #dee2e6;"><strong>0.85-1.0đ.</strong> App Router đúng chuẩn (layout, nested, dynamic route), có 404 &amp; Loading; component tách vào /components/ui và /components/shared, props có interface.</td>
+                        <td style="padding: 8px; border: 1px solid #dee2e6;"><strong>0.7-0.8đ.</strong> Điều hướng đủ các màn hình chính; còn vài component lặp code hoặc thiếu type cho props.</td>
+                        <td style="padding: 8px; border: 1px solid #dee2e6;"><strong>0.55-0.65đ.</strong> Routing chạy nhưng cấu trúc thư mục lộn xộn, ít component tái sử dụng.</td>
+                        <td style="padding: 8px; border: 1px solid #dee2e6;"><strong>0-0.5đ.</strong> Thiếu nhiều route, dùng thẻ <code>&lt;a&gt;</code> làm reload trang, code dồn vào một file.</td>
+                    </tr>
+                    <tr style="background-color: #f8f9fa;">
+                        <td style="padding: 8px; border: 1px solid #dee2e6; font-weight: bold;">4. Git Commit &amp; Phối hợp nhóm<br><span style="color: #fd7e14;">Max 0.5đ · CLO4 · chấm cá nhân</span></td>
+                        <td style="padding: 8px; border: 1px solid #dee2e6;"><strong>0.45-0.5đ.</strong> Commit đều qua các buổi, đúng Conventional Commits, làm qua branch + PR; giải thích trôi chảy phần code mình đảm nhiệm.</td>
+                        <td style="padding: 8px; border: 1px solid #dee2e6;"><strong>0.35-0.4đ.</strong> Có commit riêng ở phần mình phụ trách; message chưa đều chuẩn; trả lời đúng phần lớn câu hỏi.</td>
+                        <td style="padding: 8px; border: 1px solid #dee2e6;"><strong>0.3đ.</strong> Ít commit, dồn vào sát buổi báo cáo; giải thích code còn lúng túng.</td>
+                        <td style="padding: 8px; border: 1px solid #dee2e6;"><strong>0-0.25đ.</strong> Không có commit cá nhân hoặc không giải thích được code mang tên mình.</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="margin: 8px 0 0 0; font-size: 13px; color: #495057;">
+                <strong>Quy đổi:</strong> Điểm Giữa kỳ (thang 10) = (Tiêu chí 1 + 2 + 3 + 4) × 2. Tiêu chí 1-3 chấm chung cho nhóm; tiêu chí 4 chấm riêng từng sinh viên qua Git log và 5 phút phản biện.
+            </p>
+        </div>
+
+        <div style="margin-bottom: 16px;">
+            <p style="margin: 0 0 8px 0; color: #fd7e14; font-weight: bold;">🏆 Rubric 2: Thi Hackathon &amp; Final Showcase (Buổi 12, trọng số 40%)</p>
+            <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+                <thead>
+                    <tr style="background-color: #fff5eb; color: #fd7e14; text-align: left;">
+                        <th style="padding: 8px; border: 1px solid #ffd6ad; width: 16%;">Tiêu chí &amp; Trọng số</th>
+                        <th style="padding: 8px; border: 1px solid #ffd6ad; width: 21%;">Xuất sắc (8.5-10)</th>
+                        <th style="padding: 8px; border: 1px solid #ffd6ad; width: 21%;">Khá (7.0-8.4)</th>
+                        <th style="padding: 8px; border: 1px solid #ffd6ad; width: 21%;">Trung bình (5.5-6.9)</th>
+                        <th style="padding: 8px; border: 1px solid #ffd6ad; width: 21%;">Yếu (&lt; 5.5)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding: 8px; border: 1px solid #dee2e6; font-weight: bold;">1. Mô hình hóa UI &amp; Wireframe<br><span style="color: #fd7e14;">15% · Max 1.5đ · PI 1.4</span></td>
+                        <td style="padding: 8px; border: 1px solid #dee2e6;">Wireframe Figma đủ 5 màn hình, cấu trúc Layout (Header, Footer, Content, Sidebar) rất khoa học; sản phẩm thật khớp &gt; 90% bản vẽ.</td>
+                        <td style="padding: 8px; border: 1px solid #dee2e6;">Đủ Wireframe 5 màn hình, bố cục rõ vùng Header/Footer; sản phẩm thật tái hiện 75-80% bản vẽ.</td>
+                        <td style="padding: 8px; border: 1px solid #dee2e6;">Thiếu 1-2 màn hình hoặc vẽ tay sơ sài; giao diện thật sai lệch nhiều so với bản vẽ.</td>
+                        <td style="padding: 8px; border: 1px solid #dee2e6;">Không có Wireframe hoặc không đạt cấu trúc cơ bản; sản phẩm không theo thiết kế.</td>
+                    </tr>
+                    <tr style="background-color: #f8f9fa;">
+                        <td style="padding: 8px; border: 1px solid #dee2e6; font-weight: bold;">2. Giao diện &amp; Vibe Coding<br><span style="color: #fd7e14;">20% · Max 2.0đ · PI 2.3</span></td>
+                        <td style="padding: 8px; border: 1px solid #dee2e6;">Ant Design/Bootstrap mượt, theme tùy biến qua SCSS/ConfigProvider có dấu ấn riêng; responsive hoàn hảo Mobile/Tablet/Desktop; Hot Reload mượt, không lỗi UI.</td>
+                        <td style="padding: 8px; border: 1px solid #dee2e6;">Giao diện đẹp, đúng thiết kế, theme cơ bản; responsive tốt Mobile &amp; Desktop, còn lỗi nhỏ ở Tablet; Hot Reload ổn định.</td>
+                        <td style="padding: 8px; border: 1px solid #dee2e6;">Giao diện rập khuôn thư viện, chưa tùy biến theme; vỡ khung hoặc tràn ngang (horizontal overflow) trên di động.</td>
+                        <td style="padding: 8px; border: 1px solid #dee2e6;">Giao diện thô, chưa dùng thư viện UI hoặc SCSS; lỗi layout nặng trên di động, Hot Reload liên tục báo lỗi.</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 8px; border: 1px solid #dee2e6; font-weight: bold;">3. Logic, TypeScript &amp; REST API<br><span style="color: #fd7e14;">20% · Max 2.0đ · PI 2.3</span></td>
+                        <td style="padding: 8px; border: 1px solid #dee2e6;">TypeScript strict, không dùng <code>any</code>; routing mượt; API RESTful thật đổ dữ liệu động (Array/Single); Form Zod và LocalStorage chuẩn xác.</td>
+                        <td style="padding: 8px; border: 1px solid #dee2e6;">TypeScript cơ bản (còn 1-2 chỗ <code>any</code>); routing chuẩn; API thật ở đa số trang; Form Validation và LocalStorage ổn định.</td>
+                        <td style="padding: 8px; border: 1px solid #dee2e6;">Dùng <code>any</code> nhiều; routing bị reload trang; API lỗi ở một số tính năng, chủ yếu dùng Mock JSON.</td>
+                        <td style="padding: 8px; border: 1px solid #dee2e6;">Không dùng TypeScript hoặc lỗi compile nặng; không kết nối được Backend; giỏ hàng/Form lỗi runtime.</td>
+                    </tr>
+                    <tr style="background-color: #f8f9fa;">
+                        <td style="padding: 8px; border: 1px solid #dee2e6; font-weight: bold;">4. Deploy, SEO &amp; Performance<br><span style="color: #fd7e14;">15% · Max 1.5đ · PI 5.1</span></td>
+                        <td style="padding: 8px; border: 1px solid #dee2e6;">Deploy live Vercel thành công; SEO Metadata động (OpenGraph); Lighthouse Performance &gt; 85, SEO &gt; 90.</td>
+                        <td style="padding: 8px; border: 1px solid #dee2e6;">Deploy Vercel ổn định; SEO Metadata tĩnh; Lighthouse Performance 70-84.</td>
+                        <td style="padding: 8px; border: 1px solid #dee2e6;">Deploy được nhưng thỉnh thoảng lỗi API/biến môi trường; chưa có SEO Metadata; Performance 50-69.</td>
+                        <td style="padding: 8px; border: 1px solid #dee2e6;">Chỉ chạy ở localhost; Performance &lt; 50, lỗi tối ưu ảnh/script.</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 8px; border: 1px solid #dee2e6; font-weight: bold;">5. Báo cáo &amp; Git Commit<br><span style="color: #fd7e14;">15% · Max 1.5đ · PI 3.1, PI 5.1</span></td>
+                        <td style="padding: 8px; border: 1px solid #dee2e6;">Báo cáo Word/PDF trình bày khoa học, đúng quy định; Git log thể hiện đóng góp đồng đều của tất cả thành viên, đủ PR.</td>
+                        <td style="padding: 8px; border: 1px solid #dee2e6;">Báo cáo đúng mẫu, đủ mô tả logic; Git log thể hiện phối hợp tốt nhưng đóng góp chưa đều.</td>
+                        <td style="padding: 8px; border: 1px solid #dee2e6;">Báo cáo sơ sài, thiếu mô tả logic xử lý; Git log cho thấy chỉ 1-2 người làm.</td>
+                        <td style="padding: 8px; border: 1px solid #dee2e6;">Không nộp báo cáo hoặc sai quy định nghiêm trọng; không có Git log của các thành viên.</td>
+                    </tr>
+                    <tr style="background-color: #f8f9fa;">
+                        <td style="padding: 8px; border: 1px solid #dee2e6; font-weight: bold;">6. Thuyết trình &amp; Phản biện Q&amp;A<br><span style="color: #fd7e14;">15% · Max 1.5đ · PI 3.1, PI 5.1</span></td>
+                        <td style="padding: 8px; border: 1px solid #dee2e6;">Chuyên nghiệp, đúng 8 phút; demo live trơn tru; trả lời phản biện xuất sắc, giải thích sâu phần code đảm nhiệm.</td>
+                        <td style="padding: 8px; border: 1px solid #dee2e6;">Thuyết trình rõ ràng, demo ổn định; trả lời đúng các câu hỏi về phần code của mình.</td>
+                        <td style="padding: 8px; border: 1px solid #dee2e6;">Quá thời lượng; demo gặp sự cố; trả lời còn lúng túng, chưa nắm rõ phần code đảm nhiệm.</td>
+                        <td style="padding: 8px; border: 1px solid #dee2e6;">Ngập ngừng, không làm chủ slide/demo; không trả lời được câu hỏi phản biện code.</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="margin: 8px 0 0 0; font-size: 13px; color: #495057;">
+                <strong>Quy đổi:</strong> Điểm tiêu chí = Trọng số tối đa × (mức điểm thang 10 ÷ 10). Ví dụ: tiêu chí 2 đạt mức Khá 8.0 → 2.0 × 0.8 = 1.6đ. Điểm Đồ án Nhóm = tổng 6 tiêu chí (tối đa 10).
+            </p>
+        </div>
+
+        <div style="margin-bottom: 16px; max-width: 760px; padding: 12px 14px; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px; color: #212529;">
+            <p style="margin: 0 0 6px 0; color: #fd7e14; font-weight: bold;">🧮 Công thức điểm Cuối kỳ cá nhân</p>
+            <p style="margin: 0 0 6px 0; font-family: monospace; background-color: #fff; padding: 6px 10px; border-radius: 4px; border: 1px dashed #ffd6ad;">
+                Điểm Cuối kỳ Cá nhân = (Điểm Đồ án Nhóm × 0.7) + (Điểm Phản biện Cá nhân × 0.3)
+            </p>
+            <ul style="margin: 0; padding-left: 20px; font-size: 13px;">
+                <li><strong>Điểm Đồ án Nhóm (70%):</strong> chung cho cả nhóm, dựa trên sản phẩm Live, Wireframe, UI/UX, Deploy Vercel và báo cáo văn bản (Rubric 2).</li>
+                <li><strong>Điểm Phản biện Cá nhân (30%, thang 10):</strong> chấm độc lập từng sinh viên gồm Minh chứng Git commit cá nhân (3đ), Giải thích phần code đảm nhiệm (4đ), Trả lời câu hỏi mở rộng/sửa code tại chỗ (3đ).</li>
+                <li><strong>Ví dụ:</strong> Nhóm đạt 8.0, bạn A phản biện đạt 9.0 → 8.0 × 0.7 + 9.0 × 0.3 = <strong>8.3</strong>.</li>
+            </ul>
+        </div>
+
+        <div style="max-width: 760px; padding: 12px 14px; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px; color: #212529;">
+            <p style="margin: 0 0 6px 0; color: #fd7e14; font-weight: bold;">⭐ Điểm thưởng Vibe Coding xuất sắc (+0.5 đến +1.0 vào Điểm Quá trình)</p>
+            <ul style="margin: 0; padding-left: 20px; font-size: 13px;">
+                <li><strong>Vibe Coding Master:</strong> Tự thiết kế Prompt Workflow riêng, có ghi lại trong Nhật ký Vibe Coding, giúp sinh code nhanh mà vẫn kiểm soát được chất lượng.</li>
+                <li><strong>UI Innovation:</strong> Giao diện vượt yêu cầu cơ bản, ví dụ có Dark/Light Mode, Micro-interactions.</li>
+                <li><strong>Ultra Performance:</strong> Google Lighthouse Performance đạt 100/100 trên link Vercel.</li>
+            </ul>
+            <p style="margin: 6px 0 0 0; font-size: 12px; color: #6c757d;">Mỗi tiêu chí đạt được cộng +0.5, tổng cộng tối đa +1.0; Điểm Quá trình sau khi cộng không vượt quá 10. Điểm thưởng áp dụng cho thành viên có đóng góp vào hạng mục đó (đối chiếu Git log).</p>
+        </div>
+
+    </div>
+</details>
+
+
+<details style="border: 1px solid #28a745; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #eafaf1; color: #28a745; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>💡 3. Quy trình nộp bài &amp; Quy ước đặt tên file</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <p style="margin-top: 0;">Mỗi sản phẩm của học phần được nộp ở <strong>hai nơi</strong>: code nằm trên GitHub (giảng viên đọc lịch sử commit), còn file báo cáo và các đường link được nộp qua cổng LMS. Chỉ commit mà không nộp LMS, hoặc ngược lại, đều được xem là chưa nộp.</p>
+
+        <!-- CỔNG NỘP BTVN -->
+        <div style="max-width: 760px; padding: 12px 14px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <p style="margin: 0 0 6px 0;">
+                <strong style="color: #28a745;">📝 Cổng 0: Quiz trước giờ &amp; Bài tập về nhà (Buổi 1 - 11)</strong>
+            </p>
+            <ul style="margin: 0 0 8px 0; padding-left: 20px; color: #495057; font-size: 13px;">
+                <li><strong>Quiz LMS:</strong> 10 câu, 15 phút, làm tối đa 2 lần (lấy điểm cao nhất), đóng khi buổi học tương ứng bắt đầu.</li>
+                <li><strong>BTVN:</strong> Push code lên branch cá nhân, mở Pull Request vào <code>main</code> của nhóm; nộp link PR lên LMS trước buổi học tiếp theo.</li>
+            </ul>
+            <a href="https://learn.lhu.edu.vn" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 6px 14px; background-color: #eafaf1; color: #28a745; border: 1px solid #28a745; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 13px;">
+                Vào khu vực Quiz &amp; BTVN trên LMS &rarr;
+            </a>
+        </div>
+
+        <!-- CỔNG NỘP BÀI GIỮA KỲ -->
+        <div style="max-width: 760px; padding: 12px 14px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <p style="margin: 0 0 6px 0;">
+                <strong style="color: #28a745;">📤 Cổng 1: Hồ sơ Giữa kỳ (hạn 23:59 ngày trước Buổi 7)</strong>
+            </p>
+            <p style="margin: 0 0 8px 0; color: #495057; font-size: 13px;">
+                Trưởng nhóm nộp 01 file PDF gồm: link Figma 5 màn hình, link repository, link Preview/Demo, slide báo cáo 5-7 trang. Repository phải có <code>README.md</code> đầy đủ, chạy <code>npm run build</code> thành công và được gắn tag <code>v0.5-midterm</code>.
+            </p>
+            <a href="https://learn.lhu.edu.vn" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 6px 14px; background-color: #eafaf1; color: #28a745; border: 1px solid #28a745; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 13px;">
+                Nộp hồ sơ Giữa kỳ trên LMS &rarr;
+            </a>
+        </div>
+
+        <!-- CỔNG NỘP CUỐI KỲ -->
+        <div style="max-width: 760px; padding: 12px 14px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <p style="margin: 0 0 6px 0;">
+                <strong style="color: #28a745;">🎓 Cổng 2: Hồ sơ Hackathon Cuối kỳ (hạn 23:59 ngày trước Buổi 12)</strong>
+            </p>
+            <p style="margin: 0 0 8px 0; color: #495057; font-size: 13px;">
+                Trưởng nhóm nộp gói hồ sơ: báo cáo Word/PDF (kiến trúc, Wireframe, API tích hợp, phân công, minh chứng Git, kết quả Lighthouse), slide thuyết trình, link Vercel Live và link repository đã gắn tag <code>v1.0-final</code>. Mỗi thành viên nộp thêm phiếu Tự đánh giá &amp; Đánh giá đồng đẳng.
+            </p>
+            <a href="https://learn.lhu.edu.vn" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 6px 14px; background-color: #28a745; color: #fff; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 13px;">
+                Nộp hồ sơ Hackathon Cuối kỳ &rarr;
+            </a>
+        </div>
+
+        <!-- QUY ƯỚC ĐẶT TÊN FILE -->
+        <div style="max-width: 760px; padding: 10px 14px; margin: 10px 0; background-color: #fff9e6; border: 1px solid #ffeeba; border-radius: 8px;">
+            <p style="margin: 0 0 4px 0; color: #856404; font-weight: bold; font-size: 13px;">
+                ⚠️ Quy ước đặt tên file nộp bài bắt buộc: <code>[MãLớp]_[Nhóm]_[TênBài]</code>
+            </p>
+            <p style="margin: 0; color: #856404; font-family: monospace; font-size: 13px;">
+                - Hồ sơ giữa kỳ: <strong>[MãLớp]_[NhomXX]_GiuaKy.pdf</strong> (Ví dụ: <code>24CT111_Nhom03_GiuaKy.pdf</code>)<br>
+                - Báo cáo cuối kỳ: <strong>[MãLớp]_[NhomXX]_BaoCaoCuoiKy.pdf</strong> (Ví dụ: <code>24CT111_Nhom03_BaoCaoCuoiKy.pdf</code>)<br>
+                - Slide: <strong>[MãLớp]_[NhomXX]_Slide.pdf</strong> · Phiếu cá nhân: <strong>[MãLớp]_[NhomXX]_[MSSV]_PeerReview.pdf</strong><br>
+                - Branch Git: <code>feature/&lt;ten-tinh-nang&gt;</code> · Commit: <code>feat(event): add seat picker</code>
+            </p>
+        </div>
+
+        <!-- 10 BÀI QUIZ -->
+        <div style="max-width: 760px; padding: 12px 14px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <p style="margin: 0 0 6px 0;">
+                <strong style="color: #28a745;">📝 Danh sách 10 bài Quiz trước giờ học (Moodle Aiken)</strong>
+            </p>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px;">
+                <a href="https://learn.lhu.edu.vn" style="padding: 4px 10px; background-color: #fff; border: 1px solid #bfe8cc; border-radius: 4px; font-size: 12px; text-decoration: none; color: #28a745; font-weight: bold;">Quiz 01</a>
+                <a href="https://learn.lhu.edu.vn" style="padding: 4px 10px; background-color: #fff; border: 1px solid #bfe8cc; border-radius: 4px; font-size: 12px; text-decoration: none; color: #28a745; font-weight: bold;">Quiz 02</a>
+                <a href="https://learn.lhu.edu.vn" style="padding: 4px 10px; background-color: #fff; border: 1px solid #bfe8cc; border-radius: 4px; font-size: 12px; text-decoration: none; color: #28a745; font-weight: bold;">Quiz 03</a>
+                <a href="https://learn.lhu.edu.vn" style="padding: 4px 10px; background-color: #fff; border: 1px solid #bfe8cc; border-radius: 4px; font-size: 12px; text-decoration: none; color: #28a745; font-weight: bold;">Quiz 04</a>
+                <a href="https://learn.lhu.edu.vn" style="padding: 4px 10px; background-color: #fff; border: 1px solid #bfe8cc; border-radius: 4px; font-size: 12px; text-decoration: none; color: #28a745; font-weight: bold;">Quiz 05</a>
+                <a href="https://learn.lhu.edu.vn" style="padding: 4px 10px; background-color: #fff; border: 1px solid #bfe8cc; border-radius: 4px; font-size: 12px; text-decoration: none; color: #28a745; font-weight: bold;">Quiz 06</a>
+                <a href="https://learn.lhu.edu.vn" style="padding: 4px 10px; background-color: #fff; border: 1px solid #bfe8cc; border-radius: 4px; font-size: 12px; text-decoration: none; color: #28a745; font-weight: bold;">Quiz 08</a>
+                <a href="https://learn.lhu.edu.vn" style="padding: 4px 10px; background-color: #fff; border: 1px solid #bfe8cc; border-radius: 4px; font-size: 12px; text-decoration: none; color: #28a745; font-weight: bold;">Quiz 09</a>
+                <a href="https://learn.lhu.edu.vn" style="padding: 4px 10px; background-color: #fff; border: 1px solid #bfe8cc; border-radius: 4px; font-size: 12px; text-decoration: none; color: #28a745; font-weight: bold;">Quiz 10</a>
+                <a href="https://learn.lhu.edu.vn" style="padding: 4px 10px; background-color: #fff; border: 1px solid #bfe8cc; border-radius: 4px; font-size: 12px; text-decoration: none; color: #28a745; font-weight: bold;">Quiz 11</a>
+            </div>
+            <p style="margin: 6px 0 0 0; color: #6c757d; font-size: 12px;">Buổi 7 (Giữa kỳ) và Buổi 12 (Hackathon) là buổi đánh giá nên không có Quiz trước giờ.</p>
+        </div>
+
+    </div>
+</details>
+
+
+<details style="border: 1px solid #6f42c1; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #f3e5f5; color: #6f42c1; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>🆘 4. Nộp trễ, Liêm chính học thuật &amp; Phúc khảo</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <p><strong>Chính sách nộp trễ (Late Submission):</strong></p>
+        <ul style="color: #495057;">
+            <li><strong>Thời điểm được tính:</strong> giờ nộp trên LMS và giờ push của commit cuối cùng trên GitHub. Giảng viên chấm đúng phiên bản gắn tag (<code>v0.5-midterm</code>, <code>v1.0-final</code>); commit sau hạn không được tính vào phần đã nộp.</li>
+            <li><strong>BTVN và hồ sơ đánh giá:</strong> nộp trễ trong vòng 24 giờ bị trừ 20% điểm của bài đó; sau 24 giờ cổng nộp tự khóa và không nhận bài, trừ trường hợp bất khả kháng có minh chứng (giấy y tế, xác nhận của Khoa).</li>
+            <li><strong>Quiz LMS:</strong> đóng đúng giờ và không mở lại cho cá nhân, trừ trường hợp bất khả kháng có minh chứng.</li>
+            <li><strong>Buổi 7 và Buổi 12:</strong> sinh viên vắng không có lý do chính đáng sẽ không có điểm phản biện cá nhân của buổi đó.</li>
+        </ul>
+
+        <p><strong>Liêm chính học thuật &amp; sử dụng AI:</strong></p>
+        <ul style="color: #495057;">
+            <li><strong>Dùng AI là được phép</strong>, với điều kiện các bạn đã review và hiểu code trước khi commit, đồng thời ghi lại prompt chính trong mục Nhật ký Vibe Coding.</li>
+            <li><strong>Đạo văn/đạo code:</strong> sao chép code hoặc báo cáo của nhóm khác (kể cả khóa trước), nhờ người khác commit hộ, hoặc sửa Git history để "làm đẹp" đóng góp. Phần bài vi phạm nhận điểm 0 và bị xử lý theo quy chế của Trường.</li>
+            <li><strong>Không giải thích được code của mình:</strong> giảng viên ghi nhận ở tiêu chí phản biện và có thể yêu cầu sinh viên sửa code trực tiếp tại chỗ để xác minh.</li>
+        </ul>
+
+        <p><strong>Công bố kết quả &amp; Phúc khảo:</strong></p>
+        <ul style="color: #495057;">
+            <li><strong>Điểm Quiz:</strong> hiển thị ngay sau khi Quiz đóng. <strong>BTVN:</strong> nhận xét trên Pull Request hoặc LMS trước buổi học kế tiếp.</li>
+            <li><strong>Điểm Giữa kỳ:</strong> phiếu chấm kèm nhận xét được trả trên LMS trước Buổi 8. <strong>Điểm Hackathon:</strong> công bố trong phần Tổng kết của Buổi 12.</li>
+            <li><strong>Đối soát điểm quá trình, giữa kỳ:</strong> trong 03 ngày làm việc kể từ khi công bố, gửi tin nhắn LMS cho giảng viên kèm minh chứng.</li>
+            <li><strong>Phúc khảo điểm cuối kỳ:</strong> thực hiện theo quy chế khảo thí của Trường Đại học Lạc Hồng.</li>
+        </ul>
+
+        <p><strong>Kênh liên hệ hỗ trợ:</strong></p>
+        <div style="max-width: 760px; padding: 12px 16px; background-color: #fcf8ff; border: 1px solid #e1bee7; border-radius: 8px;">
+            <p style="margin: 0 0 6px 0; color: #6f42c1; font-weight: bold;">
+                📞 Nơi tiếp nhận thắc mắc học vụ:
+            </p>
+            <ul style="margin: 0; padding-left: 20px; color: #333; font-size: 13px;">
+                <li><strong>Giảng viên phụ trách:</strong> <em style="color: #6c757d;">Đang cập nhật</em> (liên hệ qua tin nhắn Moodle LMS của lớp).</li>
+                <li><strong>Văn phòng Khoa CNTT:</strong> Phòng B301 - B302 Cơ sở 1 LHU (Điện thoại: <strong>0251 3952 251</strong>, Email: <a href="mailto:cntt@lhu.edu.vn" style="color: #6f42c1; font-weight: bold;">cntt@lhu.edu.vn</a>)</li>
+                <li><strong>Diễn đàn trực tuyến:</strong> <a href="https://forum.fitlhu.com" target="_blank" rel="noopener noreferrer" style="color: #6f42c1; font-weight: bold;">https://forum.fitlhu.com</a></li>
+            </ul>
+        </div>
+    </div>
+</details>
+
+    </article>
+
+    <!-- Bottom Navigation -->
+    <div class="flex items-center justify-between gap-4 mt-8 no-print text-xs font-bold">
+      <a href="bai-12.html" class="px-4 py-2.5 bg-white border border-slate-200 hover:border-lhu-blue text-slate-700 hover:text-lhu-blue rounded-xl shadow-sm transition-all flex items-center gap-2"><i class="fa-solid fa-chevron-left"></i> Bài trước</a>
+      <a href="index.html#lo-trinh" class="px-4 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-800 rounded-xl transition-all flex items-center gap-2">
+        <i class="fa-solid fa-table-cells-large"></i> Danh mục bài học
+      </a>
+      <span></span>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-slate-200 py-6 text-xs text-slate-500 mt-12 no-print">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <strong>Khoa Công nghệ Thông tin - Trường Đại học Lạc Hồng</strong><br>
+        Phòng B301 - B302, Cơ sở 1, Số 10 Huỳnh Văn Nghệ, P. Bửu Long, TP. Biên Hòa, Đồng Nai.
+      </div>
+      <div class="sm:text-right">
+        <span>Email: cntt@lhu.edu.vn • Hotline: (0251) 3952 251</span><br>
+        <span>Hệ thống LMS: <a href="https://learn.lhu.edu.vn" target="_blank" rel="noopener noreferrer" class="text-lhu-blue font-bold">learn.lhu.edu.vn</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleAllDetails(open) {
+      document.querySelectorAll("details").forEach(d => {
+        if (open) d.setAttribute("open", ""); else d.removeAttribute("open");
+      });
+    }
+    if (window.hljs) hljs.highlightAll();
+  </script>
+
+</body>
+</html>

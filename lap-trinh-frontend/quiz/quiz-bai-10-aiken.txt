@@ -1,0 +1,84 @@
+Theo quy chuẩn Responsive của buổi PBL 1, ba kích thước màn hình bắt buộc kiểm tra là gì?
+A. 320px, 1024px, 1920px
+B. 375px, 768px, 1440px
+C. 360px, 800px, 1280px
+D. 414px, 992px, 1600px
+ANSWER: B
+
+Refactoring code được hiểu đúng nhất là gì?
+A. Viết lại toàn bộ dự án bằng framework mới
+B. Bổ sung tính năng mới cho giao diện hiện có
+C. Cải tổ cấu trúc code mà không thay đổi hành vi giao diện và logic
+D. Xóa các component ít dùng để giảm dung lượng repo
+ANSWER: C
+
+Dấu hiệu nào sau đây là Code Smell điển hình trong một component React?
+A. Component dài hơn 300 dòng và lặp lại nhiều khối JSX
+B. Component có Interface Props được đặt tên rõ ràng
+C. Component được đặt trong thư mục components/shared
+D. Component dùng Grid của Ant Design để chia cột
+ANSWER: A
+
+Mục tiêu định lượng của phần Vibe Code Refactoring & DRY Cleanup trong buổi PBL 1 là gì?
+A. Tăng số lượng component lên gấp đôi
+B. Đạt Lighthouse Performance 100 điểm
+C. Chuyển toàn bộ component sang Server Component
+D. Rút gọn hơn 20% số dòng code mà không đổi logic giao diện
+ANSWER: D
+
+Khi chưa biết chắc kiểu dữ liệu trả về từ JSON.parse, cách khai báo nào phù hợp với TypeScript strict mode?
+A. Khai báo kiểu any rồi dùng trực tiếp
+B. Ép kiểu bằng as never
+C. Khai báo kiểu unknown rồi thu hẹp kiểu bằng Array.isArray hoặc type guard
+D. Tắt strict trong tsconfig.json cho file đó
+ANSWER: C
+
+Trên Mobile 375px, thanh EventFilterBar nằm ngang bị tràn khung. Hướng xử lý được khuyến nghị trong bài là gì?
+A. Hiển thị nút "Bộ lọc" mở Drawer trên mobile, giữ Filter Bar ngang trên desktop
+B. Ẩn hoàn toàn bộ lọc trên mọi thiết bị di động
+C. Đặt width cố định 1440px cho thanh lọc
+D. Giảm font chữ của thanh lọc xuống 8px
+ANSWER: A
+
+Trong Grid của Ant Design, khai báo <Col xs={24} md={8}> cho kết quả hiển thị nào?
+A. Luôn chiếm 8/24 cột trên mọi màn hình
+B. Ẩn cột trên màn hình nhỏ
+C. Chiếm 24 cột trên desktop và 8 cột trên mobile
+D. Chiếm toàn bộ chiều ngang trên màn hình nhỏ, chiếm 1/3 từ mốc md trở lên
+ANSWER: D
+
+Console báo "React does not recognize the isHot prop on a DOM element". Cách sửa đúng là gì?
+A. Đổi tên prop thành IsHot viết hoa
+B. Destructure isHot ra khỏi props trước khi spread phần còn lại vào thẻ DOM
+C. Bọc component bằng React.memo
+D. Thêm suppressHydrationWarning vào thẻ span
+ANSWER: B
+
+Nguyên nhân nào sau đây thường gây lỗi "Hydration failed" trong Next.js?
+A. Đọc localStorage ngay trong thân hàm render của component
+B. Khai báo Interface cho Props
+C. Dùng SCSS Module cho component
+D. Dùng useCallback cho hàm xử lý sự kiện
+ANSWER: A
+
+Vì sao bài học khuyên ẩn/hiện Filter Bar theo thiết bị bằng CSS (.desktopOnly/.mobileOnly) thay vì kiểm tra window.innerWidth khi render?
+A. Vì CSS luôn chạy nhanh hơn JavaScript ở mọi trường hợp
+B. Vì Ant Design không hỗ trợ đọc kích thước màn hình
+C. Vì window.innerWidth chỉ có trên Safari
+D. Vì HTML server và client giống nhau, tránh lỗi hydration
+ANSWER: D
+
+Component cha truyền onBook={(id) => router.push(...)} viết trực tiếp trong JSX cho EventCard đã bọc React.memo. Điều gì xảy ra?
+A. EventCard không bao giờ render lại
+B. EventCard vẫn render lại mỗi lần cha render vì hàm mới tạo ra có tham chiếu khác
+C. Next.js báo lỗi build vì không được truyền hàm qua props
+D. router.push bị gọi ngay khi trang tải
+ANSWER: B
+
+Sau khi AI refactor xong một component, bước kiểm duyệt nào quan trọng nhất trước khi commit?
+A. Đếm số dòng AI giải thích trong câu trả lời
+B. Commit ngay vì AI đã kiểm tra type giúp
+C. So sánh giao diện trước/sau ở 375/768/1440px và chạy npx tsc --noEmit
+D. Xóa toàn bộ comment trong file
+ANSWER: C
+

@@ -1,0 +1,509 @@
+<details open="" style="border: 1px solid #007bff; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #e7f1ff; color: #007bff; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>📘 1. Tổng quan bài học</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <p style="margin-top: 0;"><strong>BÀI 11 - PBL 2 – CI/CD, Deploy Vercel, SEO &amp; Performance (5 tiết)</strong></p>
+        <p style="margin: 0 0 8px 0; color: #6c757d;">CHƯƠNG 6: DỰ ÁN THỰC TẾ – TỐI ƯU &amp; TRIỂN KHAI</p>
+        <p><strong>Thời lượng:</strong> 5 tiết (225 phút) · <strong>Hình thức:</strong> Học theo dự án (PBL 2) – Giảng viên làm Mentor · <strong>Chuẩn đầu ra:</strong> PI 5.1 (CLO4)<br><strong>Dự án xuyên suốt:</strong> Smart Event Hub – triển khai lên Vercel, tối ưu SEO Metadata và đạt Lighthouse Performance &gt; 85</p>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #f3f8ff; border: 1px solid #cfe2ff; border-radius: 8px;">
+            <p>🎯 <strong>MỤC TIÊU BÀI HỌC (Learning Objectives)</strong><br>Sau khi hoàn thành bài học này, người học có thể:</p>
+<ul>
+<li><strong>[Bloom 1/2 - Kiến thức]:</strong> Giải thích được quy trình CI/CD trên Vercel, vai trò của biến môi trường theo từng môi trường (Development, Preview, Production) và các chỉ số Lighthouse.</li>
+<li><strong>[Bloom 3/4 - Kỹ năng]:</strong> Cấu hình Metadata tĩnh, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">generateMetadata</code> động cho <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/events/[id]</code> (Next.js 15), thay <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&lt;img&gt;</code> bằng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">next/image</code>, tối ưu font với <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">next/font</code> và lazy load bằng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">next/dynamic</code>.</li>
+<li><strong>[Bloom 5/6 - Năng lực]:</strong> Deploy thành công Smart Event Hub lên domain Vercel thật, tự chẩn đoán lỗi Build Fail và đánh giá – cải thiện điểm Lighthouse (Performance &gt; 85, SEO &gt; 90).</li>
+</ul>
+        </div>
+        <p><strong>📝 Đặt vấn đề &amp; dẫn nhập</strong></p>
+        <p>Một thành viên gửi link sự kiện &quot;Workshop Next.js 15&quot; của nhóm vào group Zalo lớp. Thay vì ảnh banner và tên sự kiện, bản xem trước chỉ hiện chữ &quot;Create Next App&quot; cùng một ô trống. Tệ hơn, link đó lại là <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">localhost:3000</code>, nên không ai ngoài máy bạn mở được. Sản phẩm làm suốt 10 buổi gần như &quot;vô hình&quot; với người dùng thật.</p>
+<p>Hôm nay chúng ta đưa Smart Event Hub lên Internet. <strong>Làm sao để mỗi lần <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">git push</code> là web tự cập nhật, link chia sẻ hiện đúng ảnh và tiêu đề sự kiện, và trang tải đủ nhanh để Lighthouse chấm điểm xanh?</strong> Ba câu hỏi này tương ứng với ba phần PBL của buổi học.</p>
+<blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #007bff; border-radius: 0 8px 8px 0; color: #212529;">
+<p>🧭 <strong>Trước giờ học (Flipped Classroom):</strong> Đọc <em>Next.js Metadata Documentation</em> và <em>Google Lighthouse Audit Guide</em> (link ở mục 5). Đăng nhập Vercel bằng tài khoản GitHub, kiểm tra repo nhóm đã công khai ở branch <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">main</code>. Chạy thử <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">npm run build</code> trên máy để phát hiện lỗi sớm. Mang theo file <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Test_Cases_Scenario</code> từ Bài 10. Làm quiz nhanh trên LMS.</p>
+</blockquote>
+    </div>
+</details>
+
+<details style="border: 1px solid #fd7e14; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #fff5eb; color: #fd7e14; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>📚 2. Học liệu chính</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.1. CI/CD với Vercel &amp; quản trị biến môi trường</h3>
+            <ul>
+<li><strong>Khái niệm:</strong> <strong>CI/CD</strong> (Continuous Integration / Continuous Deployment) là quy trình tự động Build – kiểm tra – Deploy mỗi khi code thay đổi. Vercel kết nối trực tiếp với GitHub: mỗi lượt <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">git push</code> lên <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">main</code> kích hoạt một bản Production mới.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li>Các bước: Vercel Dashboard → <em>Add New Project</em> → chọn repo → Vercel tự nhận diện Next.js → khai báo Environment Variables → <em>Deploy</em>.</li>
+<li>Biến môi trường được quản lý trong Project Settings theo 3 môi trường: <strong>Development</strong>, <strong>Preview</strong> (các branch/PR khác <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">main</code>), <strong>Production</strong>.</li>
+<li>Biến có tiền tố <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">NEXT_PUBLIC_</code> được <strong>gắn cứng vào bundle lúc build</strong> và lộ ra trình duyệt. Không đặt API Key bí mật vào biến này. Đổi giá trị trên Vercel xong phải <strong>Redeploy</strong> mới có hiệu lực.</li>
+<li>File <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">.env.local</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">.env.production</code> chứa giá trị thật không được commit; chỉ commit <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">.env.example</code>.</li>
+</ul>
+</li>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #fd7e14; border-radius: 0 8px 8px 0; color: #212529;">
+<p>Nhóm B deploy thành công nhưng trang chủ trống trơn. Console báo gọi <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">undefined/api/events</code>. Nguyên nhân: quên khai báo <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">NEXT_PUBLIC_API_URL</code> trên Vercel. Thêm biến, bấm Redeploy, dữ liệu hiện lại.</p>
+</blockquote>
+</li>
+</ul>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;"># .env.example (commit file này, KHÔNG commit .env.local)
+NEXT_PUBLIC_API_URL=https://your-backend.example.com
+NEXT_PUBLIC_SITE_URL=https://smart-event-hub.vercel.app
+</code></pre>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// lib/config.ts – báo lỗi rõ ràng thay vì gọi &quot;undefined/api/...&quot;
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
+if (!API_URL) {
+  throw new Error(&#39;Thiếu biến môi trường NEXT_PUBLIC_API_URL&#39;);
+}
+
+export const config = {
+  apiUrl: API_URL,
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? &#39;http://localhost:3000&#39;,
+} as const;
+</code></pre>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;"># Quy trình an toàn trước khi push lên main
+npm run build                 # build y hệt Vercel: type-check + lint + build
+git add .
+git commit -m &quot;feat(seo): thêm generateMetadata cho trang chi tiết sự kiện&quot;
+git push origin main          # Vercel tự động Build &amp; Deploy
+</code></pre>
+<blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #fd7e14; border-radius: 0 8px 8px 0; color: #212529;">
+<p><strong>Lỗi Build Fail hay gặp trên Vercel:</strong> lỗi TypeScript/ESLint mà dev mode bỏ qua; import sai hoa/thường (<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">EventCard</code> vs <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">eventCard</code>) vì Windows không phân biệt nhưng Linux của Vercel thì có; thiếu biến môi trường; dùng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">window</code>/<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">localStorage</code> trong Server Component.</p>
+</blockquote>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.2. SEO với Metadata API – Metadata tĩnh cho Root Layout</h3>
+            <ul>
+<li><strong>Khái niệm:</strong> <strong>Metadata API</strong> của App Router sinh các thẻ <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&lt;title&gt;</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&lt;meta name=&quot;description&quot;&gt;</code>, OpenGraph… từ object <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">metadata</code> export trong <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">layout.tsx</code> hoặc <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">page.tsx</code>, không cần tự viết thẻ <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&lt;head&gt;</code>.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">metadataBase</code> giúp các URL ảnh tương đối (<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/og-default.png</code>) được chuyển thành URL tuyệt đối khi chia sẻ.</li>
+<li><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">title.template</code> tạo tiêu đề thống nhất: trang con chỉ cần khai báo <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">title: &#39;Đặt vé&#39;</code>, kết quả là &quot;Đặt vé | Smart Event Hub&quot;.</li>
+<li>Quy ước file: <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">app/favicon.ico</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">app/opengraph-image.png</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">app/sitemap.ts</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">app/robots.ts</code> được Next.js tự nhận diện.</li>
+<li><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">next/font</code> tự host font, tránh nghẽn tải và giảm Layout Shift do đổi font.</li>
+</ul>
+</li>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #fd7e14; border-radius: 0 8px 8px 0; color: #212529;">
+<p>Khi dán link trang chủ vào Facebook/Zalo, bản xem trước hiển thị tên &quot;Smart Event Hub&quot;, mô tả ngắn và ảnh <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">og-default.png</code> thay cho &quot;Create Next App&quot;.</p>
+</blockquote>
+</li>
+</ul>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// app/layout.tsx
+import type { Metadata } from &#39;next&#39;;
+import type { ReactNode } from &#39;react&#39;;
+import { Be_Vietnam_Pro } from &#39;next/font/google&#39;;
+import &#39;./globals.scss&#39;;
+
+const beVietnam = Be_Vietnam_Pro({
+  subsets: [&#39;latin&#39;, &#39;vietnamese&#39;],
+  weight: [&#39;400&#39;, &#39;600&#39;, &#39;700&#39;],
+  display: &#39;swap&#39;,
+});
+
+export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? &#39;http://localhost:3000&#39;),
+  title: {
+    default: &#39;Smart Event Hub – Đặt vé sự kiện trực tuyến&#39;,
+    template: &#39;%s | Smart Event Hub&#39;,
+  },
+  description: &#39;Khám phá và đặt vé hội thảo, concert, workshop nhanh chóng trên Smart Event Hub.&#39;,
+  keywords: [&#39;đặt vé&#39;, &#39;sự kiện&#39;, &#39;workshop&#39;, &#39;concert&#39;, &#39;Smart Event Hub&#39;],
+  openGraph: {
+    type: &#39;website&#39;,
+    locale: &#39;vi_VN&#39;,
+    siteName: &#39;Smart Event Hub&#39;,
+    images: [&#39;/og-default.png&#39;],
+  },
+};
+
+export default function RootLayout({ children }: { children: ReactNode }) {
+  return (
+    &lt;html lang=&quot;vi&quot;&gt;
+      &lt;body className={beVietnam.className}&gt;{children}&lt;/body&gt;
+    &lt;/html&gt;
+  );
+}
+</code></pre>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// app/robots.ts
+import type { MetadataRoute } from &#39;next&#39;;
+
+export default function robots(): MetadataRoute.Robots {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? &#39;http://localhost:3000&#39;;
+  return {
+    rules: { userAgent: &#39;*&#39;, allow: &#39;/&#39;, disallow: &#39;/admin/&#39; },
+    sitemap: `${baseUrl}/sitemap.xml`,
+  };
+}
+</code></pre>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// app/sitemap.ts
+import type { MetadataRoute } from &#39;next&#39;;
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? &#39;http://localhost:3000&#39;;
+  return [&#39;&#39;, &#39;/events&#39;, &#39;/about&#39;].map((path) =&gt; ({
+    url: `${baseUrl}${path}`,
+    lastModified: new Date(),
+  }));
+}
+</code></pre>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.3. Metadata động với <code style="font-family: Consolas, monospace;">generateMetadata</code> (Next.js 15)</h3>
+            <ul>
+<li><strong>Khái niệm:</strong> Với Dynamic Route <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/events/[id]</code>, mỗi sự kiện cần tiêu đề và ảnh OpenGraph riêng. Hàm <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">generateMetadata</code> chạy trên server, gọi API rồi trả về object <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Metadata</code>.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li><strong>Từ Next.js 15, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">params</code> là <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Promise</code>.</strong> Phải viết <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">const { id } = await params;</code>. Ví dụ cũ dạng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">params.id</code> sẽ báo lỗi type và cảnh báo khi chạy.</li>
+<li>Bọc hàm lấy dữ liệu bằng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">cache()</code> của React để <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">generateMetadata</code> và component trang dùng chung một kết quả, không gọi API hai lần.</li>
+<li>Luôn có <strong>fallback metadata</strong> khi không tìm thấy sự kiện; trang thì gọi <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">notFound()</code> để hiện 404.</li>
+<li>Ảnh chính (LCP) của trang dùng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">next/image</code> với <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">priority</code> và <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">sizes</code> phù hợp.</li>
+</ul>
+</li>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #fd7e14; border-radius: 0 8px 8px 0; color: #212529;">
+<p>Link <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">smart-event-hub.vercel.app/events/12</code> khi chia sẻ lên Zalo hiển thị đúng banner và tên &quot;Workshop Next.js 15 | Smart Event Hub&quot;. Link sự kiện đã bị xóa hiển thị &quot;Không tìm thấy sự kiện&quot; thay vì lỗi trắng trang.</p>
+</blockquote>
+</li>
+</ul>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// lib/events.ts
+import { cache } from &#39;react&#39;;
+
+export interface EventItem {
+  id: string;
+  title: string;
+  description: string;
+  bannerUrl: string;
+  startDate: string;
+  price: number;
+  status: &#39;UPCOMING&#39; | &#39;ONGOING&#39; | &#39;ENDED&#39;;
+}
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
+export const getEventById = cache(async (id: string): Promise&lt;EventItem | null&gt; =&gt; {
+  try {
+    const res = await fetch(`${API_URL}/api/events/${id}`, { next: { revalidate: 60 } });
+    if (!res.ok) return null;
+    return (await res.json()) as EventItem;
+  } catch {
+    return null;
+  }
+});
+</code></pre>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// app/events/[id]/page.tsx
+import type { Metadata } from &#39;next&#39;;
+import Image from &#39;next/image&#39;;
+import { notFound } from &#39;next/navigation&#39;;
+import { getEventById } from &#39;@/lib/events&#39;;
+
+type Props = {
+  params: Promise&lt;{ id: string }&gt;;
+};
+
+export async function generateMetadata({ params }: Props): Promise&lt;Metadata&gt; {
+  const { id } = await params;
+  const event = await getEventById(id);
+
+  if (!event) {
+    return {
+      title: &#39;Không tìm thấy sự kiện&#39;,
+      description: &#39;Sự kiện không tồn tại hoặc đã bị gỡ khỏi Smart Event Hub.&#39;,
+    };
+  }
+
+  return {
+    title: event.title,
+    description: event.description,
+    openGraph: {
+      title: event.title,
+      description: event.description,
+      images: [{ url: event.bannerUrl, alt: event.title }],
+    },
+  };
+}
+
+export default async function EventDetailPage({ params }: Props) {
+  const { id } = await params;
+  const event = await getEventById(id);
+  if (!event) notFound();
+
+  return (
+    &lt;article&gt;
+      &lt;Image
+        src={event.bannerUrl}
+        alt={event.title}
+        width={1200}
+        height={630}
+        priority
+        sizes=&quot;(max-width: 768px) 100vw, 1200px&quot;
+        style={{ width: &#39;100%&#39;, height: &#39;auto&#39; }}
+      /&gt;
+      &lt;h1&gt;{event.title}&lt;/h1&gt;
+      &lt;p&gt;{event.description}&lt;/p&gt;
+    &lt;/article&gt;
+  );
+}
+</code></pre>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.4. Performance: <code style="font-family: Consolas, monospace;">next/image</code>, <code style="font-family: Consolas, monospace;">next/dynamic</code> &amp; Lighthouse</h3>
+            <ul>
+<li><strong>Khái niệm:</strong> <strong>Google Lighthouse</strong> (trong Chrome DevTools) chấm 4 nhóm chỉ số: <strong>Performance, Accessibility, Best Practices, SEO</strong>. Mục tiêu của buổi: Performance &gt; 85, SEO &gt; 90.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">next/image</code> tự resize theo thiết bị, lazy load ảnh ngoài màn hình, chuyển sang WebP (thêm AVIF qua <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">images.formats</code>). Thuộc tính <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">width</code>/<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">height</code> giữ chỗ trước nên trang không bị nhảy bố cục (<strong>CLS – Cumulative Layout Shift</strong>).</li>
+<li>Ảnh từ domain backend phải khai báo trong <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">images.remotePatterns</code>, nếu không <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">next/image</code> báo lỗi.</li>
+<li>Component nặng (sơ đồ chọn ghế, biểu đồ Admin) nên lazy load bằng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">next/dynamic</code>. Tùy chọn <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">ssr: false</code> chỉ dùng được trong Client Component.</li>
+<li>Chạy Lighthouse trên <strong>link Vercel Live</strong> trong cửa sổ ẩn danh để extension không làm sai kết quả.</li>
+</ul>
+</li>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #fd7e14; border-radius: 0 8px 8px 0; color: #212529;">
+<p>Trang chi tiết sự kiện tải ngay cả component Seat Picker dù người dùng chưa bấm &quot;Chọn ghế&quot;. Chuyển sang <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">dynamic()</code> kèm <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Skeleton</code>, phần JavaScript tải ban đầu nhỏ lại và điểm Performance tăng rõ.</p>
+</blockquote>
+</li>
+</ul>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// next.config.ts
+import type { NextConfig } from &#39;next&#39;;
+
+const nextConfig: NextConfig = {
+  images: {
+    formats: [&#39;image/avif&#39;, &#39;image/webp&#39;],
+    remotePatterns: [
+      // Thay bằng domain backend thật của lớp
+      { protocol: &#39;https&#39;, hostname: &#39;your-backend.example.com&#39;, pathname: &#39;/uploads/**&#39; },
+    ],
+  },
+};
+
+export default nextConfig;
+</code></pre>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// components/booking/SeatPickerLazy.tsx
+&#39;use client&#39;;
+
+import dynamic from &#39;next/dynamic&#39;;
+import { Skeleton } from &#39;antd&#39;;
+
+const SeatPicker = dynamic(() =&gt; import(&#39;./SeatPicker&#39;), {
+  ssr: false,
+  loading: () =&gt; &lt;Skeleton active paragraph={{ rows: 6 }} /&gt;,
+});
+
+export default function SeatPickerLazy({ eventId }: { eventId: string }) {
+  return &lt;SeatPicker eventId={eventId} /&gt;;
+}
+</code></pre>
+<table style="width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 14px;">
+<thead>
+<tr>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Vấn đề Lighthouse báo</th>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Hướng xử lý trong Smart Event Hub</th>
+</tr>
+</thead>
+<tbody><tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Ảnh quá lớn, sai định dạng</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Thay <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&lt;img&gt;</code> bằng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">next/image</code>, đặt <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">sizes</code> đúng</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">LCP chậm (banner tải muộn)</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Thêm <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">priority</code> cho ảnh banner đầu trang</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Layout Shift (CLS)</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Khai báo <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">width</code>/<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">height</code>, dùng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">next/font</code>, giữ chỗ bằng Skeleton</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">JavaScript ban đầu nặng</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Lazy load component nặng bằng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">next/dynamic</code></td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">SEO thiếu description/title</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Bổ sung <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">metadata</code> và <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">generateMetadata</code></td>
+</tr>
+</tbody></table>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.5. Vibe Coding – Prompt mẫu &amp; cách kiểm duyệt code AI</h3>
+            <pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">Hướng dẫn tôi cách viết hàm `generateMetadata` trong Next.js App Router cho trang Dynamic Route `/events/[id]/page.tsx`.
+Yêu cầu:
+1. Gọi API `getEventById(id)` lấy thông tin sự kiện.
+2. Trả về object Metadata gồm: `title`, `description`, `openGraph` (title, description, images chứa URL ảnh sự kiện).
+3. Xử lý trường hợp không tìm thấy sự kiện thì trả về fallback metadata tiêu chuẩn.
+Lưu ý: dự án dùng Next.js 15, `params` là Promise.
+</code></pre>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">Tôi gặp lỗi Build Error trên Vercel khi Deploy dự án Next.js TypeScript:
+[Dán đoạn log lỗi Vercel Build Error vào đây]
+
+Hãy phân tích nguyên nhân lỗi và hướng dẫn từng bước cách sửa lỗi trên tệp mã nguồn hoặc cấu hình Vercel Settings.
+</code></pre>
+<p><strong>Checklist kiểm duyệt code AI:</strong></p>
+<ul>
+<li><strong>Phiên bản Next.js:</strong> AI hay sinh <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">params.id</code> theo kiểu Next.js 14. Bắt buộc sửa thành <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">const { id } = await params;</code>.</li>
+<li><strong>Bảo mật:</strong> Không có secret nào nằm trong biến <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">NEXT_PUBLIC_</code>; không commit <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">.env.local</code>.</li>
+<li><strong>Fallback:</strong> <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">generateMetadata</code> có xử lý sự kiện không tồn tại; trang gọi <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">notFound()</code>.</li>
+<li><strong>Ảnh:</strong> Mọi <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&lt;img&gt;</code> đã đổi sang <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Image</code>; domain ảnh có trong <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">remotePatterns</code>; chỉ ảnh đầu trang dùng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">priority</code>.</li>
+<li><strong>Kiểm chứng:</strong> <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">npm run build</code> pass trên máy trước khi push; chạy lại Lighthouse sau mỗi lần sửa để xác nhận điểm thực sự tăng.</li>
+</ul>
+<blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #fd7e14; border-radius: 0 8px 8px 0; color: #212529;">
+<p><strong>Đừng tin &quot;điểm tưởng tượng&quot;:</strong> AI có thể nói &quot;sau khi sửa, điểm sẽ đạt 95&quot;. Con số duy nhất được ghi vào báo cáo là kết quả Lighthouse nhóm tự chạy trên link Vercel Live.</p>
+</blockquote>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">📌 Tóm tắt &amp; điểm cần nhớ</h3>
+            <ul>
+<li>🔹 <strong>CI/CD Vercel:</strong> Kết nối GitHub một lần, sau đó mỗi <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">git push</code> lên <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">main</code> tự động Build và Deploy; branch khác tạo bản Preview.</li>
+<li>🔹 <strong>Biến môi trường:</strong> Khai báo theo Development/Preview/Production; <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">NEXT_PUBLIC_</code> lộ ra trình duyệt và chỉ cập nhật sau khi Redeploy.</li>
+<li>🔹 <strong>Metadata API:</strong> <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">metadata</code> tĩnh cho layout, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">generateMetadata</code> cho trang động; Next.js 15 dùng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">const { id } = await params;</code>.</li>
+<li>🔹 <strong>Performance:</strong> <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">next/image</code> (resize, lazy load, WebP/AVIF, chống CLS), <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">next/font</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">next/dynamic</code> cho component nặng.</li>
+<li>🔹 <strong>Lighthouse là thước đo cuối:</strong> Mục tiêu Performance &gt; 85, SEO &gt; 90, đo trên link Vercel Live chứ không phải localhost.</li>
+</ul>
+        </div>
+    </div>
+</details>
+
+<details style="border: 1px solid #28a745; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #eafaf1; color: #28a745; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>💡 3. Hoạt động &amp; Thực hành trên lớp</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <p style="margin-top: 0;">Thực hiện các hoạt động sau để vận dụng kiến thức của buổi học:</p>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #28a745;">🧑‍💻 Thực hành trên lớp</h3>
+            <p>Buổi PBL 2 do Giảng viên mentor trực tiếp. Kết thúc buổi, mỗi nhóm phải có link Live hoạt động.</p>
+<table style="width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 14px;">
+<thead>
+<tr>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Phần</th>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Thời lượng</th>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Nhiệm vụ</th>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Output mong muốn</th>
+</tr>
+</thead>
+<tbody><tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Lý thuyết &amp; Thao tác mẫu</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">30&#39;</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">GV demo CI/CD Vercel, Environment Variables, Metadata API, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">next/image</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">next/font</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">next/dynamic</code></td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Nhóm nắm quy trình deploy và checklist SEO</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">PBL Phần 1 – SEO &amp; Metadata động</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">60&#39;</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Metadata tĩnh cho Root Layout; <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">generateMetadata</code> cho <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/events/[id]</code>; thay toàn bộ <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&lt;img&gt;</code> bằng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Image</code></td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Link chia sẻ Zalo/Facebook hiện đúng ảnh và tiêu đề; ảnh tối ưu WebP/AVIF</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">PBL Phần 2 – Deploy Vercel &amp; biến môi trường</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">60&#39;</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Push <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">main</code>, kết nối repo với Vercel, khai báo <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">NEXT_PUBLIC_API_URL</code>, xử lý Build Fail</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Domain dạng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">smart-event-hub.vercel.app</code> chạy ổn định; API, LocalStorage hoạt động trên Live</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">PBL Phần 3 – Audit Lighthouse</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">60&#39;</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Chạy Lighthouse trên link Live, phân tích 4 chỉ số, dùng Vibe Coding sửa code</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Performance &gt; 85, SEO &gt; 90</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Tổng kết</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">15&#39;</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Tổng hợp link Live Web App của toàn bộ các nhóm, giao BTVN</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Danh sách link Vercel của cả lớp</td>
+</tr>
+</tbody></table>
+<ul>
+<li><strong>PBL Phần 1:</strong> Bắt đầu từ <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">app/layout.tsx</code>, sau đó đến <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">app/events/[id]/page.tsx</code>. Kiểm tra thẻ meta bằng View Page Source; sau khi deploy, dán link vào Zalo/Facebook để xem bản xem trước.</li>
+<li><strong>PBL Phần 2:</strong> Chạy <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">npm run build</code> trên máy trước. Nếu Vercel báo lỗi, copy log và dùng prompt &quot;Build Error&quot; ở mục 2.5, nhưng phải hiểu nguyên nhân trước khi sửa.</li>
+<li><strong>PBL Phần 3:</strong> Chụp ảnh kết quả Lighthouse <strong>trước</strong> và <strong>sau</strong> tối ưu để đưa vào báo cáo cuối kỳ. Chạy thêm kịch bản <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Test_Cases_Scenario</code> trên link Live.</li>
+</ul>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #28a745;">❓ Kiểm tra nhanh (Self-Assessment)</h3>
+            <p><strong>Câu 1:</strong> Trong Next.js 15, cách lấy <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">id</code> đúng bên trong <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">generateMetadata({ params })</code> là gì?</p>
+<ul>
+<li>A. <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">const id = params.id;</code></li>
+<li>B. <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">const { id } = useParams();</code></li>
+<li>C. <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">const { id } = await params;</code></li>
+<li>D. <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">const id = router.query.id;</code></li>
+</ul>
+<details style="margin: 6px 0 14px 0; padding: 8px 12px; background-color: #ffffff; border: 1px dashed #adb5bd; border-radius: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #495057;">👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> C<br>
+<b>Giải thích:</b> Từ Next.js 15, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">params</code> là Promise nên phải <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">await</code>. <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useParams</code> là hook của Client Component, còn <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">router.query</code> thuộc Pages Router cũ.
+</details>
+
+<p><strong>Câu 2:</strong> Nhóm đã sửa giá trị <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">NEXT_PUBLIC_API_URL</code> trên Vercel nhưng web vẫn gọi URL cũ. Nguyên nhân hợp lý nhất?</p>
+<ul>
+<li>A. Biến <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">NEXT_PUBLIC_</code> được gắn vào bundle lúc build, cần Redeploy</li>
+<li>B. Vercel không hỗ trợ biến môi trường cho Next.js</li>
+<li>C. Phải đổi tên biến thành <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">API_URL</code></li>
+<li>D. Trình duyệt chặn biến môi trường từ Vercel</li>
+</ul>
+<details style="margin: 6px 0 14px 0; padding: 8px 12px; background-color: #ffffff; border: 1px dashed #adb5bd; border-radius: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #495057;">👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> A<br>
+<b>Giải thích:</b> Giá trị biến công khai được thay thế trực tiếp vào code khi build, nên đổi giá trị phải build lại (Redeploy) mới có hiệu lực.
+</details>
+
+<p><strong>Câu 3:</strong> Vì sao dùng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Image</code> của <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">next/image</code> giúp cải thiện điểm Lighthouse Performance?</p>
+<ul>
+<li>A. Vì nó tải toàn bộ ảnh ngay khi mở trang</li>
+<li>B. Vì nó tự resize, lazy load, đổi sang WebP/AVIF và giữ chỗ chống Layout Shift</li>
+<li>C. Vì nó chuyển ảnh thành chuỗi Base64 trong HTML</li>
+<li>D. Vì nó tắt ảnh trên thiết bị di động</li>
+</ul>
+<details style="margin: 6px 0 14px 0; padding: 8px 12px; background-color: #ffffff; border: 1px dashed #adb5bd; border-radius: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #495057;">👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> B<br>
+<b>Giải thích:</b> Ảnh nhỏ hơn, đúng kích thước thiết bị và chỉ tải khi cần giúp tăng tốc; <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">width</code>/<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">height</code> giữ chỗ trước nên giảm CLS.
+</details>
+
+<p><strong>Câu 4:</strong> Build trên máy Windows chạy tốt nhưng Vercel báo <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Module not found: Can&#39;t resolve &#39;./eventCard&#39;</code>, trong khi file thật tên <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">EventCard.tsx</code>. Nên sửa thế nào?</p>
+<ul>
+<li>A. Tắt TypeScript trong <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">tsconfig.json</code></li>
+<li>B. Xóa thư mục <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">.next</code> trên máy rồi push lại</li>
+<li>C. Chuyển dự án sang Pages Router</li>
+<li>D. Sửa đường dẫn import cho đúng hoa/thường như tên file</li>
+</ul>
+<details style="margin: 6px 0 14px 0; padding: 8px 12px; background-color: #ffffff; border: 1px dashed #adb5bd; border-radius: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #495057;">👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> D<br>
+<b>Giải thích:</b> Môi trường build Linux của Vercel phân biệt chữ hoa/thường, còn Windows thì không. Import phải khớp chính xác tên file.
+</details>
+
+<blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #28a745; border-radius: 0 8px 8px 0; color: #212529;">
+<p>Bộ 10+ câu đầy đủ: Quiz Bài 11 trên LMS</p>
+</blockquote>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #28a745;">💬 Thảo luận &amp; 📤 Nộp bài</h3>
+            <ul>
+<li><strong>Chủ đề thảo luận Diễn đàn (Forum Discussion):</strong> Đăng ảnh Lighthouse trước và sau tối ưu của nhóm bạn. Thay đổi nào giúp tăng điểm nhiều nhất? Có gợi ý nào của AI làm điểm <strong>giảm</strong> hoặc không đổi không? Hãy giải thích vì sao.</li>
+<li><strong>Yêu cầu nộp bài (Bài tập về nhà):</strong><ul>
+<li>Viết <strong>Báo cáo Văn bản</strong> (Word/PDF) hoàn chỉnh theo mẫu quy định: mô tả kiến trúc dự án, sơ đồ Wireframe, mô tả API tích hợp, phân công công việc, ảnh chụp minh chứng Git commit và Link Vercel Live.</li>
+<li>Chuẩn bị <strong>Slide thuyết trình</strong> chuyên nghiệp cho Bài 12 – Thi Hackathon &amp; Final Showcase.</li>
+<li><strong>Output:</strong> file <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">BaoCao_SmartEventHub_&lt;TenNhom&gt;.pdf</code> (hoặc <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">.docx</code>) và slide sẵn sàng cho buổi bảo vệ cuối kỳ.</li>
+<li><strong>Hạn nộp:</strong> trước buổi học tiếp theo. Nộp file trên LMS, đồng thời đưa báo cáo vào thư mục <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">docs/</code> qua PR <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">docs/final-report</code>.</li>
+</ul>
+</li>
+</ul>
+        </div>
+    </div>
+</details>
+
+<details style="border: 1px solid #6f42c1; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #f3e5f5; color: #6f42c1; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>🆘 4. Góc trợ giúp và mở rộng</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <ul>
+<li><strong>📚 Tài liệu đọc &amp; tham khảo:</strong><ul>
+<li>Next.js Metadata Documentation: <a href="https://nextjs.org/docs/app/building-your-application/optimizing/metadata" target="_blank" rel="noopener noreferrer" style="color: #6f42c1;">https://nextjs.org/docs/app/building-your-application/optimizing/metadata</a></li>
+<li>Next.js – generateMetadata: <a href="https://nextjs.org/docs/app/api-reference/functions/generate-metadata" target="_blank" rel="noopener noreferrer" style="color: #6f42c1;">https://nextjs.org/docs/app/api-reference/functions/generate-metadata</a></li>
+<li>Next.js – Image Component: <a href="https://nextjs.org/docs/app/api-reference/components/image" target="_blank" rel="noopener noreferrer" style="color: #6f42c1;">https://nextjs.org/docs/app/api-reference/components/image</a></li>
+<li>Vercel – Environment Variables: <a href="https://vercel.com/docs/projects/environment-variables" target="_blank" rel="noopener noreferrer" style="color: #6f42c1;">https://vercel.com/docs/projects/environment-variables</a></li>
+<li>Google Lighthouse Audit Guide: <a href="https://developer.chrome.com/docs/lighthouse/overview/" target="_blank" rel="noopener noreferrer" style="color: #6f42c1;">https://developer.chrome.com/docs/lighthouse/overview/</a></li>
+</ul>
+</li>
+</ul>
+        <p><strong>Hỗ trợ kỹ thuật:</strong> Gặp lỗi cài đặt (Node.js, Git, Next.js) hoặc lỗi build, hãy đăng câu hỏi lên diễn đàn môn học kèm ảnh chụp lỗi, lệnh đã chạy và link repository. Giảng viên và bạn học sẽ phản hồi trước buổi học tiếp theo.</p>
+        <p><strong>Nguyên tắc Vibe Coding:</strong> AI sinh khung code, các bạn chịu trách nhiệm đọc hiểu, kiểm tra kiểu dữ liệu và sửa lỗi. Mọi đoạn code nộp lên đều có thể được hỏi phản biện.</p>
+    </div>
+</details>

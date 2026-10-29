@@ -1,0 +1,84 @@
+Trong SCSS, chỉ thị nào dùng để đóng gói một đoạn CSS lặp lại và tái sử dụng bằng @include?
+A. @mixin
+B. @extend
+C. @media
+D. @forward
+ANSWER: A
+
+Vì sao nên gom màu sắc, spacing, font size vào file styles/_variables.scss dùng chung cho cả nhóm?
+A. Để trình duyệt tải trang nhanh hơn nhờ ít file CSS
+B. Để thay đổi giao diện tập trung tại một nơi và giữ thống nhất giữa các thành viên
+C. Để CSS Modules không cần hash tên class nữa
+D. Để có thể bỏ qua bước biên dịch SCSS sang CSS
+ANSWER: B
+
+Với mixin respond-to viết theo min-width và map ('mobile': 640px, 'tablet': 768px, 'desktop': 1024px), lưới card hiển thị 1 cột ở style gốc thì cần làm gì để có 2 cột từ 640px và 3 cột từ 1024px?
+A. Viết style 3 cột ở gốc rồi dùng respond-to('mobile') để giảm xuống 1 cột
+B. Dùng respond-to('tablet') cho 2 cột và respond-to('mobile') cho 3 cột
+C. Dùng respond-to('mobile') cho 2 cột và respond-to('desktop') cho 3 cột
+D. Chỉ cần dùng respond-to('desktop') cho cả 2 cột và 3 cột
+ANSWER: C
+
+Theo quy ước BEM, tên class nào biểu diễn đúng một Modifier của block badge cho trạng thái đã kết thúc?
+A. badge__ended
+B. badge-ended__modifier
+C. ended_badge
+D. badge--ended
+ANSWER: D
+
+CSS Modules trong Next.js (file *.module.scss) chống xung đột CSS toàn cục bằng cách nào?
+A. Mã hóa (hash) tên class theo từng file để style chỉ có hiệu lực trong component import nó
+B. Tự động thêm !important vào mọi thuộc tính
+C. Chuyển toàn bộ class thành inline style khi build
+D. Chỉ cho phép mỗi dự án có một file SCSS duy nhất
+ANSWER: A
+
+Khai báo nào sau đây phải dùng type thay vì interface trong TypeScript?
+A. Props của component EventCard cần mở rộng bằng extends
+B. Tập giá trị trạng thái sự kiện 'UPCOMING' | 'ONGOING' | 'ENDED'
+C. Data Model EventItem gồm id, title, price
+D. Object cấu hình có các thuộc tính tùy chọn
+ANSWER: B
+
+AI sinh interface EventProps với dòng status: string. Vì sao nên sửa thành status: EventStatus với type EventStatus = 'UPCOMING' | 'ONGOING' | 'ENDED'?
+A. Vì kiểu string làm component chạy chậm hơn
+B. Vì Next.js không chấp nhận props kiểu string
+C. Vì union type giúp TypeScript báo lỗi ngay khi truyền giá trị sai như 'FINISHED'
+D. Vì union type tự động sinh màu cho badge
+ANSWER: C
+
+Hàm function getFirst<T>(items: T[]): T | undefined minh họa kỹ thuật TypeScript nào?
+A. Enum
+B. Type assertion
+C. Union literal
+D. Generics
+ANSWER: D
+
+Trong cấu trúc Prompt 3 bước, câu "Hãy đóng vai Chuyên gia Front-End Developer kinh nghiệm với Next.js và TypeScript" thuộc thành phần nào?
+A. Context
+B. Requirement
+C. Constraint
+D. Output
+ANSWER: A
+
+Mục đích của file .cursorrules đặt ở thư mục gốc dự án là gì?
+A. Cấu hình breakpoint cho SCSS
+B. Khai báo quy ước của nhóm (stack, không dùng any, dùng biến SCSS...) để AI luôn tuân theo khi sinh code
+C. Lưu lịch sử commit của các thành viên
+D. Thay thế file tsconfig.json
+ANSWER: B
+
+Theo nguyên tắc Vibe Coding của học phần, ai chịu trách nhiệm kiểm duyệt Type Safety, logic và refactor code?
+A. Công cụ AI, vì nó đã sinh ra code
+B. Giảng viên khi chấm bài
+C. Sinh viên, AI chỉ chịu trách nhiệm sinh khung code (boilerplate)
+D. Trình biên dịch TypeScript, sinh viên không cần đọc code
+ANSWER: C
+
+Trong Team Challenge, thành viên An hoàn thành file _variables.scss. Quy trình nào đúng với Branch Strategy main – dev – feature/name?
+A. Commit thẳng lên nhánh main để cả nhóm dùng ngay
+B. Gửi file qua Zalo cho từng thành viên tự copy
+C. Tạo nhánh dev từ feature rồi xóa nhánh main
+D. Push lên nhánh feature/an-design-tokens, mở Pull Request vào dev và nhờ thành viên khác review
+ANSWER: D
+

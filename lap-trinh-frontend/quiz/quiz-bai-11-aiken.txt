@@ -1,0 +1,84 @@
+Trong Next.js 15, cách lấy id đúng bên trong generateMetadata({ params }) là gì?
+A. const id = params.id;
+B. const { id } = useParams();
+C. const { id } = await params;
+D. const id = router.query.id;
+ANSWER: C
+
+Khi đã kết nối GitHub Repository với Vercel, thao tác nào kích hoạt quy trình Build & Deploy Production tự động?
+A. git push lên branch main
+B. Mở dự án trong VS Code
+C. Chạy npm run dev trên máy cá nhân
+D. Tạo issue mới trên GitHub
+ANSWER: A
+
+Vercel quản lý Environment Variables theo những môi trường nào?
+A. Local, Staging, Release
+B. Test, Beta, Live
+C. Client, Server, Edge
+D. Development, Preview, Production
+ANSWER: D
+
+Nhóm đã sửa giá trị NEXT_PUBLIC_API_URL trên Vercel nhưng web Live vẫn gọi URL cũ. Nguyên nhân hợp lý nhất là gì?
+A. Vercel không hỗ trợ biến môi trường cho Next.js
+B. Biến NEXT_PUBLIC_ được gắn vào bundle lúc build nên cần Redeploy
+C. Biến môi trường chỉ có tác dụng với Pages Router
+D. Phải xóa repo và tạo project Vercel mới
+ANSWER: B
+
+Vì sao không nên đặt API Key bí mật vào biến có tiền tố NEXT_PUBLIC_?
+A. Vì giá trị biến được đưa vào JavaScript gửi xuống trình duyệt, ai cũng xem được
+B. Vì Next.js giới hạn độ dài biến công khai
+C. Vì biến công khai chỉ đọc được ở Server Component
+D. Vì Vercel tự động xóa các biến công khai sau 24 giờ
+ANSWER: A
+
+Trong object metadata của Root Layout, khai báo title: { default: 'Smart Event Hub', template: '%s | Smart Event Hub' } có tác dụng gì?
+A. Bắt buộc mọi trang dùng chung một tiêu đề cố định
+B. Ẩn tiêu đề trang khỏi công cụ tìm kiếm
+C. Trang con khai báo title 'Đặt vé' sẽ hiển thị "Đặt vé | Smart Event Hub"
+D. Tạo tự động file sitemap.xml
+ANSWER: C
+
+Thuộc tính metadataBase trong Metadata API dùng để làm gì?
+A. Khai báo địa chỉ API Backend
+B. Chuyển các URL ảnh tương đối như /og-default.png thành URL tuyệt đối khi chia sẻ
+C. Thiết lập ngôn ngữ mặc định cho trang
+D. Bật chế độ lazy load cho toàn bộ ảnh
+ANSWER: B
+
+Trong generateMetadata của /events/[id], API trả về không tìm thấy sự kiện. Cách xử lý được khuyến nghị là gì?
+A. Ném lỗi để dừng toàn bộ quá trình build
+B. Trả về metadata rỗng {} và để trang trắng
+C. Chuyển hướng người dùng sang trang chủ bằng window.location
+D. Trả về fallback metadata, còn component trang gọi notFound() để hiện 404
+ANSWER: D
+
+Vì sao dùng Image của next/image giúp cải thiện điểm Lighthouse Performance?
+A. Tự resize theo thiết bị, lazy load, chuyển WebP/AVIF và giữ chỗ chống Layout Shift
+B. Chuyển ảnh thành chuỗi Base64 nhúng vào HTML
+C. Tải toàn bộ ảnh ngay khi mở trang để tránh chờ đợi
+D. Tự động tắt ảnh trên thiết bị di động
+ANSWER: A
+
+Ảnh banner lấy từ domain backend báo lỗi khi dùng next/image. Cần cấu hình gì trong next.config.ts?
+A. Đổi đuôi file ảnh sang .svg
+B. Thêm thuộc tính unoptimized cho mọi ảnh trong dự án
+C. Chuyển ảnh về thẻ img thô
+D. Khai báo domain đó trong images.remotePatterns
+ANSWER: D
+
+Component SeatPicker rất nặng và chỉ cần khi người dùng chọn ghế. Giải pháp tối ưu được giới thiệu trong bài là gì?
+A. Import SeatPicker trực tiếp trong Root Layout
+B. Đặt SeatPicker trong thẻ iframe
+C. Lazy load bằng next/dynamic kèm Skeleton trong một Client Component
+D. Chuyển SeatPicker thành file CSS
+ANSWER: C
+
+Build trên máy Windows chạy tốt nhưng Vercel báo "Module not found: Can't resolve './eventCard'" trong khi file thật tên EventCard.tsx. Nguyên nhân là gì?
+A. Vercel không hỗ trợ file .tsx
+B. Môi trường build Linux của Vercel phân biệt chữ hoa/thường trong đường dẫn import
+C. Thiếu biến môi trường NEXT_PUBLIC_API_URL
+D. Lighthouse chặn file có tên viết hoa
+ANSWER: B
+

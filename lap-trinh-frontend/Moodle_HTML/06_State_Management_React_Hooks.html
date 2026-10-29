@@ -1,0 +1,525 @@
+<details open="" style="border: 1px solid #007bff; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #e7f1ff; color: #007bff; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>📘 1. Tổng quan bài học</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <p style="margin-top: 0;"><strong>BÀI 06 - Logic &amp; State Management với React Hooks (5 tiết)</strong></p>
+        <p style="margin: 0 0 8px 0; color: #6c757d;">CHƯƠNG 3: GIAO DIỆN CHUYÊN NGHIỆP &amp; QUẢN LÝ TRẠNG THÁI</p>
+        <p><strong>Thời lượng:</strong> 5 tiết (225 phút) · <strong>Hình thức:</strong> Lớp học đảo ngược · <strong>Chuẩn đầu ra:</strong> PI 2.3 (CLO2)<br><strong>Dự án xuyên suốt:</strong> Smart Event Hub – Phát triển logic Đặt vé, Giỏ hàng, Bộ lọc sự kiện và Sơ đồ chọn ghế tương tác (Interactive Seat Picker).</p>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #f3f8ff; border: 1px solid #cfe2ff; border-radius: 8px;">
+            <p>🎯 <strong>MỤC TIÊU BÀI HỌC (Learning Objectives)</strong><br>Sau khi hoàn thành bài học này, người học có thể:</p>
+<ul>
+<li><strong>[Bloom 1/2 - Kiến thức]:</strong> Giải thích được mục đích của <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useState</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useReducer</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useEffect</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useMemo</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useCallback</code> và khi nào một component cần chỉ thị <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&#39;use client&#39;</code>.</li>
+<li><strong>[Bloom 3/4 - Kỹ năng]:</strong> Xây dựng được logic chọn vé, tính tổng tiền, bộ lọc có Debounce và sơ đồ chọn ghế bằng React Hooks với TypeScript; áp dụng State Lifting để chia sẻ dữ liệu giữa các component.</li>
+<li><strong>[Bloom 5/6 - Năng lực]:</strong> Phát hiện và sửa lỗi vòng lặp re-render vô tận, Memory Leak (có hỗ trợ của AI); tích hợp toàn bộ tính năng thành bản demo 50% cho kiểm tra giữa kỳ.</li>
+</ul>
+        </div>
+        <p><strong>📝 Đặt vấn đề &amp; dẫn nhập</strong></p>
+        <p>Đến Buổi 5, Smart Event Hub đã đẹp nhưng vẫn &quot;đứng im&quot;: bấm nút tăng số vé không có gì thay đổi, ô tìm kiếm chưa lọc được sự kiện, sơ đồ ghế chỉ là một bức ảnh. Người dùng thật sẽ chọn 2 vé VIP, đổi ý giảm còn 1, thêm 1 vé Early Bird, rồi chọn ghế C4, C5 – và mong tổng tiền nhảy đúng ngay lập tức.</p>
+<p>Tất cả những thay đổi đó chính là <strong>state</strong>. Câu hỏi đặt ra cho buổi hôm nay: <strong>state nên đặt ở component nào, cập nhật bằng hook nào, và làm sao để giao diện phản hồi tức thì mà không bị re-render thừa hay lặp vô tận?</strong></p>
+<blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #007bff; border-radius: 0 8px 8px 0; color: #212529;">
+<p>🧭 <strong>Trước giờ học (Flipped Classroom):</strong> Xem video/slide về State Lifecycle, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useState</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useEffect</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useCallback</code> và chỉ thị <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&quot;use client&quot;</code>. Đọc bài &quot;You Might Not Need an Effect&quot; (link ở mục 5). Làm quiz 5–10 câu trên LMS. Mang theo dự án đã tích hợp Ant Design từ Buổi 5.</p>
+</blockquote>
+    </div>
+</details>
+
+<details style="border: 1px solid #fd7e14; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #fff5eb; color: #fd7e14; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>📚 2. Học liệu chính</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.1. Khi nào cần <code style="font-family: Consolas, monospace;">&#39;use client&#39;</code>?</h3>
+            <ul>
+<li><strong>Khái niệm:</strong> Trong App Router, mọi component mặc định là Server Component. Chỉ thị <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&#39;use client&#39;</code> ở dòng đầu file đánh dấu <strong>ranh giới</strong>: file đó và mọi thứ nó import sẽ được gửi xuống trình duyệt.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li>Bắt buộc <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&#39;use client&#39;</code> khi component dùng hook (<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useState</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useEffect</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useReducer</code>…), sự kiện (<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">onClick</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">onChange</code>) hoặc Browser API (<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">window</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">localStorage</code>).</li>
+<li>Đặt ranh giới <strong>càng sâu càng tốt</strong> (ở component lá). Trang chi tiết sự kiện vẫn là Server Component, chỉ khối chọn vé là Client Component.</li>
+<li>File custom hook (<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">hooks/useDebounce.ts</code>) không cần <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&#39;use client&#39;</code> vì nó chỉ được gọi bên trong Client Component.</li>
+</ul>
+</li>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #fd7e14; border-radius: 0 8px 8px 0; color: #212529;">
+<p>Trang <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/events/[id]</code> hiển thị tiêu đề, mô tả, ảnh (tĩnh – Server Component, tốt cho SEO) và nhúng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&lt;TicketQuantitySelector /&gt;</code> (tương tác – Client Component). Người dùng nhận HTML nhanh, chỉ phần chọn vé tải thêm JavaScript.</p>
+</blockquote>
+</li>
+</ul>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.2. <code style="font-family: Consolas, monospace;">useState</code> và <code style="font-family: Consolas, monospace;">useReducer</code>: quản lý state cục bộ</h3>
+            <ul>
+<li><strong>Khái niệm:</strong> <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useState</code> phù hợp state đơn giản (số, chuỗi, mảng nhỏ). <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useReducer</code> phù hợp khi state có <strong>nhiều hành động phụ thuộc lẫn nhau</strong>, ví dụ giỏ hàng nhiều loại vé.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li>Luôn cập nhật <strong>bất biến</strong> (immutable): tạo mảng/đối tượng mới bằng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">map</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">filter</code>, spread, không sửa trực tiếp.</li>
+<li>Dùng dạng hàm <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">setX(prev =&gt; ...)</code> khi giá trị mới phụ thuộc giá trị cũ.</li>
+<li>Với <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useReducer</code>, khai báo hành động bằng <strong>discriminated union</strong> để TypeScript kiểm tra <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">payload</code> theo từng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">type</code>.</li>
+</ul>
+</li>
+</ul>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// features/cart/cartReducer.ts
+export interface CartItem {
+  id: string;
+  name: string;
+  price: number;
+  quantity: number;
+}
+
+export type CartAction =
+  | { type: &#39;ADD_ITEM&#39;; payload: CartItem }
+  | { type: &#39;UPDATE_QUANTITY&#39;; payload: { id: string; quantity: number } }
+  | { type: &#39;REMOVE_ITEM&#39;; payload: { id: string } }
+  | { type: &#39;CLEAR&#39; };
+
+export function cartReducer(state: CartItem[], action: CartAction): CartItem[] {
+  switch (action.type) {
+    case &#39;ADD_ITEM&#39;: {
+      const existing = state.find((item) =&gt; item.id === action.payload.id);
+      if (existing) {
+        return state.map((item) =&gt;
+          item.id === action.payload.id ? { ...item, quantity: item.quantity + action.payload.quantity } : item,
+        );
+      }
+      return [...state, action.payload];
+    }
+    case &#39;UPDATE_QUANTITY&#39;:
+      return state.map((item) =&gt;
+        item.id === action.payload.id ? { ...item, quantity: Math.max(0, action.payload.quantity) } : item,
+      );
+    case &#39;REMOVE_ITEM&#39;:
+      return state.filter((item) =&gt; item.id !== action.payload.id);
+    case &#39;CLEAR&#39;:
+      return [];
+  }
+}
+
+// Trong Client Component:
+// const [cart, dispatch] = useReducer(cartReducer, []);
+// dispatch({ type: &#39;ADD_ITEM&#39;, payload: { id: &#39;vip&#39;, name: &#39;Vé VIP&#39;, price: 1000000, quantity: 1 } });
+</code></pre>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.3. <code style="font-family: Consolas, monospace;">useEffect</code>: Side Effect, Dependency Array và Cleanup</h3>
+            <ul>
+<li><strong>Khái niệm:</strong> <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useEffect</code> dùng để <strong>đồng bộ component với hệ thống bên ngoài</strong>: hẹn giờ, đăng ký sự kiện <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">window</code>, gọi API, WebSocket. Nó chạy sau khi render.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li>Mảng phụ thuộc quyết định khi nào effect chạy lại: thiếu phụ thuộc → dữ liệu cũ (stale); đưa vào một object/hàm tạo mới mỗi lần render → chạy liên tục.</li>
+<li><strong>Vòng lặp vô tận</strong> xảy ra khi effect gọi <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">setState</code> làm thay đổi chính phụ thuộc của nó.</li>
+<li><strong>Memory Leak</strong> xảy ra khi effect tạo <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">setInterval</code>, listener hay request mà không dọn dẹp. Luôn trả về hàm cleanup.</li>
+<li>Không dùng effect để tính dữ liệu suy ra được từ props/state – tính trực tiếp khi render.</li>
+</ul>
+</li>
+</ul>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// ❌ Sai: effect dùng để tính toán + lặp vô tận khi filters là object mới mỗi render
+const [visible, setVisible] = useState&lt;EventItem[]&gt;([]);
+useEffect(() =&gt; {
+  setVisible(events.filter((e) =&gt; e.price &lt;= filters.maxPrice));
+}, [events, filters]);
+
+// ✅ Đúng: tính trực tiếp khi render (bọc useMemo nếu danh sách lớn)
+const visibleEvents = events.filter((e) =&gt; e.price &lt;= filters.maxPrice);
+</code></pre>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// ✅ Effect có cleanup: đếm ngược thời gian giữ ghế 10 phút
+useEffect(() =&gt; {
+  const timer = setInterval(() =&gt; {
+    setSecondsLeft((s) =&gt; (s &gt; 0 ? s - 1 : 0));
+  }, 1000);
+  return () =&gt; clearInterval(timer); // dọn dẹp khi rời trang → không rò rỉ bộ nhớ
+}, []);
+</code></pre>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.4. <code style="font-family: Consolas, monospace;">useMemo</code>, <code style="font-family: Consolas, monospace;">useCallback</code> và tối ưu re-render</h3>
+            <ul>
+<li><strong>Khái niệm:</strong> <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useMemo</code> ghi nhớ <strong>giá trị</strong> tính toán; <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useCallback</code> ghi nhớ <strong>tham chiếu hàm</strong>. Cả hai chỉ tính lại khi phụ thuộc thay đổi.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useMemo</code> dùng cho phép tính tốn kém (lọc/sắp xếp hàng nghìn sự kiện, tổng tiền giỏ hàng lớn).</li>
+<li><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useCallback</code> có ý nghĩa khi hàm được truyền xuống component con bọc <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">memo</code>, hoặc nằm trong mảng phụ thuộc của <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useEffect</code> ở component con.</li>
+<li>Đừng bọc mọi thứ: phép tính rẻ không cần <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useMemo</code>. Bài thực hành dùng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useMemo</code> cho tổng tiền để luyện cú pháp.</li>
+</ul>
+</li>
+</ul>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// Tối ưu tính tổng tiền giỏ hàng
+const totalAmount = useMemo(() =&gt; {
+  return cartItems.reduce((sum, item) =&gt; sum + item.price * item.quantity, 0);
+}, [cartItems]);
+
+// Hàm ổn định truyền cho component con – tránh effect con chạy lại liên tục
+const handleFilterChange = useCallback((next: EventFilters) =&gt; {
+  setFilters(next);
+}, []);
+</code></pre>
+<p>Component chọn vé hoàn chỉnh (Guided Practice):</p>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// components/features/TicketQuantitySelector.tsx
+&#39;use client&#39;;
+
+import { useMemo, useState } from &#39;react&#39;;
+import { Button } from &#39;antd&#39;;
+
+interface TicketOption {
+  id: string;
+  name: string;
+  price: number;
+  quantity: number;
+  max: number; // số vé còn lại cho phép mua
+}
+
+const INITIAL_TICKETS: TicketOption[] = [
+  { id: &#39;early&#39;, name: &#39;Early Bird&#39;, price: 350000, quantity: 0, max: 10 },
+  { id: &#39;vip&#39;, name: &#39;Vé VIP&#39;, price: 1000000, quantity: 0, max: 5 },
+  { id: &#39;svip&#39;, name: &#39;Vé SVIP&#39;, price: 2500000, quantity: 0, max: 2 },
+];
+
+const vnd = new Intl.NumberFormat(&#39;vi-VN&#39;, { style: &#39;currency&#39;, currency: &#39;VND&#39; });
+
+export default function TicketQuantitySelector() {
+  const [tickets, setTickets] = useState&lt;TicketOption[]&gt;(INITIAL_TICKETS);
+
+  const handleIncrease = (id: string) =&gt;
+    setTickets((prev) =&gt; prev.map((t) =&gt; (t.id === id &amp;&amp; t.quantity &lt; t.max ? { ...t, quantity: t.quantity + 1 } : t)));
+
+  const handleDecrease = (id: string) =&gt;
+    setTickets((prev) =&gt; prev.map((t) =&gt; (t.id === id &amp;&amp; t.quantity &gt; 0 ? { ...t, quantity: t.quantity - 1 } : t)));
+
+  const { totalAmount, totalTickets } = useMemo(
+    () =&gt; ({
+      totalAmount: tickets.reduce((sum, t) =&gt; sum + t.price * t.quantity, 0),
+      totalTickets: tickets.reduce((sum, t) =&gt; sum + t.quantity, 0),
+    }),
+    [tickets],
+  );
+
+  return (
+    &lt;section&gt;
+      {tickets.map((t) =&gt; (
+        &lt;div key={t.id} className=&quot;ticket-row&quot;&gt;
+          &lt;span&gt;{t.name} – {vnd.format(t.price)}&lt;/span&gt;
+          &lt;Button onClick={() =&gt; handleDecrease(t.id)} disabled={t.quantity === 0}&gt;−&lt;/Button&gt;
+          &lt;strong&gt;{t.quantity}&lt;/strong&gt;
+          &lt;Button onClick={() =&gt; handleIncrease(t.id)} disabled={t.quantity === t.max}&gt;+&lt;/Button&gt;
+        &lt;/div&gt;
+      ))}
+      &lt;p&gt;Tổng: {totalTickets} vé · {vnd.format(totalAmount)}&lt;/p&gt;
+      &lt;Button type=&quot;primary&quot; disabled={totalTickets === 0}&gt;Thanh toán&lt;/Button&gt;
+    &lt;/section&gt;
+  );
+}
+</code></pre>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.5. State Lifting và kỹ thuật Debounce</h3>
+            <ul>
+<li><strong>Khái niệm:</strong> <strong>State Lifting</strong> là chuyển state lên component cha chung gần nhất khi hai hay nhiều component con cần cùng dữ liệu. <strong>Debounce</strong> là trì hoãn cập nhật cho tới khi người dùng ngừng gõ một khoảng thời gian.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li>Sơ đồ ghế và khung tổng tiền là hai component anh em → state <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">selectedSeats</code> phải nằm ở cha, con nhận dữ liệu qua props và báo thay đổi qua callback.</li>
+<li>Debounce 200ms cho ô tìm kiếm: gõ &quot;concert&quot; chỉ kích hoạt lọc 1 lần thay vì 7 lần.</li>
+</ul>
+</li>
+</ul>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// hooks/useDebounce.ts
+import { useEffect, useState } from &#39;react&#39;;
+
+export function useDebounce&lt;T&gt;(value: T, delay: number): T {
+  const [debouncedValue, setDebouncedValue] = useState(value);
+  useEffect(() =&gt; {
+    const handler = setTimeout(() =&gt; setDebouncedValue(value), delay);
+    return () =&gt; clearTimeout(handler);
+  }, [value, delay]);
+  return debouncedValue;
+}
+</code></pre>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// components/features/EventFilterBar.tsx
+&#39;use client&#39;;
+
+import { useEffect, useState } from &#39;react&#39;;
+import { useDebounce } from &#39;@/hooks/useDebounce&#39;;
+
+export type PriceRange = &#39;all&#39; | &#39;free&#39; | &#39;under-500k&#39; | &#39;over-500k&#39;;
+
+export interface EventFilters {
+  keyword: string;
+  priceRange: PriceRange;
+  date: string; // &#39;YYYY-MM-DD&#39; hoặc &#39;&#39;
+}
+
+interface EventFilterBarProps {
+  onFilterChange: (filters: EventFilters) =&gt; void; // cha phải truyền hàm ổn định (useCallback/setState)
+}
+
+export default function EventFilterBar({ onFilterChange }: EventFilterBarProps) {
+  const [searchKeyword, setSearchKeyword] = useState(&#39;&#39;);
+  const [priceRange, setPriceRange] = useState&lt;PriceRange&gt;(&#39;all&#39;);
+  const [selectedDate, setSelectedDate] = useState(&#39;&#39;);
+  const debouncedKeyword = useDebounce(searchKeyword, 200);
+
+  useEffect(() =&gt; {
+    onFilterChange({ keyword: debouncedKeyword, priceRange, date: selectedDate });
+  }, [debouncedKeyword, priceRange, selectedDate, onFilterChange]);
+
+  return (
+    &lt;div className=&quot;filter-bar&quot;&gt;
+      &lt;input value={searchKeyword} onChange={(e) =&gt; setSearchKeyword(e.target.value)} placeholder=&quot;Tìm sự kiện...&quot; /&gt;
+      &lt;select value={priceRange} onChange={(e) =&gt; setPriceRange(e.target.value as PriceRange)}&gt;
+        &lt;option value=&quot;all&quot;&gt;Mọi mức giá&lt;/option&gt;
+        &lt;option value=&quot;free&quot;&gt;Miễn phí&lt;/option&gt;
+        &lt;option value=&quot;under-500k&quot;&gt;Dưới 500.000 ₫&lt;/option&gt;
+        &lt;option value=&quot;over-500k&quot;&gt;Từ 500.000 ₫&lt;/option&gt;
+      &lt;/select&gt;
+      &lt;input type=&quot;date&quot; value={selectedDate} onChange={(e) =&gt; setSelectedDate(e.target.value)} /&gt;
+    &lt;/div&gt;
+  );
+}
+</code></pre>
+<blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #fd7e14; border-radius: 0 8px 8px 0; color: #212529;">
+<p><strong>Bẫy thường gặp:</strong> Nếu component cha truyền <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">onFilterChange={(f) =&gt; setFilters(f)}</code> (hàm mới mỗi lần render), effect trong <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">EventFilterBar</code> sẽ chạy lại sau mỗi lần cha render, cha lại <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">setFilters</code> một object mới… và vòng lặp không dừng. Hãy truyền thẳng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">setFilters</code> hoặc bọc bằng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useCallback</code>.</p>
+</blockquote>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.6. Vibe Coding – Prompt mẫu &amp; cách kiểm duyệt code AI</h3>
+            <pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">Hãy tạo một Client Component TicketQuantitySelector.tsx trong Next.js 15 App Router bằng React Hooks và TypeScript.
+
+Yêu cầu:
+1. State chứa danh sách loại vé: [{ id: &#39;1&#39;, name: &#39;Vé VIP&#39;, price: 1000000, quantity: 0, max: 5 }].
+2. Viết các hàm handleIncrease(id) và handleDecrease(id), không cho số lượng &lt; 0 hoặc &gt; max.
+3. Sử dụng useMemo để tính toán totalAmount và totalTickets.
+4. Giao diện hiển thị rõ ràng, kèm nút &quot;Thanh toán&quot; bị disable nếu totalTickets === 0.
+</code></pre>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">Tạo giúp tôi Component EventFilterBar.tsx tích hợp Debounce cho ô Input tìm kiếm trong React/Next.js.
+- Quản lý các State: searchKeyword, priceRange, selectedDate.
+- Sử dụng Custom Hook useDebounce (200ms) hoặc lodash.debounce cho ô nhập từ khóa.
+- Trả kết quả lọc về cho Component cha thông qua callback onFilterChange(filters).
+- Chỉ ra component cha cần truyền callback thế nào để không gây vòng lặp re-render.
+</code></pre>
+<p>Prompt dùng AI để debug (dán kèm đoạn code lỗi):</p>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">Component React dưới đây bị re-render liên tục và console báo &quot;Maximum update depth exceeded&quot;.
+Hãy: (1) chỉ ra dòng gây vòng lặp và giải thích nguyên nhân theo dependency array,
+(2) kiểm tra có setInterval/listener/fetch nào thiếu cleanup gây memory leak không,
+(3) đề xuất bản sửa tối thiểu, giữ nguyên TypeScript type, không dùng any,
+không tắt cảnh báo eslint react-hooks/exhaustive-deps.
+</code></pre>
+<blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #fd7e14; border-radius: 0 8px 8px 0; color: #212529;">
+<p><strong>Checklist kiểm duyệt code AI (Hooks):</strong></p>
+<ol>
+<li>File dùng hook/sự kiện đã có <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&#39;use client&#39;</code> ở dòng đầu tiên chưa? Ranh giới có đặt ở component lá không?</li>
+<li>Cập nhật state có bất biến không (không <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">push</code>, không gán <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">state.x = ...</code>)?</li>
+<li>Mọi <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useEffect</code> có đủ phụ thuộc, có cleanup cho timer/listener/request?</li>
+<li>Có effect nào chỉ để tính dữ liệu suy ra từ state/props? Nếu có, bỏ effect.</li>
+<li>AI có tắt cảnh báo bằng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">// eslint-disable-next-line</code> không? Không chấp nhận cách này.</li>
+<li>Thử các biên: giảm dưới 0, vượt <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">max</code>, chọn ghế thứ 7, gõ nhanh vào ô tìm kiếm.</li>
+</ol>
+</blockquote>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">📌 Tóm tắt &amp; điểm cần nhớ</h3>
+            <ul>
+<li>🔹 <strong><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&#39;use client&#39;</code> là ranh giới:</strong> chỉ thêm khi cần hook, sự kiện hoặc Browser API; đặt ở component lá để trang vẫn là Server Component.</li>
+<li>🔹 <strong><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useState</code> vs <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useReducer</code>:</strong> state đơn giản dùng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useState</code>; nhiều hành động liên quan (giỏ hàng) dùng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useReducer</code> với discriminated union. Luôn cập nhật bất biến.</li>
+<li>🔹 <strong><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useEffect</code> chỉ để đồng bộ với bên ngoài:</strong> khai báo đủ phụ thuộc, luôn cleanup timer/listener; dữ liệu suy ra được thì tính khi render.</li>
+<li>🔹 <strong><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useMemo</code> ghi nhớ giá trị, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useCallback</code> ghi nhớ hàm:</strong> dùng khi có lý do (tính toán nặng, hàm truyền xuống con/effect), không bọc tràn lan.</li>
+<li>🔹 <strong>State Lifting &amp; Debounce:</strong> dữ liệu dùng chung đặt ở cha gần nhất; debounce 200ms cho ô tìm kiếm để giao diện không giật.</li>
+<li>🔹 <strong>AI debug có kiểm soát:</strong> yêu cầu AI giải thích nguyên nhân theo dependency array, không chấp nhận giải pháp tắt cảnh báo ESLint.</li>
+</ul>
+        </div>
+    </div>
+</details>
+
+<details style="border: 1px solid #28a745; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #eafaf1; color: #28a745; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>💡 3. Hoạt động &amp; Thực hành trên lớp</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <p style="margin-top: 0;">Thực hiện các hoạt động sau để vận dụng kiến thức của buổi học:</p>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #28a745;">🧑‍💻 Thực hành trên lớp</h3>
+            <table style="width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 14px;">
+<thead>
+<tr>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Phần</th>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Thời lượng</th>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Nhiệm vụ</th>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Output mong muốn</th>
+</tr>
+</thead>
+<tbody><tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Guided Practice</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">45&#39;</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;"><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">TicketQuantitySelector.tsx</code> (Early Bird, VIP, SVIP), tổng tiền bằng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useMemo</code></td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Tăng/giảm cập nhật tổng tiền và số vé tức thì; không dưới 0, không vượt số vé còn lại</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Unguided Practice</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">45&#39;</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;"><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">EventFilterBar.tsx</code>: từ khóa, khoảng giá, ngày; debounce 200ms; callback <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">onFilterChange</code></td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Bộ lọc mượt, gõ phím không giật lag</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Team Challenge</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">60&#39;</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;"><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">SeatMatrixPicker.tsx</code> 5 hàng × 8 cột, 3 trạng thái ghế, tối đa 6 ghế/lần</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Sơ đồ đổi màu tức thì khi click, hiển thị danh sách ghế và thành tiền</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Tổng kết</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">15&#39;</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Chữa lỗi re-render/memory leak điển hình, hướng dẫn chuẩn bị giữa kỳ</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Checklist chuẩn bị Buổi 7</td>
+</tr>
+</tbody></table>
+<p><strong>Guided (45&#39;):</strong> Tạo Client Component quản lý danh sách loại vé, viết <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">handleIncrease</code>/<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">handleDecrease</code>, tính <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">totalAmount</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">totalTickets</code> bằng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useMemo</code>, khóa nút &quot;Thanh toán&quot; khi chưa chọn vé.</p>
+<p><strong>Unguided (45&#39;):</strong> Dựng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">EventFilterBar</code> với 3 state, áp dụng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useDebounce</code> cho ô tìm kiếm, gửi bộ lọc lên cha. Component cha dùng bộ lọc để tính danh sách sự kiện hiển thị (tính trực tiếp, không cần effect).</p>
+<p><strong>Team Challenge (60&#39;):</strong> Sơ đồ ghế 5 hàng (A–E) × 8 cột với trạng thái Ghế trống, Ghế đang chọn, Ghế đã bán. Click để chọn/hủy, cập nhật danh sách (<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">[&#39;A1&#39;, &#39;A2&#39;]</code>) và thành tiền; giới hạn 6 ghế. Áp dụng State Lifting: cha giữ <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">selectedSeats</code>, sơ đồ và khung tổng tiền là hai con.</p>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// components/features/SeatBooking.tsx – khung gợi ý cho nhóm
+&#39;use client&#39;;
+
+import { useState } from &#39;react&#39;;
+
+const ROWS = [&#39;A&#39;, &#39;B&#39;, &#39;C&#39;, &#39;D&#39;, &#39;E&#39;] as const;
+const COLS = 8;
+const MAX_SEATS = 6;
+const SEAT_PRICE = 300000;
+const SOLD_SEATS = new Set([&#39;A3&#39;, &#39;A4&#39;, &#39;C5&#39;, &#39;D1&#39;, &#39;E8&#39;]);
+
+type SeatStatus = &#39;available&#39; | &#39;selected&#39; | &#39;sold&#39;;
+
+function SeatMatrixPicker({ selectedSeats, onToggle }: { selectedSeats: string[]; onToggle: (id: string) =&gt; void }) {
+  const getStatus = (id: string): SeatStatus =&gt;
+    SOLD_SEATS.has(id) ? &#39;sold&#39; : selectedSeats.includes(id) ? &#39;selected&#39; : &#39;available&#39;;
+
+  return (
+    &lt;div className=&quot;seat-grid&quot;&gt;
+      {ROWS.map((row) =&gt;
+        Array.from({ length: COLS }, (_, i) =&gt; {
+          const id = `${row}${i + 1}`;
+          const status = getStatus(id);
+          return (
+            &lt;button key={id} type=&quot;button&quot; className={`seat seat--${status}`}
+              disabled={status === &#39;sold&#39;} onClick={() =&gt; onToggle(id)}&gt;
+              {id}
+            &lt;/button&gt;
+          );
+        }),
+      )}
+    &lt;/div&gt;
+  );
+}
+
+export default function SeatBooking() {
+  const [selectedSeats, setSelectedSeats] = useState&lt;string[]&gt;([]);
+  const [warning, setWarning] = useState(&#39;&#39;);
+
+  const handleToggle = (id: string) =&gt; {
+    if (selectedSeats.includes(id)) {
+      setSelectedSeats(selectedSeats.filter((s) =&gt; s !== id));
+      setWarning(&#39;&#39;);
+    } else if (selectedSeats.length &gt;= MAX_SEATS) {
+      setWarning(`Mỗi lần chỉ được chọn tối đa ${MAX_SEATS} ghế.`);
+    } else {
+      setSelectedSeats([...selectedSeats, id]);
+      setWarning(&#39;&#39;);
+    }
+  };
+
+  return (
+    &lt;section&gt;
+      &lt;SeatMatrixPicker selectedSeats={selectedSeats} onToggle={handleToggle} /&gt;
+      &lt;p&gt;Ghế đã chọn: {selectedSeats.join(&#39;, &#39;) || &#39;chưa có&#39;}&lt;/p&gt;
+      &lt;p&gt;Thành tiền: {(selectedSeats.length * SEAT_PRICE).toLocaleString(&#39;vi-VN&#39;)} ₫&lt;/p&gt;
+      {warning &amp;&amp; &lt;p role=&quot;alert&quot;&gt;{warning}&lt;/p&gt;}
+    &lt;/section&gt;
+  );
+}
+</code></pre>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #28a745;">❓ Kiểm tra nhanh (Self-Assessment)</h3>
+            <p><strong>Câu 1:</strong> Sự khác biệt về mục đích giữa <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useMemo</code> và <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useCallback</code> là gì?</p>
+<ul>
+<li>A. <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useMemo</code> dùng cho Server Component, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useCallback</code> dùng cho Client Component</li>
+<li>B. <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useMemo</code> chạy trước render, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useCallback</code> chạy sau render</li>
+<li>C. <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useMemo</code> thay thế <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useState</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useCallback</code> thay thế <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useEffect</code></li>
+<li>D. <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useMemo</code> ghi nhớ giá trị tính toán, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useCallback</code> ghi nhớ tham chiếu hàm</li>
+</ul>
+<details style="margin: 6px 0 14px 0; padding: 8px 12px; background-color: #ffffff; border: 1px dashed #adb5bd; border-radius: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #495057;">👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> D<br>
+<b>Giải thích:</b> <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useMemo</code> trả về kết quả đã ghi nhớ (ví dụ tổng tiền); <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useCallback</code> trả về cùng một hàm giữa các lần render cho tới khi phụ thuộc đổi. Cả hai chỉ chạy trong Client Component.
+</details>
+
+<p><strong>Câu 2:</strong> Đoạn code <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useEffect(() =&gt; { setCount(count + 1); }, [count]);</code> gây ra vấn đề gì?</p>
+<ul>
+<li>A. Memory leak do thiếu cleanup</li>
+<li>B. Vòng lặp re-render vô tận vì effect thay đổi chính phụ thuộc của nó</li>
+<li>C. Effect không bao giờ chạy</li>
+<li>D. Lỗi biên dịch TypeScript</li>
+</ul>
+<details style="margin: 6px 0 14px 0; padding: 8px 12px; background-color: #ffffff; border: 1px dashed #adb5bd; border-radius: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #495057;">👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> B<br>
+<b>Giải thích:</b> Mỗi lần effect chạy, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">count</code> tăng → component render lại → <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">count</code> trong mảng phụ thuộc đổi → effect chạy tiếp, không có điểm dừng.
+</details>
+
+<p><strong>Câu 3:</strong> Sơ đồ chọn ghế và khung tổng tiền là hai component anh em cùng cần danh sách ghế đã chọn. Giải pháp phù hợp nhất ở mức bài học này là gì?</p>
+<ul>
+<li>A. Mỗi component giữ một bản <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useState</code> riêng và tự đồng bộ bằng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useEffect</code></li>
+<li>B. Lưu danh sách ghế vào biến toàn cục ngoài component</li>
+<li>C. Nâng state <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">selectedSeats</code> lên component cha chung và truyền xuống qua props/callback</li>
+<li>D. Đọc danh sách ghế từ DOM bằng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">document.querySelectorAll</code></li>
+</ul>
+<details style="margin: 6px 0 14px 0; padding: 8px 12px; background-color: #ffffff; border: 1px dashed #adb5bd; border-radius: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #495057;">👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> C<br>
+<b>Giải thích:</b> Đây là State Lifting: một nguồn dữ liệu duy nhất ở cha, hai con luôn hiển thị nhất quán. Đồng bộ hai state bằng effect dễ lệch dữ liệu và render thừa.
+</details>
+
+<p><strong>Câu 4:</strong> Trường hợp nào KHÔNG cần thêm <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&#39;use client&#39;</code>?</p>
+<ul>
+<li>A. Component hiển thị tiêu đề và mô tả sự kiện từ props, không có tương tác</li>
+<li>B. Component có nút <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">onClick</code> tăng số lượng vé</li>
+<li>C. Component đọc <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">localStorage</code> để lấy danh sách yêu thích</li>
+<li>D. Component dùng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useState</code> để lưu từ khóa tìm kiếm</li>
+</ul>
+<details style="margin: 6px 0 14px 0; padding: 8px 12px; background-color: #ffffff; border: 1px dashed #adb5bd; border-radius: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #495057;">👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> A<br>
+<b>Giải thích:</b> Component chỉ hiển thị dữ liệu nên để là Server Component. Sự kiện, Browser API và hook đều yêu cầu Client Component.
+</details>
+
+<p><em>Bộ 10+ câu đầy đủ: Quiz Bài 06 trên LMS</em></p>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #28a745;">💬 Thảo luận &amp; 📤 Nộp bài</h3>
+            <ul>
+<li><strong>Chủ đề thảo luận Diễn đàn (Forum Discussion):</strong> Bài &quot;You Might Not Need an Effect&quot; khuyên hạn chế <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useEffect</code>. Hãy tìm trong code nhóm mình (hoặc code AI sinh ra) một <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useEffect</code> có thể bỏ đi, chia sẻ đoạn code trước/sau và giải thích vì sao bản sau tốt hơn. Bình luận cho ít nhất một bài của bạn khác.</li>
+<li><strong>Yêu cầu nộp bài (Bài tập về nhà – chuẩn bị Kiểm tra giữa kỳ Buổi 7):</strong><ul>
+<li>Tích hợp toàn bộ State, UI, Dynamic Route và Reusable Component từ Buổi 1 đến Buổi 6 thành ứng dụng chạy hoàn chỉnh <strong>50% tiến độ</strong>.</li>
+<li>Chuẩn bị Slide thuyết trình (10 phút demo), file Wireframe 5 màn hình và Source Code công khai trên GitHub có commit của đủ thành viên.</li>
+<li>Chạy <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">npm run lint</code> và <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">npm run build</code> không lỗi; ứng dụng không có màn hình đỏ (Runtime Error), sẵn sàng demo trực tiếp.</li>
+<li>Tiêu chí chấm giữa kỳ tham khảo: Wireframe 5 màn hình (1.5đ) · UI chuyên nghiệp AntD/Bootstrap + Responsive (2.0đ) · Routing &amp; Component Architecture (1.0đ) · Git Commit &amp; phối hợp nhóm (0.5đ).</li>
+<li><strong>Hạn nộp:</strong> trước Buổi 7. Nộp trên LMS: link repository, link slide, tag Git <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">v0.5-midterm</code>. Mỗi cá nhân có PR riêng theo mẫu <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">[B06] &lt;Họ tên&gt; – &lt;tính năng&gt;</code> (ví dụ <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">feat(event): implement seat matrix selection logic</code>).</li>
+</ul>
+</li>
+</ul>
+        </div>
+    </div>
+</details>
+
+<details style="border: 1px solid #6f42c1; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #f3e5f5; color: #6f42c1; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>🆘 4. Góc trợ giúp và mở rộng</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <ul>
+<li><strong>📚 Tài liệu đọc &amp; tham khảo:</strong><ul>
+<li>React Docs on Hooks: <a href="https://react.dev/reference/react/hooks" target="_blank" rel="noopener noreferrer" style="color: #6f42c1;">https://react.dev/reference/react/hooks</a></li>
+<li>You Might Not Need an Effect: <a href="https://react.dev/learn/you-might-not-need-an-effect" target="_blank" rel="noopener noreferrer" style="color: #6f42c1;">https://react.dev/learn/you-might-not-need-an-effect</a></li>
+<li>Next.js – <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&#39;use client&#39;</code> directive: <a href="https://nextjs.org/docs/app/api-reference/directives/use-client" target="_blank" rel="noopener noreferrer" style="color: #6f42c1;">https://nextjs.org/docs/app/api-reference/directives/use-client</a></li>
+<li><strong>Câu hỏi tự kiểm tra khi đọc:</strong> (1) Sự khác biệt về mục đích sử dụng giữa <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useMemo</code> và <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useCallback</code> là gì? (2) Tại sao không nên dùng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useEffect</code> chỉ để tính toán dữ liệu có thể tính trực tiếp từ State/Props sẵn có?</li>
+</ul>
+</li>
+</ul>
+        <p><strong>Hỗ trợ kỹ thuật:</strong> Gặp lỗi cài đặt (Node.js, Git, Next.js) hoặc lỗi build, hãy đăng câu hỏi lên diễn đàn môn học kèm ảnh chụp lỗi, lệnh đã chạy và link repository. Giảng viên và bạn học sẽ phản hồi trước buổi học tiếp theo.</p>
+        <p><strong>Nguyên tắc Vibe Coding:</strong> AI sinh khung code, các bạn chịu trách nhiệm đọc hiểu, kiểm tra kiểu dữ liệu và sửa lỗi. Mọi đoạn code nộp lên đều có thể được hỏi phản biện.</p>
+    </div>
+</details>

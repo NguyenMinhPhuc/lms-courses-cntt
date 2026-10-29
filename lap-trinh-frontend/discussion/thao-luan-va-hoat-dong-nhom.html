@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LẬP TRÌNH FRONT-END (NEXT.JS, TYPESCRIPT &amp; VIBE CODING) | Lập trình Front-End - Khoa CNTT - Đại học Lạc Hồng</title>
+  <meta name="description" content="Thảo luận &amp; Hoạt động nhóm: LẬP TRÌNH FRONT-END (NEXT.JS, TYPESCRIPT &amp; VIBE CODING) - Lập trình Front-End (Next.js, TypeScript &amp; Vibe Coding)">
+
+  <!-- Tailwind CSS CDN (kèm plugin typography cho nội dung Markdown) -->
+  <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6.4.0 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Highlight.js 11.9.0 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            asu: { maroon: '#8C1D40', gold: '#FFC627', dark: '#5C142B', light: '#FAEDF0' },
+            lhu: { blue: '#013D88', sky: '#007BFF', dark: '#01295C', light: '#EEF5FC' },
+            fe: { indigo: '#6366F1', dark: '#312E81', light: '#EEF2FF' }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .lesson h2, .lesson h3, .lesson h4 { scroll-margin-top: 90px; }
+    .lesson h3 { padding-bottom: .4rem; border-bottom: 2px solid #EEF2FF; }
+    .lesson blockquote { border-left: 4px solid #6366F1; background: #F5F7FF; border-radius: 0 12px 12px 0; padding: .6rem 1rem; font-style: normal; color: #1e293b; }
+    .lesson blockquote p:first-of-type::before, .lesson blockquote p:last-of-type::after { content: none; }
+    .lesson pre { border-radius: 12px; padding: 0; background: #0d1117; }
+    .lesson pre code.hljs { border-radius: 12px; padding: 1rem 1.1rem; font-size: 13px; line-height: 1.6; }
+    .lesson :not(pre) > code { background: #EEF2FF; color: #3730A3; padding: .1rem .35rem; border-radius: 6px; font-weight: 500; }
+    .lesson :not(pre) > code::before, .lesson :not(pre) > code::after { content: none; }
+    .lesson table { display: block; overflow-x: auto; font-size: 14px; }
+    .lesson thead th { background: #F1F5F9; }
+    .lesson th, .lesson td { border: 1px solid #E2E8F0; padding: .5rem .7rem !important; vertical-align: top; }
+    .lesson details { border: 1px solid #C7D2FE; border-radius: 10px; padding: .6rem .9rem; margin: .5rem 0 1.2rem; background: #FAFAFF; }
+    .lesson details summary { cursor: pointer; font-weight: 600; color: #4338CA; }
+    .lesson details[open] summary { margin-bottom: .4rem; }
+    .lesson hr { border-color: #E2E8F0; margin: 2rem 0; }
+    @media print {
+      header, footer, .no-print { display: none !important; }
+      details { break-inside: avoid; margin-bottom: 20px; }
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans antialiased selection:bg-asu-gold selection:text-slate-900 min-h-screen flex flex-col">
+
+  <!-- TOP BAR -->
+  <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800 no-print">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+      <div class="flex items-center gap-2">
+        <span class="text-asu-gold font-semibold"><i class="fa-solid fa-certificate mr-1"></i> CHUẨN KIỂM ĐỊNH ABET (USA)</span>
+        <span class="text-slate-600 hidden sm:inline">•</span>
+        <span class="hidden sm:inline">Lớp học đảo ngược • Vibe Coding</span>
+      </div>
+      <div class="flex items-center gap-4 text-xs font-mono">
+        <span>Thời lượng: <strong class="text-white">60 tiết (12 buổi)</strong></span>
+        <span>LT/TH: <strong class="text-asu-gold">30% / 70%</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="sticky top-0 z-40 bg-white shadow-sm border-b border-slate-200 no-print">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <a href="../index.html" class="flex items-center gap-2.5 text-slate-800 hover:text-lhu-blue transition-colors">
+        <img src="../LHU_ASU_VI_Small_Ngang.png" alt="Logo LHU" class="h-8 w-auto">
+        <div class="border-l border-slate-300 pl-2.5">
+          <div class="text-[11px] font-bold text-slate-500 uppercase">Khoa CNTT - LHU</div>
+          <div class="text-xs font-extrabold text-lhu-blue">LẬP TRÌNH FRONT-END</div>
+        </div>
+      </a>
+      <div class="flex items-center gap-3 text-xs">
+        <a href="../index.html" class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-arrow-left"></i>
+          <span class="hidden sm:inline">Về Landing Page</span>
+        </a>
+        <button onclick="window.print()" class="hidden sm:flex px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-all items-center gap-1.5" title="In hoặc lưu file PDF">
+          <i class="fa-solid fa-print"></i>
+          <span>In / PDF</span>
+        </button>
+        <a href="https://learn.lhu.edu.vn" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-lhu-blue hover:bg-lhu-dark text-white font-bold rounded-xl shadow transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-graduation-cap text-asu-gold"></i>
+          <span>Vào lớp LMS</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="flex-grow max-w-5xl w-full mx-auto px-4 sm:px-6 py-8">
+
+    <!-- Title Card -->
+    <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 mb-8">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-5">
+        <div>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-fe-light text-fe-dark font-bold text-xs uppercase tracking-wider mb-2">
+            <i class="fa-solid fa-code"></i> Thảo luận &amp; Hoạt động nhóm
+          </span>
+          <h1 class="text-2xl sm:text-3xl font-black text-slate-900 leading-tight">
+            LẬP TRÌNH FRONT-END (NEXT.JS, TYPESCRIPT &amp; VIBE CODING)
+          </h1>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1 font-mono">
+            Học phần: Lập trình Front-End (Next.js, TypeScript & Vibe Coding) • Khoa CNTT - Đại học Lạc Hồng
+          </p>
+        </div>
+        <div class="flex-shrink-0 flex sm:flex-col items-center sm:items-end justify-between gap-1 text-xs">
+          <span class="px-3 py-1.5 bg-emerald-50 text-emerald-700 font-bold rounded-lg border border-emerald-200">
+            <i class="fa-solid fa-check-circle mr-1"></i> Lưu hành nội bộ 2026
+          </span>
+          <span class="text-slate-400 text-[11px]">Định dạng LMS Lecture</span>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between pt-4 text-xs no-print">
+        <span class="text-slate-500">
+          <i class="fa-solid fa-circle-info text-blue-500 mr-1"></i>
+          Bấm vào các khối thu gọn để xem đáp án hoặc chi tiết.
+        </span>
+        <div class="flex items-center gap-2">
+          <button onclick="toggleAllDetails(true)" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg transition-colors">Mở tất cả</button>
+          <button onclick="toggleAllDetails(false)" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg transition-colors">Thu gọn</button>
+        </div>
+      </div>
+      <nav class="mt-5 pt-4 border-t border-slate-100 no-print">
+        <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">Nội dung trang</div>
+        <div class="flex flex-wrap gap-2">
+          <a href="#thao-luan-dien-dan-hoat-dong-nhom-lms-discussion-team-activities" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">THẢO LUẬN DIỄN ĐÀN &amp; HOẠT ĐỘNG NHÓM (LMS Discussion &amp; Team Activities)</a>
+          <a href="#phan-a-quy-tac-chung" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">PHẦN A. QUY TẮC CHUNG</a>
+          <a href="#phan-b-thao-luan-hoat-dong-nhom-theo-tung-bai" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">PHẦN B. THẢO LUẬN &amp; HOẠT ĐỘNG NHÓM THEO TỪNG BÀI</a>
+        </div>
+      </nav>
+    </div>
+
+    <!-- Content -->
+    <article class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 lesson prose prose-slate max-w-none prose-headings:font-extrabold prose-h3:text-lhu-dark prose-h4:text-fe-dark prose-a:text-lhu-blue">
+<h2 id="thao-luan-dien-dan-hoat-dong-nhom-lms-discussion-team-activities">THẢO LUẬN DIỄN ĐÀN &amp; HOẠT ĐỘNG NHÓM (LMS Discussion &amp; Team Activities)</h2>
+<blockquote>
+<p><strong>Phạm vi:</strong> 12 bài (60 tiết) · <strong>Dự án xuyên suốt:</strong> Smart Event Hub – Hệ thống Đặt vé &amp; Quản lý Sự kiện trực tuyến · <strong>Quy mô nhóm:</strong> 3–4 sinh viên<br><strong>Chuẩn đầu ra liên quan:</strong> PI 1.4 (CLO1), PI 2.3 (CLO2), PI 3.1 (CLO3), PI 5.1 (CLO4)</p>
+</blockquote>
+<hr>
+<p>Tài liệu này gom toàn bộ chủ đề diễn đàn và hoạt động nhóm (Team Challenge 60 phút) của học phần vào một chỗ. Phần A là luật chơi chung: cách thảo luận, cách lập nhóm, phân vai và quy trình Git. Phần B đi theo từng bài, mỗi bài gồm một chủ đề diễn đàn và một hoạt động nhóm bám đúng kế hoạch buổi học.</p>
+<blockquote>
+<p>💡 <strong>Mẹo:</strong> Đọc phần A một lần ở tuần đầu. Từ Bài 02 trở đi, các bạn chỉ cần mở đúng mục của bài đang học.</p>
+</blockquote>
+<hr>
+<h2 id="phan-a-quy-tac-chung">PHẦN A. QUY TẮC CHUNG</h2>
+<h3 id="a-1-quy-tac-thao-luan-tren-dien-dan-lms">A.1. Quy tắc thảo luận trên diễn đàn LMS</h3>
+<h4 id="cach-tham-gia">Cách tham gia</h4>
+<p>Mỗi bài có <strong>một chủ đề thảo luận</strong> mở trên diễn đàn LMS (<code>https://learn.lhu.edu.vn</code>), đặt trong chế độ nhóm lớp riêng biệt (Separate groups), nên các bạn chỉ thấy bài đăng của lớp mình. Diễn đàn mở sau buổi học và đóng <strong>trước buổi học tiếp theo</strong>.</p>
+<ul>
+<li><strong>Bài đăng chính:</strong> trả lời câu hỏi mở của bài, khoảng 150–300 từ.</li>
+<li><strong>Phản hồi:</strong> bình luận có nội dung cho <strong>ít nhất 2 bài</strong> của bạn khác (đặt câu hỏi ngược, chỉ ra điểm chưa ổn, bổ sung ví dụ).</li>
+<li><strong>Minh chứng:</strong> khi nói về code, dán đoạn code ngắn trong khung code, ảnh chụp màn hình hoặc link commit/PR trên GitHub.</li>
+</ul>
+<h4 id="tieu-chi-chung-cua-mot-bai-dang-tot">Tiêu chí chung của một bài đăng tốt</h4>
+<table>
+<thead>
+<tr>
+<th>Tiêu chí</th>
+<th>Bài đăng tốt</th>
+<th>Bài đăng chưa đạt</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Bám dự án</td>
+<td>Lấy ví dụ từ Smart Event Hub của nhóm mình</td>
+<td>Trả lời chung chung, chép định nghĩa</td>
+</tr>
+<tr>
+<td>Có minh chứng</td>
+<td>Code trước/sau, ảnh UI, log lỗi, link PR</td>
+<td>Chỉ nêu ý kiến, không có bằng chứng</td>
+</tr>
+<tr>
+<td>Lập luận</td>
+<td>Nêu lý do, so sánh ít nhất 2 phương án</td>
+<td>&quot;Mình thấy cách này hay&quot;</td>
+</tr>
+<tr>
+<td>Trung thực với AI</td>
+<td>Ghi rõ đoạn nào AI sinh, đoạn nào mình sửa và vì sao</td>
+<td>Dán nguyên câu trả lời của AI</td>
+</tr>
+<tr>
+<td>Phản hồi</td>
+<td>Phản biện lịch sự, có gợi ý cụ thể</td>
+<td>&quot;Hay quá&quot;, &quot;Đồng ý&quot;</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>⚠️ <strong>Lưu ý:</strong> Không dán nguyên văn câu trả lời của ChatGPT/Claude làm bài đăng. Diễn đàn dùng để các bạn tự lập luận; AI chỉ là nguồn tham khảo cần được kiểm chứng.</p>
+</blockquote>
+<hr>
+<h3 id="a-2-to-chuc-nhom-3-4-sinh-vien">A.2. Tổ chức nhóm 3–4 sinh viên</h3>
+<h4 id="lap-nhom-va-giu-nhom">Lập nhóm và giữ nhóm</h4>
+<ul>
+<li>Nhóm lập ngay <strong>Buổi 1</strong>, giữ nguyên đến <strong>Buổi 12</strong>. Danh sách nhóm được GV nhập vào LMS thành Grouping theo lớp.</li>
+<li>Đặt tên nhóm theo mẫu <code>Nhom01</code>, <code>Nhom02</code>… để khớp quy tắc đặt tên file <code>[MãLớp]_[Nhóm/MSSV]_[TênBài]</code>.</li>
+<li>Mỗi nhóm có <strong>một Repository GitHub chung</strong> (do Team Lead tạo, mời các thành viên và GV làm collaborator) và <strong>một kênh liên lạc</strong> riêng (Zalo/Discord/Teams).</li>
+<li>Họp nhanh 10 phút đầu mỗi Team Challenge: mỗi người nói &quot;hôm qua làm gì – hôm nay làm gì – đang vướng gì&quot;.</li>
+</ul>
+<p>Tại sao phải giữ nhóm suốt học phần? Dự án Smart Event Hub được xây dần qua 11 buổi, và Git log của nhóm là minh chứng chấm điểm giữa kỳ, cuối kỳ cũng như điểm phản biện cá nhân, nên đổi nhóm giữa chừng sẽ làm đứt lịch sử đóng góp của chính các bạn.</p>
+<hr>
+<h3 id="a-3-vai-tro-trong-nhom">A.3. Vai trò trong nhóm</h3>
+<h4 id="bon-vai-tro-goi-y">Bốn vai trò gợi ý</h4>
+<table>
+<thead>
+<tr>
+<th>Vai trò</th>
+<th>Trách nhiệm chính</th>
+<th>Ví dụ việc cụ thể trong Smart Event Hub</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Team Lead</strong></td>
+<td>Chia việc, quản lý board công việc, merge <code>dev</code> → <code>main</code>, giữ tiến độ</td>
+<td>Tạo repo, bảo vệ branch <code>main</code>, viết README, điều phối báo cáo giữa kỳ/cuối kỳ</td>
+</tr>
+<tr>
+<td><strong>UI Developer</strong></td>
+<td>Wireframe, Design Token SCSS, layout, AntD Theme, responsive</td>
+<td><code>styles/_variables.scss</code>, Header/Footer, EventCard, tùy biến <code>ConfigProvider</code></td>
+</tr>
+<tr>
+<td><strong>Logic/API Developer</strong></td>
+<td>TypeScript types, state, hooks, services gọi API, form</td>
+<td><code>types/</code>, <code>services/eventService.ts</code>, TicketQuantitySelector, LoginForm + Zod</td>
+</tr>
+<tr>
+<td><strong>QA/DevOps</strong></td>
+<td>Review PR, kiểm thử responsive, <code>npm run lint</code>/<code>build</code>, deploy Vercel, Lighthouse</td>
+<td>Checklist review, Test Case Scenario, cấu hình <code>NEXT_PUBLIC_API_URL</code> trên Vercel</td>
+</tr>
+</tbody></table>
+<h4 id="nguyen-tac-phan-vai">Nguyên tắc phân vai</h4>
+<ul>
+<li><strong>Nhóm 3 người:</strong> gộp Team Lead với QA/DevOps.</li>
+<li><strong>Vai trò không có nghĩa là &quot;chỉ làm phần đó&quot;.</strong> Mọi thành viên đều phải có commit code tính năng thật, vì GV sẽ hỏi phản biện cá nhân trên chính đoạn code mình đảm nhiệm.</li>
+<li><strong>Luân phiên:</strong> khuyến khích đổi vai sau Buổi 7 để ai cũng chạm vào UI, logic và deploy.</li>
+<li>Ghi bảng phân vai vào <code>README.md</code> (mục &quot;Thành viên &amp; Phân công&quot;) và cập nhật khi đổi vai.</li>
+</ul>
+<hr>
+<h3 id="a-4-git-branch-strategy-main-dev-feature">A.4. Git Branch Strategy (main / dev / feature/*)</h3>
+<h4 id="ba-loai-nhanh">Ba loại nhánh</h4>
+<table>
+<thead>
+<tr>
+<th>Nhánh</th>
+<th>Mục đích</th>
+<th>Ai được push/merge</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>main</code></td>
+<td>Bản ổn định, luôn build được; Vercel tự deploy Production từ nhánh này</td>
+<td>Chỉ Team Lead merge từ <code>dev</code> qua PR</td>
+</tr>
+<tr>
+<td><code>dev</code></td>
+<td>Nhánh tích hợp hằng ngày; đích của mọi PR tính năng và BTVN</td>
+<td>Merge qua PR đã được review</td>
+</tr>
+<tr>
+<td><code>feature/&lt;tên&gt;-&lt;tính-năng&gt;</code></td>
+<td>Mỗi tính năng/bài tập một nhánh, tách từ <code>dev</code></td>
+<td>Chủ nhánh push tự do</td>
+</tr>
+</tbody></table>
+<p>Quy ước tên nhánh: chữ thường, gạch nối, không dấu. Ví dụ <code>feature/an-event-card</code>, <code>feature/binh-seat-picker</code>, <code>feature/chi-login-form</code>. Nhánh sửa lỗi gấp trên bản đã deploy có thể đặt <code>fix/&lt;mô-tả&gt;</code>.</p>
+<h4 id="cac-lenh-thuong-dung">Các lệnh thường dùng</h4>
+<pre><code class="language-bash"># Bắt đầu một tính năng mới
+git checkout dev
+git pull origin dev
+git checkout -b feature/an-event-card
+
+# Commit theo Conventional Commits
+git add .
+git commit -m &quot;feat(event): add EventCard component with responsive SCSS&quot;
+
+# Cập nhật nhánh trước khi mở PR (tránh conflict)
+git fetch origin
+git rebase origin/dev        # hoặc: git merge origin/dev
+git push -u origin feature/an-event-card
+</code></pre>
+<blockquote>
+<p>🔒 <strong>Thiết lập một lần (Team Lead):</strong> vào <em>Settings → Branches</em> trên GitHub, thêm rule cho <code>main</code> (và nên cả <code>dev</code>): bắt buộc Pull Request, tối thiểu 1 approval, không cho force-push.</p>
+</blockquote>
+<hr>
+<h3 id="a-5-quy-trinh-pull-request-code-review">A.5. Quy trình Pull Request &amp; Code Review</h3>
+<h4 id="sau-buoc-cua-mot-pr">Sáu bước của một PR</h4>
+<ol>
+<li><strong>Tự kiểm tra trước khi mở PR:</strong> chạy <code>npm run lint</code> và <code>npm run build</code> không lỗi; xóa <code>console.log</code>; không còn <code>any</code>.</li>
+<li><strong>Mở PR vào <code>dev</code></strong> với tiêu đề theo Conventional Commits, ví dụ <code>feat(checkout): add TicketQuantitySelector</code>.</li>
+<li><strong>Điền mô tả theo mẫu</strong> (bên dưới), kèm ảnh chụp UI ở Mobile 375px và Desktop 1440px nếu có thay đổi giao diện.</li>
+<li><strong>Gán reviewer:</strong> ít nhất 1 thành viên khác (ưu tiên QA/DevOps).</li>
+<li><strong>Review và sửa:</strong> reviewer để comment theo checklist; tác giả sửa bằng commit mới, trả lời từng comment.</li>
+<li><strong>Merge:</strong> khi có approval và không conflict; xóa nhánh feature sau khi merge.</li>
+</ol>
+<pre><code class="language-markdown">## Mô tả
+- Tính năng/bài tập: (ví dụ: BTVN Bài 01 – Footer, EventCategoryBadge, SearchBar)
+- Liên quan: (link issue/task nếu có)
+
+## Thay đổi chính
+- ...
+
+## Phần có dùng AI (Vibe Coding)
+- Công cụ: Cursor / Copilot / v0.dev / Claude / ChatGPT
+- Prompt chính: (dán tóm tắt)
+- Những gì mình đã sửa lại so với code AI sinh: ...
+
+## Cách kiểm tra
+- [ ] npm run lint không lỗi
+- [ ] npm run build thành công
+- [ ] Đã xem ở 375px / 768px / 1440px
+
+## Ảnh chụp màn hình
+(Mobile &amp; Desktop)
+</code></pre>
+<h4 id="checklist-cho-nguoi-review">Checklist cho người review</h4>
+<ul>
+<li><strong>TypeScript:</strong> không có <code>any</code>; Props có interface rõ ràng; union type dùng <code>|</code> đúng chỗ.</li>
+<li><strong>Cấu trúc:</strong> component đặt đúng thư mục (<code>components/ui</code>, <code>components/common</code>, <code>components/features</code>); không trùng lặp code đã có.</li>
+<li><strong>Next.js:</strong> chỉ thêm <code>&#39;use client&#39;</code> khi thật sự cần hook/sự kiện; dùng <code>next/link</code>, <code>next/image</code>.</li>
+<li><strong>Style:</strong> dùng biến và mixin chung trong <code>styles/</code>; không inline-style rác, không magic number.</li>
+<li><strong>Responsive:</strong> không tràn ngang ở 375px.</li>
+<li><strong>Commit:</strong> thông điệp đúng chuẩn, mỗi commit một ý.</li>
+</ul>
+<blockquote>
+<p>💬 <strong>Văn hóa review:</strong> góp ý vào code, không nhắm vào người. Viết &quot;Chỗ này nên tách thành <code>PriceTag</code> để tái sử dụng ở trang Checkout&quot; thay vì &quot;Code này dở&quot;.</p>
+</blockquote>
+<hr>
+<h2 id="phan-b-thao-luan-hoat-dong-nhom-theo-tung-bai">PHẦN B. THẢO LUẬN &amp; HOẠT ĐỘNG NHÓM THEO TỪNG BÀI</h2>
+<h3 id="bai-01-scss-nang-cao-typescript-can-ban-thiet-lap-vibe-coding">Bài 01: SCSS nâng cao, TypeScript căn bản &amp; thiết lập Vibe Coding</h3>
+<h4 id="chu-de-dien-dan-quot-interface-hay-type-va-lan-dau-ai-viet-sai-typescript-quot">💬 Chủ đề diễn đàn: &quot;Interface hay Type – và lần đầu AI viết sai TypeScript&quot;</h4>
+<p><strong>Câu hỏi mở:</strong> Khi khai báo kiểu cho <code>EventItem</code>, <code>EventStatus</code> và <code>EventCardProps</code>, các bạn chọn <code>interface</code> hay <code>type</code> cho từng cái, vì sao? Hãy kể lại một lần AI (Cursor/Copilot/ChatGPT) gợi ý code TypeScript hoặc SCSS chưa đúng trong buổi học và cách các bạn phát hiện ra.</p>
+<p><strong>Gợi ý trả lời:</strong></p>
+<ul>
+<li><code>interface</code> hợp với data model và Props vì mở rộng được bằng <code>extends</code>; <code>type</code> hợp với union như <code>type EventStatus = &#39;UPCOMING&#39; | &#39;ONGOING&#39; | &#39;ENDED&#39;</code>.</li>
+<li>Lỗi AI hay gặp: khai báo <code>status: string</code> thay vì union, dùng <code>any</code> cho props, quên <code>alt</code>/<code>width</code>/<code>height</code> của <code>next/image</code>, mixin breakpoint không khớp mốc 640/768/1024px.</li>
+<li>Nêu cách phát hiện: lỗi gạch đỏ của VS Code, <code>tsc</code> báo lỗi, hoặc giao diện vỡ khi co màn hình.</li>
+</ul>
+<p><strong>Tiêu chí bài đăng tốt:</strong> có đoạn code trước khi sửa và sau khi sửa; giải thích được lỗi bằng lời của mình; nêu prompt đã dùng và cách cải thiện prompt (thêm phần Constraints).</p>
+<h4 id="hoat-dong-nhom-team-challenge-60-39-khoi-tao-repo-design-token-system">👥 Hoạt động nhóm (Team Challenge 60&#39;): Khởi tạo Repo &amp; Design Token System</h4>
+<p><strong>Mục tiêu:</strong> Nhóm có một repository chung chạy được, thống nhất bộ biến SCSS dùng cho toàn dự án và trải qua quy trình PR đầu tiên.</p>
+<table>
+<thead>
+<tr>
+<th>Vai trò</th>
+<th>Việc cần làm</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Team Lead</td>
+<td>Tạo repo, tạo nhánh <code>main</code>, <code>dev</code>; mời thành viên và GV; thêm rule bảo vệ <code>main</code></td>
+</tr>
+<tr>
+<td>UI Developer</td>
+<td>Viết <code>styles/_variables.scss</code>: Color Palette, Typography, Spacing, Shadows</td>
+</tr>
+<tr>
+<td>Logic/API</td>
+<td>Viết <code>styles/_mixins.scss</code>: <code>respond-to</code>, flex alignment, text truncate; khai báo <code>types/event.ts</code></td>
+</tr>
+<tr>
+<td>QA/DevOps</td>
+<td>Review chéo 2 PR, kiểm tra các thành viên import được biến SCSS, xử lý conflict nếu có</td>
+</tr>
+</tbody></table>
+<p><strong>Output:</strong></p>
+<ul>
+<li>1 repository Git với cấu trúc thư mục chuẩn và hai nhánh <code>main</code>, <code>dev</code>.</li>
+<li>File biến SCSS tập trung được các thành viên import và dùng thành công.</li>
+<li>Minh chứng ít nhất 1 PR được merge trên GitHub (link PR nộp lên LMS).</li>
+</ul>
+<hr>
+<h3 id="bai-02-tu-duy-wireframe-modeling-ui-chuyen-figma-thanh-next-js-component">Bài 02: Tư duy Wireframe/Modeling UI &amp; chuyển Figma thành Next.js Component</h3>
+<h4 id="chu-de-dien-dan-quot-tu-anh-wireframe-den-code-ai-lam-duoc-bao-nhieu-phan-tram-quot">💬 Chủ đề diễn đàn: &quot;Từ ảnh Wireframe đến code: AI làm được bao nhiêu phần trăm?&quot;</h4>
+<p><strong>Câu hỏi mở:</strong> Sau khi đưa ảnh Wireframe vào v0.dev/Claude để sinh TSX, các bạn phải sửa những gì nhiều nhất? Theo Atomic Design, trong Smart Event Hub thì <code>SearchBar</code>, <code>EventCard</code>, <code>Header</code> thuộc cấp nào (atom, molecule, organism), và có trường hợp nào khó xếp loại không?</p>
+<p><strong>Gợi ý trả lời:</strong></p>
+<ul>
+<li>Phần thường phải sửa: inline-style, magic number (<code>padding: 13px</code>), thẻ <code>div</code> lồng nhau thay cho <code>header</code>/<code>main</code>/<code>section</code>, component quá dài chưa tách.</li>
+<li><code>SearchBar</code> = Input + Button → molecule; <code>Header</code> = Logo + Nav + SearchBar → organism. <code>EventCard</code> có thể là molecule hoặc organism tùy độ phức tạp – hãy nêu lập luận của nhóm.</li>
+<li>Có thể ước lượng mức giống bản phác thảo (mục tiêu &gt;85%) và chỉ ra chỗ lệch.</li>
+</ul>
+<p><strong>Tiêu chí bài đăng tốt:</strong> có ảnh wireframe đặt cạnh ảnh giao diện thật; liệt kê ít nhất 3 chỉnh sửa cụ thể sau khi AI sinh code; phân loại Atomic có lý do.</p>
+<h4 id="hoat-dong-nhom-team-challenge-60-39-wireframe-5-man-hinh-chinh">👥 Hoạt động nhóm (Team Challenge 60&#39;): Wireframe 5 màn hình chính</h4>
+<p><strong>Mục tiêu:</strong> Thống nhất bộ Wireframe 5 màn hình làm cơ sở cho toàn bộ dự án và cho tiêu chí PI 1.4 ở giữa kỳ, cuối kỳ.</p>
+<table>
+<thead>
+<tr>
+<th>Vai trò</th>
+<th>Việc cần làm</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Team Lead</td>
+<td>Chủ trì họp, chốt danh sách màn hình và luồng điều hướng giữa chúng</td>
+</tr>
+<tr>
+<td>UI Developer</td>
+<td>Vẽ Trang chủ (kèm danh sách &amp; lọc sự kiện) và Chi tiết sự kiện trên Figma</td>
+</tr>
+<tr>
+<td>Logic/API</td>
+<td>Vẽ Đặt vé (Checkout &amp; Booking) và Trang cá nhân (lịch sử vé)</td>
+</tr>
+<tr>
+<td>QA/DevOps</td>
+<td>Vẽ Admin Dashboard; xuất ảnh, đặt tên file thống nhất và commit vào <code>docs/wireframes/</code></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>📝 <strong>Ghi chú:</strong> Kế hoạch buổi học tách &quot;Danh sách &amp; Lọc sự kiện&quot; thành một màn hình riêng, còn đề cương xếp Admin Dashboard vào 5 màn hình chính. Bộ học liệu này theo đề cương (Trang chủ, Chi tiết sự kiện, Đặt vé, Trang cá nhân, Admin Dashboard); phần danh sách &amp; lọc nằm trong Trang chủ. Nhóm nào vẽ thêm màn hình Listing riêng thì càng tốt.</p>
+</blockquote>
+<p><strong>Output:</strong></p>
+<ul>
+<li>Bộ Wireframe 5 màn hình đủ thành phần UI (Header, Content, Sidebar, Footer).</li>
+<li>File Figma (link) hoặc ảnh chụp rõ nét trong <code>docs/wireframes/</code> trên repo.</li>
+</ul>
+<hr>
+<h3 id="bai-03-next-js-app-router-cau-truc-thu-muc-index-nested-routing">Bài 03: Next.js App Router – cấu trúc thư mục, Index &amp; Nested Routing</h3>
+<h4 id="chu-de-dien-dan-quot-server-component-mac-dinh-vay-cai-gi-phai-la-client-quot">💬 Chủ đề diễn đàn: &quot;Server Component mặc định – vậy cái gì phải là Client?&quot;</h4>
+<p><strong>Câu hỏi mở:</strong> Trong App Router, mọi component trong <code>app/</code> mặc định là Server Component. Hãy liệt kê các component của Smart Event Hub mà nhóm bạn <strong>bắt buộc</strong> phải đánh dấu <code>&#39;use client&#39;</code> và giải thích lý do. Route Group <code>(auth)</code> và <code>(admin)</code> giúp ích gì cho bố cục dự án?</p>
+<p><strong>Gợi ý trả lời:</strong></p>
+<ul>
+<li>Cần <code>&#39;use client&#39;</code> khi dùng <code>useState</code>/<code>useEffect</code>, sự kiện <code>onClick</code>/<code>onChange</code>, hoặc Browser API: ô tìm kiếm, Sidebar admin có trạng thái thu gọn, nút đăng nhập mở menu.</li>
+<li>Không cần: trang danh sách chỉ hiển thị dữ liệu, Footer tĩnh.</li>
+<li>Route Group cho phép <code>(auth)</code> dùng AuthLayout không có Header/Footer, <code>(admin)</code> dùng AdminLayout có Sidebar, mà URL vẫn là <code>/login</code>, <code>/admin/dashboard</code>.</li>
+</ul>
+<p><strong>Tiêu chí bài đăng tốt:</strong> có sơ đồ cây thư mục <code>app/</code> thật của nhóm; chỉ ra ít nhất một chỗ đã thêm <code>&#39;use client&#39;</code> thừa và gỡ bỏ được.</p>
+<h4 id="hoat-dong-nhom-team-challenge-60-39-tich-hop-he-thong-navigation-route">👥 Hoạt động nhóm (Team Challenge 60&#39;): Tích hợp hệ thống Navigation Route</h4>
+<p><strong>Mục tiêu:</strong> Ghép route của từng cá nhân thành một sơ đồ routing thống nhất, điều hướng không reload trang, có trang 404 riêng.</p>
+<table>
+<thead>
+<tr>
+<th>Vai trò</th>
+<th>Việc cần làm</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Team Lead</td>
+<td>Gom các nhánh route vào <code>dev</code>, giải quyết conflict ở <code>app/layout.tsx</code>, sau đó merge <code>dev</code> → <code>main</code></td>
+</tr>
+<tr>
+<td>UI Developer</td>
+<td>Thiết kế <code>not-found.tsx</code> thân thiện, có nút &quot;Quay lại trang chủ&quot;</td>
+</tr>
+<tr>
+<td>Logic/API</td>
+<td>Cập nhật <code>HeaderNavigationBar</code> dùng <code>next/link</code> tới mọi route; khai báo mảng <code>NavItem[]</code> có kiểu</td>
+</tr>
+<tr>
+<td>QA/DevOps</td>
+<td>Bấm thử toàn bộ link, gõ URL sai (ví dụ <code>/abc-xyz</code>) để kiểm tra trang 404, ghi lỗi vào issue</td>
+</tr>
+</tbody></table>
+<p><strong>Output:</strong></p>
+<ul>
+<li>Mã nguồn chung chứa toàn bộ sơ đồ routing của web app.</li>
+<li>Nhập đường dẫn sai hiển thị đúng trang 404 tùy chỉnh.</li>
+</ul>
+<hr>
+<h3 id="bai-04-dynamic-routing-kien-truc-reusable-components">Bài 04: Dynamic Routing &amp; kiến trúc Reusable Components</h3>
+<h4 id="chu-de-dien-dan-quot-reusable-den-muc-nao-thi-vua-quot">💬 Chủ đề diễn đàn: &quot;Reusable đến mức nào thì vừa?&quot;</h4>
+<p><strong>Câu hỏi mở:</strong> Component <code>Button</code> của nhóm bạn có bao nhiêu props? Khi nào một component &quot;tái sử dụng&quot; trở thành quá phức tạp (over-engineering)? Ngoài ra, hãy giải thích vì sao trong Next.js 15 phải viết <code>const { id } = await params;</code> thay vì <code>params.id</code>.</p>
+<p><strong>Gợi ý trả lời:</strong></p>
+<ul>
+<li>Dấu hiệu quá tay: props boolean chồng chéo (<code>isPrimary</code>, <code>isOutline</code> cùng lúc), quá nhiều nhánh <code>if</code> trong JSX. Gom lại bằng <code>variant</code> và <code>size</code> dạng union.</li>
+<li>Mở rộng <code>ButtonHTMLAttributes&lt;HTMLButtonElement&gt;</code> để nhận sẵn <code>onClick</code>, <code>type</code>, <code>disabled</code> mà không khai báo lại.</li>
+<li>Next.js 15 truyền <code>params</code> và <code>searchParams</code> dưới dạng <code>Promise</code>, nên Server Component phải <code>await</code> trước khi dùng.</li>
+</ul>
+<p><strong>Tiêu chí bài đăng tốt:</strong> dán interface Props thật của nhóm; chỉ ra một chỗ code bị lặp đã được thay bằng component dùng chung.</p>
+<h4 id="hoat-dong-nhom-team-challenge-60-39-mock-data-luong-dieu-huong-hoan-chinh">👥 Hoạt động nhóm (Team Challenge 60&#39;): Mock Data &amp; luồng điều hướng hoàn chỉnh</h4>
+<p><strong>Mục tiêu:</strong> Có bộ dữ liệu giả lập chung và luồng người dùng liền mạch Trang chủ → Danh mục → Chi tiết sự kiện → Đặt vé.</p>
+<table>
+<thead>
+<tr>
+<th>Vai trò</th>
+<th>Việc cần làm</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Team Lead</td>
+<td>Thống nhất schema dữ liệu (dựa trên <code>types/event.ts</code>), chia việc theo từng bước của luồng</td>
+</tr>
+<tr>
+<td>UI Developer</td>
+<td>Card ở Trang chủ chuyển tới <code>/events/[id]</code>; Badge thể loại chuyển tới <code>/category/[slug]</code></td>
+</tr>
+<tr>
+<td>Logic/API</td>
+<td>Viết <code>data/mock-events.json</code> và hàm đọc dữ liệu theo <code>id</code>, theo <code>slug</code> có kiểu rõ ràng</td>
+</tr>
+<tr>
+<td>QA/DevOps</td>
+<td>Nút &quot;Mua vé&quot; chuyển tới <code>/checkout/[id]</code>; kiểm tra dữ liệu khớp giữa các màn hình</td>
+</tr>
+</tbody></table>
+<p><strong>Output:</strong> User Flow liên tục, dữ liệu khớp giữa các màn hình; file <code>data/mock-events.json</code> trên <code>dev</code>.</p>
+<hr>
+<h3 id="bai-05-giao-dien-chuyen-nghiep-voi-ant-design-bootstrap-tailwind-tuy-bien-theme">Bài 05: Giao diện chuyên nghiệp với Ant Design, Bootstrap/Tailwind &amp; tùy biến Theme</h3>
+<h4 id="chu-de-dien-dan-quot-lam-sao-de-smart-event-hub-khong-trong-giong-moi-trang-ant-design-khac-quot">💬 Chủ đề diễn đàn: &quot;Làm sao để Smart Event Hub không trông giống mọi trang Ant Design khác?&quot;</h4>
+<p><strong>Câu hỏi mở:</strong> Nhóm bạn chọn Ant Design, Bootstrap hay Tailwind cho dự án, và đánh đổi là gì? Các bạn đã tùy biến những gì (Design Token trong <code>ConfigProvider</code>, override bằng SCSS Module…) để giao diện có bản sắc riêng?</p>
+<p><strong>Gợi ý trả lời:</strong></p>
+<ul>
+<li>AntD mạnh ở component dữ liệu (Table, Form, Modal, DatePicker); Bootstrap/Tailwind gọn và linh hoạt về layout nhưng phải tự dựng nhiều thành phần.</li>
+<li>Tùy biến tập trung qua <code>theme={{ token: { colorPrimary: &#39;#6366F1&#39;, borderRadius: 8 } }}</code>, sau đó override cục bộ bằng SCSS Module để không ảnh hưởng component khác.</li>
+<li>Nhắc tới <code>@ant-design/nextjs-registry</code> để tránh FOUC/Hydration mismatch.</li>
+</ul>
+<p><strong>Tiêu chí bài đăng tốt:</strong> có ảnh &quot;trước – sau khi tùy biến&quot;; nêu ít nhất 2 token đã đổi và 1 chỗ override SCSS.</p>
+<h4 id="hoat-dong-nhom-team-challenge-60-39-refactor-5-man-hinh-sang-ant-design-scss-custom">👥 Hoạt động nhóm (Team Challenge 60&#39;): Refactor 5 màn hình sang Ant Design + SCSS Custom</h4>
+<p><strong>Mục tiêu:</strong> Thay HTML thô bằng component AntD phù hợp và tùy biến để giao diện đồng bộ, có bản sắc.</p>
+<table>
+<thead>
+<tr>
+<th>Vai trò</th>
+<th>Việc cần làm</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Team Lead</td>
+<td>Lập danh sách phần tử cần thay ở 5 màn hình, chia mỗi người 1–2 màn hình</td>
+</tr>
+<tr>
+<td>UI Developer</td>
+<td>Trang chủ: <code>Carousel</code> cho Banner, <code>Tabs</code> cho danh mục</td>
+</tr>
+<tr>
+<td>Logic/API</td>
+<td>Chi tiết sự kiện &amp; Đặt vé: <code>Rate</code> cho đánh giá, <code>Skeleton</code> cho trạng thái chờ</td>
+</tr>
+<tr>
+<td>QA/DevOps</td>
+<td>Admin Dashboard &amp; Trang cá nhân; kiểm tra Tablet &amp; Mobile, ghi lỗi vỡ khung</td>
+</tr>
+</tbody></table>
+<p><strong>Output:</strong> Giao diện toàn web app đồng bộ, không mang cảm giác &quot;nguyên bản&quot; của Ant Design; PR merge vào <code>dev</code>.</p>
+<hr>
+<h3 id="bai-06-logic-state-management-voi-react-hooks">Bài 06: Logic &amp; State Management với React Hooks</h3>
+<h4 id="chu-de-dien-dan-quot-useeffect-nao-trong-code-cua-ban-la-thua-quot">💬 Chủ đề diễn đàn: &quot;useEffect nào trong code của bạn là thừa?&quot;</h4>
+<p><strong>Câu hỏi mở:</strong> Sau khi đọc bài &quot;You Might Not Need an Effect&quot;, hãy tìm trong code của nhóm một <code>useEffect</code> có thể bỏ đi (ví dụ dùng để tính tổng tiền). Các bạn đã từng gặp vòng lặp re-render vô hạn chưa, AI giúp tìm ra nguyên nhân như thế nào?</p>
+<p><strong>Gợi ý trả lời:</strong></p>
+<ul>
+<li>Tổng tiền, số vé là dữ liệu suy ra từ state → tính trực tiếp hoặc dùng <code>useMemo</code>, không cần <code>useEffect</code> + <code>setState</code>.</li>
+<li>Re-render vô hạn thường do <code>setState</code> trong <code>useEffect</code> không có hoặc sai dependency array, hoặc dependency là object/hàm tạo mới mỗi lần render.</li>
+<li>Phân biệt <code>useMemo</code> (ghi nhớ giá trị) và <code>useCallback</code> (ghi nhớ tham chiếu hàm).</li>
+</ul>
+<p><strong>Tiêu chí bài đăng tốt:</strong> có đoạn code trước/sau; nêu prompt debug đã gửi cho AI và đánh giá câu trả lời đúng hay sai ở điểm nào.</p>
+<h4 id="hoat-dong-nhom-team-challenge-60-39-so-do-chon-ghe-ngoi-truc-quan-seatmatrixpicker">👥 Hoạt động nhóm (Team Challenge 60&#39;): Sơ đồ chọn ghế ngồi trực quan (SeatMatrixPicker)</h4>
+<p><strong>Mục tiêu:</strong> Xây dựng tính năng tương tác phức tạp với state chia sẻ giữa sơ đồ ghế và khung tổng tiền.</p>
+<table>
+<thead>
+<tr>
+<th>Vai trò</th>
+<th>Việc cần làm</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Team Lead</td>
+<td>Thiết kế state (lift state lên component cha), định nghĩa kiểu <code>SeatStatus</code></td>
+</tr>
+<tr>
+<td>UI Developer</td>
+<td>Dựng lưới 5 hàng × 8 cột, màu cho 3 trạng thái: trống, đang chọn, đã bán</td>
+</tr>
+<tr>
+<td>Logic/API</td>
+<td>Xử lý click chọn/hủy, cập nhật mảng ghế đã chọn (<code>[&#39;A1&#39;, &#39;A2&#39;]</code>), tính thành tiền, giới hạn tối đa 6 ghế</td>
+</tr>
+<tr>
+<td>QA/DevOps</td>
+<td>Kiểm thử ca biên: bấm ghế đã bán, chọn ghế thứ 7, bỏ chọn rồi chọn lại</td>
+</tr>
+</tbody></table>
+<p><strong>Output:</strong> Sơ đồ ghế đổi màu tức thì khi click; chặn chọn quá 6 ghế/lần; hiển thị đúng thành tiền.</p>
+<hr>
+<h3 id="bai-07-kiem-tra-giua-ky-bao-cao-tien-do-50-du-an">Bài 07: Kiểm tra giữa kỳ – Báo cáo tiến độ 50% dự án</h3>
+<h4 id="chu-de-dien-dan-quot-retrospective-giua-ky-chay-duoc-o-dev-vo-o-build-quot">💬 Chủ đề diễn đàn: &quot;Retrospective giữa kỳ: chạy được ở dev, vỡ ở build&quot;</h4>
+<p><strong>Câu hỏi mở:</strong> Lần chạy <code>npm run build</code> đầu tiên của nhóm bạn báo những lỗi gì mà <code>npm run dev</code> không hề hiện ra? Nhìn vào Git log, các bạn thấy việc phân công và đóng góp trong nhóm đã đều chưa, nửa sau học phần sẽ thay đổi gì?</p>
+<p><strong>Gợi ý trả lời:</strong></p>
+<ul>
+<li><code>build</code> bật type-check và ESLint toàn bộ dự án: lỗi kiểu ở file chưa mở, biến không dùng, promise chưa xử lý, import sai hoa/thường.</li>
+<li>Minh chứng đóng góp: commit theo Conventional Commits, PR có review, bảng phân công trong README.</li>
+<li>Đề xuất cải tiến cụ thể: chia nhỏ task, review PR trong 24 giờ, chạy build trước khi merge.</li>
+</ul>
+<p><strong>Tiêu chí bài đăng tốt:</strong> có ảnh log lỗi build và cách đã sửa; có ít nhất 1 cam kết cải tiến đo được cho nhóm.</p>
+<h4 id="hoat-dong-nhom-team-challenge-60-39-thuc-hanh-bao-cao-giua-ky">👥 Hoạt động nhóm (Team Challenge 60&#39;): Thực hành báo cáo giữa kỳ</h4>
+<p><strong>Mục tiêu:</strong> Trình bày 50% tiến độ dự án trong 10 phút và trả lời phản biện cá nhân trong 5 phút.</p>
+<table>
+<thead>
+<tr>
+<th>Vai trò</th>
+<th>Việc cần làm</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Team Lead</td>
+<td>Mở đầu, giới thiệu dự án và bảng phân công; điều phối thời gian</td>
+</tr>
+<tr>
+<td>UI Developer</td>
+<td>Trình diễn Wireframe 5 màn hình và giao diện responsive (AntD + SCSS Custom)</td>
+</tr>
+<tr>
+<td>Logic/API</td>
+<td>Demo luồng routing mượt mà, các tính năng state đã làm (chọn vé, lọc, chọn ghế)</td>
+</tr>
+<tr>
+<td>QA/DevOps</td>
+<td>Chiếu Git commit log từng cá nhân, kết quả <code>npm run build</code> thành công</td>
+</tr>
+</tbody></table>
+<p><strong>Output:</strong> Điểm giữa kỳ ghi nhận theo rubric (Wireframe 1.5đ, UI 2.0đ, Routing 1.0đ, Git 0.5đ). Mỗi thành viên sẵn sàng giải thích code của mình.</p>
+<hr>
+<h3 id="bai-08-data-fetching-tich-hop-restful-api">Bài 08: Data Fetching &amp; tích hợp RESTful API</h3>
+<h4 id="chu-de-dien-dan-quot-fetch-tren-server-hay-goi-axios-tren-client-quot">💬 Chủ đề diễn đàn: &quot;Fetch trên Server hay gọi Axios trên Client?&quot;</h4>
+<p><strong>Câu hỏi mở:</strong> Với từng màn hình của Smart Event Hub (Trang chủ, Chi tiết sự kiện, Bộ lọc danh mục, Đặt vé), nhóm bạn lấy dữ liệu ở Server Component hay Client Component, vì sao? Khi thả Swagger JSON vào AI để sinh interface, các bạn có phát hiện chỗ nào lệch với response thật không?</p>
+<p><strong>Gợi ý trả lời:</strong></p>
+<ul>
+<li>Dữ liệu đọc, cần SEO (danh sách, chi tiết sự kiện) → <code>fetch</code> trong Server Component với <code>next: { revalidate }</code>.</li>
+<li>Dữ liệu phụ thuộc thao tác người dùng (tìm kiếm gõ phím, gửi đơn <code>POST /api/orders</code>) → Client Component với Axios.</li>
+<li>AI có thể đoán sai kiểu (<code>price</code> là <code>string</code> hay <code>number</code>), bỏ sót trường <code>null</code>, đặt tên khác với API. Cách kiểm: so với response thật trên Swagger UI.</li>
+</ul>
+<p><strong>Tiêu chí bài đăng tốt:</strong> có bảng &quot;màn hình – nơi fetch – lý do&quot;; dán interface AI sinh và phần đã sửa.</p>
+<h4 id="hoat-dong-nhom-team-challenge-60-39-thay-mock-json-bang-api-that">👥 Hoạt động nhóm (Team Challenge 60&#39;): Thay Mock JSON bằng API thật</h4>
+<p><strong>Mục tiêu:</strong> Mỗi thành viên phụ trách một mảng API; toàn bộ dữ liệu mock được thay bằng dữ liệu từ Backend.</p>
+<table>
+<thead>
+<tr>
+<th>Vai trò</th>
+<th>Việc cần làm</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Thành viên 1 (UI)</td>
+<td>Fetch <code>GET /api/categories</code>, render vào Filter Bar/Dropdown</td>
+</tr>
+<tr>
+<td>Thành viên 2 (Logic/API)</td>
+<td>Fetch tìm kiếm &amp; phân trang <code>GET /api/events?search=...&amp;page=...</code></td>
+</tr>
+<tr>
+<td>Thành viên 3 (QA/DevOps)</td>
+<td>Tích hợp <code>POST /api/orders</code>, hiển thị Notification thành công/thất bại của AntD</td>
+</tr>
+<tr>
+<td>Team Lead</td>
+<td>Viết <code>services/</code> dùng chung (base URL từ <code>NEXT_PUBLIC_API_URL</code>), thêm <code>Spin</code>/<code>Skeleton</code> khi tải</td>
+</tr>
+</tbody></table>
+<p><strong>Output:</strong> Toàn bộ dữ liệu mock cũ được thay bằng dữ liệu API thật; có trạng thái Loading khi chờ API.</p>
+<hr>
+<h3 id="bai-09-form-validation-react-hook-form-zod-local-storage-complex-ui-state">Bài 09: Form Validation (React Hook Form + Zod), Local Storage &amp; Complex UI State</h3>
+<h4 id="chu-de-dien-dan-quot-luu-token-o-dau-cho-dung-quot">💬 Chủ đề diễn đàn: &quot;Lưu token ở đâu cho đúng?&quot;</h4>
+<p><strong>Câu hỏi mở:</strong> Nhóm bạn lưu Auth Token ở <code>localStorage</code> hay Cookie (đặc biệt là <code>httpOnly</code>)? Hãy phân tích đánh đổi về bảo mật và độ tiện. Vì sao đọc <code>localStorage</code> trong Next.js dễ gặp lỗi <code>window is not defined</code> hoặc Hydration mismatch, và nhóm đã xử lý ra sao?</p>
+<p><strong>Gợi ý trả lời:</strong></p>
+<ul>
+<li><code>localStorage</code> tiện, hợp với dữ liệu UI không nhạy cảm (Wishlist, theme) nhưng JavaScript nào cũng đọc được. Cookie <code>httpOnly</code> do server đặt, trình duyệt tự gửi kèm request, script không đọc được.</li>
+<li>Server không có <code>window</code>; phải đọc <code>localStorage</code> trong <code>useEffect</code> hoặc qua custom hook như <code>useLocalStorage</code>.</li>
+<li>Có thể nói thêm về <code>z.infer&lt;typeof schema&gt;</code> giúp form và type luôn khớp.</li>
+</ul>
+<p><strong>Tiêu chí bài đăng tốt:</strong> nêu lựa chọn và lý do gắn với Smart Event Hub; có đoạn code đọc storage an toàn.</p>
+<h4 id="hoat-dong-nhom-team-challenge-60-39-tinh-nang-wishlist-bang-localstorage">👥 Hoạt động nhóm (Team Challenge 60&#39;): Tính năng Wishlist bằng LocalStorage</h4>
+<p><strong>Mục tiêu:</strong> Người dùng thả tim sự kiện ở bất kỳ Card nào, danh sách được giữ lại sau khi tải lại trang.</p>
+<table>
+<thead>
+<tr>
+<th>Vai trò</th>
+<th>Việc cần làm</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Team Lead</td>
+<td>Thiết kế cách chia sẻ state (custom hook hoặc Context) để mọi Card đồng bộ</td>
+</tr>
+<tr>
+<td>UI Developer</td>
+<td>Icon trái tim trên <code>EventCard</code>, trạng thái bật/tắt rõ ràng</td>
+</tr>
+<tr>
+<td>Logic/API</td>
+<td>Hook đọc/ghi mảng ID vào <code>localStorage</code> an toàn với SSR</td>
+</tr>
+<tr>
+<td>QA/DevOps</td>
+<td>Trang <code>/user/wishlist</code>; kiểm thử F5, nhiều Card cùng một sự kiện trên một trang</td>
+</tr>
+</tbody></table>
+<p><strong>Output:</strong> Refresh/F5 vẫn giữ đúng trạng thái Wishlist; trang <code>/user/wishlist</code> hiển thị đúng danh sách.</p>
+<hr>
+<h3 id="bai-10-pbl-1-refactoring-optimization-responsive-polish">Bài 10: PBL 1 – Refactoring, Optimization &amp; Responsive Polish</h3>
+<h4 id="chu-de-dien-dan-quot-code-smell-nao-ai-hay-de-lai-nhat-quot">💬 Chủ đề diễn đàn: &quot;Code smell nào AI hay để lại nhất?&quot;</h4>
+<p><strong>Câu hỏi mở:</strong> Khi rà lại toàn bộ codebase, loại code smell nào xuất hiện nhiều nhất trong phần code do AI sinh (component quá 300 dòng, lặp code, <code>any</code>, biến không dùng…)? Hãy chia sẻ một lần refactor mà nhóm đo được kết quả (số dòng giảm, số warning còn lại).</p>
+<p><strong>Gợi ý trả lời:</strong></p>
+<ul>
+<li>Đối chiếu với danh mục của Refactoring Guru: Long Method, Duplicate Code, Large Class.</li>
+<li>Đo bằng số dòng trước/sau, số cảnh báo ESLint/TypeScript, hoặc ảnh màn hình 375px trước/sau khi sửa tràn ngang.</li>
+<li>Nêu rõ prompt refactor đã dùng và chỗ AI đề xuất sai (đổi logic, xóa nhầm xử lý).</li>
+</ul>
+<p><strong>Tiêu chí bài đăng tốt:</strong> có số liệu trước/sau; chỉ ra ít nhất một đề xuất của AI mà nhóm <strong>không</strong> chấp nhận và lý do.</p>
+<h4 id="hoat-dong-nhom-pbl-180-39-responsive-polish-refactoring-zero-warning">👥 Hoạt động nhóm (PBL 180&#39;): Responsive Polish – Refactoring – Zero Warning</h4>
+<p><strong>Mục tiêu:</strong> Đưa codebase về trạng thái sạch: responsive ở 375/768/1440px, rút gọn code lặp, không còn warning trên Console.</p>
+<table>
+<thead>
+<tr>
+<th>Vai trò</th>
+<th>Việc cần làm</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Team Lead</td>
+<td>Lập danh sách bug, theo dõi tiến độ 3 phần; chuẩn bị nghiệm thu với GV</td>
+</tr>
+<tr>
+<td>UI Developer</td>
+<td>Phần 1: sửa tràn ngang; chuyển Menu/Filter sang <code>Drawer</code>/<code>Collapse</code> trên di động</td>
+</tr>
+<tr>
+<td>Logic/API</td>
+<td>Phần 2: tách component lặp, xóa <code>any</code>, biến không dùng, <code>console.log</code>; gom SCSS lặp thành mixin</td>
+</tr>
+<tr>
+<td>QA/DevOps</td>
+<td>Phần 3: chạy dev kiểm tra Hot Reload, sửa warning (Hydration failed, React does not recognize prop…)</td>
+</tr>
+</tbody></table>
+<p><strong>Output:</strong> Codebase rút gọn &gt;20% số dòng mà không đổi logic; TypeScript strict pass; Zero Console Warnings; biên bản nghiệm thu PBL 1.</p>
+<hr>
+<h3 id="bai-11-pbl-2-ci-cd-deploy-vercel-seo-performance">Bài 11: PBL 2 – CI/CD, Deploy Vercel, SEO &amp; Performance</h3>
+<h4 id="chu-de-dien-dan-quot-lighthouse-chua-toi-85-thu-pham-la-ai-quot">💬 Chủ đề diễn đàn: &quot;Lighthouse chưa tới 85 – thủ phạm là ai?&quot;</h4>
+<p><strong>Câu hỏi mở:</strong> Lần audit Lighthouse đầu tiên trên link Vercel của nhóm bạn được bao nhiêu điểm Performance và SEO? Ba nguyên nhân lớn nhất là gì và nhóm đã cải thiện thế nào? Ngoài ra, biến có tiền tố <code>NEXT_PUBLIC_</code> sẽ lộ ra phía trình duyệt – vậy nên đặt gì vào đó và không nên đặt gì?</p>
+<p><strong>Gợi ý trả lời:</strong></p>
+<ul>
+<li>Nguyên nhân thường gặp: ảnh lớn dùng <code>&lt;img&gt;</code> thô, font gây layout shift (CLS), component nặng tải ngay từ đầu.</li>
+<li>Giải pháp: <code>next/image</code> với <code>sizes</code>/<code>priority</code>, <code>next/font</code>, <code>next/dynamic</code>, Metadata API và <code>generateMetadata</code>.</li>
+<li><code>NEXT_PUBLIC_API_URL</code> là địa chỉ công khai nên đặt được; khóa bí mật thì không bao giờ gắn tiền tố này.</li>
+</ul>
+<p><strong>Tiêu chí bài đăng tốt:</strong> có ảnh Lighthouse trước/sau; nêu từng thay đổi gắn với chỉ số nào tăng.</p>
+<h4 id="hoat-dong-nhom-pbl-180-39-seo-dong-deploy-vercel-lighthouse-gt-85">👥 Hoạt động nhóm (PBL 180&#39;): SEO động – Deploy Vercel – Lighthouse &gt; 85</h4>
+<p><strong>Mục tiêu:</strong> Đưa Smart Event Hub lên Internet với SEO đúng chuẩn và hiệu năng đạt yêu cầu.</p>
+<table>
+<thead>
+<tr>
+<th>Vai trò</th>
+<th>Việc cần làm</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Team Lead</td>
+<td>Merge <code>dev</code> → <code>main</code>, chốt bản deploy, tổng hợp link Live nộp LMS</td>
+</tr>
+<tr>
+<td>UI Developer</td>
+<td>Thay toàn bộ <code>&lt;img&gt;</code> bằng <code>next/image</code>, tối ưu font bằng <code>next/font</code></td>
+</tr>
+<tr>
+<td>Logic/API</td>
+<td>Metadata tĩnh ở Root Layout; <code>generateMetadata</code> cho <code>/events/[id]</code> (OpenGraph theo sự kiện)</td>
+</tr>
+<tr>
+<td>QA/DevOps</td>
+<td>Kết nối repo với Vercel, khai báo <code>NEXT_PUBLIC_API_URL</code>, xử lý Build Fail, chạy Lighthouse</td>
+</tr>
+</tbody></table>
+<p><strong>Output:</strong> Link <code>*.vercel.app</code> hoạt động; chia sẻ link lên Zalo/Facebook hiện đúng ảnh và tiêu đề; Lighthouse Performance &gt; 85, SEO &gt; 90.</p>
+<hr>
+<h3 id="bai-12-thi-hackathon-final-showcase">Bài 12: Thi Hackathon &amp; Final Showcase</h3>
+<h4 id="chu-de-dien-dan-quot-nhin-lai-12-buoi-vibe-coding-da-thay-doi-cach-ban-lam-front-end-ra-sao-quot">💬 Chủ đề diễn đàn: &quot;Nhìn lại 12 buổi: Vibe Coding đã thay đổi cách bạn làm Front-End ra sao?&quot;</h4>
+<p><strong>Câu hỏi mở:</strong> Sau học phần, các bạn vạch ranh giới giữa &quot;dùng AI để tăng tốc&quot; và &quot;để AI làm thay&quot; ở đâu? Hãy chọn một sản phẩm của nhóm khác mà bạn đã trải nghiệm trong phần Cross-Testing và góp ý 2 điểm mạnh, 1 điểm cần cải thiện.</p>
+<p><strong>Gợi ý trả lời:</strong></p>
+<ul>
+<li>Ranh giới thực tế: mình phải giải thích được từng dòng code mình commit; AI sinh khung, mình chịu trách nhiệm type, logic, responsive.</li>
+<li>Góp ý Cross-Testing nên cụ thể: màn hình nào, thiết bị nào, bước tái hiện lỗi.</li>
+<li>Có thể kể prompt workflow hiệu quả nhất của nhóm.</li>
+</ul>
+<p><strong>Tiêu chí bài đăng tốt:</strong> phản tư trung thực, có ví dụ cụ thể; góp ý cho nhóm khác lịch sự, đủ thông tin để họ tái hiện.</p>
+<h4 id="hoat-dong-nhom-chuan-bi-va-trinh-bay-final-showcase">👥 Hoạt động nhóm: Chuẩn bị và trình bày Final Showcase</h4>
+<p><strong>Mục tiêu:</strong> Trình bày sản phẩm hoàn chỉnh trong 8 phút, demo live, trả lời phản biện 5 phút; tham gia trải nghiệm chéo các nhóm khác.</p>
+<table>
+<thead>
+<tr>
+<th>Vai trò</th>
+<th>Việc cần làm</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Team Lead</td>
+<td>Dẫn dắt kịch bản thuyết trình: Wireframe → Vercel App; giữ đúng 8 phút</td>
+</tr>
+<tr>
+<td>UI Developer</td>
+<td>Demo giao diện responsive, tùy biến Theme, các điểm UI/UX nổi bật</td>
+</tr>
+<tr>
+<td>Logic/API</td>
+<td>Demo luồng chính: xem sự kiện → chọn vé/ghế → đặt vé (API thật) → Wishlist/đăng nhập</td>
+</tr>
+<tr>
+<td>QA/DevOps</td>
+<td>Chuẩn bị link Vercel, ảnh Lighthouse, Git log từng cá nhân; phương án dự phòng (video demo)</td>
+</tr>
+</tbody></table>
+<p><strong>Output:</strong> Slide thuyết trình, link Vercel Live, báo cáo Word/PDF đã nộp; điểm cuối kỳ cá nhân = Điểm nhóm × 0.7 + Điểm phản biện cá nhân × 0.3.</p>
+<hr>
+<blockquote>
+<p>📚 <strong>Liên kết trong bộ học liệu:</strong> yêu cầu nộp chi tiết xem <code>assignment/bai-tap-va-nhiem-vu.md</code>; tài liệu và prompt mẫu xem <code>resources/tai-nguyen-hoc-tap.md</code>; đặc tả dự án xem <code>documentation/dac-ta-du-an-smart-event-hub.md</code>.</p>
+</blockquote>
+
+    </article>
+
+    <!-- Bottom Navigation -->
+    <div class="flex items-center justify-between gap-4 mt-8 no-print text-xs font-bold">
+      <span></span>
+      <a href="../index.html#lo-trinh" class="px-4 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-800 rounded-xl transition-all flex items-center gap-2">
+        <i class="fa-solid fa-table-cells-large"></i> Danh mục bài học
+      </a>
+      <span></span>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-slate-200 py-6 text-xs text-slate-500 mt-12 no-print">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <strong>Khoa Công nghệ Thông tin - Trường Đại học Lạc Hồng</strong><br>
+        Phòng B301 - B302, Cơ sở 1, Số 10 Huỳnh Văn Nghệ, P. Bửu Long, TP. Biên Hòa, Đồng Nai.
+      </div>
+      <div class="sm:text-right">
+        <span>Email: cntt@lhu.edu.vn • Hotline: (0251) 3952 251</span><br>
+        <span>Hệ thống LMS: <a href="https://learn.lhu.edu.vn" target="_blank" rel="noopener noreferrer" class="text-lhu-blue font-bold">learn.lhu.edu.vn</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleAllDetails(open) {
+      document.querySelectorAll("details").forEach(d => {
+        if (open) d.setAttribute("open", ""); else d.removeAttribute("open");
+      });
+    }
+    if (window.hljs) hljs.highlightAll();
+  </script>
+
+</body>
+</html>

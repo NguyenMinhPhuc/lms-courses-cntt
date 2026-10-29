@@ -1,0 +1,498 @@
+<details open="" style="border: 1px solid #007bff; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #e7f1ff; color: #007bff; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>📘 1. Tổng quan bài học</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <p style="margin-top: 0;"><strong>BÀI 04 - Dynamic Routing &amp; kiến trúc Reusable Components (5 tiết)</strong></p>
+        <p style="margin: 0 0 8px 0; color: #6c757d;">CHƯƠNG 2: NEXT.JS CORE – ROUTING &amp; KIẾN TRÚC COMPONENT</p>
+        <p><strong>Thời lượng:</strong> 5 tiết (225 phút) · <strong>Hình thức:</strong> Lớp học đảo ngược · <strong>Chuẩn đầu ra:</strong> PI 2.3 (CLO2)<br><strong>Dự án xuyên suốt:</strong> Smart Event Hub – Xây dựng trang Chi tiết sự kiện <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/events/[id]</code>, trang Danh mục động <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/category/[slug]</code> và bộ UI component dùng chung.</p>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #f3f8ff; border: 1px solid #cfe2ff; border-radius: 8px;">
+            <p>🎯 <strong>MỤC TIÊU BÀI HỌC (Learning Objectives)</strong><br>Sau khi hoàn thành bài học này, người học có thể:</p>
+<ul>
+<li><strong>[Bloom 1/2 - Kiến thức]:</strong> Giải thích được cú pháp Dynamic Segment <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">[id]</code>, Catch-all <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">[...slug]</code>, Optional Catch-all <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">[[...slug]]</code> và sự khác nhau giữa <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">params</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">searchParams</code> với các hook <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useParams</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useSearchParams</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">usePathname</code>.</li>
+<li><strong>[Bloom 3/4 - Kỹ năng]:</strong> Xây dựng được trang động đọc tham số URL theo chuẩn Next.js 15 (<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">params</code> là <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Promise</code>) và thiết kế component tái sử dụng có <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">variant</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">size</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">isLoading</code> mở rộng từ HTML attributes.</li>
+<li><strong>[Bloom 5/6 - Năng lực]:</strong> Đánh giá và tái cấu trúc thư mục <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">components/</code> theo nguyên tắc DRY, kiểm duyệt được component do AI sinh ra trước khi đưa vào dự án nhóm.</li>
+</ul>
+        </div>
+        <p><strong>📝 Đặt vấn đề &amp; dẫn nhập</strong></p>
+        <p>Smart Event Hub hiện có 3 sự kiện mẫu, nhưng Backend sắp trả về vài trăm sự kiện. Nếu mỗi sự kiện cần một thư mục <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">app/events/ev-101/</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">app/events/ev-102/</code>… thì dự án sẽ phình ra không kiểm soát được. Cùng lúc đó, nhìn lại code Buổi 3, các bạn sẽ thấy nút &quot;Mua vé&quot;, nút &quot;Xem chi tiết&quot;, nút &quot;Đăng nhập&quot; mỗi nơi viết một kiểu CSS, sửa màu thương hiệu phải đi tìm ở cả chục file.</p>
+<p><strong>Làm sao để một file <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">page.tsx</code> duy nhất phục vụ được mọi sự kiện, và một component <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Button</code> duy nhất phục vụ được mọi nút bấm?</strong> Đó chính là hai câu hỏi bài học này trả lời: Dynamic Routing cho phần URL và Reusable Component cho phần giao diện.</p>
+<blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #007bff; border-radius: 0 8px 8px 0; color: #212529;">
+<p>🧭 <strong>Trước giờ học (Flipped Classroom):</strong> Xem video/slide về Next.js Dynamic Routes (params) và Component Props &amp; Reusability pattern do giảng viên chia sẻ trên LMS. Đọc trước hai tài liệu ở mục 5. Làm quiz nhanh 5–10 câu trên <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">https://learn.lhu.edu.vn</code>. Chuẩn bị dự án Next.js của nhóm từ Buổi 3 (đã có <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">app/events/page.tsx</code>).</p>
+</blockquote>
+    </div>
+</details>
+
+<details style="border: 1px solid #fd7e14; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #fff5eb; color: #fd7e14; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>📚 2. Học liệu chính</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.1. Dynamic Segments: <code style="font-family: Consolas, monospace;">[id]</code>, <code style="font-family: Consolas, monospace;">[...slug]</code> và <code style="font-family: Consolas, monospace;">[[...slug]]</code></h3>
+            <ul>
+<li><strong>Khái niệm:</strong> Dynamic Segment là thư mục có tên đặt trong ngoặc vuông. Next.js dùng phần URL tương ứng làm tham số và truyền vào <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">page.tsx</code>.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">app/events/[id]/page.tsx</code> khớp <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/events/123</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/events/ev-101</code> → <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">{ id: &#39;ev-101&#39; }</code>.</li>
+<li><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">app/docs/[...slug]/page.tsx</code> (Catch-all) khớp <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/docs/a</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/docs/a/b/c</code> → <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">{ slug: [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;] }</code>, nhưng <strong>không</strong> khớp <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/docs</code>.</li>
+<li><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">app/shop/[[...slug]]/page.tsx</code> (Optional Catch-all) khớp cả <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/shop</code> → <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">{ slug: undefined }</code>.</li>
+<li>Tên trong ngoặc là tên thuộc tính trong <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">params</code>, nên đặt rõ nghĩa (<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">[eventId]</code> tốt hơn <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">[x]</code>).</li>
+</ul>
+</li>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #fd7e14; border-radius: 0 8px 8px 0; color: #212529;">
+<p>Trang Shopee dùng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/product/[shopId]/[productId]</code>; Smart Event Hub cần <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/events/[id]</code> cho chi tiết, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/category/[slug]</code> cho danh mục và <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/checkout/[id]</code> cho thanh toán. Ba thư mục động thay cho hàng trăm thư mục tĩnh.</p>
+</blockquote>
+</li>
+</ul>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">app/
+├── events/
+│   ├── page.tsx              → /events
+│   └── [id]/page.tsx         → /events/ev-101
+├── category/[slug]/page.tsx  → /category/music?page=1&amp;sort=latest
+├── checkout/[id]/page.tsx    → /checkout/ev-101
+└── docs/[...slug]/page.tsx   → /docs/huong-dan/dat-ve
+</code></pre>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.2. <code style="font-family: Consolas, monospace;">params</code> và <code style="font-family: Consolas, monospace;">searchParams</code> trong Server Component (Next.js 15)</h3>
+            <ul>
+<li><strong>Khái niệm:</strong> Trong App Router, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">page.tsx</code> nhận hai props: <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">params</code> (tham số động trên đường dẫn) và <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">searchParams</code> (query string <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">?page=1&amp;sort=desc</code>).</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li>Từ Next.js 15, <strong>cả hai đều là <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Promise</code></strong>. Phải <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">await</code> trước khi dùng; viết <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">params.id</code> trực tiếp là cách cũ của Next.js 14.</li>
+<li>Giá trị query có thể là <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">string</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">string[]</code> (khi lặp <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">?tag=a&amp;tag=b</code>) hoặc <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">undefined</code>, nên cần kiểm tra kiểu.</li>
+<li>Gọi <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">notFound()</code> từ <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">next/navigation</code> khi không tìm thấy dữ liệu để hiển thị <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">not-found.tsx</code> đã làm ở Buổi 3.</li>
+</ul>
+</li>
+</ul>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// app/events/[id]/page.tsx (Server Component)
+import Link from &#39;next/link&#39;;
+import { notFound } from &#39;next/navigation&#39;;
+import { getEventById } from &#39;@/lib/events&#39;;
+
+interface PageProps {
+  params: Promise&lt;{ id: string }&gt;;
+}
+
+export default async function EventDetailPage({ params }: PageProps) {
+  const { id } = await params;
+  const event = getEventById(id);
+
+  if (!event) notFound(); // notFound() trả về never → TS tự thu hẹp kiểu
+
+  return (
+    &lt;main&gt;
+      &lt;h1&gt;{event.title}&lt;/h1&gt;
+      &lt;p&gt;Mã sự kiện: {id}&lt;/p&gt;
+      &lt;Link href={`/category/${event.categorySlug}`}&gt;{event.categoryName}&lt;/Link&gt;
+      &lt;Link href={`/checkout/${event.id}`}&gt;Mua vé&lt;/Link&gt;
+    &lt;/main&gt;
+  );
+}
+</code></pre>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// app/category/[slug]/page.tsx (Server Component)
+interface CategoryPageProps {
+  params: Promise&lt;{ slug: string }&gt;;
+  searchParams: Promise&lt;{ [key: string]: string | string[] | undefined }&gt;;
+}
+
+export default async function CategoryPage({ params, searchParams }: CategoryPageProps) {
+  const { slug } = await params;
+  const query = await searchParams;
+  const sort = typeof query.sort === &#39;string&#39; ? query.sort : &#39;latest&#39;;
+  const page = Number(typeof query.page === &#39;string&#39; ? query.page : &#39;1&#39;) || 1;
+
+  return &lt;h1&gt;Danh mục: {slug} · sắp xếp: {sort} · trang {page}&lt;/h1&gt;;
+}
+</code></pre>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.3. Navigation Hooks trong Client Component</h3>
+            <ul>
+<li><strong>Khái niệm:</strong> Khi component cần tương tác (đổi bộ lọc, highlight menu đang chọn), ta dùng hook của <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">next/navigation</code>. Các hook này chỉ chạy trong file có <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&#39;use client&#39;</code>.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useParams()</code> → đọc tham số động (<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">{ slug: &#39;music&#39; }</code>), trả về đồng bộ, không cần <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">await</code>.</li>
+<li><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useSearchParams()</code> → đọc query (<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">searchParams.get(&#39;sort&#39;)</code>), là đối tượng chỉ đọc.</li>
+<li><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">usePathname()</code> → đường dẫn hiện tại (<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/category/music</code>), hay dùng cho menu active.</li>
+<li><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useRouter()</code> → điều hướng bằng code: <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">router.push(...)</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">router.replace(...)</code>.</li>
+<li>Component dùng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useSearchParams</code> nên được bọc trong <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&lt;Suspense&gt;</code>; nếu không, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">npm run build</code> có thể báo lỗi ở trang render tĩnh.</li>
+</ul>
+</li>
+</ul>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// app/category/[slug]/SortSelect.tsx
+&#39;use client&#39;;
+
+import { usePathname, useRouter, useSearchParams } from &#39;next/navigation&#39;;
+
+export default function SortSelect() {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const currentSort = searchParams.get(&#39;sort&#39;) ?? &#39;latest&#39;;
+
+  const handleChange = (value: string) =&gt; {
+    const next = new URLSearchParams(searchParams.toString());
+    next.set(&#39;sort&#39;, value);
+    next.set(&#39;page&#39;, &#39;1&#39;);
+    router.push(`${pathname}?${next.toString()}`);
+  };
+
+  return (
+    &lt;select value={currentSort} onChange={(e) =&gt; handleChange(e.target.value)}&gt;
+      &lt;option value=&quot;latest&quot;&gt;Mới nhất&lt;/option&gt;
+      &lt;option value=&quot;price-asc&quot;&gt;Giá tăng dần&lt;/option&gt;
+      &lt;option value=&quot;price-desc&quot;&gt;Giá giảm dần&lt;/option&gt;
+    &lt;/select&gt;
+  );
+}
+</code></pre>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// Trong CategoryPage (Server Component)
+import { Suspense } from &#39;react&#39;;
+import SortSelect from &#39;./SortSelect&#39;;
+// ...
+&lt;Suspense fallback={&lt;span&gt;Đang tải bộ lọc...&lt;/span&gt;}&gt;
+  &lt;SortSelect /&gt;
+&lt;/Suspense&gt;
+</code></pre>
+<blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #fd7e14; border-radius: 0 8px 8px 0; color: #212529;">
+<p><strong>Ghi nhớ nhanh:</strong> Server Component đọc query bằng prop <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">searchParams</code> (phải <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">await</code>). Client Component đọc query bằng hook <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useSearchParams()</code>. Đừng trộn lẫn hai cách trong cùng một file.</p>
+</blockquote>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.4. Mock Data có kiểu dữ liệu chặt chẽ</h3>
+            <ul>
+<li><strong>Khái niệm:</strong> Trước khi có API thật (Buổi 8), chúng ta dùng file JSON giả lập nhưng vẫn khai báo đúng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">interface</code> để khi đổi sang API không phải sửa giao diện.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong> Đặt dữ liệu ở <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">data/mock-events.json</code>, gom hàm truy vấn vào <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">lib/events.ts</code>. Trang chỉ gọi hàm, không tự lọc mảng.</li>
+</ul>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// types/event.ts
+export type EventStatus = &#39;UPCOMING&#39; | &#39;ONGOING&#39; | &#39;ENDED&#39;;
+
+export interface EventItem {
+  id: string;
+  title: string;
+  price: number;
+  status: EventStatus;
+  categorySlug: string;
+  categoryName: string;
+  startDate: string; // ISO 8601
+}
+</code></pre>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// lib/events.ts
+import rawEvents from &#39;@/data/mock-events.json&#39;;
+import type { EventItem } from &#39;@/types/event&#39;;
+
+const events = rawEvents as EventItem[];
+
+export function getEventById(id: string): EventItem | undefined {
+  return events.find((event) =&gt; event.id === id);
+}
+
+export function getEventsByCategory(slug: string): EventItem[] {
+  return events.filter((event) =&gt; event.categorySlug === slug);
+}
+</code></pre>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">[
+  { &quot;id&quot;: &quot;ev-101&quot;, &quot;title&quot;: &quot;Tech Summit 2025&quot;, &quot;price&quot;: 500000, &quot;status&quot;: &quot;UPCOMING&quot;,
+    &quot;categorySlug&quot;: &quot;technology&quot;, &quot;categoryName&quot;: &quot;Công nghệ&quot;, &quot;startDate&quot;: &quot;2025-12-05T08:00:00Z&quot; },
+  { &quot;id&quot;: &quot;ev-102&quot;, &quot;title&quot;: &quot;Đêm nhạc Acoustic&quot;, &quot;price&quot;: 300000, &quot;status&quot;: &quot;UPCOMING&quot;,
+    &quot;categorySlug&quot;: &quot;music&quot;, &quot;categoryName&quot;: &quot;Âm nhạc&quot;, &quot;startDate&quot;: &quot;2025-12-12T19:30:00Z&quot; }
+]
+</code></pre>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.5. Reusable Component: Composition, Variant Mapping và Polymorphic</h3>
+            <ul>
+<li><strong>Khái niệm:</strong> Component tái sử dụng là component nhận cấu hình qua props thay vì sao chép code (nguyên tắc <strong>DRY – Don&#39;t Repeat Yourself</strong>). Ba kỹ thuật chính: <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">children</code> prop (Composition), bản đồ <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">variant</code>/<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">size</code> sang class, và prop <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">as</code> (Polymorphic).</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li>Mở rộng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">ButtonHTMLAttributes&lt;HTMLButtonElement&gt;</code> để component nhận sẵn <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">onClick</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">type</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">disabled</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">aria-*</code> mà không phải khai báo lại.</li>
+<li>Dùng union type cho <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">variant</code> và <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">size</code> để TypeScript chặn giá trị sai ngay khi gõ.</li>
+<li>Đặt giá trị mặc định khi destructure, gộp <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">className</code> từ bên ngoài để người dùng component vẫn tùy biến được.</li>
+<li><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Button</code> không dùng hook nên không bắt buộc <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&#39;use client&#39;</code>. Tuy nhiên, khi cần truyền <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">onClick</code>, hãy dùng nó bên trong một Client Component, vì Server Component không truyền được hàm.</li>
+</ul>
+</li>
+</ul>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// components/ui/Button.tsx
+import type { ButtonHTMLAttributes, ReactNode } from &#39;react&#39;;
+import styles from &#39;./Button.module.scss&#39;;
+
+type ButtonVariant = &#39;primary&#39; | &#39;secondary&#39; | &#39;danger&#39; | &#39;outline&#39;;
+type ButtonSize = &#39;sm&#39; | &#39;md&#39; | &#39;lg&#39;;
+
+export interface ButtonProps extends ButtonHTMLAttributes&lt;HTMLButtonElement&gt; {
+  variant?: ButtonVariant;
+  size?: ButtonSize;
+  isLoading?: boolean;
+  leftIcon?: ReactNode;
+}
+
+export function Button({
+  variant = &#39;primary&#39;,
+  size = &#39;md&#39;,
+  isLoading = false,
+  leftIcon,
+  disabled,
+  className,
+  type = &#39;button&#39;,
+  children,
+  ...rest
+}: ButtonProps) {
+  const classes = [styles.btn, styles[variant], styles[size], className].filter(Boolean).join(&#39; &#39;);
+
+  return (
+    &lt;button type={type} className={classes} disabled={disabled || isLoading} aria-busy={isLoading} {...rest}&gt;
+      {isLoading ? &lt;span className={styles.spinner} aria-hidden=&quot;true&quot; /&gt; : leftIcon}
+      {children}
+    &lt;/button&gt;
+  );
+}
+</code></pre>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// components/ui/Button.module.scss
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, opacity 0.2s;
+  &amp;:disabled { opacity: 0.6; cursor: not-allowed; }
+}
+.primary   { background: #6366f1; color: #fff; }
+.secondary { background: #e0e7ff; color: #3730a3; }
+.danger    { background: #ef4444; color: #fff; }
+.outline   { background: transparent; color: #6366f1; border-color: #6366f1; }
+.sm { padding: 4px 12px;  font-size: 13px; }
+.md { padding: 8px 16px;  font-size: 14px; }
+.lg { padding: 12px 24px; font-size: 16px; }
+.spinner {
+  width: 1em; height: 1em;
+  border: 2px solid currentColor; border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+</code></pre>
+<p>Composition và Polymorphic giúp một component &quot;khung&quot; dùng được ở nhiều ngữ cảnh:</p>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// components/ui/Card.tsx – Polymorphic + children
+import type { ComponentPropsWithoutRef, ElementType, ReactNode } from &#39;react&#39;;
+
+type CardProps&lt;C extends ElementType&gt; = {
+  as?: C;
+  title?: ReactNode;
+  footer?: ReactNode;
+  children: ReactNode;
+} &amp; Omit&lt;ComponentPropsWithoutRef&lt;C&gt;, &#39;as&#39; | &#39;title&#39; | &#39;children&#39;&gt;;
+
+export function Card&lt;C extends ElementType = &#39;div&#39;&gt;({ as, title, footer, children, ...rest }: CardProps&lt;C&gt;) {
+  const Component: ElementType = as ?? &#39;div&#39;;
+  return (
+    &lt;Component className=&quot;card&quot; {...rest}&gt;
+      {title &amp;&amp; &lt;header className=&quot;card__title&quot;&gt;{title}&lt;/header&gt;}
+      &lt;div className=&quot;card__body&quot;&gt;{children}&lt;/div&gt;
+      {footer &amp;&amp; &lt;footer className=&quot;card__footer&quot;&gt;{footer}&lt;/footer&gt;}
+    &lt;/Component&gt;
+  );
+}
+
+// Sử dụng: &lt;Card as=&quot;article&quot; title=&quot;Tech Summit 2025&quot; footer={&lt;BuyButton /&gt;}&gt;...&lt;/Card&gt;
+</code></pre>
+<ul>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #fd7e14; border-radius: 0 8px 8px 0; color: #212529;">
+<p>Ant Design, MUI hay shadcn/ui đều thiết kế <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Button</code> theo đúng mô hình này: một component, nhiều <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">variant</code>/<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">size</code>, nhận thêm mọi thuộc tính HTML gốc. Khi phòng Marketing đổi màu thương hiệu, nhóm chỉ sửa một file SCSS.</p>
+</blockquote>
+</li>
+</ul>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.6. Vibe Coding – Prompt mẫu &amp; cách kiểm duyệt code AI</h3>
+            <p>Prompt mẫu cho Guided Practice (Button):</p>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">Hãy thiết kế cho tôi một Reusable Component tên là Button.tsx trong Next.js TypeScript.
+
+Yêu cầu:
+1. Props Interface ButtonProps mở rộng từ React.ButtonHTMLAttributes&lt;HTMLButtonElement&gt;:
+   - variant: &#39;primary&#39; | &#39;secondary&#39; | &#39;danger&#39; | &#39;outline&#39;
+   - size: &#39;sm&#39; | &#39;md&#39; | &#39;lg&#39;
+   - isLoading?: boolean
+   - leftIcon?: React.ReactNode
+2. Xử lý SCSS Module / TailwindCSS tương ứng với các biến thể.
+3. Khi isLoading = true, vô hiệu hóa button (disabled) và hiển thị Spinner.
+</code></pre>
+<p>Prompt mẫu cho Unguided Practice (Category):</p>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">Tạo giúp tôi trang Dynamic Route /category/[slug]/page.tsx trong Next.js 15 App Router.
+- Sử dụng params để lấy tên danh mục (music, technology, sports).
+- Sử dụng searchParams để lấy thông tin phân trang page và sắp xếp sort.
+- Render dữ liệu mock tương ứng với danh mục đó.
+- Đảm bảo viết chuẩn TypeScript Interface cho PageProps trong Next.js 15
+  (params và searchParams đều là Promise). Không dùng any.
+</code></pre>
+<p>Prompt mẫu cho Polymorphic Component:</p>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">Viết component Card.tsx dạng Polymorphic (prop &quot;as&quot; nhận ElementType, mặc định &quot;div&quot;)
+bằng TypeScript strict. Props kế thừa thuộc tính của thẻ được chọn qua
+ComponentPropsWithoutRef&lt;C&gt;, có slot title, footer và children. Không dùng any.
+</code></pre>
+<blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #fd7e14; border-radius: 0 8px 8px 0; color: #212529;">
+<p><strong>Checklist kiểm duyệt code AI trước khi commit:</strong></p>
+<ol>
+<li><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">params</code>/<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">searchParams</code> có được khai báo là <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Promise</code> và <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">await</code> chưa? AI hay sinh <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">params.id</code> kiểu Next.js 14.</li>
+<li>Union type có dùng dấu <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">|</code> đúng chưa, có lọt <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">any</code> hay <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">as any</code> không?</li>
+<li>Hook <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useSearchParams</code>/<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useParams</code> chỉ nằm trong file <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&#39;use client&#39;</code>, và đã bọc <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&lt;Suspense&gt;</code>?</li>
+<li>Button có <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">type=&quot;button&quot;</code> mặc định (tránh vô tình submit form), có <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">disabled</code> khi <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">isLoading</code>?</li>
+<li>Có trường hợp không tìm thấy dữ liệu → gọi <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">notFound()</code> chưa?</li>
+<li>Chạy thử với id sai (<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/events/abc</code>) và query lạ (<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">?page=xyz</code>) xem trang có vỡ không.</li>
+</ol>
+</blockquote>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">📌 Tóm tắt &amp; điểm cần nhớ</h3>
+            <ul>
+<li>🔹 <strong>Dynamic Segment:</strong> <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">[id]</code> cho một tham số, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">[...slug]</code> bắt nhiều đoạn (bắt buộc có ít nhất một), <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">[[...slug]]</code> cho phép rỗng.</li>
+<li>🔹 <strong>Next.js 15:</strong> <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">params</code> và <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">searchParams</code> là <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Promise</code> → luôn <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">const { id } = await params;</code>.</li>
+<li>🔹 <strong>Server vs Client:</strong> Server Component dùng props <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">params</code>/<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">searchParams</code>; Client Component dùng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useParams</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useSearchParams</code> (bọc <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Suspense</code>), <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">usePathname</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useRouter</code>.</li>
+<li>🔹 <strong>Reusable Component:</strong> mở rộng HTML attributes, dùng union type cho <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">variant</code>/<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">size</code>, đặt mặc định hợp lý, cho phép ghi đè <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">className</code>.</li>
+<li>🔹 <strong>Composition &amp; Polymorphic:</strong> <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">children</code> và prop <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">as</code> giúp một component khung phục vụ nhiều ngữ cảnh mà không nhân bản code.</li>
+<li>🔹 <strong>Tổ chức thư mục:</strong> <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">components/ui</code> (nguyên tử) · <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">components/common</code> (bố cục chung) · <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">components/features</code> (theo nghiệp vụ).</li>
+</ul>
+        </div>
+    </div>
+</details>
+
+<details style="border: 1px solid #28a745; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #eafaf1; color: #28a745; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>💡 3. Hoạt động &amp; Thực hành trên lớp</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <p style="margin-top: 0;">Thực hiện các hoạt động sau để vận dụng kiến thức của buổi học:</p>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #28a745;">🧑‍💻 Thực hành trên lớp</h3>
+            <table style="width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 14px;">
+<thead>
+<tr>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Phần</th>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Thời lượng</th>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Nhiệm vụ</th>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Output mong muốn</th>
+</tr>
+</thead>
+<tbody><tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Guided Practice</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">45&#39;</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Tạo <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/events/[id]/page.tsx</code> và <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">components/ui/Button.tsx</code> nhiều biến thể; GV cùng SV dùng AI thiết kế <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">EventCard</code> nhận props <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">EventItem</code></td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Đổi <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/events/ev-101</code> → <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/events/ev-102</code> hiển thị đúng sự kiện; Button chạy đúng mọi props</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Unguided Practice</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">45&#39;</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Tự xây <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/category/[slug]/page.tsx</code>, đọc <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">page</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">sort</code> từ URL, mock data dạng key-value theo slug</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Hiển thị được <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">slug</code> và <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">sort</code> trên giao diện, danh sách lọc đúng danh mục</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Team Challenge</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">60&#39;</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Thiết kế <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">data/mock-events.json</code> cho toàn hệ thống, nối luồng Trang chủ → Danh mục → Chi tiết → Đặt vé</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">User Flow liên tục, dữ liệu khớp giữa các màn hình</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Tổng kết</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">15&#39;</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">GV chữa lỗi điển hình, giải đáp, giao BTVN</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">SV nắm lỗi thường gặp và yêu cầu bài về nhà</td>
+</tr>
+</tbody></table>
+<p><strong>Guided (45&#39;):</strong> Tạo route động <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/events/[id]</code> lấy <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">id</code> từ <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">params</code> (nhớ <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">await</code>), tra cứu trong mock data, gọi <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">notFound()</code> khi không có. Viết <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Button.tsx</code> hỗ trợ <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">variant</code> (primary, secondary, danger, outline), <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">size</code> (sm, md, lg), <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">isLoading</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">leftIcon</code>. Dùng AI sinh <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">EventCard</code> nhận prop <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">event: EventItem</code> và đặt vào trang chi tiết.</p>
+<p><strong>Unguided (45&#39;):</strong> Tạo <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/category/[slug]/page.tsx</code> cho các danh mục <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">music</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">technology</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">sports</code> (có thể thêm <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">workshop</code>). Đọc thông số lọc như <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/category/music?page=1&amp;sort=latest</code>: dùng prop <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">searchParams</code> ở Server Component, kết hợp một Client Component dùng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useSearchParams</code> để đổi cách sắp xếp. Mock data tổ chức dạng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Record&lt;string, { title: string; events: EventItem[] }&gt;</code>.</p>
+<p><strong>Team Challenge (60&#39;):</strong> Nhóm thống nhất một file <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">data/mock-events.json</code> duy nhất. Xây luồng điều hướng: bấm Card ở Trang chủ → <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/events/[id]</code>; bấm Badge thể loại → <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/category/[slug]</code>; bấm &quot;Mua vé&quot; → <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/checkout/[id]</code>. Mỗi thành viên phụ trách một route, merge qua Pull Request.</p>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #28a745;">❓ Kiểm tra nhanh (Self-Assessment)</h3>
+            <p><strong>Câu 1:</strong> Trong Next.js 15, cách lấy <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">id</code> đúng trong <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">app/events/[id]/page.tsx</code> (Server Component) là gì?</p>
+<ul>
+<li>A. <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">const id = params.id;</code></li>
+<li>B. <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">const { id } = useParams();</code></li>
+<li>C. <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">const { id } = await params;</code></li>
+<li>D. <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">const id = router.query.id;</code></li>
+</ul>
+<details style="margin: 6px 0 14px 0; padding: 8px 12px; background-color: #ffffff; border: 1px dashed #adb5bd; border-radius: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #495057;">👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> C<br>
+<b>Giải thích:</b> Từ Next.js 15, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">params</code> là Promise nên phải <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">await</code>. <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useParams</code> chỉ dùng trong Client Component, còn <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">router.query</code> thuộc Pages Router cũ.
+</details>
+
+<p><strong>Câu 2:</strong> Thư mục <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">app/docs/[...slug]/page.tsx</code> sẽ KHÔNG khớp với URL nào?</p>
+<ul>
+<li>A. <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/docs</code></li>
+<li>B. <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/docs/a</code></li>
+<li>C. <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/docs/a/b</code></li>
+<li>D. <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/docs/huong-dan/dat-ve</code></li>
+</ul>
+<details style="margin: 6px 0 14px 0; padding: 8px 12px; background-color: #ffffff; border: 1px dashed #adb5bd; border-radius: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #495057;">👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> A<br>
+<b>Giải thích:</b> Catch-all <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">[...slug]</code> cần ít nhất một đoạn sau <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/docs</code>. Muốn khớp cả <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/docs</code> phải dùng Optional Catch-all <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">[[...slug]]</code>.
+</details>
+
+<p><strong>Câu 3:</strong> Vì sao nên khai báo <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">interface ButtonProps extends ButtonHTMLAttributes&lt;HTMLButtonElement&gt;</code>?</p>
+<ul>
+<li>A. Để Button tự động chuyển thành Server Component</li>
+<li>B. Để Button nhận sẵn mọi thuộc tính HTML gốc như <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">onClick</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">type</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">disabled</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">aria-*</code></li>
+<li>C. Để bắt buộc mọi Button phải có <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">variant</code></li>
+<li>D. Để Next.js tự sinh CSS cho Button</li>
+</ul>
+<details style="margin: 6px 0 14px 0; padding: 8px 12px; background-color: #ffffff; border: 1px dashed #adb5bd; border-radius: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #495057;">👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> B<br>
+<b>Giải thích:</b> Kế thừa HTML attributes giúp component dùng như thẻ <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">button</code> thật, không phải khai báo lại từng thuộc tính, đồng thời vẫn được TypeScript kiểm tra kiểu.
+</details>
+
+<p><strong>Câu 4:</strong> Một Client Component cần đọc <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">?sort=latest</code> trên URL. Lựa chọn nào đúng?</p>
+<ul>
+<li>A. Dùng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useSearchParams()</code> và bọc component trong <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&lt;Suspense&gt;</code></li>
+<li>B. Khai báo prop <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">searchParams</code> rồi <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">await</code> trong Client Component</li>
+<li>C. Đọc <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">window.location</code> trong thân component khi render</li>
+<li>D. Dùng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">usePathname()</code> rồi tách chuỗi sau dấu <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">?</code></li>
+</ul>
+<details style="margin: 6px 0 14px 0; padding: 8px 12px; background-color: #ffffff; border: 1px dashed #adb5bd; border-radius: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #495057;">👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> A<br>
+<b>Giải thích:</b> <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useSearchParams</code> là hook chuẩn cho Client Component. <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">usePathname</code> không chứa query string, còn đọc <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">window</code> khi render gây lỗi trên server và hydration mismatch.
+</details>
+
+<p><em>Bộ 10+ câu đầy đủ: Quiz Bài 04 trên LMS</em></p>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #28a745;">💬 Thảo luận &amp; 📤 Nộp bài</h3>
+            <ul>
+<li><strong>Chủ đề thảo luận Diễn đàn (Forum Discussion):</strong> Bộ lọc danh mục (sắp xếp, trang hiện tại) nên lưu ở URL (<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">searchParams</code>) hay ở state cục bộ (<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useState</code>)? Hãy nêu ít nhất một lợi ích và một bất lợi của mỗi cách, kèm tình huống cụ thể trong Smart Event Hub (ví dụ: người dùng gửi link danh mục cho bạn bè qua Zalo).</li>
+<li><strong>Yêu cầu nộp bài (Bài tập về nhà):</strong><ul>
+<li>Tổ chức lại toàn bộ thư mục component theo chuẩn: <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">components/ui/</code> (Button, Input, Modal, Badge) · <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">components/common/</code> (Header, Footer, Sidebar – tương đương <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">shared</code> trong đề cương) · <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">components/features/</code> (EventCard, SeatPicker, CheckoutForm).</li>
+<li>Bổ sung ít nhất 3 component nguyên tử còn thiếu (Input, Modal, Badge) có props interface rõ ràng, không <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">any</code>.</li>
+<li><strong>Output:</strong> Thư mục dự án gọn gàng, không còn code trùng lặp; ảnh chụp cây thư mục dán vào mô tả PR.</li>
+<li><strong>Hạn nộp:</strong> trước buổi học tiếp theo. Nộp link Pull Request trên LMS. Đặt tên nhánh <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">feat/b04-&lt;mssv&gt;-components</code>, tiêu đề PR <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">[B04] &lt;Họ tên&gt; – Refactor components</code>, commit theo Conventional Commits (ví dụ <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">refactor(ui): move Button to components/ui</code>).</li>
+</ul>
+</li>
+</ul>
+        </div>
+    </div>
+</details>
+
+<details style="border: 1px solid #6f42c1; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #f3e5f5; color: #6f42c1; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>🆘 4. Góc trợ giúp và mở rộng</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <ul>
+<li><strong>📚 Tài liệu đọc &amp; tham khảo:</strong><ul>
+<li>Next.js Dynamic Routes Guide: <a href="https://nextjs.org/docs/app/building-your-application/routing/dynamic-routes" target="_blank" rel="noopener noreferrer" style="color: #6f42c1;">https://nextjs.org/docs/app/building-your-application/routing/dynamic-routes</a></li>
+<li>TypeScript Component Props Patterns: <a href="https://react-typescript-cheatsheet.netlify.app/docs/basic/getting-started/basic_type_example/" target="_blank" rel="noopener noreferrer" style="color: #6f42c1;">https://react-typescript-cheatsheet.netlify.app/docs/basic/getting-started/basic_type_example/</a></li>
+<li>Next.js – <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useSearchParams</code>: <a href="https://nextjs.org/docs/app/api-reference/functions/use-search-params" target="_blank" rel="noopener noreferrer" style="color: #6f42c1;">https://nextjs.org/docs/app/api-reference/functions/use-search-params</a></li>
+<li><strong>Câu hỏi tự kiểm tra khi đọc:</strong> (1) Làm thế nào để lấy Query Parameters (<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">?category=music</code>) trong một Client Component và trong một Server Component? (2) Tại sao nên mở rộng Props Component từ HTML Native Attributes (ví dụ <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">ButtonHTMLAttributes&lt;HTMLButtonElement&gt;</code>)?</li>
+</ul>
+</li>
+</ul>
+        <p><strong>Hỗ trợ kỹ thuật:</strong> Gặp lỗi cài đặt (Node.js, Git, Next.js) hoặc lỗi build, hãy đăng câu hỏi lên diễn đàn môn học kèm ảnh chụp lỗi, lệnh đã chạy và link repository. Giảng viên và bạn học sẽ phản hồi trước buổi học tiếp theo.</p>
+        <p><strong>Nguyên tắc Vibe Coding:</strong> AI sinh khung code, các bạn chịu trách nhiệm đọc hiểu, kiểm tra kiểu dữ liệu và sửa lỗi. Mọi đoạn code nộp lên đều có thể được hỏi phản biện.</p>
+    </div>
+</details>

@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 12 - Thi Hackathon &amp; Final Showcase (Báo cáo cuối kỳ 40%) | Lập trình Front-End - Khoa CNTT - Đại học Lạc Hồng</title>
+  <meta name="description" content="Bài 12 - Thi Hackathon &amp; Final Showcase (Báo cáo cuối kỳ 40%) - Lập trình Front-End (Next.js, TypeScript &amp; Vibe Coding). Thời lượng: 5 tiết (225 phút) · Hình thức: Đánh giá cuối kỳ – Báo cáo công khai / Thi Showcase Hackathon giữa các lớp · Chuẩn đầu ra: PI 1.4 (CLO1), PI 2.3 (CLO2), PI 3.1 (CLO3), ">
+
+  <!-- Tailwind CSS CDN (kèm plugin typography cho nội dung Markdown) -->
+  <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6.4.0 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Highlight.js 11.9.0 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            asu: { maroon: '#8C1D40', gold: '#FFC627', dark: '#5C142B', light: '#FAEDF0' },
+            lhu: { blue: '#013D88', sky: '#007BFF', dark: '#01295C', light: '#EEF5FC' },
+            fe: { indigo: '#6366F1', dark: '#312E81', light: '#EEF2FF' }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .lesson h2, .lesson h3, .lesson h4 { scroll-margin-top: 90px; }
+    .lesson h3 { padding-bottom: .4rem; border-bottom: 2px solid #EEF2FF; }
+    .lesson blockquote { border-left: 4px solid #6366F1; background: #F5F7FF; border-radius: 0 12px 12px 0; padding: .6rem 1rem; font-style: normal; color: #1e293b; }
+    .lesson blockquote p:first-of-type::before, .lesson blockquote p:last-of-type::after { content: none; }
+    .lesson pre { border-radius: 12px; padding: 0; background: #0d1117; }
+    .lesson pre code.hljs { border-radius: 12px; padding: 1rem 1.1rem; font-size: 13px; line-height: 1.6; }
+    .lesson :not(pre) > code { background: #EEF2FF; color: #3730A3; padding: .1rem .35rem; border-radius: 6px; font-weight: 500; }
+    .lesson :not(pre) > code::before, .lesson :not(pre) > code::after { content: none; }
+    .lesson table { display: block; overflow-x: auto; font-size: 14px; }
+    .lesson thead th { background: #F1F5F9; }
+    .lesson th, .lesson td { border: 1px solid #E2E8F0; padding: .5rem .7rem !important; vertical-align: top; }
+    .lesson details { border: 1px solid #C7D2FE; border-radius: 10px; padding: .6rem .9rem; margin: .5rem 0 1.2rem; background: #FAFAFF; }
+    .lesson details summary { cursor: pointer; font-weight: 600; color: #4338CA; }
+    .lesson details[open] summary { margin-bottom: .4rem; }
+    .lesson hr { border-color: #E2E8F0; margin: 2rem 0; }
+    @media print {
+      header, footer, .no-print { display: none !important; }
+      details { break-inside: avoid; margin-bottom: 20px; }
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans antialiased selection:bg-asu-gold selection:text-slate-900 min-h-screen flex flex-col">
+
+  <!-- TOP BAR -->
+  <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800 no-print">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+      <div class="flex items-center gap-2">
+        <span class="text-asu-gold font-semibold"><i class="fa-solid fa-certificate mr-1"></i> CHUẨN KIỂM ĐỊNH ABET (USA)</span>
+        <span class="text-slate-600 hidden sm:inline">•</span>
+        <span class="hidden sm:inline">Lớp học đảo ngược • Vibe Coding</span>
+      </div>
+      <div class="flex items-center gap-4 text-xs font-mono">
+        <span>Thời lượng: <strong class="text-white">60 tiết (12 buổi)</strong></span>
+        <span>LT/TH: <strong class="text-asu-gold">30% / 70%</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="sticky top-0 z-40 bg-white shadow-sm border-b border-slate-200 no-print">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2.5 text-slate-800 hover:text-lhu-blue transition-colors">
+        <img src="LHU_ASU_VI_Small_Ngang.png" alt="Logo LHU" class="h-8 w-auto">
+        <div class="border-l border-slate-300 pl-2.5">
+          <div class="text-[11px] font-bold text-slate-500 uppercase">Khoa CNTT - LHU</div>
+          <div class="text-xs font-extrabold text-lhu-blue">LẬP TRÌNH FRONT-END</div>
+        </div>
+      </a>
+      <div class="flex items-center gap-3 text-xs">
+        <a href="index.html" class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-arrow-left"></i>
+          <span class="hidden sm:inline">Về Landing Page</span>
+        </a>
+        <button onclick="window.print()" class="hidden sm:flex px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-all items-center gap-1.5" title="In hoặc lưu file PDF">
+          <i class="fa-solid fa-print"></i>
+          <span>In / PDF</span>
+        </button>
+        <a href="https://learn.lhu.edu.vn" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-lhu-blue hover:bg-lhu-dark text-white font-bold rounded-xl shadow transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-graduation-cap text-asu-gold"></i>
+          <span>Vào lớp LMS</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="flex-grow max-w-5xl w-full mx-auto px-4 sm:px-6 py-8">
+
+    <!-- Title Card -->
+    <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 mb-8">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-5">
+        <div>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-fe-light text-fe-dark font-bold text-xs uppercase tracking-wider mb-2">
+            <i class="fa-solid fa-code"></i> CHƯƠNG 7: TỔNG KẾT HỌC PHẦN
+          </span>
+          <h1 class="text-2xl sm:text-3xl font-black text-slate-900 leading-tight">
+            Bài 12 - Thi Hackathon &amp; Final Showcase (Báo cáo cuối kỳ 40%)
+          </h1>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1 font-mono">
+            Học phần: Lập trình Front-End (Next.js, TypeScript & Vibe Coding) • Khoa CNTT - Đại học Lạc Hồng
+          </p>
+        </div>
+        <div class="flex-shrink-0 flex sm:flex-col items-center sm:items-end justify-between gap-1 text-xs">
+          <span class="px-3 py-1.5 bg-emerald-50 text-emerald-700 font-bold rounded-lg border border-emerald-200">
+            <i class="fa-solid fa-check-circle mr-1"></i> Lưu hành nội bộ 2026
+          </span>
+          <span class="text-slate-400 text-[11px]">Định dạng LMS Lecture</span>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between pt-4 text-xs no-print">
+        <span class="text-slate-500">
+          <i class="fa-solid fa-circle-info text-blue-500 mr-1"></i>
+          Bấm vào các khối thu gọn để xem đáp án hoặc chi tiết.
+        </span>
+        <div class="flex items-center gap-2">
+          <button onclick="toggleAllDetails(true)" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg transition-colors">Mở tất cả</button>
+          <button onclick="toggleAllDetails(false)" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg transition-colors">Thu gọn</button>
+        </div>
+      </div>
+      <nav class="mt-5 pt-4 border-t border-slate-100 no-print">
+        <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">Nội dung trang</div>
+        <div class="flex flex-wrap gap-2">
+          <a href="#1-dat-van-de-dan-nhap-introduction-hook" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">📝 1. ĐẶT VẤN ĐỀ &amp; DẪN NHẬP (Introduction / Hook)</a>
+          <a href="#2-noi-dung-cot-loi-core-content" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">📖 2. NỘI DUNG CỐT LÕI (Core Content)</a>
+          <a href="#3-tom-tat-diem-can-nho-key-takeaways" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">📌 3. TÓM TẮT &amp; ĐIỂM CẦN NHỚ (Key Takeaways)</a>
+          <a href="#4-hoat-dong-kiem-tra-nhanh-self-assessment-quiz" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">❓ 4. HOẠT ĐỘNG KIỂM TRA NHANH (Self-Assessment / Quiz)</a>
+          <a href="#5-nhiem-vu-hoc-tap-thao-luan-lms-discussion-assignment" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">💬 5. NHIỆM VỤ HỌC TẬP &amp; THẢO LUẬN (LMS Discussion / Assignment)</a>
+        </div>
+      </nav>
+    </div>
+
+    <!-- Content -->
+    <article class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 lesson prose prose-slate max-w-none prose-headings:font-extrabold prose-h3:text-lhu-dark prose-h4:text-fe-dark prose-a:text-lhu-blue">
+<blockquote>
+<p><strong>Thời lượng:</strong> 5 tiết (225 phút) · <strong>Hình thức:</strong> Đánh giá cuối kỳ – Báo cáo công khai / Thi Showcase Hackathon giữa các lớp · <strong>Chuẩn đầu ra:</strong> PI 1.4 (CLO1), PI 2.3 (CLO2), PI 3.1 (CLO3), PI 5.1 (CLO4)<br><strong>Dự án xuyên suốt:</strong> Smart Event Hub – demo sản phẩm Live trên Vercel, thuyết trình và phản biện cá nhân</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>🎯 <strong>MỤC TIÊU BÀI HỌC (Learning Objectives)</strong><br>Sau khi hoàn thành bài học này, người học có thể:</p>
+<ul>
+<li><strong>[Bloom 1/2 - Kiến thức]:</strong> Trình bày được chương trình buổi Showcase, danh mục sản phẩm phải nộp, 6 tiêu chí rubric và công thức tính điểm cuối kỳ cá nhân.</li>
+<li><strong>[Bloom 3/4 - Kỹ năng]:</strong> Xây dựng kịch bản thuyết trình 8 phút thể hiện rõ hành trình Wireframe → Vercel App, kỹ thuật Vibe Coding đã dùng và minh chứng Git commit.</li>
+<li><strong>[Bloom 5/6 - Năng lực]:</strong> Demo Live tự tin, bảo vệ phần code cá nhân đảm nhiệm trước câu hỏi phản biện và tự đánh giá sản phẩm nhóm theo rubric.</li>
+</ul>
+</blockquote>
+<hr>
+<h3 id="1-dat-van-de-dan-nhap-introduction-hook">📝 1. ĐẶT VẤN ĐỀ &amp; DẪN NHẬP (Introduction / Hook)</h3>
+<p>Sau 11 buổi, Smart Event Hub của nhóm bạn đã có Wireframe, giao diện Ant Design, API thật, form Zod, link Vercel và điểm Lighthouse. Hôm nay, toàn bộ hành trình đó được nén vào <strong>8 phút thuyết trình và 5 phút hỏi đáp</strong>. Giảng viên có thể chỉ vào một hàm bất kỳ trong commit của bạn và hỏi: &quot;Dòng này làm gì, sao bạn viết vậy?&quot;.</p>
+<p><strong>Nếu demo Live bị mất mạng giữa chừng, hoặc câu hỏi phản biện rơi đúng vào đoạn code AI sinh mà bạn chưa đọc kỹ, bạn sẽ xử lý thế nào?</strong> Bài này giúp các bạn chuẩn bị cho cả sản phẩm lẫn phần trình bày, để điểm số phản ánh đúng công sức cả học kỳ.</p>
+<blockquote>
+<p>🧭 <strong>Trước giờ học (Flipped Classroom):</strong> Hoàn tất Báo cáo Word/PDF và Slide (BTVN Bài 11). Đọc kỹ rubric ở mục 2.5, tự chấm thử sản phẩm nhóm. Kiểm tra link Vercel Live trên cả điện thoại và máy tính. Mỗi thành viên tập giải thích phần code của mình. Làm quiz ôn tập trên LMS.</p>
+</blockquote>
+<hr>
+<h3 id="2-noi-dung-cot-loi-core-content">📖 2. NỘI DUNG CỐT LÕI (Core Content)</h3>
+<h4 id="2-1-chuong-trinh-buoi-hackathon-final-showcase">2.1. Chương trình buổi Hackathon &amp; Final Showcase</h4>
+<ul>
+<li><strong>Khái niệm:</strong> Buổi 12 là <strong>báo cáo công khai</strong>, chiếm <strong>40% tổng điểm học phần</strong>, đánh giá theo nhóm đồ án (3–4 sinh viên) kết hợp điểm phản biện cá nhân.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Phần</th>
+<th>Thời lượng</th>
+<th>Nội dung</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1. Khai mạc &amp; Triển lãm Live Products</td>
+<td>30&#39;</td>
+<td>Tất cả các nhóm mở link Vercel Live App để GV và các nhóm khác trải nghiệm chéo (Cross-Testing)</td>
+</tr>
+<tr>
+<td>2. Thuyết trình Hackathon Showcase</td>
+<td>160&#39;</td>
+<td>Mỗi nhóm: <strong>8 phút</strong> thuyết trình + demo tính năng Live, <strong>5 phút</strong> Q&amp;A phản biện từ GV</td>
+</tr>
+<tr>
+<td>3. Tổng kết &amp; Trao giải</td>
+<td>35&#39;</td>
+<td>GV công bố điểm đánh giá, trao giải Nhóm có UI/UX Vibe Coding xuất sắc nhất</td>
+</tr>
+</tbody></table>
+<ul>
+<li>Mỗi lượt nhóm kéo dài 13 phút (8 + 5), nên việc giữ đúng giờ là yêu cầu bắt buộc chứ không phải lời khuyên.</li>
+<li>Trong 8 phút, nhóm phải thể hiện rõ: <strong>Wireframe → Vercel App</strong>, <strong>kỹ thuật Vibe Coding đã dùng</strong>, <strong>minh chứng Git commit</strong>.</li>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote>
+<p>Ở phần Cross-Testing, nhóm C mở link của nhóm D trên điện thoại, đặt thử một vé và phát hiện Booking Modal bị tràn ở 375px. Đây chính là kiểu lỗi giám khảo cũng sẽ thấy, vì vậy hãy tự Cross-Test với nhóm bạn trước buổi Showcase.</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="2-2-checklist-san-pham-nop">2.2. Checklist sản phẩm nộp</h4>
+<ul>
+<li><strong>Khái niệm:</strong> Sản phẩm cuối kỳ là một <strong>bộ hồ sơ</strong>, không chỉ là trang web. Thiếu một hạng mục là mất điểm ở tiêu chí tương ứng trong rubric.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li><input disabled="" type="checkbox"> <strong>Link Vercel Live</strong> chạy ổn định: gọi API thật, LocalStorage hoạt động, không lỗi biến môi trường.</li>
+<li><input disabled="" type="checkbox"> <strong>GitHub Repository</strong> công khai, branch <code>main</code> là bản cuối; commit log thể hiện đóng góp của <strong>từng</strong> thành viên, có Pull Request.</li>
+<li><input disabled="" type="checkbox"> <strong>Báo cáo Văn bản (Word/PDF)</strong> đúng mẫu: mô tả kiến trúc, sơ đồ Wireframe, mô tả API tích hợp, phân công công việc, ảnh minh chứng Git commit, Link Vercel Live.</li>
+<li><input disabled="" type="checkbox"> <strong>Wireframe Figma đủ 5 màn hình:</strong> Trang chủ, Chi tiết sự kiện, Đặt vé, Trang cá nhân, Admin Dashboard.</li>
+<li><input disabled="" type="checkbox"> <strong>Slide thuyết trình</strong> cho phần Showcase 8 phút.</li>
+<li><input disabled="" type="checkbox"> Kết quả <strong>Lighthouse</strong> (từ Bài 11) và kịch bản <strong>Test_Cases_Scenario</strong> (từ Bài 10) để dẫn chứng khi cần.</li>
+</ul>
+</li>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote>
+<p>Một nhóm có web rất đẹp nhưng Git log cho thấy 90% commit đến từ một người. Theo rubric, tiêu chí &quot;Báo cáo &amp; Git Commit&quot; của nhóm rơi xuống mức Trung bình, và các thành viên còn lại gặp khó ở phần phản biện cá nhân.</p>
+</blockquote>
+</li>
+</ul>
+<pre><code class="language-bash"># Kiểm tra nhanh trước khi nộp
+git checkout main &amp;&amp; git pull           # đảm bảo bản cuối nằm trên main
+git shortlog -sn --no-merges            # số commit của từng thành viên
+npm run build                           # build pass trên máy = Vercel ít rủi ro
+</code></pre>
+<h4 id="2-3-xay-dung-kich-ban-thuyet-trinh-demo-8-phut">2.3. Xây dựng kịch bản thuyết trình &amp; demo 8 phút</h4>
+<ul>
+<li><strong>Khái niệm:</strong> Kịch bản thuyết trình là trình tự <strong>ai nói gì, demo màn hình nào, trong bao lâu</strong>. Rubric đánh giá &quot;kịch bản thuyết trình chặt chẽ&quot; và &quot;đúng thời gian (8 phút)&quot;.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li>Dàn ý gợi ý (nhóm tự phân bổ thời gian, tổng không vượt 8 phút):</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Bước</th>
+<th>Nội dung</th>
+<th>Gợi ý minh chứng</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Mở đầu</td>
+<td>Bài toán Smart Event Hub, thành viên &amp; phân công</td>
+<td>Slide giới thiệu</td>
+</tr>
+<tr>
+<td>Wireframe → Sản phẩm</td>
+<td>Đặt Wireframe Figma cạnh màn hình thật</td>
+<td>Ảnh so sánh 5 màn hình</td>
+</tr>
+<tr>
+<td>Demo Live</td>
+<td>Trang chủ → Danh mục → Chi tiết sự kiện → Đặt vé → Admin Orders</td>
+<td>Link Vercel, thao tác trên mobile view</td>
+</tr>
+<tr>
+<td>Kỹ thuật</td>
+<td>TypeScript strict, Dynamic Routing, REST API, Zod, LocalStorage</td>
+<td>Đoạn code tiêu biểu</td>
+</tr>
+<tr>
+<td>Vibe Coding</td>
+<td>Prompt Workflow nhóm đã dùng, ví dụ code AI sai và cách nhóm sửa</td>
+<td>Prompt + diff trước/sau</td>
+</tr>
+<tr>
+<td>Deploy &amp; chất lượng</td>
+<td>CI/CD Vercel, Metadata động, Lighthouse</td>
+<td>Ảnh Lighthouse, link chia sẻ có OG Image</td>
+</tr>
+<tr>
+<td>Git</td>
+<td>Minh chứng đóng góp của từng người</td>
+<td>Commit log, danh sách PR</td>
+</tr>
+</tbody></table>
+<ul>
+<li><strong>Phương án dự phòng:</strong> quay sẵn video demo luồng chính, mở sẵn các tab cần dùng, đăng nhập sẵn tài khoản demo. Rubric trừ điểm khi &quot;demo live bị sự cố bất ngờ&quot; mà nhóm lúng túng.</li>
+<li>Mỗi thành viên nên trình bày phần mình làm, để giám khảo thấy sự đóng góp ngay trong bài nói.</li>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote>
+<p>Thay vì đọc slide &quot;Chúng em dùng Next.js App Router&quot;, hãy mở link <code>/events/12</code> trên điện thoại, chia sẻ vào Zalo để mọi người thấy OG Image hiện đúng, rồi nói &quot;đây là kết quả của <code>generateMetadata</code>&quot;.</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="2-4-chuan-bi-phan-bien-ca-nhan">2.4. Chuẩn bị phản biện cá nhân</h4>
+<ul>
+<li><strong>Khái niệm:</strong> <strong>Điểm Phản biện Cá nhân (30%)</strong> được chấm độc lập cho từng sinh viên, dựa trên <strong>minh chứng Git Commit Log</strong> và <strong>phần trả lời câu hỏi phản biện trực tiếp về code cá nhân đảm nhiệm</strong>.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li>Liệt kê commit của chính mình, mở lại từng file đã sửa, tự hỏi: &quot;Nếu xóa dòng này thì điều gì xảy ra?&quot;.</li>
+<li>Code do AI sinh mà bạn đã commit <strong>là code của bạn</strong>. Phải giải thích được từng dòng, như nguyên tắc Vibe Coding xuyên suốt học phần: review, hiểu và debug chứ không copy-paste thụ động.</li>
+<li>Các nhóm câu hỏi thường gặp: vì sao component này cần <code>&#39;use client&#39;</code>; vì sao <code>await params</code>; Interface này khớp với API Response ra sao; Zod schema kiểm tra những gì; dữ liệu LocalStorage được đọc ở đâu để tránh lỗi hydration; biến môi trường được cấu hình thế nào trên Vercel.</li>
+</ul>
+</li>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote>
+<p>GV hỏi bạn phụ trách Wishlist: &quot;Refresh trang thì dữ liệu lấy từ đâu?&quot;. Câu trả lời mức Xuất sắc là chỉ ra đoạn <code>useEffect</code> đọc <code>localStorage</code>, giải thích vì sao không đọc ngay khi render và cách xử lý khi JSON bị hỏng.</p>
+</blockquote>
+</li>
+</ul>
+<pre><code class="language-bash"># Xem lại toàn bộ commit của bản thân (thay tên theo cấu hình git của bạn)
+git log --author=&quot;Nguyen Van A&quot; --oneline --no-merges
+
+# Xem chi tiết thay đổi trong một commit cụ thể
+git show &lt;commit-hash&gt; --stat
+</code></pre>
+<blockquote>
+<p><strong>Bài tập tự luyện:</strong> Mỗi thành viên chọn 2 đoạn code quan trọng nhất của mình, giải thích cho bạn cùng nhóm trong 2 phút mỗi đoạn mà không nhìn ghi chú.</p>
+</blockquote>
+<h4 id="2-5-rubric-6-tieu-chi-cong-thuc-diem-cuoi-ky">2.5. Rubric 6 tiêu chí &amp; công thức điểm cuối kỳ</h4>
+<ul>
+<li><strong>Khái niệm:</strong> Điểm đồ án chấm theo thang 10, gồm 6 tiêu chí ứng với 4 chuẩn đầu ra CLO1–CLO4.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>STT</th>
+<th>Tiêu chí</th>
+<th>Trọng số</th>
+<th>PI</th>
+<th>Mức Xuất sắc (8.5–10đ) cần đạt</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Mô hình hóa UI &amp; Wireframe Design</td>
+<td>15% (1.5đ)</td>
+<td>PI 1.4 (CLO1)</td>
+<td>Wireframe Figma đủ 5 màn hình, layout khoa học, sản phẩm khớp &gt;90% bản vẽ</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Xây dựng Giao diện &amp; Vibe Coding</td>
+<td>20% (2.0đ)</td>
+<td>PI 2.3 (CLO2)</td>
+<td>AntD/Bootstrap tùy biến Theme qua SCSS/ConfigProvider có dấu ấn riêng, Responsive hoàn hảo Mobile/Tablet/Desktop, Hot Reload zero lỗi UI</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Xử lý Logic, TypeScript &amp; REST API</td>
+<td>20% (2.0đ)</td>
+<td>PI 2.3 (CLO2)</td>
+<td>TypeScript strict (không <code>any</code>), Routing mượt, API RESTful thật (Array/Single), Form Zod &amp; LocalStorage chuẩn xác</td>
+</tr>
+<tr>
+<td>4</td>
+<td>CI/CD Deployment, SEO &amp; Lighthouse</td>
+<td>15% (1.5đ)</td>
+<td>PI 5.1 (CLO4)</td>
+<td>Deploy Vercel thành công, SEO Metadata động (OpenGraph), Performance &gt; 85, SEO &gt; 90</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Báo cáo Văn bản &amp; Minh chứng Git</td>
+<td>15% (1.5đ)</td>
+<td>PI 3.1 (CLO3), PI 5.1</td>
+<td>Báo cáo khoa học đúng quy định, Git log thể hiện đóng góp đồng đều của tất cả thành viên (đầy đủ PR)</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Thuyết trình Showcase &amp; Phản biện Q&amp;A</td>
+<td>15% (1.5đ)</td>
+<td>PI 3.1 (CLO3), PI 5.1</td>
+<td>Đúng 8 phút, demo Live trơn tru, giải thích sâu sắc đoạn code cá nhân đảm nhiệm</td>
+</tr>
+</tbody></table>
+<ul>
+<li>Bốn mức đánh giá: <strong>Xuất sắc</strong> (8.5–10đ), <strong>Khá</strong> (7.0–8.4đ), <strong>Trung bình</strong> (5.5–6.9đ), <strong>Yếu</strong> (&lt; 5.5đ). Một số mốc phân biệt: Lighthouse 70–84 ở mức Khá, 50–69 ở mức Trung bình, &lt; 50 ở mức Yếu; giao diện rập khuôn thư viện, chưa tùy biến Theme hoặc bị Horizontal Overflow ở di động rơi vào mức Trung bình.</li>
+<li><strong>Công thức điểm cuối kỳ cá nhân:</strong></li>
+</ul>
+<pre><code class="language-text">Điểm Cuối Kỳ Cá Nhân = (Điểm Đồ Án Nhóm × 0.7) + (Điểm Phản Biện Cá Nhân × 0.3)
+</code></pre>
+<ul>
+<li><strong>Điểm Nhóm (70%)</strong>: chung cho cả đội, dựa trên sản phẩm Live, Wireframe, UI/UX, Deploy Vercel và Báo cáo Văn bản. <strong>Điểm Cá nhân (30%)</strong>: riêng từng sinh viên, dựa trên Git Commit Log và phần trả lời phản biện.</li>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote>
+<p>Nhóm đạt 8.0 điểm đồ án. Bạn An trả lời phản biện tốt, được 9.0: điểm cuối kỳ = 8.0 × 0.7 + 9.0 × 0.3 = 5.6 + 2.7 = <strong>8.3</strong>. Bạn Bình cùng nhóm nhưng lúng túng, được 5.0: điểm = 5.6 + 1.5 = <strong>7.1</strong>. Cùng một sản phẩm, điểm cá nhân vẫn khác nhau.</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="2-6-diem-thuong-vibe-coding-xuat-sac">2.6. Điểm thưởng Vibe Coding xuất sắc</h4>
+<ul>
+<li><strong>Khái niệm:</strong> Ngoài điểm cuối kỳ, nhóm có thể nhận <strong>+0.5đ đến +1.0đ vào Điểm Quá trình</strong> nếu đạt một trong các tiêu chí thưởng.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li><strong>Vibe Coding Master:</strong> tự thiết kế Prompt Workflow độc đáo, tối ưu tốc độ sinh code mượt mà.</li>
+<li><strong>UI Innovation:</strong> giao diện UI/UX vượt trội so với yêu cầu cơ bản (có Dark/Light Mode, Micro-interactions).</li>
+<li><strong>Ultra Performance:</strong> điểm Google Lighthouse Performance đạt tuyệt đối 100/100.</li>
+<li>Cuối buổi, GV trao giải <strong>Nhóm có UI/UX Vibe Coding xuất sắc nhất</strong>.</li>
+</ul>
+</li>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote>
+<p>Một nhóm trình bày chuỗi prompt gồm: sinh Interface từ Swagger → sinh Service API → sinh component → prompt review Clean Code, kèm ví dụ AI sai ở đâu và được sửa thế nào. Đây là minh chứng phù hợp cho hạng mục Vibe Coding Master.</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="2-7-vibe-coding-prompt-mau-cach-kiem-duyet-code-ai">2.7. Vibe Coding – Prompt mẫu &amp; cách kiểm duyệt code AI</h4>
+<p>AI có thể giúp nhóm luyện phản biện và rà soát báo cáo. Tuy vậy, câu trả lời trước giám khảo phải đến từ hiểu biết của chính bạn.</p>
+<pre><code class="language-text">Bạn là giảng viên chấm đồ án Front-End (Next.js 15, TypeScript, Ant Design v5).
+Dưới đây là đoạn code tôi phụ trách trong dự án Smart Event Hub:
+[Dán code của bạn]
+
+Hãy đặt 5 câu hỏi phản biện từ dễ đến khó về đoạn code này (vì sao viết vậy, điều gì xảy ra nếu thay đổi,
+có lỗi tiềm ẩn nào không). KHÔNG đưa đáp án. Sau khi tôi trả lời, hãy nhận xét câu trả lời còn thiếu ở đâu.
+</code></pre>
+<pre><code class="language-text">Đây là mục lục và nội dung báo cáo đồ án của nhóm tôi:
+[Dán mục lục / nội dung]
+
+Hãy đối chiếu với các yêu cầu sau và liệt kê mục còn thiếu hoặc sơ sài:
+mô tả kiến trúc, sơ đồ Wireframe 5 màn hình, mô tả API tích hợp, phân công công việc,
+minh chứng Git commit, Link Vercel Live.
+</code></pre>
+<p><strong>Checklist trước khi lên Showcase:</strong></p>
+<ul>
+<li><strong>Không học thuộc câu trả lời do AI viết:</strong> dùng AI để đặt câu hỏi, còn câu trả lời phải tự xây dựng.</li>
+<li><strong>Số liệu thật:</strong> điểm Lighthouse, số commit, link Vercel trong slide phải khớp với thực tế lúc demo.</li>
+<li><strong>Code đã kiểm:</strong> không còn <code>any</code>, Console sạch warning, responsive ở 375/768/1440px.</li>
+<li><strong>Thời gian:</strong> tập dượt bấm giờ, đảm bảo không vượt 8 phút.</li>
+</ul>
+<h4 id="2-8-thuc-hanh-tren-lop">2.8. Thực hành trên lớp</h4>
+<p>Buổi 12 không có phần Guided/Unguided. Toàn bộ 225 phút là buổi đánh giá công khai.</p>
+<table>
+<thead>
+<tr>
+<th>Phần</th>
+<th>Thời lượng</th>
+<th>Nhiệm vụ</th>
+<th>Output mong muốn</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Khai mạc &amp; Triển lãm Live Products</td>
+<td>30&#39;</td>
+<td>Mở link Vercel Live, trải nghiệm chéo sản phẩm các nhóm (Cross-Testing)</td>
+<td>Mọi link Live truy cập được; nhóm ghi nhận góp ý từ nhóm bạn</td>
+</tr>
+<tr>
+<td>Thuyết trình Hackathon Showcase</td>
+<td>160&#39;</td>
+<td>Mỗi nhóm 8&#39; thuyết trình + demo Live, 5&#39; Q&amp;A phản biện cá nhân</td>
+<td>Thể hiện Wireframe → Vercel App, kỹ thuật Vibe Coding, minh chứng Git</td>
+</tr>
+<tr>
+<td>Tổng kết &amp; Trao giải</td>
+<td>35&#39;</td>
+<td>GV công bố điểm, trao giải UI/UX Vibe Coding xuất sắc nhất</td>
+<td>Điểm cuối kỳ theo rubric; nhóm nhận nhận xét tổng kết</td>
+</tr>
+</tbody></table>
+<ul>
+<li><strong>Triển lãm:</strong> Mỗi nhóm cử một người trực máy, các thành viên còn lại đi trải nghiệm sản phẩm nhóm khác, đặc biệt trên điện thoại.</li>
+<li><strong>Thuyết trình:</strong> Nhóm kế tiếp chuẩn bị sẵn máy và tab trình duyệt trong lúc nhóm trước Q&amp;A để không mất thời gian chuyển giao.</li>
+<li><strong>Tổng kết:</strong> Ghi lại nhận xét của GV để hoàn thiện sản phẩm cho portfolio cá nhân.</li>
+</ul>
+<hr>
+<h3 id="3-tom-tat-diem-can-nho-key-takeaways">📌 3. TÓM TẮT &amp; ĐIỂM CẦN NHỚ (Key Takeaways)</h3>
+<ul>
+<li>🔹 <strong>Cấu trúc buổi:</strong> 30&#39; triển lãm &amp; Cross-Testing → 160&#39; thuyết trình (8&#39; + 5&#39; Q&amp;A mỗi nhóm) → 35&#39; tổng kết &amp; trao giải.</li>
+<li>🔹 <strong>Hồ sơ nộp đủ:</strong> Link Vercel Live, GitHub repo có commit từng người, Báo cáo Word/PDF đúng mẫu, Wireframe Figma 5 màn hình, Slide.</li>
+<li>🔹 <strong>Rubric 6 tiêu chí:</strong> Wireframe 15%, Giao diện &amp; Vibe Coding 20%, Logic/TS/API 20%, Deploy/SEO/Lighthouse 15%, Báo cáo &amp; Git 15%, Thuyết trình &amp; Phản biện 15%.</li>
+<li>🔹 <strong>Điểm cá nhân:</strong> Nhóm × 0.7 + Phản biện cá nhân × 0.3; Git log và khả năng giải thích code của chính mình quyết định 30%.</li>
+<li>🔹 <strong>Điểm thưởng:</strong> +0.5 đến +1.0 vào Điểm Quá trình cho Vibe Coding Master, UI Innovation hoặc Ultra Performance (Lighthouse 100/100).</li>
+</ul>
+<hr>
+<h3 id="4-hoat-dong-kiem-tra-nhanh-self-assessment-quiz">❓ 4. HOẠT ĐỘNG KIỂM TRA NHANH (Self-Assessment / Quiz)</h3>
+<p><strong>Câu 1:</strong> Nhóm đạt 7.0 điểm đồ án, bạn Chi đạt 10 điểm phản biện cá nhân. Điểm cuối kỳ của Chi là bao nhiêu?</p>
+<ul>
+<li>A. 7.9</li>
+<li>B. 8.5</li>
+<li>C. 7.0</li>
+<li>D. 8.0</li>
+</ul>
+<details>
+<summary>👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> A<br>
+<b>Giải thích:</b> 7.0 × 0.7 + 10 × 0.3 = 4.9 + 3.0 = 7.9.
+</details>
+
+<p><strong>Câu 2:</strong> Trong phần Thuyết trình Hackathon Showcase, mỗi nhóm được phân bổ thời gian thế nào?</p>
+<ul>
+<li>A. 10 phút thuyết trình + 5 phút phản biện</li>
+<li>B. 5 phút thuyết trình + 8 phút phản biện</li>
+<li>C. 8 phút thuyết trình &amp; demo Live + 5 phút Q&amp;A phản biện</li>
+<li>D. 15 phút thuyết trình, không có phản biện</li>
+</ul>
+<details>
+<summary>👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> C<br>
+<b>Giải thích:</b> Theo đề cương Buổi 12, mỗi nhóm có 8 phút thuyết trình + demo và 5 phút Q&A. Mốc 10 + 5 phút là của buổi giữa kỳ (Bài 7).
+</details>
+
+<p><strong>Câu 3:</strong> Sản phẩm đạt Lighthouse Performance 78 điểm, Deploy Vercel ổn định, mới cấu hình SEO Metadata tĩnh. Tiêu chí 4 của nhóm thuộc mức nào?</p>
+<ul>
+<li>A. Xuất sắc</li>
+<li>B. Khá</li>
+<li>C. Trung bình</li>
+<li>D. Yếu</li>
+</ul>
+<details>
+<summary>👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> B<br>
+<b>Giải thích:</b> Mức Khá: Deploy ổn định, Metadata tĩnh, Lighthouse Performance 70–84. Mức Xuất sắc cần Metadata động và Performance > 85.
+</details>
+
+<p><strong>Câu 4:</strong> Điểm Phản biện Cá nhân (30%) được đánh giá dựa trên những gì?</p>
+<ul>
+<li>A. Số lượng slide và hiệu ứng trình chiếu</li>
+<li>B. Điểm trung bình các quiz trên LMS</li>
+<li>C. Điểm Lighthouse của sản phẩm nhóm</li>
+<li>D. Git Commit Log cá nhân và phần trả lời phản biện về code mình đảm nhiệm</li>
+</ul>
+<details>
+<summary>👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> D<br>
+<b>Giải thích:</b> Rubric quy định điểm cá nhân dựa trên minh chứng Git Commit Log và phần trả lời câu hỏi phản biện trực tiếp về code cá nhân đảm nhiệm.
+</details>
+
+<blockquote>
+<p>Bộ 10+ câu đầy đủ: <code>quiz/quiz-bai-12-aiken.txt</code></p>
+</blockquote>
+<hr>
+<h3 id="5-nhiem-vu-hoc-tap-thao-luan-lms-discussion-assignment">💬 5. NHIỆM VỤ HỌC TẬP &amp; THẢO LUẬN (LMS Discussion / Assignment)</h3>
+<ul>
+<li><strong>Chủ đề thảo luận Diễn đàn (Forum Discussion):</strong> Nhìn lại 12 buổi học, Vibe Coding đã thay đổi cách bạn viết code ra sao? Hãy kể một lần AI giúp bạn tiết kiệm nhiều thời gian và một lần AI khiến bạn mất thời gian hơn. Sau học phần này, bạn sẽ đặt nguyên tắc gì cho bản thân khi làm việc cùng AI?</li>
+<li><strong>Yêu cầu nộp bài (Bài tập về nhà):</strong><ul>
+<li>Nộp đầy đủ bộ hồ sơ cuối kỳ theo checklist mục 2.2: Link Vercel Live, link GitHub Repository, Báo cáo Word/PDF, Wireframe Figma 5 màn hình, Slide thuyết trình.</li>
+<li><strong>Output:</strong> một bài nộp trên LMS cho mỗi nhóm, gồm file <code>BaoCao_SmartEventHub_&lt;TenNhom&gt;.pdf</code>, <code>Slide_SmartEventHub_&lt;TenNhom&gt;.pdf</code> và file text chứa các link.</li>
+<li><strong>Hạn nộp:</strong> trước khi Buổi 12 bắt đầu, theo thông báo của GV trên LMS. Repo phải giữ nguyên trạng thái branch <code>main</code> tại thời điểm nộp.</li>
+</ul>
+</li>
+<li><strong>📚 Tài liệu đọc &amp; tham khảo:</strong><ul>
+<li>Rubric chấm Hackathon Lập trình Front-End (tài liệu học phần trên LMS)</li>
+<li>Next.js Metadata Documentation: <a href="https://nextjs.org/docs/app/building-your-application/optimizing/metadata" target="_blank" rel="noopener noreferrer">https://nextjs.org/docs/app/building-your-application/optimizing/metadata</a></li>
+<li>Google Lighthouse Audit Guide: <a href="https://developer.chrome.com/docs/lighthouse/overview/" target="_blank" rel="noopener noreferrer">https://developer.chrome.com/docs/lighthouse/overview/</a></li>
+<li>Refactoring Guru – Code Smells: <a href="https://refactoring.guru/refactoring/smells" target="_blank" rel="noopener noreferrer">https://refactoring.guru/refactoring/smells</a></li>
+<li>Vercel Documentation: <a href="https://vercel.com/docs" target="_blank" rel="noopener noreferrer">https://vercel.com/docs</a></li>
+</ul>
+</li>
+</ul>
+
+    </article>
+
+    <!-- Bottom Navigation -->
+    <div class="flex items-center justify-between gap-4 mt-8 no-print text-xs font-bold">
+      <a href="bai-11.html" class="px-4 py-2.5 bg-white border border-slate-200 hover:border-lhu-blue text-slate-700 hover:text-lhu-blue rounded-xl shadow-sm transition-all flex items-center gap-2"><i class="fa-solid fa-chevron-left"></i> Bài trước</a>
+      <a href="index.html#lo-trinh" class="px-4 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-800 rounded-xl transition-all flex items-center gap-2">
+        <i class="fa-solid fa-table-cells-large"></i> Danh mục bài học
+      </a>
+      <a href="danh-gia-hoc-phan.html" class="px-4 py-2.5 bg-white border border-slate-200 hover:border-lhu-blue text-slate-700 hover:text-lhu-blue rounded-xl shadow-sm transition-all flex items-center gap-2">Bài tiếp theo <i class="fa-solid fa-chevron-right"></i></a>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-slate-200 py-6 text-xs text-slate-500 mt-12 no-print">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <strong>Khoa Công nghệ Thông tin - Trường Đại học Lạc Hồng</strong><br>
+        Phòng B301 - B302, Cơ sở 1, Số 10 Huỳnh Văn Nghệ, P. Bửu Long, TP. Biên Hòa, Đồng Nai.
+      </div>
+      <div class="sm:text-right">
+        <span>Email: cntt@lhu.edu.vn • Hotline: (0251) 3952 251</span><br>
+        <span>Hệ thống LMS: <a href="https://learn.lhu.edu.vn" target="_blank" rel="noopener noreferrer" class="text-lhu-blue font-bold">learn.lhu.edu.vn</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleAllDetails(open) {
+      document.querySelectorAll("details").forEach(d => {
+        if (open) d.setAttribute("open", ""); else d.removeAttribute("open");
+      });
+    }
+    if (window.hljs) hljs.highlightAll();
+  </script>
+
+</body>
+</html>

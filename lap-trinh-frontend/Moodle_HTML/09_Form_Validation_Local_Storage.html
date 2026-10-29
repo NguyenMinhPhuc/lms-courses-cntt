@@ -1,0 +1,571 @@
+<details open="" style="border: 1px solid #007bff; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #e7f1ff; color: #007bff; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>📘 1. Tổng quan bài học</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <p style="margin-top: 0;"><strong>BÀI 09 - Form Validation (React Hook Form + Zod), Local Storage &amp; Complex UI State (5 tiết)</strong></p>
+        <p style="margin: 0 0 8px 0; color: #6c757d;">CHƯƠNG 5: DỮ LIỆU, FORM &amp; LƯU TRỮ PHÍA CLIENT</p>
+        <p><strong>Thời lượng:</strong> 5 tiết (225 phút) · <strong>Hình thức:</strong> Lớp học đảo ngược · <strong>Chuẩn đầu ra:</strong> PI 2.3 (CLO2)<br><strong>Dự án xuyên suốt:</strong> Smart Event Hub – Form Đăng nhập/Đăng ký, lưu Auth Token vào LocalStorage/Cookies, Form &quot;Tạo sự kiện mới&quot; cho Admin và tính năng Wishlist đồng bộ toàn ứng dụng.</p>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #f3f8ff; border: 1px solid #cfe2ff; border-radius: 8px;">
+            <p>🎯 <strong>MỤC TIÊU BÀI HỌC (Learning Objectives)</strong><br>Sau khi hoàn thành bài học này, người học có thể:</p>
+<ul>
+<li><strong>[Bloom 1/2 - Kiến thức]:</strong> Giải thích cơ chế Uncontrolled Form của React Hook Form, vai trò của Zod Schema và <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">z.infer</code>; so sánh localStorage, sessionStorage và Cookies.</li>
+<li><strong>[Bloom 3/4 - Kỹ năng]:</strong> Xây dựng form có validation (email, độ dài mật khẩu, xác nhận mật khẩu, ràng buộc ngày) bằng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useForm</code> + <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">zodResolver</code> kết hợp Ant Design; viết hook <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useLocalStorage</code> an toàn với hydration.</li>
+<li><strong>[Bloom 5/6 - Năng lực]:</strong> Thiết kế trạng thái Wishlist dùng chung giữa nhiều component, duy trì sau khi F5; đánh giá rủi ro bảo mật khi chọn nơi lưu token.</li>
+</ul>
+        </div>
+        <p><strong>📝 Đặt vấn đề &amp; dẫn nhập</strong></p>
+        <p>Một người dùng điền form đăng ký Smart Event Hub, gõ email thiếu dấu <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">@</code>, mật khẩu 3 ký tự, bấm &quot;Đăng ký&quot; và nhận về… một trang trắng vì Backend trả lỗi 400. Một Admin khác tạo sự kiện có ngày kết thúc <strong>trước</strong> ngày bắt đầu, hệ thống vẫn lưu và đăng lên trang chủ. Cả hai lỗi đều có thể chặn ngay trên trình duyệt, trước khi request kịp rời khỏi máy người dùng.</p>
+<p><strong>Câu hỏi gợi mở:</strong> Làm sao kiểm tra dữ liệu ngay khi gõ mà form không bị giật vì re-render liên tục? Bạn thả tim một sự kiện, bấm F5 – trái tim còn đỏ không? Và nếu bạn đọc <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">localStorage</code> ngay khi render, vì sao Next.js lại báo <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">window is not defined</code> hoặc Hydration Error?</p>
+<blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #007bff; border-radius: 0 8px 8px 0; color: #212529;">
+<p>🧭 <strong>Trước giờ học (Flipped Classroom):</strong> Xem video Web Storage API (LocalStorage), Form State Handling, Validation Schema (Zod/Yup). Đọc trang chủ <em>React Hook Form</em> và <em>Zod</em> (mục 5). Cài sẵn thư viện: <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">npm install react-hook-form zod @hookform/resolvers dayjs @ant-design/icons</code>. Làm quiz 5–10 câu trên LMS.</p>
+</blockquote>
+    </div>
+</details>
+
+<details style="border: 1px solid #fd7e14; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #fff5eb; color: #fd7e14; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>📚 2. Học liệu chính</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.1. React Hook Form + Zod: validation nhanh và type-safe</h3>
+            <ul>
+<li><strong>Khái niệm:</strong> <strong>React Hook Form (RHF)</strong> quản lý form theo cơ chế <strong>Uncontrolled Component</strong>: giá trị nằm trong ref của input thay vì state, nên gõ phím không làm cả form re-render. <strong>Zod</strong> định nghĩa <strong>Schema</strong> kiểm tra dữ liệu; nối với RHF qua <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">zodResolver</code> từ <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">@hookform/resolvers/zod</code>. Điểm mạnh: <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">z.infer&lt;typeof schema&gt;</code> tự sinh TypeScript type từ chính schema, nên rule và type không bao giờ lệch nhau.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li>Rule thông dụng: bắt buộc nhập (<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">.min(1, ...)</code>), định dạng email (<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">.email()</code>), độ dài (<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">.min(6)</code>), so khớp mật khẩu (<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">.refine()</code> cấp object với <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">path</code>).</li>
+<li><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useForm&lt;T&gt;({ resolver: zodResolver(schema), defaultValues, mode })</code>: <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">mode: &#39;onChange&#39;</code> kiểm tra ngay khi gõ; <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&#39;onTouched&#39;</code> chờ người dùng rời ô lần đầu.</li>
+<li>Lấy lỗi qua <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">formState.errors.&lt;field&gt;?.message</code>; trạng thái gửi qua <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">formState.isSubmitting</code>.</li>
+</ul>
+</li>
+</ul>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// schemas/authSchema.ts
+import { z } from &#39;zod&#39;;
+
+export const loginSchema = z.object({
+  email: z.string().min(1, &#39;Email là bắt buộc&#39;).email(&#39;Email không đúng định dạng&#39;),
+  password: z.string().min(6, &#39;Mật khẩu tối thiểu 6 ký tự&#39;),
+});
+export type LoginInput = z.infer&lt;typeof loginSchema&gt;;
+
+export const registerSchema = z
+  .object({
+    fullName: z.string().trim().min(2, &#39;Họ tên tối thiểu 2 ký tự&#39;),
+    email: z.string().min(1, &#39;Email là bắt buộc&#39;).email(&#39;Email không đúng định dạng&#39;),
+    password: z.string().min(6, &#39;Mật khẩu tối thiểu 6 ký tự&#39;),
+    confirmPassword: z.string().min(1, &#39;Vui lòng nhập lại mật khẩu&#39;),
+  })
+  .refine((data) =&gt; data.password === data.confirmPassword, {
+    message: &#39;Mật khẩu nhập lại không khớp&#39;,
+    path: [&#39;confirmPassword&#39;], // Lỗi hiển thị dưới ô Nhập lại mật khẩu
+  });
+export type RegisterInput = z.infer&lt;typeof registerSchema&gt;;
+</code></pre>
+<ul>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #fd7e14; border-radius: 0 8px 8px 0; color: #212529;">
+<p>Form Thanh toán có 12 trường. Với <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useState</code> cho từng ô, mỗi ký tự gõ vào ô &quot;Địa chỉ&quot; làm cả 12 ô render lại. Với RHF, chỉ phần hiển thị lỗi của ô đó cập nhật, form vẫn mượt trên điện thoại cấu hình thấp.</p>
+</blockquote>
+</li>
+</ul>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.2. Component LoginForm: RHF + Zod + Ant Design</h3>
+            <ul>
+<li><strong>Khái niệm:</strong> Ant Design <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Input</code> là component có giao diện riêng, nên chúng ta nối nó với RHF bằng <strong><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Controller</code></strong>. Antd <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Form</code> được đặt <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">component={false}</code> để chỉ mượn layout và kiểu hiển thị lỗi, còn việc submit do <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">handleSubmit</code> của RHF đảm nhận.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Form.Item</code> nhận <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">validateStatus=&quot;error&quot;</code> và <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">help={errors.email?.message}</code> để hiện chữ đỏ ngay dưới input.</li>
+<li>Dùng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">App.useApp()</code> lấy <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">message</code> – yêu cầu <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">app/layout.tsx</code> đã bọc <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&lt;App&gt;</code> của antd (như Bài 08). Thông báo vẫn hiển thị khi <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">router.push(&#39;/&#39;)</code> chuyển trang.</li>
+<li>Token lưu vào <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">localStorage</code> <strong>chỉ trong hàm xử lý sự kiện</strong>, không phải lúc render.</li>
+</ul>
+</li>
+</ul>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// components/auth/LoginForm.tsx
+&#39;use client&#39;;
+
+import { useRouter } from &#39;next/navigation&#39;;
+import { Controller, useForm } from &#39;react-hook-form&#39;;
+import { zodResolver } from &#39;@hookform/resolvers/zod&#39;;
+import { App, Button, Form, Input } from &#39;antd&#39;;
+import { loginSchema, type LoginInput } from &#39;@/schemas/authSchema&#39;;
+
+// Giả lập API POST /auth/login – thay bằng authService thật khi Backend sẵn sàng
+async function onLogin(values: LoginInput): Promise&lt;{ accessToken: string }&gt; {
+  await new Promise((resolve) =&gt; setTimeout(resolve, 800));
+  if (!values.email.endsWith(&#39;@lhu.edu.vn&#39;)) throw new Error(&#39;Sai email hoặc mật khẩu&#39;);
+  return { accessToken: &#39;mock-token-123&#39; };
+}
+
+export default function LoginForm() {
+  const router = useRouter();
+  const { message } = App.useApp();
+  const {
+    control,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm&lt;LoginInput&gt;({
+    resolver: zodResolver(loginSchema),
+    defaultValues: { email: &#39;&#39;, password: &#39;&#39; },
+    mode: &#39;onChange&#39;,
+  });
+
+  const onSubmit = async (values: LoginInput) =&gt; {
+    try {
+      const { accessToken } = await onLogin(values);
+      localStorage.setItem(&#39;accessToken&#39;, accessToken);
+      message.success(&#39;Đăng nhập thành công&#39;);
+      router.push(&#39;/&#39;);
+    } catch (error) {
+      message.error(error instanceof Error ? error.message : &#39;Đăng nhập thất bại&#39;);
+    }
+  };
+
+  return (
+    &lt;form onSubmit={handleSubmit(onSubmit)} noValidate&gt;
+      &lt;Form layout=&quot;vertical&quot; component={false}&gt;
+        &lt;Form.Item label=&quot;Email&quot; validateStatus={errors.email ? &#39;error&#39; : undefined} help={errors.email?.message}&gt;
+          &lt;Controller
+            name=&quot;email&quot;
+            control={control}
+            render={({ field }) =&gt; &lt;Input {...field} type=&quot;email&quot; placeholder=&quot;ban@lhu.edu.vn&quot; /&gt;}
+          /&gt;
+        &lt;/Form.Item&gt;
+        &lt;Form.Item label=&quot;Mật khẩu&quot; validateStatus={errors.password ? &#39;error&#39; : undefined} help={errors.password?.message}&gt;
+          &lt;Controller
+            name=&quot;password&quot;
+            control={control}
+            render={({ field }) =&gt; &lt;Input.Password {...field} placeholder=&quot;Tối thiểu 6 ký tự&quot; /&gt;}
+          /&gt;
+        &lt;/Form.Item&gt;
+        &lt;Button type=&quot;primary&quot; htmlType=&quot;submit&quot; loading={isSubmitting} block&gt;
+          Đăng nhập
+        &lt;/Button&gt;
+      &lt;/Form&gt;
+    &lt;/form&gt;
+  );
+}
+</code></pre>
+<blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #fd7e14; border-radius: 0 8px 8px 0; color: #212529;">
+<p>⚠️ <strong>Bảo mật:</strong> <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">localStorage</code> đọc được bởi mọi đoạn JavaScript trên trang, nên nếu site dính lỗi XSS thì token bị đánh cắp. Bài tập hôm nay dùng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">localStorage</code> để luyện kỹ thuật; với sản phẩm thật, Auth Token nên nằm trong <strong>httpOnly Cookie</strong> do Backend thiết lập.</p>
+</blockquote>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.3. Schema phức tạp: Form &quot;Tạo sự kiện mới&quot; với <code style="font-family: Consolas, monospace;">.refine()</code></h3>
+            <ul>
+<li><strong>Khái niệm:</strong> Form Admin <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/admin/create-event</code> có nhiều kiểu dữ liệu: chuỗi, số, URL, ngày giờ. Ràng buộc liên quan <strong>hai trường cùng lúc</strong> (ngày kết thúc phải sau ngày bắt đầu) được viết bằng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">.refine()</code> trên cả object.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li>Lưu ngày dưới dạng <strong>chuỗi ISO</strong> trong form; <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Controller</code> chuyển đổi qua lại với <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Dayjs</code> mà <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">DatePicker</code> của antd yêu cầu.</li>
+<li><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">InputNumber</code> trả về <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">number | null</code>; schema <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">z.number({ message })</code> bắt cả trường hợp ô bị xóa trống.</li>
+<li><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">path: [&#39;endDate&#39;]</code> gắn lỗi vào đúng ô Ngày kết thúc.</li>
+</ul>
+</li>
+</ul>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// schemas/eventSchema.ts
+import { z } from &#39;zod&#39;;
+
+export const createEventSchema = z
+  .object({
+    title: z.string().trim().min(5, &#39;Tên sự kiện tối thiểu 5 ký tự&#39;),
+    location: z.string().trim().min(1, &#39;Vui lòng nhập địa điểm&#39;),
+    startDate: z.string().min(1, &#39;Vui lòng chọn ngày bắt đầu&#39;),
+    endDate: z.string().min(1, &#39;Vui lòng chọn ngày kết thúc&#39;),
+    price: z.number({ message: &#39;Vui lòng nhập giá vé hợp lệ&#39; }).positive(&#39;Giá vé phải lớn hơn 0&#39;),
+    coverImage: z.string().url(&#39;Ảnh bìa phải là một URL hợp lệ&#39;),
+    description: z.string().trim().min(20, &#39;Mô tả tối thiểu 20 ký tự&#39;),
+  })
+  .refine((data) =&gt; new Date(data.endDate).getTime() &gt; new Date(data.startDate).getTime(), {
+    message: &#39;Ngày kết thúc phải sau ngày bắt đầu&#39;,
+    path: [&#39;endDate&#39;],
+  });
+
+export type CreateEventInput = z.infer&lt;typeof createEventSchema&gt;;
+</code></pre>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// Trích đoạn trong components/admin/CreateEventForm.tsx (&#39;use client&#39;)
+// import dayjs from &#39;dayjs&#39;; import { DatePicker, InputNumber } from &#39;antd&#39;;
+&lt;Form.Item label=&quot;Ngày kết thúc&quot; validateStatus={errors.endDate ? &#39;error&#39; : undefined} help={errors.endDate?.message}&gt;
+  &lt;Controller
+    name=&quot;endDate&quot;
+    control={control}
+    render={({ field }) =&gt; (
+      &lt;DatePicker
+        showTime
+        style={{ width: &#39;100%&#39; }}
+        value={field.value ? dayjs(field.value) : null}
+        onChange={(date) =&gt; field.onChange(date ? date.toISOString() : &#39;&#39;)}
+        onBlur={field.onBlur}
+      /&gt;
+    )}
+  /&gt;
+&lt;/Form.Item&gt;
+
+&lt;Form.Item label=&quot;Giá vé (VNĐ)&quot; validateStatus={errors.price ? &#39;error&#39; : undefined} help={errors.price?.message}&gt;
+  &lt;Controller
+    name=&quot;price&quot;
+    control={control}
+    render={({ field }) =&gt; (
+      &lt;InputNumber min={0} step={10000} style={{ width: &#39;100%&#39; }} value={field.value} onChange={field.onChange} onBlur={field.onBlur} /&gt;
+    )}
+  /&gt;
+&lt;/Form.Item&gt;
+</code></pre>
+<p><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useForm&lt;CreateEventInput&gt;</code> cần <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">defaultValues</code> đầy đủ: <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">{ title: &#39;&#39;, location: &#39;&#39;, startDate: &#39;&#39;, endDate: &#39;&#39;, price: 0, coverImage: &#39;&#39;, description: &#39;&#39; }</code>.</p>
+<ul>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #fd7e14; border-radius: 0 8px 8px 0; color: #212529;">
+<p>Admin nhập workshop &quot;React Summit&quot; bắt đầu 20/12 9:00, kết thúc 20/12 8:00 do chọn nhầm giờ. Ngay khi rời ô, dòng đỏ &quot;Ngày kết thúc phải sau ngày bắt đầu&quot; xuất hiện dưới ô Ngày kết thúc, nút Lưu không gửi request. Backend không phải nhận dữ liệu rác.</p>
+</blockquote>
+</li>
+</ul>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.4. Web Storage API &amp; Hydration Safety</h3>
+            <ul>
+<li><strong>Khái niệm:</strong> Trình duyệt cung cấp ba nơi lưu dữ liệu phía client. Chọn sai nơi lưu có thể gây lỗi bảo mật hoặc mất dữ liệu.</li>
+</ul>
+<table style="width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 14px;">
+<thead>
+<tr>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Tiêu chí</th>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">localStorage</th>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">sessionStorage</th>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Cookies</th>
+</tr>
+</thead>
+<tbody><tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Thời gian tồn tại</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Đến khi bị xóa</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Đến khi đóng tab</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Theo <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Expires</code>/<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Max-Age</code></td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Gửi kèm request</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Không</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Không</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Có, tự động</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">JavaScript đọc được</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Có</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Có</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Có, trừ httpOnly</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Dùng cho</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Wishlist, theme, tùy chọn UI</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Bước tạm của form nhiều trang</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Auth Token (httpOnly), phiên đăng nhập</td>
+</tr>
+</tbody></table>
+<ul>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li>Client Component vẫn được <strong>render trước trên server</strong>, nơi không có <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">window</code>. Đọc <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">localStorage</code> khi render sẽ gây <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">window is not defined</code>, hoặc HTML server và client khác nhau → <strong>Hydration Mismatch</strong>.</li>
+<li>Cách an toàn: render lần đầu bằng giá trị mặc định (giống server), <strong>đọc storage trong <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useEffect</code></strong> sau khi mount, rồi cập nhật state.</li>
+<li>Đọc Cookie trên server trong Next.js 15: <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">const token = (await cookies()).get(&#39;accessToken&#39;)?.value;</code> (hàm <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">cookies()</code> từ <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">next/headers</code> trả về Promise).</li>
+</ul>
+</li>
+</ul>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// hooks/useLocalStorage.ts – an toàn với SSR/hydration
+&#39;use client&#39;;
+
+import { useEffect, useState } from &#39;react&#39;;
+
+export function useLocalStorage&lt;T&gt;(key: string, initialValue: T) {
+  const [storedValue, setStoredValue] = useState&lt;T&gt;(initialValue);
+  const [isHydrated, setIsHydrated] = useState(false);
+
+  // 1) Chỉ đọc localStorage sau khi đã mount trên trình duyệt
+  useEffect(() =&gt; {
+    try {
+      const item = window.localStorage.getItem(key);
+      if (item !== null) setStoredValue(JSON.parse(item) as T);
+    } catch {
+      // JSON hỏng hoặc trình duyệt chặn storage → giữ initialValue
+    }
+    setIsHydrated(true);
+  }, [key]);
+
+  // 2) Ghi lại mỗi khi giá trị thay đổi, bỏ qua lần render trước khi hydrate
+  useEffect(() =&gt; {
+    if (!isHydrated) return;
+    try {
+      window.localStorage.setItem(key, JSON.stringify(storedValue));
+    } catch {
+      // Hết dung lượng hoặc chế độ ẩn danh chặn ghi
+    }
+  }, [key, storedValue, isHydrated]);
+
+  return [storedValue, setStoredValue, isHydrated] as const;
+}
+</code></pre>
+<blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #fd7e14; border-radius: 0 8px 8px 0; color: #212529;">
+<p>💡 <strong>Vì sao cần <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">isHydrated</code>?</strong> Nếu thiếu cờ này, effect ghi sẽ chạy ngay lần đầu và lưu đè <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">initialValue</code> (mảng rỗng) lên dữ liệu thật trước khi kịp đọc. Hook giả định <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">key</code> cố định trong suốt vòng đời component. Muốn đồng bộ giữa nhiều tab, có thể lắng nghe thêm sự kiện <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">storage</code> của <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">window</code>.</p>
+</blockquote>
+<ul>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #fd7e14; border-radius: 0 8px 8px 0; color: #212529;">
+<p>Phiên bản đầu của nhóm dùng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useState(JSON.parse(localStorage.getItem(&#39;wishlist&#39;) ?? &#39;[]&#39;))</code>. <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">npm run dev</code> báo Hydration Error, còn <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">npm run build</code> thất bại với <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">localStorage is not defined</code>. Chuyển sang <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useLocalStorage</code> giải quyết cả hai.</p>
+</blockquote>
+</li>
+</ul>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.5. Complex UI State: Wishlist đồng bộ giữa nhiều component</h3>
+            <ul>
+<li><strong>Khái niệm:</strong> Trái tim Wishlist xuất hiện ở Card trang chủ, trang chi tiết và trang <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/user/wishlist</code>. Nếu mỗi nơi tự gọi <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useLocalStorage</code>, chúng giữ các bản state riêng: thả tim ở Card nhưng bộ đếm trên Header không đổi. Giải pháp là <strong>nâng state lên một Context Provider</strong> dùng chung.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong> Provider giữ state bằng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useLocalStorage</code>; component con đọc qua hook <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useWishlist()</code>. Chỉ hiển thị trạng thái &quot;đã thích&quot; khi <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">isHydrated</code> để HTML server và client trùng nhau.</li>
+</ul>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// contexts/WishlistContext.tsx
+&#39;use client&#39;;
+
+import { createContext, useCallback, useContext, useMemo, type ReactNode } from &#39;react&#39;;
+import { useLocalStorage } from &#39;@/hooks/useLocalStorage&#39;;
+
+interface WishlistContextValue {
+  ids: string[];
+  isHydrated: boolean;
+  isWishlisted: (id: string) =&gt; boolean;
+  toggle: (id: string) =&gt; void;
+}
+
+const WishlistContext = createContext&lt;WishlistContextValue | null&gt;(null);
+
+export function WishlistProvider({ children }: { children: ReactNode }) {
+  const [ids, setIds, isHydrated] = useLocalStorage&lt;string[]&gt;(&#39;seh-wishlist&#39;, []);
+
+  const toggle = useCallback(
+    (id: string) =&gt; setIds((prev) =&gt; (prev.includes(id) ? prev.filter((x) =&gt; x !== id) : [...prev, id])),
+    [setIds],
+  );
+
+  const value = useMemo&lt;WishlistContextValue&gt;(
+    () =&gt; ({ ids, isHydrated, isWishlisted: (id) =&gt; ids.includes(id), toggle }),
+    [ids, isHydrated, toggle],
+  );
+
+  return &lt;WishlistContext.Provider value={value}&gt;{children}&lt;/WishlistContext.Provider&gt;;
+}
+
+export function useWishlist(): WishlistContextValue {
+  const ctx = useContext(WishlistContext);
+  if (!ctx) throw new Error(&#39;useWishlist phải được dùng bên trong &lt;WishlistProvider&gt;&#39;);
+  return ctx;
+}
+</code></pre>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// components/events/WishlistButton.tsx
+&#39;use client&#39;;
+
+import { HeartFilled, HeartOutlined } from &#39;@ant-design/icons&#39;;
+import { Button } from &#39;antd&#39;;
+import { useWishlist } from &#39;@/contexts/WishlistContext&#39;;
+
+export default function WishlistButton({ eventId }: { eventId: string }) {
+  const { isHydrated, isWishlisted, toggle } = useWishlist();
+  const active = isHydrated &amp;&amp; isWishlisted(eventId);
+
+  return (
+    &lt;Button
+      type=&quot;text&quot;
+      shape=&quot;circle&quot;
+      aria-pressed={active}
+      aria-label={active ? &#39;Bỏ khỏi danh sách yêu thích&#39; : &#39;Thêm vào danh sách yêu thích&#39;}
+      icon={active ? &lt;HeartFilled style={{ color: &#39;#ef4444&#39; }} /&gt; : &lt;HeartOutlined /&gt;}
+      onClick={() =&gt; toggle(eventId)}
+    /&gt;
+  );
+}
+</code></pre>
+<p>Đặt <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&lt;WishlistProvider&gt;</code> bao quanh <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">{children}</code> trong <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">app/layout.tsx</code> (Server Component vẫn render được Client Provider). Trang <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/user/wishlist</code> dùng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">ids</code> từ <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useWishlist()</code> để lọc/gọi API lấy thông tin các sự kiện đã lưu.</p>
+<ul>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #fd7e14; border-radius: 0 8px 8px 0; color: #212529;">
+<p>Người dùng thả tim 3 concert trên trang chủ, Header lập tức hiện &quot;Yêu thích (3)&quot;. Họ tắt máy, sáng hôm sau mở lại, danh sách vẫn còn nguyên. Đây chính là output mong muốn của Team Challenge hôm nay.</p>
+</blockquote>
+</li>
+</ul>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.6. Vibe Coding – Prompt mẫu &amp; cách kiểm duyệt code AI</h3>
+            <p>AI sinh Zod Schema và form rất nhanh, nhưng hay trộn cú pháp cũ – mới hoặc quên các chi tiết Next.js. Hãy dùng prompt có ràng buộc rõ ràng.</p>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">Hãy tạo cho tôi Component `LoginForm.tsx` bằng Next.js (&quot;use client&quot;) kết hợp React Hook Form,
+Zod và Ant Design Input.
+Yêu cầu chi tiết:
+1. Định nghĩa Zod Schema `loginSchema`:
+   - email: Chuỗi, bắt buộc, đúng định dạng Email.
+   - password: Chuỗi, bắt buộc, tối thiểu 6 ký tự.
+2. Tích hợp `useForm` với `zodResolver(loginSchema)`.
+3. Khi submit hợp lệ, gọi hàm `onLogin(values)` giả lập, lưu token vào
+   `localStorage.setItem(&#39;accessToken&#39;, &#39;mock-token-123&#39;)` và hiển thị Antd `message.success(&quot;Đăng nhập thành công&quot;)`.
+4. Hiển thị error message màu đỏ dưới ô input nếu dữ liệu không hợp lệ.
+Ràng buộc: TypeScript strict, type lấy từ z.infer, dùng Controller cho Input của antd.
+</code></pre>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">Hãy viết một Zod Schema tên là `createEventSchema` cho Form Tạo sự kiện có ràng buộc nâng cao:
+- `title`: string, min 5 chars.
+- `startDate`: date string.
+- `endDate`: date string.
+- Sử dụng hàm `.refine()` của Zod để kiểm tra `endDate` phải có thời gian lớn hơn `startDate`.
+Cho tôi mã nguồn Zod Schema và cách dùng với React Hook Form.
+</code></pre>
+<p><strong>Checklist kiểm duyệt code AI:</strong></p>
+<ul>
+<li>Import đúng: <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">zodResolver</code> từ <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">@hookform/resolvers/zod</code>; type lấy bằng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">z.infer</code>, không khai báo interface trùng lặp.</li>
+<li><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">defaultValues</code> có đủ mọi trường (tránh cảnh báo uncontrolled → controlled).</li>
+<li>Component antd (<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Input</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">DatePicker</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">InputNumber</code>) được nối qua <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Controller</code>; <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">DatePicker</code> nhận <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Dayjs</code>, không nhận chuỗi.</li>
+<li><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">.refine()</code> có <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">path</code> để lỗi hiện đúng ô.</li>
+<li>Không đọc <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">localStorage</code>/<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">window</code> trong lúc render; có <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&#39;use client&#39;</code>; không <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">console.log</code> token.</li>
+</ul>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">📌 Tóm tắt &amp; điểm cần nhớ</h3>
+            <ul>
+<li>🔹 <strong>RHF giảm re-render:</strong> form uncontrolled, chỉ cập nhật phần cần thiết; <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Controller</code> dùng cho component UI như antd.</li>
+<li>🔹 <strong>Zod là nguồn sự thật duy nhất:</strong> rule validation và TypeScript type (<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">z.infer</code>) sinh từ cùng một schema.</li>
+<li>🔹 <strong>Ràng buộc nhiều trường dùng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">.refine()</code> + <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">path</code>:</strong> xác nhận mật khẩu, ngày kết thúc sau ngày bắt đầu.</li>
+<li>🔹 <strong>Chọn đúng nơi lưu:</strong> localStorage cho dữ liệu UI không nhạy cảm; Auth Token thật nên ở httpOnly Cookie.</li>
+<li>🔹 <strong>Hydration safety:</strong> chỉ đọc <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">localStorage</code> trong <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useEffect</code>, render lần đầu bằng giá trị mặc định.</li>
+<li>🔹 <strong>State dùng chung → Context Provider:</strong> Wishlist đồng bộ mọi component và tồn tại sau F5.</li>
+</ul>
+        </div>
+    </div>
+</details>
+
+<details style="border: 1px solid #28a745; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #eafaf1; color: #28a745; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>💡 3. Hoạt động &amp; Thực hành trên lớp</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <p style="margin-top: 0;">Thực hiện các hoạt động sau để vận dụng kiến thức của buổi học:</p>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #28a745;">🧑‍💻 Thực hành trên lớp</h3>
+            <table style="width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 14px;">
+<thead>
+<tr>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Phần</th>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Thời lượng</th>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Nhiệm vụ</th>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Output mong muốn</th>
+</tr>
+</thead>
+<tbody><tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Guided Practice</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">45&#39;</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Cài <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">react-hook-form</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">zod</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">@hookform/resolvers</code>; tạo <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">loginSchema</code>; xây <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">LoginForm.tsx</code> lưu JWT vào localStorage</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Lỗi hiện ngay khi gõ; đăng nhập thành công lưu token và về Trang chủ</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Unguided Practice</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">45&#39;</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Form &quot;Tạo sự kiện mới&quot; <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/admin/create-event</code> với <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">createEventSchema</code></td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Bắt được mọi trường hợp ngày tháng, giá vé, URL không hợp lệ</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Team Challenge</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">60&#39;</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Tính năng Wishlist toàn app + trang <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/user/wishlist</code></td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">F5 vẫn giữ đúng trạng thái; các component đồng bộ tức thì</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Tổng kết</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">15&#39;</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">GV chữa lỗi hydration/validation phổ biến, giao BTVN</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Danh sách lỗi cần sửa của từng nhóm</td>
+</tr>
+</tbody></table>
+<ul>
+<li><strong>Guided (45&#39;):</strong> Theo giảng viên tạo <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">schemas/authSchema.ts</code> và <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">LoginForm.tsx</code>. Form hiển thị lỗi validation ngay dưới từng input, submit gọi API Login (giả lập), lưu JWT vào <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">localStorage</code> và chuyển hướng về Trang chủ.</li>
+<li><strong>Unguided (45&#39;):</strong> Tự xây form Admin gồm Tên sự kiện, Địa điểm, Ngày bắt đầu/kết thúc (DatePicker), Giá vé (&gt; 0), Ảnh bìa (URL), Mô tả; ràng buộc Ngày kết thúc sau Ngày bắt đầu.</li>
+<li><strong>Team Challenge (60&#39;):</strong> Bấm icon trái tim trên bất kỳ Card nào để thêm/xóa khỏi Wishlist; lưu danh sách ID vào <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">localStorage</code>; tạo trang <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/user/wishlist</code> render các sự kiện đã lưu; đảm bảo đồng bộ state giữa các component trên cùng trang.</li>
+</ul>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #28a745;">❓ Kiểm tra nhanh (Self-Assessment)</h3>
+            <p><strong>Câu 1:</strong> Vì sao React Hook Form giúp form nhiều trường mượt hơn so với dùng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useState</code> cho từng ô?</p>
+<ul>
+<li>A. RHF tự động gửi dữ liệu lên server sau mỗi ký tự</li>
+<li>B. RHF quản lý giá trị theo cơ chế uncontrolled (ref), hạn chế re-render toàn form</li>
+<li>C. RHF chỉ hoạt động trong Server Component</li>
+<li>D. RHF thay thế hoàn toàn nhu cầu validation</li>
+</ul>
+<details style="margin: 6px 0 14px 0; padding: 8px 12px; background-color: #ffffff; border: 1px dashed #adb5bd; border-radius: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #495057;">👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> B<br>
+<b>Giải thích:</b> Giá trị input nằm trong ref, không phải state của component, nên gõ phím không kích hoạt render lại cả form.
+</details>
+
+<p><strong>Câu 2:</strong> Để lỗi &quot;Mật khẩu nhập lại không khớp&quot; hiển thị dưới ô <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">confirmPassword</code>, cần làm gì với <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">.refine()</code>?</p>
+<ul>
+<li>A. Đặt <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">.refine()</code> bên trong <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">z.string()</code> của <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">password</code></li>
+<li>B. Gọi <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">.refine()</code> hai lần</li>
+<li>C. Khai báo <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">path: [&#39;confirmPassword&#39;]</code> trong tham số thứ hai</li>
+<li>D. Thêm <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">mode: &#39;onSubmit&#39;</code> vào <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useForm</code></li>
+</ul>
+<details style="margin: 6px 0 14px 0; padding: 8px 12px; background-color: #ffffff; border: 1px dashed #adb5bd; border-radius: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #495057;">👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> C<br>
+<b>Giải thích:</b> <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">.refine()</code> cấp object mặc định gắn lỗi vào gốc form; <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">path</code> chỉ định trường nhận lỗi để RHF hiển thị qua <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">errors.confirmPassword</code>.
+</details>
+
+<p><strong>Câu 3:</strong> Đoạn <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">const [list] = useState(JSON.parse(localStorage.getItem(&#39;wishlist&#39;) ?? &#39;[]&#39;))</code> trong Client Component gây ra vấn đề gì?</p>
+<ul>
+<li>A. Lỗi <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">localStorage is not defined</code> khi render trên server hoặc Hydration Mismatch</li>
+<li>B. Không có vấn đề vì đã có <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&#39;use client&#39;</code></li>
+<li>C. Chỉ chậm hơn một chút</li>
+<li>D. localStorage tự xóa sau mỗi lần render</li>
+</ul>
+<details style="margin: 6px 0 14px 0; padding: 8px 12px; background-color: #ffffff; border: 1px dashed #adb5bd; border-radius: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #495057;">👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> A<br>
+<b>Giải thích:</b> Client Component vẫn được prerender trên server, nơi không có <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">localStorage</code>. Cần đọc trong <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useEffect</code> như hook <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useLocalStorage</code>.
+</details>
+
+<p><strong>Câu 4:</strong> Nơi lưu Auth Token nào an toàn nhất trước tấn công XSS?</p>
+<ul>
+<li>A. localStorage</li>
+<li>B. sessionStorage</li>
+<li>C. Biến toàn cục <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">window.token</code></li>
+<li>D. httpOnly Cookie do server thiết lập</li>
+</ul>
+<details style="margin: 6px 0 14px 0; padding: 8px 12px; background-color: #ffffff; border: 1px dashed #adb5bd; border-radius: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #495057;">👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> D<br>
+<b>Giải thích:</b> JavaScript trên trang không đọc được httpOnly Cookie, nên mã độc XSS không lấy được token; trình duyệt vẫn tự gửi cookie kèm request.
+</details>
+
+<blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #28a745; border-radius: 0 8px 8px 0; color: #212529;">
+<p>Bộ 10+ câu đầy đủ: Quiz Bài 09 trên LMS</p>
+</blockquote>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #28a745;">💬 Thảo luận &amp; 📤 Nộp bài</h3>
+            <ul>
+<li><strong>Chủ đề thảo luận Diễn đàn (Forum Discussion):</strong> Đã có validation phía client bằng Zod, Backend còn cần validate lại không? Hãy nêu ít nhất hai tình huống người dùng có thể vượt qua validation trên trình duyệt, và đề xuất cách chia sẻ cùng một schema giữa Front-End và Back-End.</li>
+<li><strong>Yêu cầu nộp bài (Bài tập về nhà):</strong><ul>
+<li>Tất cả thành viên đăng ký tài khoản <strong>GitHub</strong> và <strong>Vercel</strong>.</li>
+<li>Đẩy code mới nhất (Login, Create Event, Wishlist) lên GitHub; kiểm tra kết nối Repository với Vercel Dashboard để sẵn sàng cho các buổi PBL Deploy.</li>
+<li><strong>Output:</strong> 100% thành viên có tài khoản Vercel sẵn sàng kết nối CI/CD; ảnh chụp màn hình Vercel Dashboard đã thấy repo của nhóm.</li>
+<li><strong>Hạn nộp:</strong> trước buổi học tiếp theo. Commit cuối theo mẫu <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">feat(wishlist): persist favorite events in localStorage</code>; nộp link repo + ảnh chụp lên LMS với tên file <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">B09_&lt;TenNhom&gt;_Vercel.png</code>.</li>
+</ul>
+</li>
+</ul>
+        </div>
+    </div>
+</details>
+
+<details style="border: 1px solid #6f42c1; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #f3e5f5; color: #6f42c1; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>🆘 4. Góc trợ giúp và mở rộng</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <ul>
+<li><strong>📚 Tài liệu đọc &amp; tham khảo:</strong><ul>
+<li>React Hook Form Documentation: <a href="https://react-hook-form.com/" target="_blank" rel="noopener noreferrer" style="color: #6f42c1;">https://react-hook-form.com/</a></li>
+<li>Zod Documentation: <a href="https://zod.dev/" target="_blank" rel="noopener noreferrer" style="color: #6f42c1;">https://zod.dev/</a></li>
+<li>Hook Form Resolvers: <a href="https://github.com/react-hook-form/resolvers" target="_blank" rel="noopener noreferrer" style="color: #6f42c1;">https://github.com/react-hook-form/resolvers</a></li>
+<li>MDN – Window.localStorage: <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage" target="_blank" rel="noopener noreferrer" style="color: #6f42c1;">https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage</a></li>
+<li>Next.js <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">cookies()</code>: <a href="https://nextjs.org/docs/app/api-reference/functions/cookies" target="_blank" rel="noopener noreferrer" style="color: #6f42c1;">https://nextjs.org/docs/app/api-reference/functions/cookies</a></li>
+</ul>
+</li>
+</ul>
+        <p><strong>Hỗ trợ kỹ thuật:</strong> Gặp lỗi cài đặt (Node.js, Git, Next.js) hoặc lỗi build, hãy đăng câu hỏi lên diễn đàn môn học kèm ảnh chụp lỗi, lệnh đã chạy và link repository. Giảng viên và bạn học sẽ phản hồi trước buổi học tiếp theo.</p>
+        <p><strong>Nguyên tắc Vibe Coding:</strong> AI sinh khung code, các bạn chịu trách nhiệm đọc hiểu, kiểm tra kiểu dữ liệu và sửa lỗi. Mọi đoạn code nộp lên đều có thể được hỏi phản biện.</p>
+    </div>
+</details>

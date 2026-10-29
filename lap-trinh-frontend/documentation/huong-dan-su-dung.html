@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LẬP TRÌNH FRONT-END (NEXT.JS, TYPESCRIPT &amp; VIBE CODING) | Lập trình Front-End - Khoa CNTT - Đại học Lạc Hồng</title>
+  <meta name="description" content="Tài liệu hướng dẫn: LẬP TRÌNH FRONT-END (NEXT.JS, TYPESCRIPT &amp; VIBE CODING) - Lập trình Front-End (Next.js, TypeScript &amp; Vibe Coding)">
+
+  <!-- Tailwind CSS CDN (kèm plugin typography cho nội dung Markdown) -->
+  <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6.4.0 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Highlight.js 11.9.0 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            asu: { maroon: '#8C1D40', gold: '#FFC627', dark: '#5C142B', light: '#FAEDF0' },
+            lhu: { blue: '#013D88', sky: '#007BFF', dark: '#01295C', light: '#EEF5FC' },
+            fe: { indigo: '#6366F1', dark: '#312E81', light: '#EEF2FF' }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .lesson h2, .lesson h3, .lesson h4 { scroll-margin-top: 90px; }
+    .lesson h3 { padding-bottom: .4rem; border-bottom: 2px solid #EEF2FF; }
+    .lesson blockquote { border-left: 4px solid #6366F1; background: #F5F7FF; border-radius: 0 12px 12px 0; padding: .6rem 1rem; font-style: normal; color: #1e293b; }
+    .lesson blockquote p:first-of-type::before, .lesson blockquote p:last-of-type::after { content: none; }
+    .lesson pre { border-radius: 12px; padding: 0; background: #0d1117; }
+    .lesson pre code.hljs { border-radius: 12px; padding: 1rem 1.1rem; font-size: 13px; line-height: 1.6; }
+    .lesson :not(pre) > code { background: #EEF2FF; color: #3730A3; padding: .1rem .35rem; border-radius: 6px; font-weight: 500; }
+    .lesson :not(pre) > code::before, .lesson :not(pre) > code::after { content: none; }
+    .lesson table { display: block; overflow-x: auto; font-size: 14px; }
+    .lesson thead th { background: #F1F5F9; }
+    .lesson th, .lesson td { border: 1px solid #E2E8F0; padding: .5rem .7rem !important; vertical-align: top; }
+    .lesson details { border: 1px solid #C7D2FE; border-radius: 10px; padding: .6rem .9rem; margin: .5rem 0 1.2rem; background: #FAFAFF; }
+    .lesson details summary { cursor: pointer; font-weight: 600; color: #4338CA; }
+    .lesson details[open] summary { margin-bottom: .4rem; }
+    .lesson hr { border-color: #E2E8F0; margin: 2rem 0; }
+    @media print {
+      header, footer, .no-print { display: none !important; }
+      details { break-inside: avoid; margin-bottom: 20px; }
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans antialiased selection:bg-asu-gold selection:text-slate-900 min-h-screen flex flex-col">
+
+  <!-- TOP BAR -->
+  <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800 no-print">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+      <div class="flex items-center gap-2">
+        <span class="text-asu-gold font-semibold"><i class="fa-solid fa-certificate mr-1"></i> CHUẨN KIỂM ĐỊNH ABET (USA)</span>
+        <span class="text-slate-600 hidden sm:inline">•</span>
+        <span class="hidden sm:inline">Lớp học đảo ngược • Vibe Coding</span>
+      </div>
+      <div class="flex items-center gap-4 text-xs font-mono">
+        <span>Thời lượng: <strong class="text-white">60 tiết (12 buổi)</strong></span>
+        <span>LT/TH: <strong class="text-asu-gold">30% / 70%</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="sticky top-0 z-40 bg-white shadow-sm border-b border-slate-200 no-print">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <a href="../index.html" class="flex items-center gap-2.5 text-slate-800 hover:text-lhu-blue transition-colors">
+        <img src="../LHU_ASU_VI_Small_Ngang.png" alt="Logo LHU" class="h-8 w-auto">
+        <div class="border-l border-slate-300 pl-2.5">
+          <div class="text-[11px] font-bold text-slate-500 uppercase">Khoa CNTT - LHU</div>
+          <div class="text-xs font-extrabold text-lhu-blue">LẬP TRÌNH FRONT-END</div>
+        </div>
+      </a>
+      <div class="flex items-center gap-3 text-xs">
+        <a href="../index.html" class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-arrow-left"></i>
+          <span class="hidden sm:inline">Về Landing Page</span>
+        </a>
+        <button onclick="window.print()" class="hidden sm:flex px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-all items-center gap-1.5" title="In hoặc lưu file PDF">
+          <i class="fa-solid fa-print"></i>
+          <span>In / PDF</span>
+        </button>
+        <a href="https://learn.lhu.edu.vn" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-lhu-blue hover:bg-lhu-dark text-white font-bold rounded-xl shadow transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-graduation-cap text-asu-gold"></i>
+          <span>Vào lớp LMS</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="flex-grow max-w-5xl w-full mx-auto px-4 sm:px-6 py-8">
+
+    <!-- Title Card -->
+    <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 mb-8">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-5">
+        <div>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-fe-light text-fe-dark font-bold text-xs uppercase tracking-wider mb-2">
+            <i class="fa-solid fa-code"></i> Tài liệu hướng dẫn
+          </span>
+          <h1 class="text-2xl sm:text-3xl font-black text-slate-900 leading-tight">
+            LẬP TRÌNH FRONT-END (NEXT.JS, TYPESCRIPT &amp; VIBE CODING)
+          </h1>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1 font-mono">
+            Học phần: Lập trình Front-End (Next.js, TypeScript & Vibe Coding) • Khoa CNTT - Đại học Lạc Hồng
+          </p>
+        </div>
+        <div class="flex-shrink-0 flex sm:flex-col items-center sm:items-end justify-between gap-1 text-xs">
+          <span class="px-3 py-1.5 bg-emerald-50 text-emerald-700 font-bold rounded-lg border border-emerald-200">
+            <i class="fa-solid fa-check-circle mr-1"></i> Lưu hành nội bộ 2026
+          </span>
+          <span class="text-slate-400 text-[11px]">Định dạng LMS Lecture</span>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between pt-4 text-xs no-print">
+        <span class="text-slate-500">
+          <i class="fa-solid fa-circle-info text-blue-500 mr-1"></i>
+          Bấm vào các khối thu gọn để xem đáp án hoặc chi tiết.
+        </span>
+        <div class="flex items-center gap-2">
+          <button onclick="toggleAllDetails(true)" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg transition-colors">Mở tất cả</button>
+          <button onclick="toggleAllDetails(false)" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg transition-colors">Thu gọn</button>
+        </div>
+      </div>
+      <nav class="mt-5 pt-4 border-t border-slate-100 no-print">
+        <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">Nội dung trang</div>
+        <div class="flex flex-wrap gap-2">
+          <a href="#huong-dan-su-dung-bo-hoc-lieu-user-guide" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">HƯỚNG DẪN SỬ DỤNG BỘ HỌC LIỆU (User Guide)</a>
+          <a href="#1-tong-quan-bo-hoc-lieu" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">1. TỔNG QUAN BỘ HỌC LIỆU</a>
+          <a href="#2-cau-truc-thu-muc-lap-trinh-frontend" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">2. CẤU TRÚC THƯ MỤC lap-trinh-frontend/</a>
+          <a href="#3-dua-bai-hoc-len-moodle" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">3. ĐƯA BÀI HỌC LÊN MOODLE</a>
+          <a href="#4-nhap-quiz-aiken-vao-question-bank" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">4. NHẬP QUIZ AIKEN VÀO QUESTION BANK</a>
+          <a href="#5-cau-hinh-nhom-lop-multi-class-management" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">5. CẤU HÌNH NHÓM LỚP (MULTI-CLASS MANAGEMENT)</a>
+          <a href="#6-lo-trinh-hoc-tap-theo-tuan-danh-cho-sinh-vien" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">6. LỘ TRÌNH HỌC TẬP THEO TUẦN (DÀNH CHO SINH VIÊN)</a>
+          <a href="#7-huong-dan-cho-giang-vien-ve-vibe-coding" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">7. HƯỚNG DẪN CHO GIẢNG VIÊN VỀ VIBE CODING</a>
+          <a href="#8-tuy-bien-ant-design-theme-tranh-thiet-ke-rap-khuon" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">8. TÙY BIẾN ANT DESIGN THEME (TRÁNH THIẾT KẾ RẬP KHUÔN)</a>
+        </div>
+      </nav>
+    </div>
+
+    <!-- Content -->
+    <article class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 lesson prose prose-slate max-w-none prose-headings:font-extrabold prose-h3:text-lhu-dark prose-h4:text-fe-dark prose-a:text-lhu-blue">
+<h2 id="huong-dan-su-dung-bo-hoc-lieu-user-guide">HƯỚNG DẪN SỬ DỤNG BỘ HỌC LIỆU (User Guide)</h2>
+<blockquote>
+<p><strong>Đơn vị:</strong> Khoa Công nghệ Thông tin – Trường Đại học Lạc Hồng (LHU) · <strong>Hệ thống LMS:</strong> <code>https://learn.lhu.edu.vn</code><br><strong>Mã học phần:</strong> Đang cập nhật · <strong>Số tín chỉ:</strong> Đang cập nhật · <strong>Giảng viên:</strong> Đang cập nhật<br><strong>Thời lượng:</strong> 60 tiết = 12 buổi × 5 tiết (225 phút) · 30% lý thuyết – 70% thực hành &amp; đánh giá · <strong>Mô hình:</strong> Lớp học đảo ngược</p>
+</blockquote>
+<hr>
+<p>Tài liệu này dành cho hai nhóm người đọc. <strong>Sinh viên</strong> đọc mục 1, 2 và 6 để biết học liệu nằm ở đâu và mỗi tuần cần làm gì. <strong>Giảng viên và người quản trị khóa học</strong> đọc thêm mục 3, 4, 5 (đưa nội dung lên Moodle, nhập quiz, cấu hình nhóm lớp) và mục 7, 8 (hướng dẫn Vibe Coding, tùy biến Ant Design).</p>
+<hr>
+<h2 id="1-tong-quan-bo-hoc-lieu">1. TỔNG QUAN BỘ HỌC LIỆU</h2>
+<h4 id="hoc-phan-nay-day-gi">Học phần này dạy gì</h4>
+<p>Chúng ta xây dựng một sản phẩm thật xuyên suốt 12 buổi: <strong>Smart Event Hub</strong> – hệ thống đặt vé và quản lý sự kiện trực tuyến, dùng RESTful API Backend (Swagger) có sẵn do giảng viên cung cấp. Mỗi buổi thêm một lớp kỹ năng: SCSS &amp; TypeScript → Wireframe → App Router → Dynamic Routing → Ant Design → Hooks → (giữa kỳ) → API → Form &amp; Storage → Refactor → Deploy → (Hackathon cuối kỳ).</p>
+<table>
+<thead>
+<tr>
+<th>Thành phần đánh giá</th>
+<th>Trọng số</th>
+<th>Thời điểm</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Quá trình (quiz trước giờ, bài tập, BTVN, diễn đàn, chuyên cần)</td>
+<td>30%</td>
+<td>Buổi 1–11</td>
+</tr>
+<tr>
+<td>Giữa kỳ – Báo cáo tiến độ 50% dự án</td>
+<td>30%</td>
+<td>Buổi 7</td>
+</tr>
+<tr>
+<td>Cuối kỳ – Hackathon &amp; Final Showcase</td>
+<td>40%</td>
+<td>Buổi 12</td>
+</tr>
+</tbody></table>
+<p>Điểm cuối kỳ cá nhân = Điểm đồ án nhóm × 0.7 + Điểm phản biện cá nhân × 0.3.</p>
+<h4 id="chuan-dau-ra-hoc-phan">Chuẩn đầu ra học phần</h4>
+<table>
+<thead>
+<tr>
+<th>CLO</th>
+<th>PI</th>
+<th>Mô tả</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CLO1</td>
+<td>PI 1.4</td>
+<td>Phân tích yêu cầu, mô hình hóa UI/Wireframe và tổ chức kiến trúc component cho ứng dụng web</td>
+</tr>
+<tr>
+<td>CLO2</td>
+<td>PI 2.3</td>
+<td>Xây dựng ứng dụng Front-End với Next.js, TypeScript, SCSS/Ant Design, quản lý state, kết nối REST API, sử dụng AI (Vibe Coding) có kiểm soát</td>
+</tr>
+<tr>
+<td>CLO3</td>
+<td>PI 3.1</td>
+<td>Viết báo cáo kỹ thuật và thuyết trình/demo sản phẩm rõ ràng, chuyên nghiệp</td>
+</tr>
+<tr>
+<td>CLO4</td>
+<td>PI 5.1</td>
+<td>Làm việc nhóm với Git (branch, PR, review), triển khai CI/CD lên Vercel và tối ưu SEO/Performance</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="2-cau-truc-thu-muc-lap-trinh-frontend">2. CẤU TRÚC THƯ MỤC <code>lap-trinh-frontend/</code></h2>
+<h4 id="cay-thu-muc">Cây thư mục</h4>
+<pre><code class="language-text">lap-trinh-frontend/
+├── index.html                     # Landing page tổng hợp toàn bộ học phần
+├── thong-tin-hoc-phan.md / .html  # Đề cương tóm tắt: mục tiêu, CLO, lịch 12 buổi, đánh giá
+├── danh-gia-hoc-phan.md / .html   # Chuyên đề đánh giá: cơ cấu điểm, rubric giữa kỳ &amp; cuối kỳ
+├── bai-01.md / bai-01.html        # Bài 01 … Bài 12 (bản .md là nguồn, .html build tự động)
+├── ...
+├── bai-12.md / bai-12.html
+├── Moodle_HTML/                         # Đoạn HTML 4 Accordion (inline style) để dán thẳng vào Moodle
+│   ├── 00_Thong_tin_hoc_phan.html
+│   ├── 01_SCSS_TypeScript_Vibe_Coding.html … 12_Hackathon_Final_Showcase.html
+│   └── 13_Danh_gia_hoc_phan.html
+├── quiz/
+│   └── quiz-bai-01-aiken.txt …    # Ngân hàng câu hỏi Aiken, ≥10 câu/bài
+├── discussion/
+│   └── thao-luan-va-hoat-dong-nhom.md   # Chủ đề diễn đàn + Team Challenge 12 bài, quy trình Git/PR
+├── assignment/
+│   └── bai-tap-va-nhiem-vu.md           # Guided, Unguided, BTVN, mốc nộp, deliverable giữa/cuối kỳ
+├── resources/
+│   └── tai-nguyen-hoc-tap.md            # Readings, docs chính thức, công cụ, thư viện prompt, video
+├── assessment/                          # Rubric, công cụ đánh giá và phản hồi
+├── documentation/
+│   ├── huong-dan-su-dung.md             # Tài liệu này
+│   └── dac-ta-du-an-smart-event-hub.md  # Đặc tả dự án xuyên suốt
+└── noi-dung-mon-hoc/                    # Tài liệu gốc (.docx): đề cương, lý thuyết, kế hoạch buổi, rubric
+</code></pre>
+<h4 id="moi-thanh-phan-dung-de-lam-gi">Mỗi thành phần dùng để làm gì</h4>
+<table>
+<thead>
+<tr>
+<th>Thành phần</th>
+<th>Người dùng chính</th>
+<th>Đưa lên LMS dưới dạng</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Moodle_HTML/XX_*.html</code></td>
+<td>Sinh viên</td>
+<td><strong>Page</strong> (dán vào chế độ mã nguồn HTML)</td>
+</tr>
+<tr>
+<td><code>bai-XX.html</code></td>
+<td>Sinh viên</td>
+<td>Xem trực tiếp trên trình duyệt / landing page</td>
+</tr>
+<tr>
+<td><code>quiz/quiz-bai-XX-aiken.txt</code></td>
+<td>Giảng viên</td>
+<td><strong>Question bank</strong> → <strong>Quiz</strong> trước giờ học</td>
+</tr>
+<tr>
+<td><code>discussion/…</code></td>
+<td>SV + GV</td>
+<td><strong>Forum</strong> mỗi bài (chép câu hỏi mở vào mô tả diễn đàn)</td>
+</tr>
+<tr>
+<td><code>assignment/…</code></td>
+<td>SV + GV</td>
+<td><strong>Assignment</strong> mỗi BTVN; deliverable giữa kỳ/cuối kỳ</td>
+</tr>
+<tr>
+<td><code>resources/…</code></td>
+<td>Sinh viên</td>
+<td><strong>Page</strong> hoặc <strong>URL</strong> trong phần &quot;Tài nguyên chung&quot;</td>
+</tr>
+<tr>
+<td><code>Moodle_HTML/00_…</code>, <code>Moodle_HTML/13_…</code> (đề cương, đánh giá)</td>
+<td>SV + GV</td>
+<td><strong>Page</strong> ở đầu khóa học</td>
+</tr>
+<tr>
+<td><code>documentation/dac-ta-du-an-smart-event-hub.md</code></td>
+<td>SV + GV</td>
+<td><strong>Page</strong> hoặc file đính kèm ở phần Dự án</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>📝 File <code>.md</code> là bản nguồn để chỉnh sửa. File <code>bai-XX.html</code> và các file trong <code>Moodle_HTML/</code> được sinh tự động từ <code>.md</code> (bằng <code>marked</code>), vì vậy khi cần sửa nội dung, hãy sửa file <code>.md</code> rồi build lại, không sửa tay file <code>.html</code>.</p>
+</blockquote>
+<hr>
+<h2 id="3-dua-bai-hoc-len-moodle">3. ĐƯA BÀI HỌC LÊN MOODLE</h2>
+<h3 id="3-1-chon-page-hay-label">3.1. Chọn Page hay Label</h3>
+<h4 id="quy-uoc-su-dung">Quy ước sử dụng</h4>
+<ul>
+<li><strong>Page (Trang):</strong> dùng cho nội dung dài – mỗi bài học <code>Moodle_HTML/XX_*.html</code>, trang tài nguyên, đặc tả dự án. Sinh viên bấm vào để mở thành một trang riêng.</li>
+<li><strong>Label / Text and media area:</strong> dùng cho đoạn ngắn hiển thị ngay trên trang khóa học – lời dẫn của từng tuần, nhắc hạn nộp, link nhanh tới repo mẫu.</li>
+</ul>
+<p>Gợi ý bố trí mỗi section (tuần) trên Moodle theo đúng mô hình lớp học đảo ngược:</p>
+<ol>
+<li>Label: &quot;Tuần X – Bài XX: &lt;tên bài&gt;&quot; và 2–3 dòng việc cần làm trước giờ.</li>
+<li>Page: nội dung bài học <code>Moodle_HTML/XX_*.html</code>.</li>
+<li>Quiz: quiz trước giờ học (5–10 câu).</li>
+<li>Forum: chủ đề thảo luận của bài.</li>
+<li>Assignment: BTVN của bài.</li>
+</ol>
+<h3 id="3-2-dan-noi-dung-html">3.2. Dán nội dung HTML</h3>
+<h4 id="cac-buoc">Các bước</h4>
+<ol>
+<li>Bật <strong>Edit mode</strong> trong khóa học, tại section của tuần chọn <strong>Add an activity or resource → Page</strong>.</li>
+<li>Đặt <strong>Name</strong> theo mẫu <code>Bài 01 – SCSS nâng cao, TypeScript căn bản &amp; thiết lập Vibe Coding</code>.</li>
+<li>Mở file <code>Moodle_HTML/01_SCSS_TypeScript_Vibe_Coding.html</code> bằng VS Code và sao chép <strong>toàn bộ</strong> nội dung. File này chỉ gồm 4 khối Accordion với inline style (không có <code>&lt;html&gt;</code>, <code>&lt;head&gt;</code>, class hay script) nên dán vào là hiển thị đúng.</li>
+<li>Ở ô <strong>Page content</strong>, chuyển trình soạn thảo sang chế độ mã nguồn: với TinyMCE chọn <strong>Tools → Source code</strong>; với Atto bấm nút <strong>HTML</strong> (<code>&lt;/&gt;</code>).</li>
+<li>Dán nội dung, chuyển về chế độ hiển thị thường để xem trước, rồi <strong>Save and display</strong>.</li>
+</ol>
+<blockquote>
+<p>⚠️ <strong>Kiểm tra sau khi lưu:</strong> mở bằng tài khoản vai trò sinh viên (hoặc <em>Switch role to… Student</em>) để xem phần đáp án <code>&lt;details&gt;</code> có còn đóng/mở được không, code block có giữ định dạng không. Nếu bộ lọc HTML của LMS loại bỏ thẻ <code>&lt;details&gt;</code>, liên hệ quản trị LMS để kiểm tra cấu hình, hoặc tải file <code>.html</code> lên dạng resource <strong>File</strong> để sinh viên mở trực tiếp.</p>
+</blockquote>
+<ul>
+<li>Ảnh (logo, ảnh minh họa) cần được tải lên qua nút chèn ảnh của trình soạn thảo, không dùng đường dẫn file trên máy cá nhân.</li>
+<li>Link giữa các file trong bộ học liệu (ví dụ <code>assignment/bai-tap-va-nhiem-vu.md</code>) cần được thay bằng link tới Page/Assignment tương ứng trên Moodle.</li>
+</ul>
+<hr>
+<h2 id="4-nhap-quiz-aiken-vao-question-bank">4. NHẬP QUIZ AIKEN VÀO QUESTION BANK</h2>
+<h3 id="4-1-import-cau-hoi">4.1. Import câu hỏi</h3>
+<h4 id="cac-buoc-1">Các bước</h4>
+<ol>
+<li>Trong khóa học, vào <strong>More → Question bank</strong> (Moodle 4.x) và tạo trước các <strong>Category</strong>: <code>Quiz Bài 01</code>, <code>Quiz Bài 02</code>, … <code>Quiz Bài 12</code>.</li>
+<li>Chọn <strong>Import</strong>, tại <strong>File format</strong> chọn <strong>Aiken format</strong>.</li>
+<li>Ở mục <strong>General</strong>, chọn category đích (ví dụ <code>Quiz Bài 01</code>).</li>
+<li>Kéo thả file <code>quiz/quiz-bai-01-aiken.txt</code> (UTF-8) vào ô tải lên, bấm <strong>Import</strong>, kiểm tra danh sách câu hỏi Moodle hiển thị rồi bấm <strong>Continue</strong>.</li>
+<li>Lặp lại cho các bài còn lại.</li>
+</ol>
+<p>Mỗi câu Aiken gồm 1 dòng câu hỏi, 4 dòng phương án <code>A.</code>–<code>D.</code> và dòng <code>ANSWER: X</code>. Nếu Moodle báo lỗi ở một câu, hãy mở file bằng VS Code, kiểm tra câu đó có bị xuống dòng giữa chừng hoặc thiếu dòng trống ngăn cách không.</p>
+<h3 id="4-2-tao-quiz-truoc-gio-hoc">4.2. Tạo Quiz trước giờ học</h3>
+<h4 id="cau-hinh-goi-y">Cấu hình gợi ý</h4>
+<table>
+<thead>
+<tr>
+<th>Thiết lập</th>
+<th>Giá trị gợi ý</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Câu hỏi</td>
+<td><strong>Add → a random question</strong> từ category của bài, 5–10 câu</td>
+</tr>
+<tr>
+<td>Thời gian làm bài</td>
+<td>10–15 phút</td>
+</tr>
+<tr>
+<td>Số lần làm</td>
+<td>1–2 lần, lấy điểm cao nhất</td>
+</tr>
+<tr>
+<td>Thứ tự phương án</td>
+<td>Shuffle within questions = Yes</td>
+</tr>
+<tr>
+<td>Review options</td>
+<td>Hiện đáp án đúng sau khi quiz đóng</td>
+</tr>
+<tr>
+<td>Mở/đóng</td>
+<td>Đặt theo lịch từng lớp bằng <strong>Group overrides</strong> (mục 5)</td>
+</tr>
+</tbody></table>
+<p>Bộ câu hỏi đầy đủ (≥10 câu/bài) còn dùng được cho ôn tập giữa kỳ, cuối kỳ: tạo một quiz luyện tập lấy ngẫu nhiên từ nhiều category.</p>
+<hr>
+<h2 id="5-cau-hinh-nhom-lop-multi-class-management">5. CẤU HÌNH NHÓM LỚP (MULTI-CLASS MANAGEMENT)</h2>
+<h3 id="5-1-mot-khoa-hoc-dung-cho-nhieu-lop">5.1. Một khóa học dùng cho nhiều lớp</h3>
+<h4 id="separate-groups-va-group-overrides">Separate groups và Group overrides</h4>
+<p>Khi một khóa học LMS dùng chung cho nhiều lớp học phần, cấu hình như sau:</p>
+<ol>
+<li><strong>Tạo Group theo lớp:</strong> <em>Participants → Groups</em>, mỗi lớp học phần là một group (đặt đúng mã lớp). Có thể dùng <strong>Auto-create groups</strong> hoặc import danh sách.</li>
+<li><strong>Chế độ nhóm riêng biệt:</strong> trong <em>Settings</em> của khóa học, chọn <strong>Group mode = Separate groups</strong> và <strong>Force group mode = Yes</strong>. Sinh viên chỉ thấy bài nộp, diễn đàn và thành viên thuộc lớp của mình.</li>
+<li><strong>Lịch và hạn nộp theo lớp (Group overrides):</strong> tại mỗi Quiz hoặc Assignment, chọn <strong>Overrides → Group overrides</strong> và đặt thời gian mở/đóng, hạn nộp theo đúng lịch học của từng lớp. Ví dụ lớp học sáng thứ Hai thì quiz đóng trước 7h sáng thứ Hai, lớp học chiều thứ Năm thì đóng trước giờ học chiều thứ Năm.</li>
+<li><strong>Quy tắc đặt tên file nộp:</strong> <code>[MãLớp]_[Nhóm/MSSV]_[TênBài]</code>, ví dụ <code>24CT111_Nhom02_BaoCaoGiuaKy.pdf</code> (mã lớp chỉ là ví dụ).</li>
+<li><strong>Lọc sổ điểm:</strong> trong <strong>Grades</strong>, dùng dropdown chọn group để chấm và xuất Excel điểm riêng cho từng lớp.</li>
+</ol>
+<h3 id="5-2-nhom-du-an-3-4-sinh-vien">5.2. Nhóm dự án 3–4 sinh viên</h3>
+<h4 id="grouping-cho-nhom-du-an">Grouping cho nhóm dự án</h4>
+<p>Nhóm dự án khác với nhóm lớp. Gợi ý tổ chức:</p>
+<ul>
+<li>Tạo các group dự án đặt tên <code>24CT111_Nhom01</code>, <code>24CT111_Nhom02</code>… và gom vào một <strong>Grouping</strong> riêng, ví dụ <code>Nhom-du-an-24CT111</code>.</li>
+<li>Với Assignment nộp theo nhóm (Wireframe, slide, báo cáo giữa kỳ/cuối kỳ, Test Cases): bật <strong>Group submission settings → Students submit in groups = Yes</strong> và chọn <strong>Grouping for student groups</strong> là grouping dự án. Một bạn nộp, cả nhóm cùng nhận trạng thái đã nộp.</li>
+<li>Với BTVN cá nhân (link PR): để Students submit in groups = No.</li>
+<li>Điểm phản biện cá nhân cuối kỳ (30%) nhập riêng cho từng sinh viên bằng một grade item thủ công.</li>
+</ul>
+<hr>
+<h2 id="6-lo-trinh-hoc-tap-theo-tuan-danh-cho-sinh-vien">6. LỘ TRÌNH HỌC TẬP THEO TUẦN (DÀNH CHO SINH VIÊN)</h2>
+<h4 id="nhip-moi-tuan">Nhịp mỗi tuần</h4>
+<ul>
+<li><strong>Trước giờ (khoảng 1–1,5 giờ):</strong> đọc readings của buổi trong <code>resources/</code>, xem video/slide GV đăng, làm quiz LMS.</li>
+<li><strong>Trên lớp (225 phút):</strong> Lý thuyết &amp; demo 60&#39; → Guided 45&#39; → Unguided 45&#39; → Team Challenge 60&#39; → Tổng kết 15&#39;.</li>
+<li><strong>Sau giờ:</strong> làm BTVN cá nhân, mở PR vào <code>dev</code>, đăng bài và phản hồi trên diễn đàn trước buổi sau.</li>
+</ul>
+<h4 id="lich-12-tuan">Lịch 12 tuần</h4>
+<table>
+<thead>
+<tr>
+<th>Tuần</th>
+<th>Bài</th>
+<th>Trước giờ</th>
+<th>Trọng tâm trên lớp</th>
+<th>Sau giờ (nộp trước buổi sau)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>01</td>
+<td>Cài VS Code, Node.js LTS, Git, Cursor/Copilot; đọc Sass, TS Handbook</td>
+<td>EventCard, HeaderNavigationBar, repo nhóm + Design Token</td>
+<td>PR: Footer, EventCategoryBadge, SearchBar</td>
+</tr>
+<tr>
+<td>2</td>
+<td>02</td>
+<td>Atomic Design, v0.dev docs</td>
+<td>Wireframe → TSX; Wireframe 5 màn hình</td>
+<td>Wireframe hoàn chỉnh + <code>/dev-preview/*</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td>03</td>
+<td>Next.js Routing, Server Components</td>
+<td>Layout chung, <code>(auth)</code>, <code>(admin)</code>, trang 404</td>
+<td><code>error.tsx</code>, <code>global-error.tsx</code>, Skeleton</td>
+</tr>
+<tr>
+<td>4</td>
+<td>04</td>
+<td>Dynamic Routes, Props patterns</td>
+<td><code>/events/[id]</code>, <code>/category/[slug]</code>, Button, Mock JSON</td>
+<td>Tổ chức <code>components/ui</code>, <code>common</code>, <code>features</code></td>
+</tr>
+<tr>
+<td>5</td>
+<td>05</td>
+<td>Ant Design docs, AntD + Next.js</td>
+<td>Theme <code>ConfigProvider</code>, BookingModal, <code>/admin/orders</code></td>
+<td>Responsive toàn bộ component AntD</td>
+</tr>
+<tr>
+<td>6</td>
+<td>06</td>
+<td>React Hooks, You Might Not Need an Effect</td>
+<td>TicketQuantitySelector, EventFilterBar, SeatMatrixPicker</td>
+<td>Tích hợp 50% + slide giữa kỳ</td>
+</tr>
+<tr>
+<td>7</td>
+<td>07</td>
+<td>Conventional Commits, Production Checklist</td>
+<td><strong>Báo cáo giữa kỳ (30%)</strong></td>
+<td>Sửa theo góp ý; đọc Swagger API</td>
+</tr>
+<tr>
+<td>8</td>
+<td>08</td>
+<td>Next.js Data Fetching, Axios</td>
+<td><code>getEvents</code>, <code>getEventById</code>, categories, <code>POST /api/orders</code></td>
+<td>Xử lý Network Error / 500</td>
+</tr>
+<tr>
+<td>9</td>
+<td>09</td>
+<td>React Hook Form, Zod</td>
+<td>LoginForm, <code>/admin/create-event</code>, Wishlist</td>
+<td>Tài khoản Vercel + kết nối repo</td>
+</tr>
+<tr>
+<td>10</td>
+<td>10</td>
+<td>Refactoring Guru, Responsive basics</td>
+<td>PBL 1: Responsive, Refactor, Zero Warning</td>
+<td>Test Cases Scenario</td>
+</tr>
+<tr>
+<td>11</td>
+<td>11</td>
+<td>Metadata, Lighthouse</td>
+<td>PBL 2: SEO, Deploy Vercel, Lighthouse &gt; 85</td>
+<td>Báo cáo Word/PDF + slide cuối kỳ</td>
+</tr>
+<tr>
+<td>12</td>
+<td>12</td>
+<td>Ôn rubric Hackathon</td>
+<td><strong>Hackathon &amp; Final Showcase (40%)</strong></td>
+<td>Bài phản tư trên diễn đàn</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>🧭 <strong>Tự kiểm tra cuối mỗi tuần:</strong> (1) Quiz đã làm chưa? (2) PR BTVN đã mở và có reviewer chưa? (3) Mình giải thích được từng dòng code mình commit tuần này chưa? Nếu câu (3) là &quot;chưa&quot;, hãy dành 20 phút đọc lại và hỏi AI &quot;giải thích đoạn này&quot; trước buổi học.</p>
+</blockquote>
+<hr>
+<h2 id="7-huong-dan-cho-giang-vien-ve-vibe-coding">7. HƯỚNG DẪN CHO GIẢNG VIÊN VỀ VIBE CODING</h2>
+<h3 id="7-1-nguyen-tac-ai-khong-lam-thay">7.1. Nguyên tắc: AI không làm thay</h3>
+<h4 id="sinh-vien-la-architect-ai-sinh-khung">Sinh viên là Architect, AI sinh khung</h4>
+<p>Đề cương xác định rõ: giảng viên hướng dẫn sinh viên đặt prompt ở vị trí người thiết kế (Architect), yêu cầu AI tạo khung và TypeScript interface trước. Sinh viên <strong>bắt buộc phải review, hiểu và sửa lỗi (debug)</strong> code do AI sinh ra, không copy-paste thụ động.</p>
+<p>Prompt mẫu đề cương cung cấp cho sinh viên:</p>
+<pre><code class="language-text">Hãy tạo cho tôi 1 Component Next.js App Router bằng TypeScript sử dụng Ant Design v5 Card để hiển thị thông tin sự kiện gồm: tên, ngày, giá vé, nút đặt vé. Đảm bảo có Interface rõ ràng.
+</code></pre>
+<p>Khi demo trên lớp (phần lý thuyết 60&#39;), nên làm trọn một vòng: viết prompt theo khung Context → Requirement → Constraints, nhận code, <strong>cố ý chỉ ra lỗi</strong> trong code AI (kiểu sai, <code>any</code>, thiếu <code>await params</code>, import sai phiên bản), sửa trước mặt sinh viên và giải thích lý do.</p>
+<h3 id="7-2-cach-kiem-soat-viec-dung-ai">7.2. Cách kiểm soát việc dùng AI</h3>
+<h4 id="cac-bien-phap-ap-dung-trong-hoc-phan">Các biện pháp áp dụng trong học phần</h4>
+<ul>
+<li><strong>Mục &quot;Phần có dùng AI&quot; trong mỗi PR:</strong> công cụ, prompt chính, những gì đã sửa so với code AI. Mẫu PR có trong <code>discussion/thao-luan-va-hoat-dong-nhom.md</code>.</li>
+<li><strong>Phản biện cá nhân:</strong> ở giữa kỳ (5 phút/nhóm) và cuối kỳ (Q&amp;A), chọn ngẫu nhiên một file trong Git log của sinh viên và yêu cầu giải thích hoặc sửa nhỏ tại chỗ (đổi một prop, thêm một trường validation).</li>
+<li><strong>Lỗi cố ý trong bài tập:</strong> Guided Practice Buổi 1 yêu cầu sửa type mismatch do AI gợi ý sai. Có thể chuẩn bị sẵn một đoạn code AI sinh có lỗi để cả lớp cùng tìm.</li>
+<li><strong>Dấu hiệu copy-paste thụ động:</strong> commit một lần rất lớn, style code lệch hẳn phần còn lại của dự án, còn comment kiểu &quot;Here is your component&quot;, dùng API của phiên bản cũ (Ant Design v4, Pages Router), sinh viên không trả lời được câu hỏi về chính file mình commit.</li>
+</ul>
+<blockquote>
+<p>💡 <strong>Điểm thưởng Vibe Coding (+0.5 đến +1.0 vào điểm quá trình)</strong> theo rubric Hackathon: Vibe Coding Master, UI Innovation, Ultra Performance (Lighthouse 100/100). Nên công bố từ Buổi 1 để sinh viên có động lực xây prompt workflow riêng.</p>
+</blockquote>
+<hr>
+<h2 id="8-tuy-bien-ant-design-theme-tranh-thiet-ke-rap-khuon">8. TÙY BIẾN ANT DESIGN THEME (TRÁNH THIẾT KẾ RẬP KHUÔN)</h2>
+<h3 id="8-1-design-token-voi-configprovider">8.1. Design Token với <code>ConfigProvider</code></h3>
+<h4 id="cau-hinh-dung-cu-phap">Cấu hình đúng cú pháp</h4>
+<p>Đề cương hướng dẫn dùng <code>ConfigProvider</code> kết hợp SCSS Module để mỗi nhóm có nhận diện riêng. Lưu ý bản trích xuất của đề cương có lỗi gõ <code>token: {{ ... }}</code>; cú pháp đúng là <code>theme={{ token: { ... } }}</code> (ngoặc kép ngoài là cú pháp JSX, bên trong là một object).</p>
+<p>Cách chắc chắn nhất là tách provider thành một Client Component rồi bọc trong Root Layout:</p>
+<pre><code class="language-tsx">// components/providers/AntdProvider.tsx
+&#39;use client&#39;;
+
+import { ConfigProvider } from &#39;antd&#39;;
+import type { ThemeConfig } from &#39;antd&#39;;
+import type { ReactNode } from &#39;react&#39;;
+
+const theme: ThemeConfig = {
+  token: {
+    colorPrimary: &#39;#6366f1&#39;,
+    borderRadius: 8,
+  },
+  components: {
+    Button: { controlHeight: 40 },
+  },
+};
+
+export default function AntdProvider({ children }: { children: ReactNode }) {
+  return &lt;ConfigProvider theme={theme}&gt;{children}&lt;/ConfigProvider&gt;;
+}
+</code></pre>
+<pre><code class="language-tsx">// app/layout.tsx
+import type { Metadata } from &#39;next&#39;;
+import type { ReactNode } from &#39;react&#39;;
+import { AntdRegistry } from &#39;@ant-design/nextjs-registry&#39;;
+import AntdProvider from &#39;@/components/providers/AntdProvider&#39;;
+import &#39;./globals.scss&#39;;
+
+export const metadata: Metadata = {
+  title: &#39;Smart Event Hub&#39;,
+  description: &#39;Hệ thống đặt vé và quản lý sự kiện trực tuyến&#39;,
+};
+
+export default function RootLayout({ children }: { children: ReactNode }) {
+  return (
+    &lt;html lang=&quot;vi&quot;&gt;
+      &lt;body&gt;
+        &lt;AntdRegistry&gt;
+          &lt;AntdProvider&gt;{children}&lt;/AntdProvider&gt;
+        &lt;/AntdRegistry&gt;
+      &lt;/body&gt;
+    &lt;/html&gt;
+  );
+}
+</code></pre>
+<p><code>AntdRegistry</code> (gói <code>@ant-design/nextjs-registry</code>) trích CSS ở phía server, tránh hiện tượng giao diện nháy không có style (FOUC) và lỗi Hydration mismatch.</p>
+<h3 id="8-2-override-bang-scss-module">8.2. Override bằng SCSS Module</h3>
+<h4 id="ghi-de-cuc-bo-khong-anh-huong-toan-cuc">Ghi đè cục bộ, không ảnh hưởng toàn cục</h4>
+<p>Sau khi đổi token, các nhóm tạo điểm nhấn bằng SCSS Module. Đặt class của mình làm &quot;phạm vi&quot; rồi dùng <code>:global()</code> để chạm tới class nội bộ của Ant Design, nhờ vậy chỉ component đó bị ảnh hưởng.</p>
+<pre><code class="language-scss">// components/features/BookingModal.module.scss
+@use &#39;../../styles/variables&#39; as *;
+
+.bookingModal {
+  :global(.ant-modal-content) {
+    border-radius: 16px;
+    padding: 24px;
+  }
+
+  :global(.ant-modal-title) {
+    font-weight: 700;
+  }
+
+  :global(.ant-btn-primary) {
+    box-shadow: none;
+  }
+}
+</code></pre>
+<pre><code class="language-tsx">// components/features/BookingModal.tsx (trích)
+import styles from &#39;./BookingModal.module.scss&#39;;
+
+&lt;Modal className={styles.bookingModal} open={open} onCancel={onClose} title=&quot;Đặt vé&quot;&gt;
+  {/* Form đặt vé */}
+&lt;/Modal&gt;
+</code></pre>
+<blockquote>
+<p>🎨 <strong>Gợi ý cho GV khi chấm tiêu chí &quot;Giao diện &amp; Vibe Coding&quot;:</strong> mức Xuất sắc yêu cầu tùy biến Theme có dấu ấn riêng; mức Trung bình là giao diện nguyên bản của thư viện UI, chưa tùy biến. Có thể yêu cầu mỗi nhóm trình bày file theme và 2–3 chỗ override SCSS khi demo.</p>
+</blockquote>
+
+    </article>
+
+    <!-- Bottom Navigation -->
+    <div class="flex items-center justify-between gap-4 mt-8 no-print text-xs font-bold">
+      <span></span>
+      <a href="../index.html#lo-trinh" class="px-4 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-800 rounded-xl transition-all flex items-center gap-2">
+        <i class="fa-solid fa-table-cells-large"></i> Danh mục bài học
+      </a>
+      <span></span>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-slate-200 py-6 text-xs text-slate-500 mt-12 no-print">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <strong>Khoa Công nghệ Thông tin - Trường Đại học Lạc Hồng</strong><br>
+        Phòng B301 - B302, Cơ sở 1, Số 10 Huỳnh Văn Nghệ, P. Bửu Long, TP. Biên Hòa, Đồng Nai.
+      </div>
+      <div class="sm:text-right">
+        <span>Email: cntt@lhu.edu.vn • Hotline: (0251) 3952 251</span><br>
+        <span>Hệ thống LMS: <a href="https://learn.lhu.edu.vn" target="_blank" rel="noopener noreferrer" class="text-lhu-blue font-bold">learn.lhu.edu.vn</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleAllDetails(open) {
+      document.querySelectorAll("details").forEach(d => {
+        if (open) d.setAttribute("open", ""); else d.removeAttribute("open");
+      });
+    }
+    if (window.hljs) hljs.highlightAll();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LẬP TRÌNH FRONT-END (NEXT.JS, TYPESCRIPT &amp; VIBE CODING) | Lập trình Front-End - Khoa CNTT - Đại học Lạc Hồng</title>
+  <meta name="description" content="Tài nguyên học tập: LẬP TRÌNH FRONT-END (NEXT.JS, TYPESCRIPT &amp; VIBE CODING) - Lập trình Front-End (Next.js, TypeScript &amp; Vibe Coding)">
+
+  <!-- Tailwind CSS CDN (kèm plugin typography cho nội dung Markdown) -->
+  <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6.4.0 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Highlight.js 11.9.0 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            asu: { maroon: '#8C1D40', gold: '#FFC627', dark: '#5C142B', light: '#FAEDF0' },
+            lhu: { blue: '#013D88', sky: '#007BFF', dark: '#01295C', light: '#EEF5FC' },
+            fe: { indigo: '#6366F1', dark: '#312E81', light: '#EEF2FF' }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .lesson h2, .lesson h3, .lesson h4 { scroll-margin-top: 90px; }
+    .lesson h3 { padding-bottom: .4rem; border-bottom: 2px solid #EEF2FF; }
+    .lesson blockquote { border-left: 4px solid #6366F1; background: #F5F7FF; border-radius: 0 12px 12px 0; padding: .6rem 1rem; font-style: normal; color: #1e293b; }
+    .lesson blockquote p:first-of-type::before, .lesson blockquote p:last-of-type::after { content: none; }
+    .lesson pre { border-radius: 12px; padding: 0; background: #0d1117; }
+    .lesson pre code.hljs { border-radius: 12px; padding: 1rem 1.1rem; font-size: 13px; line-height: 1.6; }
+    .lesson :not(pre) > code { background: #EEF2FF; color: #3730A3; padding: .1rem .35rem; border-radius: 6px; font-weight: 500; }
+    .lesson :not(pre) > code::before, .lesson :not(pre) > code::after { content: none; }
+    .lesson table { display: block; overflow-x: auto; font-size: 14px; }
+    .lesson thead th { background: #F1F5F9; }
+    .lesson th, .lesson td { border: 1px solid #E2E8F0; padding: .5rem .7rem !important; vertical-align: top; }
+    .lesson details { border: 1px solid #C7D2FE; border-radius: 10px; padding: .6rem .9rem; margin: .5rem 0 1.2rem; background: #FAFAFF; }
+    .lesson details summary { cursor: pointer; font-weight: 600; color: #4338CA; }
+    .lesson details[open] summary { margin-bottom: .4rem; }
+    .lesson hr { border-color: #E2E8F0; margin: 2rem 0; }
+    @media print {
+      header, footer, .no-print { display: none !important; }
+      details { break-inside: avoid; margin-bottom: 20px; }
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans antialiased selection:bg-asu-gold selection:text-slate-900 min-h-screen flex flex-col">
+
+  <!-- TOP BAR -->
+  <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800 no-print">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+      <div class="flex items-center gap-2">
+        <span class="text-asu-gold font-semibold"><i class="fa-solid fa-certificate mr-1"></i> CHUẨN KIỂM ĐỊNH ABET (USA)</span>
+        <span class="text-slate-600 hidden sm:inline">•</span>
+        <span class="hidden sm:inline">Lớp học đảo ngược • Vibe Coding</span>
+      </div>
+      <div class="flex items-center gap-4 text-xs font-mono">
+        <span>Thời lượng: <strong class="text-white">60 tiết (12 buổi)</strong></span>
+        <span>LT/TH: <strong class="text-asu-gold">30% / 70%</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="sticky top-0 z-40 bg-white shadow-sm border-b border-slate-200 no-print">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <a href="../index.html" class="flex items-center gap-2.5 text-slate-800 hover:text-lhu-blue transition-colors">
+        <img src="../LHU_ASU_VI_Small_Ngang.png" alt="Logo LHU" class="h-8 w-auto">
+        <div class="border-l border-slate-300 pl-2.5">
+          <div class="text-[11px] font-bold text-slate-500 uppercase">Khoa CNTT - LHU</div>
+          <div class="text-xs font-extrabold text-lhu-blue">LẬP TRÌNH FRONT-END</div>
+        </div>
+      </a>
+      <div class="flex items-center gap-3 text-xs">
+        <a href="../index.html" class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-arrow-left"></i>
+          <span class="hidden sm:inline">Về Landing Page</span>
+        </a>
+        <button onclick="window.print()" class="hidden sm:flex px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-all items-center gap-1.5" title="In hoặc lưu file PDF">
+          <i class="fa-solid fa-print"></i>
+          <span>In / PDF</span>
+        </button>
+        <a href="https://learn.lhu.edu.vn" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-lhu-blue hover:bg-lhu-dark text-white font-bold rounded-xl shadow transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-graduation-cap text-asu-gold"></i>
+          <span>Vào lớp LMS</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="flex-grow max-w-5xl w-full mx-auto px-4 sm:px-6 py-8">
+
+    <!-- Title Card -->
+    <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 mb-8">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-5">
+        <div>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-fe-light text-fe-dark font-bold text-xs uppercase tracking-wider mb-2">
+            <i class="fa-solid fa-code"></i> Tài nguyên học tập
+          </span>
+          <h1 class="text-2xl sm:text-3xl font-black text-slate-900 leading-tight">
+            LẬP TRÌNH FRONT-END (NEXT.JS, TYPESCRIPT &amp; VIBE CODING)
+          </h1>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1 font-mono">
+            Học phần: Lập trình Front-End (Next.js, TypeScript & Vibe Coding) • Khoa CNTT - Đại học Lạc Hồng
+          </p>
+        </div>
+        <div class="flex-shrink-0 flex sm:flex-col items-center sm:items-end justify-between gap-1 text-xs">
+          <span class="px-3 py-1.5 bg-emerald-50 text-emerald-700 font-bold rounded-lg border border-emerald-200">
+            <i class="fa-solid fa-check-circle mr-1"></i> Lưu hành nội bộ 2026
+          </span>
+          <span class="text-slate-400 text-[11px]">Định dạng LMS Lecture</span>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between pt-4 text-xs no-print">
+        <span class="text-slate-500">
+          <i class="fa-solid fa-circle-info text-blue-500 mr-1"></i>
+          Bấm vào các khối thu gọn để xem đáp án hoặc chi tiết.
+        </span>
+        <div class="flex items-center gap-2">
+          <button onclick="toggleAllDetails(true)" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg transition-colors">Mở tất cả</button>
+          <button onclick="toggleAllDetails(false)" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg transition-colors">Thu gọn</button>
+        </div>
+      </div>
+      <nav class="mt-5 pt-4 border-t border-slate-100 no-print">
+        <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">Nội dung trang</div>
+        <div class="flex flex-wrap gap-2">
+          <a href="#tai-nguyen-hoc-tap-learning-resources" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">TÀI NGUYÊN HỌC TẬP (Learning Resources)</a>
+          <a href="#1-tai-lieu-doc-bat-buoc-theo-tung-buoi-readings" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">1. TÀI LIỆU ĐỌC BẮT BUỘC THEO TỪNG BUỔI (Readings)</a>
+          <a href="#2-tai-lieu-chinh-thuc-official-documentation" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">2. TÀI LIỆU CHÍNH THỨC (Official Documentation)</a>
+          <a href="#3-cong-cu-tools" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">3. CÔNG CỤ (Tools)</a>
+          <a href="#4-thu-vien-prompt-vibe-coding-mau" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">4. THƯ VIỆN PROMPT VIBE CODING MẪU</a>
+          <a href="#5-goi-y-video-tu-hoc-theo-chu-de-va-tu-khoa-tim-kiem" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">5. GỢI Ý VIDEO TỰ HỌC (theo chủ đề và từ khóa tìm kiếm)</a>
+        </div>
+      </nav>
+    </div>
+
+    <!-- Content -->
+    <article class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 lesson prose prose-slate max-w-none prose-headings:font-extrabold prose-h3:text-lhu-dark prose-h4:text-fe-dark prose-a:text-lhu-blue">
+<h2 id="tai-nguyen-hoc-tap-learning-resources">TÀI NGUYÊN HỌC TẬP (Learning Resources)</h2>
+<blockquote>
+<p><strong>Dùng khi nào:</strong> trước giờ học (đọc tài liệu, xem video theo từ khóa), trong giờ (tra docs, lấy prompt mẫu), sau giờ (làm BTVN, ôn self-check)<br><strong>Dự án xuyên suốt:</strong> Smart Event Hub – Next.js 15 App Router · TypeScript strict · SCSS Module · Ant Design v5</p>
+</blockquote>
+<hr>
+<p>Trang này có năm phần: tài liệu đọc bắt buộc theo từng buổi, tài liệu chính thức của các công nghệ, bộ công cụ cần cài, thư viện prompt Vibe Coding gom từ 11 buổi học và danh sách chủ đề video gợi ý. Các bạn nên đánh dấu (bookmark) trang này ngay từ tuần đầu.</p>
+<blockquote>
+<p>⚠️ <strong>Về đường dẫn:</strong> Các link đọc bắt buộc giữ nguyên như trong tài liệu lý thuyết của học phần. Một số trang docs Next.js đã được tổ chức lại theo phiên bản mới nên có thể tự chuyển hướng; nếu gặp trang không tìm thấy, hãy dùng ô tìm kiếm tại <code>https://nextjs.org/docs</code> với đúng tên chủ đề.</p>
+</blockquote>
+<hr>
+<h2 id="1-tai-lieu-doc-bat-buoc-theo-tung-buoi-readings">1. TÀI LIỆU ĐỌC BẮT BUỘC THEO TỪNG BUỔI (Readings)</h2>
+<h4 id="cach-doc-hieu-qua">Cách đọc hiệu quả</h4>
+<p>Đọc trước giờ học, mỗi buổi khoảng 45–60 phút. Đừng cố đọc hết từng chữ. Hãy đọc với câu hỏi self-check trong đầu, chạy thử ít nhất một ví dụ code trong docs, rồi ghi lại 2–3 điều còn thắc mắc để hỏi trên lớp.</p>
+<table>
+<thead>
+<tr>
+<th>Buổi</th>
+<th>Tài liệu</th>
+<th>Đường dẫn</th>
+<th>Đọc để trả lời được</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>01</td>
+<td>Sass Official Documentation</td>
+<td><a href="https://sass-lang.com/documentation/" target="_blank" rel="noopener noreferrer">https://sass-lang.com/documentation/</a></td>
+<td>Mixin, biến, nesting, <code>map-get</code> dùng thế nào?</td>
+</tr>
+<tr>
+<td>01</td>
+<td>TypeScript Handbook for React</td>
+<td><a href="https://www.typescriptlang.org/docs/handbook/react.html" target="_blank" rel="noopener noreferrer">https://www.typescriptlang.org/docs/handbook/react.html</a></td>
+<td>Khác biệt <code>interface</code> và <code>type</code>; khi nào dùng loại nào?</td>
+</tr>
+<tr>
+<td>01</td>
+<td>Next.js CSS Modules</td>
+<td><a href="https://nextjs.org/docs/app/building-your-application/styling/css-modules" target="_blank" rel="noopener noreferrer">https://nextjs.org/docs/app/building-your-application/styling/css-modules</a></td>
+<td>Vì sao CSS Modules tránh được xung đột CSS toàn cục?</td>
+</tr>
+<tr>
+<td>02</td>
+<td>Atomic Design Methodology (Brad Frost)</td>
+<td><a href="https://atomicdesign.bradfrost.com/" target="_blank" rel="noopener noreferrer">https://atomicdesign.bradfrost.com/</a></td>
+<td>Atomic Design giúp tái sử dụng code ra sao?</td>
+</tr>
+<tr>
+<td>02</td>
+<td>v0.dev Generative UI Documentation</td>
+<td><a href="https://v0.dev/docs" target="_blank" rel="noopener noreferrer">https://v0.dev/docs</a></td>
+<td>Cần chú ý gì khi refactor TSX do AI sinh từ wireframe?</td>
+</tr>
+<tr>
+<td>03</td>
+<td>Next.js App Router Routing Docs</td>
+<td><a href="https://nextjs.org/docs/app/building-your-application/routing" target="_blank" rel="noopener noreferrer">https://nextjs.org/docs/app/building-your-application/routing</a></td>
+<td>Route Groups <code>(group)</code> có lợi gì cho layout?</td>
+</tr>
+<tr>
+<td>03</td>
+<td>React Server Components</td>
+<td><a href="https://react.dev/reference/rsc/server-components" target="_blank" rel="noopener noreferrer">https://react.dev/reference/rsc/server-components</a></td>
+<td>Khi nào bắt buộc thêm <code>&#39;use client&#39;</code>?</td>
+</tr>
+<tr>
+<td>04</td>
+<td>Next.js Dynamic Routes Guide</td>
+<td><a href="https://nextjs.org/docs/app/building-your-application/routing/dynamic-routes" target="_blank" rel="noopener noreferrer">https://nextjs.org/docs/app/building-your-application/routing/dynamic-routes</a></td>
+<td>Lấy <code>params</code>, <code>searchParams</code> ở Server và Client Component thế nào?</td>
+</tr>
+<tr>
+<td>04</td>
+<td>React TypeScript Cheatsheet – Props</td>
+<td><a href="https://react-typescript-cheatsheet.netlify.app/docs/basic/getting-started/basic_type_example/" target="_blank" rel="noopener noreferrer">https://react-typescript-cheatsheet.netlify.app/docs/basic/getting-started/basic_type_example/</a></td>
+<td>Vì sao nên mở rộng Props từ HTML attributes?</td>
+</tr>
+<tr>
+<td>05</td>
+<td>Ant Design v5 Official Docs</td>
+<td><a href="https://ant.design/components/overview/" target="_blank" rel="noopener noreferrer">https://ant.design/components/overview/</a></td>
+<td>Override CSS một component AntD mà không ảnh hưởng chỗ khác?</td>
+</tr>
+<tr>
+<td>05</td>
+<td>Ant Design with Next.js App Router</td>
+<td><a href="https://ant.design/docs/react/use-with-next" target="_blank" rel="noopener noreferrer">https://ant.design/docs/react/use-with-next</a></td>
+<td>Hydration mismatch do đâu, khắc phục bằng registry ra sao?</td>
+</tr>
+<tr>
+<td>06</td>
+<td>React Docs on Hooks</td>
+<td><a href="https://react.dev/reference/react/hooks" target="_blank" rel="noopener noreferrer">https://react.dev/reference/react/hooks</a></td>
+<td><code>useMemo</code> và <code>useCallback</code> khác nhau ở mục đích nào?</td>
+</tr>
+<tr>
+<td>06</td>
+<td>You Might Not Need an Effect</td>
+<td><a href="https://react.dev/learn/you-might-not-need-an-effect" target="_blank" rel="noopener noreferrer">https://react.dev/learn/you-might-not-need-an-effect</a></td>
+<td>Vì sao không dùng <code>useEffect</code> để tính dữ liệu suy ra từ state/props?</td>
+</tr>
+<tr>
+<td>07</td>
+<td>Conventional Commits Specification</td>
+<td><a href="https://www.conventionalcommits.org/" target="_blank" rel="noopener noreferrer">https://www.conventionalcommits.org/</a></td>
+<td>Commit message thế nào thì minh chứng được đóng góp cá nhân?</td>
+</tr>
+<tr>
+<td>07</td>
+<td>Next.js Production Checklist</td>
+<td><a href="https://nextjs.org/docs/app/building-your-application/deploying/production-checklist" target="_blank" rel="noopener noreferrer">https://nextjs.org/docs/app/building-your-application/deploying/production-checklist</a></td>
+<td>Vì sao chạy được ở <code>dev</code> vẫn có thể fail ở <code>build</code>?</td>
+</tr>
+<tr>
+<td>08</td>
+<td>Next.js Data Fetching, Caching, and Revalidating</td>
+<td><a href="https://nextjs.org/docs/app/building-your-application/data-fetching/fetching-caching-and-revalidating" target="_blank" rel="noopener noreferrer">https://nextjs.org/docs/app/building-your-application/data-fetching/fetching-caching-and-revalidating</a></td>
+<td><code>revalidate</code> trong <code>fetch</code> hoạt động thế nào?</td>
+</tr>
+<tr>
+<td>08</td>
+<td>Axios Documentation</td>
+<td><a href="https://axios-http.com/docs/intro" target="_blank" rel="noopener noreferrer">https://axios-http.com/docs/intro</a></td>
+<td>Fetch ở Server Component khác gì gọi Axios ở Client?</td>
+</tr>
+<tr>
+<td>09</td>
+<td>React Hook Form Documentation</td>
+<td><a href="https://react-hook-form.com/" target="_blank" rel="noopener noreferrer">https://react-hook-form.com/</a></td>
+<td>Vì sao RHF + Zod tốt cho cả hiệu năng lẫn type safety?</td>
+</tr>
+<tr>
+<td>09</td>
+<td>Zod Documentation</td>
+<td><a href="https://zod.dev/" target="_blank" rel="noopener noreferrer">https://zod.dev/</a></td>
+<td><code>z.infer</code>, <code>.refine()</code> dùng ra sao?</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Refactoring Guru – Code Smells</td>
+<td><a href="https://refactoring.guru/refactoring/smells" target="_blank" rel="noopener noreferrer">https://refactoring.guru/refactoring/smells</a></td>
+<td>Dấu hiệu nào cho thấy component cần refactor gấp?</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Google Responsive Web Design Basics</td>
+<td><a href="https://web.dev/responsive-web-design-basics/" target="_blank" rel="noopener noreferrer">https://web.dev/responsive-web-design-basics/</a></td>
+<td>Xử lý tràn ngang (horizontal overflow) trên di động thế nào?</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Next.js Metadata Documentation</td>
+<td><a href="https://nextjs.org/docs/app/building-your-application/optimizing/metadata" target="_blank" rel="noopener noreferrer">https://nextjs.org/docs/app/building-your-application/optimizing/metadata</a></td>
+<td>Cấu hình <code>metadata</code> tĩnh và <code>generateMetadata</code> động thế nào?</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Google Lighthouse Audit Guide</td>
+<td><a href="https://developer.chrome.com/docs/lighthouse/overview/" target="_blank" rel="noopener noreferrer">https://developer.chrome.com/docs/lighthouse/overview/</a></td>
+<td>Vì sao <code>next/image</code> cải thiện Performance; xử lý CLS ra sao?</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Ôn lại toàn bộ readings + Rubric Hackathon</td>
+<td>(thư mục <code>assessment/</code>)</td>
+<td>Sản phẩm nhóm đã đáp ứng từng tiêu chí rubric chưa?</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>📝 <strong>Lưu ý Next.js 15:</strong> Trong các ví dụ cũ trên mạng, <code>params</code> là object thường (<code>params.id</code>). Từ Next.js 15, <code>params</code> và <code>searchParams</code> là <code>Promise</code>, nên viết <code>const { id } = await params;</code>.</p>
+</blockquote>
+<hr>
+<h2 id="2-tai-lieu-chinh-thuc-official-documentation">2. TÀI LIỆU CHÍNH THỨC (Official Documentation)</h2>
+<h4 id="framework-va-ngon-ngu">Framework và ngôn ngữ</h4>
+<table>
+<thead>
+<tr>
+<th>Công nghệ</th>
+<th>Trang chính thức</th>
+<th>Dùng nhiều ở buổi</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Next.js</td>
+<td><a href="https://nextjs.org/docs" target="_blank" rel="noopener noreferrer">https://nextjs.org/docs</a></td>
+<td>03 → 11</td>
+</tr>
+<tr>
+<td>React</td>
+<td><a href="https://react.dev/" target="_blank" rel="noopener noreferrer">https://react.dev/</a></td>
+<td>03, 04, 06, 09</td>
+</tr>
+<tr>
+<td>TypeScript</td>
+<td><a href="https://www.typescriptlang.org/docs/" target="_blank" rel="noopener noreferrer">https://www.typescriptlang.org/docs/</a></td>
+<td>01 → 12</td>
+</tr>
+<tr>
+<td>Sass (SCSS)</td>
+<td><a href="https://sass-lang.com/documentation/" target="_blank" rel="noopener noreferrer">https://sass-lang.com/documentation/</a></td>
+<td>01, 02, 05, 10</td>
+</tr>
+</tbody></table>
+<h4 id="thu-vien-giao-dien">Thư viện giao diện</h4>
+<table>
+<thead>
+<tr>
+<th>Thư viện</th>
+<th>Trang chính thức</th>
+<th>Ghi chú</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Ant Design v5</td>
+<td><a href="https://ant.design/components/overview/" target="_blank" rel="noopener noreferrer">https://ant.design/components/overview/</a></td>
+<td>Thư viện UI chính của dự án; tích hợp Next.js qua <code>@ant-design/nextjs-registry</code></td>
+</tr>
+<tr>
+<td>Ant Design – dùng với Next.js</td>
+<td><a href="https://ant.design/docs/react/use-with-next" target="_blank" rel="noopener noreferrer">https://ant.design/docs/react/use-with-next</a></td>
+<td>Cấu hình <code>AntdRegistry</code>, tránh FOUC</td>
+</tr>
+<tr>
+<td>Bootstrap 5</td>
+<td><a href="https://getbootstrap.com/docs/5.3/getting-started/introduction/" target="_blank" rel="noopener noreferrer">https://getbootstrap.com/docs/5.3/getting-started/introduction/</a></td>
+<td>Phương án thay thế, mạnh về utilities và grid</td>
+</tr>
+<tr>
+<td>Tailwind CSS</td>
+<td><a href="https://tailwindcss.com/docs" target="_blank" rel="noopener noreferrer">https://tailwindcss.com/docs</a></td>
+<td>Phương án thay thế; một số prompt mẫu cho phép chọn Tailwind hoặc SCSS</td>
+</tr>
+</tbody></table>
+<h4 id="du-lieu-form-va-luu-tru">Dữ liệu, form và lưu trữ</h4>
+<table>
+<thead>
+<tr>
+<th>Thư viện / API</th>
+<th>Trang chính thức</th>
+<th>Ghi chú</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>React Hook Form</td>
+<td><a href="https://react-hook-form.com/" target="_blank" rel="noopener noreferrer">https://react-hook-form.com/</a></td>
+<td>Quản lý form, ít re-render</td>
+</tr>
+<tr>
+<td>Zod</td>
+<td><a href="https://zod.dev/" target="_blank" rel="noopener noreferrer">https://zod.dev/</a></td>
+<td>Schema validation, sinh type bằng <code>z.infer</code></td>
+</tr>
+<tr>
+<td>Axios</td>
+<td><a href="https://axios-http.com/docs/intro" target="_blank" rel="noopener noreferrer">https://axios-http.com/docs/intro</a></td>
+<td>Gọi REST API phía Client</td>
+</tr>
+<tr>
+<td>Web Storage API (MDN)</td>
+<td><a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API" target="_blank" rel="noopener noreferrer">https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API</a></td>
+<td><code>localStorage</code>, <code>sessionStorage</code></td>
+</tr>
+</tbody></table>
+<h4 id="trien-khai-chat-luong-va-quy-chuan">Triển khai, chất lượng và quy chuẩn</h4>
+<table>
+<thead>
+<tr>
+<th>Chủ đề</th>
+<th>Trang chính thức</th>
+<th>Ghi chú</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Vercel</td>
+<td><a href="https://vercel.com/docs" target="_blank" rel="noopener noreferrer">https://vercel.com/docs</a></td>
+<td>CI/CD, Environment Variables, Preview/Production</td>
+</tr>
+<tr>
+<td>Lighthouse</td>
+<td><a href="https://developer.chrome.com/docs/lighthouse/overview/" target="_blank" rel="noopener noreferrer">https://developer.chrome.com/docs/lighthouse/overview/</a></td>
+<td>Audit Performance, Accessibility, Best Practices, SEO</td>
+</tr>
+<tr>
+<td>web.dev</td>
+<td><a href="https://web.dev/" target="_blank" rel="noopener noreferrer">https://web.dev/</a></td>
+<td>Responsive, Core Web Vitals (LCP, CLS, INP)</td>
+</tr>
+<tr>
+<td>Conventional Commits</td>
+<td><a href="https://www.conventionalcommits.org/" target="_blank" rel="noopener noreferrer">https://www.conventionalcommits.org/</a></td>
+<td>Chuẩn commit message của nhóm</td>
+</tr>
+<tr>
+<td>Refactoring Guru</td>
+<td><a href="https://refactoring.guru/refactoring/smells" target="_blank" rel="noopener noreferrer">https://refactoring.guru/refactoring/smells</a></td>
+<td>Danh mục code smell và kỹ thuật refactor</td>
+</tr>
+<tr>
+<td>Atomic Design</td>
+<td><a href="https://atomicdesign.bradfrost.com/" target="_blank" rel="noopener noreferrer">https://atomicdesign.bradfrost.com/</a></td>
+<td>Phân rã giao diện thành atom → page</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="3-cong-cu-tools">3. CÔNG CỤ (Tools)</h2>
+<h4 id="danh-sach-cong-cu-can-chuan-bi">Danh sách công cụ cần chuẩn bị</h4>
+<table>
+<thead>
+<tr>
+<th>Công cụ</th>
+<th>Dùng để</th>
+<th>Trang tải / truy cập</th>
+<th>Cần từ</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>VS Code</td>
+<td>Trình soạn thảo chính</td>
+<td><a href="https://code.visualstudio.com/" target="_blank" rel="noopener noreferrer">https://code.visualstudio.com/</a></td>
+<td>Buổi 1</td>
+</tr>
+<tr>
+<td>Node.js (bản LTS)</td>
+<td>Chạy Next.js, npm</td>
+<td><a href="https://nodejs.org/" target="_blank" rel="noopener noreferrer">https://nodejs.org/</a></td>
+<td>Buổi 1</td>
+</tr>
+<tr>
+<td>Git</td>
+<td>Quản lý phiên bản</td>
+<td><a href="https://git-scm.com/" target="_blank" rel="noopener noreferrer">https://git-scm.com/</a></td>
+<td>Buổi 1</td>
+</tr>
+<tr>
+<td>GitHub</td>
+<td>Repo nhóm, Pull Request, code review</td>
+<td><a href="https://github.com/" target="_blank" rel="noopener noreferrer">https://github.com/</a></td>
+<td>Buổi 1</td>
+</tr>
+<tr>
+<td>Cursor</td>
+<td>Trình soạn thảo tích hợp AI, đọc toàn bộ codebase</td>
+<td><a href="https://cursor.com/" target="_blank" rel="noopener noreferrer">https://cursor.com/</a></td>
+<td>Buổi 1</td>
+</tr>
+<tr>
+<td>GitHub Copilot</td>
+<td>AI gợi ý code trong VS Code (gói miễn phí cho sinh viên qua GitHub Education)</td>
+<td><a href="https://github.com/features/copilot" target="_blank" rel="noopener noreferrer">https://github.com/features/copilot</a></td>
+<td>Buổi 1</td>
+</tr>
+<tr>
+<td>v0.dev</td>
+<td>Sinh giao diện React từ mô tả/ảnh wireframe</td>
+<td><a href="https://v0.dev/" target="_blank" rel="noopener noreferrer">https://v0.dev/</a></td>
+<td>Buổi 2</td>
+</tr>
+<tr>
+<td>Claude</td>
+<td>Trợ lý AI, đọc ảnh wireframe, review code</td>
+<td><a href="https://claude.ai/" target="_blank" rel="noopener noreferrer">https://claude.ai/</a></td>
+<td>Buổi 1</td>
+</tr>
+<tr>
+<td>ChatGPT</td>
+<td>Trợ lý AI, giải thích lỗi, sinh type từ JSON</td>
+<td><a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">https://chatgpt.com/</a></td>
+<td>Buổi 1</td>
+</tr>
+<tr>
+<td>Figma</td>
+<td>Vẽ wireframe 5 màn hình</td>
+<td><a href="https://www.figma.com/" target="_blank" rel="noopener noreferrer">https://www.figma.com/</a></td>
+<td>Buổi 2</td>
+</tr>
+<tr>
+<td>Swagger UI</td>
+<td>Đọc tài liệu API Backend do GV cung cấp, thử request</td>
+<td><a href="https://swagger.io/tools/swagger-ui/" target="_blank" rel="noopener noreferrer">https://swagger.io/tools/swagger-ui/</a></td>
+<td>Buổi 7–8</td>
+</tr>
+<tr>
+<td>Chrome DevTools</td>
+<td>Responsive mode, Console, Network, Lighthouse</td>
+<td><a href="https://developer.chrome.com/docs/devtools/" target="_blank" rel="noopener noreferrer">https://developer.chrome.com/docs/devtools/</a></td>
+<td>Buổi 1</td>
+</tr>
+<tr>
+<td>Vercel</td>
+<td>Deploy, CI/CD</td>
+<td><a href="https://vercel.com/" target="_blank" rel="noopener noreferrer">https://vercel.com/</a></td>
+<td>Buổi 9</td>
+</tr>
+</tbody></table>
+<h4 id="kiem-tra-moi-truong-sau-khi-cai">Kiểm tra môi trường sau khi cài</h4>
+<pre><code class="language-bash">node -v          # nên là bản LTS hiện hành
+npm -v
+git --version
+git config --global user.name &quot;Ho Ten&quot;
+git config --global user.email &quot;email@example.com&quot;
+
+# Khởi tạo dự án (Buổi 3)
+npx create-next-app@latest smart-event-hub --typescript --eslint --app
+cd smart-event-hub
+npm install sass antd @ant-design/nextjs-registry
+npm run dev
+</code></pre>
+<blockquote>
+<p>💡 Email trong <code>git config</code> nên trùng email tài khoản GitHub, để commit được tính đúng người trong Git log khi GV chấm minh chứng đóng góp cá nhân.</p>
+</blockquote>
+<h4 id="file-quy-tac-cho-ai-cursorrules">File quy tắc cho AI (<code>.cursorrules</code>)</h4>
+<p>Buổi 1 yêu cầu thiết lập rule cho Cursor/Copilot. Một file mẫu để nhóm bắt đầu, đặt ở root repo:</p>
+<pre><code class="language-text">Dự án: Smart Event Hub – Next.js 15 App Router, TypeScript strict, SCSS Module, Ant Design v5.
+- Luôn viết TypeScript, không dùng any. Union type dùng dấu |.
+- Mặc định Server Component; chỉ thêm &#39;use client&#39; khi dùng hook, sự kiện hoặc Browser API.
+- params và searchParams trong page là Promise: const { id } = await params;
+- Style: SCSS Module (*.module.scss), dùng biến trong styles/_variables.scss và mixin respond-to trong styles/_mixins.scss.
+- Ảnh dùng next/image, link dùng next/link.
+- Component đặt trong components/ui, components/common hoặc components/features.
+- Gọi API qua services/, base URL lấy từ process.env.NEXT_PUBLIC_API_URL.
+- Không để lại console.log. Đặt tên rõ nghĩa, tiếng Anh.
+</code></pre>
+<hr>
+<h2 id="4-thu-vien-prompt-vibe-coding-mau">4. THƯ VIỆN PROMPT VIBE CODING MẪU</h2>
+<h3 id="4-1-nguyen-tac-chung">4.1. Nguyên tắc chung</h3>
+<h4 id="cau-truc-prompt-3-thanh-phan">Cấu trúc prompt 3 thành phần</h4>
+<p>Mọi prompt trong học phần đi theo khung <strong>Bối cảnh (Context) → Yêu cầu (Requirement) → Ràng buộc (Constraints)</strong>. AI lo phần khung code (boilerplate); các bạn chịu trách nhiệm kiểm duyệt type, logic và refactor. Nói cách khác, các bạn là Architect: yêu cầu AI tạo khung và TypeScript interface trước, sau đó mới tới phần chi tiết.</p>
+<pre><code class="language-text">[Context]     Dự án Smart Event Hub, Next.js 15 App Router, TypeScript strict, SCSS Module, Ant Design v5.
+[Requirement] Tạo component ... gồm ... ; interface ... có các trường ...
+[Constraints] Không dùng any; dùng next/image; mixin respond-to; giải thích ngắn các phần quan trọng.
+</code></pre>
+<h4 id="checklist-kiem-duyet-code-ai-dung-cho-moi-prompt">Checklist kiểm duyệt code AI (dùng cho mọi prompt)</h4>
+<ul>
+<li><input disabled="" type="checkbox"> Có <code>any</code> hoặc ép kiểu <code>as</code> vô lý không?</li>
+<li><input disabled="" type="checkbox"> Union type có bị viết thành <code>string</code> chung chung không?</li>
+<li><input disabled="" type="checkbox"> <code>&#39;use client&#39;</code> có thừa hoặc thiếu không?</li>
+<li><input disabled="" type="checkbox"> <code>params</code>/<code>searchParams</code> đã <code>await</code> chưa (Next.js 15)?</li>
+<li><input disabled="" type="checkbox"> Import đúng gói, đúng phiên bản (Ant Design v5, không phải v4)?</li>
+<li><input disabled="" type="checkbox"> Responsive ở 375px / 768px / 1440px?</li>
+<li><input disabled="" type="checkbox"> Có inline-style, magic number, <code>console.log</code> thừa không?</li>
+<li><input disabled="" type="checkbox"> Mình giải thích được từng dòng chưa? Nếu chưa, hỏi lại AI &quot;giải thích đoạn này&quot; trước khi commit.</li>
+</ul>
+<blockquote>
+<p>⚠️ Trong file trích xuất từ tài liệu gốc, dấu <code>|</code> của union type từng bị hiển thị thành <code>/</code>. Các prompt dưới đây đã được sửa lại đúng cú pháp TypeScript.</p>
+</blockquote>
+<h3 id="4-2-prompt-theo-tung-buoi">4.2. Prompt theo từng buổi</h3>
+<h4 id="buoi-01-eventcard-headernavigationbar">Buổi 01 – EventCard, HeaderNavigationBar</h4>
+<pre><code class="language-text">Hãy đóng vai một Chuyên gia Front-End Developer kinh nghiệm với Next.js và TypeScript.
+Hãy viết cho tôi một Component React tên là EventCard.tsx kèm theo file SCSS Module EventCard.module.scss.
+
+Yêu cầu chi tiết:
+1. TypeScript Interface EventProps:
+   - id: string
+   - title: string
+   - imageUrl: string
+   - startDate: string
+   - location: string
+   - price: number
+   - status: &#39;UPCOMING&#39; | &#39;ONGOING&#39; | &#39;ENDED&#39;
+2. SCSS Module:
+   - Sử dụng CSS Grid/Flexbox.
+   - Tạo mixin responsive: Mobile (&lt; 640px), Tablet (640px - 1024px), Desktop (&gt; 1024px).
+   - Màu badge status: UPCOMING (Xanh dương), ONGOING (Xanh lá), ENDED (Xám).
+3. Ràng buộc:
+   - Sử dụng Next.js Image component (next/image).
+   - Code rõ ràng, ngắn gọn, có comment giải thích các phần quan trọng.
+</code></pre>
+<pre><code class="language-text">Tạo giúp tôi Component HeaderNavigationBar.tsx bằng Next.js App Router và TypeScript.
+- Yêu cầu UI: Gồm Logo bên trái, Search Input ở giữa, Menu điều hướng và nút Auth bên phải.
+- Yêu cầu TypeScript: Định nghĩa interface NavItem { label: string; href: string; isExternal?: boolean }.
+- Yêu cầu SCSS Module: Viết hiệu ứng Sticky Navigation khi scroll và hiệu ứng Hover underline mượt mà cho Menu Link.
+- Viết theo chuẩn Clean Code, không xài any.
+</code></pre>
+<pre><code class="language-text">Hãy tạo cho tôi 1 Component Next.js App Router bằng TypeScript sử dụng Ant Design v5 Card để hiển thị thông tin sự kiện gồm: tên, ngày, giá vé, nút đặt vé. Đảm bảo có Interface rõ ràng.
+</code></pre>
+<h4 id="buoi-02-wireframe-sang-tsx">Buổi 02 – Wireframe sang TSX</h4>
+<pre><code class="language-text">[Gửi kèm ảnh phác thảo Wireframe màn hình Trang chủ]
+Bạn là một Senior UI/UX Developer. Hãy chuyển đổi hình ảnh Wireframe này thành React Component (Next.js App Router, TypeScript).
+
+Yêu cầu chi tiết:
+1. Hãy phân rã giao diện thành 3 Component nhỏ: HeroBanner, FeaturedEventsSection, CategoryFilter.
+2. Sử dụng TailwindCSS hoặc SCSS Module để tái hiện lại chính xác bố cục lưới (Grid) như ảnh.
+3. Tạo dữ liệu giả (Mock Data) bằng TypeScript với 4 phần tử mẫu.
+4. Đảm bảo cấu trúc HTML chuẩn Semantic (&lt;header&gt;, &lt;main&gt;, &lt;section&gt;, &lt;article&gt;).
+</code></pre>
+<pre><code class="language-text">Tôi có ý tưởng thiết kế Màn hình Chi tiết Sự kiện như sau:
+- Cột bên trái (70%): Banner sự kiện (16:9), Tiêu đề lớn, Thông tin chi tiết diễn giả (Avatar, Tên, Bio), Bài viết mô tả nội dung.
+- Cột bên phải (30%): Thẻ Sticky chứa Giá vé từ X đồng, Hạn đặt vé, Nút &quot;Đặt vé ngay&quot; màu cam nổi bật.
+
+Hãy sinh mã nguồn Next.js TypeScript và SCSS/Tailwind cho màn hình này.
+</code></pre>
+<h4 id="buoi-03-cau-truc-app-router">Buổi 03 – Cấu trúc App Router</h4>
+<pre><code class="language-text">Hãy hướng dẫn tạo cấu trúc thư mục Next.js App Router cho dự án &quot;Smart Event Hub&quot; với các yêu cầu:
+1. Root Layout chứa Header và Footer chung.
+2. Route Group (auth) có AuthLayout riêng (chỉ chứa Logo và Form ở trung tâm màn hình) cho các trang /login và /register.
+3. Nested Route /events và /events/categories.
+Hãy cho tôi sơ đồ cây thư mục chi tiết và nội dung mã nguồn của các file layout.tsx tương ứng.
+</code></pre>
+<pre><code class="language-text">Tạo giúp tôi cấu trúc Route Group (admin) trong Next.js App Router.
+- AdminLayout: Gồm Sidebar bên trái (Dashboard, Quản lý sự kiện, Quản lý người dùng) và Header Admin ở trên.
+- Tạo file loading.tsx sử dụng hiệu ứng Skeleton UI đơn giản bằng SCSS/Tailwind.
+- Viết bằng TypeScript.
+</code></pre>
+<h4 id="buoi-04-reusable-button-dynamic-category">Buổi 04 – Reusable Button, Dynamic Category</h4>
+<pre><code class="language-text">Hãy thiết kế cho tôi một Reusable Component tên là Button.tsx trong Next.js TypeScript.
+
+Yêu cầu:
+1. Props Interface ButtonProps mở rộng từ React.ButtonHTMLAttributes&lt;HTMLButtonElement&gt;:
+   - variant: &#39;primary&#39; | &#39;secondary&#39; | &#39;danger&#39; | &#39;outline&#39;
+   - size: &#39;sm&#39; | &#39;md&#39; | &#39;lg&#39;
+   - isLoading?: boolean
+   - leftIcon?: React.ReactNode
+2. Xử lý SCSS Module / TailwindCSS tương ứng với các biến thể.
+3. Khi isLoading = true, vô hiệu hóa button (disabled) và hiển thị Spinner.
+</code></pre>
+<pre><code class="language-text">Tạo giúp tôi trang Dynamic Route /category/[slug]/page.tsx trong Next.js App Router.
+- Sử dụng params để lấy tên danh mục (music, technology, sports).
+- Sử dụng searchParams để lấy thông tin phân trang page và sắp xếp sort.
+- Render dữ liệu mock tương ứng với danh mục đó.
+- Đảm bảo viết chuẩn TypeScript Interface cho PageProps trong Next.js.
+</code></pre>
+<blockquote>
+<p>🔎 <strong>Kiểm duyệt:</strong> với Next.js 15, <code>PageProps</code> phải khai báo <code>params: Promise&lt;{ slug: string }&gt;</code> và <code>searchParams: Promise&lt;...&gt;</code>. Nếu AI trả về <code>params.slug</code> trực tiếp, hãy sửa lại.</p>
+</blockquote>
+<h4 id="buoi-05-ant-design">Buổi 05 – Ant Design</h4>
+<pre><code class="language-text">Hãy hướng dẫn tôi tạo một Component BookingModal.tsx sử dụng Ant Design v5 trong dự án Next.js App Router (TypeScript).
+
+Yêu cầu:
+1. Sử dụng các component từ antd: Modal, Form, InputNumber, Select, DatePicker, Button.
+2. Tùy biến Theme thông qua ConfigProvider với màu primary là #6366F1.
+3. Form gồm các trường: Loại vé (VIP, Standard), Số lượng (1-10), Ngày tham dự, Ghi chú.
+4. Đảm bảo xử lý không bị lỗi Hydration mismatch trong Next.js.
+</code></pre>
+<pre><code class="language-text">Hãy viết mã nguồn trang /admin/orders/page.tsx sử dụng Table component của Ant Design v5 với TypeScript.
+- Khai báo Interface OrderType.
+- Render dữ liệu mock 10 đơn hàng.
+- Cột &quot;Trạng thái&quot; dùng component Tag hiển thị màu sắc: SUCCESS (Xanh lá), PENDING (Cam), CANCELLED (Đỏ).
+- Cấu hình phân trang 5 mục/trang và cột Action có nút &quot;Xem chi tiết&quot;.
+</code></pre>
+<h4 id="buoi-06-hooks-state">Buổi 06 – Hooks &amp; State</h4>
+<pre><code class="language-text">Hãy tạo một Client Component TicketQuantitySelector.tsx trong Next.js App Router bằng React Hooks và TypeScript.
+
+Yêu cầu:
+1. State chứa danh sách loại vé: [{ id: &#39;1&#39;, name: &#39;Vé VIP&#39;, price: 1000000, quantity: 0, max: 5 }].
+2. Viết các hàm handleIncrease(id) và handleDecrease(id).
+3. Sử dụng useMemo để tính toán totalAmount và totalTickets.
+4. Giao diện hiển thị rõ ràng, kèm nút &quot;Thanh toán&quot; bị disable nếu totalTickets === 0.
+</code></pre>
+<pre><code class="language-text">Tạo giúp tôi Component EventFilterBar.tsx tích hợp Debounce cho ô Input tìm kiếm trong React/Next.js.
+- Quản lý các State: searchKeyword, priceRange, selectedDate.
+- Sử dụng Custom Hook useDebounce hoặc lodash.debounce cho ô nhập từ khóa.
+- Trả kết quả lọc về cho Component cha thông qua callback onFilterChange(filters).
+</code></pre>
+<h4 id="buoi-07-readme-sua-loi-hydration">Buổi 07 – README, sửa lỗi Hydration</h4>
+<pre><code class="language-text">Hãy đóng vai một Technical Lead. Viết cho tôi nội dung file README.md bằng Markdown cho dự án &quot;Smart Event Hub&quot; (Next.js, TypeScript, Ant Design, SCSS).
+
+Yêu cầu chi tiết:
+1. Tên dự án &amp; Mô tả ngắn gọn (3-4 câu).
+2. Bảng phân công công việc nhóm 4 người (Cột: Họ tên, MSSV, Vai trò, Tính năng đã đảm nhiệm).
+3. Hướng dẫn chạy dự án ở local (npm install, npm run dev).
+4. Cấu trúc thư mục dự án (App Router architecture).
+5. Link đính kèm file thiết kế Wireframe Figma.
+</code></pre>
+<pre><code class="language-text">Tôi gặp lỗi Hydration Error trong Next.js App Router khi sử dụng Component DatePicker / Modal của Ant Design.
+Hãy giải thích nguyên nhân và đưa ra giải pháp sửa lỗi triệt để bằng cách sử dụng dynamic import với { ssr: false } hoặc Hook useEffect để chỉ render ở Client-side.
+</code></pre>
+<blockquote>
+<p>🔎 <strong>Kiểm duyệt:</strong> Next.js 15 không cho dùng <code>next/dynamic</code> với <code>{ ssr: false }</code> bên trong Server Component; lời gọi đó phải nằm trong file có <code>&#39;use client&#39;</code>. Trước khi dùng cách này, hãy kiểm tra đã bọc <code>AntdRegistry</code> trong <code>app/layout.tsx</code> chưa.</p>
+</blockquote>
+<h4 id="buoi-08-swagger-sang-typescript-service">Buổi 08 – Swagger sang TypeScript &amp; Service</h4>
+<pre><code class="language-text">Bạn là một Fullstack Developer. Dưới đây là JSON Response từ Swagger API danh sách sự kiện:
+[Dán đoạn JSON Swagger API Response vào đây]
+
+Yêu cầu:
+1. Sinh các TypeScript Interfaces tương ứng (IEventResponse, IEventItem, IOrganizer).
+2. Viết 1 file services/eventService.ts sử dụng axios để thực hiện hàm getEvents(params) với các query: page, limit, search.
+3. Viết code ví dụ Fetch dữ liệu trong Server Component Next.js (app/page.tsx) và truyền props vào Component EventList.
+</code></pre>
+<pre><code class="language-text">Viết giúp tôi hàm getEventById(id: string) trong services/eventService.ts và tích hợp vào trang Next.js Server Component /app/events/[id]/page.tsx.
+- Nếu không tìm thấy sự kiện (API trả về lỗi 404), gọi hàm notFound() từ next/navigation để chuyển hướng đến trang 404.
+- Bổ sung Try/Catch block để bắt lỗi kết nối API.
+</code></pre>
+<blockquote>
+<p>🔎 <strong>Kiểm duyệt:</strong> đặc tả dự án dùng tên không tiền tố <code>I</code> (<code>EventItem</code>, <code>Organizer</code>) và bọc response trong <code>ApiResponse&lt;T&gt;</code>. Có thể thêm vào prompt: &quot;Đặt tên theo <code>types/</code> hiện có của dự án&quot;. Luôn đối chiếu interface AI sinh với response thật trên Swagger UI.</p>
+</blockquote>
+<h4 id="buoi-09-form-zod">Buổi 09 – Form &amp; Zod</h4>
+<pre><code class="language-text">Hãy tạo cho tôi Component LoginForm.tsx bằng Next.js (&quot;use client&quot;) kết hợp React Hook Form, Zod và Ant Design Input.
+
+Yêu cầu chi tiết:
+1. Định nghĩa Zod Schema loginSchema:
+   - email: Chuỗi, bắt buộc, đúng định dạng Email.
+   - password: Chuỗi, bắt buộc, tối thiểu 6 ký tự.
+2. Tích hợp useForm với zodResolver(loginSchema).
+3. Khi submit hợp lệ, gọi hàm onLogin(values) giả lập, lưu token vào localStorage.setItem(&#39;accessToken&#39;, &#39;mock-token-123&#39;) và hiển thị Antd message.success(&quot;Đăng nhập thành công&quot;).
+4. Hiển thị error message màu đỏ dưới ô input nếu dữ liệu không hợp lệ.
+</code></pre>
+<pre><code class="language-text">Hãy viết một Zod Schema tên là createEventSchema cho Form Tạo sự kiện có ràng buộc nâng cao:
+- title: string, min 5 chars.
+- startDate: date string.
+- endDate: date string.
+- Sử dụng hàm .refine() của Zod để kiểm tra endDate phải có thời gian lớn hơn startDate. Cho tôi mã nguồn Zod Schema và cách dùng với React Hook Form.
+</code></pre>
+<h4 id="buoi-10-responsive-refactor">Buổi 10 – Responsive &amp; Refactor</h4>
+<pre><code class="language-text">Tôi có Component EventFilterBar.tsx đang bị tràn khung khi co màn hình xuống kích thước Mobile (375px).
+Hãy hướng dẫn tôi refactor Component này sử dụng Ant Design Drawer hoặc Responsive Grid (xs={24}, md={8}) để hiển thị dạng nút &quot;Bộ lọc&quot; mở ra Drawer trên Mobile, còn trên Desktop thì giữ nguyên Filter Bar nằm ngang.
+Viết bằng Next.js TypeScript và Ant Design v5.
+</code></pre>
+<pre><code class="language-text">Hãy đóng vai một Tech Lead chuyên về Clean Code. Hãy rà soát đoạn mã Next.js Component sau và refactor lại giúp tôi:
+[Dán đoạn code lặp lại hoặc chưa tối ưu vào đây]
+
+Yêu cầu refactor:
+1. Phân rã các khối UI lặp lại thành sub-component nhỏ.
+2. Loại bỏ các khai báo any, thay bằng Interface có cấu trúc chặt chẽ.
+3. Tối ưu hóa re-render bằng cách dùng React.memo hoặc useCallback nếu cần thiết.
+4. Giải thích ngắn gọn các cải tiến đã thực hiện.
+</code></pre>
+<h4 id="buoi-11-seo-deploy">Buổi 11 – SEO &amp; Deploy</h4>
+<pre><code class="language-text">Hướng dẫn tôi cách viết hàm generateMetadata trong Next.js App Router cho trang Dynamic Route /events/[id]/page.tsx.
+Yêu cầu:
+1. Gọi API getEventById(id) lấy thông tin sự kiện.
+2. Trả về object Metadata gồm: title, description, openGraph (title, description, images chứa URL ảnh sự kiện).
+3. Xử lý trường hợp không tìm thấy sự kiện thì trả về fallback metadata tiêu chuẩn.
+</code></pre>
+<pre><code class="language-text">Tôi gặp lỗi Build Error trên Vercel khi Deploy dự án Next.js TypeScript:
+[Dán đoạn log lỗi Vercel Build Error vào đây]
+
+Hãy phân tích nguyên nhân lỗi và hướng dẫn từng bước cách sửa lỗi trên tệp mã nguồn hoặc cấu hình Vercel Settings.
+</code></pre>
+<blockquote>
+<p>🔒 <strong>An toàn khi dán log/code cho AI:</strong> xóa token, mật khẩu, khóa API thật trước khi dán. Không dán file <code>.env</code> vào bất kỳ công cụ AI nào.</p>
+</blockquote>
+<hr>
+<h2 id="5-goi-y-video-tu-hoc-theo-chu-de-va-tu-khoa-tim-kiem">5. GỢI Ý VIDEO TỰ HỌC (theo chủ đề và từ khóa tìm kiếm)</h2>
+<h4 id="cach-tim-va-chon-video">Cách tìm và chọn video</h4>
+<p>Học phần không chỉ định kênh cụ thể. Các bạn tìm trên YouTube hoặc nền tảng học trực tuyến theo từ khóa bên dưới. Ưu tiên video đăng trong khoảng 12 tháng gần đây, ghi rõ phiên bản (Next.js 15, Ant Design v5, React 19), và có repo mã nguồn đi kèm. Nếu giảng viên đã đăng video/slide riêng trên LMS thì xem video đó trước.</p>
+<table>
+<thead>
+<tr>
+<th>Buổi</th>
+<th>Chủ đề cần xem trước giờ học</th>
+<th>Từ khóa tìm kiếm gợi ý</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>01</td>
+<td>SCSS Flexbox/Grid Mixin; TypeScript Interface vs Type; cài VS Code, Node.js, Cursor/Copilot</td>
+<td><code>SCSS mixin responsive breakpoints</code>, <code>TypeScript interface vs type</code>, <code>Cursor AI setup tutorial</code></td>
+</tr>
+<tr>
+<td>02</td>
+<td>Nguyên tắc UX Wireframing; cấu trúc UI Layout (Header, Content, Sidebar, Footer)</td>
+<td><code>UX wireframing principles</code>, <code>Figma wireframe tutorial</code>, <code>v0.dev image to React</code></td>
+</tr>
+<tr>
+<td>03</td>
+<td>Next.js App Router: <code>page.tsx</code>, <code>layout.tsx</code>, <code>loading.tsx</code>, <code>error.tsx</code></td>
+<td><code>Next.js 15 App Router tutorial</code>, <code>Next.js route groups layout</code>, <code>server vs client components</code></td>
+</tr>
+<tr>
+<td>04</td>
+<td>Dynamic Routes params; Component Props &amp; Reusability</td>
+<td><code>Next.js 15 dynamic routes params promise</code>, <code>reusable React components TypeScript</code></td>
+</tr>
+<tr>
+<td>05</td>
+<td>Tích hợp Ant Design/Bootstrap vào Next.js; Custom Theme <code>ConfigProvider</code></td>
+<td><code>Ant Design v5 Next.js App Router</code>, <code>antd ConfigProvider theme token</code></td>
+</tr>
+<tr>
+<td>06</td>
+<td>State lifecycle, <code>useState</code>, <code>useEffect</code>, <code>useCallback</code>, <code>&#39;use client&#39;</code></td>
+<td><code>React hooks useMemo useCallback</code>, <code>useEffect infinite loop fix</code>, <code>React debounce hook</code></td>
+</tr>
+<tr>
+<td>07</td>
+<td>Production build, README chuẩn, Conventional Commits</td>
+<td><code>Next.js npm run build errors</code>, <code>conventional commits tutorial</code>, <code>GitHub pull request code review</code></td>
+</tr>
+<tr>
+<td>08</td>
+<td>RESTful API, Fetch API, Axios, Async/Await trong TypeScript</td>
+<td><code>Next.js server component data fetching</code>, <code>axios TypeScript service</code>, <code>Swagger UI tutorial</code></td>
+</tr>
+<tr>
+<td>09</td>
+<td>Web Storage API, Form State, Validation Schema (Zod/Yup)</td>
+<td><code>React Hook Form Zod tutorial</code>, <code>zod refine date validation</code>, <code>localStorage Next.js hydration</code></td>
+</tr>
+<tr>
+<td>10</td>
+<td>Refactoring, code smells, responsive polish</td>
+<td><code>React refactoring code smells</code>, <code>fix horizontal overflow mobile CSS</code>, <code>antd Drawer responsive</code></td>
+</tr>
+<tr>
+<td>11</td>
+<td>Deploy Vercel, biến môi trường, Metadata API, Lighthouse</td>
+<td><code>deploy Next.js to Vercel</code>, <code>Next.js generateMetadata open graph</code>, <code>Lighthouse performance next/image</code></td>
+</tr>
+<tr>
+<td>12</td>
+<td>Kỹ năng thuyết trình demo sản phẩm kỹ thuật</td>
+<td><code>technical product demo presentation tips</code>, <code>hackathon pitch demo</code></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>📌 <strong>Ghi chú:</strong> Danh sách trên chỉ là chủ đề và từ khóa, không phải link cụ thể. Khi chia sẻ video hay lên diễn đàn, hãy ghi kèm phiên bản công nghệ trong video để các bạn khác biết có còn dùng được không.</p>
+</blockquote>
+
+    </article>
+
+    <!-- Bottom Navigation -->
+    <div class="flex items-center justify-between gap-4 mt-8 no-print text-xs font-bold">
+      <span></span>
+      <a href="../index.html#lo-trinh" class="px-4 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-800 rounded-xl transition-all flex items-center gap-2">
+        <i class="fa-solid fa-table-cells-large"></i> Danh mục bài học
+      </a>
+      <span></span>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-slate-200 py-6 text-xs text-slate-500 mt-12 no-print">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <strong>Khoa Công nghệ Thông tin - Trường Đại học Lạc Hồng</strong><br>
+        Phòng B301 - B302, Cơ sở 1, Số 10 Huỳnh Văn Nghệ, P. Bửu Long, TP. Biên Hòa, Đồng Nai.
+      </div>
+      <div class="sm:text-right">
+        <span>Email: cntt@lhu.edu.vn • Hotline: (0251) 3952 251</span><br>
+        <span>Hệ thống LMS: <a href="https://learn.lhu.edu.vn" target="_blank" rel="noopener noreferrer" class="text-lhu-blue font-bold">learn.lhu.edu.vn</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleAllDetails(open) {
+      document.querySelectorAll("details").forEach(d => {
+        if (open) d.setAttribute("open", ""); else d.removeAttribute("open");
+      });
+    }
+    if (window.hljs) hljs.highlightAll();
+  </script>
+
+</body>
+</html>

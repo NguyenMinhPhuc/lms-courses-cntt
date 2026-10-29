@@ -1,0 +1,84 @@
+Trong Next.js App Router, component mặc định trong thư mục app/ thuộc loại nào?
+A. Client Component
+B. Static HTML không có React
+C. Web Component
+D. Server Component
+ANSWER: D
+
+Trường hợp nào KHÔNG cần thêm chỉ thị 'use client'?
+A. Component có nút onClick tăng số lượng vé
+B. Component dùng useState lưu từ khóa tìm kiếm
+C. Component chỉ hiển thị tiêu đề và mô tả sự kiện từ props
+D. Component đọc localStorage lấy danh sách yêu thích
+ANSWER: C
+
+Khi nào nên ưu tiên useReducer thay cho useState?
+A. Khi state có nhiều hành động phụ thuộc lẫn nhau như giỏ hàng nhiều loại vé
+B. Khi chỉ cần lưu một giá trị boolean bật/tắt
+C. Khi component là Server Component
+D. Khi muốn tránh hoàn toàn việc re-render
+ANSWER: A
+
+Đoạn code useEffect(() => { setCount(count + 1); }, [count]); gây ra vấn đề gì?
+A. Memory leak do thiếu cleanup
+B. Effect không bao giờ chạy
+C. Lỗi biên dịch TypeScript
+D. Vòng lặp re-render vô tận vì effect thay đổi chính phụ thuộc của nó
+ANSWER: D
+
+Một effect tạo setInterval đếm ngược thời gian giữ ghế nhưng không trả về hàm cleanup. Hậu quả có thể xảy ra là gì?
+A. Memory leak vì interval vẫn chạy sau khi component bị gỡ
+B. Component không render lần đầu
+C. TypeScript báo lỗi kiểu number
+D. Trang tự chuyển thành Server Component
+ANSWER: A
+
+Mục đích của useMemo khác useCallback ở điểm nào?
+A. useMemo chỉ dùng trong Server Component
+B. useMemo chạy sau render, useCallback chạy trước render
+C. useMemo ghi nhớ giá trị tính toán, useCallback ghi nhớ tham chiếu hàm
+D. useMemo thay thế useState, useCallback thay thế useEffect
+ANSWER: C
+
+Theo khuyến nghị "You Might Not Need an Effect", danh sách sự kiện đã lọc từ events và filters nên được xử lý thế nào?
+A. Dùng useEffect gọi setVisible mỗi khi filters đổi
+B. Tính trực tiếp khi render, bọc useMemo nếu phép tính tốn kém
+C. Lưu vào localStorage rồi đọc lại
+D. Dùng setInterval cập nhật mỗi giây
+ANSWER: B
+
+Sơ đồ chọn ghế và khung tổng tiền là hai component anh em cùng cần danh sách ghế đã chọn. Giải pháp phù hợp là gì?
+A. Mỗi component giữ useState riêng và đồng bộ bằng useEffect
+B. Lưu danh sách ghế vào biến toàn cục ngoài component
+C. Đọc ghế đã chọn từ DOM bằng document.querySelectorAll
+D. Nâng state selectedSeats lên component cha chung và truyền xuống qua props/callback
+ANSWER: D
+
+Kỹ thuật Debounce 200ms áp dụng cho ô tìm kiếm nhằm mục đích gì?
+A. Chỉ cập nhật bộ lọc khi người dùng ngừng gõ 200ms, tránh xử lý quá liên tục
+B. Cập nhật bộ lọc mỗi 200ms dù người dùng có gõ hay không
+C. Chặn người dùng gõ quá 200 ký tự
+D. Lưu từ khóa vào server sau 200ms
+ANSWER: A
+
+Trong custom hook useDebounce, dòng return () => clearTimeout(handler); bên trong useEffect có tác dụng gì?
+A. Xóa giá trị debouncedValue về rỗng
+B. Hủy bộ hẹn giờ cũ khi value đổi hoặc component bị gỡ, chỉ giữ lần gõ cuối
+C. Gọi lại API ngay lập tức
+D. Ngăn component re-render
+ANSWER: B
+
+EventFilterBar gọi onFilterChange trong useEffect có onFilterChange trong mảng phụ thuộc. Cha truyền onFilterChange={(f) => setFilters(f)} và trang bị render lặp liên tục. Cách sửa đúng là gì?
+A. Xóa onFilterChange khỏi mảng phụ thuộc và tắt cảnh báo ESLint
+B. Chuyển EventFilterBar thành Server Component
+C. Truyền thẳng setFilters hoặc bọc callback bằng useCallback ở component cha
+D. Thêm setTimeout 0ms trước khi gọi onFilterChange
+ANSWER: C
+
+Trong TicketQuantitySelector, cách cập nhật state nào đúng nguyên tắc bất biến (immutable) khi tăng số lượng vé?
+A. tickets[0].quantity++ rồi gọi setTickets(tickets)
+B. setTickets(prev => prev.map(t => t.id === id ? { ...t, quantity: t.quantity + 1 } : t))
+C. tickets.push({ ...ticket, quantity: 1 }) rồi gọi setTickets(tickets)
+D. Gán trực tiếp ticket.quantity = ticket.quantity + 1 trong onClick
+ANSWER: B
+

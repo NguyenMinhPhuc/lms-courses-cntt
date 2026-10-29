@@ -1,0 +1,543 @@
+<details open="" style="border: 1px solid #007bff; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #e7f1ff; color: #007bff; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>📘 1. Tổng quan bài học</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <p style="margin-top: 0;"><strong>BÀI 05 - Giao diện chuyên nghiệp với Ant Design, Bootstrap/Tailwind &amp; tùy biến Theme (5 tiết)</strong></p>
+        <p style="margin: 0 0 8px 0; color: #6c757d;">CHƯƠNG 3: GIAO DIỆN CHUYÊN NGHIỆP &amp; QUẢN LÝ TRẠNG THÁI</p>
+        <p><strong>Thời lượng:</strong> 5 tiết (225 phút) · <strong>Hình thức:</strong> Lớp học đảo ngược · <strong>Chuẩn đầu ra:</strong> PI 2.3 (CLO2)<br><strong>Dự án xuyên suốt:</strong> Smart Event Hub – Tích hợp UI Library (Ant Design v5), tùy biến Theme theo nhận diện thương hiệu, dựng Modal Đặt vé và trang Quản lý đơn hàng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/admin/orders</code>.</p>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #f3f8ff; border: 1px solid #cfe2ff; border-radius: 8px;">
+            <p>🎯 <strong>MỤC TIÊU BÀI HỌC (Learning Objectives)</strong><br>Sau khi hoàn thành bài học này, người học có thể:</p>
+<ul>
+<li><strong>[Bloom 1/2 - Kiến thức]:</strong> Trình bày được ưu/nhược điểm của Ant Design v5, Bootstrap 5 và Tailwind CSS; giải thích vì sao cần <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">@ant-design/nextjs-registry</code> và cơ chế Design Token của <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">ConfigProvider</code>.</li>
+<li><strong>[Bloom 3/4 - Kỹ năng]:</strong> Cài đặt và cấu hình Ant Design trong Next.js App Router không lỗi FOUC/Hydration; sử dụng đúng Grid, Table, Modal, Form, Notification với TypeScript.</li>
+<li><strong>[Bloom 5/6 - Năng lực]:</strong> Lựa chọn thư viện UI phù hợp cho dự án nhóm và tùy biến giao diện Smart Event Hub có bản sắc riêng, không rập khuôn giao diện mặc định.</li>
+</ul>
+        </div>
+        <p><strong>📝 Đặt vấn đề &amp; dẫn nhập</strong></p>
+        <p>Trang Admin của Smart Event Hub cần một bảng đơn hàng có lọc theo trạng thái, phân trang, sắp xếp theo tổng tiền, cùng một form đặt vé có chọn ngày và kiểm tra dữ liệu. Tự viết bằng SCSS thuần, một bạn sinh viên có thể mất cả tuần chỉ để làm cho <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">DatePicker</code> chạy mượt trên điện thoại. Trong khi đó, các thư viện UI đã giải quyết sẵn những việc này và được hàng nghìn dự án kiểm chứng.</p>
+<p>Nhưng nếu ghép thư viện vào mà không cấu hình, trang web sẽ nhấp nháy mất style khi tải, console báo lỗi Hydration, và giao diện trông &quot;y hệt&quot; mọi trang dùng Ant Design khác. <strong>Làm thế nào để tận dụng sức mạnh của thư viện UI mà sản phẩm vẫn mang nhận diện riêng của nhóm?</strong></p>
+<blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #007bff; border-radius: 0 8px 8px 0; color: #212529;">
+<p>🧭 <strong>Trước giờ học (Flipped Classroom):</strong> Xem video/slide về tích hợp Ant Design / Bootstrap vào Next.js và Custom Theme bằng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">ConfigProvider</code>. Lướt qua trang tổng quan component của Ant Design (link ở mục 5). Làm quiz 5–10 câu trên LMS. Chuẩn bị nhánh dự án đã hoàn thành Buổi 4.</p>
+</blockquote>
+    </div>
+</details>
+
+<details style="border: 1px solid #fd7e14; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #fff5eb; color: #fd7e14; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>📚 2. Học liệu chính</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.1. Chọn thư viện UI: Ant Design, Bootstrap hay Tailwind?</h3>
+            <ul>
+<li><strong>Khái niệm:</strong> Thư viện UI cung cấp component hoặc tiện ích CSS dựng sẵn. Ba lựa chọn phổ biến khác nhau ở <strong>mức độ &quot;có sẵn&quot;</strong> và <strong>mức độ tự do tùy biến</strong>.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong></li>
+</ul>
+<table style="width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 14px;">
+<thead>
+<tr>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Tiêu chí</th>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Ant Design v5</th>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Bootstrap 5</th>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Tailwind CSS</th>
+</tr>
+</thead>
+<tbody><tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Bản chất</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Bộ component React hoàn chỉnh (CSS-in-JS)</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Bộ class CSS + JS plugin (không gắn React)</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Utility-first CSS, không có component</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Điểm mạnh</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Table, Form, DatePicker, Modal cực mạnh; Design Token; hợp trang Admin</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Dễ học, Grid quen thuộc, tài liệu nhiều</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Tự do thiết kế, bundle CSS nhỏ, hợp với shadcn/ui</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Điểm yếu</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Bundle lớn hơn; giao diện dễ &quot;rập khuôn&quot;; cần registry khi SSR</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Component JS cần xử lý thêm trong React (hoặc dùng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">react-bootstrap</code>)</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Phải tự dựng component phức tạp; className dài</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Tùy biến</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;"><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">ConfigProvider</code> token + SCSS Module</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Biến Sass (<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">$primary</code>…)</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;"><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">@theme</code> / file cấu hình</td>
+</tr>
+</tbody></table>
+<ul>
+<li>Học phần chọn <strong>Ant Design v5 làm trọng tâm</strong> vì Smart Event Hub có nhiều màn hình quản trị (bảng, form, thông báo).</li>
+<li>Không nên trộn nhiều thư viện CSS toàn cục trong một dự án: reset CSS của Bootstrap hoặc preflight của Tailwind có thể đè style của Ant Design.</li>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #fd7e14; border-radius: 0 8px 8px 0; color: #212529;">
+<p>Nhiều hệ thống quản trị nội bộ (ERP, CRM) chọn Ant Design vì Table và Form. Các landing page marketing lại hay chọn Tailwind để thiết kế tự do. Nhóm nào làm Smart Event Hub muốn giao diện người dùng thật &quot;khác biệt&quot; có thể dùng Tailwind cho trang công khai, nhưng phải thống nhất ngay từ đầu.</p>
+</blockquote>
+</li>
+</ul>
+<p>Cài đặt nhanh nếu nhóm chọn phương án khác:</p>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;"># Bootstrap 5: import CSS một lần trong app/layout.tsx
+npm install bootstrap
+# import &#39;bootstrap/dist/css/bootstrap.min.css&#39;;
+
+# Tailwind CSS v4 (hoặc chọn &quot;Tailwind&quot; khi chạy create-next-app)
+npm install tailwindcss @tailwindcss/postcss postcss
+# postcss.config.mjs: plugins: { &#39;@tailwindcss/postcss&#39;: {} }
+# app/globals.css: @import &quot;tailwindcss&quot;;
+</code></pre>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.2. Tích hợp Ant Design v5 vào Next.js App Router</h3>
+            <ul>
+<li><strong>Khái niệm:</strong> Ant Design v5 sinh CSS bằng JavaScript (CSS-in-JS) lúc chạy. Nếu không thu gom CSS ở phía server, HTML gửi về trình duyệt chưa có style, gây <strong>FOUC</strong> (Flash of Unstyled Content) – trang &quot;trần trụi&quot; vài trăm mili giây rồi mới đẹp.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">@ant-design/nextjs-registry</code> cung cấp <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">AntdRegistry</code> để extract CSS ngay khi render trên server.</li>
+<li>Next.js 15 dùng React 19, trong khi antd v5 được viết cho React 16–18. Cần cài thêm gói vá <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">@ant-design/v5-patch-for-react-19</code> và import một lần ở phía client; nếu không, các hàm tĩnh như <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">message.success()</code> hay <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Modal.confirm()</code> có thể không hiển thị.</li>
+<li>Ghi rõ phiên bản <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">antd@5</code> khi cài để cả nhóm dùng cùng bản với tài liệu.</li>
+</ul>
+</li>
+</ul>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">npm install antd@5 @ant-design/nextjs-registry @ant-design/v5-patch-for-react-19
+</code></pre>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// app/providers.tsx
+&#39;use client&#39;;
+
+import &#39;@ant-design/v5-patch-for-react-19&#39;;
+import { App, ConfigProvider } from &#39;antd&#39;;
+import viVN from &#39;antd/locale/vi_VN&#39;;
+import { themeConfig } from &#39;@/theme/themeConfig&#39;;
+
+export default function Providers({ children }: { children: React.ReactNode }) {
+  return (
+    &lt;ConfigProvider theme={themeConfig} locale={viVN}&gt;
+      &lt;App&gt;{children}&lt;/App&gt;
+    &lt;/ConfigProvider&gt;
+  );
+}
+</code></pre>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// app/layout.tsx (Server Component)
+import { AntdRegistry } from &#39;@ant-design/nextjs-registry&#39;;
+import Providers from &#39;./providers&#39;;
+import &#39;./globals.scss&#39;;
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    &lt;html lang=&quot;vi&quot;&gt;
+      &lt;body&gt;
+        &lt;AntdRegistry&gt;
+          &lt;Providers&gt;{children}&lt;/Providers&gt;
+        &lt;/AntdRegistry&gt;
+      &lt;/body&gt;
+    &lt;/html&gt;
+  );
+}
+</code></pre>
+<blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #fd7e14; border-radius: 0 8px 8px 0; color: #212529;">
+<p><strong>Vì sao tách <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">providers.tsx</code>?</strong> Cách viết <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">ConfigProvider</code> thẳng trong <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">layout.tsx</code> vẫn chạy khi theme chỉ gồm token tĩnh. Nhưng khi thêm <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">algorithm: theme.darkAlgorithm</code> (một hàm) hoặc cần hook như <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">App.useApp()</code>, phần đó bắt buộc nằm trong Client Component. Tách sớm giúp <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">layout.tsx</code> gọn và không phải sửa lại sau này.</p>
+</blockquote>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.3. Tùy biến Theme bằng Design Token và SCSS Module</h3>
+            <ul>
+<li><strong>Khái niệm:</strong> Design Token là các biến thiết kế (màu chủ đạo, bo góc, font) mà mọi component Ant Design đọc chung. Đổi token một lần, toàn bộ Button, Input, Table, Modal đổi theo.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">token</code>: biến toàn cục – <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">colorPrimary</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">borderRadius</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">fontFamily</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">colorBgContainer</code>…</li>
+<li><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">components</code>: token riêng cho từng component, ví dụ chỉ tăng chiều cao Button.</li>
+<li>Ghi đè chi tiết hơn bằng SCSS Module với <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">:global(.ant-...)</code> đặt bên trong một class cục bộ, để chỉ ảnh hưởng đúng component đó. CSS của antd v5 dùng selector <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">:where()</code> có độ ưu tiên thấp nên class của chúng ta dễ thắng mà không cần <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">!important</code>.</li>
+</ul>
+</li>
+</ul>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// theme/themeConfig.ts
+import type { ThemeConfig } from &#39;antd&#39;;
+
+export const themeConfig: ThemeConfig = {
+  token: {
+    colorPrimary: &#39;#6366F1&#39;, // Indigo – màu nhận diện Smart Event Hub
+    borderRadius: 8,
+    fontFamily: &quot;&#39;Be Vietnam Pro&#39;, system-ui, sans-serif&quot;,
+  },
+  components: {
+    Button: { controlHeight: 40, fontWeight: 600 },
+    Table: { headerBg: &#39;#EEF2FF&#39; },
+  },
+};
+</code></pre>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// components/features/BookingModal.module.scss
+.bookingModal {
+  :global(.ant-modal-content) { padding: 24px 28px; }
+  :global(.ant-modal-title) { font-size: 20px; color: #4338ca; }
+}
+</code></pre>
+<ul>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #fd7e14; border-radius: 0 8px 8px 0; color: #212529;">
+<p>Hai nhóm cùng dùng Ant Design nhưng một nhóm chọn tông Indigo bo góc 8px, nhóm kia chọn tông cam bo góc 16px với font Be Vietnam Pro. Chỉ cần khác token, người xem đã thấy hai sản phẩm có bản sắc riêng.</p>
+</blockquote>
+</li>
+</ul>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.4. Grid System và các component nâng cao</h3>
+            <ul>
+<li><strong>Khái niệm:</strong> Grid của Ant Design chia hàng thành <strong>24 cột</strong>. <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Row</code> là hàng, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Col</code> là cột, các prop <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">xs</code> <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">sm</code> <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">md</code> <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">lg</code> <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">xl</code> quy định số cột theo từng kích thước màn hình.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong> Mốc mặc định: <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">xs</code> &lt; 576px, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">sm</code> ≥ 576px, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">md</code> ≥ 768px, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">lg</code> ≥ 992px, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">xl</code> ≥ 1200px. <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">gutter={[16, 16]}</code> tạo khoảng cách ngang và dọc. Các component hay dùng: <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Table</code> (dữ liệu Admin), <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Modal</code> (popup đặt vé), <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Form</code> (nhập liệu có validate), <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Notification</code>/<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Message</code> (phản hồi).</li>
+</ul>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// Mobile 1 cột · Tablet 2 cột · Laptop 3 cột · Desktop 4 cột
+&lt;Row gutter={[16, 16]}&gt;
+  {events.map((event) =&gt; (
+    &lt;Col key={event.id} xs={24} sm={12} md={8} lg={6}&gt;
+      &lt;EventCard event={event} /&gt;
+    &lt;/Col&gt;
+  ))}
+&lt;/Row&gt;
+</code></pre>
+<p>Modal đặt vé dùng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Modal</code> + <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Form</code> + <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">DatePicker</code> + <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Select</code> (Client Component):</p>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// components/features/BookingModal.tsx
+&#39;use client&#39;;
+
+import { useState } from &#39;react&#39;;
+import { App, Button, DatePicker, Form, Input, InputNumber, Modal, Select } from &#39;antd&#39;;
+import type { Dayjs } from &#39;dayjs&#39;; // dayjs được cài kèm antd
+import styles from &#39;./BookingModal.module.scss&#39;;
+
+type TicketType = &#39;VIP&#39; | &#39;STANDARD&#39;;
+
+interface BookingFormValues {
+  ticketType: TicketType;
+  quantity: number;
+  attendDate: Dayjs;
+  note?: string;
+}
+
+export default function BookingModal({ eventTitle }: { eventTitle: string }) {
+  const [open, setOpen] = useState(false);
+  const [form] = Form.useForm&lt;BookingFormValues&gt;();
+  const { notification } = App.useApp();
+
+  const handleOk = async () =&gt; {
+    try {
+      const values = await form.validateFields();
+      notification.success({
+        message: &#39;Đặt vé thành công&#39;,
+        description: `${values.quantity} vé ${values.ticketType} – ngày ${values.attendDate.format(&#39;DD/MM/YYYY&#39;)}`,
+      });
+      form.resetFields();
+      setOpen(false);
+    } catch {
+      // Lỗi validate đã hiển thị ngay dưới từng trường
+    }
+  };
+
+  return (
+    &lt;&gt;
+      &lt;Button type=&quot;primary&quot; onClick={() =&gt; setOpen(true)}&gt;Đặt vé&lt;/Button&gt;
+      &lt;Modal
+        title={`Đặt vé: ${eventTitle}`}
+        open={open}
+        onOk={handleOk}
+        onCancel={() =&gt; setOpen(false)}
+        okText=&quot;Xác nhận&quot;
+        cancelText=&quot;Hủy&quot;
+        className={styles.bookingModal}
+      &gt;
+        &lt;Form form={form} layout=&quot;vertical&quot; initialValues={{ ticketType: &#39;STANDARD&#39;, quantity: 1 }}&gt;
+          &lt;Form.Item name=&quot;ticketType&quot; label=&quot;Loại vé&quot; rules={[{ required: true }]}&gt;
+            &lt;Select options={[{ value: &#39;VIP&#39;, label: &#39;VIP&#39; }, { value: &#39;STANDARD&#39;, label: &#39;Standard&#39; }]} /&gt;
+          &lt;/Form.Item&gt;
+          &lt;Form.Item name=&quot;quantity&quot; label=&quot;Số lượng&quot; rules={[{ required: true, type: &#39;number&#39;, min: 1, max: 10 }]}&gt;
+            &lt;InputNumber min={1} max={10} style={{ width: &#39;100%&#39; }} /&gt;
+          &lt;/Form.Item&gt;
+          &lt;Form.Item name=&quot;attendDate&quot; label=&quot;Ngày tham dự&quot; rules={[{ required: true, message: &#39;Chọn ngày tham dự&#39; }]}&gt;
+            &lt;DatePicker format=&quot;DD/MM/YYYY&quot; style={{ width: &#39;100%&#39; }} /&gt;
+          &lt;/Form.Item&gt;
+          &lt;Form.Item name=&quot;note&quot; label=&quot;Ghi chú&quot;&gt;
+            &lt;Input.TextArea rows={3} /&gt;
+          &lt;/Form.Item&gt;
+        &lt;/Form&gt;
+      &lt;/Modal&gt;
+    &lt;/&gt;
+  );
+}
+</code></pre>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.5. Table quản lý đơn hàng: Filter, Sorter, Pagination</h3>
+            <ul>
+<li><strong>Khái niệm:</strong> <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Table</code> nhận <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">columns</code> (cấu hình cột) và <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">dataSource</code> (dữ liệu). Lọc, sắp xếp, phân trang đều khai báo trong cấu hình, không phải tự viết logic.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong> Cấu hình cột chứa hàm <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">render</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">onFilter</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">sorter</code>. Hàm không thể truyền từ Server Component sang Client Component, nên tách bảng thành <strong><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">OrdersTable.tsx</code> có <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&#39;use client&#39;</code></strong>, còn <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">page.tsx</code> vẫn là Server Component.</li>
+</ul>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// app/admin/orders/OrdersTable.tsx
+&#39;use client&#39;;
+
+import { Button, Table, Tag } from &#39;antd&#39;;
+import type { TableProps } from &#39;antd&#39;;
+
+type OrderStatus = &#39;SUCCESS&#39; | &#39;PENDING&#39; | &#39;CANCELLED&#39;;
+
+interface OrderType {
+  key: string;
+  orderCode: string;
+  customerName: string;
+  eventName: string;
+  orderDate: string;
+  totalAmount: number;
+  status: OrderStatus;
+}
+
+const STATUS_META: Record&lt;OrderStatus, { color: string; label: string }&gt; = {
+  SUCCESS: { color: &#39;green&#39;, label: &#39;Đã thanh toán&#39; },
+  PENDING: { color: &#39;orange&#39;, label: &#39;Chờ xử lý&#39; },
+  CANCELLED: { color: &#39;red&#39;, label: &#39;Đã hủy&#39; },
+};
+
+const STATUSES: OrderStatus[] = [&#39;SUCCESS&#39;, &#39;PENDING&#39;, &#39;CANCELLED&#39;];
+
+const orders: OrderType[] = Array.from({ length: 10 }, (_, i) =&gt; ({
+  key: String(i + 1),
+  orderCode: `ORD-${String(i + 1).padStart(3, &#39;0&#39;)}`,
+  customerName: `Khách hàng ${i + 1}`,
+  eventName: i % 2 === 0 ? &#39;Tech Summit 2025&#39; : &#39;Đêm nhạc Acoustic&#39;,
+  orderDate: `2025-11-${String(i + 10)}`,
+  totalAmount: (i + 1) * 250000,
+  status: STATUSES[i % 3],
+}));
+
+const columns: TableProps&lt;OrderType&gt;[&#39;columns&#39;] = [
+  { title: &#39;Mã đơn&#39;, dataIndex: &#39;orderCode&#39;, key: &#39;orderCode&#39; },
+  { title: &#39;Khách hàng&#39;, dataIndex: &#39;customerName&#39;, key: &#39;customerName&#39; },
+  { title: &#39;Sự kiện&#39;, dataIndex: &#39;eventName&#39;, key: &#39;eventName&#39; },
+  { title: &#39;Ngày đặt&#39;, dataIndex: &#39;orderDate&#39;, key: &#39;orderDate&#39; },
+  {
+    title: &#39;Tổng tiền&#39;, dataIndex: &#39;totalAmount&#39;, key: &#39;totalAmount&#39;, align: &#39;right&#39;,
+    sorter: (a, b) =&gt; a.totalAmount - b.totalAmount,
+    render: (value: number) =&gt; `${value.toLocaleString(&#39;vi-VN&#39;)} ₫`,
+  },
+  {
+    title: &#39;Trạng thái&#39;, dataIndex: &#39;status&#39;, key: &#39;status&#39;,
+    filters: STATUSES.map((s) =&gt; ({ text: STATUS_META[s].label, value: s })),
+    onFilter: (value, record) =&gt; record.status === value,
+    render: (status: OrderStatus) =&gt; &lt;Tag color={STATUS_META[status].color}&gt;{STATUS_META[status].label}&lt;/Tag&gt;,
+  },
+  {
+    title: &#39;Hành động&#39;, key: &#39;action&#39;,
+    render: (_, record) =&gt; &lt;Button type=&quot;link&quot; href={`/admin/orders/${record.orderCode}`}&gt;Xem chi tiết&lt;/Button&gt;,
+  },
+];
+
+export default function OrdersTable() {
+  return &lt;Table&lt;OrderType&gt; columns={columns} dataSource={orders} pagination={{ pageSize: 5 }} scroll={{ x: 800 }} /&gt;;
+}
+</code></pre>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// app/admin/orders/page.tsx (Server Component)
+import OrdersTable from &#39;./OrdersTable&#39;;
+
+export default function AdminOrdersPage() {
+  return (
+    &lt;main&gt;
+      &lt;h1&gt;Quản lý đơn hàng&lt;/h1&gt;
+      &lt;OrdersTable /&gt;
+    &lt;/main&gt;
+  );
+}
+</code></pre>
+<blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #fd7e14; border-radius: 0 8px 8px 0; color: #212529;">
+<p><strong>Mẹo responsive:</strong> <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">scroll={{ x: 800 }}</code> cho bảng cuộn ngang bên trong khung thay vì làm cả trang tràn ngang trên điện thoại.</p>
+</blockquote>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.6. Vibe Coding – Prompt mẫu &amp; cách kiểm duyệt code AI</h3>
+            <p>AI thường được huấn luyện trên nhiều code Ant Design v4 cũ, nên rất hay sinh sai API. Hãy nêu rõ phiên bản và môi trường trong prompt.</p>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">Hãy hướng dẫn tôi tạo một Component BookingModal.tsx sử dụng Ant Design v5 trong dự án
+Next.js 15 App Router (TypeScript strict).
+
+Yêu cầu:
+1. Sử dụng các component từ antd: Modal, Form, InputNumber, Select, DatePicker, Button.
+2. Tùy biến Theme thông qua ConfigProvider với màu primary là #6366F1 (đặt ở providers.tsx).
+3. Form gồm các trường: Loại vé (VIP, Standard), Số lượng (1-10), Ngày tham dự, Ghi chú.
+4. Đảm bảo xử lý không bị lỗi Hydration mismatch trong Next.js: dùng &#39;use client&#39; đúng chỗ,
+   dùng prop open (không dùng visible), thông báo bằng App.useApp().
+</code></pre>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">Hãy viết mã nguồn /admin/orders gồm page.tsx (Server Component) và OrdersTable.tsx
+(&#39;use client&#39;) sử dụng Table của Ant Design v5 với TypeScript.
+- Khai báo Interface OrderType và kiểu TableProps&lt;OrderType&gt;[&#39;columns&#39;].
+- Render dữ liệu mock 10 đơn hàng.
+- Cột &quot;Trạng thái&quot; dùng Tag: SUCCESS (xanh lá), PENDING (cam), CANCELLED (đỏ), có filter.
+- Phân trang 5 mục/trang, cột Action có nút &quot;Xem chi tiết&quot;. Không dùng any.
+</code></pre>
+<blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #fd7e14; border-radius: 0 8px 8px 0; color: #212529;">
+<p><strong>Checklist kiểm duyệt code AI (Ant Design v5):</strong></p>
+<ol>
+<li>Dùng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">open</code> thay cho <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">visible</code> (Modal, Drawer, Dropdown) – <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">visible</code> là API v4.</li>
+<li><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Tabs</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Menu</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Dropdown</code> dùng prop <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">items</code>, không dùng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">TabPane</code>/<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Menu.Item</code> lồng trong children.</li>
+<li>Không còn <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">import &#39;antd/dist/antd.css&#39;</code> (v5 không cần file CSS này).</li>
+<li>File chứa <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">columns</code> có hàm <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">render</code>, hoặc dùng hook <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Form.useForm</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">App.useApp</code> phải có <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&#39;use client&#39;</code>.</li>
+<li><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">ConfigProvider</code> đúng cú pháp <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">theme={{ token: { colorPrimary: &#39;#6366F1&#39;, borderRadius: 8 } }}</code> – không lồng thừa ngoặc.</li>
+<li>Không đọc <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">window</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">localStorage</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">new Date()</code> ngẫu nhiên khi render (nguồn gây Hydration mismatch).</li>
+</ol>
+</blockquote>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">📌 Tóm tắt &amp; điểm cần nhớ</h3>
+            <ul>
+<li>🔹 <strong>Chọn thư viện có chủ đích:</strong> Ant Design mạnh về component quản trị; Bootstrap dễ học; Tailwind tự do thiết kế. Chọn một thư viện chính cho cả nhóm.</li>
+<li>🔹 <strong>AntdRegistry chống FOUC:</strong> bọc ứng dụng trong <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">AntdRegistry</code> ở <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">app/layout.tsx</code>; với React 19 thêm gói vá <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">@ant-design/v5-patch-for-react-19</code>.</li>
+<li>🔹 <strong>Design Token:</strong> đổi <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">colorPrimary</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">borderRadius</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">fontFamily</code> trong <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">ConfigProvider</code> để toàn bộ component đổi theo; ghi đè chi tiết bằng SCSS Module + <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">:global</code>.</li>
+<li>🔹 <strong>Grid 24 cột:</strong> <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Row</code>/<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Col</code> với <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">xs</code> <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">sm</code> <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">md</code> <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">lg</code> giúp bố cục co giãn theo thiết bị.</li>
+<li>🔹 <strong>Ranh giới Client:</strong> component có hàm <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">render</code>, hook của antd hay sự kiện phải nằm trong file <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&#39;use client&#39;</code>; trang vẫn giữ là Server Component.</li>
+<li>🔹 <strong>Vibe Coding với antd:</strong> luôn ghi &quot;Ant Design v5&quot; trong prompt và soát lỗi API cũ (<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">visible</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">TabPane</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">antd.css</code>).</li>
+</ul>
+        </div>
+    </div>
+</details>
+
+<details style="border: 1px solid #28a745; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #eafaf1; color: #28a745; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>💡 3. Hoạt động &amp; Thực hành trên lớp</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <p style="margin-top: 0;">Thực hiện các hoạt động sau để vận dụng kiến thức của buổi học:</p>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #28a745;">🧑‍💻 Thực hành trên lớp</h3>
+            <table style="width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 14px;">
+<thead>
+<tr>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Phần</th>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Thời lượng</th>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Nhiệm vụ</th>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Output mong muốn</th>
+</tr>
+</thead>
+<tbody><tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Guided Practice</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">45&#39;</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Cài <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">antd</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">@ant-design/nextjs-registry</code>; cấu hình theme <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">#6366F1</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">borderRadius: 8</code>; dựng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">BookingModal.tsx</code></td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Modal mở mượt, không lỗi SSR/Hydration; nút và viền theo đúng Theme</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Unguided Practice</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">45&#39;</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Dựng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/admin/orders</code> bằng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Table</code> + <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Tag</code>, có Filter trạng thái và Pagination</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Bảng chuyên nghiệp, lọc và chuyển trang mượt</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Team Challenge</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">60&#39;</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Rà soát 5 màn hình chính, thay HTML thô bằng component AntD, tùy biến SCSS</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Giao diện đồng bộ, có bản sắc riêng, responsive trên Tablet &amp; Mobile</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Tổng kết</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">15&#39;</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">GV nhận xét theme của từng nhóm, giải đáp, giao BTVN</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Danh sách lỗi UI cần sửa của nhóm</td>
+</tr>
+</tbody></table>
+<p><strong>Guided (45&#39;):</strong> Cài thư viện, tạo <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">providers.tsx</code> và <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">themeConfig.ts</code>, bọc <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">AntdRegistry</code> trong <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">app/layout.tsx</code>. Xây <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">BookingModal.tsx</code> với Modal, Form, DatePicker, Select để chọn loại vé, số lượng, ngày tham dự. Kiểm tra bằng cách tắt JavaScript hoặc reload nhanh: trang không được nhấp nháy mất style.</p>
+<p><strong>Unguided (45&#39;):</strong> Trang <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/admin/orders</code> gồm các cột Mã đơn hàng, Tên khách hàng, Tên sự kiện, Ngày đặt, Tổng tiền, Trạng thái (Đã thanh toán, Chờ xử lý, Đã hủy). Thêm Filter theo trạng thái và Pagination có sẵn của Table; khuyến khích thêm Sorter cho cột Tổng tiền.</p>
+<p><strong>Team Challenge (60&#39;):</strong> Thay phần tử HTML thô bằng component tương ứng: <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Carousel</code> cho Banner, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Tabs</code> cho Danh mục, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Rate</code> cho Đánh giá, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Skeleton</code> cho trạng thái chờ. Tùy biến token và SCSS Module để giao diện không mang cảm giác &quot;nguyên bản&quot; của Ant Design.</p>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// Ví dụ Tabs đúng cú pháp v5 (items) cho thanh danh mục
+&lt;Tabs
+  defaultActiveKey=&quot;music&quot;
+  items={[
+    { key: &#39;music&#39;, label: &#39;Âm nhạc&#39;, children: &lt;EventGrid category=&quot;music&quot; /&gt; },
+    { key: &#39;technology&#39;, label: &#39;Công nghệ&#39;, children: &lt;EventGrid category=&quot;technology&quot; /&gt; },
+  ]}
+/&gt;
+</code></pre>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #28a745;">❓ Kiểm tra nhanh (Self-Assessment)</h3>
+            <p><strong>Câu 1:</strong> Mục đích chính của <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">AntdRegistry</code> (gói <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">@ant-design/nextjs-registry</code>) là gì?</p>
+<ul>
+<li>A. Đăng ký bản quyền sử dụng Ant Design</li>
+<li>B. Thu gom CSS-in-JS ở phía server để tránh FOUC khi tải trang</li>
+<li>C. Tự động chuyển mọi component sang Server Component</li>
+<li>D. Thay thế <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">ConfigProvider</code> để đổi màu chủ đạo</li>
+</ul>
+<details style="margin: 6px 0 14px 0; padding: 8px 12px; background-color: #ffffff; border: 1px dashed #adb5bd; border-radius: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #495057;">👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> B<br>
+<b>Giải thích:</b> Ant Design v5 sinh CSS bằng JavaScript; registry extract CSS ngay khi render server để HTML gửi về đã có style, tránh hiện tượng trang nhấp nháy không style.
+</details>
+
+<p><strong>Câu 2:</strong> Muốn một thẻ sự kiện chiếm cả hàng trên điện thoại nhưng 4 thẻ một hàng trên màn hình lớn, cấu hình <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Col</code> nào đúng?</p>
+<ul>
+<li>A. <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&lt;Col xs={24} lg={6}&gt;</code></li>
+<li>B. <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&lt;Col xs={6} lg={24}&gt;</code></li>
+<li>C. <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&lt;Col xs={12} lg={4}&gt;</code></li>
+<li>D. <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&lt;Col span={4}&gt;</code></li>
+</ul>
+<details style="margin: 6px 0 14px 0; padding: 8px 12px; background-color: #ffffff; border: 1px dashed #adb5bd; border-radius: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #495057;">👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> A<br>
+<b>Giải thích:</b> Grid có 24 cột: <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">xs={24}</code> chiếm trọn hàng trên mobile, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">lg={6}</code> bằng 24/6 = 4 thẻ một hàng trên màn hình lớn.
+</details>
+
+<p><strong>Câu 3:</strong> Đoạn code AI sinh ra có <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&lt;Modal visible={isOpen}&gt;</code>. Nhận xét nào đúng với Ant Design v5?</p>
+<ul>
+<li>A. Đúng chuẩn, không cần sửa</li>
+<li>B. Phải đổi thành <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">show={isOpen}</code></li>
+<li>C. Phải đổi thành <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">open={isOpen}</code> vì <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">visible</code> là API cũ của v4</li>
+<li>D. Phải bỏ prop này, Modal tự mở</li>
+</ul>
+<details style="margin: 6px 0 14px 0; padding: 8px 12px; background-color: #ffffff; border: 1px dashed #adb5bd; border-radius: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #495057;">👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> C<br>
+<b>Giải thích:</b> Từ v5, Modal, Drawer, Dropdown dùng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">open</code>. Đây là lỗi AI hay mắc do học từ code v4 cũ.
+</details>
+
+<p><strong>Câu 4:</strong> Cách nào ghi đè style tiêu đề Modal đặt vé mà KHÔNG ảnh hưởng các Modal khác?</p>
+<ul>
+<li>A. Sửa <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">.ant-modal-title</code> trong <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">globals.scss</code></li>
+<li>B. Đổi <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">colorPrimary</code> trong <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">ConfigProvider</code></li>
+<li>C. Thêm <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">!important</code> vào mọi thuộc tính trong <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">globals.scss</code></li>
+<li>D. Gán <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">className</code> cục bộ từ SCSS Module cho Modal rồi dùng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">:global(.ant-modal-title)</code> bên trong class đó</li>
+</ul>
+<details style="margin: 6px 0 14px 0; padding: 8px 12px; background-color: #ffffff; border: 1px dashed #adb5bd; border-radius: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #495057;">👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> D<br>
+<b>Giải thích:</b> Class của CSS Module được hash nên chỉ áp dụng cho Modal được gán; <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">:global</code> bên trong chỉ nhắm class antd nằm dưới class đó. Sửa global hoặc đổi token sẽ ảnh hưởng toàn ứng dụng.
+</details>
+
+<p><em>Bộ 10+ câu đầy đủ: Quiz Bài 05 trên LMS</em></p>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #28a745;">💬 Thảo luận &amp; 📤 Nộp bài</h3>
+            <ul>
+<li><strong>Chủ đề thảo luận Diễn đàn (Forum Discussion):</strong> Nhóm bạn sẽ chọn Ant Design, Bootstrap hay Tailwind cho phần giao diện người dùng công khai của Smart Event Hub, và vì sao? Hãy đưa ra ít nhất 2 tiêu chí (tốc độ phát triển, bản sắc thiết kế, kích thước bundle, kinh nghiệm của thành viên…) và một rủi ro khi lựa chọn của nhóm.</li>
+<li><strong>Yêu cầu nộp bài (Bài tập về nhà):</strong><ul>
+<li>Kiểm tra và tối ưu tính Responsive cho toàn bộ component Ant Design đã dùng ở 5 màn hình chính, sử dụng Grid <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Row</code>/<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Col</code> với <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">xs</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">sm</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">md</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">lg</code>; sửa tất cả lỗi vỡ khung.</li>
+<li><strong>Output:</strong> Giao diện không tràn ngang (horizontal overflow) trên màn hình di động; kèm ảnh chụp 3 kích thước (375px, 768px, 1440px) của mỗi màn hình trong mô tả PR.</li>
+<li><strong>Hạn nộp:</strong> trước buổi học tiếp theo. Nộp link Pull Request trên LMS. Nhánh <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">feat/b05-&lt;mssv&gt;-antd-responsive</code>, tiêu đề PR <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">[B05] &lt;Họ tên&gt; – Ant Design &amp; Responsive</code>, commit dạng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">feat(ui): ...</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">fix(ui): repair responsive layout on mobile</code>.</li>
+</ul>
+</li>
+</ul>
+        </div>
+    </div>
+</details>
+
+<details style="border: 1px solid #6f42c1; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #f3e5f5; color: #6f42c1; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>🆘 4. Góc trợ giúp và mở rộng</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <ul>
+<li><strong>📚 Tài liệu đọc &amp; tham khảo:</strong><ul>
+<li>Ant Design v5 Official Docs: <a href="https://ant.design/components/overview/" target="_blank" rel="noopener noreferrer" style="color: #6f42c1;">https://ant.design/components/overview/</a></li>
+<li>Ant Design with Next.js App Router: <a href="https://ant.design/docs/react/use-with-next" target="_blank" rel="noopener noreferrer" style="color: #6f42c1;">https://ant.design/docs/react/use-with-next</a></li>
+<li>Ant Design – Customize Theme: <a href="https://ant.design/docs/react/customize-theme" target="_blank" rel="noopener noreferrer" style="color: #6f42c1;">https://ant.design/docs/react/customize-theme</a></li>
+<li>Ant Design v5 cho React 19: <a href="https://ant.design/docs/react/v5-for-19" target="_blank" rel="noopener noreferrer" style="color: #6f42c1;">https://ant.design/docs/react/v5-for-19</a></li>
+<li>Bootstrap 5 Introduction: <a href="https://getbootstrap.com/docs/5.3/getting-started/introduction/" target="_blank" rel="noopener noreferrer" style="color: #6f42c1;">https://getbootstrap.com/docs/5.3/getting-started/introduction/</a></li>
+<li>Tailwind CSS với Next.js: <a href="https://tailwindcss.com/docs/installation/framework-guides/nextjs" target="_blank" rel="noopener noreferrer" style="color: #6f42c1;">https://tailwindcss.com/docs/installation/framework-guides/nextjs</a></li>
+<li><strong>Câu hỏi tự kiểm tra khi đọc:</strong> (1) Lỗi Hydration Mismatch xảy ra do đâu khi dùng thư viện UI client-side trong Next.js, và khắc phục thế nào? (2) Làm thế nào để ghi đè CSS của một component Ant Design mà không ảnh hưởng tới các component khác?</li>
+</ul>
+</li>
+</ul>
+        <p><strong>Hỗ trợ kỹ thuật:</strong> Gặp lỗi cài đặt (Node.js, Git, Next.js) hoặc lỗi build, hãy đăng câu hỏi lên diễn đàn môn học kèm ảnh chụp lỗi, lệnh đã chạy và link repository. Giảng viên và bạn học sẽ phản hồi trước buổi học tiếp theo.</p>
+        <p><strong>Nguyên tắc Vibe Coding:</strong> AI sinh khung code, các bạn chịu trách nhiệm đọc hiểu, kiểm tra kiểu dữ liệu và sửa lỗi. Mọi đoạn code nộp lên đều có thể được hỏi phản biện.</p>
+    </div>
+</details>

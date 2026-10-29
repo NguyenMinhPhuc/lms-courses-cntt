@@ -1,0 +1,505 @@
+<details open="" style="border: 1px solid #007bff; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #e7f1ff; color: #007bff; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>📘 1. Tổng quan bài học</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <p style="margin-top: 0;"><strong>BÀI 07 - Kiểm tra giữa kỳ – Báo cáo tiến độ 50% dự án (Production build check, README, Conventional Commits) (5 tiết)</strong></p>
+        <p style="margin: 0 0 8px 0; color: #6c757d;">CHƯƠNG 4: ĐÁNH GIÁ GIỮA KỲ</p>
+        <p><strong>Thời lượng:</strong> 5 tiết (225 phút) · <strong>Hình thức:</strong> Kiểm tra giữa kỳ (30% điểm học phần) – Báo cáo đồ án nhóm · <strong>Chuẩn đầu ra:</strong> PI 1.4 (CLO1), PI 2.3 (CLO2), PI 5.1 (CLO4)<br><strong>Dự án xuyên suốt:</strong> Smart Event Hub – nghiệm thu 50% tiến độ: Wireframe 5 màn hình, Routing, UI Layout (Ant Design + SCSS) và kiến trúc Component.</p>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #f3f8ff; border: 1px solid #cfe2ff; border-radius: 8px;">
+            <p>🎯 <strong>MỤC TIÊU BÀI HỌC (Learning Objectives)</strong><br>Sau khi hoàn thành bài học này, người học có thể:</p>
+<ul>
+<li><strong>[Bloom 1/2 - Kiến thức]:</strong> Giải thích được vì sao một dự án chạy tốt với <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">npm run dev</code> vẫn có thể thất bại khi <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">npm run build</code>; trình bày được cấu trúc README chuẩn và quy ước Conventional Commits.</li>
+<li><strong>[Bloom 3/4 - Kỹ năng]:</strong> Chạy <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">npm run lint</code> / <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">npm run build</code>, phân tích thông báo lỗi TypeScript/ESLint/Hydration và sửa dứt điểm; dọn dẹp code (console.log, dead code, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">any</code>) trước khi báo cáo.</li>
+<li><strong>[Bloom 5/6 - Năng lực]:</strong> Đóng gói và trình bày sản phẩm nhóm trong 10 phút, bảo vệ phần code cá nhân trong 5 phút phản biện; tự đánh giá sản phẩm theo rubric giữa kỳ.</li>
+</ul>
+        </div>
+        <p><strong>📝 Đặt vấn đề &amp; dẫn nhập</strong></p>
+        <p>Tối hôm trước buổi báo cáo, nhóm của Minh chạy <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">npm run dev</code>, mở trình duyệt và thấy mọi trang Smart Event Hub hiển thị đẹp. Sáng hôm sau, giảng viên yêu cầu chạy <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">npm run build</code> ngay tại lớp. Terminal đỏ rực: <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Type error: Property &#39;bannerUrl&#39; does not exist on type &#39;EventItem&#39;</code>, kèm hai lỗi ESLint <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">no-unused-vars</code> và một cảnh báo <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useSearchParams() should be wrapped in a suspense boundary</code>. Nhóm mất 20 phút đầu buổi chỉ để sửa lỗi thay vì luyện demo.</p>
+<p><strong>Câu hỏi gợi mở:</strong> Nếu dev server không báo gì, tại sao build lại thất bại? Và khi giảng viên hỏi &quot;Phần nào trong repo là do em viết?&quot;, bạn sẽ chứng minh bằng cách nào ngoài lời kể? Buổi hôm nay trả lời cả hai câu hỏi đó, đồng thời là buổi <strong>kiểm tra giữa kỳ chiếm 30% điểm học phần</strong>.</p>
+<blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #007bff; border-radius: 0 8px 8px 0; color: #212529;">
+<p>🧭 <strong>Trước giờ học (Flipped Classroom):</strong> Đọc <em>Next.js Production Checklist</em> và <em>Conventional Commits Specification</em> (link ở mục 5). Hoàn thành BTVN Buổi 6: chuẩn bị Slide, Wireframe, Source Code. Mỗi nhóm tự chạy thử <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">npm run lint</code> và <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">npm run build</code> ở nhà, ghi lại các lỗi gặp phải. Làm quiz ôn tập giai đoạn 1 (5–10 câu) trên LMS <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">https://learn.lhu.edu.vn</code>.</p>
+</blockquote>
+    </div>
+</details>
+
+<details style="border: 1px solid #fd7e14; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #fff5eb; color: #fd7e14; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>📚 2. Học liệu chính</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.1. Quy trình kiểm tra Production Build: vì sao dev chạy được mà build lỗi?</h3>
+            <ul>
+<li><strong>Khái niệm:</strong> <strong>Production build</strong> là bước Next.js biên dịch toàn bộ dự án thành bản tối ưu để triển khai. Lệnh <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">npm run build</code> (tức <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">next build</code>) kích hoạt <strong>TypeScript type checker</strong> và <strong>ESLint</strong> trên mọi file, đồng thời prerender các trang tĩnh. Mọi lỗi type hoặc promise không được xử lý phải được giải quyết triệt để trước khi demo hay deploy.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li><strong>Dev biên dịch theo yêu cầu:</strong> <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">next dev</code> chỉ compile route bạn đang mở. Trang <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/admin/manage-events</code> chưa ai truy cập thì lỗi trong đó vẫn &quot;ngủ yên&quot;.</li>
+<li><strong>Dev ưu tiên tốc độ:</strong> lỗi type thường chỉ hiện gạch đỏ trong VS Code, không chặn trang. Ngược lại, build dừng hẳn khi gặp lỗi type hoặc lỗi ESLint mức <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">error</code>.</li>
+<li><strong>Prerender lúc build:</strong> Server Component của trang tĩnh được thực thi ngay khi build. Code chạm vào <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">window</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">localStorage</code> ở cấp module sẽ văng lỗi <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">window is not defined</code>.</li>
+<li><strong>Môi trường khác nhau:</strong> Windows không phân biệt hoa thường trong đường dẫn, còn Linux (máy build của Vercel) thì có. <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">import Header from &#39;./header&#39;</code> trong khi file tên <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Header.tsx</code> sẽ lỗi khi deploy.</li>
+</ul>
+</li>
+</ul>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;"># Quy trình kiểm tra lỗi tĩnh trước khi báo cáo (chạy theo đúng thứ tự)
+npm run lint          # ESLint: unused vars, any, rules của Next.js
+npx tsc --noEmit      # (tùy chọn) chỉ kiểm tra type, không sinh file
+npm run build         # Type check + lint + build production
+npm run start         # Chạy thử bản build tại http://localhost:3000
+</code></pre>
+<table style="width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 14px;">
+<thead>
+<tr>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Lỗi thường gặp khi build</th>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Nguyên nhân</th>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Cách sửa</th>
+</tr>
+</thead>
+<tbody><tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;"><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Type error: Property &#39;x&#39; does not exist on type &#39;Y&#39;</code></td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Interface lệch với dữ liệu thật, code AI tự thêm field</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Cập nhật interface trong <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">types/</code>, không ép kiểu bằng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">any</code></td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;"><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&#39;foo&#39; is defined but never used</code></td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Biến, import thừa sau khi refactor</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Xóa bỏ, hoặc dùng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">npm run lint -- --fix</code></td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;"><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useSearchParams() should be wrapped in a suspense boundary</code></td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Client Component dùng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useSearchParams</code> trên trang prerender</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Bọc component đó trong <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&lt;Suspense fallback={...}&gt;</code></td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;"><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">ReferenceError: window is not defined</code></td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Truy cập Browser API khi render trên server</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Chuyển vào <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useEffect</code> hoặc dùng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">dynamic(..., { ssr: false })</code> trong Client Component</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;"><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Module not found: Can&#39;t resolve &#39;./header&#39;</code></td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Sai hoa thường tên file</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Đặt tên file và import trùng khớp tuyệt đối</td>
+</tr>
+</tbody></table>
+<ul>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #fd7e14; border-radius: 0 8px 8px 0; color: #212529;">
+<p>Nhóm Smart Event Hub dùng AI sinh <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">EventCard</code> với prop <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">bannerUrl</code>, nhưng interface <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">EventItem</code> chỉ có <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">imageUrl</code>. Ở dev, trang chủ vẫn hiện vì ảnh lỗi không làm vỡ layout. Khi build, TypeScript chặn ngay. Cách sửa đúng: thống nhất một tên field trong <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">types/event.ts</code>, không phải thêm <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">// @ts-ignore</code>.</p>
+</blockquote>
+</li>
+</ul>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.2. Clean Code trước khi báo cáo</h3>
+            <ul>
+<li><strong>Khái niệm:</strong> Clean code giai đoạn giữa kỳ tập trung vào ba việc: <strong>loại bỏ <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">console.log</code> và dead code</strong>, <strong>không còn <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">any</code></strong>, và <strong>đặt tên file/component nhất quán</strong>. Giảng viên sẽ mở code của từng thành viên, nên mã nguồn gọn gàng giúp bạn giải thích nhanh và tự tin hơn.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li><strong>Quy ước đặt tên:</strong> Component và file component dùng PascalCase (<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">EventCard.tsx</code>); hook bắt đầu bằng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">use</code> (<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">useDebounce.ts</code>); thư mục route dùng chữ thường, gạch nối (<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">manage-events/</code>); SCSS Module đặt cùng tên component (<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">EventCard.module.scss</code>).</li>
+<li><strong>Để ESLint làm &quot;người gác cổng&quot;:</strong> nâng các rule quan trọng lên mức <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">error</code> để build tự chặn khi còn vi phạm.</li>
+<li><strong>Hydration warning cũng là lỗi:</strong> cảnh báo vàng/đỏ trong DevTools Console (ví dụ <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Text content does not match server-rendered HTML</code>) phải được xử lý, không được bỏ qua khi demo.</li>
+</ul>
+</li>
+</ul>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// eslint.config.mjs (Next.js 15 – flat config do create-next-app sinh ra, bổ sung rules)
+import { dirname } from &#39;path&#39;;
+import { fileURLToPath } from &#39;url&#39;;
+import { FlatCompat } from &#39;@eslint/eslintrc&#39;;
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const compat = new FlatCompat({ baseDirectory: __dirname });
+
+const eslintConfig = [
+  ...compat.extends(&#39;next/core-web-vitals&#39;, &#39;next/typescript&#39;),
+  {
+    rules: {
+      &#39;no-console&#39;: [&#39;warn&#39;, { allow: [&#39;warn&#39;, &#39;error&#39;] }],
+      &#39;@typescript-eslint/no-explicit-any&#39;: &#39;error&#39;,
+      &#39;@typescript-eslint/no-unused-vars&#39;: &#39;error&#39;,
+    },
+  },
+];
+
+export default eslintConfig;
+</code></pre>
+<ul>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #fd7e14; border-radius: 0 8px 8px 0; color: #212529;">
+<p>Trước báo cáo, Lan chạy <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">npm run lint</code> và phát hiện 14 câu <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">console.log(&#39;data&#39;, data)</code> còn sót trong trang Đặt vé, cùng một component <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">OldSeatPicker.tsx</code> không còn được import ở đâu. Xóa toàn bộ, commit với message <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">chore(booking): remove debug logs and unused seat picker</code>. Lịch sử Git vừa sạch, vừa là minh chứng đóng góp.</p>
+</blockquote>
+</li>
+</ul>
+<blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #fd7e14; border-radius: 0 8px 8px 0; color: #212529;">
+<p>💡 <strong>Mẹo:</strong> Từ Next.js 15.5, lệnh <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">next lint</code> được đánh dấu deprecated. Nếu terminal hiện cảnh báo này, các bạn đổi script <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&quot;lint&quot;</code> trong <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">package.json</code> thành <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&quot;eslint .&quot;</code> – cấu hình <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">eslint.config.mjs</code> ở trên vẫn dùng được.</p>
+</blockquote>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.3. Cấu trúc README.md chuẩn cho đồ án</h3>
+            <ul>
+<li><strong>Khái niệm:</strong> <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">README.md</code> đặt tại <strong>root của Git Repository</strong> là &quot;cửa trước&quot; của dự án. Người chấm mở repo sẽ đọc file này đầu tiên để biết dự án làm gì, ai làm phần nào và chạy thế nào.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong> README giữa kỳ bắt buộc có 5 phần:<ul>
+<li><strong>Tổng quan:</strong> tên dự án, mô tả 3–4 câu, công nghệ sử dụng.</li>
+<li><strong>Thành viên &amp; phân công:</strong> bảng gồm Họ tên, MSSV, Vai trò, Tính năng đã đảm nhiệm.</li>
+<li><strong>Hướng dẫn cài đặt:</strong> các lệnh chạy được ngay trên máy mới.</li>
+<li><strong>Sơ đồ thư mục:</strong> kiến trúc App Router đang dùng.</li>
+<li><strong>Thiết kế:</strong> link Figma Wireframe 5 màn hình (hoặc ảnh chụp trong <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">docs/wireframes/</code>) và link Preview/Demo.</li>
+</ul>
+</li>
+</ul>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;"># Smart Event Hub
+
+Hệ thống đặt vé &amp; quản lý sự kiện trực tuyến, xây dựng bằng Next.js 15 (App Router),
+TypeScript, Ant Design v5 và SCSS Module. Người dùng tìm kiếm sự kiện, xem chi tiết,
+chọn ghế và đặt vé; Admin quản lý sự kiện và đơn hàng.
+
+## Thành viên &amp; Phân công
+| Họ tên | MSSV | Vai trò | Tính năng đã đảm nhiệm |
+|---|---|---|---|
+| Nguyễn Văn A | 1234xxxx | Team Lead | Layout chung, Routing, Admin Dashboard |
+| Trần Thị B | 1234xxxx | Front-End Dev | Trang chủ, EventCard, Filter |
+
+## Cài đặt &amp; chạy local
+```bash
+git clone &lt;repo-url&gt;
+cd smart-event-hub
+npm install
+npm run dev   # http://localhost:3000
+```
+
+## Cấu trúc thư mục
+```text
+app/            # Routes (App Router): (auth), events/[id], checkout, admin...
+components/     # ui/ (atoms) · shared/ · organisms/
+styles/         # _variables.scss, _mixins.scss
+types/          # Interface &amp; type dùng chung
+```
+
+## Thiết kế &amp; Demo
+- Wireframe Figma: &lt;link&gt;
+- Preview: &lt;link&gt;
+</code></pre>
+<ul>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #fd7e14; border-radius: 0 8px 8px 0; color: #212529;">
+<p>Một nhóm ghi lệnh <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">yarn dev</code> trong README nhưng repo chỉ có <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">package-lock.json</code>. Giảng viên clone về, chạy theo hướng dẫn và gặp lỗi ngay bước đầu. Quy tắc: <strong>mỗi lệnh trong README phải được chính nhóm chạy thử trên một thư mục clone mới</strong>.</p>
+</blockquote>
+</li>
+</ul>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.4. Conventional Commits &amp; minh chứng đóng góp Git</h3>
+            <ul>
+<li><strong>Khái niệm:</strong> <strong>Conventional Commits</strong> là quy ước viết commit message theo dạng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&lt;type&gt;(&lt;scope&gt;): &lt;mô tả ngắn&gt;</code>. Lịch sử commit rõ ràng giúp giảng viên nhận ra ai đã làm tính năng nào, thay vì chỉ thấy một chuỗi &quot;update&quot;, &quot;fix bug&quot;, &quot;abc&quot;.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">feat</code>: thêm tính năng · <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">fix</code>: sửa lỗi · <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">refactor</code>: tái cấu trúc, không đổi hành vi · <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">style</code>: định dạng, SCSS · <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">docs</code>: tài liệu, README · <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">chore</code>: cấu hình, dọn dẹp.</li>
+<li><code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">scope</code> là phân hệ: <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">auth</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">event</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">cart</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">ui</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">admin</code>…</li>
+<li>Mô tả viết ở thể mệnh lệnh, ngắn gọn, tiếng Anh hoặc tiếng Việt thống nhất trong nhóm.</li>
+</ul>
+</li>
+</ul>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;"># Mẫu commit message chuẩn
+git commit -m &quot;feat(event): implement seat matrix selection logic&quot;
+git commit -m &quot;fix(cart): resolve total amount calculation bug&quot;
+git commit -m &quot;feat(auth): add login form validation&quot;
+git commit -m &quot;fix(ui): repair responsive layout on mobile&quot;
+
+# Lệnh trích xuất minh chứng đóng góp cá nhân
+git shortlog -sn --all                        # Số commit theo từng thành viên
+git log --author=&quot;Tran Thi B&quot; --oneline       # Commit của một người
+git log --graph --oneline --all               # Sơ đồ branch &amp; merge
+</code></pre>
+<ul>
+<li><strong>Minh chứng nên chuẩn bị:</strong> Git Commit Log từng cá nhân, danh sách Pull Request đã tạo/review trên GitHub, trang <em>Insights → Contributors</em> của repo, và bảng phân công trong README khớp với lịch sử commit.</li>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #fd7e14; border-radius: 0 8px 8px 0; color: #212529;">
+<p>Hai nhóm cùng hoàn thành trang Đặt vé. Nhóm thứ nhất có 3 commit &quot;update code&quot; do một người push. Nhóm thứ hai có 27 commit chia đều cho 4 thành viên, mỗi tính năng nằm trên một branch <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">feature/...</code> và được merge qua PR. Tiêu chí &quot;Git &amp; phối hợp&quot; sẽ phân biệt rõ hai nhóm này.</p>
+</blockquote>
+</li>
+</ul>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.5. Sản phẩm cần nộp, kịch bản báo cáo &amp; Rubric giữa kỳ</h3>
+            <ul>
+<li><strong>Sản phẩm cần nộp:</strong> (1) File Wireframe Figma 5 màn hình (Trang chủ, Chi tiết sự kiện, Đặt vé, Trang cá nhân, Admin Dashboard); (2) Source Code Repository Git có commit đầy đủ của các thành viên; (3) Link Preview/Demo giao diện đã áp dụng Ant Design/SCSS Responsive; (4) <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">README.md</code> chuẩn; (5) Slide báo cáo 5–7 slide.</li>
+<li><strong>Kịch bản 10 phút thuyết trình + 5 phút phản biện:</strong></li>
+</ul>
+<table style="width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 14px;">
+<thead>
+<tr>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Mốc thời gian</th>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Nội dung trình bày</th>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Người phụ trách gợi ý</th>
+</tr>
+</thead>
+<tbody><tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">0&#39;–1&#39;</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Giới thiệu nhóm, mục tiêu dự án, phân công</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Team Lead</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">1&#39;–3&#39;</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Trình diễn Wireframe 5 màn hình chính</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Thành viên phụ trách UI/UX</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">3&#39;–7&#39;</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Demo live: Responsive Mobile/Desktop, Ant Design + SCSS Custom, luồng Routing mượt mà</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Mỗi người demo phần mình làm</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">7&#39;–9&#39;</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Kiến trúc Component &amp; cấu trúc thư mục App Router</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Thành viên phụ trách kiến trúc</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">9&#39;–10&#39;</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Git Commit Log từng cá nhân, kết quả <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">npm run build</code></td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Team Lead</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">10&#39;–15&#39;</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;"><strong>Phản biện cá nhân:</strong> GV hỏi trực tiếp từng thành viên về code mình đảm nhiệm</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Từng cá nhân</td>
+</tr>
+</tbody></table>
+<ul>
+<li><strong>Rubric giữa kỳ (tổng 5 điểm, quy đổi sang thang 10):</strong></li>
+</ul>
+<table style="width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 14px;">
+<thead>
+<tr>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Tiêu chí</th>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Điểm tối đa</th>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Yêu cầu để đạt tối đa</th>
+</tr>
+</thead>
+<tbody><tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Wireframe UI</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">1.5</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Đủ 5 màn hình, cấu trúc chuẩn Header/Content/Sidebar/Footer, khớp giao diện thực tế</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">UI chuyên nghiệp</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">2.0</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Ant Design/Bootstrap + SCSS Custom, Responsive Mobile/Desktop, Hot Reload không lỗi, Console sạch</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Routing &amp; Component Architecture</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">1.0</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">App Router đúng convention, Nested/Dynamic Route chạy mượt, component tái sử dụng tổ chức rõ ràng</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Git Commit &amp; phối hợp nhóm</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">0.5</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Mỗi thành viên có commit riêng, message theo Conventional Commits, có branch/PR</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;"><strong>Tổng</strong></td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;"><strong>5.0</strong></td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;"><strong>Điểm thang 10 = Tổng × 2</strong></td>
+</tr>
+</tbody></table>
+<ul>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #fd7e14; border-radius: 0 8px 8px 0; color: #212529;">
+<p>Nhóm đạt Wireframe 1.5 + UI 1.5 + Routing 1.0 + Git 0.5 = 4.5/5, quy đổi <strong>9.0/10</strong>, chiếm 30% điểm học phần. Phần phản biện 5 phút dùng để xác minh mỗi cá nhân thực sự hiểu và đã viết phần code được ghi trong bảng phân công.</p>
+</blockquote>
+</li>
+</ul>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.6. Vibe Coding – Prompt mẫu &amp; cách kiểm duyệt code AI</h3>
+            <p>AI rất hữu ích để soạn khung README và chẩn đoán lỗi hydration. Tuy vậy, nội dung báo cáo là <strong>trách nhiệm của nhóm</strong>: AI không biết MSSV, không biết ai làm gì, và có thể &quot;bịa&quot; tính năng chưa hề tồn tại.</p>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">Hãy đóng vai một Technical Lead. Viết cho tôi nội dung file README.md bằng Markdown
+cho dự án &quot;Smart Event Hub&quot; (Next.js, TypeScript, Ant Design, SCSS).
+Yêu cầu chi tiết:
+1. Tên dự án &amp; Mô tả ngắn gọn (3-4 câu).
+2. Bảng phân công công việc nhóm 4 người (Cột: Họ tên, MSSV, Vai trò, Tính năng đã đảm nhiệm).
+3. Hướng dẫn chạy dự án ở local (npm install, npm run dev).
+4. Cấu trúc thư mục dự án (App Router architecture).
+5. Link đính kèm file thiết kế Wireframe Figma.
+</code></pre>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">Tôi gặp lỗi Hydration Error trong Next.js App Router khi sử dụng Component DatePicker / Modal
+của Ant Design. Hãy giải thích nguyên nhân và đưa ra giải pháp sửa lỗi triệt để bằng cách
+sử dụng `dynamic import` với `{ ssr: false }` hoặc Hook `useEffect` để chỉ render ở Client-side.
+</code></pre>
+<p>Lưu ý quan trọng với Next.js 15: <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">dynamic(..., { ssr: false })</code> <strong>chỉ được gọi bên trong Client Component</strong>. Nếu AI đặt nó trong <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">page.tsx</code> (Server Component), build sẽ báo lỗi.</p>
+<pre style="background-color: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre;"><code style="font-family: Consolas, 'Courier New', monospace; background: none; color: inherit; padding: 0;">// components/booking/BookingDatePickerNoSSR.tsx
+&#39;use client&#39;;
+
+import dynamic from &#39;next/dynamic&#39;;
+import { Skeleton } from &#39;antd&#39;;
+
+const BookingDatePickerNoSSR = dynamic(() =&gt; import(&#39;./BookingDatePicker&#39;), {
+  ssr: false,
+  loading: () =&gt; &lt;Skeleton.Input active block /&gt;,
+});
+
+export default BookingDatePickerNoSSR;
+</code></pre>
+<p><strong>Checklist kiểm duyệt output AI trước khi nộp:</strong></p>
+<ul>
+<li>README: thay toàn bộ tên, MSSV, link giả bằng thông tin thật; xóa tính năng nhóm chưa làm.</li>
+<li>Mọi lệnh trong README đã được chạy thử; cấu trúc thư mục khớp repo thực tế.</li>
+<li>Lời giải hydration: tìm đúng nguyên nhân gốc (<code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">new Date()</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Math.random()</code>, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">localStorage</code> trong lúc render, thẻ <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&lt;div&gt;</code> lồng trong <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&lt;p&gt;</code>…) trước khi tắt SSR. <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">ssr: false</code> là giải pháp sau cùng, không phải mặc định.</li>
+<li>Sau khi sửa: <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">npm run lint</code> và <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">npm run build</code> đều pass, Console không còn cảnh báo.</li>
+</ul>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">📌 Tóm tắt &amp; điểm cần nhớ</h3>
+            <ul>
+<li>🔹 <strong>Build mới là thước đo thật:</strong> <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">npm run dev</code> chỉ compile route đang mở; <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">npm run build</code> kiểm tra type, lint và prerender toàn bộ dự án.</li>
+<li>🔹 <strong>Thứ tự kiểm tra:</strong> <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">npm run lint</code> → <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">npm run build</code> → <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">npm run start</code>, và Console DevTools phải sạch lỗi đỏ/vàng.</li>
+<li>🔹 <strong>Clean code tối thiểu:</strong> không <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">console.log</code>, không dead code, không <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">any</code>, tên file/component nhất quán.</li>
+<li>🔹 <strong>README là cửa trước của repo:</strong> tổng quan, phân công, cài đặt, sơ đồ thư mục, link Wireframe/Demo – mọi lệnh phải chạy được.</li>
+<li>🔹 <strong>Conventional Commits = minh chứng đóng góp:</strong> <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">type(scope): mô tả</code>, commit đều đặn trên branch riêng, merge qua PR.</li>
+<li>🔹 <strong>Rubric giữa kỳ 5 điểm:</strong> Wireframe 1.5 · UI 2.0 · Routing &amp; Component 1.0 · Git 0.5, nhân 2 để quy đổi thang 10.</li>
+</ul>
+        </div>
+    </div>
+</details>
+
+<details style="border: 1px solid #28a745; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #eafaf1; color: #28a745; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>💡 3. Hoạt động &amp; Thực hành trên lớp</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <p style="margin-top: 0;">Thực hiện các hoạt động sau để vận dụng kiến thức của buổi học:</p>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #28a745;">🧑‍💻 Lịch trình 225 phút của buổi kiểm tra</h3>
+            <table style="width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 14px;">
+<thead>
+<tr>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Phần</th>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Thời lượng</th>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Nhiệm vụ</th>
+<th style="padding: 8px; border: 1px solid #dee2e6; background-color: #f1f3f5; text-align: left;">Output mong muốn</th>
+</tr>
+</thead>
+<tbody><tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Tổng kết giai đoạn 1 &amp; quy trình đánh giá</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">60&#39;</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">GV review Wireframe, App Router, Ant Design/SCSS Module, Clean Code TypeScript; phổ biến kịch bản báo cáo và rubric</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Nhóm nắm rõ tiêu chí chấm, thứ tự báo cáo</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Guided – Chuẩn bị &amp; đóng gói báo cáo</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">45&#39;</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">GV hướng dẫn từng nhóm chạy <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">npm run build</code>; hoàn thiện <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">README.md</code>; tổng hợp link Preview/Demo Buổi 1–6</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">README chuẩn tại root repo; build pass 100%, không lỗi Compile/Type</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Unguided – Kiểm tra lỗi tự động &amp; Hot Reload</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">45&#39;</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Cross-review 4 trang chính; sửa console warning, hydration mismatch; chuẩn bị Slide 5–7 slide</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">App chạy mượt, Console không còn lỗi đỏ/vàng; Slide hoàn chỉnh</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Team Challenge – Báo cáo giữa kỳ</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">60&#39;</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Mỗi nhóm 10&#39; thuyết trình &amp; demo live + 5&#39; phản biện cá nhân</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Điểm giữa kỳ ghi nhận theo rubric</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Tổng kết</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">15&#39;</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">GV nhận xét chung, công bố điểm, giao BTVN</td>
+<td style="padding: 8px; border: 1px solid #dee2e6; vertical-align: top;">Danh sách góp ý cho từng nhóm</td>
+</tr>
+</tbody></table>
+<ul>
+<li><strong>Guided (45&#39;):</strong> Giảng viên đi từng nhóm, cùng chạy <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">npm run build</code> để phát hiện lỗi TypeScript/ESLint ẩn. Nhóm hoàn thiện README gồm mô tả dự án, thành viên &amp; phân công, hướng dẫn cài đặt, sơ đồ Wireframe (link Figma/ảnh chụp).</li>
+<li><strong>Unguided (45&#39;):</strong> Các nhóm tự review chéo giữa các trang Trang chủ, Chi tiết sự kiện, Đặt vé, Dashboard Admin. Kiểm tra Hot Reload, xử lý dứt điểm lỗi console và hydration còn tồn đọng, hoàn thiện Slide.</li>
+<li><strong>Team Challenge (60&#39;):</strong> Nội dung demo bắt buộc: Wireframe 5 màn hình chính; giao diện thực tế Responsive Mobile/Desktop với Ant Design + SCSS Custom; luồng điều hướng Routing; Git Commit Log từng cá nhân. Lịch báo cáo cụ thể của từng nhóm do giảng viên công bố trước buổi học.</li>
+</ul>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #28a745;">❓ Kiểm tra nhanh (Self-Assessment)</h3>
+            <p><strong>Câu 1:</strong> Dự án chạy bình thường với <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">npm run dev</code> nhưng <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">npm run build</code> báo <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Type error</code> ở trang <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">/admin/manage-events</code>. Nguyên nhân hợp lý nhất là gì?</p>
+<ul>
+<li>A. Máy tính thiếu RAM khi build</li>
+<li>B. Dev server chỉ compile route được truy cập và không chặn trang vì lỗi type</li>
+<li>C. Next.js không hỗ trợ TypeScript ở chế độ production</li>
+<li>D. Trang admin bắt buộc phải là Client Component</li>
+</ul>
+<details style="margin: 6px 0 14px 0; padding: 8px 12px; background-color: #ffffff; border: 1px dashed #adb5bd; border-radius: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #495057;">👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> B<br>
+<b>Giải thích:</b> <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">next dev</code> biên dịch theo yêu cầu và ưu tiên tốc độ, còn <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">next build</code> kiểm tra type trên toàn bộ dự án nên lỗi "ngủ yên" ở trang chưa mở sẽ lộ ra.
+</details>
+
+<p><strong>Câu 2:</strong> Commit message nào tuân thủ Conventional Commits?</p>
+<ul>
+<li>A. <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">update code trang dat ve</code></li>
+<li>B. <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">Fixed bug!!!</code></li>
+<li>C. <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">fix(cart): resolve total amount calculation bug</code></li>
+<li>D. <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">cart - final version 2</code></li>
+</ul>
+<details style="margin: 6px 0 14px 0; padding: 8px 12px; background-color: #ffffff; border: 1px dashed #adb5bd; border-radius: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #495057;">👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> C<br>
+<b>Giải thích:</b> Định dạng chuẩn là <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">type(scope): mô tả</code>. Phương án C có type <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">fix</code>, scope <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">cart</code> và mô tả rõ thay đổi.
+</details>
+
+<p><strong>Câu 3:</strong> Một nhóm đạt Wireframe 1.0, UI 2.0, Routing &amp; Component 0.75, Git 0.25. Điểm giữa kỳ quy đổi thang 10 là bao nhiêu?</p>
+<ul>
+<li>A. 8.0</li>
+<li>B. 4.0</li>
+<li>C. 7.5</li>
+<li>D. 9.0</li>
+</ul>
+<details style="margin: 6px 0 14px 0; padding: 8px 12px; background-color: #ffffff; border: 1px dashed #adb5bd; border-radius: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #495057;">👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> A<br>
+<b>Giải thích:</b> Tổng 1.0 + 2.0 + 0.75 + 0.25 = 4.0/5, nhân 2 được 8.0/10.
+</details>
+
+<p><strong>Câu 4:</strong> AI đề xuất đặt <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">dynamic(() =&gt; import(&#39;./DatePicker&#39;), { ssr: false })</code> trực tiếp trong <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">app/checkout/page.tsx</code> (Server Component). Với Next.js 15, bạn xử lý thế nào?</p>
+<ul>
+<li>A. Giữ nguyên vì <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">ssr: false</code> dùng được ở mọi nơi</li>
+<li>B. Thêm <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">// @ts-ignore</code> phía trên dòng dynamic</li>
+<li>C. Xóa DatePicker khỏi trang để tránh lỗi</li>
+<li>D. Chuyển lời gọi <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">dynamic</code> vào một Client Component có <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">&#39;use client&#39;</code> rồi import component đó vào page</li>
+</ul>
+<details style="margin: 6px 0 14px 0; padding: 8px 12px; background-color: #ffffff; border: 1px dashed #adb5bd; border-radius: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #495057;">👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> D<br>
+<b>Giải thích:</b> Next.js 15 không cho phép <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">ssr: false</code> trong Server Component. Cần bọc lời gọi <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">dynamic</code> trong một file Client Component riêng.
+</details>
+
+<blockquote style="margin: 10px 0; padding: 10px 14px; background-color: #ffffff; border-left: 4px solid #28a745; border-radius: 0 8px 8px 0; color: #212529;">
+<p>Bộ 10+ câu đầy đủ: Quiz Bài 07 trên LMS</p>
+</blockquote>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #28a745;">💬 Thảo luận &amp; 📤 Nộp bài</h3>
+            <ul>
+<li><strong>Chủ đề thảo luận Diễn đàn (Forum Discussion):</strong> Sau buổi báo cáo, hãy chia sẻ một lỗi build hoặc lỗi hydration &quot;khó chịu&quot; nhất nhóm bạn gặp phải: dấu hiệu ra sao, nguyên nhân gốc là gì, AI gợi ý gì và gợi ý đó đúng hay sai? Theo bạn, nhóm nên thay đổi quy trình làm việc thế nào (ví dụ chạy build trước mỗi lần merge) để không lặp lại?</li>
+<li><strong>Yêu cầu nộp bài (Bài tập về nhà):</strong><ul>
+<li>Tiếp thu nhận xét/góp ý của giảng viên trong buổi báo cáo, cập nhật và tối ưu lại UI/Codebase trên branch <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">main</code>.</li>
+<li>Xem trước tài liệu RESTful API / Swagger UI của dự án Smart Event Hub để chuẩn bị cho Buổi 8 (Tích hợp API).</li>
+<li><strong>Output:</strong> Codebase sạch, <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">npm run build</code> pass, sẵn sàng ghép nối Backend API. Mỗi góp ý được xử lý trong một commit hoặc PR riêng, ví dụ <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">fix(ui): apply midterm feedback on event detail spacing</code>.</li>
+<li><strong>Hạn nộp:</strong> trước buổi học tiếp theo. Nộp link PR đã merge (tên PR: <code style="background-color: #eef2ff; color: #3730a3; padding: 1px 5px; border-radius: 4px; font-family: Consolas, 'Courier New', monospace; font-size: 0.92em;">[Midterm-Feedback] &lt;Tên nhóm&gt;</code>) lên LMS.</li>
+</ul>
+</li>
+</ul>
+        </div>
+    </div>
+</details>
+
+<details style="border: 1px solid #6f42c1; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #f3e5f5; color: #6f42c1; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>🆘 4. Góc trợ giúp và mở rộng</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <ul>
+<li><strong>📚 Tài liệu đọc &amp; tham khảo:</strong><ul>
+<li>Conventional Commits Specification: <a href="https://www.conventionalcommits.org/" target="_blank" rel="noopener noreferrer" style="color: #6f42c1;">https://www.conventionalcommits.org/</a></li>
+<li>Next.js Production Checklist: <a href="https://nextjs.org/docs/app/building-your-application/deploying/production-checklist" target="_blank" rel="noopener noreferrer" style="color: #6f42c1;">https://nextjs.org/docs/app/building-your-application/deploying/production-checklist</a></li>
+<li>Next.js – ESLint configuration: <a href="https://nextjs.org/docs/app/api-reference/config/eslint" target="_blank" rel="noopener noreferrer" style="color: #6f42c1;">https://nextjs.org/docs/app/api-reference/config/eslint</a></li>
+<li>Next.js – Hydration error: <a href="https://nextjs.org/docs/messages/react-hydration-error" target="_blank" rel="noopener noreferrer" style="color: #6f42c1;">https://nextjs.org/docs/messages/react-hydration-error</a></li>
+</ul>
+</li>
+</ul>
+        <p><strong>Hỗ trợ kỹ thuật:</strong> Gặp lỗi cài đặt (Node.js, Git, Next.js) hoặc lỗi build, hãy đăng câu hỏi lên diễn đàn môn học kèm ảnh chụp lỗi, lệnh đã chạy và link repository. Giảng viên và bạn học sẽ phản hồi trước buổi học tiếp theo.</p>
+        <p><strong>Nguyên tắc Vibe Coding:</strong> AI sinh khung code, các bạn chịu trách nhiệm đọc hiểu, kiểm tra kiểu dữ liệu và sửa lỗi. Mọi đoạn code nộp lên đều có thể được hỏi phản biện.</p>
+    </div>
+</details>

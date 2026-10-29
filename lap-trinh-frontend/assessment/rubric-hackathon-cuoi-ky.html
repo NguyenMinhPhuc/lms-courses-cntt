@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LẬP TRÌNH FRONT-END (NEXT.JS, TYPESCRIPT &amp; VIBE CODING) | Lập trình Front-End - Khoa CNTT - Đại học Lạc Hồng</title>
+  <meta name="description" content="Đánh giá &amp; Phản hồi: LẬP TRÌNH FRONT-END (NEXT.JS, TYPESCRIPT &amp; VIBE CODING) - Lập trình Front-End (Next.js, TypeScript &amp; Vibe Coding)">
+
+  <!-- Tailwind CSS CDN (kèm plugin typography cho nội dung Markdown) -->
+  <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6.4.0 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Highlight.js 11.9.0 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            asu: { maroon: '#8C1D40', gold: '#FFC627', dark: '#5C142B', light: '#FAEDF0' },
+            lhu: { blue: '#013D88', sky: '#007BFF', dark: '#01295C', light: '#EEF5FC' },
+            fe: { indigo: '#6366F1', dark: '#312E81', light: '#EEF2FF' }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .lesson h2, .lesson h3, .lesson h4 { scroll-margin-top: 90px; }
+    .lesson h3 { padding-bottom: .4rem; border-bottom: 2px solid #EEF2FF; }
+    .lesson blockquote { border-left: 4px solid #6366F1; background: #F5F7FF; border-radius: 0 12px 12px 0; padding: .6rem 1rem; font-style: normal; color: #1e293b; }
+    .lesson blockquote p:first-of-type::before, .lesson blockquote p:last-of-type::after { content: none; }
+    .lesson pre { border-radius: 12px; padding: 0; background: #0d1117; }
+    .lesson pre code.hljs { border-radius: 12px; padding: 1rem 1.1rem; font-size: 13px; line-height: 1.6; }
+    .lesson :not(pre) > code { background: #EEF2FF; color: #3730A3; padding: .1rem .35rem; border-radius: 6px; font-weight: 500; }
+    .lesson :not(pre) > code::before, .lesson :not(pre) > code::after { content: none; }
+    .lesson table { display: block; overflow-x: auto; font-size: 14px; }
+    .lesson thead th { background: #F1F5F9; }
+    .lesson th, .lesson td { border: 1px solid #E2E8F0; padding: .5rem .7rem !important; vertical-align: top; }
+    .lesson details { border: 1px solid #C7D2FE; border-radius: 10px; padding: .6rem .9rem; margin: .5rem 0 1.2rem; background: #FAFAFF; }
+    .lesson details summary { cursor: pointer; font-weight: 600; color: #4338CA; }
+    .lesson details[open] summary { margin-bottom: .4rem; }
+    .lesson hr { border-color: #E2E8F0; margin: 2rem 0; }
+    @media print {
+      header, footer, .no-print { display: none !important; }
+      details { break-inside: avoid; margin-bottom: 20px; }
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans antialiased selection:bg-asu-gold selection:text-slate-900 min-h-screen flex flex-col">
+
+  <!-- TOP BAR -->
+  <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800 no-print">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+      <div class="flex items-center gap-2">
+        <span class="text-asu-gold font-semibold"><i class="fa-solid fa-certificate mr-1"></i> CHUẨN KIỂM ĐỊNH ABET (USA)</span>
+        <span class="text-slate-600 hidden sm:inline">•</span>
+        <span class="hidden sm:inline">Lớp học đảo ngược • Vibe Coding</span>
+      </div>
+      <div class="flex items-center gap-4 text-xs font-mono">
+        <span>Thời lượng: <strong class="text-white">60 tiết (12 buổi)</strong></span>
+        <span>LT/TH: <strong class="text-asu-gold">30% / 70%</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="sticky top-0 z-40 bg-white shadow-sm border-b border-slate-200 no-print">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <a href="../index.html" class="flex items-center gap-2.5 text-slate-800 hover:text-lhu-blue transition-colors">
+        <img src="../LHU_ASU_VI_Small_Ngang.png" alt="Logo LHU" class="h-8 w-auto">
+        <div class="border-l border-slate-300 pl-2.5">
+          <div class="text-[11px] font-bold text-slate-500 uppercase">Khoa CNTT - LHU</div>
+          <div class="text-xs font-extrabold text-lhu-blue">LẬP TRÌNH FRONT-END</div>
+        </div>
+      </a>
+      <div class="flex items-center gap-3 text-xs">
+        <a href="../index.html" class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-arrow-left"></i>
+          <span class="hidden sm:inline">Về Landing Page</span>
+        </a>
+        <button onclick="window.print()" class="hidden sm:flex px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-all items-center gap-1.5" title="In hoặc lưu file PDF">
+          <i class="fa-solid fa-print"></i>
+          <span>In / PDF</span>
+        </button>
+        <a href="https://learn.lhu.edu.vn" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-lhu-blue hover:bg-lhu-dark text-white font-bold rounded-xl shadow transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-graduation-cap text-asu-gold"></i>
+          <span>Vào lớp LMS</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="flex-grow max-w-5xl w-full mx-auto px-4 sm:px-6 py-8">
+
+    <!-- Title Card -->
+    <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 mb-8">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-5">
+        <div>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-fe-light text-fe-dark font-bold text-xs uppercase tracking-wider mb-2">
+            <i class="fa-solid fa-code"></i> Đánh giá &amp; Phản hồi
+          </span>
+          <h1 class="text-2xl sm:text-3xl font-black text-slate-900 leading-tight">
+            LẬP TRÌNH FRONT-END (NEXT.JS, TYPESCRIPT &amp; VIBE CODING)
+          </h1>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1 font-mono">
+            Học phần: Lập trình Front-End (Next.js, TypeScript & Vibe Coding) • Khoa CNTT - Đại học Lạc Hồng
+          </p>
+        </div>
+        <div class="flex-shrink-0 flex sm:flex-col items-center sm:items-end justify-between gap-1 text-xs">
+          <span class="px-3 py-1.5 bg-emerald-50 text-emerald-700 font-bold rounded-lg border border-emerald-200">
+            <i class="fa-solid fa-check-circle mr-1"></i> Lưu hành nội bộ 2026
+          </span>
+          <span class="text-slate-400 text-[11px]">Định dạng LMS Lecture</span>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between pt-4 text-xs no-print">
+        <span class="text-slate-500">
+          <i class="fa-solid fa-circle-info text-blue-500 mr-1"></i>
+          Bấm vào các khối thu gọn để xem đáp án hoặc chi tiết.
+        </span>
+        <div class="flex items-center gap-2">
+          <button onclick="toggleAllDetails(true)" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg transition-colors">Mở tất cả</button>
+          <button onclick="toggleAllDetails(false)" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg transition-colors">Thu gọn</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <article class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 lesson prose prose-slate max-w-none prose-headings:font-extrabold prose-h3:text-lhu-dark prose-h4:text-fe-dark prose-a:text-lhu-blue">
+<h2 id="assessment-rubric-thi-hackathon-final-showcase-buoi-12">ASSESSMENT – RUBRIC THI HACKATHON &amp; FINAL SHOWCASE (BUỔI 12)</h2>
+<blockquote>
+<p><strong>Thời điểm:</strong> Buổi 12 – Đồ án cuối kỳ · <strong>Trọng số:</strong> 40% điểm học phần<br><strong>Chuẩn đầu ra:</strong> CLO1 (PI 1.4), CLO2 (PI 2.3), CLO3 (PI 3.1), CLO4 (PI 5.1)<br><strong>Đối tượng:</strong> Nhóm đồ án 3–4 sinh viên (điểm nhóm) + từng sinh viên (điểm phản biện cá nhân)</p>
+</blockquote>
+<hr>
+<h3 id="1-chuong-trinh-buoi-showcase-225-phut">1. Chương trình buổi Showcase (225 phút)</h3>
+<p>Buổi 12 giống một ngày &quot;Demo Day&quot; của startup: mọi nhóm mở link Vercel, các nhóm khác và giảng viên dùng thử sản phẩm thật, sau đó từng nhóm lên bảo vệ. Hãy tự hỏi trước: <strong>người lạ mở link của nhóm trên điện thoại, họ có đặt được một vé mà không cần ai hướng dẫn không?</strong></p>
+<table>
+<thead>
+<tr>
+<th>Phần</th>
+<th>Thời lượng</th>
+<th>Nội dung</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1. Khai mạc &amp; Triển lãm Live Products</td>
+<td>30&#39;</td>
+<td>Các nhóm chia sẻ link Vercel Live; giảng viên và nhóm khác trải nghiệm chéo (Cross-Testing) bằng phiếu ở mục 7</td>
+</tr>
+<tr>
+<td>2. Thuyết trình Hackathon Showcase</td>
+<td>160&#39;</td>
+<td>Mỗi nhóm 8&#39; thuyết trình + demo live, 5&#39; Q&amp;A phản biện. Thể hiện rõ: Wireframe → Vercel App, kỹ thuật Vibe Coding đã dùng, minh chứng Git commit</td>
+</tr>
+<tr>
+<td>3. Tổng kết &amp; Trao giải</td>
+<td>35&#39;</td>
+<td>Giảng viên công bố điểm, trao giải Nhóm có UI/UX Vibe Coding xuất sắc nhất</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="2-cau-truc-trong-so-tieu-chi-tong-quan">2. Cấu trúc trọng số &amp; tiêu chí tổng quan</h3>
+<table>
+<thead>
+<tr>
+<th>STT</th>
+<th>Tiêu chí chính</th>
+<th>Trọng số</th>
+<th>Chuẩn đầu ra (PI)</th>
+<th>Mô tả cốt lõi</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Mô hình hóa UI &amp; Wireframe Design</td>
+<td>15% (1.5đ)</td>
+<td>PI 1.4 (CLO1)</td>
+<td>Đủ 5 màn hình, chuẩn cấu trúc UX/UI, Wireframe Figma khớp với sản phẩm</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Xây dựng Giao diện &amp; Vibe Coding</td>
+<td>20% (2.0đ)</td>
+<td>PI 2.3 (CLO2)</td>
+<td>UI chuyên nghiệp (AntD/SCSS Custom), Responsive 100%, Hot Reload mượt không lỗi</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Xử lý Logic, TypeScript &amp; REST API</td>
+<td>20% (2.0đ)</td>
+<td>PI 2.3 (CLO2)</td>
+<td>TypeScript strict mode, Dynamic Routing, Fetching data API thật, LocalStorage/State</td>
+</tr>
+<tr>
+<td>4</td>
+<td>CI/CD Deployment, SEO &amp; Lighthouse</td>
+<td>15% (1.5đ)</td>
+<td>PI 5.1 (CLO4)</td>
+<td>Deploy Live Vercel, Dynamic SEO Metadata, Lighthouse Performance &gt; 85</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Báo cáo Văn bản &amp; Minh chứng Git</td>
+<td>15% (1.5đ)</td>
+<td>PI 3.1 (CLO3), PI 5.1</td>
+<td>Báo cáo Word/PDF đúng định dạng, Git Commit Log cá nhân đầy đủ</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Thuyết trình Showcase &amp; Phản biện Q&amp;A</td>
+<td>15% (1.5đ)</td>
+<td>PI 3.1 (CLO3), PI 5.1</td>
+<td>Demo Live tự tin, kịch bản chặt chẽ, trả lời phản biện tốt</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>Tổng</strong></td>
+<td><strong>100% (10đ)</strong></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="3-bang-rubric-chi-tiet-thang-diem-10">3. Bảng rubric chi tiết (thang điểm 10)</h3>
+<table>
+<thead>
+<tr>
+<th>Tiêu chí &amp; Trọng số</th>
+<th>Xuất sắc (8.5–10đ)</th>
+<th>Khá (7.0–8.4đ)</th>
+<th>Trung bình (5.5–6.9đ)</th>
+<th>Yếu / Tối thiểu (&lt; 5.5đ)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>1. Mô hình hóa UI &amp; Wireframe</strong> (15% – Max 1.5đ) [PI 1.4 – CLO1]</td>
+<td>Có bản vẽ Wireframe Figma đủ 5 màn hình chính. Cấu trúc Layout (Header, Footer, Content, Sidebar) rất khoa học. Sản phẩm web chạy thật khớp &gt; 90% so với Wireframe.</td>
+<td>Có đủ Wireframe Figma cho 5 màn hình. Bố cục rõ ràng các vùng Header/Footer. Sản phẩm web thật tái hiện được 75–80% so với bản vẽ.</td>
+<td>Có Wireframe nhưng thiếu 1–2 màn hình, hoặc bản vẽ sơ sài bằng tay. Giao diện sản phẩm thật có nhiều điểm sai lệch so với bản vẽ.</td>
+<td>Không có Wireframe hoặc bản vẽ không đạt yêu cầu cấu trúc cơ bản. Sản phẩm không tuân theo mô hình thiết kế.</td>
+</tr>
+<tr>
+<td><strong>2. Giao diện &amp; Vibe Coding</strong> (20% – Max 2.0đ) [PI 2.3 – CLO2]</td>
+<td>Sử dụng Ant Design/Bootstrap mượt mà, tùy biến Theme qua SCSS/ConfigProvider có dấu ấn riêng. Responsive hoàn hảo trên Mobile/Tablet/Desktop. Hot Reload mượt, không lỗi UI.</td>
+<td>Giao diện đẹp, đúng theo thiết kế. Tùy biến được Theme cơ bản. Responsive tốt trên Mobile &amp; Desktop nhưng còn lỗi nhỏ ở cỡ Tablet. Hot Reload ổn định.</td>
+<td>Giao diện nguyên bản (rập khuôn) thư viện UI, chưa tùy biến Theme. Bị vỡ khung hoặc tràn màn hình ở di động (horizontal overflow).</td>
+<td>Giao diện thô sơ, chưa áp dụng thư viện UI hoặc SCSS. Lỗi layout nghiêm trọng trên di động, Hot Reload liên tục báo lỗi UI.</td>
+</tr>
+<tr>
+<td><strong>3. Logic, TS &amp; REST API</strong> (20% – Max 2.0đ) [PI 2.3 – CLO2]</td>
+<td>Khai báo TypeScript strict mode (không dùng <code>any</code>). Routing mượt mà. Kết nối API RESTful thật đổ dữ liệu động (Array/Single). Xử lý Form với Zod &amp; LocalStorage chuẩn xác.</td>
+<td>Khai báo TypeScript cơ bản (còn 1–2 lỗi type <code>any</code>). Routing chuẩn. Kết nối được API thật ở đa số các trang. Form Validation và LocalStorage hoạt động ổn định.</td>
+<td>Còn dùng <code>any</code> nhiều. Routing hoạt động nhưng bị reload lại trang. Kết nối API bị lỗi ở một số tính năng, chủ yếu dùng dữ liệu Mock JSON tĩnh.</td>
+<td>Không dùng TypeScript hoặc lỗi compile nặng. Không kết nối được API Backend. Logic giỏ hàng / Form bị lỗi runtime nghiêm trọng.</td>
+</tr>
+<tr>
+<td><strong>4. Deploy, SEO &amp; Performance</strong> (15% – Max 1.5đ) [PI 5.1 – CLO4]</td>
+<td>Deploy live thành công trên Vercel. Cấu hình SEO Metadata động (OpenGraph). Google Lighthouse Performance &gt; 85 điểm, SEO &gt; 90 điểm.</td>
+<td>Deploy live trên Vercel chạy ổn định. Cấu hình SEO Metadata tĩnh. Lighthouse Performance đạt từ 70–84 điểm.</td>
+<td>Deploy Vercel thành công nhưng thỉnh thoảng bị lỗi API/biến môi trường. Chưa cấu hình SEO Metadata. Lighthouse Performance từ 50–69 điểm.</td>
+<td>Không deploy thành công lên Vercel (chỉ chạy ở localhost). Lighthouse Performance &lt; 50 điểm, lỗi tối ưu ảnh/script.</td>
+</tr>
+<tr>
+<td><strong>5. Báo cáo &amp; Git Commit</strong> (15% – Max 1.5đ) [PI 3.1 – CLO3, PI 5.1]</td>
+<td>File báo cáo Word/PDF trình bày khoa học, đúng quy định. Git Commit Log minh chứng rõ sự đóng góp đồng đều của tất cả thành viên (đầy đủ PR).</td>
+<td>File báo cáo đúng mẫu, đủ nội dung mô tả logic. Git Commit Log thể hiện phối hợp nhóm tốt nhưng đóng góp chưa đồng đều.</td>
+<td>File báo cáo sơ sài, thiếu các mục mô tả logic xử lý. Git Log thể hiện chỉ 1–2 thành viên gánh team.</td>
+<td>Không nộp báo cáo hoặc sai quy định nghiêm trọng. Không có minh chứng Git Commit Log của các thành viên.</td>
+</tr>
+<tr>
+<td><strong>6. Thuyết trình &amp; Phản biện Q&amp;A</strong> (15% – Max 1.5đ) [PI 3.1 – CLO3, PI 5.1]</td>
+<td>Thuyết trình chuyên nghiệp, đúng thời gian (8 phút). Demo live trơn tru. Trả lời phản biện xuất sắc, giải thích sâu đoạn code cá nhân đảm nhiệm.</td>
+<td>Thuyết trình rõ ràng. Demo live ổn định. Cá nhân trả lời đúng các câu hỏi phản biện về phần code do mình thực hiện.</td>
+<td>Thuyết trình quá thời lượng. Demo live gặp sự cố. Trả lời phản biện còn lúng túng, chưa nắm rõ phần code đảm nhiệm.</td>
+<td>Thuyết trình ngập ngừng, không làm chủ Slide/Demo. Không trả lời được câu hỏi phản biện code.</td>
+</tr>
+</tbody></table>
+<h4 id="3-1-quy-doi-muc-diem-sang-diem-tieu-chi">3.1. Quy đổi mức điểm sang điểm tiêu chí</h4>
+<p>Giảng viên chọn một mức điểm trên thang 10 cho từng tiêu chí, sau đó nhân với trọng số:</p>
+<pre><code class="language-text">Điểm tiêu chí = Điểm tối đa của tiêu chí × (Mức điểm thang 10 ÷ 10)
+Điểm Đồ án Nhóm = Tổng 6 điểm tiêu chí   (tối đa 10)
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Mức</th>
+<th>Thang 10</th>
+<th>Tiêu chí 1.5đ</th>
+<th>Tiêu chí 2.0đ</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Xuất sắc</td>
+<td>8.5–10</td>
+<td>1.3–1.5</td>
+<td>1.7–2.0</td>
+</tr>
+<tr>
+<td>Khá</td>
+<td>7.0–8.4</td>
+<td>1.05–1.25</td>
+<td>1.4–1.65</td>
+</tr>
+<tr>
+<td>Trung bình</td>
+<td>5.5–6.9</td>
+<td>0.85–1.0</td>
+<td>1.1–1.35</td>
+</tr>
+<tr>
+<td>Yếu</td>
+<td>&lt; 5.5</td>
+<td>0–0.8</td>
+<td>0–1.0</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="4-cong-thuc-diem-cuoi-ky-ca-nhan-diem-thuong">4. Công thức điểm cuối kỳ cá nhân &amp; điểm thưởng</h3>
+<h4 id="4-1-cong-thuc">4.1. Công thức</h4>
+<pre><code class="language-text">Điểm Cuối kỳ Cá nhân = (Điểm Đồ án Nhóm × 0.7) + (Điểm Phản biện Cá nhân × 0.3)
+</code></pre>
+<ul>
+<li><strong>Điểm Đồ án Nhóm (70%):</strong> chung cho cả nhóm, dựa trên sản phẩm Live, Wireframe, UI/UX, Deploy Vercel và báo cáo văn bản (bảng rubric mục 3).</li>
+<li><strong>Điểm Phản biện Cá nhân (30%):</strong> đánh giá độc lập từng sinh viên dựa trên minh chứng Git commit log và phần trả lời câu hỏi phản biện trực tiếp về code cá nhân đảm nhiệm (phiếu mục 6).</li>
+<li><strong>Ví dụ:</strong> Nhóm đạt 8.4. Bạn C phản biện 9.0 → 8.4 × 0.7 + 9.0 × 0.3 = <strong>8.58</strong>. Bạn D phản biện 4.0 → 8.4 × 0.7 + 4.0 × 0.3 = <strong>7.08</strong>. Cùng một sản phẩm, nhưng người hiểu code của mình sẽ nhận điểm cao hơn.</li>
+</ul>
+<h4 id="4-2-diem-thuong-vibe-coding-xuat-sac-0-5d-den-1-0d-vao-diem-qua-trinh">4.2. Điểm thưởng Vibe Coding xuất sắc (+0.5đ đến +1.0đ vào Điểm Quá trình)</h4>
+<table>
+<thead>
+<tr>
+<th>Danh hiệu</th>
+<th>Điều kiện</th>
+<th>Minh chứng cần nộp</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Vibe Coding Master</strong></td>
+<td>Tự thiết kế Prompt Workflow độc đáo, tối ưu tốc độ sinh code mà vẫn kiểm soát chất lượng</td>
+<td>Nhật ký Vibe Coding: chuỗi prompt, kết quả AI, phần đã sửa</td>
+</tr>
+<tr>
+<td><strong>UI Innovation</strong></td>
+<td>Giao diện UI/UX vượt yêu cầu cơ bản (Dark/Light Mode, Micro-interactions)</td>
+<td>Demo live + commit tương ứng</td>
+</tr>
+<tr>
+<td><strong>Ultra Performance</strong></td>
+<td>Google Lighthouse Performance đạt 100/100</td>
+<td>Ảnh chụp Lighthouse trên link Vercel, giảng viên chạy lại để xác nhận</td>
+</tr>
+</tbody></table>
+<ul>
+<li>Mỗi danh hiệu đạt được: <strong>+0.5</strong>; tổng tối đa <strong>+1.0</strong>; Điểm Quá trình sau khi cộng không vượt quá 10.</li>
+<li>Điểm thưởng áp dụng cho các thành viên có commit ở hạng mục tương ứng (đối chiếu Git log).</li>
+</ul>
+<hr>
+<h3 id="5-phieu-cham-nhom-hackathon">5. Phiếu chấm nhóm – Hackathon</h3>
+<p><strong>Lớp:</strong> ............ <strong>Nhóm:</strong> ............ <strong>Link Vercel:</strong> ........................................ <strong>Giảng viên chấm:</strong> ............</p>
+<table>
+<thead>
+<tr>
+<th>Tiêu chí</th>
+<th>Max</th>
+<th>Mức (XS/K/TB/Y)</th>
+<th>Thang 10</th>
+<th>Điểm tiêu chí</th>
+<th>Minh chứng / Nhận xét</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1. Mô hình hóa UI &amp; Wireframe</td>
+<td>1.5</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2. Giao diện &amp; Vibe Coding</td>
+<td>2.0</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3. Logic, TypeScript &amp; REST API</td>
+<td>2.0</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4. Deploy, SEO &amp; Performance</td>
+<td>1.5</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>5. Báo cáo &amp; Git Commit</td>
+<td>1.5</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>6. Thuyết trình &amp; Phản biện Q&amp;A</td>
+<td>1.5</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Điểm Đồ án Nhóm</strong></td>
+<td><strong>10</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>Kiểm tra kỹ thuật tại chỗ:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Hạng mục</th>
+<th>Kết quả</th>
+<th>Ghi chú</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Link Vercel mở được, gọi API thành công</td>
+<td>☐ Đạt ☐ Chưa</td>
+<td></td>
+</tr>
+<tr>
+<td>Lighthouse Performance / SEO (Mobile)</td>
+<td>...... / ......</td>
+<td></td>
+</tr>
+<tr>
+<td><code>generateMetadata</code> cho <code>/events/[id]</code> (xem OG khi chia sẻ link)</td>
+<td>☐ Có ☐ Không</td>
+<td></td>
+</tr>
+<tr>
+<td>Responsive 375px / 768px / 1440px</td>
+<td>☐ ☐ ☐</td>
+<td></td>
+</tr>
+<tr>
+<td>Form có Zod validation, Wishlist giữ sau khi refresh</td>
+<td>☐ Đạt ☐ Chưa</td>
+<td></td>
+</tr>
+<tr>
+<td>Thời gian thuyết trình (chuẩn 8&#39;)</td>
+<td>...... phút</td>
+<td></td>
+</tr>
+<tr>
+<td>Đề cử điểm thưởng</td>
+<td>☐ Vibe Coding Master ☐ UI Innovation ☐ Ultra Performance</td>
+<td></td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="6-phieu-phan-bien-ca-nhan-thang-10">6. Phiếu phản biện cá nhân (thang 10)</h3>
+<table>
+<thead>
+<tr>
+<th>Thành phần</th>
+<th>Max</th>
+<th>Xuất sắc</th>
+<th>Khá</th>
+<th>Trung bình</th>
+<th>Yếu</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>A. Minh chứng Git commit cá nhân</strong></td>
+<td>3.0</td>
+<td>2.6–3.0: commit đều suốt học phần, đúng Conventional Commits, có PR được review</td>
+<td>2.1–2.5: commit đủ ở phần mình phụ trách, message chưa đều chuẩn</td>
+<td>1.7–2.0: ít commit, dồn vào cuối kỳ</td>
+<td>0–1.6: gần như không có commit cá nhân</td>
+</tr>
+<tr>
+<td><strong>B. Giải thích phần code đảm nhiệm</strong></td>
+<td>4.0</td>
+<td>3.4–4.0: giải thích luồng dữ liệu, type, lý do chọn giải pháp</td>
+<td>2.8–3.3: giải thích đúng, còn thiếu chiều sâu</td>
+<td>2.2–2.7: đọc lại code, chưa giải thích được lý do</td>
+<td>0–2.1: không giải thích được code mang tên mình</td>
+</tr>
+<tr>
+<td><strong>C. Trả lời câu hỏi mở rộng / sửa code tại chỗ</strong></td>
+<td>3.0</td>
+<td>2.6–3.0: sửa đúng yêu cầu nhỏ ngay tại chỗ, nêu được cách khác</td>
+<td>2.1–2.5: sửa được khi có gợi ý</td>
+<td>1.7–2.0: hiểu yêu cầu nhưng chưa sửa được</td>
+<td>0–1.6: không hiểu câu hỏi</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>STT</th>
+<th>Họ tên</th>
+<th>MSSV</th>
+<th>Phần đảm nhiệm</th>
+<th>A (/3)</th>
+<th>B (/4)</th>
+<th>C (/3)</th>
+<th>Phản biện (/10)</th>
+<th>Điểm nhóm</th>
+<th><strong>Điểm CK cá nhân</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>Gợi ý câu hỏi phản biện:</strong></p>
+<ul>
+<li>&quot;Hàm <code>generateMetadata</code> của trang chi tiết sự kiện lấy dữ liệu từ đâu? Nếu API trả 404 thì trang hiển thị gì?&quot;</li>
+<li>&quot;Schema Zod của form này kiểm tra những gì? Thử thêm điều kiện: số lượng vé từ 1 đến 10.&quot;</li>
+<li>&quot;Vì sao Wishlist đọc LocalStorage trong <code>useEffect</code> mà không đọc trực tiếp khi render?&quot;</li>
+<li>&quot;Biến <code>NEXT_PUBLIC_API_URL</code> được cấu hình ở đâu trên Vercel? Vì sao cần tiền tố <code>NEXT_PUBLIC_</code>?&quot;</li>
+<li>&quot;Điểm Lighthouse của nhóm tăng nhờ thay đổi nào? Mở commit đó cho thầy/cô xem.&quot;</li>
+</ul>
+<hr>
+<h3 id="7-phieu-cross-testing-nhom-cham-cheo-30-phut-dau-buoi-12">7. Phiếu Cross-Testing (nhóm chấm chéo – 30 phút đầu Buổi 12)</h3>
+<p>Mỗi nhóm được phân công kiểm thử sản phẩm của <strong>2 nhóm khác</strong> trên link Vercel. Mục tiêu là tìm lỗi và góp ý như một người dùng thật, không phải để &quot;chấm điểm&quot; đối thủ. Phiếu được chuyển cho nhóm được kiểm thử ngay sau buổi; giảng viên dùng phiếu để tham khảo khi đặt câu hỏi Q&amp;A và tính vào điểm tham gia (quá trình) của <strong>nhóm kiểm thử</strong> dựa trên chất lượng góp ý.</p>
+<p><strong>Nhóm kiểm thử:</strong> ............ <strong>Nhóm được kiểm thử:</strong> ............ <strong>Link Vercel:</strong> ........................................ <strong>Thiết bị:</strong> ☐ Điện thoại ☐ Laptop</p>
+<table>
+<thead>
+<tr>
+<th>STT</th>
+<th>Kịch bản kiểm thử</th>
+<th>Đạt</th>
+<th>Lỗi</th>
+<th>Mô tả lỗi (bước tái hiện)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Mở link, trang chủ hiển thị danh sách sự kiện từ API (không phải dữ liệu giả)</td>
+<td>☐</td>
+<td>☐</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>Lọc theo danh mục / tìm kiếm sự kiện</td>
+<td>☐</td>
+<td>☐</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>Mở chi tiết sự kiện bằng URL <code>/events/[id]</code>, refresh trang vẫn hiển thị đúng</td>
+<td>☐</td>
+<td>☐</td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>Chọn hạng vé, số lượng, ghế; tổng tiền cập nhật đúng</td>
+<td>☐</td>
+<td>☐</td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>Đặt vé thành công, có thông báo (Notification/Toast)</td>
+<td>☐</td>
+<td>☐</td>
+<td></td>
+</tr>
+<tr>
+<td>6</td>
+<td>Form đăng nhập/đăng ký báo lỗi khi nhập sai email, mật khẩu ngắn</td>
+<td>☐</td>
+<td>☐</td>
+<td></td>
+</tr>
+<tr>
+<td>7</td>
+<td>Thêm sự kiện vào Wishlist, refresh trang vẫn còn</td>
+<td>☐</td>
+<td>☐</td>
+<td></td>
+</tr>
+<tr>
+<td>8</td>
+<td>Giao diện điện thoại (375px) không tràn ngang, menu dùng được</td>
+<td>☐</td>
+<td>☐</td>
+<td></td>
+</tr>
+<tr>
+<td>9</td>
+<td>Trang không tồn tại hiển thị 404 tùy biến</td>
+<td>☐</td>
+<td>☐</td>
+<td></td>
+</tr>
+<tr>
+<td>10</td>
+<td>Console DevTools không có lỗi đỏ</td>
+<td>☐</td>
+<td>☐</td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>Cảm nhận chung của người dùng:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Hạng mục</th>
+<th>1 – Kém</th>
+<th>2 – Tạm được</th>
+<th>3 – Tốt</th>
+<th>4 – Rất tốt</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Dễ sử dụng, không cần hướng dẫn</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>Giao diện có nhận diện riêng (không rập khuôn thư viện)</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>Tốc độ tải trang</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+</tr>
+</tbody></table>
+<ul>
+<li><strong>01 điểm mạnh nhất:</strong> ......................................................................</li>
+<li><strong>01 lỗi nghiêm trọng nhất cần sửa:</strong> ......................................................</li>
+<li><strong>01 gợi ý cải tiến:</strong> .......................................................................</li>
+</ul>
+<hr>
+<h3 id="tu-kiem-tra-truoc-hackathon">❓ Tự kiểm tra trước Hackathon</h3>
+<p><strong>Câu hỏi:</strong> Nhóm deploy Vercel thành công, có metadata tĩnh ở Root Layout nhưng chưa có <code>generateMetadata</code> cho trang chi tiết; Lighthouse Performance đạt 78. Tiêu chí 4 của nhóm nằm ở mức nào và cần làm gì để lên mức Xuất sắc?</p>
+<details>
+<summary>👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án:</b> Mức Khá (khoảng 1.05–1.25đ).<br>
+<b>Giải thích:</b> Mức Xuất sắc yêu cầu đồng thời SEO Metadata động (OpenGraph theo từng sự kiện), Performance trên 85 và SEO trên 90. Nhóm cần viết <code>generateMetadata</code> cho <code>/events/[id]</code> (nhớ <code>await params</code> trong Next.js 15), thay <code>&lt;img&gt;</code> bằng <code>next/image</code> có <code>sizes</code> và <code>priority</code>, dùng <code>next/font</code> và lazy load component nặng bằng <code>next/dynamic</code>.
+</details>
+
+    </article>
+
+    <!-- Bottom Navigation -->
+    <div class="flex items-center justify-between gap-4 mt-8 no-print text-xs font-bold">
+      <span></span>
+      <a href="../index.html#lo-trinh" class="px-4 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-800 rounded-xl transition-all flex items-center gap-2">
+        <i class="fa-solid fa-table-cells-large"></i> Danh mục bài học
+      </a>
+      <span></span>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-slate-200 py-6 text-xs text-slate-500 mt-12 no-print">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <strong>Khoa Công nghệ Thông tin - Trường Đại học Lạc Hồng</strong><br>
+        Phòng B301 - B302, Cơ sở 1, Số 10 Huỳnh Văn Nghệ, P. Bửu Long, TP. Biên Hòa, Đồng Nai.
+      </div>
+      <div class="sm:text-right">
+        <span>Email: cntt@lhu.edu.vn • Hotline: (0251) 3952 251</span><br>
+        <span>Hệ thống LMS: <a href="https://learn.lhu.edu.vn" target="_blank" rel="noopener noreferrer" class="text-lhu-blue font-bold">learn.lhu.edu.vn</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleAllDetails(open) {
+      document.querySelectorAll("details").forEach(d => {
+        if (open) d.setAttribute("open", ""); else d.removeAttribute("open");
+      });
+    }
+    if (window.hljs) hljs.highlightAll();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 05 - Giao diện chuyên nghiệp với Ant Design, Bootstrap/Tailwind &amp; tùy biến Theme | Lập trình Front-End - Khoa CNTT - Đại học Lạc Hồng</title>
+  <meta name="description" content="Bài 05 - Giao diện chuyên nghiệp với Ant Design, Bootstrap/Tailwind &amp; tùy biến Theme - Lập trình Front-End (Next.js, TypeScript &amp; Vibe Coding). Thời lượng: 5 tiết (225 phút) · Hình thức: Lớp học đảo ngược · Chuẩn đầu ra: PI 2.3 (CLO2)Dự án xuyên suốt: Smart Event Hub – Tích hợp UI Library (Ant Desig">
+
+  <!-- Tailwind CSS CDN (kèm plugin typography cho nội dung Markdown) -->
+  <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6.4.0 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Highlight.js 11.9.0 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            asu: { maroon: '#8C1D40', gold: '#FFC627', dark: '#5C142B', light: '#FAEDF0' },
+            lhu: { blue: '#013D88', sky: '#007BFF', dark: '#01295C', light: '#EEF5FC' },
+            fe: { indigo: '#6366F1', dark: '#312E81', light: '#EEF2FF' }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .lesson h2, .lesson h3, .lesson h4 { scroll-margin-top: 90px; }
+    .lesson h3 { padding-bottom: .4rem; border-bottom: 2px solid #EEF2FF; }
+    .lesson blockquote { border-left: 4px solid #6366F1; background: #F5F7FF; border-radius: 0 12px 12px 0; padding: .6rem 1rem; font-style: normal; color: #1e293b; }
+    .lesson blockquote p:first-of-type::before, .lesson blockquote p:last-of-type::after { content: none; }
+    .lesson pre { border-radius: 12px; padding: 0; background: #0d1117; }
+    .lesson pre code.hljs { border-radius: 12px; padding: 1rem 1.1rem; font-size: 13px; line-height: 1.6; }
+    .lesson :not(pre) > code { background: #EEF2FF; color: #3730A3; padding: .1rem .35rem; border-radius: 6px; font-weight: 500; }
+    .lesson :not(pre) > code::before, .lesson :not(pre) > code::after { content: none; }
+    .lesson table { display: block; overflow-x: auto; font-size: 14px; }
+    .lesson thead th { background: #F1F5F9; }
+    .lesson th, .lesson td { border: 1px solid #E2E8F0; padding: .5rem .7rem !important; vertical-align: top; }
+    .lesson details { border: 1px solid #C7D2FE; border-radius: 10px; padding: .6rem .9rem; margin: .5rem 0 1.2rem; background: #FAFAFF; }
+    .lesson details summary { cursor: pointer; font-weight: 600; color: #4338CA; }
+    .lesson details[open] summary { margin-bottom: .4rem; }
+    .lesson hr { border-color: #E2E8F0; margin: 2rem 0; }
+    @media print {
+      header, footer, .no-print { display: none !important; }
+      details { break-inside: avoid; margin-bottom: 20px; }
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans antialiased selection:bg-asu-gold selection:text-slate-900 min-h-screen flex flex-col">
+
+  <!-- TOP BAR -->
+  <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800 no-print">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+      <div class="flex items-center gap-2">
+        <span class="text-asu-gold font-semibold"><i class="fa-solid fa-certificate mr-1"></i> CHUẨN KIỂM ĐỊNH ABET (USA)</span>
+        <span class="text-slate-600 hidden sm:inline">•</span>
+        <span class="hidden sm:inline">Lớp học đảo ngược • Vibe Coding</span>
+      </div>
+      <div class="flex items-center gap-4 text-xs font-mono">
+        <span>Thời lượng: <strong class="text-white">60 tiết (12 buổi)</strong></span>
+        <span>LT/TH: <strong class="text-asu-gold">30% / 70%</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="sticky top-0 z-40 bg-white shadow-sm border-b border-slate-200 no-print">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2.5 text-slate-800 hover:text-lhu-blue transition-colors">
+        <img src="LHU_ASU_VI_Small_Ngang.png" alt="Logo LHU" class="h-8 w-auto">
+        <div class="border-l border-slate-300 pl-2.5">
+          <div class="text-[11px] font-bold text-slate-500 uppercase">Khoa CNTT - LHU</div>
+          <div class="text-xs font-extrabold text-lhu-blue">LẬP TRÌNH FRONT-END</div>
+        </div>
+      </a>
+      <div class="flex items-center gap-3 text-xs">
+        <a href="index.html" class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-arrow-left"></i>
+          <span class="hidden sm:inline">Về Landing Page</span>
+        </a>
+        <button onclick="window.print()" class="hidden sm:flex px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-all items-center gap-1.5" title="In hoặc lưu file PDF">
+          <i class="fa-solid fa-print"></i>
+          <span>In / PDF</span>
+        </button>
+        <a href="https://learn.lhu.edu.vn" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-lhu-blue hover:bg-lhu-dark text-white font-bold rounded-xl shadow transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-graduation-cap text-asu-gold"></i>
+          <span>Vào lớp LMS</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="flex-grow max-w-5xl w-full mx-auto px-4 sm:px-6 py-8">
+
+    <!-- Title Card -->
+    <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 mb-8">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-5">
+        <div>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-fe-light text-fe-dark font-bold text-xs uppercase tracking-wider mb-2">
+            <i class="fa-solid fa-code"></i> CHƯƠNG 3: GIAO DIỆN CHUYÊN NGHIỆP &amp; QUẢN LÝ TRẠNG THÁI
+          </span>
+          <h1 class="text-2xl sm:text-3xl font-black text-slate-900 leading-tight">
+            Bài 05 - Giao diện chuyên nghiệp với Ant Design, Bootstrap/Tailwind &amp; tùy biến Theme
+          </h1>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1 font-mono">
+            Học phần: Lập trình Front-End (Next.js, TypeScript & Vibe Coding) • Khoa CNTT - Đại học Lạc Hồng
+          </p>
+        </div>
+        <div class="flex-shrink-0 flex sm:flex-col items-center sm:items-end justify-between gap-1 text-xs">
+          <span class="px-3 py-1.5 bg-emerald-50 text-emerald-700 font-bold rounded-lg border border-emerald-200">
+            <i class="fa-solid fa-check-circle mr-1"></i> Lưu hành nội bộ 2026
+          </span>
+          <span class="text-slate-400 text-[11px]">Định dạng LMS Lecture</span>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between pt-4 text-xs no-print">
+        <span class="text-slate-500">
+          <i class="fa-solid fa-circle-info text-blue-500 mr-1"></i>
+          Bấm vào các khối thu gọn để xem đáp án hoặc chi tiết.
+        </span>
+        <div class="flex items-center gap-2">
+          <button onclick="toggleAllDetails(true)" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg transition-colors">Mở tất cả</button>
+          <button onclick="toggleAllDetails(false)" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg transition-colors">Thu gọn</button>
+        </div>
+      </div>
+      <nav class="mt-5 pt-4 border-t border-slate-100 no-print">
+        <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">Nội dung trang</div>
+        <div class="flex flex-wrap gap-2">
+          <a href="#1-dat-van-de-dan-nhap-introduction-hook" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">📝 1. ĐẶT VẤN ĐỀ &amp; DẪN NHẬP (Introduction / Hook)</a>
+          <a href="#2-noi-dung-cot-loi-core-content" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">📖 2. NỘI DUNG CỐT LÕI (Core Content)</a>
+          <a href="#3-tom-tat-diem-can-nho-key-takeaways" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">📌 3. TÓM TẮT &amp; ĐIỂM CẦN NHỚ (Key Takeaways)</a>
+          <a href="#4-hoat-dong-kiem-tra-nhanh-self-assessment-quiz" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">❓ 4. HOẠT ĐỘNG KIỂM TRA NHANH (Self-Assessment / Quiz)</a>
+          <a href="#5-nhiem-vu-hoc-tap-thao-luan-lms-discussion-assignment" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">💬 5. NHIỆM VỤ HỌC TẬP &amp; THẢO LUẬN (LMS Discussion / Assignment)</a>
+        </div>
+      </nav>
+    </div>
+
+    <!-- Content -->
+    <article class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 lesson prose prose-slate max-w-none prose-headings:font-extrabold prose-h3:text-lhu-dark prose-h4:text-fe-dark prose-a:text-lhu-blue">
+<blockquote>
+<p><strong>Thời lượng:</strong> 5 tiết (225 phút) · <strong>Hình thức:</strong> Lớp học đảo ngược · <strong>Chuẩn đầu ra:</strong> PI 2.3 (CLO2)<br><strong>Dự án xuyên suốt:</strong> Smart Event Hub – Tích hợp UI Library (Ant Design v5), tùy biến Theme theo nhận diện thương hiệu, dựng Modal Đặt vé và trang Quản lý đơn hàng <code>/admin/orders</code>.</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>🎯 <strong>MỤC TIÊU BÀI HỌC (Learning Objectives)</strong><br>Sau khi hoàn thành bài học này, người học có thể:</p>
+<ul>
+<li><strong>[Bloom 1/2 - Kiến thức]:</strong> Trình bày được ưu/nhược điểm của Ant Design v5, Bootstrap 5 và Tailwind CSS; giải thích vì sao cần <code>@ant-design/nextjs-registry</code> và cơ chế Design Token của <code>ConfigProvider</code>.</li>
+<li><strong>[Bloom 3/4 - Kỹ năng]:</strong> Cài đặt và cấu hình Ant Design trong Next.js App Router không lỗi FOUC/Hydration; sử dụng đúng Grid, Table, Modal, Form, Notification với TypeScript.</li>
+<li><strong>[Bloom 5/6 - Năng lực]:</strong> Lựa chọn thư viện UI phù hợp cho dự án nhóm và tùy biến giao diện Smart Event Hub có bản sắc riêng, không rập khuôn giao diện mặc định.</li>
+</ul>
+</blockquote>
+<hr>
+<h3 id="1-dat-van-de-dan-nhap-introduction-hook">📝 1. ĐẶT VẤN ĐỀ &amp; DẪN NHẬP (Introduction / Hook)</h3>
+<p>Trang Admin của Smart Event Hub cần một bảng đơn hàng có lọc theo trạng thái, phân trang, sắp xếp theo tổng tiền, cùng một form đặt vé có chọn ngày và kiểm tra dữ liệu. Tự viết bằng SCSS thuần, một bạn sinh viên có thể mất cả tuần chỉ để làm cho <code>DatePicker</code> chạy mượt trên điện thoại. Trong khi đó, các thư viện UI đã giải quyết sẵn những việc này và được hàng nghìn dự án kiểm chứng.</p>
+<p>Nhưng nếu ghép thư viện vào mà không cấu hình, trang web sẽ nhấp nháy mất style khi tải, console báo lỗi Hydration, và giao diện trông &quot;y hệt&quot; mọi trang dùng Ant Design khác. <strong>Làm thế nào để tận dụng sức mạnh của thư viện UI mà sản phẩm vẫn mang nhận diện riêng của nhóm?</strong></p>
+<blockquote>
+<p>🧭 <strong>Trước giờ học (Flipped Classroom):</strong> Xem video/slide về tích hợp Ant Design / Bootstrap vào Next.js và Custom Theme bằng <code>ConfigProvider</code>. Lướt qua trang tổng quan component của Ant Design (link ở mục 5). Làm quiz 5–10 câu trên LMS. Chuẩn bị nhánh dự án đã hoàn thành Buổi 4.</p>
+</blockquote>
+<hr>
+<h3 id="2-noi-dung-cot-loi-core-content">📖 2. NỘI DUNG CỐT LÕI (Core Content)</h3>
+<h4 id="2-1-chon-thu-vien-ui-ant-design-bootstrap-hay-tailwind">2.1. Chọn thư viện UI: Ant Design, Bootstrap hay Tailwind?</h4>
+<ul>
+<li><strong>Khái niệm:</strong> Thư viện UI cung cấp component hoặc tiện ích CSS dựng sẵn. Ba lựa chọn phổ biến khác nhau ở <strong>mức độ &quot;có sẵn&quot;</strong> và <strong>mức độ tự do tùy biến</strong>.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Tiêu chí</th>
+<th>Ant Design v5</th>
+<th>Bootstrap 5</th>
+<th>Tailwind CSS</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Bản chất</td>
+<td>Bộ component React hoàn chỉnh (CSS-in-JS)</td>
+<td>Bộ class CSS + JS plugin (không gắn React)</td>
+<td>Utility-first CSS, không có component</td>
+</tr>
+<tr>
+<td>Điểm mạnh</td>
+<td>Table, Form, DatePicker, Modal cực mạnh; Design Token; hợp trang Admin</td>
+<td>Dễ học, Grid quen thuộc, tài liệu nhiều</td>
+<td>Tự do thiết kế, bundle CSS nhỏ, hợp với shadcn/ui</td>
+</tr>
+<tr>
+<td>Điểm yếu</td>
+<td>Bundle lớn hơn; giao diện dễ &quot;rập khuôn&quot;; cần registry khi SSR</td>
+<td>Component JS cần xử lý thêm trong React (hoặc dùng <code>react-bootstrap</code>)</td>
+<td>Phải tự dựng component phức tạp; className dài</td>
+</tr>
+<tr>
+<td>Tùy biến</td>
+<td><code>ConfigProvider</code> token + SCSS Module</td>
+<td>Biến Sass (<code>$primary</code>…)</td>
+<td><code>@theme</code> / file cấu hình</td>
+</tr>
+</tbody></table>
+<ul>
+<li>Học phần chọn <strong>Ant Design v5 làm trọng tâm</strong> vì Smart Event Hub có nhiều màn hình quản trị (bảng, form, thông báo).</li>
+<li>Không nên trộn nhiều thư viện CSS toàn cục trong một dự án: reset CSS của Bootstrap hoặc preflight của Tailwind có thể đè style của Ant Design.</li>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote>
+<p>Nhiều hệ thống quản trị nội bộ (ERP, CRM) chọn Ant Design vì Table và Form. Các landing page marketing lại hay chọn Tailwind để thiết kế tự do. Nhóm nào làm Smart Event Hub muốn giao diện người dùng thật &quot;khác biệt&quot; có thể dùng Tailwind cho trang công khai, nhưng phải thống nhất ngay từ đầu.</p>
+</blockquote>
+</li>
+</ul>
+<p>Cài đặt nhanh nếu nhóm chọn phương án khác:</p>
+<pre><code class="language-bash"># Bootstrap 5: import CSS một lần trong app/layout.tsx
+npm install bootstrap
+# import &#39;bootstrap/dist/css/bootstrap.min.css&#39;;
+
+# Tailwind CSS v4 (hoặc chọn &quot;Tailwind&quot; khi chạy create-next-app)
+npm install tailwindcss @tailwindcss/postcss postcss
+# postcss.config.mjs: plugins: { &#39;@tailwindcss/postcss&#39;: {} }
+# app/globals.css: @import &quot;tailwindcss&quot;;
+</code></pre>
+<h4 id="2-2-tich-hop-ant-design-v5-vao-next-js-app-router">2.2. Tích hợp Ant Design v5 vào Next.js App Router</h4>
+<ul>
+<li><strong>Khái niệm:</strong> Ant Design v5 sinh CSS bằng JavaScript (CSS-in-JS) lúc chạy. Nếu không thu gom CSS ở phía server, HTML gửi về trình duyệt chưa có style, gây <strong>FOUC</strong> (Flash of Unstyled Content) – trang &quot;trần trụi&quot; vài trăm mili giây rồi mới đẹp.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li><code>@ant-design/nextjs-registry</code> cung cấp <code>AntdRegistry</code> để extract CSS ngay khi render trên server.</li>
+<li>Next.js 15 dùng React 19, trong khi antd v5 được viết cho React 16–18. Cần cài thêm gói vá <code>@ant-design/v5-patch-for-react-19</code> và import một lần ở phía client; nếu không, các hàm tĩnh như <code>message.success()</code> hay <code>Modal.confirm()</code> có thể không hiển thị.</li>
+<li>Ghi rõ phiên bản <code>antd@5</code> khi cài để cả nhóm dùng cùng bản với tài liệu.</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-bash">npm install antd@5 @ant-design/nextjs-registry @ant-design/v5-patch-for-react-19
+</code></pre>
+<pre><code class="language-tsx">// app/providers.tsx
+&#39;use client&#39;;
+
+import &#39;@ant-design/v5-patch-for-react-19&#39;;
+import { App, ConfigProvider } from &#39;antd&#39;;
+import viVN from &#39;antd/locale/vi_VN&#39;;
+import { themeConfig } from &#39;@/theme/themeConfig&#39;;
+
+export default function Providers({ children }: { children: React.ReactNode }) {
+  return (
+    &lt;ConfigProvider theme={themeConfig} locale={viVN}&gt;
+      &lt;App&gt;{children}&lt;/App&gt;
+    &lt;/ConfigProvider&gt;
+  );
+}
+</code></pre>
+<pre><code class="language-tsx">// app/layout.tsx (Server Component)
+import { AntdRegistry } from &#39;@ant-design/nextjs-registry&#39;;
+import Providers from &#39;./providers&#39;;
+import &#39;./globals.scss&#39;;
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    &lt;html lang=&quot;vi&quot;&gt;
+      &lt;body&gt;
+        &lt;AntdRegistry&gt;
+          &lt;Providers&gt;{children}&lt;/Providers&gt;
+        &lt;/AntdRegistry&gt;
+      &lt;/body&gt;
+    &lt;/html&gt;
+  );
+}
+</code></pre>
+<blockquote>
+<p><strong>Vì sao tách <code>providers.tsx</code>?</strong> Cách viết <code>ConfigProvider</code> thẳng trong <code>layout.tsx</code> vẫn chạy khi theme chỉ gồm token tĩnh. Nhưng khi thêm <code>algorithm: theme.darkAlgorithm</code> (một hàm) hoặc cần hook như <code>App.useApp()</code>, phần đó bắt buộc nằm trong Client Component. Tách sớm giúp <code>layout.tsx</code> gọn và không phải sửa lại sau này.</p>
+</blockquote>
+<h4 id="2-3-tuy-bien-theme-bang-design-token-va-scss-module">2.3. Tùy biến Theme bằng Design Token và SCSS Module</h4>
+<ul>
+<li><strong>Khái niệm:</strong> Design Token là các biến thiết kế (màu chủ đạo, bo góc, font) mà mọi component Ant Design đọc chung. Đổi token một lần, toàn bộ Button, Input, Table, Modal đổi theo.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li><code>token</code>: biến toàn cục – <code>colorPrimary</code>, <code>borderRadius</code>, <code>fontFamily</code>, <code>colorBgContainer</code>…</li>
+<li><code>components</code>: token riêng cho từng component, ví dụ chỉ tăng chiều cao Button.</li>
+<li>Ghi đè chi tiết hơn bằng SCSS Module với <code>:global(.ant-...)</code> đặt bên trong một class cục bộ, để chỉ ảnh hưởng đúng component đó. CSS của antd v5 dùng selector <code>:where()</code> có độ ưu tiên thấp nên class của chúng ta dễ thắng mà không cần <code>!important</code>.</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-ts">// theme/themeConfig.ts
+import type { ThemeConfig } from &#39;antd&#39;;
+
+export const themeConfig: ThemeConfig = {
+  token: {
+    colorPrimary: &#39;#6366F1&#39;, // Indigo – màu nhận diện Smart Event Hub
+    borderRadius: 8,
+    fontFamily: &quot;&#39;Be Vietnam Pro&#39;, system-ui, sans-serif&quot;,
+  },
+  components: {
+    Button: { controlHeight: 40, fontWeight: 600 },
+    Table: { headerBg: &#39;#EEF2FF&#39; },
+  },
+};
+</code></pre>
+<pre><code class="language-scss">// components/features/BookingModal.module.scss
+.bookingModal {
+  :global(.ant-modal-content) { padding: 24px 28px; }
+  :global(.ant-modal-title) { font-size: 20px; color: #4338ca; }
+}
+</code></pre>
+<ul>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote>
+<p>Hai nhóm cùng dùng Ant Design nhưng một nhóm chọn tông Indigo bo góc 8px, nhóm kia chọn tông cam bo góc 16px với font Be Vietnam Pro. Chỉ cần khác token, người xem đã thấy hai sản phẩm có bản sắc riêng.</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="2-4-grid-system-va-cac-component-nang-cao">2.4. Grid System và các component nâng cao</h4>
+<ul>
+<li><strong>Khái niệm:</strong> Grid của Ant Design chia hàng thành <strong>24 cột</strong>. <code>Row</code> là hàng, <code>Col</code> là cột, các prop <code>xs</code> <code>sm</code> <code>md</code> <code>lg</code> <code>xl</code> quy định số cột theo từng kích thước màn hình.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong> Mốc mặc định: <code>xs</code> &lt; 576px, <code>sm</code> ≥ 576px, <code>md</code> ≥ 768px, <code>lg</code> ≥ 992px, <code>xl</code> ≥ 1200px. <code>gutter={[16, 16]}</code> tạo khoảng cách ngang và dọc. Các component hay dùng: <code>Table</code> (dữ liệu Admin), <code>Modal</code> (popup đặt vé), <code>Form</code> (nhập liệu có validate), <code>Notification</code>/<code>Message</code> (phản hồi).</li>
+</ul>
+<pre><code class="language-tsx">// Mobile 1 cột · Tablet 2 cột · Laptop 3 cột · Desktop 4 cột
+&lt;Row gutter={[16, 16]}&gt;
+  {events.map((event) =&gt; (
+    &lt;Col key={event.id} xs={24} sm={12} md={8} lg={6}&gt;
+      &lt;EventCard event={event} /&gt;
+    &lt;/Col&gt;
+  ))}
+&lt;/Row&gt;
+</code></pre>
+<p>Modal đặt vé dùng <code>Modal</code> + <code>Form</code> + <code>DatePicker</code> + <code>Select</code> (Client Component):</p>
+<pre><code class="language-tsx">// components/features/BookingModal.tsx
+&#39;use client&#39;;
+
+import { useState } from &#39;react&#39;;
+import { App, Button, DatePicker, Form, Input, InputNumber, Modal, Select } from &#39;antd&#39;;
+import type { Dayjs } from &#39;dayjs&#39;; // dayjs được cài kèm antd
+import styles from &#39;./BookingModal.module.scss&#39;;
+
+type TicketType = &#39;VIP&#39; | &#39;STANDARD&#39;;
+
+interface BookingFormValues {
+  ticketType: TicketType;
+  quantity: number;
+  attendDate: Dayjs;
+  note?: string;
+}
+
+export default function BookingModal({ eventTitle }: { eventTitle: string }) {
+  const [open, setOpen] = useState(false);
+  const [form] = Form.useForm&lt;BookingFormValues&gt;();
+  const { notification } = App.useApp();
+
+  const handleOk = async () =&gt; {
+    try {
+      const values = await form.validateFields();
+      notification.success({
+        message: &#39;Đặt vé thành công&#39;,
+        description: `${values.quantity} vé ${values.ticketType} – ngày ${values.attendDate.format(&#39;DD/MM/YYYY&#39;)}`,
+      });
+      form.resetFields();
+      setOpen(false);
+    } catch {
+      // Lỗi validate đã hiển thị ngay dưới từng trường
+    }
+  };
+
+  return (
+    &lt;&gt;
+      &lt;Button type=&quot;primary&quot; onClick={() =&gt; setOpen(true)}&gt;Đặt vé&lt;/Button&gt;
+      &lt;Modal
+        title={`Đặt vé: ${eventTitle}`}
+        open={open}
+        onOk={handleOk}
+        onCancel={() =&gt; setOpen(false)}
+        okText=&quot;Xác nhận&quot;
+        cancelText=&quot;Hủy&quot;
+        className={styles.bookingModal}
+      &gt;
+        &lt;Form form={form} layout=&quot;vertical&quot; initialValues={{ ticketType: &#39;STANDARD&#39;, quantity: 1 }}&gt;
+          &lt;Form.Item name=&quot;ticketType&quot; label=&quot;Loại vé&quot; rules={[{ required: true }]}&gt;
+            &lt;Select options={[{ value: &#39;VIP&#39;, label: &#39;VIP&#39; }, { value: &#39;STANDARD&#39;, label: &#39;Standard&#39; }]} /&gt;
+          &lt;/Form.Item&gt;
+          &lt;Form.Item name=&quot;quantity&quot; label=&quot;Số lượng&quot; rules={[{ required: true, type: &#39;number&#39;, min: 1, max: 10 }]}&gt;
+            &lt;InputNumber min={1} max={10} style={{ width: &#39;100%&#39; }} /&gt;
+          &lt;/Form.Item&gt;
+          &lt;Form.Item name=&quot;attendDate&quot; label=&quot;Ngày tham dự&quot; rules={[{ required: true, message: &#39;Chọn ngày tham dự&#39; }]}&gt;
+            &lt;DatePicker format=&quot;DD/MM/YYYY&quot; style={{ width: &#39;100%&#39; }} /&gt;
+          &lt;/Form.Item&gt;
+          &lt;Form.Item name=&quot;note&quot; label=&quot;Ghi chú&quot;&gt;
+            &lt;Input.TextArea rows={3} /&gt;
+          &lt;/Form.Item&gt;
+        &lt;/Form&gt;
+      &lt;/Modal&gt;
+    &lt;/&gt;
+  );
+}
+</code></pre>
+<h4 id="2-5-table-quan-ly-don-hang-filter-sorter-pagination">2.5. Table quản lý đơn hàng: Filter, Sorter, Pagination</h4>
+<ul>
+<li><strong>Khái niệm:</strong> <code>Table</code> nhận <code>columns</code> (cấu hình cột) và <code>dataSource</code> (dữ liệu). Lọc, sắp xếp, phân trang đều khai báo trong cấu hình, không phải tự viết logic.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong> Cấu hình cột chứa hàm <code>render</code>, <code>onFilter</code>, <code>sorter</code>. Hàm không thể truyền từ Server Component sang Client Component, nên tách bảng thành <strong><code>OrdersTable.tsx</code> có <code>&#39;use client&#39;</code></strong>, còn <code>page.tsx</code> vẫn là Server Component.</li>
+</ul>
+<pre><code class="language-tsx">// app/admin/orders/OrdersTable.tsx
+&#39;use client&#39;;
+
+import { Button, Table, Tag } from &#39;antd&#39;;
+import type { TableProps } from &#39;antd&#39;;
+
+type OrderStatus = &#39;SUCCESS&#39; | &#39;PENDING&#39; | &#39;CANCELLED&#39;;
+
+interface OrderType {
+  key: string;
+  orderCode: string;
+  customerName: string;
+  eventName: string;
+  orderDate: string;
+  totalAmount: number;
+  status: OrderStatus;
+}
+
+const STATUS_META: Record&lt;OrderStatus, { color: string; label: string }&gt; = {
+  SUCCESS: { color: &#39;green&#39;, label: &#39;Đã thanh toán&#39; },
+  PENDING: { color: &#39;orange&#39;, label: &#39;Chờ xử lý&#39; },
+  CANCELLED: { color: &#39;red&#39;, label: &#39;Đã hủy&#39; },
+};
+
+const STATUSES: OrderStatus[] = [&#39;SUCCESS&#39;, &#39;PENDING&#39;, &#39;CANCELLED&#39;];
+
+const orders: OrderType[] = Array.from({ length: 10 }, (_, i) =&gt; ({
+  key: String(i + 1),
+  orderCode: `ORD-${String(i + 1).padStart(3, &#39;0&#39;)}`,
+  customerName: `Khách hàng ${i + 1}`,
+  eventName: i % 2 === 0 ? &#39;Tech Summit 2025&#39; : &#39;Đêm nhạc Acoustic&#39;,
+  orderDate: `2025-11-${String(i + 10)}`,
+  totalAmount: (i + 1) * 250000,
+  status: STATUSES[i % 3],
+}));
+
+const columns: TableProps&lt;OrderType&gt;[&#39;columns&#39;] = [
+  { title: &#39;Mã đơn&#39;, dataIndex: &#39;orderCode&#39;, key: &#39;orderCode&#39; },
+  { title: &#39;Khách hàng&#39;, dataIndex: &#39;customerName&#39;, key: &#39;customerName&#39; },
+  { title: &#39;Sự kiện&#39;, dataIndex: &#39;eventName&#39;, key: &#39;eventName&#39; },
+  { title: &#39;Ngày đặt&#39;, dataIndex: &#39;orderDate&#39;, key: &#39;orderDate&#39; },
+  {
+    title: &#39;Tổng tiền&#39;, dataIndex: &#39;totalAmount&#39;, key: &#39;totalAmount&#39;, align: &#39;right&#39;,
+    sorter: (a, b) =&gt; a.totalAmount - b.totalAmount,
+    render: (value: number) =&gt; `${value.toLocaleString(&#39;vi-VN&#39;)} ₫`,
+  },
+  {
+    title: &#39;Trạng thái&#39;, dataIndex: &#39;status&#39;, key: &#39;status&#39;,
+    filters: STATUSES.map((s) =&gt; ({ text: STATUS_META[s].label, value: s })),
+    onFilter: (value, record) =&gt; record.status === value,
+    render: (status: OrderStatus) =&gt; &lt;Tag color={STATUS_META[status].color}&gt;{STATUS_META[status].label}&lt;/Tag&gt;,
+  },
+  {
+    title: &#39;Hành động&#39;, key: &#39;action&#39;,
+    render: (_, record) =&gt; &lt;Button type=&quot;link&quot; href={`/admin/orders/${record.orderCode}`}&gt;Xem chi tiết&lt;/Button&gt;,
+  },
+];
+
+export default function OrdersTable() {
+  return &lt;Table&lt;OrderType&gt; columns={columns} dataSource={orders} pagination={{ pageSize: 5 }} scroll={{ x: 800 }} /&gt;;
+}
+</code></pre>
+<pre><code class="language-tsx">// app/admin/orders/page.tsx (Server Component)
+import OrdersTable from &#39;./OrdersTable&#39;;
+
+export default function AdminOrdersPage() {
+  return (
+    &lt;main&gt;
+      &lt;h1&gt;Quản lý đơn hàng&lt;/h1&gt;
+      &lt;OrdersTable /&gt;
+    &lt;/main&gt;
+  );
+}
+</code></pre>
+<blockquote>
+<p><strong>Mẹo responsive:</strong> <code>scroll={{ x: 800 }}</code> cho bảng cuộn ngang bên trong khung thay vì làm cả trang tràn ngang trên điện thoại.</p>
+</blockquote>
+<h4 id="2-6-vibe-coding-prompt-mau-cach-kiem-duyet-code-ai">2.6. Vibe Coding – Prompt mẫu &amp; cách kiểm duyệt code AI</h4>
+<p>AI thường được huấn luyện trên nhiều code Ant Design v4 cũ, nên rất hay sinh sai API. Hãy nêu rõ phiên bản và môi trường trong prompt.</p>
+<pre><code class="language-text">Hãy hướng dẫn tôi tạo một Component BookingModal.tsx sử dụng Ant Design v5 trong dự án
+Next.js 15 App Router (TypeScript strict).
+
+Yêu cầu:
+1. Sử dụng các component từ antd: Modal, Form, InputNumber, Select, DatePicker, Button.
+2. Tùy biến Theme thông qua ConfigProvider với màu primary là #6366F1 (đặt ở providers.tsx).
+3. Form gồm các trường: Loại vé (VIP, Standard), Số lượng (1-10), Ngày tham dự, Ghi chú.
+4. Đảm bảo xử lý không bị lỗi Hydration mismatch trong Next.js: dùng &#39;use client&#39; đúng chỗ,
+   dùng prop open (không dùng visible), thông báo bằng App.useApp().
+</code></pre>
+<pre><code class="language-text">Hãy viết mã nguồn /admin/orders gồm page.tsx (Server Component) và OrdersTable.tsx
+(&#39;use client&#39;) sử dụng Table của Ant Design v5 với TypeScript.
+- Khai báo Interface OrderType và kiểu TableProps&lt;OrderType&gt;[&#39;columns&#39;].
+- Render dữ liệu mock 10 đơn hàng.
+- Cột &quot;Trạng thái&quot; dùng Tag: SUCCESS (xanh lá), PENDING (cam), CANCELLED (đỏ), có filter.
+- Phân trang 5 mục/trang, cột Action có nút &quot;Xem chi tiết&quot;. Không dùng any.
+</code></pre>
+<blockquote>
+<p><strong>Checklist kiểm duyệt code AI (Ant Design v5):</strong></p>
+<ol>
+<li>Dùng <code>open</code> thay cho <code>visible</code> (Modal, Drawer, Dropdown) – <code>visible</code> là API v4.</li>
+<li><code>Tabs</code>, <code>Menu</code>, <code>Dropdown</code> dùng prop <code>items</code>, không dùng <code>TabPane</code>/<code>Menu.Item</code> lồng trong children.</li>
+<li>Không còn <code>import &#39;antd/dist/antd.css&#39;</code> (v5 không cần file CSS này).</li>
+<li>File chứa <code>columns</code> có hàm <code>render</code>, hoặc dùng hook <code>Form.useForm</code>, <code>App.useApp</code> phải có <code>&#39;use client&#39;</code>.</li>
+<li><code>ConfigProvider</code> đúng cú pháp <code>theme={{ token: { colorPrimary: &#39;#6366F1&#39;, borderRadius: 8 } }}</code> – không lồng thừa ngoặc.</li>
+<li>Không đọc <code>window</code>, <code>localStorage</code>, <code>new Date()</code> ngẫu nhiên khi render (nguồn gây Hydration mismatch).</li>
+</ol>
+</blockquote>
+<h4 id="2-7-thuc-hanh-tren-lop">2.7. Thực hành trên lớp</h4>
+<table>
+<thead>
+<tr>
+<th>Phần</th>
+<th>Thời lượng</th>
+<th>Nhiệm vụ</th>
+<th>Output mong muốn</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Guided Practice</td>
+<td>45&#39;</td>
+<td>Cài <code>antd</code>, <code>@ant-design/nextjs-registry</code>; cấu hình theme <code>#6366F1</code>, <code>borderRadius: 8</code>; dựng <code>BookingModal.tsx</code></td>
+<td>Modal mở mượt, không lỗi SSR/Hydration; nút và viền theo đúng Theme</td>
+</tr>
+<tr>
+<td>Unguided Practice</td>
+<td>45&#39;</td>
+<td>Dựng <code>/admin/orders</code> bằng <code>Table</code> + <code>Tag</code>, có Filter trạng thái và Pagination</td>
+<td>Bảng chuyên nghiệp, lọc và chuyển trang mượt</td>
+</tr>
+<tr>
+<td>Team Challenge</td>
+<td>60&#39;</td>
+<td>Rà soát 5 màn hình chính, thay HTML thô bằng component AntD, tùy biến SCSS</td>
+<td>Giao diện đồng bộ, có bản sắc riêng, responsive trên Tablet &amp; Mobile</td>
+</tr>
+<tr>
+<td>Tổng kết</td>
+<td>15&#39;</td>
+<td>GV nhận xét theme của từng nhóm, giải đáp, giao BTVN</td>
+<td>Danh sách lỗi UI cần sửa của nhóm</td>
+</tr>
+</tbody></table>
+<p><strong>Guided (45&#39;):</strong> Cài thư viện, tạo <code>providers.tsx</code> và <code>themeConfig.ts</code>, bọc <code>AntdRegistry</code> trong <code>app/layout.tsx</code>. Xây <code>BookingModal.tsx</code> với Modal, Form, DatePicker, Select để chọn loại vé, số lượng, ngày tham dự. Kiểm tra bằng cách tắt JavaScript hoặc reload nhanh: trang không được nhấp nháy mất style.</p>
+<p><strong>Unguided (45&#39;):</strong> Trang <code>/admin/orders</code> gồm các cột Mã đơn hàng, Tên khách hàng, Tên sự kiện, Ngày đặt, Tổng tiền, Trạng thái (Đã thanh toán, Chờ xử lý, Đã hủy). Thêm Filter theo trạng thái và Pagination có sẵn của Table; khuyến khích thêm Sorter cho cột Tổng tiền.</p>
+<p><strong>Team Challenge (60&#39;):</strong> Thay phần tử HTML thô bằng component tương ứng: <code>Carousel</code> cho Banner, <code>Tabs</code> cho Danh mục, <code>Rate</code> cho Đánh giá, <code>Skeleton</code> cho trạng thái chờ. Tùy biến token và SCSS Module để giao diện không mang cảm giác &quot;nguyên bản&quot; của Ant Design.</p>
+<pre><code class="language-tsx">// Ví dụ Tabs đúng cú pháp v5 (items) cho thanh danh mục
+&lt;Tabs
+  defaultActiveKey=&quot;music&quot;
+  items={[
+    { key: &#39;music&#39;, label: &#39;Âm nhạc&#39;, children: &lt;EventGrid category=&quot;music&quot; /&gt; },
+    { key: &#39;technology&#39;, label: &#39;Công nghệ&#39;, children: &lt;EventGrid category=&quot;technology&quot; /&gt; },
+  ]}
+/&gt;
+</code></pre>
+<hr>
+<h3 id="3-tom-tat-diem-can-nho-key-takeaways">📌 3. TÓM TẮT &amp; ĐIỂM CẦN NHỚ (Key Takeaways)</h3>
+<ul>
+<li>🔹 <strong>Chọn thư viện có chủ đích:</strong> Ant Design mạnh về component quản trị; Bootstrap dễ học; Tailwind tự do thiết kế. Chọn một thư viện chính cho cả nhóm.</li>
+<li>🔹 <strong>AntdRegistry chống FOUC:</strong> bọc ứng dụng trong <code>AntdRegistry</code> ở <code>app/layout.tsx</code>; với React 19 thêm gói vá <code>@ant-design/v5-patch-for-react-19</code>.</li>
+<li>🔹 <strong>Design Token:</strong> đổi <code>colorPrimary</code>, <code>borderRadius</code>, <code>fontFamily</code> trong <code>ConfigProvider</code> để toàn bộ component đổi theo; ghi đè chi tiết bằng SCSS Module + <code>:global</code>.</li>
+<li>🔹 <strong>Grid 24 cột:</strong> <code>Row</code>/<code>Col</code> với <code>xs</code> <code>sm</code> <code>md</code> <code>lg</code> giúp bố cục co giãn theo thiết bị.</li>
+<li>🔹 <strong>Ranh giới Client:</strong> component có hàm <code>render</code>, hook của antd hay sự kiện phải nằm trong file <code>&#39;use client&#39;</code>; trang vẫn giữ là Server Component.</li>
+<li>🔹 <strong>Vibe Coding với antd:</strong> luôn ghi &quot;Ant Design v5&quot; trong prompt và soát lỗi API cũ (<code>visible</code>, <code>TabPane</code>, <code>antd.css</code>).</li>
+</ul>
+<hr>
+<h3 id="4-hoat-dong-kiem-tra-nhanh-self-assessment-quiz">❓ 4. HOẠT ĐỘNG KIỂM TRA NHANH (Self-Assessment / Quiz)</h3>
+<p><strong>Câu 1:</strong> Mục đích chính của <code>AntdRegistry</code> (gói <code>@ant-design/nextjs-registry</code>) là gì?</p>
+<ul>
+<li>A. Đăng ký bản quyền sử dụng Ant Design</li>
+<li>B. Thu gom CSS-in-JS ở phía server để tránh FOUC khi tải trang</li>
+<li>C. Tự động chuyển mọi component sang Server Component</li>
+<li>D. Thay thế <code>ConfigProvider</code> để đổi màu chủ đạo</li>
+</ul>
+<details>
+<summary>👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> B<br>
+<b>Giải thích:</b> Ant Design v5 sinh CSS bằng JavaScript; registry extract CSS ngay khi render server để HTML gửi về đã có style, tránh hiện tượng trang nhấp nháy không style.
+</details>
+
+<p><strong>Câu 2:</strong> Muốn một thẻ sự kiện chiếm cả hàng trên điện thoại nhưng 4 thẻ một hàng trên màn hình lớn, cấu hình <code>Col</code> nào đúng?</p>
+<ul>
+<li>A. <code>&lt;Col xs={24} lg={6}&gt;</code></li>
+<li>B. <code>&lt;Col xs={6} lg={24}&gt;</code></li>
+<li>C. <code>&lt;Col xs={12} lg={4}&gt;</code></li>
+<li>D. <code>&lt;Col span={4}&gt;</code></li>
+</ul>
+<details>
+<summary>👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> A<br>
+<b>Giải thích:</b> Grid có 24 cột: <code>xs={24}</code> chiếm trọn hàng trên mobile, <code>lg={6}</code> bằng 24/6 = 4 thẻ một hàng trên màn hình lớn.
+</details>
+
+<p><strong>Câu 3:</strong> Đoạn code AI sinh ra có <code>&lt;Modal visible={isOpen}&gt;</code>. Nhận xét nào đúng với Ant Design v5?</p>
+<ul>
+<li>A. Đúng chuẩn, không cần sửa</li>
+<li>B. Phải đổi thành <code>show={isOpen}</code></li>
+<li>C. Phải đổi thành <code>open={isOpen}</code> vì <code>visible</code> là API cũ của v4</li>
+<li>D. Phải bỏ prop này, Modal tự mở</li>
+</ul>
+<details>
+<summary>👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> C<br>
+<b>Giải thích:</b> Từ v5, Modal, Drawer, Dropdown dùng <code>open</code>. Đây là lỗi AI hay mắc do học từ code v4 cũ.
+</details>
+
+<p><strong>Câu 4:</strong> Cách nào ghi đè style tiêu đề Modal đặt vé mà KHÔNG ảnh hưởng các Modal khác?</p>
+<ul>
+<li>A. Sửa <code>.ant-modal-title</code> trong <code>globals.scss</code></li>
+<li>B. Đổi <code>colorPrimary</code> trong <code>ConfigProvider</code></li>
+<li>C. Thêm <code>!important</code> vào mọi thuộc tính trong <code>globals.scss</code></li>
+<li>D. Gán <code>className</code> cục bộ từ SCSS Module cho Modal rồi dùng <code>:global(.ant-modal-title)</code> bên trong class đó</li>
+</ul>
+<details>
+<summary>👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> D<br>
+<b>Giải thích:</b> Class của CSS Module được hash nên chỉ áp dụng cho Modal được gán; <code>:global</code> bên trong chỉ nhắm class antd nằm dưới class đó. Sửa global hoặc đổi token sẽ ảnh hưởng toàn ứng dụng.
+</details>
+
+<p><em>Bộ 10+ câu đầy đủ: <code>quiz/quiz-bai-05-aiken.txt</code></em></p>
+<hr>
+<h3 id="5-nhiem-vu-hoc-tap-thao-luan-lms-discussion-assignment">💬 5. NHIỆM VỤ HỌC TẬP &amp; THẢO LUẬN (LMS Discussion / Assignment)</h3>
+<ul>
+<li><strong>Chủ đề thảo luận Diễn đàn (Forum Discussion):</strong> Nhóm bạn sẽ chọn Ant Design, Bootstrap hay Tailwind cho phần giao diện người dùng công khai của Smart Event Hub, và vì sao? Hãy đưa ra ít nhất 2 tiêu chí (tốc độ phát triển, bản sắc thiết kế, kích thước bundle, kinh nghiệm của thành viên…) và một rủi ro khi lựa chọn của nhóm.</li>
+<li><strong>Yêu cầu nộp bài (Bài tập về nhà):</strong><ul>
+<li>Kiểm tra và tối ưu tính Responsive cho toàn bộ component Ant Design đã dùng ở 5 màn hình chính, sử dụng Grid <code>Row</code>/<code>Col</code> với <code>xs</code>, <code>sm</code>, <code>md</code>, <code>lg</code>; sửa tất cả lỗi vỡ khung.</li>
+<li><strong>Output:</strong> Giao diện không tràn ngang (horizontal overflow) trên màn hình di động; kèm ảnh chụp 3 kích thước (375px, 768px, 1440px) của mỗi màn hình trong mô tả PR.</li>
+<li><strong>Hạn nộp:</strong> trước buổi học tiếp theo. Nộp link Pull Request trên LMS. Nhánh <code>feat/b05-&lt;mssv&gt;-antd-responsive</code>, tiêu đề PR <code>[B05] &lt;Họ tên&gt; – Ant Design &amp; Responsive</code>, commit dạng <code>feat(ui): ...</code>, <code>fix(ui): repair responsive layout on mobile</code>.</li>
+</ul>
+</li>
+<li><strong>📚 Tài liệu đọc &amp; tham khảo:</strong><ul>
+<li>Ant Design v5 Official Docs: <a href="https://ant.design/components/overview/" target="_blank" rel="noopener noreferrer">https://ant.design/components/overview/</a></li>
+<li>Ant Design with Next.js App Router: <a href="https://ant.design/docs/react/use-with-next" target="_blank" rel="noopener noreferrer">https://ant.design/docs/react/use-with-next</a></li>
+<li>Ant Design – Customize Theme: <a href="https://ant.design/docs/react/customize-theme" target="_blank" rel="noopener noreferrer">https://ant.design/docs/react/customize-theme</a></li>
+<li>Ant Design v5 cho React 19: <a href="https://ant.design/docs/react/v5-for-19" target="_blank" rel="noopener noreferrer">https://ant.design/docs/react/v5-for-19</a></li>
+<li>Bootstrap 5 Introduction: <a href="https://getbootstrap.com/docs/5.3/getting-started/introduction/" target="_blank" rel="noopener noreferrer">https://getbootstrap.com/docs/5.3/getting-started/introduction/</a></li>
+<li>Tailwind CSS với Next.js: <a href="https://tailwindcss.com/docs/installation/framework-guides/nextjs" target="_blank" rel="noopener noreferrer">https://tailwindcss.com/docs/installation/framework-guides/nextjs</a></li>
+<li><strong>Câu hỏi tự kiểm tra khi đọc:</strong> (1) Lỗi Hydration Mismatch xảy ra do đâu khi dùng thư viện UI client-side trong Next.js, và khắc phục thế nào? (2) Làm thế nào để ghi đè CSS của một component Ant Design mà không ảnh hưởng tới các component khác?</li>
+</ul>
+</li>
+</ul>
+
+    </article>
+
+    <!-- Bottom Navigation -->
+    <div class="flex items-center justify-between gap-4 mt-8 no-print text-xs font-bold">
+      <a href="bai-04.html" class="px-4 py-2.5 bg-white border border-slate-200 hover:border-lhu-blue text-slate-700 hover:text-lhu-blue rounded-xl shadow-sm transition-all flex items-center gap-2"><i class="fa-solid fa-chevron-left"></i> Bài trước</a>
+      <a href="index.html#lo-trinh" class="px-4 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-800 rounded-xl transition-all flex items-center gap-2">
+        <i class="fa-solid fa-table-cells-large"></i> Danh mục bài học
+      </a>
+      <a href="bai-06.html" class="px-4 py-2.5 bg-white border border-slate-200 hover:border-lhu-blue text-slate-700 hover:text-lhu-blue rounded-xl shadow-sm transition-all flex items-center gap-2">Bài tiếp theo <i class="fa-solid fa-chevron-right"></i></a>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-slate-200 py-6 text-xs text-slate-500 mt-12 no-print">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <strong>Khoa Công nghệ Thông tin - Trường Đại học Lạc Hồng</strong><br>
+        Phòng B301 - B302, Cơ sở 1, Số 10 Huỳnh Văn Nghệ, P. Bửu Long, TP. Biên Hòa, Đồng Nai.
+      </div>
+      <div class="sm:text-right">
+        <span>Email: cntt@lhu.edu.vn • Hotline: (0251) 3952 251</span><br>
+        <span>Hệ thống LMS: <a href="https://learn.lhu.edu.vn" target="_blank" rel="noopener noreferrer" class="text-lhu-blue font-bold">learn.lhu.edu.vn</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleAllDetails(open) {
+      document.querySelectorAll("details").forEach(d => {
+        if (open) d.setAttribute("open", ""); else d.removeAttribute("open");
+      });
+    }
+    if (window.hljs) hljs.highlightAll();
+  </script>
+
+</body>
+</html>

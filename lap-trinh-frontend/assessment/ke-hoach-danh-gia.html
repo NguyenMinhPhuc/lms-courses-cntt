@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LẬP TRÌNH FRONT-END (NEXT.JS, TYPESCRIPT &amp; VIBE CODING) | Lập trình Front-End - Khoa CNTT - Đại học Lạc Hồng</title>
+  <meta name="description" content="Đánh giá &amp; Phản hồi: LẬP TRÌNH FRONT-END (NEXT.JS, TYPESCRIPT &amp; VIBE CODING) - Lập trình Front-End (Next.js, TypeScript &amp; Vibe Coding)">
+
+  <!-- Tailwind CSS CDN (kèm plugin typography cho nội dung Markdown) -->
+  <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6.4.0 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Highlight.js 11.9.0 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            asu: { maroon: '#8C1D40', gold: '#FFC627', dark: '#5C142B', light: '#FAEDF0' },
+            lhu: { blue: '#013D88', sky: '#007BFF', dark: '#01295C', light: '#EEF5FC' },
+            fe: { indigo: '#6366F1', dark: '#312E81', light: '#EEF2FF' }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .lesson h2, .lesson h3, .lesson h4 { scroll-margin-top: 90px; }
+    .lesson h3 { padding-bottom: .4rem; border-bottom: 2px solid #EEF2FF; }
+    .lesson blockquote { border-left: 4px solid #6366F1; background: #F5F7FF; border-radius: 0 12px 12px 0; padding: .6rem 1rem; font-style: normal; color: #1e293b; }
+    .lesson blockquote p:first-of-type::before, .lesson blockquote p:last-of-type::after { content: none; }
+    .lesson pre { border-radius: 12px; padding: 0; background: #0d1117; }
+    .lesson pre code.hljs { border-radius: 12px; padding: 1rem 1.1rem; font-size: 13px; line-height: 1.6; }
+    .lesson :not(pre) > code { background: #EEF2FF; color: #3730A3; padding: .1rem .35rem; border-radius: 6px; font-weight: 500; }
+    .lesson :not(pre) > code::before, .lesson :not(pre) > code::after { content: none; }
+    .lesson table { display: block; overflow-x: auto; font-size: 14px; }
+    .lesson thead th { background: #F1F5F9; }
+    .lesson th, .lesson td { border: 1px solid #E2E8F0; padding: .5rem .7rem !important; vertical-align: top; }
+    .lesson details { border: 1px solid #C7D2FE; border-radius: 10px; padding: .6rem .9rem; margin: .5rem 0 1.2rem; background: #FAFAFF; }
+    .lesson details summary { cursor: pointer; font-weight: 600; color: #4338CA; }
+    .lesson details[open] summary { margin-bottom: .4rem; }
+    .lesson hr { border-color: #E2E8F0; margin: 2rem 0; }
+    @media print {
+      header, footer, .no-print { display: none !important; }
+      details { break-inside: avoid; margin-bottom: 20px; }
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans antialiased selection:bg-asu-gold selection:text-slate-900 min-h-screen flex flex-col">
+
+  <!-- TOP BAR -->
+  <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800 no-print">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+      <div class="flex items-center gap-2">
+        <span class="text-asu-gold font-semibold"><i class="fa-solid fa-certificate mr-1"></i> CHUẨN KIỂM ĐỊNH ABET (USA)</span>
+        <span class="text-slate-600 hidden sm:inline">•</span>
+        <span class="hidden sm:inline">Lớp học đảo ngược • Vibe Coding</span>
+      </div>
+      <div class="flex items-center gap-4 text-xs font-mono">
+        <span>Thời lượng: <strong class="text-white">60 tiết (12 buổi)</strong></span>
+        <span>LT/TH: <strong class="text-asu-gold">30% / 70%</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="sticky top-0 z-40 bg-white shadow-sm border-b border-slate-200 no-print">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <a href="../index.html" class="flex items-center gap-2.5 text-slate-800 hover:text-lhu-blue transition-colors">
+        <img src="../LHU_ASU_VI_Small_Ngang.png" alt="Logo LHU" class="h-8 w-auto">
+        <div class="border-l border-slate-300 pl-2.5">
+          <div class="text-[11px] font-bold text-slate-500 uppercase">Khoa CNTT - LHU</div>
+          <div class="text-xs font-extrabold text-lhu-blue">LẬP TRÌNH FRONT-END</div>
+        </div>
+      </a>
+      <div class="flex items-center gap-3 text-xs">
+        <a href="../index.html" class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-arrow-left"></i>
+          <span class="hidden sm:inline">Về Landing Page</span>
+        </a>
+        <button onclick="window.print()" class="hidden sm:flex px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-all items-center gap-1.5" title="In hoặc lưu file PDF">
+          <i class="fa-solid fa-print"></i>
+          <span>In / PDF</span>
+        </button>
+        <a href="https://learn.lhu.edu.vn" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-lhu-blue hover:bg-lhu-dark text-white font-bold rounded-xl shadow transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-graduation-cap text-asu-gold"></i>
+          <span>Vào lớp LMS</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="flex-grow max-w-5xl w-full mx-auto px-4 sm:px-6 py-8">
+
+    <!-- Title Card -->
+    <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 mb-8">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-5">
+        <div>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-fe-light text-fe-dark font-bold text-xs uppercase tracking-wider mb-2">
+            <i class="fa-solid fa-code"></i> Đánh giá &amp; Phản hồi
+          </span>
+          <h1 class="text-2xl sm:text-3xl font-black text-slate-900 leading-tight">
+            LẬP TRÌNH FRONT-END (NEXT.JS, TYPESCRIPT &amp; VIBE CODING)
+          </h1>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1 font-mono">
+            Học phần: Lập trình Front-End (Next.js, TypeScript & Vibe Coding) • Khoa CNTT - Đại học Lạc Hồng
+          </p>
+        </div>
+        <div class="flex-shrink-0 flex sm:flex-col items-center sm:items-end justify-between gap-1 text-xs">
+          <span class="px-3 py-1.5 bg-emerald-50 text-emerald-700 font-bold rounded-lg border border-emerald-200">
+            <i class="fa-solid fa-check-circle mr-1"></i> Lưu hành nội bộ 2026
+          </span>
+          <span class="text-slate-400 text-[11px]">Định dạng LMS Lecture</span>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between pt-4 text-xs no-print">
+        <span class="text-slate-500">
+          <i class="fa-solid fa-circle-info text-blue-500 mr-1"></i>
+          Bấm vào các khối thu gọn để xem đáp án hoặc chi tiết.
+        </span>
+        <div class="flex items-center gap-2">
+          <button onclick="toggleAllDetails(true)" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg transition-colors">Mở tất cả</button>
+          <button onclick="toggleAllDetails(false)" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg transition-colors">Thu gọn</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <article class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 lesson prose prose-slate max-w-none prose-headings:font-extrabold prose-h3:text-lhu-dark prose-h4:text-fe-dark prose-a:text-lhu-blue">
+<h2 id="assessment-ke-hoach-danh-gia-hoc-phan">ASSESSMENT – KẾ HOẠCH ĐÁNH GIÁ HỌC PHẦN</h2>
+<blockquote>
+<p><strong>Áp dụng cho:</strong> 12 buổi (60 tiết) · <strong>Dự án đánh giá:</strong> Smart Event Hub (nhóm 3–4 sinh viên) · <strong>Chuẩn đầu ra:</strong> CLO1 (PI 1.4), CLO2 (PI 2.3), CLO3 (PI 3.1), CLO4 (PI 5.1)<br><strong>Tài liệu liên quan:</strong> <code>rubric-giua-ky.md</code> · <code>rubric-hackathon-cuoi-ky.md</code> · <code>tu-danh-gia-va-danh-gia-cheo.md</code></p>
+</blockquote>
+<hr>
+<h3 id="1-nguyen-tac-danh-gia">1. Nguyên tắc đánh giá</h3>
+<p>Một sinh viên có thể nhờ AI sinh ra một trang web khá đẹp chỉ trong một buổi tối. Vậy điểm số của học phần nên đo điều gì? Câu trả lời của chúng ta: đo <strong>quá trình</strong> các bạn xây sản phẩm và <strong>mức độ hiểu</strong> đối với code mình đưa vào repository, chứ không chỉ đo kết quả cuối cùng.</p>
+<ul>
+<li><strong>Đánh giá trên sản phẩm thật:</strong> mọi cột điểm lớn đều gắn với dự án Smart Event Hub, chạy được trên trình duyệt và (từ Buổi 11) trên Vercel.</li>
+<li><strong>Minh chứng bằng dữ liệu:</strong> Git log, Pull Request, kết quả <code>npm run build</code>, điểm Lighthouse là căn cứ khách quan, khó &quot;làm đẹp&quot; vào phút chót.</li>
+<li><strong>Tách điểm nhóm và điểm cá nhân:</strong> sản phẩm chung chấm cho nhóm; phần Git commit và phản biện code chấm riêng từng người.</li>
+<li><strong>Phản hồi sớm, phản hồi thường xuyên:</strong> sinh viên biết mình đang ở đâu sau mỗi buổi, không phải chờ đến Buổi 12.</li>
+</ul>
+<hr>
+<h3 id="2-co-cau-diem-hoc-phan">2. Cơ cấu điểm học phần</h3>
+<p><strong>Điểm học phần = Quá trình × 0.3 + Giữa kỳ × 0.3 + Cuối kỳ × 0.4</strong> (thang 10; đạt khi ≥ 4.0 và tham gia đủ Buổi 7, Buổi 12).</p>
+<table>
+<thead>
+<tr>
+<th>Thành phần</th>
+<th>Tỷ lệ</th>
+<th>Nội dung</th>
+<th>Thời điểm</th>
+<th>CLO</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Quá trình – Quiz trước giờ</td>
+<td>10%</td>
+<td>10 bài Quiz LMS (Bài 01–06, 08–11), 10 câu/bài</td>
+<td>Trước mỗi buổi học</td>
+<td>CLO1, CLO2, CLO4</td>
+</tr>
+<tr>
+<td>Quá trình – Bài tập về nhà</td>
+<td>10%</td>
+<td>BTVN cá nhân nộp qua Pull Request + link trên LMS</td>
+<td>Sau Buổi 1–11</td>
+<td>CLO1, CLO2, CLO4</td>
+</tr>
+<tr>
+<td>Quá trình – Tham gia trên lớp</td>
+<td>10%</td>
+<td>Guided, Unguided, Team Challenge, phiếu Cross-Testing</td>
+<td>Mỗi buổi</td>
+<td>CLO2, CLO4</td>
+</tr>
+<tr>
+<td>Giữa kỳ</td>
+<td>30%</td>
+<td>Báo cáo tiến độ 50% dự án, demo 10&#39; + phản biện 5&#39;</td>
+<td>Buổi 7</td>
+<td>CLO1, CLO2, CLO4</td>
+</tr>
+<tr>
+<td>Cuối kỳ</td>
+<td>40%</td>
+<td>Thi Hackathon &amp; Final Showcase, demo 8&#39; + Q&amp;A 5&#39;</td>
+<td>Buổi 12</td>
+<td>CLO1, CLO2, CLO3, CLO4</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>💡 <strong>Điểm thưởng Vibe Coding xuất sắc</strong> (+0.5 đến +1.0) được cộng vào <strong>Điểm Quá trình</strong>, tổng sau khi cộng không vượt quá 10. Tiêu chí chi tiết xem <code>rubric-hackathon-cuoi-ky.md</code>, mục 4.</p>
+</blockquote>
+<p><strong>Cách tính Điểm Quá trình (thang 10):</strong></p>
+<pre><code class="language-text">Điểm Quá trình = (TB Quiz × 1/3) + (TB BTVN × 1/3) + (Điểm tham gia × 1/3) + Điểm thưởng   (tối đa 10)
+</code></pre>
+<hr>
+<h3 id="3-lich-danh-gia-theo-buoi">3. Lịch đánh giá theo buổi</h3>
+<table>
+<thead>
+<tr>
+<th>Buổi</th>
+<th>Hoạt động đánh giá</th>
+<th>Hình thức</th>
+<th>Minh chứng / Công cụ</th>
+<th>CLO</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>01</td>
+<td>Quiz 01, BTVN: 3 component tĩnh (Footer, Badge, Search Bar)</td>
+<td>Cá nhân</td>
+<td>Quiz LMS, GitHub PR</td>
+<td>CLO1, CLO2</td>
+</tr>
+<tr>
+<td>02</td>
+<td>Quiz 02, BTVN: 5 Wireframe Figma + cấu trúc component</td>
+<td>Cá nhân/Nhóm</td>
+<td>Quiz LMS, link Figma</td>
+<td>CLO1</td>
+</tr>
+<tr>
+<td>03</td>
+<td>Quiz 03, BTVN: trang 404 + Loading Skeleton</td>
+<td>Cá nhân</td>
+<td>Quiz LMS, GitHub PR</td>
+<td>CLO2</td>
+</tr>
+<tr>
+<td>04</td>
+<td>Quiz 04, BTVN: tổ chức <code>/components/ui</code>, <code>/components/shared</code></td>
+<td>Cá nhân</td>
+<td>Quiz LMS, GitHub PR</td>
+<td>CLO2</td>
+</tr>
+<tr>
+<td>05</td>
+<td>Quiz 05, BTVN: kiểm tra responsive 5 màn hình</td>
+<td>Cá nhân</td>
+<td>Quiz LMS, ảnh chụp DevTools</td>
+<td>CLO2</td>
+</tr>
+<tr>
+<td>06</td>
+<td>Quiz 06, BTVN: chuẩn bị slide, Wireframe, source cho giữa kỳ</td>
+<td>Nhóm</td>
+<td>Quiz LMS, repository</td>
+<td>CLO2</td>
+</tr>
+<tr>
+<td><strong>07</strong></td>
+<td><strong>Kiểm tra giữa kỳ (30%)</strong></td>
+<td>Nhóm + cá nhân</td>
+<td><code>npm run build</code>, README, Git log, Figma</td>
+<td>CLO1, CLO2, CLO4</td>
+</tr>
+<tr>
+<td>08</td>
+<td>Quiz 08, BTVN: Loading Spinner, Error Boundary khi API lỗi</td>
+<td>Cá nhân</td>
+<td>Quiz LMS, GitHub PR</td>
+<td>CLO2</td>
+</tr>
+<tr>
+<td>09</td>
+<td>Quiz 09, BTVN: đăng ký Vercel, kết nối GitHub repo</td>
+<td>Cá nhân</td>
+<td>Quiz LMS, ảnh chụp Vercel</td>
+<td>CLO2, CLO4</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Quiz 10, nghiệm thu tại máy, BTVN: kịch bản Test Case</td>
+<td>Nhóm</td>
+<td>Quiz LMS, file Test Case</td>
+<td>CLO2, CLO4</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Quiz 11, link Vercel Live, BTVN: báo cáo Word/PDF + slide</td>
+<td>Nhóm</td>
+<td>Vercel, Lighthouse, báo cáo</td>
+<td>CLO3, CLO4</td>
+</tr>
+<tr>
+<td><strong>12</strong></td>
+<td><strong>Thi Hackathon &amp; Final Showcase (40%)</strong></td>
+<td>Nhóm + cá nhân</td>
+<td>Vercel Live, Lighthouse, Git log, báo cáo</td>
+<td>CLO1–CLO4</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="4-cong-cu-danh-gia-cach-giang-vien-su-dung">4. Công cụ đánh giá &amp; cách giảng viên sử dụng</h3>
+<h4 id="4-1-quiz-lms-moodle">4.1. Quiz LMS (Moodle)</h4>
+<ul>
+<li>Câu hỏi nhập theo định dạng Aiken (thư mục <code>quiz/</code>), mỗi bài 10–12 câu, trộn câu hỏi và phương án.</li>
+<li>Cấu hình: 15 phút, tối đa 2 lần làm, lấy điểm cao nhất; mở sau buổi trước và đóng khi buổi học bắt đầu.</li>
+<li>Lớp học phần dùng chung một khóa Moodle thì dùng <strong>Group overrides</strong> để đặt giờ mở/đóng riêng theo lịch của từng lớp.</li>
+</ul>
+<h4 id="4-2-git-log-github">4.2. Git log &amp; GitHub</h4>
+<p>Git log là minh chứng chính cho tiêu chí đóng góp cá nhân ở cả giữa kỳ và cuối kỳ. Giảng viên có thể kiểm tra nhanh bằng các lệnh sau trên bản clone của nhóm:</p>
+<pre><code class="language-bash"># Số commit của từng thành viên (gộp theo tên + email)
+git shortlog -sne --no-merges
+
+# Lịch sử commit của một sinh viên, kèm file đã sửa
+git log --author=&quot;nguyenvana&quot; --stat --no-merges
+
+# Kiểm tra phiên bản đã nộp đúng tag
+git checkout v0.5-midterm
+</code></pre>
+<ul>
+<li>Đối chiếu thêm tab <strong>Insights → Contributors</strong> và danh sách <strong>Pull Requests</strong> (ai mở, ai review, ai merge).</li>
+<li>Dấu hiệu cần hỏi kỹ khi phản biện: một người chiếm gần hết commit; commit dồn trong đêm trước buổi đánh giá; commit chỉ đổi định dạng hoặc đổi tên biến.</li>
+</ul>
+<h4 id="4-3-production-build-chat-luong-code">4.3. Production build &amp; chất lượng code</h4>
+<pre><code class="language-bash">npm run lint
+npm run build
+</code></pre>
+<ul>
+<li>Build thất bại tại thời điểm chấm giữa kỳ → tiêu chí UI không vượt quá mức Trung bình.</li>
+<li>Giảng viên mở DevTools Console khi nhóm demo; lỗi đỏ hoặc hydration mismatch được ghi vào phiếu chấm.</li>
+</ul>
+<h4 id="4-4-vercel">4.4. Vercel</h4>
+<ul>
+<li>Link Vercel Live là điều kiện để chấm tiêu chí 4 (Deploy) của Hackathon. Ứng dụng chỉ chạy localhost thì tiêu chí này ở mức Yếu.</li>
+<li>Kiểm tra tab <strong>Deployments</strong>: deploy từ nhánh <code>main</code>, biến môi trường <code>NEXT_PUBLIC_API_URL</code> được cấu hình, không còn build lỗi.</li>
+</ul>
+<h4 id="4-5-google-lighthouse">4.5. Google Lighthouse</h4>
+<ul>
+<li>Chạy trên Chrome DevTools (chế độ Incognito, thiết bị Mobile) với link Vercel, không chạy trên localhost.</li>
+<li>Nhóm chụp kết quả 4 chỉ số (Performance, Accessibility, Best Practices, SEO) đưa vào báo cáo; giảng viên chạy lại ngẫu nhiên một trang khi chấm.</li>
+<li>Mốc chấm: Performance &gt; 85 và SEO &gt; 90 (Xuất sắc) · 70–84 (Khá) · 50–69 (Trung bình) · &lt; 50 (Yếu). Đạt 100/100 Performance được xét điểm thưởng Ultra Performance.</li>
+</ul>
+<h4 id="4-6-figma-readme">4.6. Figma &amp; README</h4>
+<ul>
+<li>Figma: kiểm tra đủ 5 màn hình (Trang chủ, Chi tiết sự kiện, Đặt vé, Trang cá nhân, Admin Dashboard) và mức khớp giữa bản vẽ với sản phẩm.</li>
+<li>README: mô tả dự án, bảng phân công, hướng dẫn cài đặt, cấu trúc thư mục, link Figma, mục <strong>Nhật ký Vibe Coding</strong> (prompt chính + phần đã sửa).</li>
+</ul>
+<hr>
+<h3 id="5-co-che-phan-hoi-cho-sinh-vien">5. Cơ chế phản hồi cho sinh viên</h3>
+<table>
+<thead>
+<tr>
+<th>Hoạt động</th>
+<th>Hình thức phản hồi</th>
+<th>Thời hạn</th>
+<th>Kênh</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Quiz LMS</td>
+<td>Điểm + giải thích đáp án tự động</td>
+<td>Ngay khi Quiz đóng</td>
+<td>Moodle</td>
+</tr>
+<tr>
+<td>BTVN</td>
+<td>Nhận xét trên Pull Request (review comment) hoặc LMS</td>
+<td>Trước buổi học kế tiếp</td>
+<td>GitHub, Moodle</td>
+</tr>
+<tr>
+<td>Team Challenge</td>
+<td>Nhận xét trực tiếp tại máy, tổng kết chung 15&#39; cuối buổi</td>
+<td>Trong buổi học</td>
+<td>Trên lớp</td>
+</tr>
+<tr>
+<td>Giữa kỳ</td>
+<td>Phiếu chấm rubric + 2–3 việc cần sửa trước Buổi 8</td>
+<td>Trước Buổi 8</td>
+<td>Moodle (Feedback file)</td>
+</tr>
+<tr>
+<td>Buổi 10 (PBL 1)</td>
+<td>Nghiệm thu tiến độ tại máy, danh sách lỗi cần xử lý</td>
+<td>Cuối Buổi 10</td>
+<td>Trên lớp</td>
+</tr>
+<tr>
+<td>Cross-Testing</td>
+<td>Phiếu góp ý từ nhóm bạn (bug, điểm mạnh, gợi ý)</td>
+<td>Trong Buổi 12</td>
+<td>Phiếu giấy/Google Form</td>
+</tr>
+<tr>
+<td>Hackathon</td>
+<td>Điểm nhóm, điểm phản biện cá nhân, nhận xét hội đồng</td>
+<td>Công bố cuối Buổi 12</td>
+<td>Trên lớp, Moodle Gradebook</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>🧭 <strong>Vòng phản hồi giữa kỳ:</strong> góp ý ở Buổi 7 không chỉ để biết điểm. Các bạn đưa từng góp ý thành một <strong>GitHub Issue</strong> có nhãn <code>midterm-feedback</code>, đóng Issue bằng commit sửa lỗi. Giảng viên sẽ kiểm tra danh sách Issue này khi chấm tiêu chí 5 (Báo cáo &amp; Git) ở Buổi 12.</p>
+</blockquote>
+<hr>
+<h3 id="6-dam-bao-cong-bang-nhat-quan">6. Đảm bảo công bằng &amp; nhất quán</h3>
+<ul>
+<li><strong>Rubric công bố từ Buổi 1</strong> trên LMS, sinh viên dùng chính rubric đó để tự đánh giá trước mỗi mốc (<code>tu-danh-gia-va-danh-gia-cheo.md</code>).</li>
+<li><strong>Chấm theo tag:</strong> giảng viên chấm đúng commit gắn tag <code>v0.5-midterm</code> / <code>v1.0-final</code>, tránh tình trạng sửa code trong lúc chấm.</li>
+<li><strong>Hội đồng Hackathon:</strong> nếu có từ 2 giảng viên trở lên, điểm nhóm là trung bình cộng; chênh lệch một tiêu chí quá 1 mức thì hội đồng thống nhất lại.</li>
+<li><strong>Phiếu đánh giá đồng đẳng</strong> chỉ dùng làm căn cứ tham khảo để đặt câu hỏi phản biện, không tự động thay đổi điểm. Điểm cá nhân vẫn tính theo công thức Nhóm × 0.7 + Phản biện × 0.3.</li>
+</ul>
+<hr>
+<h3 id="tu-kiem-tra-nhanh">❓ Tự kiểm tra nhanh</h3>
+<p><strong>Câu hỏi:</strong> Nhóm của bạn đạt Điểm Đồ án Nhóm 7.5, bạn đạt Điểm Phản biện Cá nhân 9.0. Điểm Cuối kỳ của bạn là bao nhiêu?</p>
+<details>
+<summary>👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án:</b> 7.95<br>
+<b>Giải thích:</b> 7.5 × 0.7 + 9.0 × 0.3 = 5.25 + 2.7 = 7.95. Phần phản biện cá nhân giúp bạn kéo điểm lên khi nắm vững phần code mình đảm nhiệm.
+</details>
+
+    </article>
+
+    <!-- Bottom Navigation -->
+    <div class="flex items-center justify-between gap-4 mt-8 no-print text-xs font-bold">
+      <span></span>
+      <a href="../index.html#lo-trinh" class="px-4 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-800 rounded-xl transition-all flex items-center gap-2">
+        <i class="fa-solid fa-table-cells-large"></i> Danh mục bài học
+      </a>
+      <span></span>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-slate-200 py-6 text-xs text-slate-500 mt-12 no-print">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <strong>Khoa Công nghệ Thông tin - Trường Đại học Lạc Hồng</strong><br>
+        Phòng B301 - B302, Cơ sở 1, Số 10 Huỳnh Văn Nghệ, P. Bửu Long, TP. Biên Hòa, Đồng Nai.
+      </div>
+      <div class="sm:text-right">
+        <span>Email: cntt@lhu.edu.vn • Hotline: (0251) 3952 251</span><br>
+        <span>Hệ thống LMS: <a href="https://learn.lhu.edu.vn" target="_blank" rel="noopener noreferrer" class="text-lhu-blue font-bold">learn.lhu.edu.vn</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleAllDetails(open) {
+      document.querySelectorAll("details").forEach(d => {
+        if (open) d.setAttribute("open", ""); else d.removeAttribute("open");
+      });
+    }
+    if (window.hljs) hljs.highlightAll();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 08 - Data Fetching &amp; tích hợp RESTful API | Lập trình Front-End - Khoa CNTT - Đại học Lạc Hồng</title>
+  <meta name="description" content="Bài 08 - Data Fetching &amp; tích hợp RESTful API - Lập trình Front-End (Next.js, TypeScript &amp; Vibe Coding). Thời lượng: 5 tiết (225 phút) · Hình thức: Lớp học đảo ngược · Chuẩn đầu ra: PI 2.3 (CLO2)Dự án xuyên suốt: Smart Event Hub – kết nối RESTful API / Swagger UI Backend có sẵn, thay toàn bộ Mock JS">
+
+  <!-- Tailwind CSS CDN (kèm plugin typography cho nội dung Markdown) -->
+  <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6.4.0 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Highlight.js 11.9.0 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            asu: { maroon: '#8C1D40', gold: '#FFC627', dark: '#5C142B', light: '#FAEDF0' },
+            lhu: { blue: '#013D88', sky: '#007BFF', dark: '#01295C', light: '#EEF5FC' },
+            fe: { indigo: '#6366F1', dark: '#312E81', light: '#EEF2FF' }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .lesson h2, .lesson h3, .lesson h4 { scroll-margin-top: 90px; }
+    .lesson h3 { padding-bottom: .4rem; border-bottom: 2px solid #EEF2FF; }
+    .lesson blockquote { border-left: 4px solid #6366F1; background: #F5F7FF; border-radius: 0 12px 12px 0; padding: .6rem 1rem; font-style: normal; color: #1e293b; }
+    .lesson blockquote p:first-of-type::before, .lesson blockquote p:last-of-type::after { content: none; }
+    .lesson pre { border-radius: 12px; padding: 0; background: #0d1117; }
+    .lesson pre code.hljs { border-radius: 12px; padding: 1rem 1.1rem; font-size: 13px; line-height: 1.6; }
+    .lesson :not(pre) > code { background: #EEF2FF; color: #3730A3; padding: .1rem .35rem; border-radius: 6px; font-weight: 500; }
+    .lesson :not(pre) > code::before, .lesson :not(pre) > code::after { content: none; }
+    .lesson table { display: block; overflow-x: auto; font-size: 14px; }
+    .lesson thead th { background: #F1F5F9; }
+    .lesson th, .lesson td { border: 1px solid #E2E8F0; padding: .5rem .7rem !important; vertical-align: top; }
+    .lesson details { border: 1px solid #C7D2FE; border-radius: 10px; padding: .6rem .9rem; margin: .5rem 0 1.2rem; background: #FAFAFF; }
+    .lesson details summary { cursor: pointer; font-weight: 600; color: #4338CA; }
+    .lesson details[open] summary { margin-bottom: .4rem; }
+    .lesson hr { border-color: #E2E8F0; margin: 2rem 0; }
+    @media print {
+      header, footer, .no-print { display: none !important; }
+      details { break-inside: avoid; margin-bottom: 20px; }
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans antialiased selection:bg-asu-gold selection:text-slate-900 min-h-screen flex flex-col">
+
+  <!-- TOP BAR -->
+  <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800 no-print">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+      <div class="flex items-center gap-2">
+        <span class="text-asu-gold font-semibold"><i class="fa-solid fa-certificate mr-1"></i> CHUẨN KIỂM ĐỊNH ABET (USA)</span>
+        <span class="text-slate-600 hidden sm:inline">•</span>
+        <span class="hidden sm:inline">Lớp học đảo ngược • Vibe Coding</span>
+      </div>
+      <div class="flex items-center gap-4 text-xs font-mono">
+        <span>Thời lượng: <strong class="text-white">60 tiết (12 buổi)</strong></span>
+        <span>LT/TH: <strong class="text-asu-gold">30% / 70%</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="sticky top-0 z-40 bg-white shadow-sm border-b border-slate-200 no-print">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2.5 text-slate-800 hover:text-lhu-blue transition-colors">
+        <img src="LHU_ASU_VI_Small_Ngang.png" alt="Logo LHU" class="h-8 w-auto">
+        <div class="border-l border-slate-300 pl-2.5">
+          <div class="text-[11px] font-bold text-slate-500 uppercase">Khoa CNTT - LHU</div>
+          <div class="text-xs font-extrabold text-lhu-blue">LẬP TRÌNH FRONT-END</div>
+        </div>
+      </a>
+      <div class="flex items-center gap-3 text-xs">
+        <a href="index.html" class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-arrow-left"></i>
+          <span class="hidden sm:inline">Về Landing Page</span>
+        </a>
+        <button onclick="window.print()" class="hidden sm:flex px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-all items-center gap-1.5" title="In hoặc lưu file PDF">
+          <i class="fa-solid fa-print"></i>
+          <span>In / PDF</span>
+        </button>
+        <a href="https://learn.lhu.edu.vn" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-lhu-blue hover:bg-lhu-dark text-white font-bold rounded-xl shadow transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-graduation-cap text-asu-gold"></i>
+          <span>Vào lớp LMS</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="flex-grow max-w-5xl w-full mx-auto px-4 sm:px-6 py-8">
+
+    <!-- Title Card -->
+    <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 mb-8">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-5">
+        <div>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-fe-light text-fe-dark font-bold text-xs uppercase tracking-wider mb-2">
+            <i class="fa-solid fa-code"></i> CHƯƠNG 5: DỮ LIỆU, FORM &amp; LƯU TRỮ PHÍA CLIENT
+          </span>
+          <h1 class="text-2xl sm:text-3xl font-black text-slate-900 leading-tight">
+            Bài 08 - Data Fetching &amp; tích hợp RESTful API
+          </h1>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1 font-mono">
+            Học phần: Lập trình Front-End (Next.js, TypeScript & Vibe Coding) • Khoa CNTT - Đại học Lạc Hồng
+          </p>
+        </div>
+        <div class="flex-shrink-0 flex sm:flex-col items-center sm:items-end justify-between gap-1 text-xs">
+          <span class="px-3 py-1.5 bg-emerald-50 text-emerald-700 font-bold rounded-lg border border-emerald-200">
+            <i class="fa-solid fa-check-circle mr-1"></i> Lưu hành nội bộ 2026
+          </span>
+          <span class="text-slate-400 text-[11px]">Định dạng LMS Lecture</span>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between pt-4 text-xs no-print">
+        <span class="text-slate-500">
+          <i class="fa-solid fa-circle-info text-blue-500 mr-1"></i>
+          Bấm vào các khối thu gọn để xem đáp án hoặc chi tiết.
+        </span>
+        <div class="flex items-center gap-2">
+          <button onclick="toggleAllDetails(true)" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg transition-colors">Mở tất cả</button>
+          <button onclick="toggleAllDetails(false)" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg transition-colors">Thu gọn</button>
+        </div>
+      </div>
+      <nav class="mt-5 pt-4 border-t border-slate-100 no-print">
+        <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">Nội dung trang</div>
+        <div class="flex flex-wrap gap-2">
+          <a href="#1-dat-van-de-dan-nhap-introduction-hook" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">📝 1. ĐẶT VẤN ĐỀ &amp; DẪN NHẬP (Introduction / Hook)</a>
+          <a href="#2-noi-dung-cot-loi-core-content" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">📖 2. NỘI DUNG CỐT LÕI (Core Content)</a>
+          <a href="#3-tom-tat-diem-can-nho-key-takeaways" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">📌 3. TÓM TẮT &amp; ĐIỂM CẦN NHỚ (Key Takeaways)</a>
+          <a href="#4-hoat-dong-kiem-tra-nhanh-self-assessment-quiz" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">❓ 4. HOẠT ĐỘNG KIỂM TRA NHANH (Self-Assessment / Quiz)</a>
+          <a href="#5-nhiem-vu-hoc-tap-thao-luan-lms-discussion-assignment" class="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 hover:text-lhu-blue hover:border-lhu-blue transition-colors">💬 5. NHIỆM VỤ HỌC TẬP &amp; THẢO LUẬN (LMS Discussion / Assignment)</a>
+        </div>
+      </nav>
+    </div>
+
+    <!-- Content -->
+    <article class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 lesson prose prose-slate max-w-none prose-headings:font-extrabold prose-h3:text-lhu-dark prose-h4:text-fe-dark prose-a:text-lhu-blue">
+<blockquote>
+<p><strong>Thời lượng:</strong> 5 tiết (225 phút) · <strong>Hình thức:</strong> Lớp học đảo ngược · <strong>Chuẩn đầu ra:</strong> PI 2.3 (CLO2)<br><strong>Dự án xuyên suốt:</strong> Smart Event Hub – kết nối RESTful API / Swagger UI Backend có sẵn, thay toàn bộ Mock JSON bằng dữ liệu động (danh sách và chi tiết sự kiện, danh mục, tìm kiếm – phân trang, đặt vé).</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>🎯 <strong>MỤC TIÊU BÀI HỌC (Learning Objectives)</strong><br>Sau khi hoàn thành bài học này, người học có thể:</p>
+<ul>
+<li><strong>[Bloom 1/2 - Kiến thức]:</strong> Phân biệt Data Fetching trong Server Component và Client Component; giải thích cơ chế caching và <code>revalidate</code> của <code>fetch</code> trong Next.js.</li>
+<li><strong>[Bloom 3/4 - Kỹ năng]:</strong> Xây dựng Generic Interface <code>ApiResponse&lt;T&gt;</code>, <code>PaginatedData&lt;T&gt;</code>, tầng service <code>eventService.ts</code> bằng Axios; render dữ liệu dạng mảng (danh sách) và dạng đơn (chi tiết theo <code>id</code>) với Loading, Error, 404.</li>
+<li><strong>[Bloom 5/6 - Năng lực]:</strong> Dùng AI chuyển Swagger JSON thành DTO/Interface/Service, đánh giá và sửa output AI để đạt type-safety tuyệt đối, không dùng <code>any</code>.</li>
+</ul>
+</blockquote>
+<hr>
+<h3 id="1-dat-van-de-dan-nhap-introduction-hook">📝 1. ĐẶT VẤN ĐỀ &amp; DẪN NHẬP (Introduction / Hook)</h3>
+<p>Đến hết giữa kỳ, trang chủ Smart Event Hub vẫn đọc dữ liệu từ file <code>mockEvents.json</code>. Ban tổ chức thêm một concert mới trên hệ thống quản trị, nhưng người dùng không thấy gì cho đến khi lập trình viên sửa file JSON và deploy lại. Thực tế không ứng dụng đặt vé nào vận hành như vậy: dữ liệu phải chảy từ Backend qua RESTful API lên giao diện theo thời gian thực.</p>
+<p><strong>Câu hỏi gợi mở:</strong> Nên gọi API ngay trên server khi render trang, hay để trình duyệt tự gọi sau khi tải xong? Khi API trả về một object JSON có 30 trường lồng nhau, làm sao để TypeScript &quot;hiểu&quot; đúng từng trường mà không phải gõ tay từng dòng interface? Và nếu Backend sập lúc 8 giờ tối, người dùng sẽ thấy gì?</p>
+<blockquote>
+<p>🧭 <strong>Trước giờ học (Flipped Classroom):</strong> Xem video RESTful API concepts, Fetch API, Axios, Async/Await trong TypeScript. Đọc tài liệu <em>Next.js Data Fetching, Caching, and Revalidating</em> và <em>Axios Documentation</em> (mục 5). Mở Swagger UI của Backend Smart Event Hub do giảng viên cung cấp, thử gọi <code>GET /events</code> và lưu lại một JSON response mẫu. Làm quiz 5–10 câu trên LMS.</p>
+</blockquote>
+<hr>
+<h3 id="2-noi-dung-cot-loi-core-content">📖 2. NỘI DUNG CỐT LÕI (Core Content)</h3>
+<h4 id="2-1-data-fetching-trong-next-js-server-component-vs-client-component">2.1. Data Fetching trong Next.js: Server Component vs Client Component</h4>
+<ul>
+<li><strong>Khái niệm:</strong> Next.js App Router cho phép lấy dữ liệu ở hai nơi. <strong>Server-side fetching</strong> dùng <code>async/await</code> trực tiếp trong Server Component, HTML trả về đã có sẵn dữ liệu. <strong>Client-side fetching</strong> dùng Axios hoặc SWR/TanStack Query trong Client Component, phù hợp với dữ liệu cần tương tác liên tục hoặc cập nhật thời gian thực.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Tiêu chí</th>
+<th>Server Component</th>
+<th>Client Component</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Nơi chạy</td>
+<td>Server (Node.js), lúc render trang</td>
+<td>Trình duyệt, sau khi trang hydrate</td>
+</tr>
+<tr>
+<td>Cú pháp</td>
+<td><code>export default async function Page()</code> + <code>await</code></td>
+<td><code>useEffect</code> + <code>useState</code>, hoặc SWR/TanStack Query</td>
+</tr>
+<tr>
+<td>SEO</td>
+<td>HTML đã có dữ liệu, tốt cho SEO</td>
+<td>Dữ liệu xuất hiện sau, bot có thể không thấy</td>
+</tr>
+<tr>
+<td>Bảo mật</td>
+<td>Giữ được secret/API key phía server</td>
+<td>Mọi request lộ trong tab Network</td>
+</tr>
+<tr>
+<td>Dùng cho</td>
+<td>Danh sách sự kiện, trang chi tiết</td>
+<td>Tìm kiếm khi gõ, POST đặt vé, dữ liệu realtime</td>
+</tr>
+</tbody></table>
+<ul>
+<li>Next.js mở rộng <code>fetch</code> native với tùy chọn <strong>caching</strong> (<code>cache: &#39;force-cache&#39;</code>) và <strong>revalidation</strong> (<code>next: { revalidate: giây }</code>). Từ <strong>Next.js 15, <code>fetch</code> không còn được cache mặc định</strong>, vì vậy muốn cache phải khai báo rõ ràng.</li>
+<li><code>revalidate: 3600</code> nghĩa là kết quả được dùng lại tối đa 1 giờ; request đầu tiên sau mốc đó vẫn nhận bản cũ, đồng thời Next.js lấy bản mới ở nền cho lượt sau.</li>
+</ul>
+<pre><code class="language-ts">// services/eventServer.ts – Fetch trên Server Component có caching/revalidate
+import type { ApiResponse, PaginatedData } from &#39;@/types/api&#39;;
+import type { IEventItem } from &#39;@/types/event&#39;;
+
+export async function getFeaturedEvents(): Promise&lt;PaginatedData&lt;IEventItem&gt;&gt; {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/events?page=1&amp;limit=8`, {
+    next: { revalidate: 3600 }, // Làm mới tối đa mỗi 1 giờ
+  });
+  if (!res.ok) throw new Error(`Không tải được danh sách sự kiện (HTTP ${res.status})`);
+  const json = (await res.json()) as ApiResponse&lt;PaginatedData&lt;IEventItem&gt;&gt;;
+  return json.data;
+}
+</code></pre>
+<ul>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote>
+<p>Danh sách &quot;Sự kiện nổi bật&quot; ít thay đổi trong ngày, nên fetch trên server với <code>revalidate: 3600</code> giúp trang chủ tải nhanh và chia sẻ link lên Zalo vẫn hiện đúng nội dung. Ngược lại, ô tìm kiếm gợi ý theo từng ký tự gõ phải chạy ở Client Component vì phụ thuộc thao tác người dùng.</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="2-2-type-safe-api-generic-response-dto-va-viewmodel">2.2. Type-safe API: Generic Response, DTO và ViewModel</h4>
+<ul>
+<li><strong>Khái niệm:</strong> Backend RESTful thường bọc dữ liệu trong một &quot;vỏ&quot; chung gồm mã trạng thái, thông điệp và <code>data</code>. Khai báo vỏ này bằng <strong>Generic Interface</strong> giúp tái sử dụng cho mọi endpoint. <strong>DTO (Data Transfer Object)</strong> mô tả đúng hình dạng JSON Backend trả về; <strong>ViewModel</strong> là dữ liệu đã được định dạng sẵn để UI hiển thị.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li><code>ApiResponse&lt;T&gt;</code> cho mọi response; <code>PaginatedData&lt;T&gt;</code> cho danh sách có phân trang.</li>
+<li>DTO bám sát Swagger: ngày tháng là <code>string</code> (ISO 8601), trường có thể rỗng khai báo <code>| null</code>.</li>
+<li>Hàm <strong>mapper</strong> chuyển DTO → ViewModel, gom logic định dạng tiền, ngày về một chỗ. Khi Backend đổi tên field, chỉ sửa mapper.</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-ts">// types/api.ts
+export interface ApiResponse&lt;T&gt; {
+  statusCode: number;
+  message: string;
+  data: T;
+}
+
+export interface PaginatedData&lt;T&gt; {
+  items: T[];
+  total: number;
+  page: number;
+  limit: number;
+}
+</code></pre>
+<pre><code class="language-ts">// types/event.ts – DTO theo Swagger
+export type EventStatus = &#39;UPCOMING&#39; | &#39;ONGOING&#39; | &#39;ENDED&#39;;
+
+export interface IOrganizer {
+  id: string;
+  name: string;
+  email: string;
+  avatarUrl: string | null;
+}
+
+export interface ICategory {
+  id: string;
+  name: string;
+  slug: string;
+}
+
+export interface IEventItem {
+  id: string;
+  title: string;
+  bannerUrl: string;
+  location: string;
+  startDate: string; // ISO 8601
+  price: number;
+  status: EventStatus;
+  category: ICategory;
+  organizer: IOrganizer;
+}
+
+// ViewModel cho EventCard
+export interface EventCardVM {
+  id: string;
+  title: string;
+  bannerUrl: string;
+  dateLabel: string;
+  priceLabel: string;
+  status: EventStatus;
+}
+</code></pre>
+<pre><code class="language-ts">// lib/mappers/event.ts
+import type { EventCardVM, IEventItem } from &#39;@/types/event&#39;;
+
+const dateFmt = new Intl.DateTimeFormat(&#39;vi-VN&#39;, { dateStyle: &#39;medium&#39;, timeZone: &#39;Asia/Ho_Chi_Minh&#39; });
+const priceFmt = new Intl.NumberFormat(&#39;vi-VN&#39;, { style: &#39;currency&#39;, currency: &#39;VND&#39; });
+
+export function toEventCardVM(dto: IEventItem): EventCardVM {
+  return {
+    id: dto.id,
+    title: dto.title,
+    bannerUrl: dto.bannerUrl,
+    dateLabel: dateFmt.format(new Date(dto.startDate)),
+    priceLabel: dto.price === 0 ? &#39;Miễn phí&#39; : priceFmt.format(dto.price),
+    status: dto.status,
+  };
+}
+</code></pre>
+<ul>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote>
+<p>Backend đổi <code>bannerUrl</code> thành <code>coverImage</code> ở phiên bản API mới. Nhờ DTO và mapper, nhóm chỉ sửa 2 dòng trong <code>types/event.ts</code> và <code>toEventCardVM</code>, TypeScript tự chỉ ra mọi chỗ còn dùng tên cũ. Không ai phải lục từng component.</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="2-3-tang-service-voi-axios-danh-sach-array-data">2.3. Tầng Service với Axios: danh sách (Array Data)</h4>
+<ul>
+<li><strong>Khái niệm:</strong> <strong>Service layer</strong> là các hàm gọi API tập trung trong thư mục <code>services/</code>. Component không gọi <code>axios</code> trực tiếp mà gọi <code>getEvents()</code>, <code>getEventById()</code>… Nhờ đó URL, header, xử lý lỗi nằm ở một nơi, dễ kiểm thử và dễ thay đổi.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li>Tạo một Axios instance với <code>baseURL</code> đọc từ biến môi trường <code>NEXT_PUBLIC_API_URL</code> (khai báo trong <code>.env.local</code>), không hard-code URL.</li>
+<li>Truyền kiểu generic cho <code>http.get&lt;...&gt;()</code> để <code>res.data</code> có type chính xác.</li>
+<li>Trong Next.js 15, <code>searchParams</code> của page là <strong>Promise</strong>, cần <code>await</code> trước khi dùng.</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-ts">// lib/http.ts
+import axios from &#39;axios&#39;;
+
+export const http = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_API_URL, // ví dụ: https://&lt;backend-cua-lop&gt;/api/v1
+  timeout: 10_000,
+  headers: { &#39;Content-Type&#39;: &#39;application/json&#39; },
+});
+</code></pre>
+<pre><code class="language-ts">// services/eventService.ts
+import axios from &#39;axios&#39;;
+import { http } from &#39;@/lib/http&#39;;
+import type { ApiResponse, PaginatedData } from &#39;@/types/api&#39;;
+import type { ICategory, IEventItem } from &#39;@/types/event&#39;;
+
+export interface GetEventsParams {
+  page?: number;
+  limit?: number;
+  search?: string;
+  categoryId?: string;
+}
+
+export async function getEvents(params: GetEventsParams = {}): Promise&lt;PaginatedData&lt;IEventItem&gt;&gt; {
+  const res = await http.get&lt;ApiResponse&lt;PaginatedData&lt;IEventItem&gt;&gt;&gt;(&#39;/events&#39;, { params });
+  return res.data.data;
+}
+
+export async function getEventById(id: string): Promise&lt;IEventItem | null&gt; {
+  try {
+    const res = await http.get&lt;ApiResponse&lt;IEventItem&gt;&gt;(`/events/${encodeURIComponent(id)}`);
+    return res.data.data;
+  } catch (error) {
+    if (axios.isAxiosError(error) &amp;&amp; error.response?.status === 404) return null;
+    throw error; // Network Error / 500 → để error.tsx xử lý
+  }
+}
+
+export async function getCategories(): Promise&lt;ICategory[]&gt; {
+  const res = await http.get&lt;ApiResponse&lt;ICategory[]&gt;&gt;(&#39;/categories&#39;);
+  return res.data.data;
+}
+
+export interface CreateOrderPayload {
+  eventId: string;
+  ticketType: &#39;VVIP&#39; | &#39;VIP&#39; | &#39;STANDARD&#39;;
+  quantity: number;
+}
+
+export interface IOrder {
+  id: string;
+  totalAmount: number;
+}
+
+export async function createOrder(payload: CreateOrderPayload): Promise&lt;IOrder&gt; {
+  const res = await http.post&lt;ApiResponse&lt;IOrder&gt;&gt;(&#39;/orders&#39;, payload);
+  return res.data.data;
+}
+</code></pre>
+<pre><code class="language-tsx">// app/page.tsx – Server Component: fetch danh sách rồi truyền props
+import EventList from &#39;@/components/events/EventList&#39;;
+import { toEventCardVM } from &#39;@/lib/mappers/event&#39;;
+import { getEvents } from &#39;@/services/eventService&#39;;
+
+interface HomePageProps {
+  searchParams: Promise&lt;{ page?: string; search?: string }&gt;;
+}
+
+export default async function HomePage({ searchParams }: HomePageProps) {
+  const { page = &#39;1&#39;, search = &#39;&#39; } = await searchParams;
+  const data = await getEvents({ page: Number(page) || 1, limit: 12, search });
+
+  return (
+    &lt;EventList
+      events={data.items.map(toEventCardVM)}
+      total={data.total}
+      page={data.page}
+      pageSize={data.limit}
+    /&gt;
+  );
+}
+</code></pre>
+<ul>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote>
+<p>URL <code>/?search=rock&amp;page=2</code> được đọc ngay trên server, nên người dùng copy link gửi bạn bè sẽ thấy đúng trang 2 kết quả &quot;rock&quot;. Đây cũng là cách Member 2 trong Team Challenge làm tính năng Tìm kiếm &amp; Phân trang.</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="2-4-du-lieu-don-single-data-trang-chi-tiet-404-loading-va-error">2.4. Dữ liệu đơn (Single Data): trang chi tiết, 404, Loading và Error</h4>
+<ul>
+<li><strong>Khái niệm:</strong> Trang <code>/events/[id]</code> lấy <strong>một</strong> sự kiện theo <code>id</code> trên URL. Ba trạng thái phải xử lý đủ: <strong>đang tải</strong> (<code>loading.tsx</code>), <strong>không tồn tại</strong> (<code>notFound()</code> → <code>not-found.tsx</code>), <strong>lỗi máy chủ</strong> (<code>error.tsx</code>).</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li><code>params</code> là Promise trong Next.js 15: <code>const { id } = await params;</code>.</li>
+<li><code>notFound()</code> từ <code>next/navigation</code> hoạt động bằng cách ném một lỗi đặc biệt. <strong>Không gọi <code>notFound()</code> bên trong <code>try</code> có <code>catch</code> bắt mọi lỗi</strong>, nếu không trang 404 sẽ bị &quot;nuốt&quot;. Vì vậy <code>getEventById</code> tự xử lý 404 và trả <code>null</code>.</li>
+<li><code>error.tsx</code> bắt buộc là Client Component, nhận props <code>error</code> và <code>reset</code>.</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-tsx">// app/events/[id]/page.tsx
+import Image from &#39;next/image&#39;;
+import { notFound } from &#39;next/navigation&#39;;
+import { getEventById } from &#39;@/services/eventService&#39;;
+
+interface PageProps {
+  params: Promise&lt;{ id: string }&gt;;
+}
+
+export default async function EventDetailPage({ params }: PageProps) {
+  const { id } = await params;
+  const event = await getEventById(id);
+  if (!event) notFound(); // TypeScript hiểu từ đây event không còn null
+
+  return (
+    &lt;article&gt;
+      &lt;Image src={event.bannerUrl} alt={event.title} width={1200} height={480} priority /&gt;
+      &lt;h1&gt;{event.title}&lt;/h1&gt;
+      &lt;p&gt;Giá vé: {event.price.toLocaleString(&#39;vi-VN&#39;)} đ&lt;/p&gt;
+      &lt;p&gt;Ban tổ chức: {event.organizer.name} ({event.organizer.email})&lt;/p&gt;
+    &lt;/article&gt;
+  );
+}
+</code></pre>
+<pre><code class="language-tsx">// app/events/[id]/error.tsx
+&#39;use client&#39;;
+
+import { useEffect } from &#39;react&#39;;
+import { Button, Result } from &#39;antd&#39;;
+
+export default function EventDetailError({ error, reset }: { error: Error &amp; { digest?: string }; reset: () =&gt; void }) {
+  useEffect(() =&gt; {
+    console.error(error); // Gửi lên công cụ log nếu có
+  }, [error]);
+
+  return (
+    &lt;Result
+      status=&quot;500&quot;
+      title=&quot;Không tải được sự kiện&quot;
+      subTitle=&quot;Máy chủ đang gián đoạn, vui lòng thử lại sau.&quot;
+      extra={&lt;Button type=&quot;primary&quot; onClick={reset}&gt;Thử lại&lt;/Button&gt;}
+    /&gt;
+  );
+}
+</code></pre>
+<pre><code class="language-tsx">// app/events/[id]/loading.tsx
+import { Skeleton } from &#39;antd&#39;;
+
+export default function Loading() {
+  return &lt;Skeleton active paragraph={{ rows: 6 }} /&gt;;
+}
+</code></pre>
+<blockquote>
+<p>⚠️ <strong>Lưu ý:</strong> <code>next/image</code> với ảnh từ domain Backend cần khai báo <code>images.remotePatterns</code> trong <code>next.config.ts</code>, nếu không trang sẽ báo lỗi &quot;hostname is not configured&quot;.</p>
+</blockquote>
+<ul>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote>
+<p>Người dùng mở link cũ <code>/events/abc-2023</code> của một sự kiện đã bị xóa. Thay vì trang trắng hay lỗi 500, họ thấy trang 404 thân thiện kèm nút &quot;Xem sự kiện khác&quot;. Đó là khác biệt giữa sản phẩm demo và sản phẩm thật.</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="2-5-client-side-fetching-danh-muc-dat-ve-va-trang-thai-loading">2.5. Client-side Fetching: danh mục, đặt vé và trạng thái Loading</h4>
+<ul>
+<li><strong>Khái niệm:</strong> Khi dữ liệu phụ thuộc thao tác người dùng (chọn danh mục, bấm Đặt vé), chúng ta gọi API trong Client Component. Mỗi lần gọi phải thể hiện rõ trạng thái bằng <strong>Spin/Skeleton</strong> của Ant Design và thông báo kết quả bằng <strong>Notification</strong>.</li>
+<li><strong>Chi tiết kỹ thuật / Lý thuyết:</strong><ul>
+<li>Dùng biến cờ <code>ignore</code> trong <code>useEffect</code> để bỏ qua kết quả trả về sau khi component đã unmount.</li>
+<li>Dùng <code>App.useApp()</code> để lấy <code>notification</code> theo đúng theme. Yêu cầu: <code>app/layout.tsx</code> bọc nội dung trong <code>&lt;App&gt;</code> của antd (bên trong <code>ConfigProvider</code>).</li>
+<li>Với dữ liệu fetch lặp lại nhiều nơi, có thể dùng SWR/TanStack Query để có sẵn cache, retry, <code>isLoading</code>.</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-tsx">// components/events/CategoryFilter.tsx – dùng bên trong một Client Component cha (FilterBar)
+&#39;use client&#39;;
+
+import { useEffect, useState } from &#39;react&#39;;
+import { Alert, Select } from &#39;antd&#39;;
+import { getCategories } from &#39;@/services/eventService&#39;;
+import type { ICategory } from &#39;@/types/event&#39;;
+
+interface CategoryFilterProps {
+  onChange: (categoryId: string | undefined) =&gt; void;
+}
+
+export default function CategoryFilter({ onChange }: CategoryFilterProps) {
+  const [categories, setCategories] = useState&lt;ICategory[]&gt;([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState&lt;string | null&gt;(null);
+
+  useEffect(() =&gt; {
+    let ignore = false;
+    getCategories()
+      .then((data) =&gt; { if (!ignore) setCategories(data); })
+      .catch(() =&gt; { if (!ignore) setError(&#39;Không tải được danh mục sự kiện&#39;); })
+      .finally(() =&gt; { if (!ignore) setLoading(false); });
+    return () =&gt; { ignore = true; };
+  }, []);
+
+  if (error) return &lt;Alert type=&quot;error&quot; message={error} showIcon /&gt;;
+
+  return (
+    &lt;Select
+      allowClear
+      loading={loading}
+      placeholder=&quot;Chọn danh mục&quot;
+      style={{ minWidth: 200 }}
+      options={categories.map((c) =&gt; ({ value: c.id, label: c.name }))}
+      onChange={(value: string | undefined) =&gt; onChange(value)}
+    /&gt;
+  );
+}
+</code></pre>
+<pre><code class="language-tsx">// components/booking/BookTicketButton.tsx – POST /orders
+&#39;use client&#39;;
+
+import { useState } from &#39;react&#39;;
+import axios from &#39;axios&#39;;
+import { App, Button } from &#39;antd&#39;;
+import { createOrder, type CreateOrderPayload } from &#39;@/services/eventService&#39;;
+
+export default function BookTicketButton({ payload }: { payload: CreateOrderPayload }) {
+  const { notification } = App.useApp();
+  const [submitting, setSubmitting] = useState(false);
+
+  const handleBook = async () =&gt; {
+    setSubmitting(true);
+    try {
+      const order = await createOrder(payload);
+      notification.success({ message: &#39;Đặt vé thành công&#39;, description: `Mã đơn hàng: ${order.id}` });
+    } catch (error) {
+      const description =
+        axios.isAxiosError(error) &amp;&amp; error.response?.status === 409
+          ? &#39;Hạng vé này vừa hết chỗ, vui lòng chọn hạng khác.&#39;
+          : &#39;Không thể kết nối máy chủ, vui lòng thử lại.&#39;;
+      notification.error({ message: &#39;Đặt vé thất bại&#39;, description });
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  return (
+    &lt;Button type=&quot;primary&quot; size=&quot;large&quot; loading={submitting} onClick={handleBook}&gt;
+      Đặt vé ngay
+    &lt;/Button&gt;
+  );
+}
+</code></pre>
+<ul>
+<li><strong>💡 Ví dụ thực tế (Real-world Example):</strong><blockquote>
+<p>Khi mạng 4G chập chờn, nút &quot;Đặt vé ngay&quot; chuyển sang trạng thái loading và bị vô hiệu hóa. Người dùng không thể bấm liên tục 5 lần tạo ra 5 đơn hàng trùng – một lỗi rất hay gặp ở các trang bán vé làm vội.</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="2-6-vibe-coding-prompt-mau-cach-kiem-duyet-code-ai">2.6. Vibe Coding – Prompt mẫu &amp; cách kiểm duyệt code AI</h4>
+<p>Quy trình Vibe Coding của buổi này: <strong>thả API Specification / JSON Swagger vào AI</strong> để sinh DTO, Interface và hàm service. AI làm phần gõ phím lặp lại; các bạn chịu trách nhiệm đối chiếu với dữ liệu thật.</p>
+<pre><code class="language-text">Bạn là một Fullstack Developer. Dưới đây là JSON Response từ Swagger API danh sách sự kiện:
+[Dán đoạn JSON Swagger API Response vào đây]
+
+Yêu cầu:
+1. Sinh các TypeScript Interfaces tương ứng (`IEventResponse`, `IEventItem`, `IOrganizer`).
+2. Viết 1 file `services/eventService.ts` sử dụng `axios` để thực hiện hàm `getEvents(params)`
+   với các query: `page`, `limit`, `search`.
+3. Viết code ví dụ Fetch dữ liệu trong Server Component Next.js (`app/page.tsx`)
+   và truyền props vào Component `EventList`.
+Ràng buộc: Next.js 15 (searchParams là Promise), TypeScript strict, không dùng `any`.
+</code></pre>
+<pre><code class="language-text">Viết giúp tôi hàm `getEventById(id: string)` trong `services/eventService.ts` và tích hợp vào
+trang Next.js Server Component `/app/events/[id]/page.tsx`.
+- Nếu không tìm thấy sự kiện (API trả về lỗi 404), gọi hàm `notFound()` từ `next/navigation`
+  để chuyển hướng đến trang 404.
+- Bổ sung Try/Catch block để bắt lỗi kết nối API.
+</code></pre>
+<p><strong>Checklist kiểm duyệt code AI:</strong></p>
+<ul>
+<li>Tên field trong interface khớp <strong>từng ký tự</strong> với JSON thật (<code>startDate</code> hay <code>start_date</code>?).</li>
+<li>Trường có thể <code>null</code> trong Swagger được khai báo <code>| null</code>; ngày tháng là <code>string</code>, không phải <code>Date</code>.</li>
+<li>Không có <code>any</code>, không có <code>as unknown as ...</code> để &quot;lách&quot; type checker.</li>
+<li><code>notFound()</code> nằm ngoài khối <code>try/catch</code> bắt mọi lỗi; <code>params</code>/<code>searchParams</code> được <code>await</code>.</li>
+<li>URL lấy từ biến môi trường; component dùng <code>useEffect</code>/<code>useState</code> có <code>&#39;use client&#39;</code>.</li>
+<li>Mọi lời gọi API đều có trạng thái Loading và nhánh xử lý lỗi.</li>
+</ul>
+<h4 id="2-7-thuc-hanh-tren-lop">2.7. Thực hành trên lớp</h4>
+<table>
+<thead>
+<tr>
+<th>Phần</th>
+<th>Thời lượng</th>
+<th>Nhiệm vụ</th>
+<th>Output mong muốn</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Guided Practice</td>
+<td>45&#39;</td>
+<td>Sinh <code>IEvent</code> từ JSON <code>/api/v1/events</code>; viết <code>services/eventService.ts</code> với <code>getEvents()</code>; render danh sách ở <code>app/page.tsx</code></td>
+<td>Trang chủ hiển thị sự kiện từ API thật, không dùng <code>any</code></td>
+</tr>
+<tr>
+<td>Unguided Practice</td>
+<td>45&#39;</td>
+<td>Viết <code>getEventById(id)</code>; kết nối trang <code>/events/[id]</code>; hiển thị Banner, Tên, Giá vé, Ban tổ chức</td>
+<td>Bấm từng Card mở đúng chi tiết theo <code>id</code></td>
+</tr>
+<tr>
+<td>Team Challenge</td>
+<td>60&#39;</td>
+<td>Chia việc gọi API: danh mục, tìm kiếm &amp; phân trang, POST đặt vé; dùng Spin/Skeleton khi tải</td>
+<td>Toàn bộ Mock JSON được thay bằng dữ liệu API thật</td>
+</tr>
+<tr>
+<td>Tổng kết</td>
+<td>15&#39;</td>
+<td>GV chữa lỗi phổ biến, giải đáp, giao BTVN</td>
+<td>Danh sách lỗi cần sửa của từng nhóm</td>
+</tr>
+</tbody></table>
+<ul>
+<li><strong>Guided (45&#39;):</strong> Thả JSON response mẫu của <code>/api/v1/events</code> vào AI để sinh interface, sau đó tự đối chiếu và chỉnh sửa. Viết <code>services/eventService.ts</code> với hàm <code>getEvents()</code> gọi API bằng Axios/Fetch. Kết nối vào <code>app/page.tsx</code> để render danh sách Card sự kiện.</li>
+<li><strong>Unguided (45&#39;):</strong> Tự viết hàm lấy chi tiết sự kiện (<code>getEventById</code>, có thể đặt tên <code>getEventDetail</code>) và tích hợp vào Dynamic Route <code>/events/[id]</code>. Hiển thị dữ liệu đơn lên giao diện; xử lý trường hợp 404 bằng <code>notFound()</code>.</li>
+<li><strong>Team Challenge (60&#39;):</strong> <strong>Member 1</strong> fetch <code>/api/categories</code> render vào Filter Bar. <strong>Member 2</strong> làm Tìm kiếm &amp; Phân trang qua <code>/api/events?search=...&amp;page=...</code>. <strong>Member 3</strong> tích hợp <code>POST /api/orders</code>, truyền payload từ Client lên Server và hiện Notification thành công. Mọi thao tác chờ API đều có Spin/Skeleton của Ant Design.</li>
+</ul>
+<hr>
+<h3 id="3-tom-tat-diem-can-nho-key-takeaways">📌 3. TÓM TẮT &amp; ĐIỂM CẦN NHỚ (Key Takeaways)</h3>
+<ul>
+<li>🔹 <strong>Chọn đúng nơi fetch:</strong> dữ liệu cần SEO, ít thay đổi → Server Component; dữ liệu phụ thuộc tương tác → Client Component.</li>
+<li>🔹 <strong>Next.js 15 không cache <code>fetch</code> mặc định:</strong> muốn cache dùng <code>cache: &#39;force-cache&#39;</code> hoặc <code>next: { revalidate: giây }</code>.</li>
+<li>🔹 <strong>Generic + DTO + mapper:</strong> <code>ApiResponse&lt;T&gt;</code>, <code>PaginatedData&lt;T&gt;</code> cho vỏ response; DTO bám Swagger; mapper tạo ViewModel cho UI.</li>
+<li>🔹 <strong>Service layer:</strong> component gọi <code>getEvents()</code>, không gọi <code>axios</code> trực tiếp; URL nằm trong <code>NEXT_PUBLIC_API_URL</code>.</li>
+<li>🔹 <strong>Đủ 3 trạng thái:</strong> Loading (<code>loading.tsx</code>, Spin/Skeleton), 404 (<code>notFound()</code>), lỗi máy chủ (<code>error.tsx</code>, Notification).</li>
+<li>🔹 <strong>AI sinh – người duyệt:</strong> luôn đối chiếu interface do AI sinh với JSON thật trước khi dùng.</li>
+</ul>
+<hr>
+<h3 id="4-hoat-dong-kiem-tra-nhanh-self-assessment-quiz">❓ 4. HOẠT ĐỘNG KIỂM TRA NHANH (Self-Assessment / Quiz)</h3>
+<p><strong>Câu 1:</strong> Trong Next.js 15, đoạn <code>fetch(url, { next: { revalidate: 3600 } })</code> trong Server Component có ý nghĩa gì?</p>
+<ul>
+<li>A. Gọi lại API mỗi 3600 mili-giây trên trình duyệt</li>
+<li>B. Không bao giờ cache kết quả</li>
+<li>C. Dùng lại kết quả đã cache tối đa 1 giờ rồi mới lấy bản mới</li>
+<li>D. Chỉ cho phép gọi API 3600 lần mỗi ngày</li>
+</ul>
+<details>
+<summary>👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> C<br>
+<b>Giải thích:</b> <code>revalidate</code> tính bằng giây. Sau 3600 giây, Next.js làm mới dữ liệu ở lần request kế tiếp; trong khoảng đó dùng bản cache.
+</details>
+
+<p><strong>Câu 2:</strong> Vì sao nên khai báo <code>ApiResponse&lt;T&gt;</code> thay vì viết riêng interface vỏ response cho từng endpoint?</p>
+<ul>
+<li>A. Vì TypeScript bắt buộc mọi interface phải có generic</li>
+<li>B. Để tái sử dụng một cấu trúc vỏ chung, chỉ thay kiểu của <code>data</code></li>
+<li>C. Để Axios tự động sinh dữ liệu mẫu</li>
+<li>D. Để không cần kiểm tra lỗi HTTP</li>
+</ul>
+<details>
+<summary>👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> B<br>
+<b>Giải thích:</b> Mọi response có chung <code>statusCode</code>, <code>message</code>, <code>data</code>. Generic <code>T</code> cho phép dùng <code>ApiResponse&lt;IEventItem[]&gt;</code>, <code>ApiResponse&lt;ICategory[]&gt;</code>… mà không lặp code.
+</details>
+
+<p><strong>Câu 3:</strong> Đoạn code <code>try { const e = await getEvent(id); if (!e) notFound(); } catch { return &lt;p&gt;Lỗi&lt;/p&gt;; }</code> gặp vấn đề gì?</p>
+<ul>
+<li>A. <code>notFound()</code> ném lỗi đặc biệt nên bị <code>catch</code> nuốt, trang 404 không hiển thị</li>
+<li>B. <code>notFound()</code> chỉ dùng được trong Client Component</li>
+<li>C. Không thể dùng <code>await</code> trong Server Component</li>
+<li>D. Không có vấn đề gì</li>
+</ul>
+<details>
+<summary>👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> A<br>
+<b>Giải thích:</b> <code>notFound()</code> hoạt động bằng cách throw. Khối <code>catch</code> bắt mọi lỗi sẽ chặn cơ chế này. Hãy xử lý 404 trong service (trả <code>null</code>) và gọi <code>notFound()</code> ngoài <code>try/catch</code>.
+</details>
+
+<p><strong>Câu 4:</strong> Tính năng gợi ý kết quả ngay khi người dùng gõ vào ô tìm kiếm nên fetch dữ liệu ở đâu?</p>
+<ul>
+<li>A. Trong <code>layout.tsx</code> gốc</li>
+<li>B. Trong Server Component với <code>revalidate: 3600</code></li>
+<li>C. Trong file <code>next.config.ts</code></li>
+<li>D. Trong Client Component (kết hợp debounce), dùng Axios hoặc SWR</li>
+</ul>
+<details>
+<summary>👉 Bấm vào đây để xem Đáp án & Giải thích</summary>
+<b>Đáp án đúng:</b> D<br>
+<b>Giải thích:</b> Dữ liệu phụ thuộc từng thao tác gõ phím nên phải gọi từ trình duyệt; kết hợp debounce (Buổi 6) để tránh gọi API ở mỗi ký tự.
+</details>
+
+<blockquote>
+<p>Bộ 10+ câu đầy đủ: <code>quiz/quiz-bai-08-aiken.txt</code></p>
+</blockquote>
+<hr>
+<h3 id="5-nhiem-vu-hoc-tap-thao-luan-lms-discussion-assignment">💬 5. NHIỆM VỤ HỌC TẬP &amp; THẢO LUẬN (LMS Discussion / Assignment)</h3>
+<ul>
+<li><strong>Chủ đề thảo luận Diễn đàn (Forum Discussion):</strong> Trang Chi tiết sự kiện có phần &quot;Số vé còn lại&quot; thay đổi liên tục, trong khi mô tả sự kiện gần như cố định. Bạn sẽ chia phần nào fetch trên server, phần nào fetch trên client, và chọn <code>revalidate</code> bao nhiêu cho từng phần? Hãy lập luận dựa trên SEO, hiệu năng và trải nghiệm người dùng.</li>
+<li><strong>Yêu cầu nộp bài (Bài tập về nhà):</strong><ul>
+<li>Xử lý ngoại lệ khi API gặp sự cố (Network Error, Server 500) bằng cách kết hợp Ant Design Notification / Alert hoặc <code>error.tsx</code> cho các route đã tích hợp API.</li>
+<li><strong>Output:</strong> Web app hoạt động an toàn, có thông báo lỗi văn minh khi Server API gián đoạn. Ảnh chụp màn hình 3 trạng thái (Loading – Lỗi – Thành công) đính kèm trong mô tả PR.</li>
+<li><strong>Hạn nộp:</strong> trước buổi học tiếp theo. Branch <code>feature/api-error-handling-&lt;mssv&gt;</code>, PR đặt tên <code>feat(api): handle network and server errors – &lt;Họ tên&gt;</code>; nộp link PR lên LMS.</li>
+</ul>
+</li>
+<li><strong>📚 Tài liệu đọc &amp; tham khảo:</strong><ul>
+<li>Next.js Data Fetching, Caching, and Revalidating: <a href="https://nextjs.org/docs/app/building-your-application/data-fetching/fetching-caching-and-revalidating" target="_blank" rel="noopener noreferrer">https://nextjs.org/docs/app/building-your-application/data-fetching/fetching-caching-and-revalidating</a></li>
+<li>Axios Documentation: <a href="https://axios-http.com/docs/intro" target="_blank" rel="noopener noreferrer">https://axios-http.com/docs/intro</a></li>
+<li>Next.js Error Handling: <a href="https://nextjs.org/docs/app/building-your-application/routing/error-handling" target="_blank" rel="noopener noreferrer">https://nextjs.org/docs/app/building-your-application/routing/error-handling</a></li>
+<li>Next.js <code>notFound()</code>: <a href="https://nextjs.org/docs/app/api-reference/functions/not-found" target="_blank" rel="noopener noreferrer">https://nextjs.org/docs/app/api-reference/functions/not-found</a></li>
+</ul>
+</li>
+</ul>
+
+    </article>
+
+    <!-- Bottom Navigation -->
+    <div class="flex items-center justify-between gap-4 mt-8 no-print text-xs font-bold">
+      <a href="bai-07.html" class="px-4 py-2.5 bg-white border border-slate-200 hover:border-lhu-blue text-slate-700 hover:text-lhu-blue rounded-xl shadow-sm transition-all flex items-center gap-2"><i class="fa-solid fa-chevron-left"></i> Bài trước</a>
+      <a href="index.html#lo-trinh" class="px-4 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-800 rounded-xl transition-all flex items-center gap-2">
+        <i class="fa-solid fa-table-cells-large"></i> Danh mục bài học
+      </a>
+      <a href="bai-09.html" class="px-4 py-2.5 bg-white border border-slate-200 hover:border-lhu-blue text-slate-700 hover:text-lhu-blue rounded-xl shadow-sm transition-all flex items-center gap-2">Bài tiếp theo <i class="fa-solid fa-chevron-right"></i></a>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-slate-200 py-6 text-xs text-slate-500 mt-12 no-print">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <strong>Khoa Công nghệ Thông tin - Trường Đại học Lạc Hồng</strong><br>
+        Phòng B301 - B302, Cơ sở 1, Số 10 Huỳnh Văn Nghệ, P. Bửu Long, TP. Biên Hòa, Đồng Nai.
+      </div>
+      <div class="sm:text-right">
+        <span>Email: cntt@lhu.edu.vn • Hotline: (0251) 3952 251</span><br>
+        <span>Hệ thống LMS: <a href="https://learn.lhu.edu.vn" target="_blank" rel="noopener noreferrer" class="text-lhu-blue font-bold">learn.lhu.edu.vn</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleAllDetails(open) {
+      document.querySelectorAll("details").forEach(d => {
+        if (open) d.setAttribute("open", ""); else d.removeAttribute("open");
+      });
+    }
+    if (window.hljs) hljs.highlightAll();
+  </script>
+
+</body>
+</html>

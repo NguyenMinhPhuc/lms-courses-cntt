@@ -1,0 +1,1007 @@
+Trong SCSS, chỉ thị nào dùng để đóng gói một đoạn CSS lặp lại và tái sử dụng bằng @include?
+A. @mixin
+B. @extend
+C. @media
+D. @forward
+ANSWER: A
+
+Vì sao nên gom màu sắc, spacing, font size vào file styles/_variables.scss dùng chung cho cả nhóm?
+A. Để trình duyệt tải trang nhanh hơn nhờ ít file CSS
+B. Để thay đổi giao diện tập trung tại một nơi và giữ thống nhất giữa các thành viên
+C. Để CSS Modules không cần hash tên class nữa
+D. Để có thể bỏ qua bước biên dịch SCSS sang CSS
+ANSWER: B
+
+Với mixin respond-to viết theo min-width và map ('mobile': 640px, 'tablet': 768px, 'desktop': 1024px), lưới card hiển thị 1 cột ở style gốc thì cần làm gì để có 2 cột từ 640px và 3 cột từ 1024px?
+A. Viết style 3 cột ở gốc rồi dùng respond-to('mobile') để giảm xuống 1 cột
+B. Dùng respond-to('tablet') cho 2 cột và respond-to('mobile') cho 3 cột
+C. Dùng respond-to('mobile') cho 2 cột và respond-to('desktop') cho 3 cột
+D. Chỉ cần dùng respond-to('desktop') cho cả 2 cột và 3 cột
+ANSWER: C
+
+Theo quy ước BEM, tên class nào biểu diễn đúng một Modifier của block badge cho trạng thái đã kết thúc?
+A. badge__ended
+B. badge-ended__modifier
+C. ended_badge
+D. badge--ended
+ANSWER: D
+
+CSS Modules trong Next.js (file *.module.scss) chống xung đột CSS toàn cục bằng cách nào?
+A. Mã hóa (hash) tên class theo từng file để style chỉ có hiệu lực trong component import nó
+B. Tự động thêm !important vào mọi thuộc tính
+C. Chuyển toàn bộ class thành inline style khi build
+D. Chỉ cho phép mỗi dự án có một file SCSS duy nhất
+ANSWER: A
+
+Khai báo nào sau đây phải dùng type thay vì interface trong TypeScript?
+A. Props của component EventCard cần mở rộng bằng extends
+B. Tập giá trị trạng thái sự kiện 'UPCOMING' | 'ONGOING' | 'ENDED'
+C. Data Model EventItem gồm id, title, price
+D. Object cấu hình có các thuộc tính tùy chọn
+ANSWER: B
+
+AI sinh interface EventProps với dòng status: string. Vì sao nên sửa thành status: EventStatus với type EventStatus = 'UPCOMING' | 'ONGOING' | 'ENDED'?
+A. Vì kiểu string làm component chạy chậm hơn
+B. Vì Next.js không chấp nhận props kiểu string
+C. Vì union type giúp TypeScript báo lỗi ngay khi truyền giá trị sai như 'FINISHED'
+D. Vì union type tự động sinh màu cho badge
+ANSWER: C
+
+Hàm function getFirst<T>(items: T[]): T | undefined minh họa kỹ thuật TypeScript nào?
+A. Enum
+B. Type assertion
+C. Union literal
+D. Generics
+ANSWER: D
+
+Trong cấu trúc Prompt 3 bước, câu "Hãy đóng vai Chuyên gia Front-End Developer kinh nghiệm với Next.js và TypeScript" thuộc thành phần nào?
+A. Context
+B. Requirement
+C. Constraint
+D. Output
+ANSWER: A
+
+Mục đích của file .cursorrules đặt ở thư mục gốc dự án là gì?
+A. Cấu hình breakpoint cho SCSS
+B. Khai báo quy ước của nhóm (stack, không dùng any, dùng biến SCSS...) để AI luôn tuân theo khi sinh code
+C. Lưu lịch sử commit của các thành viên
+D. Thay thế file tsconfig.json
+ANSWER: B
+
+Theo nguyên tắc Vibe Coding của học phần, ai chịu trách nhiệm kiểm duyệt Type Safety, logic và refactor code?
+A. Công cụ AI, vì nó đã sinh ra code
+B. Giảng viên khi chấm bài
+C. Sinh viên, AI chỉ chịu trách nhiệm sinh khung code (boilerplate)
+D. Trình biên dịch TypeScript, sinh viên không cần đọc code
+ANSWER: C
+
+Trong Team Challenge, thành viên An hoàn thành file _variables.scss. Quy trình nào đúng với Branch Strategy main – dev – feature/name?
+A. Commit thẳng lên nhánh main để cả nhóm dùng ngay
+B. Gửi file qua Zalo cho từng thành viên tự copy
+C. Tạo nhánh dev từ feature rồi xóa nhánh main
+D. Push lên nhánh feature/an-design-tokens, mở Pull Request vào dev và nhờ thành viên khác review
+ANSWER: D
+
+Mục tiêu chính của Wireframe trong quy trình thiết kế giao diện là gì?
+A. Thể hiện bố cục và thứ tự thông tin trước khi quan tâm màu sắc, hình ảnh thật
+B. Chọn bảng màu thương hiệu cho dự án
+C. Viết mã nguồn hoàn chỉnh cho trang web
+D. Kiểm thử hiệu năng tải trang
+ANSWER: A
+
+Khi phân rã giao diện web app thành các khối Layout, thứ tự phân tích hợp lý từ ngoài vào trong là gì?
+A. Footer → Sidebar → Button → Header
+B. Header → Hero Section → Main Content → Sidebar → Footer
+C. Button → Input → Card → Page
+D. Main Content → Footer → Hero Section → Header
+ANSWER: B
+
+Theo Atomic Design, phần tử nào sau đây là một Atom?
+A. Header gồm Logo, Menu và SearchBar
+B. SearchBar gồm Input và Button
+C. Button
+D. Trang chủ đã đổ dữ liệu sự kiện thật
+ANSWER: C
+
+Theo Atomic Design, Header gồm Logo, Navigation và SearchBar thuộc cấp độ nào?
+A. Atom
+B. Molecule
+C. Template
+D. Organism
+ANSWER: D
+
+Vì sao phân rã giao diện theo Atomic Design giúp tăng khả năng tái sử dụng code?
+A. Vì component lớn được ghép từ component nhỏ, sửa một Atom thì mọi nơi dùng nó đều được cập nhật
+B. Vì Atomic Design bắt buộc dùng Tailwind CSS
+C. Vì mỗi trang có toàn bộ code trong một file duy nhất
+D. Vì nó loại bỏ hoàn toàn nhu cầu viết TypeScript
+ANSWER: A
+
+Trong trang Chi tiết sự kiện, phần nội dung bài viết mô tả sự kiện ở cột trái nên dùng thẻ Semantic nào?
+A. <aside>
+B. <article>
+C. <nav>
+D. <footer>
+ANSWER: B
+
+Multimodal AI Prompting trong workflow Figma to Next.js có nghĩa là gì?
+A. Gửi cùng một prompt cho nhiều công cụ AI khác nhau
+B. Viết prompt bằng nhiều ngôn ngữ
+C. Gửi ảnh Wireframe/Figma hoặc SVG kèm mô tả văn bản để AI có khả năng đọc hình sinh mã TSX
+D. Chia prompt thành nhiều tin nhắn ngắn
+ANSWER: C
+
+Prompt Guided yêu cầu AI "phân rã giao diện thành HeroBanner, FeaturedEventsSection, CategoryFilter". Mục đích của yêu cầu này là gì?
+A. Giảm số lượng thẻ HTML trên trang
+B. Giúp AI chạy nhanh hơn
+C. Tránh phải tạo Mock Data
+D. Để code sinh ra được tách thành component nhỏ, dễ đọc và tái sử dụng thay vì một file dài
+ANSWER: D
+
+AI sinh đoạn code style={{ background: '#ff6600', padding: 24 }} lặp lại ở nhiều component. Hướng refactor đúng là gì?
+A. Chuyển sang class trong SCSS Module và thay giá trị cứng bằng biến trong _variables.scss
+B. Giữ nguyên vì inline style có độ ưu tiên cao nhất
+C. Chuyển toàn bộ sang file globals.css với !important
+D. Xóa style để giao diện trông đơn giản hơn
+ANSWER: A
+
+Khung đặt vé dùng position: sticky trong bố cục grid 70/30 nhưng không dính khi cuộn. Cách khắc phục phù hợp nhất là gì?
+A. Đổi thẻ <aside> thành <div>
+B. Thêm align-self: start cho aside và bỏ overflow: hidden ở phần tử cha
+C. Thêm z-index: 9999
+D. Chuyển sang position: absolute
+ANSWER: B
+
+Bạn dùng v0.dev nhưng nhóm đã thống nhất chỉ dùng SCSS Module. Cách viết prompt hợp lý là gì?
+A. Không cần nói gì, sau đó tự chuyển đổi toàn bộ class Tailwind
+B. Yêu cầu AI dùng inline style để dễ chuyển đổi
+C. Ghi rõ ràng buộc "chỉ dùng SCSS Module, không dùng Tailwind" ngay trong prompt
+D. Yêu cầu AI sinh HTML thuần không có style
+ANSWER: C
+
+Theo kế hoạch Buổi 2, bộ Wireframe 5 màn hình của nhóm cần được lưu ở đâu và dùng để làm gì?
+A. Lưu trên máy cá nhân trưởng nhóm, chỉ dùng để tham khảo
+B. Gửi email cho giảng viên, không cần lưu trên repo
+C. Lưu trong thư mục app/ để Next.js tự render
+D. Lưu trong docs/wireframes/ trên repo nhóm, làm cơ sở chấm tiêu chí Mô hình hóa Wireframe UI (PI 1.4)
+ANSWER: D
+
+Trong Next.js App Router, file nào định nghĩa giao diện dùng chung không bị re-render khi chuyển giữa các trang con?
+A. page.tsx
+B. layout.tsx
+C. loading.tsx
+D. error.tsx
+ANSWER: B
+
+Một thư mục trong app/ chỉ trở thành route truy cập được qua URL khi nào?
+A. Khi thư mục đó chứa file page.tsx
+B. Khi thư mục đó chứa file layout.tsx
+C. Khi tên thư mục đặt trong ngoặc tròn
+D. Khi thư mục đó có file index.ts
+ANSWER: A
+
+File app/(auth)/register/page.tsx tương ứng với URL nào?
+A. /auth/register
+B. /(auth)/register
+C. /auth
+D. /register
+ANSWER: D
+
+Mặc định, một component đặt trong thư mục app/ của Next.js App Router là loại component nào?
+A. Client Component
+B. Static HTML không có React
+C. Server Component
+D. Error Boundary
+ANSWER: C
+
+Trường hợp nào bắt buộc phải thêm chỉ thị 'use client' vào đầu file component?
+A. Component hiển thị tiêu đề và mô tả tĩnh
+B. Component dùng useState và xử lý sự kiện onClick
+C. Component chỉ import Link từ next/link
+D. Root Layout chứa thẻ html và body
+ANSWER: B
+
+Lợi ích chính của Server Component so với Client Component là gì?
+A. Giảm JavaScript gửi về trình duyệt và có thể truy cập dữ liệu, secret trực tiếp trên server
+B. Cho phép dùng useEffect và localStorage
+C. Tự động thêm hiệu ứng animation
+D. Không cần khai báo kiểu TypeScript
+ANSWER: A
+
+Nhóm đặt Header và Footer trong app/layout.tsx rồi tạo app/(auth)/layout.tsx chỉ chứa Logo và Form. Khi mở /login, điều gì xảy ra?
+A. AuthLayout thay thế Root Layout nên không còn Header/Footer
+B. Next.js báo lỗi trùng layout
+C. Trang /login vẫn hiện Header/Footer vì layout lồng nhau được cộng dồn
+D. Trang /login hiển thị trang 404
+ANSWER: C
+
+Theo quy ước App Router, file nào bắt buộc phải là Client Component?
+A. layout.tsx
+B. not-found.tsx
+C. page.tsx
+D. error.tsx
+ANSWER: D
+
+File global-error.tsx khác error.tsx ở điểm nào?
+A. global-error.tsx bắt lỗi ở mức Root Layout nên phải tự khai báo thẻ html và body
+B. global-error.tsx chỉ chạy ở chế độ dev
+C. global-error.tsx là Server Component
+D. global-error.tsx chỉ dùng để hiển thị trang 404
+ANSWER: A
+
+Vì sao menu HeaderNavigationBar nên dùng Link từ next/link thay vì thẻ a href thông thường?
+A. Vì thẻ a không hỗ trợ thuộc tính href trong TSX
+B. Vì Link chuyển trang phía client không reload toàn trang và có thể prefetch route
+C. Vì Link tự động bảo vệ Private Routes
+D. Vì Link bắt buộc phải dùng trong Server Component
+ANSWER: B
+
+Bạn muốn hiển thị Skeleton khi chuyển giữa các trang /admin/dashboard và /admin/users. Cách làm phù hợp với App Router là gì?
+A. Thêm useEffect vào mọi trang admin để tự ẩn hiện Skeleton
+B. Đặt Skeleton trong file not-found.tsx
+C. Tạo file loading.tsx trong thư mục route admin
+D. Viết Skeleton trong global-error.tsx
+ANSWER: C
+
+Để chặn người chưa đăng nhập truy cập /admin/* trong Next.js 15, cách nào gọn và đúng nhất?
+A. Ẩn link Admin trên menu là đủ
+B. Đặt tên thư mục admin trong ngoặc tròn
+C. Thêm 'use client' vào AdminLayout
+D. Dùng middleware.ts kiểm tra cookie và redirect về /login với matcher '/admin/:path*'
+ANSWER: D
+
+Trong Next.js App Router, thư mục nào tạo được route động khớp với URL /events/ev-101?
+A. app/events/{id}/page.tsx
+B. app/events/[id]/page.tsx
+C. app/events/:id/page.tsx
+D. app/events/(id)/page.tsx
+ANSWER: B
+
+Trong Next.js 15, cách lấy tham số id đúng trong Server Component app/events/[id]/page.tsx là gì?
+A. const { id } = await params;
+B. const id = params.id;
+C. const { id } = useParams();
+D. const id = router.query.id;
+ANSWER: A
+
+Thư mục app/docs/[...slug]/page.tsx sẽ KHÔNG khớp với URL nào sau đây?
+A. /docs/a
+B. /docs/a/b
+C. /docs/huong-dan/dat-ve
+D. /docs
+ANSWER: D
+
+Với Optional Catch-all app/shop/[[...slug]]/page.tsx, khi truy cập URL /shop thì giá trị slug là gì?
+A. Mảng rỗng []
+B. Chuỗi rỗng ''
+C. undefined
+D. Chuỗi 'shop'
+ANSWER: C
+
+Hook nào dùng để lấy đường dẫn hiện tại (ví dụ /category/music) nhằm tô sáng menu đang chọn trong Client Component?
+A. useSearchParams()
+B. usePathname()
+C. useParams()
+D. useRouter()
+ANSWER: B
+
+Khai báo kiểu nào đúng cho prop searchParams của page.tsx trong Next.js 15?
+A. searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+B. searchParams: { [key: string]: string }
+C. searchParams: URLSearchParams
+D. searchParams: string[]
+ANSWER: A
+
+Một Client Component dùng useSearchParams() để đọc ?sort=latest. Khi chạy npm run build, trang báo lỗi liên quan đến render tĩnh. Cách xử lý phù hợp là gì?
+A. Chuyển component sang Server Component và giữ nguyên hook
+B. Đọc window.location.search trực tiếp trong thân component
+C. Xóa chỉ thị 'use client' ở đầu file
+D. Bọc component đó trong thẻ Suspense với fallback
+ANSWER: D
+
+Lợi ích chính của việc khai báo interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> là gì?
+A. Button tự động trở thành Server Component
+B. Next.js tự sinh file SCSS cho Button
+C. Button nhận sẵn mọi thuộc tính HTML gốc như onClick, type, disabled, aria-*
+D. Bắt buộc mọi Button phải truyền prop variant
+ANSWER: C
+
+Vì sao trong Button.tsx nên đặt mặc định type = 'button' khi destructure props?
+A. Để tránh nút vô tình submit form khi nằm trong thẻ form
+B. Để nút luôn có màu primary
+C. Để TypeScript không báo lỗi any
+D. Để nút tự động hiển thị spinner
+ANSWER: A
+
+Khai báo variant?: 'primary' | 'secondary' | 'outline' trong Props mang lại lợi ích gì?
+A. Cho phép truyền bất kỳ chuỗi nào vào variant
+B. Giúp Button chạy nhanh hơn khi render
+C. Tự động tạo class CSS tương ứng
+D. TypeScript báo lỗi ngay khi truyền giá trị không nằm trong danh sách
+ANSWER: D
+
+Kỹ thuật cho phép truyền các phần tử JSX vào bên trong component (ví dụ nội dung của Modal hay Card) được gọi là gì?
+A. Prop Drilling
+B. Component Composition với children prop
+C. State Lifting
+D. Dynamic Import
+ANSWER: B
+
+Theo chuẩn tổ chức thư mục của buổi học, component EventCard và SeatPicker nên đặt ở đâu?
+A. components/ui/
+B. components/common/
+C. components/features/
+D. app/events/[id]/
+ANSWER: C
+
+Gói @ant-design/nextjs-registry (AntdRegistry) được dùng trong Next.js App Router nhằm mục đích chính nào?
+A. Thu gom CSS-in-JS ở phía server để tránh FOUC khi tải trang
+B. Đăng ký bản quyền sử dụng Ant Design
+C. Tự động chuyển mọi component antd thành Server Component
+D. Thay thế ConfigProvider trong việc đổi màu chủ đạo
+ANSWER: A
+
+Cú pháp ConfigProvider nào đúng để đặt màu chủ đạo #6366F1 và bo góc 8px?
+A. theme={{ token: {{ colorPrimary: '#6366F1', borderRadius: 8 }} }}
+B. theme={{ colorPrimary: '#6366F1', radius: 8 }}
+C. theme={{ token: { colorPrimary: '#6366F1', borderRadius: 8 } }}
+D. token={{ primary: '#6366F1', borderRadius: '8' }}
+ANSWER: C
+
+Grid system của Ant Design chia một hàng (Row) thành bao nhiêu cột?
+A. 12 cột
+B. 24 cột
+C. 16 cột
+D. 10 cột
+ANSWER: B
+
+Muốn thẻ sự kiện chiếm cả hàng trên điện thoại nhưng hiển thị 4 thẻ một hàng trên màn hình lớn, cấu hình Col nào đúng?
+A. Col xs={6} lg={24}
+B. Col xs={12} lg={4}
+C. Col span={4}
+D. Col xs={24} lg={6}
+ANSWER: D
+
+AI sinh code Modal visible={isOpen} cho dự án dùng Ant Design v5. Bạn cần sửa thế nào?
+A. Đổi thành open={isOpen} vì visible là API cũ của v4
+B. Giữ nguyên vì v5 vẫn khuyến nghị visible
+C. Đổi thành show={isOpen}
+D. Xóa prop này vì Modal tự quản lý trạng thái mở
+ANSWER: A
+
+Trong Ant Design v5, component Tabs nên được khai báo các tab theo cách nào?
+A. Lồng nhiều Tabs.TabPane bên trong children
+B. Truyền mảng cấu hình qua prop items
+C. Dùng prop tabs nhận chuỗi phân cách bằng dấu phẩy
+D. Mỗi tab là một component Tab riêng đặt cạnh Tabs
+ANSWER: B
+
+Trang /admin/orders có cấu hình columns chứa hàm render và onFilter. Cách tổ chức file nào đúng trong App Router?
+A. Để page.tsx là Server Component và truyền columns có hàm xuống Table
+B. Thêm 'use server' vào đầu page.tsx
+C. Tách OrdersTable.tsx có 'use client' chứa columns, page.tsx vẫn là Server Component
+D. Đặt columns trong file JSON để Next.js tự đọc
+ANSWER: C
+
+Cách nào ghi đè style tiêu đề của riêng Modal đặt vé mà không ảnh hưởng các Modal khác?
+A. Sửa .ant-modal-title trong globals.scss
+B. Đổi colorPrimary trong ConfigProvider
+C. Thêm !important cho mọi thuộc tính trong globals.scss
+D. Gán className từ SCSS Module cho Modal và dùng :global(.ant-modal-title) bên trong class đó
+ANSWER: D
+
+Dự án Next.js 15 (React 19) dùng antd v5, gọi message.success() nhưng thông báo không hiện. Hướng xử lý phù hợp là gì?
+A. Cài và import @ant-design/v5-patch-for-react-19 ở phía client, hoặc dùng App.useApp()
+B. Hạ Next.js xuống phiên bản 12
+C. Thêm import 'antd/dist/antd.css' vào layout
+D. Chuyển toàn bộ ứng dụng sang Pages Router
+ANSWER: A
+
+So với Ant Design, đặc điểm nào đúng với Tailwind CSS?
+A. Cung cấp sẵn Table, DatePicker, Form hoàn chỉnh
+B. Bắt buộc dùng ConfigProvider để đổi màu
+C. Là thư viện utility-first, không có component dựng sẵn, phải tự dựng component
+D. Chỉ hoạt động với Pages Router
+ANSWER: C
+
+Prop nào của Table giúp bảng nhiều cột cuộn ngang bên trong khung thay vì làm cả trang tràn ngang trên điện thoại?
+A. pagination={{ pageSize: 5 }}
+B. size="small"
+C. bordered
+D. scroll={{ x: 800 }}
+ANSWER: D
+
+Component Ant Design nào phù hợp nhất để hiển thị trạng thái chờ tải dữ liệu theo đúng bố cục nội dung (placeholder)?
+A. Carousel
+B. Skeleton
+C. Rate
+D. Tag
+ANSWER: B
+
+Trong Next.js App Router, component mặc định trong thư mục app/ thuộc loại nào?
+A. Client Component
+B. Static HTML không có React
+C. Web Component
+D. Server Component
+ANSWER: D
+
+Trường hợp nào KHÔNG cần thêm chỉ thị 'use client'?
+A. Component có nút onClick tăng số lượng vé
+B. Component dùng useState lưu từ khóa tìm kiếm
+C. Component chỉ hiển thị tiêu đề và mô tả sự kiện từ props
+D. Component đọc localStorage lấy danh sách yêu thích
+ANSWER: C
+
+Khi nào nên ưu tiên useReducer thay cho useState?
+A. Khi state có nhiều hành động phụ thuộc lẫn nhau như giỏ hàng nhiều loại vé
+B. Khi chỉ cần lưu một giá trị boolean bật/tắt
+C. Khi component là Server Component
+D. Khi muốn tránh hoàn toàn việc re-render
+ANSWER: A
+
+Đoạn code useEffect(() => { setCount(count + 1); }, [count]); gây ra vấn đề gì?
+A. Memory leak do thiếu cleanup
+B. Effect không bao giờ chạy
+C. Lỗi biên dịch TypeScript
+D. Vòng lặp re-render vô tận vì effect thay đổi chính phụ thuộc của nó
+ANSWER: D
+
+Một effect tạo setInterval đếm ngược thời gian giữ ghế nhưng không trả về hàm cleanup. Hậu quả có thể xảy ra là gì?
+A. Memory leak vì interval vẫn chạy sau khi component bị gỡ
+B. Component không render lần đầu
+C. TypeScript báo lỗi kiểu number
+D. Trang tự chuyển thành Server Component
+ANSWER: A
+
+Mục đích của useMemo khác useCallback ở điểm nào?
+A. useMemo chỉ dùng trong Server Component
+B. useMemo chạy sau render, useCallback chạy trước render
+C. useMemo ghi nhớ giá trị tính toán, useCallback ghi nhớ tham chiếu hàm
+D. useMemo thay thế useState, useCallback thay thế useEffect
+ANSWER: C
+
+Theo khuyến nghị "You Might Not Need an Effect", danh sách sự kiện đã lọc từ events và filters nên được xử lý thế nào?
+A. Dùng useEffect gọi setVisible mỗi khi filters đổi
+B. Tính trực tiếp khi render, bọc useMemo nếu phép tính tốn kém
+C. Lưu vào localStorage rồi đọc lại
+D. Dùng setInterval cập nhật mỗi giây
+ANSWER: B
+
+Sơ đồ chọn ghế và khung tổng tiền là hai component anh em cùng cần danh sách ghế đã chọn. Giải pháp phù hợp là gì?
+A. Mỗi component giữ useState riêng và đồng bộ bằng useEffect
+B. Lưu danh sách ghế vào biến toàn cục ngoài component
+C. Đọc ghế đã chọn từ DOM bằng document.querySelectorAll
+D. Nâng state selectedSeats lên component cha chung và truyền xuống qua props/callback
+ANSWER: D
+
+Kỹ thuật Debounce 200ms áp dụng cho ô tìm kiếm nhằm mục đích gì?
+A. Chỉ cập nhật bộ lọc khi người dùng ngừng gõ 200ms, tránh xử lý quá liên tục
+B. Cập nhật bộ lọc mỗi 200ms dù người dùng có gõ hay không
+C. Chặn người dùng gõ quá 200 ký tự
+D. Lưu từ khóa vào server sau 200ms
+ANSWER: A
+
+Trong custom hook useDebounce, dòng return () => clearTimeout(handler); bên trong useEffect có tác dụng gì?
+A. Xóa giá trị debouncedValue về rỗng
+B. Hủy bộ hẹn giờ cũ khi value đổi hoặc component bị gỡ, chỉ giữ lần gõ cuối
+C. Gọi lại API ngay lập tức
+D. Ngăn component re-render
+ANSWER: B
+
+EventFilterBar gọi onFilterChange trong useEffect có onFilterChange trong mảng phụ thuộc. Cha truyền onFilterChange={(f) => setFilters(f)} và trang bị render lặp liên tục. Cách sửa đúng là gì?
+A. Xóa onFilterChange khỏi mảng phụ thuộc và tắt cảnh báo ESLint
+B. Chuyển EventFilterBar thành Server Component
+C. Truyền thẳng setFilters hoặc bọc callback bằng useCallback ở component cha
+D. Thêm setTimeout 0ms trước khi gọi onFilterChange
+ANSWER: C
+
+Trong TicketQuantitySelector, cách cập nhật state nào đúng nguyên tắc bất biến (immutable) khi tăng số lượng vé?
+A. tickets[0].quantity++ rồi gọi setTickets(tickets)
+B. setTickets(prev => prev.map(t => t.id === id ? { ...t, quantity: t.quantity + 1 } : t))
+C. tickets.push({ ...ticket, quantity: 1 }) rồi gọi setTickets(tickets)
+D. Gán trực tiếp ticket.quantity = ticket.quantity + 1 trong onClick
+ANSWER: B
+
+Vì sao một dự án Next.js chạy bình thường với npm run dev vẫn có thể thất bại khi chạy npm run build?
+A. Vì npm run build dùng phiên bản React khác với npm run dev
+B. Vì dev chỉ compile route được truy cập và không chặn trang khi có lỗi type, còn build kiểm tra toàn bộ dự án
+C. Vì npm run build xóa toàn bộ thư mục node_modules trước khi chạy
+D. Vì chế độ dev không hỗ trợ file .tsx
+ANSWER: B
+
+Thứ tự kiểm tra lỗi tĩnh hợp lý nhất trước buổi báo cáo giữa kỳ là gì?
+A. npm run build → npm install → npm run dev
+B. npm run start → npm run lint → git push
+C. npm run lint → npm run build → npm run start
+D. npm run dev → git commit → npm run lint
+ANSWER: C
+
+Commit message nào tuân thủ đúng quy ước Conventional Commits?
+A. feat(auth): add login form validation
+B. Update login page final
+C. FIX BUG LOGIN!!!
+D. login - sửa lần 3
+ANSWER: A
+
+Trong Conventional Commits, type nào phù hợp nhất cho commit xóa các câu lệnh console.log và file không còn được import?
+A. feat
+B. fix
+C. docs
+D. chore
+ANSWER: D
+
+Khi chạy npm run build, terminal báo "useSearchParams() should be wrapped in a suspense boundary". Cách sửa đúng là gì?
+A. Xóa dòng 'use client' khỏi component
+B. Thêm // @ts-ignore phía trên dòng useSearchParams
+C. Bọc Client Component dùng useSearchParams trong Suspense có fallback
+D. Chuyển useSearchParams sang file next.config.ts
+ANSWER: C
+
+Nhóm viết import Header from './header' trong khi file tên là Header.tsx; máy Windows chạy bình thường nhưng build trên Vercel báo Module not found. Nguyên nhân là gì?
+A. Môi trường build Linux phân biệt chữ hoa chữ thường trong đường dẫn file
+B. Vercel không hỗ trợ component tên Header
+C. File .tsx phải đặt trong thư mục pages/
+D. Next.js 15 cấm import đường dẫn tương đối
+ANSWER: A
+
+Rule ESLint nào giúp build tự chặn khi trong code còn khai báo kiểu any?
+A. no-console
+B. react-hooks/exhaustive-deps
+C. @next/next/no-img-element
+D. @typescript-eslint/no-explicit-any
+ANSWER: D
+
+Theo yêu cầu giữa kỳ, README.md của đồ án Smart Event Hub KHÔNG bắt buộc phải có nội dung nào sau đây?
+A. Bảng thành viên & phân công công việc
+B. Toàn bộ mã nguồn của các component chính
+C. Hướng dẫn cài đặt và chạy dự án ở local
+D. Link file thiết kế Wireframe Figma
+ANSWER: B
+
+Rubric giữa kỳ gồm Wireframe 1.5đ, UI chuyên nghiệp 2.0đ, Routing & Component 1.0đ, Git & phối hợp 0.5đ. Nhóm đạt 1.5 + 1.5 + 0.75 + 0.25 thì điểm quy đổi thang 10 là bao nhiêu?
+A. 8.0
+B. 4.0
+C. 7.5
+D. 9.0
+ANSWER: A
+
+Trong 15 phút báo cáo giữa kỳ của mỗi nhóm, thời lượng được phân bổ như thế nào?
+A. 15 phút thuyết trình, không có phản biện
+B. 5 phút thuyết trình và 10 phút phản biện nhóm
+C. 8 phút thuyết trình và 7 phút chấm code tự động
+D. 10 phút thuyết trình & demo live và 5 phút phản biện cá nhân
+ANSWER: D
+
+Lệnh nào giúp nhanh chóng thống kê số commit của từng thành viên để làm minh chứng đóng góp cá nhân?
+A. git status
+B. git shortlog -sn --all
+C. git stash list
+D. git diff --staged
+ANSWER: B
+
+Với Next.js 15, cách dùng dynamic(() => import('./DatePicker'), { ssr: false }) nào là đúng để tránh Hydration Error?
+A. Đặt trực tiếp trong app/checkout/page.tsx là Server Component
+B. Đặt trong file layout.tsx gốc để áp dụng cho mọi trang
+C. Đặt trong một Client Component có 'use client' rồi import component đó vào page
+D. Đặt trong file next.config.ts ở mục experimental
+ANSWER: C
+
+Trong Next.js App Router, cách lấy dữ liệu nào giúp HTML trả về đã có sẵn dữ liệu, tốt cho SEO?
+A. Gọi Axios trong useEffect của Client Component
+B. Dùng async/await fetch trực tiếp trong Server Component
+C. Đọc dữ liệu từ localStorage khi trang tải xong
+D. Gọi API trong sự kiện onClick của nút bấm
+ANSWER: B
+
+Trong Next.js 15, nếu không khai báo tùy chọn cache, hàm fetch trong Server Component hoạt động thế nào?
+A. Luôn cache vĩnh viễn kết quả
+B. Tự động revalidate mỗi 60 giây
+C. Không được cache mặc định, muốn cache phải khai báo rõ ràng
+D. Chỉ chạy được trong Client Component
+ANSWER: C
+
+Tùy chọn fetch(url, { next: { revalidate: 3600 } }) có ý nghĩa gì?
+A. Dùng lại dữ liệu đã cache tối đa 3600 giây rồi mới làm mới
+B. Gọi lại API mỗi 3600 mili-giây trên trình duyệt
+C. Hủy request nếu quá 3600 giây chưa có phản hồi
+D. Giới hạn tối đa 3600 request mỗi giờ
+ANSWER: A
+
+Khai báo interface ApiResponse<T> { statusCode: number; message: string; data: T; } thể hiện kỹ thuật TypeScript nào?
+A. Union Type
+B. Enum
+C. Type Assertion
+D. Generic Interface
+ANSWER: D
+
+DTO (Data Transfer Object) trong tích hợp API Front-End dùng để làm gì?
+A. Lưu trữ token đăng nhập trong trình duyệt
+B. Mô tả đúng hình dạng dữ liệu JSON mà Backend trả về
+C. Định nghĩa style SCSS cho component
+D. Thay thế hoàn toàn cho ViewModel hiển thị
+ANSWER: B
+
+Khi Swagger cho biết trường avatarUrl của ban tổ chức có thể rỗng, khai báo TypeScript nào chính xác nhất?
+A. avatarUrl: any;
+B. avatarUrl: string;
+C. avatarUrl: string | null;
+D. avatarUrl: object;
+ANSWER: C
+
+Trong Next.js 15, cách lấy id ở trang app/events/[id]/page.tsx (Server Component) nào là đúng?
+A. const { id } = await params;
+B. const id = params.id; với params là object đồng bộ
+C. const id = window.location.id;
+D. const id = useParams(); trong Server Component async
+ANSWER: A
+
+Đoạn code try { const e = await getEvent(id); if (!e) notFound(); } catch { return null; } gặp vấn đề gì?
+A. Không có vấn đề gì
+B. notFound() chỉ dùng được trong Client Component
+C. Server Component không được dùng await
+D. notFound() hoạt động bằng cách ném lỗi đặc biệt nên bị catch nuốt, trang 404 không hiển thị
+ANSWER: D
+
+File error.tsx dùng để bắt lỗi của một route trong App Router có yêu cầu bắt buộc nào?
+A. Phải là Server Component async
+B. Phải là Client Component có 'use client', nhận props error và reset
+C. Phải đặt trong thư mục public/
+D. Phải export biến metadata
+ANSWER: B
+
+Trong Client Component gọi API bằng useEffect, biến cờ ignore được đặt true trong hàm cleanup nhằm mục đích gì?
+A. Bỏ qua cập nhật state khi kết quả trả về sau lúc component đã unmount
+B. Tăng tốc độ phản hồi của API
+C. Tự động retry khi API lỗi 500
+D. Bắt buộc request dùng phương thức POST
+ANSWER: A
+
+Vì sao nên gom các lời gọi API vào services/eventService.ts thay vì gọi axios trực tiếp trong từng component?
+A. Vì component React không được phép import axios
+B. Vì Axios chỉ chạy được trong thư mục services
+C. Vì tập trung URL, kiểu dữ liệu và xử lý lỗi một chỗ, dễ tái sử dụng và bảo trì
+D. Vì Next.js tự động cache mọi file trong thư mục services
+ANSWER: C
+
+Khi tích hợp POST /api/orders, giải pháp nào giúp tránh việc người dùng bấm Đặt vé nhiều lần tạo đơn trùng khi mạng chậm?
+A. Gọi API trong Server Component mỗi khi trang render
+B. Lưu đơn hàng vào localStorage trước khi gửi
+C. Bỏ qua lỗi và gọi lại API liên tục
+D. Bật trạng thái loading cho nút trong lúc chờ phản hồi để chặn thao tác bấm lặp
+ANSWER: D
+
+React Hook Form giúp giảm số lần re-render khi gõ phím nhờ cơ chế nào?
+A. Lưu mọi giá trị input trong Redux store
+B. Quản lý form theo kiểu Uncontrolled Component, giá trị nằm trong ref
+C. Gửi dữ liệu lên server sau mỗi ký tự
+D. Render form hoàn toàn trên server
+ANSWER: B
+
+Kiểu z.infer<typeof loginSchema> trong Zod dùng để làm gì?
+A. Chạy validation và trả về danh sách lỗi
+B. Chuyển schema thành JSON để gửi lên Backend
+C. Tự động sinh TypeScript type từ schema
+D. Tạo giá trị mặc định cho form
+ANSWER: C
+
+Thư viện và hàm nào kết nối Zod Schema với useForm của React Hook Form?
+A. Hàm zodResolver từ @hookform/resolvers/zod
+B. Hàm useZodForm từ zod/react
+C. Hàm connectZod từ react-hook-form/zod
+D. Hàm zodRules từ antd/form
+ANSWER: A
+
+Để lỗi "Mật khẩu nhập lại không khớp" hiển thị dưới ô confirmPassword, cần khai báo gì khi dùng .refine() trên object schema?
+A. mode: 'onBlur' trong useForm
+B. message bên trong z.string()
+C. Gọi .refine() hai lần liên tiếp
+D. path: ['confirmPassword'] trong tham số thứ hai
+ANSWER: D
+
+Trong createEventSchema, ràng buộc "Ngày kết thúc phải sau Ngày bắt đầu" nên viết bằng cách nào?
+A. Dùng .min() trên trường endDate
+B. Dùng .refine() trên cả object, so sánh endDate với startDate
+C. Dùng .email() trên trường startDate
+D. Kiểm tra bằng pseudo-class CSS :invalid
+ANSWER: B
+
+Tùy chọn mode nào của useForm kiểm tra lỗi ngay khi người dùng đang gõ?
+A. 'onSubmit'
+B. 'onBlur'
+C. 'onChange'
+D. 'onReset'
+ANSWER: C
+
+Vì sao cần dùng Controller khi kết hợp React Hook Form với Input, DatePicker, InputNumber của Ant Design?
+A. Vì đây là component có API value/onChange riêng, Controller nối chúng vào form state của RHF
+B. Vì Ant Design không hỗ trợ TypeScript
+C. Vì Controller tự động gọi API khi submit
+D. Vì Controller thay thế cho Zod Schema
+ANSWER: A
+
+Đoạn useState(JSON.parse(localStorage.getItem('wishlist') ?? '[]')) trong Client Component Next.js gây ra vấn đề gì?
+A. Không có vấn đề vì file đã có 'use client'
+B. localStorage bị xóa sau mỗi lần render
+C. Chỉ làm trang chậm hơn một chút
+D. Lỗi localStorage is not defined khi prerender trên server hoặc Hydration Mismatch
+ANSWER: D
+
+Trong hook useLocalStorage an toàn, vì sao cần cờ isHydrated trước khi ghi dữ liệu vào localStorage?
+A. Để tránh ghi đè giá trị mặc định lên dữ liệu thật trước khi kịp đọc từ storage
+B. Để localStorage lưu được nhiều hơn 5MB
+C. Để dữ liệu tự gửi kèm mọi request
+D. Để hook chạy được trong Server Component
+ANSWER: A
+
+Loại dữ liệu nào phù hợp nhất để lưu trong localStorage?
+A. Mật khẩu người dùng dạng văn bản thô
+B. Danh sách ID sự kiện yêu thích (Wishlist)
+C. Số thẻ ngân hàng của khách hàng
+D. Khóa bí mật API của server
+ANSWER: B
+
+Thả tim ở EventCard nhưng bộ đếm Wishlist trên Header không đổi vì mỗi component tự gọi useLocalStorage riêng. Giải pháp phù hợp là gì?
+A. Gọi window.location.reload() sau mỗi lần thả tim
+B. Chuyển Wishlist sang sessionStorage
+C. Nâng state lên một Context Provider dùng chung và đọc qua hook useWishlist()
+D. Lưu Wishlist trong biến toàn cục window.wishlist
+ANSWER: C
+
+Trong Next.js 15, cách đọc cookie accessToken trong Server Component nào là đúng?
+A. const token = localStorage.getItem('accessToken');
+B. const token = document.cookie;
+C. const token = cookies().accessToken; với cookies() đồng bộ
+D. const token = (await cookies()).get('accessToken')?.value;
+ANSWER: D
+
+Theo quy chuẩn Responsive của buổi PBL 1, ba kích thước màn hình bắt buộc kiểm tra là gì?
+A. 320px, 1024px, 1920px
+B. 375px, 768px, 1440px
+C. 360px, 800px, 1280px
+D. 414px, 992px, 1600px
+ANSWER: B
+
+Refactoring code được hiểu đúng nhất là gì?
+A. Viết lại toàn bộ dự án bằng framework mới
+B. Bổ sung tính năng mới cho giao diện hiện có
+C. Cải tổ cấu trúc code mà không thay đổi hành vi giao diện và logic
+D. Xóa các component ít dùng để giảm dung lượng repo
+ANSWER: C
+
+Dấu hiệu nào sau đây là Code Smell điển hình trong một component React?
+A. Component dài hơn 300 dòng và lặp lại nhiều khối JSX
+B. Component có Interface Props được đặt tên rõ ràng
+C. Component được đặt trong thư mục components/shared
+D. Component dùng Grid của Ant Design để chia cột
+ANSWER: A
+
+Mục tiêu định lượng của phần Vibe Code Refactoring & DRY Cleanup trong buổi PBL 1 là gì?
+A. Tăng số lượng component lên gấp đôi
+B. Đạt Lighthouse Performance 100 điểm
+C. Chuyển toàn bộ component sang Server Component
+D. Rút gọn hơn 20% số dòng code mà không đổi logic giao diện
+ANSWER: D
+
+Khi chưa biết chắc kiểu dữ liệu trả về từ JSON.parse, cách khai báo nào phù hợp với TypeScript strict mode?
+A. Khai báo kiểu any rồi dùng trực tiếp
+B. Ép kiểu bằng as never
+C. Khai báo kiểu unknown rồi thu hẹp kiểu bằng Array.isArray hoặc type guard
+D. Tắt strict trong tsconfig.json cho file đó
+ANSWER: C
+
+Trên Mobile 375px, thanh EventFilterBar nằm ngang bị tràn khung. Hướng xử lý được khuyến nghị trong bài là gì?
+A. Hiển thị nút "Bộ lọc" mở Drawer trên mobile, giữ Filter Bar ngang trên desktop
+B. Ẩn hoàn toàn bộ lọc trên mọi thiết bị di động
+C. Đặt width cố định 1440px cho thanh lọc
+D. Giảm font chữ của thanh lọc xuống 8px
+ANSWER: A
+
+Trong Grid của Ant Design, khai báo <Col xs={24} md={8}> cho kết quả hiển thị nào?
+A. Luôn chiếm 8/24 cột trên mọi màn hình
+B. Ẩn cột trên màn hình nhỏ
+C. Chiếm 24 cột trên desktop và 8 cột trên mobile
+D. Chiếm toàn bộ chiều ngang trên màn hình nhỏ, chiếm 1/3 từ mốc md trở lên
+ANSWER: D
+
+Console báo "React does not recognize the isHot prop on a DOM element". Cách sửa đúng là gì?
+A. Đổi tên prop thành IsHot viết hoa
+B. Destructure isHot ra khỏi props trước khi spread phần còn lại vào thẻ DOM
+C. Bọc component bằng React.memo
+D. Thêm suppressHydrationWarning vào thẻ span
+ANSWER: B
+
+Nguyên nhân nào sau đây thường gây lỗi "Hydration failed" trong Next.js?
+A. Đọc localStorage ngay trong thân hàm render của component
+B. Khai báo Interface cho Props
+C. Dùng SCSS Module cho component
+D. Dùng useCallback cho hàm xử lý sự kiện
+ANSWER: A
+
+Vì sao bài học khuyên ẩn/hiện Filter Bar theo thiết bị bằng CSS (.desktopOnly/.mobileOnly) thay vì kiểm tra window.innerWidth khi render?
+A. Vì CSS luôn chạy nhanh hơn JavaScript ở mọi trường hợp
+B. Vì Ant Design không hỗ trợ đọc kích thước màn hình
+C. Vì window.innerWidth chỉ có trên Safari
+D. Vì HTML server và client giống nhau, tránh lỗi hydration
+ANSWER: D
+
+Component cha truyền onBook={(id) => router.push(...)} viết trực tiếp trong JSX cho EventCard đã bọc React.memo. Điều gì xảy ra?
+A. EventCard không bao giờ render lại
+B. EventCard vẫn render lại mỗi lần cha render vì hàm mới tạo ra có tham chiếu khác
+C. Next.js báo lỗi build vì không được truyền hàm qua props
+D. router.push bị gọi ngay khi trang tải
+ANSWER: B
+
+Sau khi AI refactor xong một component, bước kiểm duyệt nào quan trọng nhất trước khi commit?
+A. Đếm số dòng AI giải thích trong câu trả lời
+B. Commit ngay vì AI đã kiểm tra type giúp
+C. So sánh giao diện trước/sau ở 375/768/1440px và chạy npx tsc --noEmit
+D. Xóa toàn bộ comment trong file
+ANSWER: C
+
+Trong Next.js 15, cách lấy id đúng bên trong generateMetadata({ params }) là gì?
+A. const id = params.id;
+B. const { id } = useParams();
+C. const { id } = await params;
+D. const id = router.query.id;
+ANSWER: C
+
+Khi đã kết nối GitHub Repository với Vercel, thao tác nào kích hoạt quy trình Build & Deploy Production tự động?
+A. git push lên branch main
+B. Mở dự án trong VS Code
+C. Chạy npm run dev trên máy cá nhân
+D. Tạo issue mới trên GitHub
+ANSWER: A
+
+Vercel quản lý Environment Variables theo những môi trường nào?
+A. Local, Staging, Release
+B. Test, Beta, Live
+C. Client, Server, Edge
+D. Development, Preview, Production
+ANSWER: D
+
+Nhóm đã sửa giá trị NEXT_PUBLIC_API_URL trên Vercel nhưng web Live vẫn gọi URL cũ. Nguyên nhân hợp lý nhất là gì?
+A. Vercel không hỗ trợ biến môi trường cho Next.js
+B. Biến NEXT_PUBLIC_ được gắn vào bundle lúc build nên cần Redeploy
+C. Biến môi trường chỉ có tác dụng với Pages Router
+D. Phải xóa repo và tạo project Vercel mới
+ANSWER: B
+
+Vì sao không nên đặt API Key bí mật vào biến có tiền tố NEXT_PUBLIC_?
+A. Vì giá trị biến được đưa vào JavaScript gửi xuống trình duyệt, ai cũng xem được
+B. Vì Next.js giới hạn độ dài biến công khai
+C. Vì biến công khai chỉ đọc được ở Server Component
+D. Vì Vercel tự động xóa các biến công khai sau 24 giờ
+ANSWER: A
+
+Trong object metadata của Root Layout, khai báo title: { default: 'Smart Event Hub', template: '%s | Smart Event Hub' } có tác dụng gì?
+A. Bắt buộc mọi trang dùng chung một tiêu đề cố định
+B. Ẩn tiêu đề trang khỏi công cụ tìm kiếm
+C. Trang con khai báo title 'Đặt vé' sẽ hiển thị "Đặt vé | Smart Event Hub"
+D. Tạo tự động file sitemap.xml
+ANSWER: C
+
+Thuộc tính metadataBase trong Metadata API dùng để làm gì?
+A. Khai báo địa chỉ API Backend
+B. Chuyển các URL ảnh tương đối như /og-default.png thành URL tuyệt đối khi chia sẻ
+C. Thiết lập ngôn ngữ mặc định cho trang
+D. Bật chế độ lazy load cho toàn bộ ảnh
+ANSWER: B
+
+Trong generateMetadata của /events/[id], API trả về không tìm thấy sự kiện. Cách xử lý được khuyến nghị là gì?
+A. Ném lỗi để dừng toàn bộ quá trình build
+B. Trả về metadata rỗng {} và để trang trắng
+C. Chuyển hướng người dùng sang trang chủ bằng window.location
+D. Trả về fallback metadata, còn component trang gọi notFound() để hiện 404
+ANSWER: D
+
+Vì sao dùng Image của next/image giúp cải thiện điểm Lighthouse Performance?
+A. Tự resize theo thiết bị, lazy load, chuyển WebP/AVIF và giữ chỗ chống Layout Shift
+B. Chuyển ảnh thành chuỗi Base64 nhúng vào HTML
+C. Tải toàn bộ ảnh ngay khi mở trang để tránh chờ đợi
+D. Tự động tắt ảnh trên thiết bị di động
+ANSWER: A
+
+Ảnh banner lấy từ domain backend báo lỗi khi dùng next/image. Cần cấu hình gì trong next.config.ts?
+A. Đổi đuôi file ảnh sang .svg
+B. Thêm thuộc tính unoptimized cho mọi ảnh trong dự án
+C. Chuyển ảnh về thẻ img thô
+D. Khai báo domain đó trong images.remotePatterns
+ANSWER: D
+
+Component SeatPicker rất nặng và chỉ cần khi người dùng chọn ghế. Giải pháp tối ưu được giới thiệu trong bài là gì?
+A. Import SeatPicker trực tiếp trong Root Layout
+B. Đặt SeatPicker trong thẻ iframe
+C. Lazy load bằng next/dynamic kèm Skeleton trong một Client Component
+D. Chuyển SeatPicker thành file CSS
+ANSWER: C
+
+Build trên máy Windows chạy tốt nhưng Vercel báo "Module not found: Can't resolve './eventCard'" trong khi file thật tên EventCard.tsx. Nguyên nhân là gì?
+A. Vercel không hỗ trợ file .tsx
+B. Môi trường build Linux của Vercel phân biệt chữ hoa/thường trong đường dẫn import
+C. Thiếu biến môi trường NEXT_PUBLIC_API_URL
+D. Lighthouse chặn file có tên viết hoa
+ANSWER: B
+
+Buổi Hackathon & Final Showcase chiếm bao nhiêu phần trăm tổng điểm học phần?
+A. 30%
+B. 50%
+C. 40%
+D. 20%
+ANSWER: C
+
+Phần Khai mạc & Triển lãm Live Products kéo dài bao lâu và các nhóm làm gì?
+A. 30 phút, mở link Vercel Live để GV và các nhóm khác trải nghiệm chéo (Cross-Testing)
+B. 60 phút, nộp báo cáo giấy cho GV
+C. 15 phút, bốc thăm thứ tự thuyết trình
+D. 35 phút, GV công bố điểm và trao giải
+ANSWER: A
+
+Trong phần Thuyết trình Hackathon Showcase, mỗi nhóm được phân bổ thời gian như thế nào?
+A. 10 phút thuyết trình và 5 phút phản biện
+B. 5 phút thuyết trình và 8 phút phản biện
+C. 15 phút thuyết trình, không có phản biện
+D. 8 phút thuyết trình kèm demo Live và 5 phút Q&A phản biện
+ANSWER: D
+
+Công thức tính điểm cuối kỳ cá nhân của học phần là gì?
+A. Điểm Nhóm × 0.5 + Điểm Phản biện Cá nhân × 0.5
+B. Điểm Nhóm × 0.7 + Điểm Phản biện Cá nhân × 0.3
+C. Điểm Nhóm × 0.3 + Điểm Phản biện Cá nhân × 0.7
+D. Chỉ tính Điểm Nhóm
+ANSWER: B
+
+Nhóm đạt 8.0 điểm đồ án, sinh viên Bình đạt 5.0 điểm phản biện cá nhân. Điểm cuối kỳ của Bình là bao nhiêu?
+A. 6.5
+B. 7.1
+C. 8.0
+D. 6.8
+ANSWER: B
+
+Trong rubric 6 tiêu chí, hai tiêu chí nào có trọng số cao nhất (20%)?
+A. Wireframe Design và Báo cáo Văn bản
+B. Deploy/SEO/Lighthouse và Thuyết trình
+C. Xây dựng Giao diện & Vibe Coding và Xử lý Logic, TypeScript & REST API
+D. Báo cáo & Git Commit và Thuyết trình & Phản biện
+ANSWER: C
+
+Điểm Phản biện Cá nhân (30%) được đánh giá dựa trên những yếu tố nào?
+A. Git Commit Log cá nhân và phần trả lời phản biện về code mình đảm nhiệm
+B. Số lượng slide và hiệu ứng trình chiếu
+C. Điểm trung bình các bài quiz trên LMS
+D. Số lượt trải nghiệm sản phẩm ở phần triển lãm
+ANSWER: A
+
+Sản phẩm đạt Lighthouse Performance 78 điểm, Deploy Vercel ổn định nhưng mới cấu hình SEO Metadata tĩnh. Tiêu chí "CI/CD Deployment, SEO & Lighthouse" thuộc mức nào?
+A. Xuất sắc
+B. Trung bình
+C. Yếu
+D. Khá
+ANSWER: D
+
+Để đạt mức Xuất sắc ở tiêu chí "Mô hình hóa UI & Wireframe Design", sản phẩm web cần đáp ứng điều gì?
+A. Có bản vẽ tay sơ sài cho 3 màn hình
+B. Có Wireframe Figma đủ 5 màn hình và sản phẩm thật khớp trên 90% thiết kế
+C. Không cần Wireframe nếu giao diện đẹp
+D. Có Wireframe 5 màn hình, sản phẩm tái hiện 50% bản vẽ
+ANSWER: B
+
+Git log cho thấy gần như toàn bộ commit đến từ 1–2 thành viên. Theo rubric, tiêu chí "Báo cáo & Git Commit" có nguy cơ rơi vào mức nào?
+A. Xuất sắc
+B. Khá
+C. Trung bình
+D. Không ảnh hưởng đến điểm
+ANSWER: C
+
+Nhóm có giao diện hỗ trợ Dark/Light Mode và Micro-interactions vượt yêu cầu cơ bản có thể nhận điểm thưởng thuộc hạng mục nào?
+A. Ultra Performance
+B. Vibe Coding Master
+C. Git Excellence
+D. UI Innovation
+ANSWER: D
+
+Khi dùng AI để chuẩn bị phản biện cá nhân, cách làm nào phù hợp với nguyên tắc Vibe Coding của học phần?
+A. Yêu cầu AI đặt câu hỏi phản biện về code của mình, còn câu trả lời tự xây dựng và kiểm chứng
+B. Học thuộc câu trả lời AI viết sẵn cho từng đoạn code
+C. Nhờ AI viết lại toàn bộ code ngay trước buổi Showcase
+D. Không cần chuẩn bị vì GV chỉ hỏi về phần của nhóm trưởng
+ANSWER: A

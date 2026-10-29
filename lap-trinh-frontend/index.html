@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Dùng dấu gạch không ngắt (U+2011) trong "Front‑End": portal cắt tiêu đề tại ký tự "-" -->
+  <title>Lập Trình Front‑End | Khoa CNTT - Đại học Lạc Hồng</title>
+  <meta name="description" content="Học phần Lập trình Front-End (Next.js, TypeScript & Vibe Coding) - Đại học Lạc Hồng. 60 tiết theo mô hình lớp học đảo ngược, 70% thực hành, xây dựng dự án Smart Event Hub từ Wireframe đến Deploy Vercel với Ant Design, REST API và AI.">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6.4.0 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            asu: { maroon: '#8C1D40', gold: '#FFC627', dark: '#5C142B', light: '#FAEDF0' },
+            lhu: { blue: '#013D88', sky: '#007BFF', dark: '#01295C', light: '#EEF5FC' },
+            fe: { indigo: '#6366F1', dark: '#312E81', light: '#EEF2FF' }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .gradient-hero { background: linear-gradient(135deg, #01295C 0%, #013D88 45%, #312E81 100%); }
+    .code-window { background: #0d1117; }
+    details > summary { list-style: none; }
+    details > summary::-webkit-details-marker { display: none; }
+    details[open] .faq-icon { transform: rotate(45deg); }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-asu-gold selection:text-slate-900">
+
+  <!-- TOP BAR -->
+  <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+      <div class="flex items-center gap-2">
+        <span class="text-asu-gold font-semibold"><i class="fa-solid fa-certificate mr-1"></i> CHUẨN KIỂM ĐỊNH ABET (USA)</span>
+        <span class="text-slate-600 hidden sm:inline">•</span>
+        <span class="hidden sm:inline">Khoa Công nghệ Thông tin - Trường Đại học Lạc Hồng</span>
+      </div>
+      <div class="flex items-center gap-4 font-mono">
+        <span>Thời lượng: <strong class="text-white">60 tiết (12 buổi)</strong></span>
+        <span>LT/TH: <strong class="text-asu-gold">30% / 70%</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur shadow-sm border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2.5 text-slate-800">
+        <img src="LHU_ASU_VI_Small_Ngang.png" alt="Logo LHU" class="h-8 w-auto">
+        <div class="border-l border-slate-300 pl-2.5">
+          <div class="text-[11px] font-bold text-slate-500 uppercase">Khoa CNTT - LHU</div>
+          <div class="text-xs font-extrabold text-lhu-blue">LẬP TRÌNH FRONT-END</div>
+        </div>
+      </a>
+      <nav class="hidden lg:flex items-center gap-6 text-sm font-semibold text-slate-600">
+        <a href="#phuong-phap" class="hover:text-lhu-blue">Phương pháp</a>
+        <a href="#chuan-dau-ra" class="hover:text-lhu-blue">Chuẩn đầu ra</a>
+        <a href="#lo-trinh" class="hover:text-lhu-blue">Lộ trình 12 buổi</a>
+        <a href="#du-an" class="hover:text-lhu-blue">Dự án</a>
+        <a href="#danh-gia" class="hover:text-lhu-blue">Đánh giá</a>
+        <a href="#hoc-lieu" class="hover:text-lhu-blue">Học liệu</a>
+        <a href="#faq" class="hover:text-lhu-blue">FAQ</a>
+      </nav>
+      <div class="flex items-center gap-2 text-xs">
+        <a href="../index.html" class="hidden sm:flex px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl items-center gap-1.5">
+          <i class="fa-solid fa-layer-group"></i><span>Cổng học phần</span>
+        </a>
+        <a href="https://learn.lhu.edu.vn" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-lhu-blue hover:bg-lhu-dark text-white font-bold rounded-xl shadow flex items-center gap-1.5">
+          <i class="fa-solid fa-graduation-cap text-asu-gold"></i><span>Vào lớp LMS</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="gradient-hero text-white relative overflow-hidden py-16 sm:py-24">
+    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs font-semibold text-asu-gold">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            <span>LỚP HỌC ĐẢO NGƯỢC • VIBE CODING • PROJECT-BASED</span>
+          </div>
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black leading-tight tracking-tight">
+            Lập trình Front-End
+            <span class="block text-transparent bg-clip-text bg-gradient-to-r from-asu-gold via-yellow-200 to-white text-2xl sm:text-3xl lg:text-4xl mt-2">Next.js, TypeScript &amp; Vibe Coding</span>
+          </h1>
+          <p class="text-base sm:text-lg text-slate-200 leading-relaxed max-w-2xl">
+            Mười hai buổi, một sản phẩm thật. Các bạn sẽ đi từ bản vẽ Wireframe tới một web app chạy trên Vercel: dựng giao diện bằng SCSS và Ant Design, viết logic với React Hooks, nối REST API, rồi tối ưu SEO và Lighthouse. AI là trợ lý viết code, còn việc đọc, hiểu và sửa code là của chính các bạn.
+          </p>
+
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-2">
+            <div class="p-3.5 rounded-xl bg-white/10 border border-white/10">
+              <div class="text-2xl font-black text-asu-gold font-mono">60</div>
+              <div class="text-xs text-slate-300 font-medium">Tiết (12 buổi × 5 tiết)</div>
+            </div>
+            <div class="p-3.5 rounded-xl bg-white/10 border border-white/10">
+              <div class="text-2xl font-black text-asu-gold font-mono">70%</div>
+              <div class="text-xs text-slate-300 font-medium">Thực hành &amp; đánh giá</div>
+            </div>
+            <div class="p-3.5 rounded-xl bg-white/10 border border-white/10">
+              <div class="text-2xl font-black text-asu-gold font-mono">1</div>
+              <div class="text-xs text-slate-300 font-medium">Dự án xuyên suốt</div>
+            </div>
+            <div class="p-3.5 rounded-xl bg-white/10 border border-white/10">
+              <div class="text-2xl font-black text-asu-gold font-mono">LIVE</div>
+              <div class="text-xs text-slate-300 font-medium">Deploy lên Vercel</div>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-4 pt-4">
+            <a href="#lo-trinh" class="px-6 py-3.5 bg-asu-gold text-slate-900 font-extrabold rounded-xl shadow-lg hover:bg-yellow-400 transition-all flex items-center gap-2">
+              <i class="fa-solid fa-list-check"></i><span>Lộ trình 12 buổi</span>
+            </a>
+            <a href="thong-tin-hoc-phan.html" class="px-6 py-3.5 bg-white/15 hover:bg-white/25 text-white font-bold rounded-xl border border-white/30 transition-all flex items-center gap-2">
+              <i class="fa-solid fa-file-lines"></i><span>Đề cương chi tiết</span>
+            </a>
+            <a href="danh-gia-hoc-phan.html" class="px-6 py-3.5 bg-white/15 hover:bg-white/25 text-white font-bold rounded-xl border border-white/30 transition-all flex items-center gap-2">
+              <i class="fa-solid fa-clipboard-check text-emerald-400"></i><span>Đánh giá học phần</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick course card -->
+        <div class="lg:col-span-5">
+          <div class="bg-white text-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl border border-slate-100 relative">
+            <div class="absolute -top-3.5 right-6 px-3.5 py-1 bg-fe-indigo text-white text-xs font-black tracking-wider uppercase rounded-full shadow-md">
+              Chuyên ngành
+            </div>
+            <div class="flex items-center gap-4 border-b border-slate-100 pb-5">
+              <div class="w-14 h-14 rounded-2xl bg-fe-light text-fe-indigo flex items-center justify-center text-2xl shadow-inner">
+                <i class="fa-solid fa-code"></i>
+              </div>
+              <div>
+                <h3 class="text-lg font-black text-slate-900 leading-snug">Lập trình Front-End</h3>
+                <p class="text-xs text-slate-500 font-mono">Mã HP: đang cập nhật</p>
+              </div>
+            </div>
+            <div class="py-5 space-y-3.5 text-sm">
+              <div class="flex items-center justify-between gap-3 text-slate-600">
+                <span class="flex items-center gap-2.5"><i class="fa-solid fa-calendar-check text-lhu-sky w-4"></i>Thời lượng:</span>
+                <strong class="text-slate-900 text-right">60 tiết (12 buổi × 225 phút)</strong>
+              </div>
+              <div class="flex items-center justify-between gap-3 text-slate-600">
+                <span class="flex items-center gap-2.5"><i class="fa-solid fa-people-group text-asu-maroon w-4"></i>Hình thức:</span>
+                <strong class="text-slate-900 text-right">Lớp học đảo ngược + PBL</strong>
+              </div>
+              <div class="flex items-center justify-between gap-3 text-slate-600">
+                <span class="flex items-center gap-2.5"><i class="fa-solid fa-layer-group text-emerald-600 w-4"></i>Công nghệ:</span>
+                <strong class="text-slate-900 text-right">Next.js, TS, SCSS, AntD</strong>
+              </div>
+              <div class="flex items-center justify-between gap-3 text-slate-600">
+                <span class="flex items-center gap-2.5"><i class="fa-solid fa-robot text-purple-600 w-4"></i>Trợ lý AI:</span>
+                <strong class="text-slate-900 text-right">Cursor, Copilot, v0.dev</strong>
+              </div>
+              <div class="flex items-center justify-between gap-3 text-slate-600">
+                <span class="flex items-center gap-2.5"><i class="fa-solid fa-award text-amber-500 w-4"></i>Đánh giá:</span>
+                <strong class="text-slate-900 text-right">30% QT - 30% GK - 40% CK</strong>
+              </div>
+            </div>
+            <div class="border-t border-slate-100 pt-5">
+              <a href="https://learn.lhu.edu.vn" target="_blank" rel="noopener noreferrer" class="w-full py-3.5 bg-lhu-blue hover:bg-lhu-dark text-white font-extrabold rounded-xl text-center block shadow-md transition-all">
+                Truy cập khóa học trên LMS LHU &rarr;
+              </a>
+              <p class="text-center text-[11px] text-slate-400 mt-2">Đăng nhập bằng email sinh viên <code>@lhu.edu.vn</code></p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: PHƯƠNG PHÁP LỚP HỌC ĐẢO NGƯỢC -->
+  <section id="phuong-phap" class="py-16 sm:py-20 bg-white border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mb-10">
+        <span class="text-xs font-bold uppercase tracking-wider text-fe-indigo">Flipped Classroom</span>
+        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-1">Một buổi học 225 phút diễn ra thế nào?</h2>
+        <p class="text-slate-600 mt-3">Lý thuyết nền các bạn tự đọc ở nhà. Thời gian trên lớp dành cho việc viết code, hỏi giảng viên và làm việc nhóm.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="rounded-2xl border border-slate-200 p-6 bg-slate-50">
+          <div class="w-10 h-10 rounded-xl bg-lhu-light text-lhu-blue flex items-center justify-center mb-4"><i class="fa-solid fa-book-open-reader"></i></div>
+          <h3 class="font-extrabold text-slate-900">1. Trước giờ học</h3>
+          <ul class="mt-3 text-sm text-slate-600 space-y-2">
+            <li><i class="fa-solid fa-check text-emerald-500 mr-1.5"></i>Xem video, đọc slide và tài liệu lý thuyết</li>
+            <li><i class="fa-solid fa-check text-emerald-500 mr-1.5"></i>Làm quiz nhanh 5–10 câu trên LMS</li>
+            <li><i class="fa-solid fa-check text-emerald-500 mr-1.5"></i>Cài đặt công cụ theo hướng dẫn</li>
+          </ul>
+        </div>
+        <div class="rounded-2xl border-2 border-fe-indigo p-6 bg-fe-light/40">
+          <div class="w-10 h-10 rounded-xl bg-fe-indigo text-white flex items-center justify-center mb-4"><i class="fa-solid fa-laptop-code"></i></div>
+          <h3 class="font-extrabold text-slate-900">2. Trên lớp (225 phút)</h3>
+          <div class="mt-4 space-y-2.5 text-sm">
+            <div>
+              <div class="flex justify-between text-slate-700"><span>Lý thuyết &amp; Vibe Coding demo</span><strong class="font-mono">60'</strong></div>
+              <div class="h-2 rounded-full bg-slate-200 mt-1"><div class="h-2 rounded-full bg-lhu-blue" style="width:27%"></div></div>
+            </div>
+            <div>
+              <div class="flex justify-between text-slate-700"><span>Thực hành có hướng dẫn</span><strong class="font-mono">45'</strong></div>
+              <div class="h-2 rounded-full bg-slate-200 mt-1"><div class="h-2 rounded-full bg-lhu-sky" style="width:20%"></div></div>
+            </div>
+            <div>
+              <div class="flex justify-between text-slate-700"><span>Thực hành không hướng dẫn</span><strong class="font-mono">45'</strong></div>
+              <div class="h-2 rounded-full bg-slate-200 mt-1"><div class="h-2 rounded-full bg-fe-indigo" style="width:20%"></div></div>
+            </div>
+            <div>
+              <div class="flex justify-between text-slate-700"><span>Thách thức nhóm</span><strong class="font-mono">60'</strong></div>
+              <div class="h-2 rounded-full bg-slate-200 mt-1"><div class="h-2 rounded-full bg-asu-maroon" style="width:27%"></div></div>
+            </div>
+            <div>
+              <div class="flex justify-between text-slate-700"><span>Tổng kết &amp; giao BTVN</span><strong class="font-mono">15'</strong></div>
+              <div class="h-2 rounded-full bg-slate-200 mt-1"><div class="h-2 rounded-full bg-amber-500" style="width:7%"></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="rounded-2xl border border-slate-200 p-6 bg-slate-50">
+          <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-4"><i class="fa-brands fa-git-alt"></i></div>
+          <h3 class="font-extrabold text-slate-900">3. Sau giờ học</h3>
+          <ul class="mt-3 text-sm text-slate-600 space-y-2">
+            <li><i class="fa-solid fa-check text-emerald-500 mr-1.5"></i>Làm bài tập về nhà cá nhân</li>
+            <li><i class="fa-solid fa-check text-emerald-500 mr-1.5"></i>Commit, tạo Pull Request vào nhánh <code class="text-xs bg-slate-200 px-1 rounded">dev</code></li>
+            <li><i class="fa-solid fa-check text-emerald-500 mr-1.5"></i>Chuẩn bị nội dung buổi tiếp theo</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: CHUẨN ĐẦU RA (CLO) -->
+  <section id="chuan-dau-ra" class="py-16 sm:py-20 bg-slate-900 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mb-10">
+        <span class="text-xs font-bold uppercase tracking-wider text-asu-gold">Course Learning Outcomes</span>
+        <h2 class="text-2xl sm:text-3xl font-black mt-1">Chuẩn đầu ra học phần</h2>
+        <p class="text-slate-400 mt-3">Mỗi chuẩn đầu ra gắn với một chỉ số đo lường (PI) theo khung ABET và được kiểm tra qua sản phẩm cụ thể.</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div class="rounded-2xl bg-white/5 border border-white/10 p-6">
+          <div class="flex items-center justify-between"><span class="text-asu-gold font-black text-lg">CLO1</span><span class="text-[11px] font-mono px-2 py-0.5 rounded bg-white/10">PI 1.4</span></div>
+          <p class="text-sm text-slate-300 mt-3">Phân tích yêu cầu, mô hình hóa UI/Wireframe và tổ chức kiến trúc component cho ứng dụng web.</p>
+        </div>
+        <div class="rounded-2xl bg-white/5 border border-white/10 p-6">
+          <div class="flex items-center justify-between"><span class="text-asu-gold font-black text-lg">CLO2</span><span class="text-[11px] font-mono px-2 py-0.5 rounded bg-white/10">PI 2.3</span></div>
+          <p class="text-sm text-slate-300 mt-3">Xây dựng ứng dụng Front-End với Next.js, TypeScript, SCSS/Ant Design, quản lý state, kết nối REST API, dùng AI có kiểm soát.</p>
+        </div>
+        <div class="rounded-2xl bg-white/5 border border-white/10 p-6">
+          <div class="flex items-center justify-between"><span class="text-asu-gold font-black text-lg">CLO3</span><span class="text-[11px] font-mono px-2 py-0.5 rounded bg-white/10">PI 3.1</span></div>
+          <p class="text-sm text-slate-300 mt-3">Viết báo cáo kỹ thuật, thuyết trình và demo sản phẩm rõ ràng, chuyên nghiệp.</p>
+        </div>
+        <div class="rounded-2xl bg-white/5 border border-white/10 p-6">
+          <div class="flex items-center justify-between"><span class="text-asu-gold font-black text-lg">CLO4</span><span class="text-[11px] font-mono px-2 py-0.5 rounded bg-white/10">PI 5.1</span></div>
+          <p class="text-sm text-slate-300 mt-3">Làm việc nhóm với Git (branch, PR, review), triển khai CI/CD lên Vercel, tối ưu SEO và hiệu năng.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: LỘ TRÌNH 12 BUỔI -->
+  <section id="lo-trinh" class="py-16 sm:py-24 bg-slate-50 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+        <div class="max-w-3xl">
+          <span class="text-xs font-bold uppercase tracking-wider text-fe-indigo">Lộ trình học tập</span>
+          <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-1">12 buổi – 7 chương – 1 sản phẩm</h2>
+          <p class="text-slate-600 mt-3">Bấm vào từng bài để mở bài giảng. Mỗi bài có mục tiêu, nội dung cốt lõi, code mẫu, prompt Vibe Coding, quiz tự kiểm tra và nhiệm vụ thảo luận.</p>
+        </div>
+        <div class="flex flex-wrap gap-2 text-[11px] font-bold">
+          <span class="px-2.5 py-1 rounded-full bg-lhu-light text-lhu-blue">Lớp học đảo ngược</span>
+          <span class="px-2.5 py-1 rounded-full bg-amber-50 text-amber-700">PBL</span>
+          <span class="px-2.5 py-1 rounded-full bg-rose-50 text-rose-700">Đánh giá</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+        <!-- BUỔI 01 -->
+        <a href="bai-01.html" class="group bg-white rounded-2xl border border-slate-200 p-5 hover:border-fe-indigo hover:shadow-lg transition-all flex flex-col">
+          <div class="flex items-center justify-between text-xs">
+            <span class="font-mono font-black text-fe-indigo">BUỔI 01</span>
+            <span class="px-2 py-0.5 rounded-full bg-lhu-light text-lhu-blue font-bold">Đảo ngược</span>
+          </div>
+          <h3 class="font-extrabold text-slate-900 mt-2 group-hover:text-lhu-blue">SCSS nâng cao, TypeScript căn bản &amp; thiết lập Vibe Coding</h3>
+          <p class="text-sm text-slate-500 mt-2 flex-grow">Mixin responsive, CSS Modules + BEM, Interface vs Type, prompt 3 thành phần. Dựng EventCard và Header.</p>
+          <div class="text-[11px] text-slate-400 mt-3 font-mono">Chương 1 • PI 1.4, PI 2.3</div>
+        </a>
+
+        <!-- BUỔI 02 -->
+        <a href="bai-02.html" class="group bg-white rounded-2xl border border-slate-200 p-5 hover:border-fe-indigo hover:shadow-lg transition-all flex flex-col">
+          <div class="flex items-center justify-between text-xs">
+            <span class="font-mono font-black text-fe-indigo">BUỔI 02</span>
+            <span class="px-2 py-0.5 rounded-full bg-lhu-light text-lhu-blue font-bold">Đảo ngược</span>
+          </div>
+          <h3 class="font-extrabold text-slate-900 mt-2 group-hover:text-lhu-blue">Wireframe/Modeling UI &amp; Figma sang Next.js Component</h3>
+          <p class="text-sm text-slate-500 mt-2 flex-grow">Atomic Design, phân tích Wireframe thành cây DOM semantic, dùng AI đa phương thức (v0.dev, Claude) sinh TSX.</p>
+          <div class="text-[11px] text-slate-400 mt-3 font-mono">Chương 1 • PI 1.4, PI 2.3</div>
+        </a>
+
+        <!-- BUỔI 03 -->
+        <a href="bai-03.html" class="group bg-white rounded-2xl border border-slate-200 p-5 hover:border-fe-indigo hover:shadow-lg transition-all flex flex-col">
+          <div class="flex items-center justify-between text-xs">
+            <span class="font-mono font-black text-fe-indigo">BUỔI 03</span>
+            <span class="px-2 py-0.5 rounded-full bg-lhu-light text-lhu-blue font-bold">Đảo ngược</span>
+          </div>
+          <h3 class="font-extrabold text-slate-900 mt-2 group-hover:text-lhu-blue">Next.js App Router: Index &amp; Nested Routing</h3>
+          <p class="text-sm text-slate-500 mt-2 flex-grow">Server vs Client Components, page/layout/loading/error, Route Groups. Dựng hệ thống điều hướng Smart Event Hub.</p>
+          <div class="text-[11px] text-slate-400 mt-3 font-mono">Chương 2 • PI 2.3</div>
+        </a>
+
+        <!-- BUỔI 04 -->
+        <a href="bai-04.html" class="group bg-white rounded-2xl border border-slate-200 p-5 hover:border-fe-indigo hover:shadow-lg transition-all flex flex-col">
+          <div class="flex items-center justify-between text-xs">
+            <span class="font-mono font-black text-fe-indigo">BUỔI 04</span>
+            <span class="px-2 py-0.5 rounded-full bg-lhu-light text-lhu-blue font-bold">Đảo ngược</span>
+          </div>
+          <h3 class="font-extrabold text-slate-900 mt-2 group-hover:text-lhu-blue">Dynamic Routing &amp; Reusable Components</h3>
+          <p class="text-sm text-slate-500 mt-2 flex-grow">Route động <code>/events/[id]</code>, <code>/category/[slug]</code>, params &amp; searchParams, thiết kế props theo nguyên tắc DRY.</p>
+          <div class="text-[11px] text-slate-400 mt-3 font-mono">Chương 2 • PI 2.3</div>
+        </a>
+
+        <!-- BUỔI 05 -->
+        <a href="bai-05.html" class="group bg-white rounded-2xl border border-slate-200 p-5 hover:border-fe-indigo hover:shadow-lg transition-all flex flex-col">
+          <div class="flex items-center justify-between text-xs">
+            <span class="font-mono font-black text-fe-indigo">BUỔI 05</span>
+            <span class="px-2 py-0.5 rounded-full bg-lhu-light text-lhu-blue font-bold">Đảo ngược</span>
+          </div>
+          <h3 class="font-extrabold text-slate-900 mt-2 group-hover:text-lhu-blue">Giao diện chuyên nghiệp với Ant Design &amp; tùy biến Theme</h3>
+          <p class="text-sm text-slate-500 mt-2 flex-grow">AntdRegistry, ConfigProvider, Grid 24 cột, Table/Modal/Form. So sánh nhanh với Bootstrap và Tailwind CSS.</p>
+          <div class="text-[11px] text-slate-400 mt-3 font-mono">Chương 3 • PI 2.3</div>
+        </a>
+
+        <!-- BUỔI 06 -->
+        <a href="bai-06.html" class="group bg-white rounded-2xl border border-slate-200 p-5 hover:border-fe-indigo hover:shadow-lg transition-all flex flex-col">
+          <div class="flex items-center justify-between text-xs">
+            <span class="font-mono font-black text-fe-indigo">BUỔI 06</span>
+            <span class="px-2 py-0.5 rounded-full bg-lhu-light text-lhu-blue font-bold">Đảo ngược</span>
+          </div>
+          <h3 class="font-extrabold text-slate-900 mt-2 group-hover:text-lhu-blue">Logic &amp; State Management với React Hooks</h3>
+          <p class="text-sm text-slate-500 mt-2 flex-grow">useState, useReducer, useEffect, useMemo/useCallback, nâng state, debounce. Chọn hạng vé và sơ đồ ghế.</p>
+          <div class="text-[11px] text-slate-400 mt-3 font-mono">Chương 3 • PI 2.3</div>
+        </a>
+
+        <!-- BUỔI 07 -->
+        <a href="bai-07.html" class="group bg-white rounded-2xl border border-rose-200 p-5 hover:border-rose-500 hover:shadow-lg transition-all flex flex-col">
+          <div class="flex items-center justify-between text-xs">
+            <span class="font-mono font-black text-rose-600">BUỔI 07</span>
+            <span class="px-2 py-0.5 rounded-full bg-rose-50 text-rose-700 font-bold">Giữa kỳ 30%</span>
+          </div>
+          <h3 class="font-extrabold text-slate-900 mt-2 group-hover:text-rose-700">Kiểm tra giữa kỳ – Báo cáo tiến độ 50% dự án</h3>
+          <p class="text-sm text-slate-500 mt-2 flex-grow">Kiểm tra production build, README chuẩn, Conventional Commits. Báo cáo 10 phút + 5 phút phản biện cá nhân.</p>
+          <div class="text-[11px] text-slate-400 mt-3 font-mono">Chương 4 • PI 1.4, PI 2.3, PI 5.1</div>
+        </a>
+
+        <!-- BUỔI 08 -->
+        <a href="bai-08.html" class="group bg-white rounded-2xl border border-slate-200 p-5 hover:border-fe-indigo hover:shadow-lg transition-all flex flex-col">
+          <div class="flex items-center justify-between text-xs">
+            <span class="font-mono font-black text-fe-indigo">BUỔI 08</span>
+            <span class="px-2 py-0.5 rounded-full bg-lhu-light text-lhu-blue font-bold">Đảo ngược</span>
+          </div>
+          <h3 class="font-extrabold text-slate-900 mt-2 group-hover:text-lhu-blue">Data Fetching &amp; tích hợp RESTful API</h3>
+          <p class="text-sm text-slate-500 mt-2 flex-grow">Fetch trên Server/Client Component, cache &amp; revalidate, ApiResponse&lt;T&gt;, sinh type từ Swagger bằng AI.</p>
+          <div class="text-[11px] text-slate-400 mt-3 font-mono">Chương 5 • PI 2.3</div>
+        </a>
+
+        <!-- BUỔI 09 -->
+        <a href="bai-09.html" class="group bg-white rounded-2xl border border-slate-200 p-5 hover:border-fe-indigo hover:shadow-lg transition-all flex flex-col">
+          <div class="flex items-center justify-between text-xs">
+            <span class="font-mono font-black text-fe-indigo">BUỔI 09</span>
+            <span class="px-2 py-0.5 rounded-full bg-lhu-light text-lhu-blue font-bold">Đảo ngược</span>
+          </div>
+          <h3 class="font-extrabold text-slate-900 mt-2 group-hover:text-lhu-blue">Form Validation, Local Storage &amp; Complex UI State</h3>
+          <p class="text-sm text-slate-500 mt-2 flex-grow">React Hook Form + Zod, LocalStorage vs Cookies, tránh lỗi hydration. Đăng nhập, tạo sự kiện, Wishlist.</p>
+          <div class="text-[11px] text-slate-400 mt-3 font-mono">Chương 5 • PI 2.3</div>
+        </a>
+
+        <!-- BUỔI 10 -->
+        <a href="bai-10.html" class="group bg-white rounded-2xl border border-amber-200 p-5 hover:border-amber-500 hover:shadow-lg transition-all flex flex-col">
+          <div class="flex items-center justify-between text-xs">
+            <span class="font-mono font-black text-amber-600">BUỔI 10</span>
+            <span class="px-2 py-0.5 rounded-full bg-amber-50 text-amber-700 font-bold">PBL 1</span>
+          </div>
+          <h3 class="font-extrabold text-slate-900 mt-2 group-hover:text-amber-700">Refactoring, Optimization &amp; Responsive Polish</h3>
+          <p class="text-sm text-slate-500 mt-2 flex-grow">Nhận diện code smell, refactor với AI, kiểm thử 3 kích thước 375/768/1440px, dọn lỗi console và TypeScript.</p>
+          <div class="text-[11px] text-slate-400 mt-3 font-mono">Chương 6 • PI 2.3, PI 5.1</div>
+        </a>
+
+        <!-- BUỔI 11 -->
+        <a href="bai-11.html" class="group bg-white rounded-2xl border border-amber-200 p-5 hover:border-amber-500 hover:shadow-lg transition-all flex flex-col">
+          <div class="flex items-center justify-between text-xs">
+            <span class="font-mono font-black text-amber-600">BUỔI 11</span>
+            <span class="px-2 py-0.5 rounded-full bg-amber-50 text-amber-700 font-bold">PBL 2</span>
+          </div>
+          <h3 class="font-extrabold text-slate-900 mt-2 group-hover:text-amber-700">CI/CD, Deploy Vercel, SEO &amp; Performance</h3>
+          <p class="text-sm text-slate-500 mt-2 flex-grow">Biến môi trường, Metadata API &amp; OpenGraph, next/image, next/font, Lighthouse Performance trên 85.</p>
+          <div class="text-[11px] text-slate-400 mt-3 font-mono">Chương 6 • PI 5.1</div>
+        </a>
+
+        <!-- BUỔI 12 -->
+        <a href="bai-12.html" class="group bg-white rounded-2xl border border-rose-200 p-5 hover:border-rose-500 hover:shadow-lg transition-all flex flex-col">
+          <div class="flex items-center justify-between text-xs">
+            <span class="font-mono font-black text-rose-600">BUỔI 12</span>
+            <span class="px-2 py-0.5 rounded-full bg-rose-50 text-rose-700 font-bold">Cuối kỳ 40%</span>
+          </div>
+          <h3 class="font-extrabold text-slate-900 mt-2 group-hover:text-rose-700">Thi Hackathon &amp; Final Showcase</h3>
+          <p class="text-sm text-slate-500 mt-2 flex-grow">Triển lãm sản phẩm live, cross-testing, thuyết trình 8 phút + Q&amp;A 5 phút, rubric 6 tiêu chí, trao giải.</p>
+          <div class="text-[11px] text-slate-400 mt-3 font-mono">Chương 7 • PI 3.1, PI 5.1</div>
+        </a>
+
+      </div>
+
+      <div class="mt-8 rounded-2xl bg-white border border-slate-200 p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center"><i class="fa-solid fa-circle-question"></i></div>
+          <div>
+            <div class="font-extrabold text-slate-900">Ngân hàng câu hỏi trắc nghiệm (Aiken)</div>
+            <div class="text-sm text-slate-500">Mỗi bài tối thiểu 10 câu, import trực tiếp vào Moodle Question Bank.</div>
+          </div>
+        </div>
+        <a href="documentation/huong-dan-su-dung.html" class="px-4 py-2.5 bg-slate-900 hover:bg-slate-700 text-white text-sm font-bold rounded-xl flex items-center gap-2 justify-center">
+          <i class="fa-solid fa-file-import"></i> Hướng dẫn import quiz
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: DỰ ÁN XUYÊN SUỐT -->
+  <section id="du-an" class="py-16 sm:py-20 bg-white border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <span class="text-xs font-bold uppercase tracking-wider text-fe-indigo">Dự án xuyên suốt</span>
+        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-1">Smart Event Hub</h2>
+        <p class="text-slate-600 mt-3">Hệ thống đặt vé và quản lý sự kiện trực tuyến, làm theo nhóm 3–4 sinh viên trên một RESTful API Backend (Swagger) có sẵn. Mỗi buổi học thêm một mảnh ghép vào cùng một repository.</p>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mt-6 text-sm">
+          <div class="rounded-xl border border-slate-200 p-3"><i class="fa-solid fa-house text-lhu-sky mr-1.5"></i>Trang chủ</div>
+          <div class="rounded-xl border border-slate-200 p-3"><i class="fa-solid fa-calendar-day text-fe-indigo mr-1.5"></i>Chi tiết sự kiện</div>
+          <div class="rounded-xl border border-slate-200 p-3"><i class="fa-solid fa-ticket text-asu-maroon mr-1.5"></i>Đặt vé &amp; chọn ghế</div>
+          <div class="rounded-xl border border-slate-200 p-3"><i class="fa-solid fa-user text-emerald-600 mr-1.5"></i>Trang cá nhân</div>
+          <div class="rounded-xl border border-slate-200 p-3"><i class="fa-solid fa-chart-line text-amber-500 mr-1.5"></i>Admin Dashboard</div>
+          <div class="rounded-xl border border-slate-200 p-3"><i class="fa-solid fa-heart text-rose-500 mr-1.5"></i>Wishlist</div>
+        </div>
+        <a href="documentation/dac-ta-du-an-smart-event-hub.html" class="inline-flex items-center gap-2 mt-6 px-5 py-3 bg-fe-indigo hover:bg-fe-dark text-white font-bold rounded-xl shadow">
+          <i class="fa-solid fa-diagram-project"></i> Xem đặc tả dự án
+        </a>
+      </div>
+      <div class="code-window rounded-2xl shadow-2xl overflow-hidden border border-slate-800">
+        <div class="flex items-center gap-1.5 px-4 py-3 border-b border-slate-800">
+          <span class="w-3 h-3 rounded-full bg-rose-500"></span><span class="w-3 h-3 rounded-full bg-amber-400"></span><span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+          <span class="ml-3 text-xs text-slate-400 font-mono">types/event.ts</span>
+        </div>
+<pre class="p-5 text-[13px] leading-relaxed font-mono text-slate-200 overflow-x-auto"><span class="text-purple-400">export type</span> <span class="text-amber-300">EventStatus</span> = <span class="text-emerald-300">'UPCOMING'</span> | <span class="text-emerald-300">'ONGOING'</span> | <span class="text-emerald-300">'ENDED'</span>;
+
+<span class="text-purple-400">export interface</span> <span class="text-amber-300">EventItem</span> {
+  id: <span class="text-sky-300">string</span>;
+  title: <span class="text-sky-300">string</span>;
+  imageUrl: <span class="text-sky-300">string</span>;
+  startDate: <span class="text-sky-300">string</span>;
+  location: <span class="text-sky-300">string</span>;
+  price: <span class="text-sky-300">number</span>;
+  status: <span class="text-amber-300">EventStatus</span>;
+}
+
+<span class="text-slate-500">// app/events/[id]/page.tsx (Next.js 15)</span>
+<span class="text-purple-400">export default async function</span> <span class="text-sky-300">Page</span>(
+  { params }: { params: <span class="text-amber-300">Promise</span>&lt;{ id: <span class="text-sky-300">string</span> }&gt; }
+) {
+  <span class="text-purple-400">const</span> { id } = <span class="text-purple-400">await</span> params;
+  <span class="text-purple-400">return</span> &lt;<span class="text-rose-300">EventDetail</span> id={id} /&gt;;
+}</pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: ĐÁNH GIÁ -->
+  <section id="danh-gia" class="py-16 sm:py-20 bg-slate-50 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mb-10">
+        <span class="text-xs font-bold uppercase tracking-wider text-fe-indigo">Phương pháp đánh giá</span>
+        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-1">Điểm số đến từ sản phẩm thật</h2>
+        <p class="text-slate-600 mt-3">Điểm cá nhân ở cuối kỳ được tính riêng qua lịch sử commit và phần trả lời phản biện, nên mỗi thành viên đều phải hiểu phần code mình viết.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div class="bg-white rounded-2xl border border-slate-200 p-6">
+          <div class="text-4xl font-black text-lhu-blue font-mono">30%</div>
+          <h3 class="font-extrabold text-slate-900 mt-2">Quá trình</h3>
+          <p class="text-sm text-slate-600 mt-2">Chuyên cần, quiz trước giờ học, bài tập trên lớp và bài tập về nhà nộp qua Pull Request.</p>
+        </div>
+        <div class="bg-white rounded-2xl border border-slate-200 p-6">
+          <div class="text-4xl font-black text-fe-indigo font-mono">30%</div>
+          <h3 class="font-extrabold text-slate-900 mt-2">Giữa kỳ – Buổi 7</h3>
+          <p class="text-sm text-slate-600 mt-2">Báo cáo tiến độ 50%: Wireframe 5 màn hình, UI Ant Design/SCSS responsive, routing &amp; component, Git.</p>
+        </div>
+        <div class="bg-white rounded-2xl border border-slate-200 p-6">
+          <div class="text-4xl font-black text-asu-maroon font-mono">40%</div>
+          <h3 class="font-extrabold text-slate-900 mt-2">Cuối kỳ – Buổi 12</h3>
+          <p class="text-sm text-slate-600 mt-2">Hackathon &amp; Final Showcase theo rubric 6 tiêu chí. Điểm cá nhân = Nhóm × 0.7 + Phản biện × 0.3.</p>
+        </div>
+      </div>
+
+      <div class="mt-8 bg-white rounded-2xl border border-slate-200 overflow-hidden">
+        <div class="px-6 py-4 border-b border-slate-100 font-extrabold text-slate-900">Rubric Hackathon – 6 tiêu chí (thang 10)</div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead class="bg-slate-50 text-slate-600 text-left">
+              <tr><th class="px-6 py-3">Tiêu chí</th><th class="px-6 py-3">Trọng số</th><th class="px-6 py-3">PI</th></tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr><td class="px-6 py-3">Mô hình hóa UI &amp; Wireframe</td><td class="px-6 py-3 font-mono">1.5đ</td><td class="px-6 py-3 font-mono">PI 1.4</td></tr>
+              <tr><td class="px-6 py-3">Giao diện &amp; Vibe Coding</td><td class="px-6 py-3 font-mono">2.0đ</td><td class="px-6 py-3 font-mono">PI 2.3</td></tr>
+              <tr><td class="px-6 py-3">Logic, TypeScript &amp; REST API</td><td class="px-6 py-3 font-mono">2.0đ</td><td class="px-6 py-3 font-mono">PI 2.3</td></tr>
+              <tr><td class="px-6 py-3">CI/CD Deploy, SEO &amp; Lighthouse</td><td class="px-6 py-3 font-mono">1.5đ</td><td class="px-6 py-3 font-mono">PI 5.1</td></tr>
+              <tr><td class="px-6 py-3">Báo cáo văn bản &amp; minh chứng Git</td><td class="px-6 py-3 font-mono">1.5đ</td><td class="px-6 py-3 font-mono">PI 3.1, 5.1</td></tr>
+              <tr><td class="px-6 py-3">Thuyết trình Showcase &amp; phản biện</td><td class="px-6 py-3 font-mono">1.5đ</td><td class="px-6 py-3 font-mono">PI 3.1, 5.1</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="px-6 py-4 bg-slate-50 flex flex-wrap gap-3 text-sm">
+          <a href="danh-gia-hoc-phan.html" class="px-4 py-2 bg-lhu-blue hover:bg-lhu-dark text-white font-bold rounded-xl"><i class="fa-solid fa-clipboard-check mr-1.5"></i>Chuyên đề đánh giá</a>
+          <a href="assessment/rubric-giua-ky.html" class="px-4 py-2 bg-white border border-slate-200 hover:border-lhu-blue text-slate-700 font-bold rounded-xl">Rubric giữa kỳ</a>
+          <a href="assessment/rubric-hackathon-cuoi-ky.html" class="px-4 py-2 bg-white border border-slate-200 hover:border-lhu-blue text-slate-700 font-bold rounded-xl">Rubric Hackathon</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: HỌC LIỆU & THÀNH PHẦN HỌC PHẦN -->
+  <section id="hoc-lieu" class="py-16 sm:py-20 bg-white border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mb-10">
+        <span class="text-xs font-bold uppercase tracking-wider text-fe-indigo">Bộ học liệu</span>
+        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-1">Thành phần học phần</h2>
+        <p class="text-slate-600 mt-3">Toàn bộ học liệu có bản Markdown (dán vào LMS) và bản HTML để xem trực tiếp trên trình duyệt.</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <a href="discussion/thao-luan-va-hoat-dong-nhom.html" class="group rounded-2xl border border-slate-200 p-6 hover:border-fe-indigo hover:shadow-lg transition-all">
+          <i class="fa-solid fa-comments text-2xl text-lhu-sky"></i>
+          <h3 class="font-extrabold text-slate-900 mt-3 group-hover:text-lhu-blue">Discussion</h3>
+          <p class="text-sm text-slate-500 mt-1">Chủ đề diễn đàn từng bài, quy tắc thảo luận và hoạt động nhóm.</p>
+        </a>
+        <a href="assignment/bai-tap-va-nhiem-vu.html" class="group rounded-2xl border border-slate-200 p-6 hover:border-fe-indigo hover:shadow-lg transition-all">
+          <i class="fa-solid fa-list-check text-2xl text-fe-indigo"></i>
+          <h3 class="font-extrabold text-slate-900 mt-3 group-hover:text-lhu-blue">Assignment</h3>
+          <p class="text-sm text-slate-500 mt-1">Bài tập có hướng dẫn, không hướng dẫn, bài tập về nhà và mốc nộp bài.</p>
+        </a>
+        <a href="resources/tai-nguyen-hoc-tap.html" class="group rounded-2xl border border-slate-200 p-6 hover:border-fe-indigo hover:shadow-lg transition-all">
+          <i class="fa-solid fa-book-bookmark text-2xl text-emerald-600"></i>
+          <h3 class="font-extrabold text-slate-900 mt-3 group-hover:text-lhu-blue">Resources</h3>
+          <p class="text-sm text-slate-500 mt-1">Tài liệu đọc bắt buộc, docs chính thức, công cụ và thư viện prompt mẫu.</p>
+        </a>
+        <a href="assessment/ke-hoach-danh-gia.html" class="group rounded-2xl border border-slate-200 p-6 hover:border-fe-indigo hover:shadow-lg transition-all">
+          <i class="fa-solid fa-scale-balanced text-2xl text-asu-maroon"></i>
+          <h3 class="font-extrabold text-slate-900 mt-3 group-hover:text-lhu-blue">Assessment</h3>
+          <p class="text-sm text-slate-500 mt-1">Kế hoạch đánh giá, rubric, phiếu chấm, tự đánh giá và đánh giá chéo.</p>
+        </a>
+        <a href="documentation/huong-dan-su-dung.html" class="group rounded-2xl border border-slate-200 p-6 hover:border-fe-indigo hover:shadow-lg transition-all">
+          <i class="fa-solid fa-book text-2xl text-amber-500"></i>
+          <h3 class="font-extrabold text-slate-900 mt-3 group-hover:text-lhu-blue">Documentation</h3>
+          <p class="text-sm text-slate-500 mt-1">Hướng dẫn dùng bộ học liệu trên Moodle, import quiz, cấu hình nhóm lớp.</p>
+        </a>
+        <a href="thong-tin-hoc-phan.html" class="group rounded-2xl border border-slate-200 p-6 hover:border-fe-indigo hover:shadow-lg transition-all">
+          <i class="fa-solid fa-file-lines text-2xl text-slate-700"></i>
+          <h3 class="font-extrabold text-slate-900 mt-3 group-hover:text-lhu-blue">Đề cương học phần</h3>
+          <p class="text-sm text-slate-500 mt-1">Thông tin chung, chuẩn đầu ra, kế hoạch 12 buổi, quy định lớp học.</p>
+        </a>
+      </div>
+
+      <!-- Moodle HTML -->
+      <div class="mt-10 rounded-2xl border border-slate-200 bg-slate-50 p-6">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 mb-5">
+          <div>
+            <h3 class="font-extrabold text-slate-900"><i class="fa-brands fa-html5 text-orange-500 mr-1.5"></i>Moodle HTML – dán thẳng vào LMS</h3>
+            <p class="text-sm text-slate-500 mt-1">Mỗi file gồm 4 khối Accordion với inline style. Mở file, sao chép toàn bộ và dán vào chế độ mã nguồn HTML của Page trên Moodle.</p>
+          </div>
+          <a href="documentation/huong-dan-su-dung.html" class="text-sm font-bold text-lhu-blue whitespace-nowrap">Hướng dẫn dán bài &rarr;</a>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 text-sm">
+          <a href="Moodle_HTML/00_Thong_tin_hoc_phan.html" class="px-3 py-2 rounded-lg bg-white border border-slate-200 hover:border-lhu-blue"><span class="font-mono text-slate-400 mr-2">00</span>Thông tin học phần</a>
+          <a href="Moodle_HTML/01_SCSS_TypeScript_Vibe_Coding.html" class="px-3 py-2 rounded-lg bg-white border border-slate-200 hover:border-lhu-blue"><span class="font-mono text-slate-400 mr-2">01</span>SCSS, TypeScript &amp; Vibe Coding</a>
+          <a href="Moodle_HTML/02_Wireframe_Figma_to_NextJS.html" class="px-3 py-2 rounded-lg bg-white border border-slate-200 hover:border-lhu-blue"><span class="font-mono text-slate-400 mr-2">02</span>Wireframe &amp; Figma to Next.js</a>
+          <a href="Moodle_HTML/03_NextJS_App_Router_Routing.html" class="px-3 py-2 rounded-lg bg-white border border-slate-200 hover:border-lhu-blue"><span class="font-mono text-slate-400 mr-2">03</span>Next.js App Router &amp; Routing</a>
+          <a href="Moodle_HTML/04_Dynamic_Routing_Reusable_Components.html" class="px-3 py-2 rounded-lg bg-white border border-slate-200 hover:border-lhu-blue"><span class="font-mono text-slate-400 mr-2">04</span>Dynamic Routing &amp; Components</a>
+          <a href="Moodle_HTML/05_Ant_Design_Custom_Theme.html" class="px-3 py-2 rounded-lg bg-white border border-slate-200 hover:border-lhu-blue"><span class="font-mono text-slate-400 mr-2">05</span>Ant Design &amp; Custom Theme</a>
+          <a href="Moodle_HTML/06_State_Management_React_Hooks.html" class="px-3 py-2 rounded-lg bg-white border border-slate-200 hover:border-lhu-blue"><span class="font-mono text-slate-400 mr-2">06</span>State Management &amp; Hooks</a>
+          <a href="Moodle_HTML/07_Kiem_tra_giua_ky.html" class="px-3 py-2 rounded-lg bg-white border border-slate-200 hover:border-lhu-blue"><span class="font-mono text-slate-400 mr-2">07</span>Kiểm tra giữa kỳ</a>
+          <a href="Moodle_HTML/08_Data_Fetching_RESTful_API.html" class="px-3 py-2 rounded-lg bg-white border border-slate-200 hover:border-lhu-blue"><span class="font-mono text-slate-400 mr-2">08</span>Data Fetching &amp; REST API</a>
+          <a href="Moodle_HTML/09_Form_Validation_Local_Storage.html" class="px-3 py-2 rounded-lg bg-white border border-slate-200 hover:border-lhu-blue"><span class="font-mono text-slate-400 mr-2">09</span>Form Validation &amp; Storage</a>
+          <a href="Moodle_HTML/10_PBL1_Refactoring_Responsive.html" class="px-3 py-2 rounded-lg bg-white border border-slate-200 hover:border-lhu-blue"><span class="font-mono text-slate-400 mr-2">10</span>PBL 1 – Refactoring</a>
+          <a href="Moodle_HTML/11_PBL2_Deploy_Vercel_SEO.html" class="px-3 py-2 rounded-lg bg-white border border-slate-200 hover:border-lhu-blue"><span class="font-mono text-slate-400 mr-2">11</span>PBL 2 – Deploy Vercel &amp; SEO</a>
+          <a href="Moodle_HTML/12_Hackathon_Final_Showcase.html" class="px-3 py-2 rounded-lg bg-white border border-slate-200 hover:border-lhu-blue"><span class="font-mono text-slate-400 mr-2">12</span>Hackathon &amp; Final Showcase</a>
+          <a href="Moodle_HTML/13_Danh_gia_hoc_phan.html" class="px-3 py-2 rounded-lg bg-white border border-slate-200 hover:border-lhu-blue"><span class="font-mono text-slate-400 mr-2">13</span>Đánh giá học phần</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: FAQ -->
+  <section id="faq" class="py-16 sm:py-20 bg-slate-50">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6">
+      <h2 class="text-2xl sm:text-3xl font-black text-slate-900 text-center">Câu hỏi thường gặp</h2>
+      <div class="mt-8 space-y-3">
+        <details class="bg-white rounded-2xl border border-slate-200 p-5">
+          <summary class="flex items-center justify-between cursor-pointer font-bold text-slate-900">Dùng AI viết code có bị xem là gian lận không?<i class="fa-solid fa-plus faq-icon text-slate-400 transition-transform"></i></summary>
+          <p class="text-sm text-slate-600 mt-3">Không, học phần khuyến khích Vibe Coding. Điều kiện là các bạn phải đọc hiểu, kiểm tra kiểu dữ liệu, sửa lỗi và giải thích được đoạn code đó khi giảng viên hỏi phản biện. Code chép nguyên mà không giải thích được sẽ bị trừ điểm cá nhân.</p>
+        </details>
+        <details class="bg-white rounded-2xl border border-slate-200 p-5">
+          <summary class="flex items-center justify-between cursor-pointer font-bold text-slate-900">Cần chuẩn bị gì trước buổi 1?<i class="fa-solid fa-plus faq-icon text-slate-400 transition-transform"></i></summary>
+          <p class="text-sm text-slate-600 mt-3">Cài VS Code, Node.js bản LTS, Git và tạo tài khoản GitHub. Cài thêm extension Cursor AI hoặc GitHub Copilot, sau đó xem video về SCSS Mixin và TypeScript Interface/Type trên LMS.</p>
+        </details>
+        <details class="bg-white rounded-2xl border border-slate-200 p-5">
+          <summary class="flex items-center justify-between cursor-pointer font-bold text-slate-900">Nhóm làm dự án gồm bao nhiêu người?<i class="fa-solid fa-plus faq-icon text-slate-400 transition-transform"></i></summary>
+          <p class="text-sm text-slate-600 mt-3">Mỗi nhóm 3–4 sinh viên, cùng làm một repository với các nhánh <code>main</code>, <code>dev</code> và <code>feature/*</code>. Mỗi thành viên phải có commit riêng để làm minh chứng đóng góp.</p>
+        </details>
+        <details class="bg-white rounded-2xl border border-slate-200 p-5">
+          <summary class="flex items-center justify-between cursor-pointer font-bold text-slate-900">Backend API lấy ở đâu?<i class="fa-solid fa-plus faq-icon text-slate-400 transition-transform"></i></summary>
+          <p class="text-sm text-slate-600 mt-3">Giảng viên cung cấp RESTful API Backend kèm tài liệu Swagger UI. Trước buổi 8 các bạn dùng mock data JSON, từ buổi 8 chuyển sang gọi API thật qua biến môi trường <code>NEXT_PUBLIC_API_URL</code>.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-slate-200 py-8 text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <strong>Khoa Công nghệ Thông tin - Trường Đại học Lạc Hồng</strong><br>
+        Phòng B301 - B302, Cơ sở 1, Số 10 Huỳnh Văn Nghệ, P. Bửu Long, TP. Biên Hòa, Đồng Nai.
+      </div>
+      <div class="sm:text-right">
+        <span>Email: cntt@lhu.edu.vn • Hotline: (0251) 3952 251</span><br>
+        <span>Hệ thống LMS: <a href="https://learn.lhu.edu.vn" target="_blank" rel="noopener noreferrer" class="text-lhu-blue font-bold">learn.lhu.edu.vn</a></span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

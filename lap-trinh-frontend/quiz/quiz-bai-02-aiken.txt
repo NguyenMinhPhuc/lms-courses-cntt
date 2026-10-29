@@ -1,0 +1,84 @@
+Mục tiêu chính của Wireframe trong quy trình thiết kế giao diện là gì?
+A. Thể hiện bố cục và thứ tự thông tin trước khi quan tâm màu sắc, hình ảnh thật
+B. Chọn bảng màu thương hiệu cho dự án
+C. Viết mã nguồn hoàn chỉnh cho trang web
+D. Kiểm thử hiệu năng tải trang
+ANSWER: A
+
+Khi phân rã giao diện web app thành các khối Layout, thứ tự phân tích hợp lý từ ngoài vào trong là gì?
+A. Footer → Sidebar → Button → Header
+B. Header → Hero Section → Main Content → Sidebar → Footer
+C. Button → Input → Card → Page
+D. Main Content → Footer → Hero Section → Header
+ANSWER: B
+
+Theo Atomic Design, phần tử nào sau đây là một Atom?
+A. Header gồm Logo, Menu và SearchBar
+B. SearchBar gồm Input và Button
+C. Button
+D. Trang chủ đã đổ dữ liệu sự kiện thật
+ANSWER: C
+
+Theo Atomic Design, Header gồm Logo, Navigation và SearchBar thuộc cấp độ nào?
+A. Atom
+B. Molecule
+C. Template
+D. Organism
+ANSWER: D
+
+Vì sao phân rã giao diện theo Atomic Design giúp tăng khả năng tái sử dụng code?
+A. Vì component lớn được ghép từ component nhỏ, sửa một Atom thì mọi nơi dùng nó đều được cập nhật
+B. Vì Atomic Design bắt buộc dùng Tailwind CSS
+C. Vì mỗi trang có toàn bộ code trong một file duy nhất
+D. Vì nó loại bỏ hoàn toàn nhu cầu viết TypeScript
+ANSWER: A
+
+Trong trang Chi tiết sự kiện, phần nội dung bài viết mô tả sự kiện ở cột trái nên dùng thẻ Semantic nào?
+A. <aside>
+B. <article>
+C. <nav>
+D. <footer>
+ANSWER: B
+
+Multimodal AI Prompting trong workflow Figma to Next.js có nghĩa là gì?
+A. Gửi cùng một prompt cho nhiều công cụ AI khác nhau
+B. Viết prompt bằng nhiều ngôn ngữ
+C. Gửi ảnh Wireframe/Figma hoặc SVG kèm mô tả văn bản để AI có khả năng đọc hình sinh mã TSX
+D. Chia prompt thành nhiều tin nhắn ngắn
+ANSWER: C
+
+Prompt Guided yêu cầu AI "phân rã giao diện thành HeroBanner, FeaturedEventsSection, CategoryFilter". Mục đích của yêu cầu này là gì?
+A. Giảm số lượng thẻ HTML trên trang
+B. Giúp AI chạy nhanh hơn
+C. Tránh phải tạo Mock Data
+D. Để code sinh ra được tách thành component nhỏ, dễ đọc và tái sử dụng thay vì một file dài
+ANSWER: D
+
+AI sinh đoạn code style={{ background: '#ff6600', padding: 24 }} lặp lại ở nhiều component. Hướng refactor đúng là gì?
+A. Chuyển sang class trong SCSS Module và thay giá trị cứng bằng biến trong _variables.scss
+B. Giữ nguyên vì inline style có độ ưu tiên cao nhất
+C. Chuyển toàn bộ sang file globals.css với !important
+D. Xóa style để giao diện trông đơn giản hơn
+ANSWER: A
+
+Khung đặt vé dùng position: sticky trong bố cục grid 70/30 nhưng không dính khi cuộn. Cách khắc phục phù hợp nhất là gì?
+A. Đổi thẻ <aside> thành <div>
+B. Thêm align-self: start cho aside và bỏ overflow: hidden ở phần tử cha
+C. Thêm z-index: 9999
+D. Chuyển sang position: absolute
+ANSWER: B
+
+Bạn dùng v0.dev nhưng nhóm đã thống nhất chỉ dùng SCSS Module. Cách viết prompt hợp lý là gì?
+A. Không cần nói gì, sau đó tự chuyển đổi toàn bộ class Tailwind
+B. Yêu cầu AI dùng inline style để dễ chuyển đổi
+C. Ghi rõ ràng buộc "chỉ dùng SCSS Module, không dùng Tailwind" ngay trong prompt
+D. Yêu cầu AI sinh HTML thuần không có style
+ANSWER: C
+
+Theo kế hoạch Buổi 2, bộ Wireframe 5 màn hình của nhóm cần được lưu ở đâu và dùng để làm gì?
+A. Lưu trên máy cá nhân trưởng nhóm, chỉ dùng để tham khảo
+B. Gửi email cho giảng viên, không cần lưu trên repo
+C. Lưu trong thư mục app/ để Next.js tự render
+D. Lưu trong docs/wireframes/ trên repo nhóm, làm cơ sở chấm tiêu chí Mô hình hóa Wireframe UI (PI 1.4)
+ANSWER: D
+
