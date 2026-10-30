@@ -26,10 +26,21 @@
   "lessonTitles": {
     "01": "Văn hóa và tiếp cận truyền thông",
     "02": "Hệ thống thành tố văn hóa Việt Nam",
-    "03": "Các vùng văn hóa Việt Nam · Ôn tập và giữa kỳ"
+    "03": "Các vùng văn hóa Việt Nam · Ôn tập và giữa kỳ",
+    "04": "Chất liệu văn hóa trong sáng tạo",
+    "05": "Bản sắc và trách nhiệm trong môi trường số · Quay thực địa",
+    "06": "Báo cáo dự án cuối khóa"
   },
   "documents": {
+    "LINK_GIAO_TRINH": "giao-trinh/Giao-trinh-co-so-van-hoa-viet-nam.docx",
     "LINK_DE_CUONG": "HK1-112317-Cơ sở Văn hóa Việt Nam.docx",
     "LINK_RUBRIC": "rubric/Rubric-112317.xlsx"
-  }
+  },
+  "textbookKind": "Tài liệu học tập",
+  "textbookSubtitle": [
+    "Dùng kèm giáo trình Trần Ngọc Thêm (CB), Cơ sở Văn hóa Việt Nam",
+    "Dành cho sinh viên ngành Truyền thông đa phương tiện"
+  ],
+  "textbookAuthor": "Nhóm giảng viên học phần 112317",
+  "watermark": "Truyền thông đa phương tiện - LHU"
 }

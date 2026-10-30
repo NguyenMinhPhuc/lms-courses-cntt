@@ -4,6 +4,31 @@
  */
 window.DEFAULT_COURSES = [
   {
+    "id": "co-so-van-hoa-viet-nam",
+    "code": "112317",
+    "title": "Cơ sở Văn hóa Việt Nam",
+    "englishTitle": "Co So Van Hoa Viet Nam",
+    "credits": 3,
+    "hours": "3 TC (2 LT + 1 bài tập), 6 buổi × 5 tiết",
+    "semester": "Học kỳ 1",
+    "folder": "co-so-van-hoa-viet-nam",
+    "entryFile": "index.html",
+    "courseLanding": "index.html",
+    "syllabusFile": "thong-tin-hoc-phan.html",
+    "assessmentFile": "danh-gia-hoc-phan.html",
+    "quizBank": "quiz/index.html",
+    "description": "Nền tảng văn hóa Việt Nam cho sinh viên Truyền thông đa phương tiện: khái niệm và tiến trình văn hóa, hệ thống thành tố, các vùng văn hóa, khai thác chất liệu văn hóa trong sáng tạo và trách nhiệm khi quảng bá bản sắc trên môi trường số; dự án nhóm làm video về một sản phẩm gốm/hiện vật.",
+    "instructor": "Trần Thị Diệu Hiền",
+    "tags": [
+      "Văn hóa Việt Nam",
+      "Truyền thông đa phương tiện",
+      "Dự án video",
+      "AI tạo ảnh"
+    ],
+    "badgeColor": "blue",
+    "icon": "fa-solid fa-landmark"
+  },
+  {
     "id": "kiem-thu-phan-mem",
     "code": "222201",
     "title": "Kiểm thử và Đảm bảo chất lượng phần mềm",

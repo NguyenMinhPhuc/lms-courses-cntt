@@ -143,7 +143,7 @@ def add_text(slide, left, top, width, height, text, size, color, bold=False):
     return box
 
 
-def title_slide(prs, deck_title, subtitle, course_line):
+def title_slide(prs, deck_title, subtitle, course_line, faculty):
     slide = prs.slides.add_slide(prs.slide_layouts[6])
     add_rect(slide, 0, 0, SLIDE_W, SLIDE_H, LHU_BLUE)
     add_rect(slide, Inches(0.8), Inches(3.55), Inches(1.6), Inches(0.08), GOLD)
@@ -153,7 +153,7 @@ def title_slide(prs, deck_title, subtitle, course_line):
     if subtitle:
         add_text(slide, Inches(0.8), Inches(3.85), Inches(11.5), Inches(1.0), subtitle, 20, WHITE)
     add_text(slide, Inches(0.8), Inches(6.6), Inches(11.5), Inches(0.4),
-             "Khoa Công nghệ Thông tin - Trường Đại học Lạc Hồng", 12, WHITE)
+             f"{faculty} - Trường Đại học Lạc Hồng", 12, WHITE)
 
 
 def content_slide(prs, data, footer, number):
@@ -215,7 +215,8 @@ def build_deck(md_file: Path, out_file: Path, config: dict) -> int:
     prs.slide_width, prs.slide_height = SLIDE_W, SLIDE_H
     name, code = config.get("name", ""), config.get("code", "")
     course_line = f"{name} ({code})" if name and code else name or code
-    title_slide(prs, deck_title or md_file.stem, subtitle, course_line)
+    faculty = (config.get("faculty") or {}).get("name") or "Khoa Công nghệ Thông tin"
+    title_slide(prs, deck_title or md_file.stem, subtitle, course_line, faculty)
     for i, data in enumerate(slides, start=2):
         content_slide(prs, data, f"{course_line} • {deck_title}", i)
     prs.save(out_file)

@@ -1,6 +1,6 @@
 # Dàn ý chi tiết - Cơ sở Văn hóa Việt Nam (112317)
 
-> **Trạng thái:** CHỜ GIẢNG VIÊN DUYỆT. Soạn từ đề cương `HK1 CS 112317`, file Timeline (6 buổi, 3 checklist chấm điểm) và giáo trình Trần Ngọc Thêm.
+> **Trạng thái:** ĐÃ DUYỆT. Đã soạn bài 01–06 (bài học, slide, quiz), rubric 3 thành phần và tài liệu học tập nội bộ 5 chương. Soạn từ đề cương `HK1 CS 112317`, file Timeline (6 buổi, 3 checklist chấm điểm) và giáo trình Trần Ngọc Thêm.
 
 - **Mã học phần:** 112317 · **Tên tiếng Anh:** Vietnamese Cultural Foundation.
 - **Khoa/Bộ môn phụ trách:** Truyền thông đa phương tiện · **Khối kiến thức:** Cơ sở · Học phần bắt buộc với sinh viên ngành Truyền thông đa phương tiện; không có học phần tiên quyết.

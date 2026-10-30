@@ -160,7 +160,8 @@ def add_cover(doc: Document, config: dict, course_dir: Path, kind: str = "GIÁO 
         return p
 
     centered("TRƯỜNG ĐẠI HỌC LẠC HỒNG", 14, bold=True)
-    centered("KHOA CÔNG NGHỆ THÔNG TIN", 14, bold=True, space_after=120)
+    faculty = (config.get("faculty") or {}).get("name") or "Khoa Công nghệ Thông tin"
+    centered(faculty.upper(), 14, bold=True, space_after=120)
     centered(kind, 22, bold=True, color=LHU_BLUE)
     centered((title or config.get("name", course_dir.name)).upper(), 26, bold=True, color=LHU_BLUE)
     centered(f"Mã học phần: {config.get('code', '')}", 14, space_after=24)
@@ -411,9 +412,11 @@ def build(course_dir: Path) -> Path:
     if not files:
         raise FileNotFoundError(f"Không có file Markdown trong {src.relative_to(ROOT_DIR)}")
     config = load_config(course_dir)
+    # "textbookKind" đổi tên loại tài liệu, ví dụ "Tài liệu học tập" thay cho "Giáo trình"
+    kind = config.get("textbookKind", "Giáo trình")
     return render_document(files, src / f"Giao-trinh-{course_dir.name}.docx",
-                           f"Giáo trình {config.get('name', course_dir.name)}",
-                           lambda doc: add_cover(doc, config, course_dir),
+                           f"{kind} {config.get('name', course_dir.name)}",
+                           lambda doc: add_cover(doc, config, course_dir, kind=kind.upper()),
                            watermark=config.get("watermark", DEFAULT_WATERMARK))
 
 

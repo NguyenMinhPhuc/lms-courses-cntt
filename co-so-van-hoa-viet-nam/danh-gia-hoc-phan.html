@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đánh giá học phần & Rubric (112317) | Khoa TTĐPT - Đại học Lạc Hồng</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome 6.4.0 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            asu: {
+              maroon: '#8C1D40',
+              gold: '#FFC627',
+              dark: '#5C142B',
+              light: '#FAEDF0'
+            },
+            lhu: {
+              blue: '#013D88',
+              sky: '#007BFF',
+              dark: '#01295C',
+              light: '#EEF5FC'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    @media print {
+      header, footer, .no-print {
+        display: none !important;
+      }
+      details {
+        break-inside: avoid;
+        margin-bottom: 20px;
+      }
+      details[open] summary {
+        border-bottom: 1px solid #ccc;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-slate-100 text-slate-800 font-sans antialiased selection:bg-asu-gold selection:text-slate-900 min-h-screen flex flex-col">
+
+  <!-- TOP BAR -->
+  <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800 no-print">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+      <div class="flex items-center gap-2">
+        <span class="text-asu-gold font-semibold"><i class="fa-solid fa-certificate mr-1"></i> CHUẨN KIỂM ĐỊNH ABET (USA)</span>
+        <span class="text-slate-600 hidden sm:inline">•</span>
+        <span class="hidden sm:inline">Đối tác chiến lược: <strong>Arizona State University (ASU)</strong></span>
+      </div>
+      <div class="flex items-center gap-4 text-xs font-mono">
+        <span>Mã học phần: <strong class="text-white">112317</strong></span>
+        <span>Số tín chỉ: <strong class="text-asu-gold">3</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="sticky top-0 z-40 bg-white shadow-sm border-b border-slate-200 no-print">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="index.html" class="flex items-center gap-2.5 text-slate-800 hover:text-lhu-blue transition-colors">
+          <img src="../nhap-mon-nganh/LHU_ASU_VI_Small_Ngang.png" alt="Logo LHU" class="h-8 w-auto">
+          <div class="border-l border-slate-300 pl-2.5">
+            <div class="text-[11px] font-bold text-slate-500 uppercase">Khoa TTĐPT - LHU</div>
+            <div class="text-xs font-extrabold text-lhu-blue">CƠ SỞ VĂN HÓA VIỆT NAM (112317)</div>
+          </div>
+        </a>
+      </div>
+
+      <div class="flex items-center gap-3 text-xs">
+        <a href="index.html" class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-arrow-left"></i>
+          <span>Về Landing Page</span>
+        </a>
+        <button onclick="window.print()" class="hidden sm:flex px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-all items-center gap-1.5" title="In hoặc lưu file PDF">
+          <i class="fa-solid fa-print"></i>
+          <span>In Đề Cương</span>
+        </button>
+        <a href="https://learn.lhu.edu.vn" target="_blank" class="px-4 py-2 bg-lhu-blue hover:bg-lhu-dark text-white font-bold rounded-xl shadow transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-graduation-cap text-asu-gold"></i>
+          <span>Vào lớp LMS</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="flex-grow max-w-5xl w-full mx-auto px-4 sm:px-6 py-8">
+    
+    <!-- Title Card -->
+    <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 mb-8">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-5">
+        <div>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 text-lhu-blue font-bold text-xs uppercase tracking-wider mb-2">
+            <i class="fa-solid fa-book-open"></i> ĐẠI HỌC LẠC HỒNG • KHOA CÔNG NGHỆ THÔNG TIN
+          </span>
+          <h1 class="text-2xl sm:text-3xl font-black text-slate-900 leading-tight">
+            Đánh giá học phần & Rubric (112317)
+          </h1>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1 font-mono">
+            Học phần: Cơ sở Văn hóa Việt Nam • Mã môn: 112317 • Dự án video văn hóa
+          </p>
+        </div>
+
+        <div class="flex-shrink-0 flex sm:flex-col items-center sm:items-end justify-between gap-1 text-xs">
+          <span class="px-3 py-1.5 bg-emerald-50 text-emerald-700 font-bold rounded-lg border border-emerald-200">
+            <i class="fa-solid fa-check-circle mr-1"></i> Lưu hành nội bộ 2026
+          </span>
+          <span class="text-slate-400 text-[11px]">Định dạng LMS Accordion</span>
+        </div>
+      </div>
+
+      <!-- Quick Action Controls for Accordions -->
+      <div class="flex items-center justify-between pt-4 text-xs no-print">
+        <span class="text-slate-500">
+          <i class="fa-solid fa-circle-info text-blue-500 mr-1"></i>
+          Nhấp vào từng thanh tiêu đề để đóng/mở nội dung chi tiết.
+        </span>
+        <div class="flex items-center gap-2">
+          <button onclick="toggleAllDetails(true)" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg transition-colors">
+            Mở tất cả
+          </button>
+          <button onclick="toggleAllDetails(false)" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg transition-colors">
+            Thu gọn
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Accordion Blocks -->
+    <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200">
+      <details open="" style="border: 1px solid #007bff; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #e7f1ff; color: #007bff; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>📘 1. Tổng quan đánh giá học phần</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <p style="margin-top: 0;"><strong>ĐÁNH GIÁ HỌC PHẦN CƠ SỞ VĂN HÓA VIỆT NAM (112317)</strong></p>
+        <p>Điểm học phần gồm 3 thành phần, mỗi thành phần chấm thang 10 theo một checklist. Mỗi tiêu chí được chấm một <strong>hệ số mức</strong> từ 0 đến 1, nhân với trọng số của tiêu chí.</p>
+        <table style="width: 100%; max-width: 760px; border-collapse: collapse; margin-bottom: 15px; font-size: 14px;">
+            <thead><tr style="background-color: #e7f1ff;"><th style="padding: 8px; border: 1px solid #b6d4fe; text-align: left;">Thành phần</th><th style="padding: 8px; border: 1px solid #b6d4fe; text-align: left;">Nội dung</th><th style="padding: 8px; border: 1px solid #b6d4fe; text-align: center;">Tỷ trọng</th></tr></thead>
+            <tbody>
+                <tr><td style="padding: 8px; border: 1px solid #b6d4fe;"><strong>A1. Quá trình</strong></td><td style="padding: 8px; border: 1px solid #b6d4fe;">Chuyên cần (cả buổi thực địa), tham gia, ứng xử văn hóa, đúng hạn – trung thực, bài tập nhỏ trên lớp/LMS, kịch bản quay</td><td style="padding: 8px; border: 1px solid #b6d4fe; text-align: center;"><strong>30%</strong></td></tr>
+                <tr style="background-color: #f8f9fa;"><td style="padding: 8px; border: 1px solid #b6d4fe;"><strong>A2. Giữa kỳ</strong></td><td style="padding: 8px; border: 1px solid #b6d4fe;">Portfolio: slide/ePortfolio trình bày ở buổi 02 (nhóm 1–6) hoặc buổi 03 (nhóm 7–12) và phần hỏi đáp</td><td style="padding: 8px; border: 1px solid #b6d4fe; text-align: center;"><strong>30%</strong></td></tr>
+                <tr><td style="padding: 8px; border: 1px solid #b6d4fe;"><strong>A3. Cuối kỳ</strong></td><td style="padding: 8px; border: 1px solid #b6d4fe;">Dự án video: báo cáo, video đã đăng, trình bày và vấn đáp ở buổi 06, phản tư cá nhân</td><td style="padding: 8px; border: 1px solid #b6d4fe; text-align: center;"><strong>40%</strong></td></tr>
+            </tbody>
+        </table>
+        <p><strong>Thang mức cho mọi tiêu chí:</strong> Chưa đạt 0–0,4 · Đạt yêu cầu 0,5–0,6 · Tốt 0,7–0,8 · Xuất sắc 0,9–1,0. <em>Ví dụ:</em> tiêu chí trọng số 2 được chấm mức Tốt 0,8 thì được 1,6 điểm.</p>
+        <p style="margin-bottom: 0;"><strong>Đo mức đạt CLO:</strong> điểm CLO cộng từ các tiêu chí gắn CLO đó ở cả 3 thành phần (nhân tỷ trọng). Sinh viên <strong>đạt CLO</strong> khi được ít nhất <strong>50% điểm tối đa</strong> của CLO; CLO đạt ở cấp lớp khi <strong>ít nhất 75% số sinh viên</strong> đạt.</p>
+    </div>
+</details>
+
+<details style="border: 1px solid #fd7e14; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #fff5eb; color: #fd7e14; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>📚 2. Checklist chấm điểm (thang 10 mỗi thành phần)</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.1. A1 – Quá trình (30%)</h3>
+            <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+                <thead><tr style="background-color: #fff5eb;"><th style="padding: 6px; border: 1px solid #ffd6ad; text-align: left;">Tiêu chí</th><th style="padding: 6px; border: 1px solid #ffd6ad;">CLO</th><th style="padding: 6px; border: 1px solid #ffd6ad;">Trọng số</th><th style="padding: 6px; border: 1px solid #ffd6ad; text-align: left;">Tốt / Xuất sắc khi</th></tr></thead>
+                <tbody>
+                    <tr><td style="padding: 6px; border: 1px solid #ffd6ad;">1. Chuyên cần, đúng giờ (cả buổi thực địa)</td><td style="padding: 6px; border: 1px solid #ffd6ad; text-align: center;">CLO3</td><td style="padding: 6px; border: 1px solid #ffd6ad; text-align: center;">1,5</td><td style="padding: 6px; border: 1px solid #ffd6ad;">Đi đủ, trễ không quá 1 lần / đúng giờ toàn bộ</td></tr>
+                    <tr><td style="padding: 6px; border: 1px solid #ffd6ad;">2. Tinh thần tham gia (phát biểu, chấm chéo, góp ý, phản biện)</td><td style="padding: 6px; border: 1px solid #ffd6ad; text-align: center;">CLO3</td><td style="padding: 6px; border: 1px solid #ffd6ad; text-align: center;">2</td><td style="padding: 6px; border: 1px solid #ffd6ad;">Chủ động, chấm chéo nghiêm túc / đóng góp ý có chất lượng</td></tr>
+                    <tr><td style="padding: 6px; border: 1px solid #ffd6ad;">3. Ứng xử văn hóa trong lớp, nhóm và tại thực địa</td><td style="padding: 6px; border: 1px solid #ffd6ad; text-align: center;">CLO3</td><td style="padding: 6px; border: 1px solid #ffd6ad; text-align: center;">2</td><td style="padding: 6px; border: 1px solid #ffd6ad;">Tôn trọng, hợp tác tốt / mẫu mực, hỗ trợ bạn bè</td></tr>
+                    <tr><td style="padding: 6px; border: 1px solid #ffd6ad;">4. Đúng hạn và trung thực</td><td style="padding: 6px; border: 1px solid #ffd6ad; text-align: center;">CLO3</td><td style="padding: 6px; border: 1px solid #ffd6ad; text-align: center;">1,5</td><td style="padding: 6px; border: 1px solid #ffd6ad;">Đúng hạn, có ghi nguồn / luôn đúng hạn, ghi nguồn chuẩn</td></tr>
+                    <tr><td style="padding: 6px; border: 1px solid #ffd6ad;">5. Bài tập nhỏ trên lớp/LMS</td><td style="padding: 6px; border: 1px solid #ffd6ad; text-align: center;">CLO1</td><td style="padding: 6px; border: 1px solid #ffd6ad; text-align: center;">1</td><td style="padding: 6px; border: 1px solid #ffd6ad;">Đúng 65–84% / đúng ≥85%, vận dụng tốt</td></tr>
+                    <tr><td style="padding: 6px; border: 1px solid #ffd6ad;">6. Kịch bản quay (bản đã sửa theo góp ý buổi 4)</td><td style="padding: 6px; border: 1px solid #ffd6ad; text-align: center;">CLO2 + CLO3</td><td style="padding: 6px; border: 1px solid #ffd6ad; text-align: center;">2</td><td style="padding: 6px; border: 1px solid #ffd6ad;">Rõ hook – câu chuyện – giá trị, shot list khả thi, đạt checklist / sáng tạo, chi tiết đến từng cảnh, sửa tốt theo góp ý</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.2. A2 – Giữa kỳ: Portfolio (30%)</h3>
+            <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+                <thead><tr style="background-color: #fff5eb;"><th style="padding: 6px; border: 1px solid #ffd6ad; text-align: left;">Tiêu chí</th><th style="padding: 6px; border: 1px solid #ffd6ad;">CLO</th><th style="padding: 6px; border: 1px solid #ffd6ad;">Trọng số</th><th style="padding: 6px; border: 1px solid #ffd6ad; text-align: left;">Tốt / Xuất sắc khi</th></tr></thead>
+                <tbody>
+                    <tr><td style="padding: 6px; border: 1px solid #ffd6ad;">1. Phân tích sản phẩm văn hóa theo thành tố/vùng văn hóa</td><td style="padding: 6px; border: 1px solid #ffd6ad; text-align: center;">CLO1</td><td style="padding: 6px; border: 1px solid #ffd6ad; text-align: center;">2</td><td style="padding: 6px; border: 1px solid #ffd6ad;">Phân tích đúng giá trị, gắn đặc trưng thành tố/vùng / liên hệ được quy luật (tiếp biến, loại hình gốc nông nghiệp)</td></tr>
+                    <tr><td style="padding: 6px; border: 1px solid #ffd6ad;">2. Tư liệu và trích dẫn nguồn</td><td style="padding: 6px; border: 1px solid #ffd6ad; text-align: center;">CLO1</td><td style="padding: 6px; border: 1px solid #ffd6ad; text-align: center;">1</td><td style="padding: 6px; border: 1px solid #ffd6ad;">Dẫn giáo trình + nguồn uy tín / nhiều nguồn, đối chiếu, ghi nguồn chuẩn</td></tr>
+                    <tr><td style="padding: 6px; border: 1px solid #ffd6ad;">3. Ý tưởng chuyển hóa chất liệu thành sản phẩm truyền thông</td><td style="padding: 6px; border: 1px solid #ffd6ad; text-align: center;">CLO2</td><td style="padding: 6px; border: 1px solid #ffd6ad; text-align: center;">1,5</td><td style="padding: 6px; border: 1px solid #ffd6ad;">Đề xuất cụ thể (định dạng, kênh, cách kể) / sáng tạo, khả thi, khác biệt</td></tr>
+                    <tr><td style="padding: 6px; border: 1px solid #ffd6ad;">4. Thiết kế slide/ePortfolio</td><td style="padding: 6px; border: 1px solid #ffd6ad; text-align: center;">CLO2</td><td style="padding: 6px; border: 1px solid #ffd6ad; text-align: center;">1</td><td style="padding: 6px; border: 1px solid #ffd6ad;">Bố cục rõ, hình ảnh tốt / thẩm mỹ cao, bản sắc thị giác phù hợp</td></tr>
+                    <tr><td style="padding: 6px; border: 1px solid #ffd6ad;">5. Lý do lựa chọn và thái độ với di sản</td><td style="padding: 6px; border: 1px solid #ffd6ad; text-align: center;">CLO3</td><td style="padding: 6px; border: 1px solid #ffd6ad; text-align: center;">1,5</td><td style="padding: 6px; border: 1px solid #ffd6ad;">Lý do rõ, trân trọng, ghi nguồn ảnh / truyền được niềm tự hào, tôn trọng khác biệt vùng miền</td></tr>
+                    <tr><td style="padding: 6px; border: 1px solid #ffd6ad;">6. Trình bày – cấu trúc và thời gian</td><td style="padding: 6px; border: 1px solid #ffd6ad; text-align: center;">–</td><td style="padding: 6px; border: 1px solid #ffd6ad; text-align: center;">1</td><td style="padding: 6px; border: 1px solid #ffd6ad;">Mạch lạc, đúng 5 phút ±1 / mở – thân – kết cuốn hút</td></tr>
+                    <tr><td style="padding: 6px; border: 1px solid #ffd6ad;">7. Trình bày – kỹ năng thuyết trình và phối hợp nhóm</td><td style="padding: 6px; border: 1px solid #ffd6ad; text-align: center;">–</td><td style="padding: 6px; border: 1px solid #ffd6ad; text-align: center;">1</td><td style="padding: 6px; border: 1px solid #ffd6ad;">Tự tin, 3 thành viên cùng tham gia / truyền cảm, chuyển giao mượt</td></tr>
+                    <tr><td style="padding: 6px; border: 1px solid #ffd6ad;">8. Trình bày – trả lời câu hỏi</td><td style="padding: 6px; border: 1px solid #ffd6ad; text-align: center;">–</td><td style="padding: 6px; border: 1px solid #ffd6ad; text-align: center;">1</td><td style="padding: 6px; border: 1px solid #ffd6ad;">Trả lời đúng, rõ / sắc, có dẫn chứng, mở rộng vấn đề</td></tr>
+                </tbody>
+            </table>
+            <p style="margin-bottom: 0;">Thời lượng: <strong>5 phút trình bày + 2–3 phút hỏi đáp</strong> mỗi nhóm. Vượt quá 7 phút thì tiêu chí 6 ở mức Chưa đạt.</p>
+        </div>
+
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.3. A3 – Cuối kỳ: Dự án video (40%)</h3>
+            <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+                <thead><tr style="background-color: #fff5eb;"><th style="padding: 6px; border: 1px solid #ffd6ad; text-align: left;">Tiêu chí</th><th style="padding: 6px; border: 1px solid #ffd6ad;">CLO</th><th style="padding: 6px; border: 1px solid #ffd6ad;">Trọng số</th><th style="padding: 6px; border: 1px solid #ffd6ad; text-align: left;">Tốt / Xuất sắc khi</th></tr></thead>
+                <tbody>
+                    <tr><td style="padding: 6px; border: 1px solid #ffd6ad;">1.1. Cơ sở văn hóa trong báo cáo (giá trị, thành tố, vùng văn hóa của sản phẩm)</td><td style="padding: 6px; border: 1px solid #ffd6ad; text-align: center;">CLO1</td><td style="padding: 6px; border: 1px solid #ffd6ad; text-align: center;">1,5</td><td style="padding: 6px; border: 1px solid #ffd6ad;">Phân tích đúng, dẫn giáo trình / liên hệ quy luật và bối cảnh truyền thông số</td></tr>
+                    <tr><td style="padding: 6px; border: 1px solid #ffd6ad;">1.2. Độ chính xác thông tin trong video</td><td style="padding: 6px; border: 1px solid #ffd6ad; text-align: center;">CLO1</td><td style="padding: 6px; border: 1px solid #ffd6ad; text-align: center;">1</td><td style="padding: 6px; border: 1px solid #ffd6ad;">Chính xác, có chú thích / chính xác tuyệt đối, nguồn ghi rõ trong video/caption</td></tr>
+                    <tr><td style="padding: 6px; border: 1px solid #ffd6ad;">1.3. Vấn đáp kiến thức <em>(cá nhân)</em></td><td style="padding: 6px; border: 1px solid #ffd6ad; text-align: center;">CLO1</td><td style="padding: 6px; border: 1px solid #ffd6ad; text-align: center;">0,5</td><td style="padding: 6px; border: 1px solid #ffd6ad;">Trả lời đúng, rõ / liên hệ được kiến thức cả môn</td></tr>
+                    <tr><td style="padding: 6px; border: 1px solid #ffd6ad;">2.1. Ý tưởng và câu chuyện (hook, chuyển hóa chất liệu)</td><td style="padding: 6px; border: 1px solid #ffd6ad; text-align: center;">CLO2</td><td style="padding: 6px; border: 1px solid #ffd6ad; text-align: center;">1,5</td><td style="padding: 6px; border: 1px solid #ffd6ad;">Câu chuyện rõ, chất liệu văn hóa là trung tâm / sáng tạo, cảm xúc, có "phần hồn"</td></tr>
+                    <tr><td style="padding: 6px; border: 1px solid #ffd6ad;">2.2. Kỹ thuật quay và dựng (hình, âm thanh, nhịp, phụ đề)</td><td style="padding: 6px; border: 1px solid #ffd6ad; text-align: center;">CLO2</td><td style="padding: 6px; border: 1px solid #ffd6ad; text-align: center;">1,5</td><td style="padding: 6px; border: 1px solid #ffd6ad;">Hình đẹp, nhịp tốt, có phụ đề / gần chuyên nghiệp</td></tr>
+                    <tr><td style="padding: 6px; border: 1px solid #ffd6ad;">2.3. Đăng bài và phân tích kết quả</td><td style="padding: 6px; border: 1px solid #ffd6ad; text-align: center;">CLO2</td><td style="padding: 6px; border: 1px solid #ffd6ad; text-align: center;">1</td><td style="padding: 6px; border: 1px solid #ffd6ad;">Phân tích số liệu và bình luận, rút được bài học / đề xuất cải tiến cụ thể</td></tr>
+                    <tr><td style="padding: 6px; border: 1px solid #ffd6ad;">3.1. Tuân thủ Checklist văn hóa và đạo đức nghề (xin phép, bản quyền nhạc, tôn trọng di sản)</td><td style="padding: 6px; border: 1px solid #ffd6ad; text-align: center;">CLO3</td><td style="padding: 6px; border: 1px solid #ffd6ad; text-align: center;">1,5</td><td style="padding: 6px; border: 1px solid #ffd6ad;">Đạt đủ checklist, có minh chứng xin phép / xử lý tốt tình huống phát sinh</td></tr>
+                    <tr><td style="padding: 6px; border: 1px solid #ffd6ad;">3.2. Thông điệp tôn vinh bản sắc; phản hồi bình luận văn minh</td><td style="padding: 6px; border: 1px solid #ffd6ad; text-align: center;">CLO3</td><td style="padding: 6px; border: 1px solid #ffd6ad; text-align: center;">1</td><td style="padding: 6px; border: 1px solid #ffd6ad;">Thông điệp tích cực, phản hồi lịch sự / lan tỏa niềm tự hào, ứng xử mẫu mực với bình luận trái chiều</td></tr>
+                    <tr><td style="padding: 6px; border: 1px solid #ffd6ad;">3.3. Rút kinh nghiệm cá nhân 1 trang (vấn đề – giải pháp) <em>(cá nhân)</em></td><td style="padding: 6px; border: 1px solid #ffd6ad; text-align: center;">CLO3</td><td style="padding: 6px; border: 1px solid #ffd6ad; text-align: center;">0,5</td><td style="padding: 6px; border: 1px solid #ffd6ad;">Nêu được thay đổi nhận thức / nêu được cam kết cụ thể khi đăng bài</td></tr>
+                </tbody>
+            </table>
+            <p style="margin-bottom: 0;"><strong>⚠️ Lưu ý:</strong> Nếu <strong>vi phạm nghiêm trọng tiêu chí 3.1</strong> (xúc phạm di sản, quay khi không được phép) thì tiêu chí 2.1 và 2.2 tối đa chỉ đạt mức Đạt yêu cầu (0,6), dù video hay đến đâu.</p>
+        </div>
+
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.4. Tài liệu đánh giá</h3>
+            <a href="rubric/Rubric-112317.xlsx" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
+                <span style="color: #fd7e14; font-weight: bold;">📊 Rubric 3 thành phần (Excel)</span><br>
+                <span style="color: #6c757d; font-size: 13px;">23 tiêu chí: mô tả 4 mức, gợi ý chấm, minh chứng; bảng điểm có công thức cho A1, A2, A3, điểm học phần và mức đạt CLO.</span>
+            </a>
+            <a href="HK1-112317-C%C6%A1%20s%E1%BB%9F%20V%C4%83n%20h%C3%B3a%20Vi%E1%BB%87t%20Nam.docx" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
+                <span style="color: #fd7e14; font-weight: bold;">📑 Đề cương học phần 112317</span><br>
+                <span style="color: #6c757d; font-size: 13px;">Mục Đánh giá học phần: A1 Quá trình 30%, A2 Giữa kỳ 30%, A3 Cuối kỳ 40% và CLO tương ứng.</span>
+            </a>
+        </div>
+    </div>
+</details>
+
+<details style="border: 1px solid #28a745; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #eafaf1; color: #28a745; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>💡 3. Hoạt động &amp; Cổng nộp bài</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <div style="max-width: 760px; padding: 10px 12px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <p style="margin: 0 0 6px 0;"><strong style="color: #28a745;">🎨 Nộp Portfolio giữa kỳ (A2)</strong></p>
+            <p style="margin: 0 0 8px 0; color: #495057;">Nhóm nộp slide hoặc link ePortfolio trước buổi trình bày (nhóm 1–6 trước buổi 02, nhóm 7–12 trước buổi 03), kèm prompt AI đã dùng.</p>
+            <a href="{{LINK_NOP_PORTFOLIO}}" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 6px 12px; background-color: #eafaf1; color: #28a745; border: 1px solid #28a745; border-radius: 6px; text-decoration: none; font-weight: bold;">Nộp Portfolio</a>
+        </div>
+        <div style="max-width: 760px; padding: 10px 12px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <p style="margin: 0 0 6px 0;"><strong style="color: #28a745;">🎬 Nộp dự án cuối kỳ (A3)</strong></p>
+            <p style="margin: 0 0 8px 0; color: #495057;">Trưởng nhóm nộp báo cáo (pdf), slide, video (mp4), link bài đăng, Checklist văn hóa đã đánh dấu và minh chứng xin phép quay.</p>
+            <a href="{{LINK_NOP_DU_AN_CUOI_KY}}" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 6px 12px; background-color: #eafaf1; color: #28a745; border: 1px solid #28a745; border-radius: 6px; text-decoration: none; font-weight: bold;">Nộp dự án</a>
+        </div>
+        <div style="max-width: 760px; padding: 10px 12px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <p style="margin: 0 0 6px 0;"><strong style="color: #28a745;">👤 Nộp phản tư cá nhân</strong></p>
+            <p style="margin: 0 0 8px 0; color: #495057;">Mỗi sinh viên nộp riêng 1 trang theo cấu trúc vấn đề – giải pháp: thay đổi nhận thức về văn hóa và cam kết cụ thể khi đăng nội dung văn hóa từ nay.</p>
+            <a href="{{LINK_NOP_PHAN_TU}}" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 6px 12px; background-color: #eafaf1; color: #28a745; border: 1px solid #28a745; border-radius: 6px; text-decoration: none; font-weight: bold;">Nộp phản tư</a>
+        </div>
+        <div style="max-width: 760px; padding: 10px 12px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <p style="margin: 0 0 6px 0;"><strong style="color: #28a745;">✅ Tự kiểm tra trước khi nộp</strong></p>
+            <p style="margin: 0; color: #495057;">Đối chiếu sản phẩm với từng dòng checklist ở mục 2. Tiêu chí nào chưa có minh chứng (nguồn, giấy xin phép, ảnh chụp chỉ số) thì bổ sung trước hạn.</p>
+        </div>
+    </div>
+</details>
+
+<details style="border: 1px solid #6f42c1; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #f3e5f5; color: #6f42c1; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>🆘 4. Quy định &amp; Liêm chính học thuật</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <p><strong>Sử dụng AI:</strong> Được dùng AI tạo ảnh và trợ lý AI. Mọi sản phẩm nộp kèm các prompt đã dùng; thông tin do AI đưa ra phải được kiểm chứng bằng giáo trình hoặc nguồn uy tín.</p>
+        <p><strong>Điểm cá nhân:</strong> A1 chấm riêng từng sinh viên (riêng kịch bản quay chấm theo nhóm). Ở A3, tiêu chí 1.3 (vấn đáp) và 3.3 (phản tư) chấm cá nhân; thành viên không tham gia trình bày có thể bị chấm riêng ở các tiêu chí nhóm.</p>
+        <p><strong>Bản quyền và quyền hình ảnh:</strong> Chỉ dùng nhạc có giấy phép hoặc nhạc miễn phí bản quyền, ghi nguồn; có minh chứng xin phép khi quay người, nghệ nhân và tại bảo tàng/di tích.</p>
+        <p style="margin-bottom: 0;"><strong>Hạn nộp và thắc mắc về điểm:</strong> Theo thông báo của giảng viên trên LMS.</p>
+    </div>
+</details>
+
+
+    </div>
+
+    <!-- Bottom Navigation between lessons -->
+    <div class="flex items-center justify-between gap-4 mt-8 no-print text-xs font-bold">
+      <a href="bai-06.html" class="px-4 py-2.5 bg-white border border-slate-200 hover:border-lhu-blue text-slate-700 hover:text-lhu-blue rounded-xl shadow-sm transition-all flex items-center gap-2"><i class="fa-solid fa-chevron-left"></i> Bài trước</a>
+      
+      <a href="index.html" class="px-4 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-800 rounded-xl transition-all flex items-center gap-2">
+        <i class="fa-solid fa-table-cells-large"></i> Danh mục bài học
+      </a>
+
+      <div></div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-slate-200 py-6 text-xs text-slate-500 mt-12 no-print">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <strong>Khoa Truyền thông đa phương tiện - Trường Đại học Lạc Hồng</strong>
+      </div>
+      <div class="text-right">
+        
+        <span>Hệ thống LMS: <a href="https://learn.lhu.edu.vn" target="_blank" class="text-lhu-blue font-bold">learn.lhu.edu.vn</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleAllDetails(open) {
+      document.querySelectorAll("details").forEach(d => {
+        if (open) {
+          d.setAttribute("open", "");
+        } else {
+          d.removeAttribute("open");
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>

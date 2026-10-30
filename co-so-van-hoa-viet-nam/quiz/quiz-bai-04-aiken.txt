@@ -1,0 +1,69 @@
+Học phần chia chất liệu văn hóa dùng trong sáng tạo thành những nhóm nào?
+A. Miền Bắc; miền Trung; miền Nam; Tây Nguyên
+B. Hình ảnh; âm thanh; chữ viết; màu sắc
+C. Cổ đại; trung đại; cận đại; hiện đại
+D. Biểu tượng; tín ngưỡng; phong tục – lễ hội; nghệ thuật
+ANSWER: D
+
+Nghệ thuật "thanh sắc" gồm những loại hình nào?
+A. Ca dao, tục ngữ, thành ngữ
+B. Kiến trúc, điêu khắc, gốm
+C. Dân ca, chèo, tuồng, cải lương
+D. Tranh dân gian, tượng nhà mồ
+ANSWER: C
+
+"Gợi hơn tả, ước lệ: một mái chèo là cả dòng sông" thể hiện đặc trưng nào của nghệ thuật truyền thống?
+A. Tính tổng hợp
+B. Tính tự trị
+C. Tính linh hoạt
+D. Tính biểu trưng
+ANSWER: D
+
+Theo học phần, điểm khác nhau cốt lõi giữa sáng tạo và xuyên tạc là gì?
+A. Sáng tạo dùng nhạc hiện đại, xuyên tạc dùng nhạc dân gian
+B. Sáng tạo đổi hình thức nhưng giữ hoặc làm rõ giá trị; xuyên tạc đổi hoặc đảo ngược giá trị, làm người xem hiểu sai
+C. Xuyên tạc luôn dùng AI
+D. Sáng tạo có lượt xem cao hơn
+ANSWER: B
+
+Tình huống nào vi phạm nguyên tắc "đúng ngữ cảnh"?
+A. Để nghệ nhân tự kể về nghề của mình
+B. Dùng đồ thờ, trang phục nghi lễ làm đạo cụ gây cười
+C. Ghi nguồn tư liệu trong caption
+D. Đối chiếu thông tin với hai nguồn
+ANSWER: B
+
+Vì sao Checklist văn hóa của lớp quan trọng với dự án cuối kỳ?
+A. Vì nó là chuẩn tự kiểm trước khi đăng và là căn cứ chấm tiêu chí 3.1 của A3
+B. Vì nó thay thế cho kịch bản
+C. Vì nó quyết định lượt xem của video
+D. Vì nó chỉ dùng cho giảng viên
+ANSWER: A
+
+Cấu trúc kịch bản video ngắn được học trong Bài 04 là gì?
+A. Mở bài – thân bài – kết bài – phụ lục
+B. Giới thiệu – logo – lời chào – cảm ơn
+C. Hook – câu chuyện – giá trị – kêu gọi
+D. Toàn cảnh – trung cảnh – cận cảnh – đặc tả
+ANSWER: C
+
+Phần "hook" của video ngắn nên được thiết kế thế nào?
+A. Mở bằng logo nhóm và lời chào dài
+B. Mở bằng toàn cảnh bảo tàng trong 10 giây
+C. Đưa toàn bộ thông tin lịch sử ngay đầu video
+D. Dùng chi tiết hoặc câu hỏi gây tò mò nhất trong vài giây đầu
+ANSWER: D
+
+Cột nào cần có trong danh sách cảnh quay (shot list) theo mẫu của học phần?
+A. Nội dung cảnh, cỡ cảnh, góc/chuyển động, thời lượng, âm thanh, cần xin phép
+B. Chỉ cần tên cảnh
+C. Số lượt xem dự kiến của từng cảnh
+D. Giá thuê thiết bị
+ANSWER: A
+
+Cách dùng AI tạo ảnh phù hợp trong giai đoạn viết kịch bản là gì?
+A. Phác thảo bố cục, không khí, màu sắc; lưu prompt và không thay hiện vật thật
+B. Tạo ảnh hiện vật thay cho cảnh quay thật
+C. Tạo ảnh nghệ nhân giả để phỏng vấn
+D. Không cần ghi chú khi dùng ảnh AI
+ANSWER: A

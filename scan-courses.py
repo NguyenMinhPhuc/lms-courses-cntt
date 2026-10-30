@@ -116,6 +116,7 @@ def parse_course_folder(folder_path: Path):
 
     icons = {
         "nhap-mon-nganh": "fa-solid fa-microchip",
+        "van-hoa": "fa-solid fa-landmark",
         "web": "fa-solid fa-globe",
         "data": "fa-solid fa-database",
         "ai": "fa-solid fa-brain",
