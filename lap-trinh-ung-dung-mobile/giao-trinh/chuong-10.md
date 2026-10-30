@@ -35,7 +35,7 @@ Unit test và component test nhiều, nhanh, rẻ; kiểm thử thủ công ít 
 
 ### 10.2.1. Cài đặt
 
-Theo hướng dẫn của Expo, dùng preset `jest-expo` (cấu hình sẵn Jest để chạy mã React Native):
+Theo hướng dẫn của Expo, dùng preset `jest-expo` (cấu hình sẵn Jest để chạy mã React Native) [1]:
 
 ```bash
 npx expo install jest-expo jest @types/jest -- --save-dev
@@ -60,7 +60,7 @@ Jest tìm file trong thư mục `__tests__/` hoặc có tên kết thúc bằng 
 
 ### 10.2.2. Mock thư viện native
 
-Môi trường Jest chạy trên Node.js, không có mã native của Android. Thư viện cần mã native như AsyncStorage (giỏ hàng lưu trữ, Chương 7) phải được thay bằng bản giả. AsyncStorage cung cấp sẵn mock:
+Môi trường Jest chạy trên Node.js, không có mã native của Android. Thư viện cần mã native như AsyncStorage (giỏ hàng lưu trữ, Chương 7) phải được thay bằng bản giả. AsyncStorage cung cấp sẵn mock [11]:
 
 `jest.setup.ts`:
 
@@ -85,7 +85,7 @@ test('mô tả hành vi mong đợi', () => {
 });
 ```
 
-Một số hàm khẳng định thường dùng:
+Một số hàm khẳng định thường dùng [3]:
 
 | Hàm | Ý nghĩa |
 |---|---|
@@ -174,7 +174,7 @@ Kết quả định dạng số phụ thuộc dữ liệu ngôn ngữ của môi
 
 ### 10.4.1. Nguyên tắc của React Native Testing Library
 
-React Native Testing Library vẽ component trong môi trường test và cho phép tìm phần tử, thao tác **như người dùng**:
+React Native Testing Library vẽ component trong môi trường test và cho phép tìm phần tử, thao tác **như người dùng** [2]:
 
 - Tìm theo chữ hiển thị (`getByText`), theo nhãn accessibility (`getByLabelText`), theo vai trò (`getByRole`).
 - Thao tác bằng `fireEvent.press`, `fireEvent.changeText`.
@@ -204,11 +204,11 @@ test('bấm "Thêm vào giỏ" thì gọi onAdd đúng một lần', () => {
 });
 ```
 
-`jest.fn()` tạo **hàm giả** ghi lại số lần và tham số được gọi. Test không cần biết `onAdd` thật làm gì, chỉ cần biết component gọi nó đúng lúc.
+`jest.fn()` tạo **hàm giả** ghi lại số lần và tham số được gọi. Test không cần biết `onAdd` thật làm gì, chỉ cần biết component gọi nó đúng lúc [4].
 
 ### 10.4.3. Mock API cho màn hình có gọi mạng
 
-Màn hình Trang chủ gọi API qua `lib/api` (Chương 5) và TanStack Query. Test không được gọi server thật: chậm, phụ thuộc mạng, dữ liệu thay đổi. Thay module `api` bằng bản giả:
+Màn hình Trang chủ gọi API qua `lib/api` (Chương 5) và TanStack Query. Test không được gọi server thật: chậm, phụ thuộc mạng, dữ liệu thay đổi. Thay module `api` bằng bản giả [4]:
 
 `app/__tests__/home.test.tsx`:
 
@@ -320,7 +320,7 @@ Khi một thành viên sửa thủ tục, chạy lại script trước khi tạo
 
 ### 10.6.1. Công cụ
 
-- **React Native DevTools:** trong cửa sổ `npx expo start`, nhấn `j` để mở. Có Console (log của ứng dụng), Sources (đặt breakpoint, chạy từng dòng), Components (cây component và props), Profiler (đo thời gian vẽ).
+- **React Native DevTools:** trong cửa sổ `npx expo start`, nhấn `j` để mở. Có Console (log của ứng dụng), Sources (đặt breakpoint, chạy từng dòng), Components (cây component và props), Profiler (đo thời gian vẽ) [5].
 - **Màn hình đỏ (RedBox) và vàng (LogBox):** màn hình đỏ là lỗi làm dừng ứng dụng; đọc thông báo lỗi và dòng đầu tiên của stack trace **thuộc mã của bạn**, bỏ qua các dòng trong `node_modules`. Cảnh báo vàng không làm dừng ứng dụng nhưng không nên bỏ qua.
 - **Log của backend:** cửa sổ chạy NestJS hiển thị request và exception; lỗi từ SQL Server kèm mã lỗi.
 - **Swagger:** gọi lại đúng request mà ứng dụng gửi để biết lỗi ở ứng dụng hay ở API.
@@ -374,7 +374,7 @@ Bug log là minh chứng cho phần kiểm thử trong báo cáo đồ án và c
 
 ### 10.7.1. Ứng dụng chậm vì đâu
 
-Mỗi lần state của một component đổi, React vẽ lại component đó **và toàn bộ component con**, kể cả khi props của con không đổi. Với màn hình Trang chủ có ô tìm kiếm và danh sách 200 món, mỗi ký tự gõ vào có thể làm 200 thẻ món vẽ lại. Trên máy mạnh không thấy, trên máy Android tầm trung thì gõ chữ bị giật.
+Mỗi lần state của một component đổi, React vẽ lại component đó **và toàn bộ component con**, kể cả khi props của con không đổi. Với màn hình Trang chủ có ô tìm kiếm và danh sách 200 món, mỗi ký tự gõ vào có thể làm 200 thẻ món vẽ lại. Trên máy mạnh không thấy, trên máy Android tầm trung thì gõ chữ bị giật [6].
 
 Các nguyên nhân phổ biến khác: ảnh quá lớn, danh sách không dùng `FlatList`, tính toán nặng trong mỗi lần vẽ, log quá nhiều.
 
@@ -399,7 +399,7 @@ export const ProductCard = React.memo(function ProductCard({ name, price, onAdd 
 });
 ```
 
-`React.memo` bỏ qua việc vẽ lại nếu props không đổi (so sánh nông từng prop). Nhưng nếu màn hình cha truyền `onAdd={() => add(item)}`, mỗi lần vẽ tạo ra **một hàm mới**, props luôn "đổi" và memo vô tác dụng. Giữ nguyên tham chiếu bằng `useCallback`:
+`React.memo` bỏ qua việc vẽ lại nếu props không đổi (so sánh nông từng prop). Nhưng nếu màn hình cha truyền `onAdd={() => add(item)}`, mỗi lần vẽ tạo ra **một hàm mới**, props luôn "đổi" và memo vô tác dụng. Giữ nguyên tham chiếu bằng `useCallback` [9], [10]:
 
 ```tsx
 const add = useCart((s) => s.add);
@@ -417,6 +417,8 @@ const renderItem = useCallback(
 Đừng bọc `memo` cho mọi component: so sánh props cũng tốn chi phí. Chỉ dùng cho component vẽ nhiều lần (thẻ trong danh sách) hoặc vẽ tốn kém, và chỉ sau khi Profiler cho thấy cần.
 
 ### 10.7.4. Tối ưu `FlatList`
+
+Tham khảo [7].
 
 | Thuộc tính | Tác dụng |
 |---|---|
@@ -438,7 +440,7 @@ const renderItem = useCallback(
 
 ## 10.8. Khả năng truy cập (accessibility)
 
-Ứng dụng tốt phải dùng được cho cả người khiếm thị, người lớn tuổi dùng cỡ chữ lớn, người dùng ngoài trời nắng. React Native cung cấp các thuộc tính accessibility ánh xạ sang TalkBack trên Android:
+Ứng dụng tốt phải dùng được cho cả người khiếm thị, người lớn tuổi dùng cỡ chữ lớn, người dùng ngoài trời nắng. React Native cung cấp các thuộc tính accessibility ánh xạ sang TalkBack trên Android [8]:
 
 ```tsx
 <Pressable
@@ -537,14 +539,24 @@ docs/
 
 ## Tài liệu tham khảo
 
-- Expo - Unit testing with Jest: https://docs.expo.dev/develop/unit-testing/
-- React Native Testing Library: https://callstack.github.io/react-native-testing-library/
-- Jest - Expect: https://jestjs.io/docs/expect
-- Jest - Mock functions: https://jestjs.io/docs/mock-functions
-- React Native - Debugging: https://reactnative.dev/docs/debugging
-- React Native - Performance overview: https://reactnative.dev/docs/performance
-- React Native - Optimizing FlatList configuration: https://reactnative.dev/docs/optimizing-flatlist-configuration
-- React Native - Accessibility: https://reactnative.dev/docs/accessibility
-- React - memo: https://react.dev/reference/react/memo
-- React - useCallback: https://react.dev/reference/react/useCallback
-- AsyncStorage - Jest integration: https://react-native-async-storage.github.io/async-storage/docs/advanced/jest
+[1] Expo, “Unit testing with Jest,” *Expo Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://docs.expo.dev/develop/unit-testing/
+
+[2] Callstack, “Introduction,” *React Native Testing Library Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://callstack.github.io/react-native-testing-library/
+
+[3] OpenJS Foundation, “Expect,” *Jest Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://jestjs.io/docs/expect
+
+[4] OpenJS Foundation, “Mock Functions,” *Jest Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://jestjs.io/docs/mock-functions
+
+[5] Meta Platforms, Inc., “Debugging Basics,” *React Native Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://reactnative.dev/docs/debugging
+
+[6] Meta Platforms, Inc., “Performance Overview,” *React Native Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://reactnative.dev/docs/performance
+
+[7] Meta Platforms, Inc., “Optimizing FlatList Configuration,” *React Native Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://reactnative.dev/docs/optimizing-flatlist-configuration
+
+[8] Meta Platforms, Inc., “Accessibility,” *React Native Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://reactnative.dev/docs/accessibility
+
+[9] Meta Platforms, Inc., “memo,” *React Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://react.dev/reference/react/memo
+
+[10] Meta Platforms, Inc., “useCallback,” *React Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://react.dev/reference/react/useCallback
+
+[11] React Native Community, “Jest integration,” *Async Storage Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://react-native-async-storage.github.io/async-storage/docs/advanced/jest

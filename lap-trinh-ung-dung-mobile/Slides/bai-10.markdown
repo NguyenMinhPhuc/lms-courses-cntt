@@ -196,3 +196,13 @@ const handleAdd = useCallback((item: Product) => add(item), [add]);
 - Buổi sau: triển khai lên server Khoa và build APK
 **Ghi chú giảng viên**:
 - Nhắc nhóm đăng ký tài khoản Expo và liên hệ bộ phận hỗ trợ lấy thông tin server trước bài 11.
+
+---
+
+## Slide 19: Tài liệu của buổi
+**Đọc thêm**:
+- Giáo trình nội bộ, Chương 10: Kiểm thử, gỡ lỗi và tối ưu hiệu năng
+- Bài tập hướng dẫn theo dự án LHU Food (cuối Chương 10)
+- SRS LHU Food: mục 4.7 (tiêu chí chấp nhận), 9 (NFR)
+**Ghi chú giảng viên**:
+- Các file Word/Excel nằm ở mục Tài liệu của bài trên LMS và trang học phần (giao-trinh/, srs/, rubric/).

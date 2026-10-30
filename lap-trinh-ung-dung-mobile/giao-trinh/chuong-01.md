@@ -24,9 +24,11 @@ Một ứng dụng di động có thể được xây dựng theo ba hướng ch
 
 ## 1.2. React Native hoạt động như thế nào
 
+Tham khảo [1].
+
 ### 1.2.1. Từ component đến view native
 
-Trong React web, `<div>` cuối cùng trở thành một phần tử DOM trong trình duyệt. Trong React Native, bạn viết `<View>` và `<Text>`; React Native tạo ra **view native** tương ứng của hệ điều hành. Trên Android, `<Text>` là một `TextView` thật, `<View>` là một `ViewGroup`. Ứng dụng không phải một trang web chạy trong khung nhúng.
+Trong React web, `<div>` cuối cùng trở thành một phần tử DOM trong trình duyệt. Trong React Native, bạn viết `<View>` và `<Text>`; React Native tạo ra **view native** tương ứng của hệ điều hành. Trên Android, `<Text>` là một `TextView` thật, `<View>` là một `ViewGroup`. Ứng dụng không phải một trang web chạy trong khung nhúng [2].
 
 Mã JavaScript/TypeScript của bạn chạy trên một **JavaScript engine** (mặc định là Hermes, được tối ưu cho React Native). Engine này giao tiếp với phần native để tạo, cập nhật và xóa view khi state thay đổi.
 
@@ -42,7 +44,7 @@ Các phiên bản React Native hiện nay dùng **New Architecture**, gồm:
 
 ### 1.2.3. Expo
 
-**Expo** là bộ công cụ và thư viện xây dựng trên React Native. Tài liệu chính thức của React Native khuyến nghị dùng một framework như Expo khi bắt đầu dự án mới. Expo cung cấp:
+**Expo** là bộ công cụ và thư viện xây dựng trên React Native. Tài liệu chính thức của React Native khuyến nghị dùng một framework như Expo khi bắt đầu dự án mới. Expo cung cấp [3], [4]:
 
 - **Expo SDK:** các thư viện truy cập thiết bị (camera, vị trí, thông báo, lưu trữ bảo mật…) đã được kiểm tra tương thích với nhau. Mỗi phiên bản SDK đi kèm một phiên bản React Native cụ thể.
 - **Expo Go:** ứng dụng cài trên điện thoại, chạy thử dự án ngay bằng cách quét mã QR, không cần build.
@@ -72,7 +74,7 @@ cd lhu-food
 npx expo start
 ```
 
-Lệnh `npx expo start` khởi động **Metro** (bộ đóng gói JavaScript) và hiển thị mã QR. Mở Expo Go trên điện thoại, quét mã QR; điện thoại và máy tính phải cùng mạng Wi-Fi. Trong cửa sổ terminal:
+Lệnh `npx expo start` khởi động **Metro** (bộ đóng gói JavaScript) và hiển thị mã QR. Mở Expo Go trên điện thoại, quét mã QR; điện thoại và máy tính phải cùng mạng Wi-Fi. Trong cửa sổ terminal [3]:
 
 - Nhấn `a` để mở trên Android emulator.
 - Nhấn `r` để tải lại ứng dụng.
@@ -98,6 +100,8 @@ Khi bạn lưu một file, **Fast Refresh** cập nhật ứng dụng trên đi�
 ## 1.4. Từ React web sang React Native
 
 ### 1.4.1. Bảng tương ứng
+
+Tham khảo [2].
 
 | React web | React Native | Khác biệt cần nhớ |
 |---|---|---|
@@ -283,7 +287,10 @@ Tiền tố `@/` là bí danh đường dẫn tới thư mục gốc, được c
 
 ## Tài liệu tham khảo
 
-- React Native - Introduction: https://reactnative.dev/docs/getting-started
-- React Native - Core Components and Native Components: https://reactnative.dev/docs/intro-react-native-components
-- Expo - Get started: https://docs.expo.dev/get-started/introduction/
-- Expo - Expo Go và development build: https://docs.expo.dev/develop/development-builds/introduction/
+[1] Meta Platforms, Inc., “Introduction,” *React Native Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://reactnative.dev/docs/getting-started
+
+[2] Meta Platforms, Inc., “Core Components and Native Components,” *React Native Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://reactnative.dev/docs/intro-react-native-components
+
+[3] Expo, “Introduction to Expo,” *Expo Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://docs.expo.dev/get-started/introduction/
+
+[4] Expo, “Introduction to development builds,” *Expo Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://docs.expo.dev/develop/development-builds/introduction/

@@ -1,0 +1,349 @@
+{
+  "course": {
+    "code": "111114",
+    "name": "Lập trình ứng dụng di động",
+    "assessment": "Đánh giá cuối kỳ: đồ án nhóm, báo cáo và Demo Day (buổi 12)",
+    "scale": 10,
+    "studentThreshold": 0.5,
+    "classThreshold": 0.75,
+    "note": "Sinh viên đạt một CLO khi được ít nhất 50% điểm tối đa của CLO đó. CLO đạt ở cấp lớp khi ít nhất 75% số sinh viên đạt."
+  },
+  "levels": [
+    { "code": "A", "name": "Xuất sắc", "ratio": 1 },
+    { "code": "B", "name": "Tốt", "ratio": 0.75 },
+    { "code": "C", "name": "Đạt", "ratio": 0.5 },
+    { "code": "D", "name": "Chưa đạt", "ratio": 0.25 },
+    { "code": "0", "name": "Không có minh chứng", "ratio": 0 }
+  ],
+  "clos": [
+    {
+      "id": "CLO1",
+      "name": "Thiết kế các thành phần chức năng của ứng dụng di động đáp ứng các yêu cầu đặt ra",
+      "plo": "PLO2 / PI 2.4",
+      "max": 3,
+      "criteria": [
+        {
+          "id": "1.1", "name": "Sơ đồ chức năng và phạm vi", "scope": "group", "max": 0.4,
+          "levels": {
+            "A": "Sơ đồ phân rã đủ nhóm chức năng theo từng actor, khớp hoàn toàn với sản phẩm demo; phạm vi đã làm/chưa làm được nêu rõ kèm lý do.",
+            "B": "Sơ đồ đủ chức năng chính và khớp sản phẩm; thiếu vài chức năng phụ hoặc chưa tách theo actor.",
+            "C": "Có sơ đồ nhưng thiếu một nhóm chức năng hoặc lệch so với sản phẩm ở vài chỗ.",
+            "D": "Sơ đồ sơ sài, không phản ánh sản phẩm thật."
+          },
+          "guide": "Đặt sơ đồ cạnh ứng dụng đang chạy, đánh dấu từng chức năng có/không có trong sản phẩm. Chỉ chấm sự đầy đủ và khớp của sơ đồ, không chấm hình thức vẽ (thuộc 3.5).",
+          "evidence": "docs/so-do-chuc-nang (file nguồn + ảnh); chương Thiết kế chức năng trong báo cáo; slide Demo Day."
+        },
+        {
+          "id": "1.2", "name": "Luồng nghiệp vụ chính chạy end-to-end trên Android", "scope": "group", "max": 0.6,
+          "levels": {
+            "A": "Luồng chính (đăng nhập → chọn món → đặt → nhân viên xử lý → hoàn tất) chạy trơn tru trên APK, điện thoại thật, kết nối backend trên server Khoa; không lỗi trong demo.",
+            "B": "Luồng chính chạy đủ trên Android thật; có 1 lỗi nhỏ không chặn luồng hoặc phải thao tác lại một lần.",
+            "C": "Luồng chạy được nhưng phải dùng Expo Go/emulator hoặc backend trên máy cá nhân, hoặc thiếu một bước phụ.",
+            "D": "Luồng bị gián đoạn, có màn hình đỏ hoặc phải dùng dữ liệu giả."
+          },
+          "guide": "Yêu cầu nhóm chạy kịch bản demo trên APK. Chỉ chấm luồng nghiệp vụ chính; tính năng thiết bị, realtime, xác thực chấm ở tiêu chí riêng.",
+          "evidence": "Demo trực tiếp; file APK; video dự phòng; docs/acceptance-test.md."
+        },
+        {
+          "id": "1.3", "name": "Xác thực và phân quyền", "scope": "group", "max": 0.4,
+          "levels": {
+            "A": "Đăng ký, đăng nhập, giữ phiên (refresh token), đăng xuất hoạt động; API trả 403 cho sai vai trò; token lưu SecureStore; userId lấy từ token.",
+            "B": "Đủ đăng nhập/đăng xuất và phân quyền ở API; thiếu giữ phiên hoặc một kiểm tra phụ.",
+            "C": "Có đăng nhập nhưng phân quyền chỉ ẩn nút ở ứng dụng, API không kiểm tra vai trò.",
+            "D": "Xác thực không hoạt động hoặc lưu token/mật khẩu không an toàn (AsyncStorage, mật khẩu gốc)."
+          },
+          "guide": "Thử gọi một API nhân viên bằng token khách (Swagger) và đóng/mở lại ứng dụng để kiểm tra giữ phiên.",
+          "evidence": "Demo; mã stores/auth, AuthGuard/RolesGuard; Swagger."
+        },
+        {
+          "id": "1.4", "name": "Tích hợp tính năng thiết bị", "scope": "group", "max": 0.3,
+          "levels": {
+            "A": "Ít nhất hai tính năng thiết bị (camera/ảnh, vị trí/bản đồ…) hoạt động trên máy thật; xin quyền đúng lúc, xử lý khi bị từ chối.",
+            "B": "Một tính năng thiết bị hoạt động tốt, xin quyền đúng lúc.",
+            "C": "Có tính năng thiết bị nhưng xin quyền ngay khi mở ứng dụng hoặc lỗi khi bị từ chối quyền.",
+            "D": "Tính năng thiết bị không chạy được trên máy thật."
+          },
+          "guide": "Thử từ chối quyền một lần để xem ứng dụng có xử lý không.",
+          "evidence": "Demo trên điện thoại thật; khai báo quyền trong app.config."
+        },
+        {
+          "id": "1.5", "name": "Thông báo thời gian thực (Socket.IO)", "scope": "group", "max": 0.4,
+          "levels": {
+            "A": "Đổi trạng thái ở một máy, máy kia nhận thông báo trong vài giây; socket có xác thực; thông báo lưu SQL Server, mở lại ứng dụng vẫn thấy; tự kết nối lại khi mất mạng.",
+            "B": "Thông báo realtime hoạt động, có lưu lịch sử; thiếu xử lý kết nối lại hoặc mở đúng màn hình.",
+            "C": "Có realtime nhưng không lưu lịch sử hoặc socket không xác thực.",
+            "D": "Không có realtime hoặc chỉ dùng polling."
+          },
+          "guide": "Demo bằng hai thiết bị; tắt ứng dụng nhận, đổi trạng thái, mở lại để kiểm tra lịch sử.",
+          "evidence": "Demo hai thiết bị; mã gateway/hook realtime; bảng Notifications."
+        },
+        {
+          "id": "1.6", "name": "Tổ chức thành phần và điều hướng", "scope": "group", "max": 0.3,
+          "levels": {
+            "A": "Component tái sử dụng, theme dùng chung, điều hướng Expo Router đúng mô hình (tab/stack/route động), tách dữ liệu server (TanStack Query) và trạng thái cục bộ (Zustand).",
+            "B": "Cấu trúc rõ ràng, có component dùng chung; còn vài màn hình lặp mã hoặc trộn lẫn trạng thái.",
+            "C": "Chạy được nhưng mã dồn vào ít file lớn, màu/kích thước viết cứng nhiều nơi.",
+            "D": "Không có cấu trúc, sao chép mã giữa các màn hình."
+          },
+          "guide": "Mở repo, xem thư mục app/, components/, stores/, hooks/. Không chấm số lượng tính năng.",
+          "evidence": "Repo ứng dụng; AGENTS.md; cây thư mục trong báo cáo."
+        },
+        {
+          "id": "1.7", "name": "Xử lý lỗi và trạng thái dữ liệu", "scope": "group", "max": 0.3,
+          "levels": {
+            "A": "Mọi màn hình dữ liệu có đủ trạng thái đang tải, lỗi (có Thử lại), rỗng; thông báo lỗi từ API (400/409) hiển thị dễ hiểu; mất mạng không làm ứng dụng sập.",
+            "B": "Phần lớn màn hình xử lý đủ trạng thái; còn một màn hình thiếu.",
+            "C": "Chỉ có trạng thái đang tải; lỗi hiển thị thông báo kỹ thuật.",
+            "D": "Mất mạng hoặc lỗi API gây màn hình đỏ/treo."
+          },
+          "guide": "Bật chế độ máy bay khi đang dùng; thử đặt món đã hết để xem thông báo 409.",
+          "evidence": "Demo; mã màn hình danh sách."
+        },
+        {
+          "id": "1.8", "name": "Kiểm thử và chất lượng", "scope": "group", "max": 0.3,
+          "levels": {
+            "A": "Bộ test tự động cho logic chính chạy xanh; có kịch bản kiểm thử stored procedure; bug log và một cải tiến hiệu năng có số liệu trước/sau.",
+            "B": "Có test tự động và bug log; thiếu kiểm thử thủ tục hoặc số liệu hiệu năng.",
+            "C": "Chỉ có kiểm thử thủ công được ghi lại.",
+            "D": "Không có minh chứng kiểm thử nào ngoài demo."
+          },
+          "guide": "Yêu cầu chạy npm test tại chỗ hoặc xem ảnh kết quả có thời gian.",
+          "evidence": "Kết quả npm test; database/tests/; docs/bug-log.md; bảng số liệu hiệu năng."
+        }
+      ]
+    },
+    {
+      "id": "CLO2",
+      "name": "Thiết kế cơ sở dữ liệu đáp ứng cấu trúc dữ liệu phù hợp yêu cầu đặc tả",
+      "plo": "PLO2 / PI 2.5",
+      "max": 2,
+      "criteria": [
+        {
+          "id": "2.1", "name": "Mô hình bảng và chuẩn hóa", "scope": "group", "max": 0.4,
+          "levels": {
+            "A": "Đủ thực thể cho nghiệp vụ, kiểu dữ liệu đúng (NVARCHAR cho tiếng Việt, DECIMAL cho tiền, DATETIME2), không dư thừa dữ liệu; lưu giá tại thời điểm đặt.",
+            "B": "Mô hình hợp lý, có 1–2 điểm chưa tối ưu (kiểu dữ liệu chưa phù hợp, cột dư).",
+            "C": "Thiếu một thực thể cần thiết hoặc lặp dữ liệu gây khó cập nhật.",
+            "D": "Thiết kế sai cơ bản (gộp nhiều thực thể vào một bảng, lưu danh sách trong một cột)."
+          },
+          "guide": "Chỉ chấm cấu trúc bảng và kiểu dữ liệu; khóa, ràng buộc chấm ở 2.2, 2.3.",
+          "evidence": "database/01-*.sql; ERD; chương Thiết kế dữ liệu."
+        },
+        {
+          "id": "2.2", "name": "Khóa và quan hệ", "scope": "group", "max": 0.3,
+          "levels": {
+            "A": "Mọi bảng có khóa chính; đủ khóa ngoại; quan hệ n-n có bảng trung gian với khóa kép phù hợp.",
+            "B": "Đủ khóa chính và phần lớn khóa ngoại; thiếu một khóa ngoại.",
+            "C": "Thiếu nhiều khóa ngoại, quan hệ chỉ thể hiện bằng quy ước đặt tên.",
+            "D": "Thiếu khóa chính hoặc không có khóa ngoại."
+          },
+          "guide": "Truy vấn sys.foreign_keys trên CSDL thật để đếm khóa ngoại.",
+          "evidence": "CSDL trên server Khoa; script tạo bảng."
+        },
+        {
+          "id": "2.3", "name": "Ràng buộc toàn vẹn", "scope": "group", "max": 0.3,
+          "levels": {
+            "A": "Dùng đúng NOT NULL, UNIQUE, CHECK, DEFAULT cho quy tắc nghiệp vụ (tồn kho ≥ 0, trạng thái hợp lệ, email duy nhất), đặt tên ràng buộc theo quy ước.",
+            "B": "Có phần lớn ràng buộc cần thiết; thiếu 1–2 ràng buộc quan trọng.",
+            "C": "Chỉ có NOT NULL/khóa, quy tắc nghiệp vụ để ứng dụng tự kiểm tra.",
+            "D": "Không có ràng buộc ngoài khóa chính."
+          },
+          "guide": "Thử chèn dữ liệu vi phạm (tồn kho âm, trạng thái lạ) qua thủ tục hoặc SSMS.",
+          "evidence": "Script ràng buộc; kết quả thử vi phạm."
+        },
+        {
+          "id": "2.4", "name": "Bộ stored procedure và truy cập qua thủ tục", "scope": "group", "max": 0.4,
+          "levels": {
+            "A": "Thủ tục phục vụ toàn bộ nghiệp vụ, tham số có kiểu, đặt tên theo quy ước, bí danh camelCase; backend chỉ gọi thủ tục (không SQL trực tiếp, không ORM); API dùng login chỉ quyền EXECUTE.",
+            "B": "Thủ tục đủ cho nghiệp vụ chính, backend chỉ gọi thủ tục; còn vài thủ tục thiếu tham số hóa hoặc sai quy ước.",
+            "C": "Thiếu thủ tục cho một nhóm nghiệp vụ hoặc backend còn câu SQL trực tiếp ở vài chỗ.",
+            "D": "Backend chủ yếu dùng SQL trực tiếp hoặc ORM."
+          },
+          "guide": "Tìm trong repo backend các từ SELECT/INSERT/UPDATE ngoài thư mục database/.",
+          "evidence": "database/*procedures*.sql; repo backend; danh mục thủ tục trong báo cáo."
+        },
+        {
+          "id": "2.5", "name": "Giao dịch và xử lý lỗi trong thủ tục", "scope": "group", "max": 0.3,
+          "levels": {
+            "A": "Nghiệp vụ nhiều bảng dùng giao dịch, TRY/CATCH, ném lại lỗi giữ mã (THROW 50400/50404/50409); xử lý đặt đồng thời (khóa dòng), có kịch bản kiểm thử chứng minh.",
+            "B": "Có giao dịch và mã lỗi đúng; chưa xử lý tranh chấp đồng thời.",
+            "C": "Có kiểm tra lỗi nhưng không dùng giao dịch cho thao tác nhiều bảng.",
+            "D": "Không có giao dịch, lỗi giữa chừng để lại dữ liệu dở dang."
+          },
+          "guide": "Yêu cầu nhóm chạy kịch bản đặt suất cuối cùng từ hai phiên hoặc giải thích UPDLOCK.",
+          "evidence": "Thủ tục đặt hàng/hủy đơn; database/tests/."
+        },
+        {
+          "id": "2.6", "name": "Script tái tạo và triển khai trên server Khoa", "scope": "group", "max": 0.3,
+          "levels": {
+            "A": "Script đánh số theo phiên bản dựng lại CSDL trống không lỗi, chạy lại được, có dữ liệu mẫu; CSDL đang chạy trên server Khoa giống script.",
+            "B": "Script dựng lại được CSDL; thiếu dữ liệu mẫu hoặc chưa chạy lại được nhiều lần.",
+            "C": "Script phải sửa tay mới chạy được, hoặc CSDL chỉ có trên máy cá nhân.",
+            "D": "Không có script; CSDL tạo thủ công."
+          },
+          "guide": "Chạy script trên một CSDL trống (hoặc xem nhóm chạy) và so số bảng/thủ tục với server.",
+          "evidence": "Thư mục database/; README triển khai; CSDL trên server Khoa."
+        }
+      ]
+    },
+    {
+      "id": "CLO3",
+      "name": "Sử dụng được các công cụ đồ họa để trình bày các ý tưởng thiết kế dữ liệu",
+      "plo": "PLO3 / PI 3.4",
+      "max": 2,
+      "criteria": [
+        {
+          "id": "3.1", "name": "ERD: ký hiệu và nội dung", "scope": "group", "max": 0.5,
+          "levels": {
+            "A": "ERD vẽ bằng công cụ đồ họa, đúng một hệ ký hiệu, đủ thực thể, thuộc tính chính, khóa và lực lượng quan hệ.",
+            "B": "ERD đúng ký hiệu, đủ thực thể; thiếu lực lượng ở vài quan hệ hoặc thiếu thuộc tính chính.",
+            "C": "ERD lẫn lộn ký hiệu hoặc thiếu một thực thể.",
+            "D": "Chụp sơ đồ tự sinh không chỉnh sửa hoặc vẽ tay, thiếu nhiều thông tin."
+          },
+          "guide": "Chỉ chấm bản thân ERD; sự khớp với CSDL thật chấm ở 3.2.",
+          "evidence": "docs/ERD (file nguồn .drawio/dbdiagram + ảnh); báo cáo."
+        },
+        {
+          "id": "3.2", "name": "ERD khớp CSDL thật", "scope": "group", "max": 0.4,
+          "levels": {
+            "A": "Mọi bảng, khóa ngoại trên server khớp ERD và ngược lại.",
+            "B": "Lệch 1–2 chi tiết nhỏ (tên cột, một quan hệ phụ).",
+            "C": "ERD là bản cũ, lệch nhiều so với CSDL hiện tại.",
+            "D": "ERD không tương ứng với CSDL."
+          },
+          "guide": "Đối chiếu kết quả truy vấn sys.foreign_keys trên server với ERD trong báo cáo.",
+          "evidence": "ERD bản cuối; truy vấn sys.foreign_keys tại buổi bảo vệ."
+        },
+        {
+          "id": "3.3", "name": "Sơ đồ tuần tự luồng realtime", "scope": "group", "max": 0.4,
+          "levels": {
+            "A": "Thể hiện đủ các bên (ứng dụng nhân viên, API, thủ tục/SQL Server, gateway Socket.IO, room, ứng dụng khách), đúng thứ tự lưu trước gửi sau.",
+            "B": "Đủ các bên chính; thiếu một bước (ví dụ lưu thông báo) hoặc thứ tự chưa rõ.",
+            "C": "Chỉ thể hiện client ↔ server, thiếu CSDL hoặc room.",
+            "D": "Không đúng dạng sơ đồ tuần tự."
+          },
+          "guide": "So với cài đặt thật của nhóm (OrdersService, gateway).",
+          "evidence": "docs/so-do-tuan-tu; báo cáo; slide."
+        },
+        {
+          "id": "3.4", "name": "Sơ đồ luồng màn hình", "scope": "group", "max": 0.3,
+          "levels": {
+            "A": "Đủ màn hình của ứng dụng, mũi tên ghi thao tác, phân biệt tab/stack/modal, khớp cấu trúc Expo Router.",
+            "B": "Đủ màn hình chính; thiếu nhãn thao tác hoặc chưa phân biệt kiểu điều hướng.",
+            "C": "Thiếu nhiều màn hình hoặc không khớp ứng dụng.",
+            "D": "Không có hoặc chỉ là danh sách màn hình."
+          },
+          "guide": "Đối chiếu với cây thư mục app/.",
+          "evidence": "docs/luong-man-hinh; báo cáo."
+        },
+        {
+          "id": "3.5", "name": "Chất lượng trình bày đồ họa", "scope": "group", "max": 0.2,
+          "levels": {
+            "A": "Sơ đồ rõ nét, chữ đọc được trên máy chiếu, có chú thích, bố cục gọn; lưu cả file nguồn chỉnh sửa được.",
+            "B": "Rõ ràng, đọc được; thiếu chú thích hoặc file nguồn.",
+            "C": "Khó đọc (mờ, chữ nhỏ, chồng chéo) ở một số sơ đồ.",
+            "D": "Phần lớn sơ đồ không đọc được."
+          },
+          "guide": "Chấm trên slide chiếu ở Demo Day và bản báo cáo.",
+          "evidence": "Slide; báo cáo; thư mục docs/ (file nguồn)."
+        },
+        {
+          "id": "3.6", "name": "Giải thích thiết kế bằng sơ đồ khi bảo vệ", "scope": "individual", "max": 0.2,
+          "levels": {
+            "A": "Dùng sơ đồ giải thích quyết định thiết kế và lý do (ví dụ vì sao lưu UnitPrice), trả lời đúng câu hỏi về sơ đồ.",
+            "B": "Giải thích đúng nội dung sơ đồ; lý do thiết kế chưa rõ.",
+            "C": "Đọc lại sơ đồ, chưa giải thích được quyết định.",
+            "D": "Không giải thích được sơ đồ mình trình bày."
+          },
+          "guide": "Chấm cá nhân thành viên trình bày phần thiết kế; thành viên không trình bày sơ đồ thì hỏi một câu về ERD.",
+          "evidence": "Phần trình bày và hỏi đáp ở Demo Day."
+        }
+      ]
+    },
+    {
+      "id": "CLO4",
+      "name": "Thể hiện được vai trò cá nhân trong nhóm một cách rõ ràng",
+      "plo": "PLO5 / PI 5.2",
+      "max": 3,
+      "criteria": [
+        {
+          "id": "4.1", "name": "Đóng góp mã nguồn", "scope": "individual", "max": 0.6,
+          "levels": {
+            "A": "Commit/PR đều đặn suốt các sprint, khớp phần việc được phân công, nội dung có ý nghĩa.",
+            "B": "Đóng góp rõ ràng, khớp phân công; tập trung vào vài thời điểm.",
+            "C": "Đóng góp ít hoặc dồn vào cuối kỳ.",
+            "D": "Gần như không có commit/PR của cá nhân."
+          },
+          "guide": "Xem GitHub Insights/Contributors và lịch sử PR; không chấm theo số dòng mã. Đóng góp không phải mã (sơ đồ, báo cáo) được tính nếu có minh chứng trong repo.",
+          "evidence": "Lịch sử commit/PR; docs/phan-vai.md; docs/traceability.md."
+        },
+        {
+          "id": "4.2", "name": "Hoàn thành nhiệm vụ đúng hạn", "scope": "individual", "max": 0.4,
+          "levels": {
+            "A": "Hoàn thành mọi story được giao trong sprint cam kết.",
+            "B": "Hoàn thành phần lớn; một story trễ một sprint.",
+            "C": "Nhiều story trễ hoặc phải chuyển cho người khác.",
+            "D": "Không hoàn thành nhiệm vụ được giao."
+          },
+          "guide": "Đối chiếu board sprint (Jira/Trello/GitHub Projects) với người phụ trách từng story.",
+          "evidence": "Board sprint; biên bản Sprint Review; ma trận truy vết."
+        },
+        {
+          "id": "4.3", "name": "Báo cáo vai trò cá nhân", "scope": "individual", "max": 0.4,
+          "levels": {
+            "A": "Báo cáo đủ mục (vai trò, đóng góp có link PR, khó khăn đã giải quyết, sử dụng AI, tự đánh giá), khớp lịch sử repo.",
+            "B": "Đủ mục, có link minh chứng; phần tự đánh giá hoặc khó khăn còn chung chung.",
+            "C": "Thiếu mục hoặc thiếu link minh chứng.",
+            "D": "Không nộp hoặc nội dung không khớp đóng góp thật."
+          },
+          "guide": "Kiểm tra ngẫu nhiên 2 link PR trong báo cáo.",
+          "evidence": "Báo cáo vai trò cá nhân nộp trên Moodle."
+        },
+        {
+          "id": "4.4", "name": "Trình bày phần phụ trách ở Demo Day", "scope": "individual", "max": 0.4,
+          "levels": {
+            "A": "Tự trình bày phần mình phụ trách rõ ràng, đúng thời gian, demo trơn tru.",
+            "B": "Trình bày đúng nội dung; còn lúng túng hoặc quá giờ.",
+            "C": "Trình bày ngắn, phải để thành viên khác hỗ trợ.",
+            "D": "Không trình bày."
+          },
+          "guide": "Mỗi thành viên phải trình bày ít nhất một phần; ghi lại phần của từng người khi nhóm trình bày.",
+          "evidence": "Phần trình bày tại Demo Day."
+        },
+        {
+          "id": "4.5", "name": "Trả lời câu hỏi kỹ thuật (bảo vệ mã)", "scope": "individual", "max": 0.6,
+          "levels": {
+            "A": "Giải thích chính xác đoạn mã mình commit, nêu được hệ quả khi thay đổi và lý do lựa chọn.",
+            "B": "Giải thích đúng đoạn mã; còn lúng túng ở câu hỏi thay đổi giả định.",
+            "C": "Giải thích được một phần, phải gợi ý nhiều.",
+            "D": "Không giải thích được mã mình commit."
+          },
+          "guide": "Chọn ngẫu nhiên đoạn mã của chính sinh viên (git blame). Theo quy định học phần, phần mã không giải thích được thì không tính điểm: có thể hạ điểm tiêu chí nhóm liên quan cho riêng sinh viên đó.",
+          "evidence": "Hỏi đáp tại Demo Day; lịch sử commit."
+        },
+        {
+          "id": "4.6", "name": "Sử dụng AI minh bạch", "scope": "individual", "max": 0.3,
+          "levels": {
+            "A": "PROMPTS.md ghi prompt chính của mình kèm kết quả và phần đã sửa; chỉ ra được lỗi AI gây ra và cách phát hiện.",
+            "B": "Ghi prompt đầy đủ; chưa nêu phần sửa hoặc lỗi của AI.",
+            "C": "Ghi rất ít prompt so với lượng mã đóng góp.",
+            "D": "Không ghi prompt nào."
+          },
+          "guide": "Lọc PROMPTS.md theo tên sinh viên.",
+          "evidence": "PROMPTS.md; chương Sử dụng AI trong báo cáo."
+        },
+        {
+          "id": "4.7", "name": "Phối hợp nhóm và review chéo", "scope": "individual", "max": 0.3,
+          "levels": {
+            "A": "Review PR của thành viên khác có nhận xét cụ thể; tham gia đều các buổi Sprint Review/Retrospective.",
+            "B": "Có review PR; tham gia phần lớn các buổi.",
+            "C": "Review hình thức (chỉ approve) hoặc vắng nhiều buổi.",
+            "D": "Không tham gia review hay sự kiện nhóm."
+          },
+          "guide": "Xem tab Pull requests (Reviewed by) và biên bản sprint.",
+          "evidence": "Lịch sử review PR; biên bản Sprint Review/Retrospective."
+        }
+      ]
+    }
+  ]
+}

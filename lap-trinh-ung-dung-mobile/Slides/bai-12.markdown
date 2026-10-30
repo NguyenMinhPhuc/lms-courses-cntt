@@ -82,3 +82,16 @@
 - Mở rộng: đưa app lên Google Play, đưa đồ án vào portfolio
 **Ghi chú giảng viên**:
 - Mời 2–3 nhóm chia sẻ; ghi nhận ý kiến để điều chỉnh học phần kỳ sau.
+
+---
+
+## Slide 9: Tài liệu của buổi
+**Đọc thêm**:
+- Rubric chấm cuối kỳ: 27 tiêu chí theo 4 CLO (Excel)
+- Đề cương học phần: mục Đánh giá môn học
+- Giáo trình nội bộ, Chương 12: Báo cáo đồ án, Demo Day và tổng kết
+- Bài tập hướng dẫn theo dự án LHU Food (cuối Chương 12)
+- SRS LHU Food: mục 4 (user story), 7 (dữ liệu), 10.1 (truy vết)
+- Kế hoạch Agile & Product Backlog (Definition of Done, tiêu chí nghiệm thu)
+**Ghi chú giảng viên**:
+- Các file Word/Excel nằm ở mục Tài liệu của bài trên LMS và trang học phần (giao-trinh/, srs/, rubric/).

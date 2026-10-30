@@ -24,7 +24,7 @@ Trong mô hình request–response của REST API, **ứng dụng luôn là bên
 | WebSocket | Một kết nối hai chiều mở liên tục giữa ứng dụng và server | Gần như tức thời | Một kết nối cho mỗi thiết bị; phải tự xử lý kết nối lại, xác thực |
 | Socket.IO | Thư viện xây trên WebSocket | Gần như tức thời | Có sẵn sự kiện có tên, room, tự kết nối lại, gửi kèm thông tin xác thực |
 
-Học phần **bắt buộc** dùng Socket.IO cho thông báo realtime.
+Học phần **bắt buộc** dùng Socket.IO cho thông báo realtime [1].
 
 ### 9.1.3. Khái niệm của Socket.IO
 
@@ -34,7 +34,7 @@ Học phần **bắt buộc** dùng Socket.IO cho thông báo realtime.
 - **Handshake:** bước bắt tay khi kết nối, client gửi kèm dữ liệu trong `auth` (dùng để gửi JWT).
 - **Tự kết nối lại:** khi mất mạng rồi có mạng lại, client Socket.IO tự kết nối lại; server chạy lại bước xác thực và đưa vào room.
 
-Socket.IO có giao thức riêng trên WebSocket, nên client phải dùng thư viện `socket.io-client` (không dùng `WebSocket` thuần) và **cùng phiên bản chính** với server (hiện là v4).
+Socket.IO có giao thức riêng trên WebSocket, nên client phải dùng thư viện `socket.io-client` (không dùng `WebSocket` thuần) và **cùng phiên bản chính** với server (hiện là v4) [1], [2].
 
 ## 9.2. Thiết kế luồng thông báo
 
@@ -155,6 +155,8 @@ GO
 
 ### 9.4.1. Cài đặt
 
+Tham khảo [5].
+
 ```bash
 npm install @nestjs/websockets @nestjs/platform-socket.io socket.io
 ```
@@ -213,7 +215,7 @@ export class NotificationsGateway implements OnGatewayConnection {
 export class NotificationsModule {}
 ```
 
-`OrdersModule` import `NotificationsModule` để `OrdersService` dùng được Gateway. `JwtService` có sẵn nhờ `JwtModule` đăng ký `global: true` ở Chương 6.
+`OrdersModule` import `NotificationsModule` để `OrdersService` dùng được Gateway. `JwtService` có sẵn nhờ `JwtModule` đăng ký `global: true` ở Chương 6 [3], [5].
 
 ### 9.4.3. Gửi thông báo khi đổi trạng thái đơn
 
@@ -259,6 +261,8 @@ Endpoint `PATCH /orders/:id/status` có `@Roles(['staff'])` như Chương 6. End
 ## 9.5. Phía ứng dụng
 
 ### 9.5.1. Cài đặt
+
+Tham khảo [4].
 
 ```bash
 npx expo install socket.io-client expo-notifications
@@ -314,7 +318,7 @@ export function useRealtime() {
 }
 ```
 
-- **Vòng đời kết nối theo đăng nhập:** effect phụ thuộc `token`. Đăng xuất (`token = null`) thì ngắt; làm mới token (Chương 6) thì effect chạy lại và kết nối bằng token mới.
+- **Vòng đời kết nối theo đăng nhập:** effect phụ thuộc `token`. Đăng xuất (`token = null`) thì ngắt; làm mới token (Chương 6) thì effect chạy lại và kết nối bằng token mới [4].
 - **Sự kiện `connect`** xảy ra cả khi kết nối lần đầu và khi tự kết nối lại sau mất mạng; làm mới danh sách thông báo lúc này để không bỏ sót sự kiện trong thời gian mất kết nối.
 - `transports: ['websocket']` bỏ qua bước long-polling ban đầu, phù hợp với môi trường React Native.
 - Gọi `useRealtime()` một lần trong component gốc (`app/_layout.tsx`), bên trong `QueryClientProvider`.
@@ -351,7 +355,7 @@ function RealtimeBridge() {
 }
 ```
 
-- `setNotificationHandler` quyết định thông báo có hiện khi ứng dụng **đang mở** hay không; mặc định thông báo bị ẩn khi app ở foreground. Tên các tùy chọn có thể khác giữa các phiên bản Expo SDK; đối chiếu tài liệu của phiên bản đang dùng.
+- `setNotificationHandler` quyết định thông báo có hiện khi ứng dụng **đang mở** hay không; mặc định thông báo bị ẩn khi app ở foreground. Tên các tùy chọn có thể khác giữa các phiên bản Expo SDK; đối chiếu tài liệu của phiên bản đang dùng [6].
 - `trigger: null` hiện thông báo ngay. Đây là **thông báo cục bộ** (do chính ứng dụng tạo), chạy được trong Expo Go.
 - Trên Android, có thể tạo kênh thông báo riêng (`Notifications.setNotificationChannelAsync`) để người dùng chỉnh mức độ ưu tiên trong Cài đặt.
 - Xin quyền thông báo bằng `Notifications.requestPermissionsAsync()` ở thời điểm hợp lý, ví dụ sau khi người dùng đặt đơn đầu tiên.
@@ -379,7 +383,7 @@ Khi nhận sự kiện socket, `invalidateQueries({ queryKey: ['notifications'] 
 
 ## 9.7. Mở rộng: push notification khi ứng dụng đã tắt
 
-Socket chỉ nhận sự kiện khi ứng dụng đang mở hoặc vừa chạy nền. Để nhận thông báo cả khi ứng dụng đã tắt cần **push notification**:
+Socket chỉ nhận sự kiện khi ứng dụng đang mở hoặc vừa chạy nền. Để nhận thông báo cả khi ứng dụng đã tắt cần **push notification** [7]:
 
 1. Ứng dụng lấy **Expo Push Token** của thiết bị và gửi lên API để lưu vào bảng (qua thủ tục).
 2. Khi có sự kiện, backend gửi request tới dịch vụ push của Expo kèm token; dịch vụ chuyển tiếp qua Firebase Cloud Messaging (Android) hoặc APNs (iOS).
@@ -422,10 +426,16 @@ Cuối buổi 09, mỗi nhóm:
 
 ## Tài liệu tham khảo
 
-- Socket.IO - Introduction: https://socket.io/docs/v4/
-- Socket.IO - Rooms: https://socket.io/docs/v4/rooms/
-- Socket.IO - Sending credentials (auth): https://socket.io/docs/v4/middlewares/#sending-credentials
-- Socket.IO - React Native: https://socket.io/how-to/use-with-react-native
-- NestJS - WebSockets Gateways: https://docs.nestjs.com/websockets/gateways
-- Expo - Notifications: https://docs.expo.dev/versions/latest/sdk/notifications/
-- Expo - Push notifications overview: https://docs.expo.dev/push-notifications/overview/
+[1] Socket.IO, “Introduction,” *Socket.IO Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://socket.io/docs/v4/
+
+[2] Socket.IO, “Rooms,” *Socket.IO Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://socket.io/docs/v4/rooms/
+
+[3] Socket.IO, “Middlewares: Sending credentials,” *Socket.IO Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://socket.io/docs/v4/middlewares/#sending-credentials
+
+[4] Socket.IO, “How to use with React Native,” *Socket.IO Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://socket.io/how-to/use-with-react-native
+
+[5] NestJS, “Gateways,” *NestJS Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://docs.nestjs.com/websockets/gateways
+
+[6] Expo, “Notifications,” *Expo Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://docs.expo.dev/versions/latest/sdk/notifications/
+
+[7] Expo, “Expo push notifications: Overview,” *Expo Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://docs.expo.dev/push-notifications/overview/

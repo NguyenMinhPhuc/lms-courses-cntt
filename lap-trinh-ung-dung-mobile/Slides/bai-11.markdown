@@ -171,3 +171,13 @@ eas update --channel preview --message "Sửa lỗi tổng tiền"
 - Buổi sau: Demo Day
 **Ghi chú giảng viên**:
 - Nhắc hạn nộp đồ án, báo cáo cá nhân; yêu cầu nhóm tập demo trên đúng thiết bị.
+
+---
+
+## Slide 17: Tài liệu của buổi
+**Đọc thêm**:
+- Giáo trình nội bộ, Chương 11: Triển khai backend lên server Khoa, build và phát hành ứng dụng
+- Bài tập hướng dẫn theo dự án LHU Food (cuối Chương 11)
+- SRS LHU Food: mục 5.13 (M12), 7.3 (script CSDL), 9 (NFR)
+**Ghi chú giảng viên**:
+- Các file Word/Excel nằm ở mục Tài liệu của bài trên LMS và trang học phần (giao-trinh/, srs/, rubric/).

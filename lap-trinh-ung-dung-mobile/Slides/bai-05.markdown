@@ -193,3 +193,13 @@ const createOrder = useMutation({
 - localhost trên điện thoại là chính điện thoại
 - TanStack Query lo tải, lỗi, cache; bạn lo 4 trạng thái màn hình
 **Hoạt động**: Làm quiz Bài 05 ở cuối trang bài học
+
+---
+
+## Slide 17: Tài liệu của buổi
+**Đọc thêm**:
+- Giáo trình nội bộ, Chương 5: Thiết kế CSDL, stored procedure, API NestJS và kết nối ứng dụng
+- Bài tập hướng dẫn theo dự án LHU Food (cuối Chương 5)
+- SRS LHU Food: mục 5.3, 5.5, 7 (dữ liệu), 8 (danh mục API)
+**Ghi chú giảng viên**:
+- Các file Word/Excel nằm ở mục Tài liệu của bài trên LMS và trang học phần (giao-trinh/, srs/, rubric/).

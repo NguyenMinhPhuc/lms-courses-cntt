@@ -17,6 +17,7 @@ import argparse
 import importlib.util
 from datetime import date
 from pathlib import Path
+from urllib.parse import quote
 
 # Fix Windows console encoding for Vietnamese unicode characters
 if sys.stdout and hasattr(sys.stdout, 'reconfigure'):
@@ -98,6 +99,27 @@ def render_lesson(course_dir: Path, config: dict, lessons: list[str], number: st
                        practice=render_practice_quiz(course_dir, number))
 
 
+def local_links(course_dir: Path, config: dict) -> dict:
+    """Placeholder link → file có thật trong học phần, dùng cho trang web của portal.
+
+    File .md (bản dán Moodle) vẫn giữ placeholder để giảng viên thay bằng link Moodle; trang .html
+    sinh ra thì trỏ thẳng tới file trong repo:
+    - "documents" trong course.json: {"LINK_GIAO_TRINH": "giao-trinh/....docx", ...}
+    - {{LINK_SLIDE_BAI_XX}} → Slides/bai-XX.pptx nếu file tồn tại.
+    """
+    links = {}
+    for key, rel in (config.get("documents") or {}).items():
+        if (course_dir / rel).is_file():
+            links[key] = quote(rel)
+    for pptx in sorted((course_dir / "Slides").glob("bai-*.pptx")):
+        links[f"LINK_SLIDE_BAI_{pptx.stem[4:]}"] = f"Slides/{quote(pptx.name)}"
+    return links
+
+
+def resolve_local_links(content: str, links: dict) -> str:
+    return re.sub(r"\{\{([A-Z][A-Z0-9_]*)\}\}", lambda m: links.get(m.group(1), m.group(0)), content)
+
+
 def fill(template: str, values: dict) -> str:
     # Thay một lượt bằng regex để nội dung có chứa "{{...}}" (placeholder link) không bị thay nhầm
     return re.sub(r"\{\{([A-Z_]+)\}\}", lambda m: values.get(m.group(1), m.group(0)), template)
@@ -158,7 +180,7 @@ def render_page(course_dir: Path, config: dict, template: str, page_title: str, 
         "LOGO": resolve_logo(config),
         "PREV_NAV": nav_link(prev_href, '<i class="fa-solid fa-chevron-left"></i> Bài trước'),
         "NEXT_NAV": nav_link(next_href, 'Bài tiếp theo <i class="fa-solid fa-chevron-right"></i>'),
-        "CONTENT": md_content.rstrip("\n") + "\n",
+        "CONTENT": resolve_local_links(md_content, local_links(course_dir, config)).rstrip("\n") + "\n",
         "PRACTICE_QUIZ": practice,
     }
     return fill(template, values)

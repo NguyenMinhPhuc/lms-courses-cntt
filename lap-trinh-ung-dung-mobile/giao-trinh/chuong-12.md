@@ -14,7 +14,7 @@ Sau khi học xong chương này, bạn có thể:
 
 ### 12.1.1. Rubric theo CLO
 
-Điểm cuối kỳ (chiếm 40% điểm học phần) chấm trên thang 10, tách thành bốn phần theo CLO của học phần:
+Điểm cuối kỳ (chiếm 40% điểm học phần) chấm trên thang 10, tách thành bốn phần theo CLO của học phần [2]:
 
 | CLO | Nội dung | Điểm tối đa | Đạt khi | Minh chứng chính |
 |---|---|---|---|---|
@@ -92,11 +92,11 @@ Học phần cho phép và khuyến khích dùng Google Antigravity, GitHub Copi
 | ERD phiên bản cuối | Bảng, khóa chính, khóa ngoại, quan hệ, các cột quan trọng | Chương 3 (sơ bộ), Chương 5, Chương 7 |
 | Sơ đồ tuần tự realtime | Từ thao tác đổi trạng thái đến thông báo trên điện thoại | Chương 9 |
 
-Vẽ bằng công cụ đồ họa (draw.io, Figma, dbdiagram…); lưu cả file nguồn (`.drawio`, link Figma) và file ảnh trong `docs/` để chỉnh sửa được khi thiết kế thay đổi.
+Vẽ bằng công cụ đồ họa (draw.io, Figma, dbdiagram…); lưu cả file nguồn (`.drawio`, link Figma) và file ảnh trong `docs/` để chỉnh sửa được khi thiết kế thay đổi [6].
 
 ### 12.3.2. ERD phải khớp CSDL thật
 
-Lỗi phổ biến nhất khi chấm CLO2, CLO3: ERD vẽ ở Sprint 1, CSDL thay đổi qua bốn sprint nhưng ERD không được cập nhật. Cách kiểm tra:
+Lỗi phổ biến nhất khi chấm CLO2, CLO3: ERD vẽ ở Sprint 1, CSDL thay đổi qua bốn sprint nhưng ERD không được cập nhật. Cách kiểm tra [5]:
 
 ```sql
 -- Danh sách bảng và khóa ngoại đang có trên server
@@ -181,7 +181,7 @@ Giảng viên có thể yêu cầu mở SQL Server trên server Khoa để đố
 
 ### 12.5.2. Bảo vệ kỹ thuật
 
-Giảng viên mở repo, chọn một đoạn mã và hỏi **thành viên đã commit đoạn đó** (xem bằng `git log` hoặc chế độ Blame trên GitHub). Các dạng câu hỏi:
+Giảng viên mở repo, chọn một đoạn mã và hỏi **thành viên đã commit đoạn đó** (xem bằng `git log` hoặc chế độ Blame trên GitHub). Các dạng câu hỏi [3]:
 
 | Dạng câu hỏi | Ví dụ |
 |---|---|
@@ -240,7 +240,7 @@ Báo cáo phải khớp với lịch sử commit và PR. Đóng góp không có 
 | Slide Demo Day | Kèm video demo dự phòng |
 | Báo cáo vai trò cá nhân | Mỗi thành viên nộp riêng |
 
-Trưởng nhóm nộp sản phẩm chung; mỗi thành viên nộp báo cáo cá nhân, theo hạn và cổng nộp trên Moodle. Sau hạn nộp, nhóm không sửa nhánh chính của repo cho đến khi có điểm, để giảng viên chấm đúng phiên bản đã nộp (gắn tag, ví dụ `v1.0-final`).
+Trưởng nhóm nộp sản phẩm chung; mỗi thành viên nộp báo cáo cá nhân, theo hạn và cổng nộp trên Moodle. Sau hạn nộp, nhóm không sửa nhánh chính của repo cho đến khi có điểm, để giảng viên chấm đúng phiên bản đã nộp (gắn tag, ví dụ `v1.0-final`) [4].
 
 ## 12.8. Review chéo
 
@@ -258,7 +258,7 @@ Nguyên tắc nhận xét:
 
 ### 12.9.1. Những gì đã xây dựng
 
-Qua bốn sprint, mỗi nhóm đã đi qua toàn bộ vòng đời của một ứng dụng di động:
+Qua bốn sprint, mỗi nhóm đã đi qua toàn bộ vòng đời của một ứng dụng di động [1]:
 
 | Sprint | Kết quả |
 |---|---|
@@ -314,9 +314,14 @@ Câu hỏi thảo luận cuối học phần:
 
 ## Tài liệu tham khảo
 
-- Các chương 1–11 của giáo trình này.
-- Trang Đánh giá học phần trên Moodle: rubric, sản phẩm nộp, quy định liêm chính học thuật.
-- GitHub Docs - Viewing a file's history (blame): https://docs.github.com/repositories/working-with-files/using-files/viewing-and-understanding-files
-- GitHub Docs - Managing releases in a repository: https://docs.github.com/repositories/releasing-projects-on-github/managing-releases-in-a-repository
-- Microsoft - sys.foreign_keys: https://learn.microsoft.com/sql/relational-databases/system-catalog-views/sys-foreign-keys-transact-sql
-- draw.io documentation: https://www.drawio.com/doc/
+[1] Khoa Công nghệ Thông tin, Trường Đại học Lạc Hồng, *Giáo trình Lập trình ứng dụng di động*, Bản thảo lưu hành nội bộ. Đồng Nai, Việt Nam, 2026.
+
+[2] Khoa Công nghệ Thông tin, Trường Đại học Lạc Hồng, “Đánh giá học phần Lập trình ứng dụng di động (111114),” Hệ thống học tập trực tuyến LHU (Moodle), 2026.
+
+[3] GitHub, Inc., “Viewing and understanding files,” *GitHub Docs*. Accessed: Oct. 30, 2026. [Online]. Available: https://docs.github.com/repositories/working-with-files/using-files/viewing-and-understanding-files
+
+[4] GitHub, Inc., “Managing releases in a repository,” *GitHub Docs*. Accessed: Oct. 30, 2026. [Online]. Available: https://docs.github.com/repositories/releasing-projects-on-github/managing-releases-in-a-repository
+
+[5] Microsoft, “sys.foreign_keys (Transact-SQL),” *Microsoft Learn*. Accessed: Oct. 30, 2026. [Online]. Available: https://learn.microsoft.com/sql/relational-databases/system-catalog-views/sys-foreign-keys-transact-sql
+
+[6] JGraph Ltd., “draw.io documentation,” *draw.io Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://www.drawio.com/doc/
