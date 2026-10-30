@@ -173,3 +173,14 @@ GRANT EXECUTE ON SCHEMA::dbo TO lhufood_api;
 - Kiểm tra quyền ở API, không chỉ ẩn nút ở app
 - Bí mật không bao giờ nằm trong ứng dụng
 **Hoạt động**: Làm quiz Bài 06 ở cuối trang bài học
+
+---
+
+## Slide 16: Tài liệu của buổi
+**Đọc thêm**:
+- Giáo trình nội bộ, Chương 6: Xác thực và bảo mật ứng dụng
+- Bài tập hướng dẫn theo dự án LHU Food (cuối Chương 6)
+- SRS LHU Food: mục 5.2 (F01.1–F01.5), 4.7, BR-01…BR-06
+- Kế hoạch Agile & Product Backlog (Definition of Done, tiêu chí nghiệm thu)
+**Ghi chú giảng viên**:
+- Các file Word/Excel nằm ở mục Tài liệu của bài trên LMS và trang học phần (giao-trinh/, srs/, rubric/).

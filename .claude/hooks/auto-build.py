@@ -1,6 +1,6 @@
 """
-PostToolUse hook: sau khi Claude sửa bai-XX.md hoặc quiz/quiz-bai-XX-aiken.txt,
-tự chạy build-lessons.py / build-quiz.py cho đúng học phần đó.
+PostToolUse hook: sau khi Claude sửa bai-XX.md, quiz/quiz-bai-XX-aiken.txt, Slides/bai-XX.markdown hoặc rubric/rubric.json,
+tự chạy build-lessons.py / build-quiz.py / build-slides.py / build-rubric.py cho đúng học phần đó.
 """
 import re
 import sys
@@ -12,6 +12,7 @@ ROOT_DIR = Path(__file__).resolve().parents[2]
 LESSON_RE = re.compile(r"^([^/]+)/(bai-\d{2}|thong-tin-hoc-phan|danh-gia-hoc-phan)\.md$")
 QUIZ_RE = re.compile(r"^([^/]+)/quiz/quiz-bai-\d{2}-aiken\.txt$")
 SLIDES_RE = re.compile(r"^([^/]+)/Slides/bai-(\d{2})\.markdown$")
+RUBRIC_RE = re.compile(r"^([^/]+)/rubric/rubric\.json$")
 
 
 def main():
@@ -32,6 +33,10 @@ def main():
         commands = [(python, ["build-quiz.py", m.group(1)]), (python, ["build-lessons.py", m.group(1)])]
     elif m := SLIDES_RE.match(rel):
         commands = [(pptx_python, ["build-slides.py", m.group(1), m.group(2)])]
+    elif m := RUBRIC_RE.match(rel):
+        # rubric.json là nguồn của cả file Excel và trang cham-diem.html
+        xlsx_python = ["uv", "run", "--no-project", "--with", "openpyxl", "python"]
+        commands = [(xlsx_python, ["build-rubric.py", m.group(1)])]
     else:
         return 0
 

@@ -160,6 +160,17 @@ eas update --channel preview --message "Sửa lỗi hiển thị tổng tiền"<
             </a>
         </div>
         <div style="margin-top: 16px;">
+            <p style="margin: 0 0 8px 0; color: #fd7e14; font-weight: bold;">📚 Giáo trình &amp; tài liệu dự án</p>
+            <a href="{{LINK_GIAO_TRINH}}" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
+                <span style="color: #fd7e14; font-weight: bold;">📘 Giáo trình nội bộ – Chương 11: Triển khai backend lên server Khoa, build và phát hành ứng dụng</span><br>
+                <span style="color: #6c757d; font-size: 13px;">Lý thuyết chi tiết, mã nguồn LHU Food và bài tập hướng dẫn theo dự án ở cuối Chương 11 (file Word).</span>
+            </a>
+            <a href="{{LINK_SRS_LHU_FOOD}}" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
+                <span style="color: #fd7e14; font-weight: bold;">🧾 SRS dự án LHU Food</span><br>
+                <span style="color: #6c757d; font-size: 13px;">Đọc SRS mục 5.13 (M12), mục 7.3 (script CSDL), mục 9 (NFR-01, NFR-05, NFR-09, NFR-10). User story của buổi: US-SYS04, US-SYS05; kiểm thử chấp nhận toàn bộ story Must trên bản APK.</span>
+            </a>
+        </div>
+        <div style="margin-top: 16px;">
             <p style="margin: 0 0 8px 0; color: #fd7e14; font-weight: bold;">📖 Tài liệu đọc thêm (chính thức)</p>
             <a href="https://docs.expo.dev/build/setup/" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
                 <span style="color: #fd7e14; font-weight: bold;">🔗 Expo - Create your first build</span><br>

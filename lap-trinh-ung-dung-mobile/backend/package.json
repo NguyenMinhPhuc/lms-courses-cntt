@@ -1,0 +1,29 @@
+{
+  "name": "lhufood-backend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Backend mẫu LHU Food (microservice): API Gateway + identity, catalog, order, notification. Node.js + SQL Server (chỉ qua stored procedure) + JWT + Swagger + cache.",
+  "workspaces": [
+    "shared",
+    "gateway",
+    "services/*"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "db:setup": "node scripts/db-setup.js",
+    "dev": "concurrently -n gateway,identity,catalog,order,notify -c cyan,magenta,green,yellow,blue \"npm:start:gateway\" \"npm:start:identity\" \"npm:start:catalog\" \"npm:start:order\" \"npm:start:notification\"",
+    "start:gateway": "node gateway/src/index.js",
+    "start:identity": "node services/identity/src/index.js",
+    "start:catalog": "node services/catalog/src/index.js",
+    "start:order": "node services/order/src/index.js",
+    "start:notification": "node services/notification/src/index.js",
+    "test:smoke": "node scripts/smoke-test.js",
+    "check": "node scripts/check-syntax.js"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0",
+    "socket.io-client": "^4.8.1"
+  }
+}

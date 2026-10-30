@@ -170,6 +170,17 @@ export const useCart = create&lt;CartState&gt;()(
             </a>
         </div>
         <div style="margin-top: 16px;">
+            <p style="margin: 0 0 8px 0; color: #fd7e14; font-weight: bold;">📚 Giáo trình &amp; tài liệu dự án</p>
+            <a href="{{LINK_GIAO_TRINH}}" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
+                <span style="color: #fd7e14; font-weight: bold;">📘 Giáo trình nội bộ – Chương 7: CSDL SQL Server nâng cao và đồng bộ dữ liệu qua backend</span><br>
+                <span style="color: #6c757d; font-size: 13px;">Lý thuyết chi tiết, mã nguồn LHU Food và bài tập hướng dẫn theo dự án ở cuối Chương 7 (file Word).</span>
+            </a>
+            <a href="{{LINK_SRS_LHU_FOOD}}" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
+                <span style="color: #fd7e14; font-weight: bold;">🧾 SRS dự án LHU Food</span><br>
+                <span style="color: #6c757d; font-size: 13px;">Đọc SRS mục 5.5 (F04.1, F04.4), 5.6 (M05), 5.10 (F09.3), 5.11 (M10), mục 6 (BR-07 đến BR-11, BR-17), tiêu chí US-C04, C08, SYS03 ở mục 4.7. User story của buổi: US-C04 (có giao dịch), US-C08, US-C03, US-C11, US-S04, US-S08, US-SYS03; mở rộng US-C16.</span>
+            </a>
+        </div>
+        <div style="margin-top: 16px;">
             <p style="margin: 0 0 8px 0; color: #fd7e14; font-weight: bold;">📖 Tài liệu đọc thêm (chính thức)</p>
             <a href="https://learn.microsoft.com/sql/t-sql/language-elements/try-catch-transact-sql" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
                 <span style="color: #fd7e14; font-weight: bold;">🔗 Microsoft Learn - TRY...CATCH (Transact-SQL)</span><br>

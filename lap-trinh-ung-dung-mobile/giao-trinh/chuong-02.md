@@ -12,7 +12,7 @@ Sau khi học xong chương này, bạn có thể:
 
 ## 2.1. Core components
 
-React Native cung cấp một nhóm component cơ bản (core components). Mọi giao diện, dù phức tạp, đều được ghép từ các component này.
+React Native cung cấp một nhóm component cơ bản (core components). Mọi giao diện, dù phức tạp, đều được ghép từ các component này [1].
 
 ### 2.1.1. View và Text
 
@@ -77,7 +77,7 @@ Với ô mật khẩu, dùng `secureTextEntry` để ẩn ký tự.
 
 ### 2.1.6. Vùng an toàn
 
-Điện thoại hiện nay có tai thỏ, camera đục lỗ, thanh trạng thái và thanh điều hướng cử chỉ. Nội dung đặt sát mép trên hoặc dưới có thể bị che. Dùng `SafeAreaView` của thư viện `react-native-safe-area-context` (có sẵn trong dự án Expo):
+Điện thoại hiện nay có tai thỏ, camera đục lỗ, thanh trạng thái và thanh điều hướng cử chỉ. Nội dung đặt sát mép trên hoặc dưới có thể bị che. Dùng `SafeAreaView` của thư viện `react-native-safe-area-context` (có sẵn trong dự án Expo) [4]:
 
 ```tsx
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -95,9 +95,11 @@ export default function ProfileScreen() {
 
 ## 2.2. Flexbox trong React Native
 
+Tham khảo [2].
+
 ### 2.2.1. Khác biệt so với CSS trên web
 
-React Native dùng Flexbox để bố cục, với một số mặc định khác web:
+React Native dùng Flexbox để bố cục, với một số mặc định khác web [2]:
 
 | Thuộc tính | Mặc định trên web | Mặc định trên React Native |
 |---|---|---|
@@ -158,6 +160,8 @@ Nếu mã màu `#013D88` xuất hiện ở hai mươi file, mỗi lần đổi m
 - Trợ lý AI sinh mã đúng màu và khoảng cách khi `AGENTS.md` yêu cầu dùng theme.
 
 ### 2.3.2. File theme
+
+Tham khảo [3].
 
 `constants/theme.ts`:
 
@@ -288,7 +292,10 @@ Vẽ bằng draw.io (dạng cây, trên xuống) hoặc FigJam. Lưu cả file n
 
 ## Tài liệu tham khảo
 
-- React Native - Core Components and APIs: https://reactnative.dev/docs/components-and-apis
-- React Native - Layout with Flexbox: https://reactnative.dev/docs/flexbox
-- React Native - Style: https://reactnative.dev/docs/style
-- Expo - Safe areas: https://docs.expo.dev/develop/user-interface/safe-areas/
+[1] Meta Platforms, Inc., “Core Components and APIs,” *React Native Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://reactnative.dev/docs/components-and-apis
+
+[2] Meta Platforms, Inc., “Layout with Flexbox,” *React Native Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://reactnative.dev/docs/flexbox
+
+[3] Meta Platforms, Inc., “Style,” *React Native Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://reactnative.dev/docs/style
+
+[4] Expo, “Safe areas,” *Expo Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://docs.expo.dev/develop/user-interface/safe-areas/

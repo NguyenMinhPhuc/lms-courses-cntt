@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chấm điểm theo rubric | Lập trình ứng dụng di động (111114)</title>
+  <meta name="description" content="Công cụ chấm điểm cuối kỳ theo rubric CLO của học phần Lập trình ứng dụng di động (111114): chấm theo tiêu chí, tính điểm CLO, mức đạt cấp lớp và xuất Excel.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- SheetJS chỉ dùng để GHI file Excel; danh sách sinh viên nhập bằng dán hoặc CSV -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: {
+        fontFamily: { sans: ['Inter', 'sans-serif'] },
+        colors: { asu: { maroon: '#8C1D40', gold: '#FFC627' }, lhu: { blue: '#013D88', dark: '#01295C', light: '#EEF5FC' } }
+      } }
+    }
+  </script>
+  <style>
+    .lv-btn[aria-pressed="true"] { outline: 2px solid currentColor; outline-offset: 1px; }
+    details > summary { list-style: none; cursor: pointer; }
+    details > summary::-webkit-details-marker { display: none; }
+    @media print { header, nav, .no-print { display: none !important; } }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col">
+
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur shadow-sm border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-3">
+      <a href="index.html" class="flex items-center gap-2.5 min-w-0">
+        <span class="w-9 h-9 rounded-xl bg-lhu-blue text-white flex items-center justify-center"><i class="fa-solid fa-clipboard-check"></i></span>
+        <div class="min-w-0">
+          <div class="text-[11px] font-bold text-slate-500 uppercase">Chấm điểm theo rubric CLO</div>
+          <div class="text-sm font-extrabold text-lhu-blue truncate">Lập trình ứng dụng di động (111114)</div>
+        </div>
+      </a>
+      <div class="flex items-center gap-2 text-xs">
+        <span id="saveState" class="hidden sm:inline text-slate-400"></span>
+        <button data-action="export-xlsx" class="px-3 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl"><i class="fa-solid fa-file-excel mr-1"></i><span class="hidden sm:inline">Xuất Excel</span></button>
+        <a href="index.html" class="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl"><i class="fa-solid fa-arrow-left"></i><span class="hidden sm:inline ml-1">Học phần</span></a>
+      </div>
+    </div>
+    <nav class="max-w-7xl mx-auto px-4 flex gap-1 text-sm font-bold overflow-x-auto" id="tabs"></nav>
+  </header>
+
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 py-6" id="view"></main>
+
+  <footer class="text-center text-xs text-slate-400 py-4 no-print">
+    Dữ liệu chấm lưu trong trình duyệt này. Sao lưu JSON trước khi xóa lịch sử trình duyệt hoặc chuyển máy.
+  </footer>
+
+<script>
+const RUBRIC = {"course": {"code": "111114", "name": "Lập trình ứng dụng di động", "assessment": "Đánh giá cuối kỳ: đồ án nhóm, báo cáo và Demo Day (buổi 12)", "scale": 10, "studentThreshold": 0.5, "classThreshold": 0.75, "note": "Sinh viên đạt một CLO khi được ít nhất 50% điểm tối đa của CLO đó. CLO đạt ở cấp lớp khi ít nhất 75% số sinh viên đạt."}, "levels": [{"code": "A", "name": "Xuất sắc", "ratio": 1}, {"code": "B", "name": "Tốt", "ratio": 0.75}, {"code": "C", "name": "Đạt", "ratio": 0.5}, {"code": "D", "name": "Chưa đạt", "ratio": 0.25}, {"code": "0", "name": "Không có minh chứng", "ratio": 0}], "clos": [{"id": "CLO1", "name": "Thiết kế các thành phần chức năng của ứng dụng di động đáp ứng các yêu cầu đặt ra", "plo": "PLO2 / PI 2.4", "max": 3, "criteria": [{"id": "1.1", "name": "Sơ đồ chức năng và phạm vi", "scope": "group", "max": 0.4, "levels": {"A": "Sơ đồ phân rã đủ nhóm chức năng theo từng actor, khớp hoàn toàn với sản phẩm demo; phạm vi đã làm/chưa làm được nêu rõ kèm lý do.", "B": "Sơ đồ đủ chức năng chính và khớp sản phẩm; thiếu vài chức năng phụ hoặc chưa tách theo actor.", "C": "Có sơ đồ nhưng thiếu một nhóm chức năng hoặc lệch so với sản phẩm ở vài chỗ.", "D": "Sơ đồ sơ sài, không phản ánh sản phẩm thật."}, "guide": "Đặt sơ đồ cạnh ứng dụng đang chạy, đánh dấu từng chức năng có/không có trong sản phẩm. Chỉ chấm sự đầy đủ và khớp của sơ đồ, không chấm hình thức vẽ (thuộc 3.5).", "evidence": "docs/so-do-chuc-nang (file nguồn + ảnh); chương Thiết kế chức năng trong báo cáo; slide Demo Day."}, {"id": "1.2", "name": "Luồng nghiệp vụ chính chạy end-to-end trên Android", "scope": "group", "max": 0.6, "levels": {"A": "Luồng chính (đăng nhập → chọn món → đặt → nhân viên xử lý → hoàn tất) chạy trơn tru trên APK, điện thoại thật, kết nối backend trên server Khoa; không lỗi trong demo.", "B": "Luồng chính chạy đủ trên Android thật; có 1 lỗi nhỏ không chặn luồng hoặc phải thao tác lại một lần.", "C": "Luồng chạy được nhưng phải dùng Expo Go/emulator hoặc backend trên máy cá nhân, hoặc thiếu một bước phụ.", "D": "Luồng bị gián đoạn, có màn hình đỏ hoặc phải dùng dữ liệu giả."}, "guide": "Yêu cầu nhóm chạy kịch bản demo trên APK. Chỉ chấm luồng nghiệp vụ chính; tính năng thiết bị, realtime, xác thực chấm ở tiêu chí riêng.", "evidence": "Demo trực tiếp; file APK; video dự phòng; docs/acceptance-test.md."}, {"id": "1.3", "name": "Xác thực và phân quyền", "scope": "group", "max": 0.4, "levels": {"A": "Đăng ký, đăng nhập, giữ phiên (refresh token), đăng xuất hoạt động; API trả 403 cho sai vai trò; token lưu SecureStore; userId lấy từ token.", "B": "Đủ đăng nhập/đăng xuất và phân quyền ở API; thiếu giữ phiên hoặc một kiểm tra phụ.", "C": "Có đăng nhập nhưng phân quyền chỉ ẩn nút ở ứng dụng, API không kiểm tra vai trò.", "D": "Xác thực không hoạt động hoặc lưu token/mật khẩu không an toàn (AsyncStorage, mật khẩu gốc)."}, "guide": "Thử gọi một API nhân viên bằng token khách (Swagger) và đóng/mở lại ứng dụng để kiểm tra giữ phiên.", "evidence": "Demo; mã stores/auth, AuthGuard/RolesGuard; Swagger."}, {"id": "1.4", "name": "Tích hợp tính năng thiết bị", "scope": "group", "max": 0.3, "levels": {"A": "Ít nhất hai tính năng thiết bị (camera/ảnh, vị trí/bản đồ…) hoạt động trên máy thật; xin quyền đúng lúc, xử lý khi bị từ chối.", "B": "Một tính năng thiết bị hoạt động tốt, xin quyền đúng lúc.", "C": "Có tính năng thiết bị nhưng xin quyền ngay khi mở ứng dụng hoặc lỗi khi bị từ chối quyền.", "D": "Tính năng thiết bị không chạy được trên máy thật."}, "guide": "Thử từ chối quyền một lần để xem ứng dụng có xử lý không.", "evidence": "Demo trên điện thoại thật; khai báo quyền trong app.config."}, {"id": "1.5", "name": "Thông báo thời gian thực (Socket.IO)", "scope": "group", "max": 0.4, "levels": {"A": "Đổi trạng thái ở một máy, máy kia nhận thông báo trong vài giây; socket có xác thực; thông báo lưu SQL Server, mở lại ứng dụng vẫn thấy; tự kết nối lại khi mất mạng.", "B": "Thông báo realtime hoạt động, có lưu lịch sử; thiếu xử lý kết nối lại hoặc mở đúng màn hình.", "C": "Có realtime nhưng không lưu lịch sử hoặc socket không xác thực.", "D": "Không có realtime hoặc chỉ dùng polling."}, "guide": "Demo bằng hai thiết bị; tắt ứng dụng nhận, đổi trạng thái, mở lại để kiểm tra lịch sử.", "evidence": "Demo hai thiết bị; mã gateway/hook realtime; bảng Notifications."}, {"id": "1.6", "name": "Tổ chức thành phần và điều hướng", "scope": "group", "max": 0.3, "levels": {"A": "Component tái sử dụng, theme dùng chung, điều hướng Expo Router đúng mô hình (tab/stack/route động), tách dữ liệu server (TanStack Query) và trạng thái cục bộ (Zustand).", "B": "Cấu trúc rõ ràng, có component dùng chung; còn vài màn hình lặp mã hoặc trộn lẫn trạng thái.", "C": "Chạy được nhưng mã dồn vào ít file lớn, màu/kích thước viết cứng nhiều nơi.", "D": "Không có cấu trúc, sao chép mã giữa các màn hình."}, "guide": "Mở repo, xem thư mục app/, components/, stores/, hooks/. Không chấm số lượng tính năng.", "evidence": "Repo ứng dụng; AGENTS.md; cây thư mục trong báo cáo."}, {"id": "1.7", "name": "Xử lý lỗi và trạng thái dữ liệu", "scope": "group", "max": 0.3, "levels": {"A": "Mọi màn hình dữ liệu có đủ trạng thái đang tải, lỗi (có Thử lại), rỗng; thông báo lỗi từ API (400/409) hiển thị dễ hiểu; mất mạng không làm ứng dụng sập.", "B": "Phần lớn màn hình xử lý đủ trạng thái; còn một màn hình thiếu.", "C": "Chỉ có trạng thái đang tải; lỗi hiển thị thông báo kỹ thuật.", "D": "Mất mạng hoặc lỗi API gây màn hình đỏ/treo."}, "guide": "Bật chế độ máy bay khi đang dùng; thử đặt món đã hết để xem thông báo 409.", "evidence": "Demo; mã màn hình danh sách."}, {"id": "1.8", "name": "Kiểm thử và chất lượng", "scope": "group", "max": 0.3, "levels": {"A": "Bộ test tự động cho logic chính chạy xanh; có kịch bản kiểm thử stored procedure; bug log và một cải tiến hiệu năng có số liệu trước/sau.", "B": "Có test tự động và bug log; thiếu kiểm thử thủ tục hoặc số liệu hiệu năng.", "C": "Chỉ có kiểm thử thủ công được ghi lại.", "D": "Không có minh chứng kiểm thử nào ngoài demo."}, "guide": "Yêu cầu chạy npm test tại chỗ hoặc xem ảnh kết quả có thời gian.", "evidence": "Kết quả npm test; database/tests/; docs/bug-log.md; bảng số liệu hiệu năng."}]}, {"id": "CLO2", "name": "Thiết kế cơ sở dữ liệu đáp ứng cấu trúc dữ liệu phù hợp yêu cầu đặc tả", "plo": "PLO2 / PI 2.5", "max": 2, "criteria": [{"id": "2.1", "name": "Mô hình bảng và chuẩn hóa", "scope": "group", "max": 0.4, "levels": {"A": "Đủ thực thể cho nghiệp vụ, kiểu dữ liệu đúng (NVARCHAR cho tiếng Việt, DECIMAL cho tiền, DATETIME2), không dư thừa dữ liệu; lưu giá tại thời điểm đặt.", "B": "Mô hình hợp lý, có 1–2 điểm chưa tối ưu (kiểu dữ liệu chưa phù hợp, cột dư).", "C": "Thiếu một thực thể cần thiết hoặc lặp dữ liệu gây khó cập nhật.", "D": "Thiết kế sai cơ bản (gộp nhiều thực thể vào một bảng, lưu danh sách trong một cột)."}, "guide": "Chỉ chấm cấu trúc bảng và kiểu dữ liệu; khóa, ràng buộc chấm ở 2.2, 2.3.", "evidence": "database/01-*.sql; ERD; chương Thiết kế dữ liệu."}, {"id": "2.2", "name": "Khóa và quan hệ", "scope": "group", "max": 0.3, "levels": {"A": "Mọi bảng có khóa chính; đủ khóa ngoại; quan hệ n-n có bảng trung gian với khóa kép phù hợp.", "B": "Đủ khóa chính và phần lớn khóa ngoại; thiếu một khóa ngoại.", "C": "Thiếu nhiều khóa ngoại, quan hệ chỉ thể hiện bằng quy ước đặt tên.", "D": "Thiếu khóa chính hoặc không có khóa ngoại."}, "guide": "Truy vấn sys.foreign_keys trên CSDL thật để đếm khóa ngoại.", "evidence": "CSDL trên server Khoa; script tạo bảng."}, {"id": "2.3", "name": "Ràng buộc toàn vẹn", "scope": "group", "max": 0.3, "levels": {"A": "Dùng đúng NOT NULL, UNIQUE, CHECK, DEFAULT cho quy tắc nghiệp vụ (tồn kho ≥ 0, trạng thái hợp lệ, email duy nhất), đặt tên ràng buộc theo quy ước.", "B": "Có phần lớn ràng buộc cần thiết; thiếu 1–2 ràng buộc quan trọng.", "C": "Chỉ có NOT NULL/khóa, quy tắc nghiệp vụ để ứng dụng tự kiểm tra.", "D": "Không có ràng buộc ngoài khóa chính."}, "guide": "Thử chèn dữ liệu vi phạm (tồn kho âm, trạng thái lạ) qua thủ tục hoặc SSMS.", "evidence": "Script ràng buộc; kết quả thử vi phạm."}, {"id": "2.4", "name": "Bộ stored procedure và truy cập qua thủ tục", "scope": "group", "max": 0.4, "levels": {"A": "Thủ tục phục vụ toàn bộ nghiệp vụ, tham số có kiểu, đặt tên theo quy ước, bí danh camelCase; backend chỉ gọi thủ tục (không SQL trực tiếp, không ORM); API dùng login chỉ quyền EXECUTE.", "B": "Thủ tục đủ cho nghiệp vụ chính, backend chỉ gọi thủ tục; còn vài thủ tục thiếu tham số hóa hoặc sai quy ước.", "C": "Thiếu thủ tục cho một nhóm nghiệp vụ hoặc backend còn câu SQL trực tiếp ở vài chỗ.", "D": "Backend chủ yếu dùng SQL trực tiếp hoặc ORM."}, "guide": "Tìm trong repo backend các từ SELECT/INSERT/UPDATE ngoài thư mục database/.", "evidence": "database/*procedures*.sql; repo backend; danh mục thủ tục trong báo cáo."}, {"id": "2.5", "name": "Giao dịch và xử lý lỗi trong thủ tục", "scope": "group", "max": 0.3, "levels": {"A": "Nghiệp vụ nhiều bảng dùng giao dịch, TRY/CATCH, ném lại lỗi giữ mã (THROW 50400/50404/50409); xử lý đặt đồng thời (khóa dòng), có kịch bản kiểm thử chứng minh.", "B": "Có giao dịch và mã lỗi đúng; chưa xử lý tranh chấp đồng thời.", "C": "Có kiểm tra lỗi nhưng không dùng giao dịch cho thao tác nhiều bảng.", "D": "Không có giao dịch, lỗi giữa chừng để lại dữ liệu dở dang."}, "guide": "Yêu cầu nhóm chạy kịch bản đặt suất cuối cùng từ hai phiên hoặc giải thích UPDLOCK.", "evidence": "Thủ tục đặt hàng/hủy đơn; database/tests/."}, {"id": "2.6", "name": "Script tái tạo và triển khai trên server Khoa", "scope": "group", "max": 0.3, "levels": {"A": "Script đánh số theo phiên bản dựng lại CSDL trống không lỗi, chạy lại được, có dữ liệu mẫu; CSDL đang chạy trên server Khoa giống script.", "B": "Script dựng lại được CSDL; thiếu dữ liệu mẫu hoặc chưa chạy lại được nhiều lần.", "C": "Script phải sửa tay mới chạy được, hoặc CSDL chỉ có trên máy cá nhân.", "D": "Không có script; CSDL tạo thủ công."}, "guide": "Chạy script trên một CSDL trống (hoặc xem nhóm chạy) và so số bảng/thủ tục với server.", "evidence": "Thư mục database/; README triển khai; CSDL trên server Khoa."}]}, {"id": "CLO3", "name": "Sử dụng được các công cụ đồ họa để trình bày các ý tưởng thiết kế dữ liệu", "plo": "PLO3 / PI 3.4", "max": 2, "criteria": [{"id": "3.1", "name": "ERD: ký hiệu và nội dung", "scope": "group", "max": 0.5, "levels": {"A": "ERD vẽ bằng công cụ đồ họa, đúng một hệ ký hiệu, đủ thực thể, thuộc tính chính, khóa và lực lượng quan hệ.", "B": "ERD đúng ký hiệu, đủ thực thể; thiếu lực lượng ở vài quan hệ hoặc thiếu thuộc tính chính.", "C": "ERD lẫn lộn ký hiệu hoặc thiếu một thực thể.", "D": "Chụp sơ đồ tự sinh không chỉnh sửa hoặc vẽ tay, thiếu nhiều thông tin."}, "guide": "Chỉ chấm bản thân ERD; sự khớp với CSDL thật chấm ở 3.2.", "evidence": "docs/ERD (file nguồn .drawio/dbdiagram + ảnh); báo cáo."}, {"id": "3.2", "name": "ERD khớp CSDL thật", "scope": "group", "max": 0.4, "levels": {"A": "Mọi bảng, khóa ngoại trên server khớp ERD và ngược lại.", "B": "Lệch 1–2 chi tiết nhỏ (tên cột, một quan hệ phụ).", "C": "ERD là bản cũ, lệch nhiều so với CSDL hiện tại.", "D": "ERD không tương ứng với CSDL."}, "guide": "Đối chiếu kết quả truy vấn sys.foreign_keys trên server với ERD trong báo cáo.", "evidence": "ERD bản cuối; truy vấn sys.foreign_keys tại buổi bảo vệ."}, {"id": "3.3", "name": "Sơ đồ tuần tự luồng realtime", "scope": "group", "max": 0.4, "levels": {"A": "Thể hiện đủ các bên (ứng dụng nhân viên, API, thủ tục/SQL Server, gateway Socket.IO, room, ứng dụng khách), đúng thứ tự lưu trước gửi sau.", "B": "Đủ các bên chính; thiếu một bước (ví dụ lưu thông báo) hoặc thứ tự chưa rõ.", "C": "Chỉ thể hiện client ↔ server, thiếu CSDL hoặc room.", "D": "Không đúng dạng sơ đồ tuần tự."}, "guide": "So với cài đặt thật của nhóm (OrdersService, gateway).", "evidence": "docs/so-do-tuan-tu; báo cáo; slide."}, {"id": "3.4", "name": "Sơ đồ luồng màn hình", "scope": "group", "max": 0.3, "levels": {"A": "Đủ màn hình của ứng dụng, mũi tên ghi thao tác, phân biệt tab/stack/modal, khớp cấu trúc Expo Router.", "B": "Đủ màn hình chính; thiếu nhãn thao tác hoặc chưa phân biệt kiểu điều hướng.", "C": "Thiếu nhiều màn hình hoặc không khớp ứng dụng.", "D": "Không có hoặc chỉ là danh sách màn hình."}, "guide": "Đối chiếu với cây thư mục app/.", "evidence": "docs/luong-man-hinh; báo cáo."}, {"id": "3.5", "name": "Chất lượng trình bày đồ họa", "scope": "group", "max": 0.2, "levels": {"A": "Sơ đồ rõ nét, chữ đọc được trên máy chiếu, có chú thích, bố cục gọn; lưu cả file nguồn chỉnh sửa được.", "B": "Rõ ràng, đọc được; thiếu chú thích hoặc file nguồn.", "C": "Khó đọc (mờ, chữ nhỏ, chồng chéo) ở một số sơ đồ.", "D": "Phần lớn sơ đồ không đọc được."}, "guide": "Chấm trên slide chiếu ở Demo Day và bản báo cáo.", "evidence": "Slide; báo cáo; thư mục docs/ (file nguồn)."}, {"id": "3.6", "name": "Giải thích thiết kế bằng sơ đồ khi bảo vệ", "scope": "individual", "max": 0.2, "levels": {"A": "Dùng sơ đồ giải thích quyết định thiết kế và lý do (ví dụ vì sao lưu UnitPrice), trả lời đúng câu hỏi về sơ đồ.", "B": "Giải thích đúng nội dung sơ đồ; lý do thiết kế chưa rõ.", "C": "Đọc lại sơ đồ, chưa giải thích được quyết định.", "D": "Không giải thích được sơ đồ mình trình bày."}, "guide": "Chấm cá nhân thành viên trình bày phần thiết kế; thành viên không trình bày sơ đồ thì hỏi một câu về ERD.", "evidence": "Phần trình bày và hỏi đáp ở Demo Day."}]}, {"id": "CLO4", "name": "Thể hiện được vai trò cá nhân trong nhóm một cách rõ ràng", "plo": "PLO5 / PI 5.2", "max": 3, "criteria": [{"id": "4.1", "name": "Đóng góp mã nguồn", "scope": "individual", "max": 0.6, "levels": {"A": "Commit/PR đều đặn suốt các sprint, khớp phần việc được phân công, nội dung có ý nghĩa.", "B": "Đóng góp rõ ràng, khớp phân công; tập trung vào vài thời điểm.", "C": "Đóng góp ít hoặc dồn vào cuối kỳ.", "D": "Gần như không có commit/PR của cá nhân."}, "guide": "Xem GitHub Insights/Contributors và lịch sử PR; không chấm theo số dòng mã. Đóng góp không phải mã (sơ đồ, báo cáo) được tính nếu có minh chứng trong repo.", "evidence": "Lịch sử commit/PR; docs/phan-vai.md; docs/traceability.md."}, {"id": "4.2", "name": "Hoàn thành nhiệm vụ đúng hạn", "scope": "individual", "max": 0.4, "levels": {"A": "Hoàn thành mọi story được giao trong sprint cam kết.", "B": "Hoàn thành phần lớn; một story trễ một sprint.", "C": "Nhiều story trễ hoặc phải chuyển cho người khác.", "D": "Không hoàn thành nhiệm vụ được giao."}, "guide": "Đối chiếu board sprint (Jira/Trello/GitHub Projects) với người phụ trách từng story.", "evidence": "Board sprint; biên bản Sprint Review; ma trận truy vết."}, {"id": "4.3", "name": "Báo cáo vai trò cá nhân", "scope": "individual", "max": 0.4, "levels": {"A": "Báo cáo đủ mục (vai trò, đóng góp có link PR, khó khăn đã giải quyết, sử dụng AI, tự đánh giá), khớp lịch sử repo.", "B": "Đủ mục, có link minh chứng; phần tự đánh giá hoặc khó khăn còn chung chung.", "C": "Thiếu mục hoặc thiếu link minh chứng.", "D": "Không nộp hoặc nội dung không khớp đóng góp thật."}, "guide": "Kiểm tra ngẫu nhiên 2 link PR trong báo cáo.", "evidence": "Báo cáo vai trò cá nhân nộp trên Moodle."}, {"id": "4.4", "name": "Trình bày phần phụ trách ở Demo Day", "scope": "individual", "max": 0.4, "levels": {"A": "Tự trình bày phần mình phụ trách rõ ràng, đúng thời gian, demo trơn tru.", "B": "Trình bày đúng nội dung; còn lúng túng hoặc quá giờ.", "C": "Trình bày ngắn, phải để thành viên khác hỗ trợ.", "D": "Không trình bày."}, "guide": "Mỗi thành viên phải trình bày ít nhất một phần; ghi lại phần của từng người khi nhóm trình bày.", "evidence": "Phần trình bày tại Demo Day."}, {"id": "4.5", "name": "Trả lời câu hỏi kỹ thuật (bảo vệ mã)", "scope": "individual", "max": 0.6, "levels": {"A": "Giải thích chính xác đoạn mã mình commit, nêu được hệ quả khi thay đổi và lý do lựa chọn.", "B": "Giải thích đúng đoạn mã; còn lúng túng ở câu hỏi thay đổi giả định.", "C": "Giải thích được một phần, phải gợi ý nhiều.", "D": "Không giải thích được mã mình commit."}, "guide": "Chọn ngẫu nhiên đoạn mã của chính sinh viên (git blame). Theo quy định học phần, phần mã không giải thích được thì không tính điểm: có thể hạ điểm tiêu chí nhóm liên quan cho riêng sinh viên đó.", "evidence": "Hỏi đáp tại Demo Day; lịch sử commit."}, {"id": "4.6", "name": "Sử dụng AI minh bạch", "scope": "individual", "max": 0.3, "levels": {"A": "PROMPTS.md ghi prompt chính của mình kèm kết quả và phần đã sửa; chỉ ra được lỗi AI gây ra và cách phát hiện.", "B": "Ghi prompt đầy đủ; chưa nêu phần sửa hoặc lỗi của AI.", "C": "Ghi rất ít prompt so với lượng mã đóng góp.", "D": "Không ghi prompt nào."}, "guide": "Lọc PROMPTS.md theo tên sinh viên.", "evidence": "PROMPTS.md; chương Sử dụng AI trong báo cáo."}, {"id": "4.7", "name": "Phối hợp nhóm và review chéo", "scope": "individual", "max": 0.3, "levels": {"A": "Review PR của thành viên khác có nhận xét cụ thể; tham gia đều các buổi Sprint Review/Retrospective.", "B": "Có review PR; tham gia phần lớn các buổi.", "C": "Review hình thức (chỉ approve) hoặc vắng nhiều buổi.", "D": "Không tham gia review hay sự kiện nhóm."}, "guide": "Xem tab Pull requests (Reviewed by) và biên bản sprint.", "evidence": "Lịch sử review PR; biên bản Sprint Review/Retrospective."}]}]};
+const COURSE = RUBRIC.course;
+const STORE_KEY = 'rubric-grading-' + COURSE.code;
+const CRITERIA = RUBRIC.clos.flatMap((clo) => clo.criteria.map((c) => ({ ...c, clo })));
+const DESCRIBED = RUBRIC.levels.filter((l) => l.code !== '0');
+const SCOPE = { group: 'Nhóm', individual: 'Cá nhân' };
+const CLO_STYLE = ['bg-blue-50 border-blue-200 text-blue-800', 'bg-emerald-50 border-emerald-200 text-emerald-800',
+                   'bg-amber-50 border-amber-200 text-amber-800', 'bg-purple-50 border-purple-200 text-purple-800'];
+const LEVEL_STYLE = { A: 'text-emerald-700 bg-emerald-50 border-emerald-200', B: 'text-sky-700 bg-sky-50 border-sky-200',
+                      C: 'text-amber-700 bg-amber-50 border-amber-200', D: 'text-rose-700 bg-rose-50 border-rose-200',
+                      '0': 'text-slate-600 bg-slate-100 border-slate-200' };
+
+// ---------------------------------------------------------------- trạng thái và lưu trữ
+const blank = () => ({ version: 1, students: [], groupScores: {}, selected: null });
+let state = load();
+let tab = 'grade';
+let search = '';
+const openDetails = new Set();
+
+function load() {
+  try {
+    const raw = localStorage.getItem(STORE_KEY);
+    const data = raw ? JSON.parse(raw) : null;
+    if (data && Array.isArray(data.students)) return { ...blank(), ...data };
+  } catch { /* trình duyệt chặn lưu trữ: vẫn chấm được, nhớ xuất file */ }
+  return blank();
+}
+function save() {
+  const el = document.getElementById('saveState');
+  try {
+    localStorage.setItem(STORE_KEY, JSON.stringify(state));
+    el.textContent = 'Đã lưu ' + new Date().toLocaleTimeString('vi-VN');
+  } catch {
+    el.textContent = 'Không lưu được trên trình duyệt: hãy xuất JSON sao lưu';
+  }
+}
+
+// ---------------------------------------------------------------- tính điểm
+const round2 = (v) => Math.round(v * 100) / 100;
+const fmt = (v) => (v === null || v === undefined || v === '' ? '–' : Number(v).toLocaleString('vi-VN', { maximumFractionDigits: 2 }));
+const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
+const usesGroup = (st, c) => c.scope === 'group' && st.group && !(st.overrides || {})[c.id];
+
+function score(st, c) {
+  const v = usesGroup(st, c) ? (state.groupScores[st.group] || {})[c.id] : (st.scores || {})[c.id];
+  return v === undefined ? null : v;
+}
+function cloScore(st, clo) {
+  const vals = clo.criteria.map((c) => score(st, CRITERIA.find((x) => x.id === c.id)));
+  return vals.every((v) => v !== null) ? round2(vals.reduce((a, b) => a + b, 0)) : null;
+}
+function cloPartial(st, clo) {
+  return round2(clo.criteria.reduce((a, c) => a + (score(st, CRITERIA.find((x) => x.id === c.id)) ?? 0), 0));
+}
+function total(st) {
+  const vals = RUBRIC.clos.map((clo) => cloScore(st, clo));
+  return vals.every((v) => v !== null) ? round2(vals.reduce((a, b) => a + b, 0)) : null;
+}
+const passed = (v, clo) => (v === null ? null : v >= clo.max * COURSE.studentThreshold - 1e-9);
+const gradedCount = (st) => CRITERIA.filter((c) => score(st, c) !== null).length;
+const groupSize = (g) => state.students.filter((s) => s.group === g).length;
+
+function setScore(st, c, value) {
+  const v = value === null || value === '' || Number.isNaN(value) ? null : round2(Math.min(c.max, Math.max(0, Number(value))));
+  if (usesGroup(st, c)) {
+    state.groupScores[st.group] = state.groupScores[st.group] || {};
+    if (v === null) delete state.groupScores[st.group][c.id]; else state.groupScores[st.group][c.id] = v;
+  } else {
+    st.scores = st.scores || {};
+    if (v === null) delete st.scores[c.id]; else st.scores[c.id] = v;
+  }
+  save();
+  render();
+}
+
+function stats() {
+  const clos = RUBRIC.clos.map((clo) => {
+    const vals = state.students.map((s) => cloScore(s, clo)).filter((v) => v !== null);
+    const pass = vals.filter((v) => passed(v, clo)).length;
+    const rate = vals.length ? pass / vals.length : null;
+    return { clo, n: vals.length, pass, rate, avg: vals.length ? round2(vals.reduce((a, b) => a + b, 0) / vals.length) : null,
+             ok: rate === null ? null : rate >= COURSE.classThreshold - 1e-9 };
+  });
+  const crits = CRITERIA.map((c) => {
+    const vals = state.students.map((s) => score(s, c)).filter((v) => v !== null);
+    const avg = vals.length ? round2(vals.reduce((a, b) => a + b, 0) / vals.length) : null;
+    return { c, n: vals.length, avg, ratio: avg === null ? null : avg / c.max };
+  });
+  return { clos, crits };
+}
+
+// ---------------------------------------------------------------- giao diện chung
+const TABS = [
+  { id: 'grade', icon: 'fa-pen-to-square', label: 'Chấm điểm' },
+  { id: 'report', icon: 'fa-chart-column', label: 'Mức đạt CLO' },
+  { id: 'rubric', icon: 'fa-table-list', label: 'Rubric' },
+  { id: 'data', icon: 'fa-users', label: 'Sinh viên & dữ liệu' },
+];
+
+// Thay innerHTML gỡ ô đang focus → blur → change → render lồng nhau. Chặn lồng, vẽ lại một lần sau.
+let rendering = false, pendingRender = false;
+function render() {
+  if (rendering) { pendingRender = true; return; }
+  rendering = true;
+  try { draw(); } finally { rendering = false; }
+  if (pendingRender) { pendingRender = false; render(); }
+}
+
+function draw() {
+  document.getElementById('tabs').innerHTML = TABS.map((t) =>
+    `<button data-action="tab" data-tab="${t.id}" class="px-4 py-2.5 border-b-2 whitespace-nowrap ${tab === t.id ? 'border-lhu-blue text-lhu-blue' : 'border-transparent text-slate-500 hover:text-slate-800'}"><i class="fa-solid ${t.icon} mr-1.5"></i>${t.label}</button>`).join('');
+  const view = document.getElementById('view');
+  view.innerHTML = { grade: viewGrade, report: viewReport, rubric: viewRubric, data: viewData }[tab]();
+}
+
+const badge = (text, cls) => `<span class="inline-flex items-center px-2 py-0.5 rounded-lg border text-[11px] font-bold ${cls}">${text}</span>`;
+const passBadge = (p) => (p === null ? badge('Chưa đủ', 'bg-slate-50 border-slate-200 text-slate-500')
+  : p ? badge('Đạt', 'bg-emerald-50 border-emerald-200 text-emerald-700') : badge('Chưa đạt', 'bg-rose-50 border-rose-200 text-rose-700'));
+
+// ---------------------------------------------------------------- tab Chấm điểm
+function viewGrade() {
+  if (!state.students.length) {
+    return `<div class="max-w-xl mx-auto text-center bg-white border border-slate-200 rounded-3xl p-10">
+      <i class="fa-solid fa-users text-4xl text-slate-300"></i>
+      <h2 class="mt-4 text-lg font-extrabold">Chưa có danh sách sinh viên</h2>
+      <p class="mt-2 text-sm text-slate-500">Dán danh sách MSSV, họ tên, nhóm từ Excel hoặc nhập file CSV.</p>
+      <button data-action="tab" data-tab="data" class="mt-5 px-5 py-2.5 bg-lhu-blue text-white font-bold rounded-xl">Nhập danh sách</button></div>`;
+  }
+  if (!state.students.some((s) => s.id === state.selected)) state.selected = state.students[0].id;
+  const st = state.students.find((s) => s.id === state.selected);
+  return `<div class="grid lg:grid-cols-[300px_1fr] gap-5">${sidebar()}${studentPanel(st)}</div>`;
+}
+
+function sidebar() {
+  const q = search.trim().toLowerCase();
+  const list = state.students.filter((s) => !q || `${s.mssv} ${s.name} ${s.group}`.toLowerCase().includes(q));
+  const groups = [...new Set(list.map((s) => s.group || '(chưa có nhóm)'))].sort((a, b) => a.localeCompare(b, 'vi', { numeric: true }));
+  return `<aside class="bg-white border border-slate-200 rounded-2xl p-3 lg:sticky lg:top-28 lg:max-h-[calc(100vh-8rem)] overflow-auto no-print">
+    <input id="search" value="${esc(search)}" placeholder="Tìm MSSV, tên, nhóm…" class="w-full px-3 py-2 border border-slate-200 rounded-xl text-sm mb-3">
+    ${groups.map((g) => `<div class="mb-3"><div class="text-[11px] font-bold uppercase text-slate-400 px-1 mb-1">Nhóm ${esc(g)}</div>
+      ${list.filter((s) => (s.group || '(chưa có nhóm)') === g).map((s) => {
+        const t = total(s); const n = gradedCount(s);
+        return `<button data-action="select" data-id="${s.id}" class="w-full text-left px-3 py-2 rounded-xl mb-1 flex items-center justify-between gap-2 ${s.id === state.selected ? 'bg-lhu-blue text-white' : 'hover:bg-slate-100'}">
+          <span class="min-w-0"><span class="block text-sm font-bold truncate">${esc(s.name)}</span><span class="block text-[11px] opacity-70">${esc(s.mssv)}</span></span>
+          <span class="text-xs font-extrabold whitespace-nowrap">${t !== null ? fmt(t) : `${n}/${CRITERIA.length}`}</span></button>`;
+      }).join('')}</div>`).join('') || '<p class="text-sm text-slate-400 px-1">Không tìm thấy.</p>'}
+  </aside>`;
+}
+
+function studentPanel(st) {
+  const idx = state.students.indexOf(st);
+  const t = total(st);
+  const head = `<div class="bg-white border border-slate-200 rounded-2xl p-4 flex flex-wrap items-center justify-between gap-3">
+    <div><div class="text-xs text-slate-500">${esc(st.mssv)} · Nhóm ${esc(st.group || '–')} (${st.group ? groupSize(st.group) : 1} SV)</div>
+      <h2 class="text-xl font-extrabold">${esc(st.name)}</h2>
+      <div class="mt-2 flex flex-wrap gap-1.5">${RUBRIC.clos.map((clo, k) => {
+        const v = cloScore(st, clo);
+        return `<span class="px-2.5 py-1 rounded-lg border text-xs font-bold ${CLO_STYLE[k % 4]}">${clo.id}: ${v !== null ? fmt(v) : fmt(cloPartial(st, clo)) + '…'} / ${fmt(clo.max)}</span> ${passBadge(passed(v, clo))}`;
+      }).join(' ')}</div></div>
+    <div class="text-right"><div class="text-xs text-slate-500">Tổng (${COURSE.scale})</div><div class="text-3xl font-black text-lhu-blue">${t !== null ? fmt(t) : '–'}</div>
+      <div class="text-[11px] text-slate-400">${gradedCount(st)}/${CRITERIA.length} tiêu chí</div>
+      <div class="mt-2 flex gap-1 justify-end no-print">
+        <button data-action="move" data-step="-1" ${idx === 0 ? 'disabled' : ''} class="px-3 py-1.5 bg-slate-100 rounded-lg text-xs font-bold disabled:opacity-40"><i class="fa-solid fa-chevron-left"></i> Trước</button>
+        <button data-action="move" data-step="1" ${idx === state.students.length - 1 ? 'disabled' : ''} class="px-3 py-1.5 bg-slate-100 rounded-lg text-xs font-bold disabled:opacity-40">Sau <i class="fa-solid fa-chevron-right"></i></button>
+      </div></div></div>`;
+  const clos = RUBRIC.clos.map((clo, k) => `<section class="bg-white border border-slate-200 rounded-2xl overflow-hidden">
+      <div class="px-4 py-3 border-b ${CLO_STYLE[k % 4]}"><div class="font-extrabold">${clo.id} · ${fmt(clo.max)} điểm <span class="font-normal text-xs">(${esc(clo.plo)}, đạt khi ≥ ${fmt(clo.max * COURSE.studentThreshold)})</span></div>
+        <div class="text-xs mt-0.5">${esc(clo.name)}</div></div>
+      <div class="p-3 space-y-3">${clo.criteria.map((c) => criterionRow(st, CRITERIA.find((x) => x.id === c.id))).join('')}</div></section>`).join('');
+  const note = `<div class="bg-white border border-slate-200 rounded-2xl p-4"><label class="text-sm font-bold">Ghi chú cho sinh viên</label>
+    <textarea data-input="note" rows="2" class="mt-2 w-full px-3 py-2 border border-slate-200 rounded-xl text-sm" placeholder="Nhận xét, minh chứng còn thiếu…">${esc(st.note || '')}</textarea></div>`;
+  return `<div class="space-y-4 min-w-0">${head}${clos}${note}</div>`;
+}
+
+function criterionRow(st, c) {
+  const v = score(st, c);
+  const viaGroup = usesGroup(st, c);
+  const groupInfo = c.scope === 'group' && st.group
+    ? `<label class="flex items-center gap-1.5 text-[11px] text-slate-500 no-print"><input type="checkbox" data-action="override" data-crit="${c.id}" ${viaGroup ? '' : 'checked'}> Chấm riêng cho SV này</label>
+       <span class="text-[11px] ${viaGroup ? 'text-sky-700' : 'text-amber-700'}">${viaGroup ? `Điểm chung nhóm ${esc(st.group)} · áp dụng cho ${groupSize(st.group)} SV` : 'Điểm riêng (không theo nhóm)'}</span>` : '';
+  const buttons = RUBRIC.levels.map((l) => {
+    const pts = round2(c.max * l.ratio);
+    const on = v !== null && Math.abs(v - pts) < 1e-9;
+    return `<button data-action="level" data-crit="${c.id}" data-value="${pts}" aria-pressed="${on}" title="${esc(l.name)}${c.levels[l.code] ? ': ' + esc(c.levels[l.code]) : ''}"
+      class="lv-btn px-2.5 py-1.5 rounded-lg border text-xs font-bold ${LEVEL_STYLE[l.code]} ${on ? '' : 'opacity-70 hover:opacity-100'}">${l.code} · ${fmt(pts)}</button>`;
+  }).join('');
+  const levelsText = DESCRIBED.map((l) => `<li><strong class="${LEVEL_STYLE[l.code].split(' ')[0]}">${l.code} - ${esc(l.name)} (${fmt(round2(c.max * l.ratio))}):</strong> ${esc(c.levels[l.code])}</li>`).join('');
+  return `<div class="border border-slate-200 rounded-xl p-3 ${v === null ? '' : 'bg-slate-50/60'}">
+    <div class="flex flex-wrap items-start justify-between gap-2">
+      <div class="min-w-0"><div class="font-bold text-sm">${c.id}. ${esc(c.name)}</div>
+        <div class="flex flex-wrap items-center gap-2 mt-1">${badge(SCOPE[c.scope], c.scope === 'group' ? 'bg-sky-50 border-sky-200 text-sky-700' : 'bg-amber-50 border-amber-200 text-amber-700')}
+          <span class="text-[11px] text-slate-500">Tối đa ${fmt(c.max)}</span>${groupInfo}</div></div>
+      <div class="flex items-center gap-1.5">
+        <input type="number" data-input="score" data-crit="${c.id}" value="${v ?? ''}" min="0" max="${c.max}" step="0.05" class="w-20 px-2 py-1.5 border border-slate-300 rounded-lg text-sm font-bold text-right" aria-label="Điểm ${c.id}">
+        <button data-action="clear" data-crit="${c.id}" class="px-2 py-1.5 text-slate-400 hover:text-rose-600 no-print" title="Xóa điểm"><i class="fa-solid fa-xmark"></i></button>
+      </div></div>
+    <div class="flex flex-wrap gap-1.5 mt-2 no-print">${buttons}</div>
+    <details data-crit="${c.id}" class="mt-2 text-xs" ${openDetails.has(c.id) ? 'open' : ''}>
+      <summary class="text-lhu-blue font-bold"><i class="fa-solid fa-circle-info mr-1"></i>Mô tả mức · Gợi ý chấm · Minh chứng</summary>
+      <ul class="mt-2 space-y-1 text-slate-600">${levelsText}</ul>
+      <p class="mt-2"><strong>Gợi ý chấm:</strong> ${esc(c.guide)}</p>
+      <p class="mt-1"><strong>Minh chứng cần có:</strong> ${esc(c.evidence)}</p>
+    </details></div>`;
+}
+
+// ---------------------------------------------------------------- tab Mức đạt CLO
+function viewReport() {
+  const { clos, crits } = stats();
+  const pct = (r) => (r === null ? '–' : (r * 100).toLocaleString('vi-VN', { maximumFractionDigits: 1 }) + '%');
+  const cards = clos.map((s, k) => `<div class="bg-white border border-slate-200 rounded-2xl p-4">
+      <div class="flex items-center justify-between"><span class="px-2.5 py-1 rounded-lg border text-xs font-extrabold ${CLO_STYLE[k % 4]}">${s.clo.id}</span>${s.ok === null ? badge('Chưa có điểm', 'bg-slate-50 border-slate-200 text-slate-500') : s.ok ? badge('Đạt cấp lớp', 'bg-emerald-50 border-emerald-200 text-emerald-700') : badge('Chưa đạt cấp lớp', 'bg-rose-50 border-rose-200 text-rose-700')}</div>
+      <div class="mt-3 text-3xl font-black ${s.ok === false ? 'text-rose-600' : 'text-lhu-blue'}">${pct(s.rate)}</div>
+      <div class="text-xs text-slate-500">${s.pass}/${s.n} SV đạt (≥ ${fmt(s.clo.max * COURSE.studentThreshold)} / ${fmt(s.clo.max)}) · ngưỡng lớp ${COURSE.classThreshold * 100}%</div>
+      <div class="mt-2 h-2 bg-slate-100 rounded-full overflow-hidden"><div class="h-full ${s.ok === false ? 'bg-rose-500' : 'bg-emerald-500'}" style="width:${(s.rate ?? 0) * 100}%"></div></div>
+      <div class="mt-2 text-xs text-slate-500">Điểm TB: <strong>${fmt(s.avg)}</strong></div></div>`).join('');
+  const critRows = crits.map(({ c, n, avg, ratio }) => `<tr class="border-t border-slate-100">
+      <td class="py-1.5 px-2 font-bold">${c.id}</td><td class="py-1.5 px-2">${esc(c.name)}</td><td class="py-1.5 px-2 text-center">${SCOPE[c.scope]}</td>
+      <td class="py-1.5 px-2 text-right">${fmt(c.max)}</td><td class="py-1.5 px-2 text-right">${n}</td><td class="py-1.5 px-2 text-right font-bold">${fmt(avg)}</td>
+      <td class="py-1.5 px-2 w-40"><div class="h-2 bg-slate-100 rounded-full overflow-hidden"><div class="h-full ${ratio !== null && ratio < COURSE.studentThreshold ? 'bg-rose-500' : 'bg-sky-500'}" style="width:${(ratio ?? 0) * 100}%"></div></div></td></tr>`).join('');
+  const stuRows = state.students.map((s) => `<tr class="border-t border-slate-100">
+      <td class="py-1.5 px-2">${esc(s.mssv)}</td><td class="py-1.5 px-2 font-bold">${esc(s.name)}</td><td class="py-1.5 px-2 text-center">${esc(s.group)}</td>
+      ${RUBRIC.clos.map((clo) => { const v = cloScore(s, clo); const p = passed(v, clo); return `<td class="py-1.5 px-2 text-right ${p === false ? 'text-rose-600 font-bold' : ''}">${fmt(v)}</td>`; }).join('')}
+      <td class="py-1.5 px-2 text-right font-extrabold">${fmt(total(s))}</td></tr>`).join('');
+  return `<div class="space-y-5">
+    <p class="text-sm text-slate-600">${esc(COURSE.note)} Chỉ tính sinh viên đã chấm đủ mọi tiêu chí của CLO.</p>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">${cards}</div>
+    <div class="bg-white border border-slate-200 rounded-2xl p-4 overflow-x-auto"><h3 class="font-extrabold mb-2">Điểm trung bình theo tiêu chí</h3>
+      <table class="w-full text-sm"><thead class="text-xs text-slate-500"><tr><th class="text-left px-2">Mã</th><th class="text-left px-2">Tiêu chí</th><th class="px-2">Phạm vi</th><th class="text-right px-2">Tối đa</th><th class="text-right px-2">Số SV</th><th class="text-right px-2">TB</th><th class="px-2">TB / tối đa</th></tr></thead><tbody>${critRows}</tbody></table></div>
+    <div class="bg-white border border-slate-200 rounded-2xl p-4 overflow-x-auto"><h3 class="font-extrabold mb-2">Điểm theo sinh viên</h3>
+      <table class="w-full text-sm"><thead class="text-xs text-slate-500"><tr><th class="text-left px-2">MSSV</th><th class="text-left px-2">Họ và tên</th><th class="px-2">Nhóm</th>${RUBRIC.clos.map((c) => `<th class="text-right px-2">${c.id} (${fmt(c.max)})</th>`).join('')}<th class="text-right px-2">Tổng</th></tr></thead><tbody>${stuRows || '<tr><td colspan="9" class="py-4 text-center text-slate-400">Chưa có sinh viên</td></tr>'}</tbody></table></div>
+  </div>`;
+}
+
+// ---------------------------------------------------------------- tab Rubric
+function viewRubric() {
+  return `<div class="space-y-5"><p class="text-sm text-slate-600">${esc(COURSE.assessment)}. Mức chấm: ${RUBRIC.levels.map((l) => `<strong>${l.code}</strong> ${esc(l.name)} = ${l.ratio * 100}%`).join(' · ')}. Có thể cho điểm lẻ giữa hai mức.</p>
+  ${RUBRIC.clos.map((clo, k) => `<section class="bg-white border border-slate-200 rounded-2xl overflow-hidden">
+    <div class="px-4 py-3 border-b ${CLO_STYLE[k % 4]}"><span class="font-extrabold">${clo.id} · ${fmt(clo.max)} điểm</span> <span class="text-xs">(${esc(clo.plo)})</span><div class="text-xs mt-0.5">${esc(clo.name)}</div></div>
+    <div class="overflow-x-auto"><table class="w-full text-xs min-w-[900px]"><thead class="bg-slate-50 text-slate-600"><tr>
+      <th class="p-2 text-left w-48">Tiêu chí</th>${DESCRIBED.map((l) => `<th class="p-2 text-left">${l.code} - ${esc(l.name)} (${l.ratio * 100}%)</th>`).join('')}<th class="p-2 text-left w-56">Gợi ý chấm</th><th class="p-2 text-left w-48">Minh chứng</th></tr></thead>
+      <tbody>${clo.criteria.map((c) => `<tr class="border-t border-slate-100 align-top"><td class="p-2"><div class="font-bold">${c.id}. ${esc(c.name)}</div><div class="text-slate-500 mt-1">${SCOPE[c.scope]} · tối đa ${fmt(c.max)}</div></td>
+        ${DESCRIBED.map((l) => `<td class="p-2">${esc(c.levels[l.code])}</td>`).join('')}<td class="p-2 text-slate-600">${esc(c.guide)}</td><td class="p-2 text-slate-600">${esc(c.evidence)}</td></tr>`).join('')}</tbody></table></div></section>`).join('')}</div>`;
+}
+
+// ---------------------------------------------------------------- tab Sinh viên & dữ liệu
+function viewData() {
+  const rows = state.students.map((s) => `<tr class="border-t border-slate-100">
+    <td class="p-1.5"><input data-edit="mssv" data-id="${s.id}" value="${esc(s.mssv)}" class="w-28 px-2 py-1 border border-slate-200 rounded-lg text-sm"></td>
+    <td class="p-1.5"><input data-edit="name" data-id="${s.id}" value="${esc(s.name)}" class="w-full min-w-[12rem] px-2 py-1 border border-slate-200 rounded-lg text-sm"></td>
+    <td class="p-1.5"><input data-edit="group" data-id="${s.id}" value="${esc(s.group)}" class="w-20 px-2 py-1 border border-slate-200 rounded-lg text-sm"></td>
+    <td class="p-1.5 text-right text-xs text-slate-500">${gradedCount(s)}/${CRITERIA.length}</td>
+    <td class="p-1.5 text-right"><button data-action="remove" data-id="${s.id}" class="text-slate-400 hover:text-rose-600" title="Xóa sinh viên"><i class="fa-solid fa-trash"></i></button></td></tr>`).join('');
+  return `<div class="grid lg:grid-cols-2 gap-5">
+    <div class="space-y-5">
+      <div class="bg-white border border-slate-200 rounded-2xl p-4">
+        <h3 class="font-extrabold">Thêm sinh viên</h3>
+        <p class="text-xs text-slate-500 mt-1">Mỗi dòng: <strong>MSSV, Họ và tên, Nhóm</strong>. Có thể chọn 3 cột trong Excel rồi dán (tách bằng Tab), hoặc dùng dấu phẩy/chấm phẩy. Dòng tiêu đề có chữ "MSSV" được bỏ qua; MSSV đã có thì cập nhật tên và nhóm.</p>
+        <textarea id="paste" rows="7" class="mt-3 w-full px-3 py-2 border border-slate-200 rounded-xl text-sm font-mono" placeholder="121000001	Nguyễn Văn A	1&#10;121000002	Trần Thị B	1&#10;121000003	Lê Văn C	2"></textarea>
+        <div class="mt-3 flex flex-wrap gap-2">
+          <button data-action="paste" class="px-4 py-2 bg-lhu-blue text-white font-bold rounded-xl text-sm"><i class="fa-solid fa-plus mr-1"></i>Thêm vào danh sách</button>
+          <label class="px-4 py-2 bg-slate-100 hover:bg-slate-200 font-bold rounded-xl text-sm cursor-pointer"><i class="fa-solid fa-file-csv mr-1"></i>Nhập file CSV<input type="file" accept=".csv,.txt" data-input="csv" class="hidden"></label>
+        </div>
+      </div>
+      <div class="bg-white border border-slate-200 rounded-2xl p-4">
+        <h3 class="font-extrabold">Xuất và sao lưu</h3>
+        <div class="mt-3 flex flex-wrap gap-2">
+          <button data-action="export-xlsx" class="px-4 py-2 bg-emerald-600 text-white font-bold rounded-xl text-sm"><i class="fa-solid fa-file-excel mr-1"></i>Xuất Excel (tiêu chí + CLO)</button>
+          <button data-action="export-json" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 font-bold rounded-xl text-sm"><i class="fa-solid fa-download mr-1"></i>Sao lưu JSON</button>
+          <label class="px-4 py-2 bg-slate-100 hover:bg-slate-200 font-bold rounded-xl text-sm cursor-pointer"><i class="fa-solid fa-upload mr-1"></i>Khôi phục JSON<input type="file" accept=".json" data-input="json" class="hidden"></label>
+          <button data-action="reset" class="px-4 py-2 bg-rose-50 text-rose-700 hover:bg-rose-100 font-bold rounded-xl text-sm"><i class="fa-solid fa-eraser mr-1"></i>Xóa toàn bộ</button>
+        </div>
+        <p class="text-xs text-slate-500 mt-3">Dữ liệu tự lưu trong trình duyệt này (khóa ${esc(STORE_KEY)}). Sao lưu JSON để chuyển sang máy khác hoặc chia việc chấm giữa các giảng viên.</p>
+      </div>
+    </div>
+    <div class="bg-white border border-slate-200 rounded-2xl p-4 overflow-x-auto">
+      <h3 class="font-extrabold">Danh sách (${state.students.length} sinh viên, ${new Set(state.students.map((s) => s.group).filter(Boolean)).size} nhóm)</h3>
+      <table class="w-full mt-2 text-sm"><thead class="text-xs text-slate-500"><tr><th class="text-left p-1.5">MSSV</th><th class="text-left p-1.5">Họ và tên</th><th class="text-left p-1.5">Nhóm</th><th class="text-right p-1.5">Đã chấm</th><th></th></tr></thead>
+      <tbody>${rows || '<tr><td colspan="5" class="py-6 text-center text-slate-400">Chưa có sinh viên</td></tr>'}</tbody></table>
+    </div></div>`;
+}
+
+function parseStudents(text) {
+  let added = 0, updated = 0;
+  for (const raw of text.split(/\r?\n/)) {
+    const line = raw.trim();
+    if (!line || /mssv/i.test(line)) continue;
+    const parts = line.split(line.includes('\t') ? '\t' : /[;,]/).map((p) => p.trim().replace(/^"|"$/g, ''));
+    const [mssv, name, group = ''] = parts;
+    if (!mssv || !name) continue;
+    const found = state.students.find((s) => s.mssv === mssv);
+    if (found) { found.name = name; found.group = group; updated++; continue; }
+    state.students.push({ id: crypto.randomUUID ? crypto.randomUUID() : String(Date.now() + Math.random()), mssv, name, group, scores: {}, overrides: {}, note: '' });
+    added++;
+  }
+  save();
+  return { added, updated };
+}
+
+// ---------------------------------------------------------------- xuất file
+function download(name, blob) {
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = name;
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+}
+const stamp = () => new Date().toISOString().slice(0, 10);
+
+function gradeTable() {
+  const head = ['STT', 'MSSV', 'Họ và tên', 'Nhóm', ...CRITERIA.map((c) => `${c.id} ${c.name} (${c.max})`),
+    ...RUBRIC.clos.map((c) => `${c.id} (${c.max})`), `Tổng (${COURSE.scale})`, ...RUBRIC.clos.map((c) => `Đạt ${c.id}`), 'Ghi chú'];
+  const rows = state.students.map((s, i) => [i + 1, s.mssv, s.name, s.group, ...CRITERIA.map((c) => score(s, c) ?? ''),
+    ...RUBRIC.clos.map((clo) => cloScore(s, clo) ?? ''), total(s) ?? '',
+    ...RUBRIC.clos.map((clo) => { const p = passed(cloScore(s, clo), clo); return p === null ? '' : p ? 'Đạt' : 'Chưa đạt'; }), s.note || '']);
+  return [head, ...rows];
+}
+
+function exportXlsx() {
+  if (!state.students.length) return alert('Chưa có sinh viên để xuất.');
+  const table = gradeTable();
+  if (typeof XLSX === 'undefined') {
+    // Không tải được thư viện (mất mạng): xuất CSV mở được bằng Excel
+    const csv = '﻿' + table.map((r) => r.map((v) => `"${String(v).replace(/"/g, '""')}"`).join(',')).join('\r\n');
+    return download(`Diem-${COURSE.code}-${stamp()}.csv`, new Blob([csv], { type: 'text/csv;charset=utf-8' }));
+  }
+  const { clos, crits } = stats();
+  const wb = XLSX.utils.book_new();
+  const ws1 = XLSX.utils.aoa_to_sheet(table);
+  ws1['!cols'] = [{ wch: 5 }, { wch: 12 }, { wch: 24 }, { wch: 7 }, ...CRITERIA.map(() => ({ wch: 12 })), ...RUBRIC.clos.map(() => ({ wch: 10 })), { wch: 10 }, ...RUBRIC.clos.map(() => ({ wch: 10 })), { wch: 30 }];
+  ws1['!freeze'] = { xSplit: 4, ySplit: 1 };
+  XLSX.utils.book_append_sheet(wb, ws1, 'Bảng điểm');
+
+  const ws2 = XLSX.utils.aoa_to_sheet([
+    [`Mức đạt CLO - ${COURSE.name} (${COURSE.code}) - xuất ngày ${new Date().toLocaleDateString('vi-VN')}`], [COURSE.note], [],
+    ['CLO', 'Nội dung', 'PLO/PI', 'Điểm tối đa', 'Ngưỡng SV đạt', 'Số SV có điểm', 'Số SV đạt', 'Tỷ lệ đạt (%)', 'Điểm TB', 'Kết luận cấp lớp'],
+    ...clos.map((s) => [s.clo.id, s.clo.name, s.clo.plo, s.clo.max, round2(s.clo.max * COURSE.studentThreshold), s.n, s.pass,
+      s.rate === null ? '' : round2(s.rate * 100), s.avg ?? '', s.ok === null ? '' : s.ok ? 'Đạt' : 'Chưa đạt']),
+  ]);
+  ws2['!cols'] = [{ wch: 8 }, { wch: 60 }, { wch: 14 }, { wch: 11 }, { wch: 13 }, { wch: 13 }, { wch: 10 }, { wch: 13 }, { wch: 9 }, { wch: 16 }];
+  XLSX.utils.book_append_sheet(wb, ws2, 'Mức đạt CLO');
+
+  const ws3 = XLSX.utils.aoa_to_sheet([
+    ['Mã', 'Tiêu chí', 'CLO', 'Phạm vi', 'Điểm tối đa', 'Số SV có điểm', 'Điểm TB', 'TB / tối đa (%)'],
+    ...crits.map(({ c, n, avg, ratio }) => [c.id, c.name, c.clo.id, SCOPE[c.scope], c.max, n, avg ?? '', ratio === null ? '' : round2(ratio * 100)]),
+  ]);
+  ws3['!cols'] = [{ wch: 6 }, { wch: 45 }, { wch: 7 }, { wch: 9 }, { wch: 11 }, { wch: 13 }, { wch: 9 }, { wch: 14 }];
+  XLSX.utils.book_append_sheet(wb, ws3, 'Theo tiêu chí');
+
+  const ws4 = XLSX.utils.aoa_to_sheet([
+    ['Mã', 'CLO', 'Tiêu chí', 'Phạm vi', 'Điểm tối đa', ...DESCRIBED.map((l) => `${l.code} - ${l.name} (${l.ratio * 100}%)`), 'Gợi ý chấm', 'Minh chứng cần có'],
+    ...CRITERIA.map((c) => [c.id, c.clo.id, c.name, SCOPE[c.scope], c.max, ...DESCRIBED.map((l) => c.levels[l.code]), c.guide, c.evidence]),
+  ]);
+  ws4['!cols'] = [{ wch: 6 }, { wch: 7 }, { wch: 28 }, { wch: 9 }, { wch: 9 }, ...DESCRIBED.map(() => ({ wch: 40 })), { wch: 45 }, { wch: 40 }];
+  XLSX.utils.book_append_sheet(wb, ws4, 'Rubric');
+
+  XLSX.writeFile(wb, `Diem-${COURSE.code}-${stamp()}.xlsx`);
+}
+
+// ---------------------------------------------------------------- sự kiện
+document.addEventListener('click', (e) => {
+  const el = e.target.closest('[data-action]');
+  if (!el) return;
+  const st = state.students.find((s) => s.id === state.selected);
+  const crit = el.dataset.crit && CRITERIA.find((c) => c.id === el.dataset.crit);
+  switch (el.dataset.action) {
+    case 'tab': tab = el.dataset.tab; render(); window.scrollTo(0, 0); break;
+    case 'select': state.selected = el.dataset.id; save(); render(); window.scrollTo(0, 0); break;
+    case 'move': {
+      const i = state.students.indexOf(st) + Number(el.dataset.step);
+      if (state.students[i]) { state.selected = state.students[i].id; save(); render(); window.scrollTo(0, 0); }
+      break;
+    }
+    case 'level': setScore(st, crit, Number(el.dataset.value)); break;
+    case 'clear': setScore(st, crit, null); break;
+    case 'override': {
+      st.overrides = st.overrides || {};
+      if (el.checked) {
+        st.overrides[crit.id] = true;
+        // Bắt đầu chấm riêng từ điểm nhóm hiện có
+        const g = (state.groupScores[st.group] || {})[crit.id];
+        if (g !== undefined && (st.scores || {})[crit.id] === undefined) { st.scores = st.scores || {}; st.scores[crit.id] = g; }
+      } else {
+        delete st.overrides[crit.id];
+        if (st.scores) delete st.scores[crit.id];
+      }
+      save(); render(); break;
+    }
+    case 'paste': {
+      const box = document.getElementById('paste');
+      const r = parseStudents(box.value);
+      box.value = '';
+      render();
+      alert(`Đã thêm ${r.added} sinh viên, cập nhật ${r.updated} sinh viên.`);
+      break;
+    }
+    case 'remove': {
+      const s = state.students.find((x) => x.id === el.dataset.id);
+      if (s && confirm(`Xóa ${s.name} (${s.mssv}) và điểm đã chấm?`)) { state.students = state.students.filter((x) => x !== s); save(); render(); }
+      break;
+    }
+    case 'export-xlsx': exportXlsx(); break;
+    case 'export-json':
+      download(`Cham-diem-${COURSE.code}-${stamp()}.json`, new Blob([JSON.stringify({ ...state, course: COURSE.code, exportedAt: new Date().toISOString() }, null, 2)], { type: 'application/json' }));
+      break;
+    case 'reset':
+      if (confirm('Xóa toàn bộ danh sách và điểm đã chấm trên trình duyệt này? Nên sao lưu JSON trước.')) { state = blank(); save(); render(); }
+      break;
+  }
+});
+
+document.addEventListener('input', (e) => {
+  const el = e.target;
+  if (el.id === 'search') {
+    search = el.value;
+    const pos = el.selectionStart;
+    render();
+    const box = document.getElementById('search');
+    box.focus(); box.setSelectionRange(pos, pos);
+    return;
+  }
+  if (el.dataset.input === 'note') {
+    const st = state.students.find((s) => s.id === state.selected);
+    st.note = el.value; save();
+  }
+  if (el.dataset.edit) {
+    const s = state.students.find((x) => x.id === el.dataset.id);
+    s[el.dataset.edit] = el.value.trim(); save();
+  }
+});
+
+document.addEventListener('change', async (e) => {
+  const el = e.target;
+  if (el.dataset.input === 'score') {
+    const st = state.students.find((s) => s.id === state.selected);
+    const crit = CRITERIA.find((c) => c.id === el.dataset.crit);
+    if (!st || !crit) return;
+    const next = el.value === '' ? null : Number(el.value.replace(',', '.'));
+    if (next !== score(st, crit)) setScore(st, crit, next);
+  }
+  if (el.dataset.edit) render();
+  if (el.dataset.input === 'csv' && el.files[0]) {
+    const r = parseStudents(await el.files[0].text());
+    render();
+    alert(`Đã thêm ${r.added} sinh viên, cập nhật ${r.updated} sinh viên.`);
+  }
+  if (el.dataset.input === 'json' && el.files[0]) {
+    try {
+      const data = JSON.parse(await el.files[0].text());
+      if (!Array.isArray(data.students)) throw new Error('Thiếu danh sách students');
+      if (data.course && data.course !== COURSE.code && !confirm(`File thuộc học phần ${data.course}, vẫn khôi phục?`)) return;
+      state = { ...blank(), students: data.students, groupScores: data.groupScores || {}, selected: data.selected || null };
+      save(); render();
+      alert(`Đã khôi phục ${state.students.length} sinh viên.`);
+    } catch (err) {
+      alert('File JSON không hợp lệ: ' + err.message);
+    }
+  }
+});
+
+document.addEventListener('toggle', (e) => {
+  const d = e.target;
+  if (d.tagName === 'DETAILS' && d.dataset.crit) { d.open ? openDetails.add(d.dataset.crit) : openDetails.delete(d.dataset.crit); }
+}, true);
+
+render();
+</script>
+</body>
+</html>

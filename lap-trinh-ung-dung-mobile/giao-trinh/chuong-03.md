@@ -12,7 +12,7 @@ Sau khi học xong chương này, bạn có thể:
 
 ## 3.1. Mô hình điều hướng trên di động
 
-Ứng dụng di động không có thanh địa chỉ. Người dùng di chuyển giữa các màn hình bằng chạm, nút Back của Android và cử chỉ vuốt. Ba mô hình cơ bản:
+Ứng dụng di động không có thanh địa chỉ. Người dùng di chuyển giữa các màn hình bằng chạm, nút Back của Android và cử chỉ vuốt. Ba mô hình cơ bản [2]:
 
 ### 3.1.1. Stack
 
@@ -34,7 +34,7 @@ Màn hình trượt lên che màn hình hiện tại, dùng cho tác vụ ngắn
 
 ### 3.2.1. Nguyên tắc
 
-Expo Router xây dựng trên React Navigation và dùng **cấu trúc thư mục `app/` làm bản đồ điều hướng**:
+Expo Router xây dựng trên React Navigation và dùng **cấu trúc thư mục `app/` làm bản đồ điều hướng** [1]:
 
 - Mỗi file trong `app/` là một màn hình, đường dẫn tương ứng với vị trí file.
 - File `index.tsx` là màn hình mặc định của thư mục chứa nó.
@@ -80,7 +80,7 @@ export default function RootLayout() {
 }
 ```
 
-`headerShown: false` cho nhóm `(tabs)` vì mỗi tab đã có thanh tiêu đề riêng; nếu không, màn hình sẽ hiện hai thanh tiêu đề chồng nhau.
+`headerShown: false` cho nhóm `(tabs)` vì mỗi tab đã có thanh tiêu đề riêng; nếu không, màn hình sẽ hiện hai thanh tiêu đề chồng nhau [2].
 
 ### 3.2.4. Layout thanh tab
 
@@ -114,7 +114,7 @@ export default function TabLayout() {
 }
 ```
 
-`@expo/vector-icons` có sẵn trong dự án Expo, cung cấp nhiều bộ biểu tượng như Ionicons, MaterialIcons.
+`@expo/vector-icons` có sẵn trong dự án Expo, cung cấp nhiều bộ biểu tượng như Ionicons, MaterialIcons [2].
 
 ## 3.3. Route động, tham số và chuyển màn hình
 
@@ -137,11 +137,11 @@ export default function ProductDetail() {
 }
 ```
 
-Tham số trên đường dẫn luôn là **chuỗi**. Khi so với mã số, hãy chuyển kiểu cho thống nhất. `<Stack.Screen options>` đặt bên trong màn hình cho phép đổi tiêu đề theo dữ liệu.
+Tham số trên đường dẫn luôn là **chuỗi**. Khi so với mã số, hãy chuyển kiểu cho thống nhất. `<Stack.Screen options>` đặt bên trong màn hình cho phép đổi tiêu đề theo dữ liệu [3].
 
 ### 3.3.2. Chuyển màn hình
 
-**Bằng component `Link`:**
+**Bằng component `Link`:** [3]
 
 ```tsx
 import { Link } from 'expo-router';
@@ -165,7 +165,7 @@ import { Link } from 'expo-router';
 
 ### 3.3.3. Deep link
 
-Deep link cho phép một đường dẫn bên ngoài mở thẳng một màn hình trong ứng dụng. Khai báo `scheme` trong `app.json`:
+Deep link cho phép một đường dẫn bên ngoài mở thẳng một màn hình trong ứng dụng. Khai báo `scheme` trong `app.json` [4]:
 
 ```json
 {
@@ -305,7 +305,10 @@ export default function CategoryScreen() {
 
 ## Tài liệu tham khảo
 
-- Expo Router - Introduction: https://docs.expo.dev/router/introduction/
-- Expo Router - Navigation layouts (Stack, Tabs): https://docs.expo.dev/router/basics/layout/
-- Expo Router - Navigating between pages: https://docs.expo.dev/router/basics/navigation/
-- Expo - Linking và deep link: https://docs.expo.dev/linking/overview/
+[1] Expo, “Introduction to Expo Router,” *Expo Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://docs.expo.dev/router/introduction/
+
+[2] Expo, “Navigation layouts,” *Expo Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://docs.expo.dev/router/basics/layout/
+
+[3] Expo, “Navigate between pages,” *Expo Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://docs.expo.dev/router/basics/navigation/
+
+[4] Expo, “Linking overview,” *Expo Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://docs.expo.dev/linking/overview/

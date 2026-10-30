@@ -124,6 +124,26 @@
                 <span style="color: #fd7e14; font-weight: bold;">📋 Đánh giá học phần</span><br>
                 <span style="color: #6c757d; font-size: 13px;">Rubric đầy đủ, sản phẩm nộp và quy định liêm chính học thuật.</span>
             </a>
+            <a href="{{LINK_RUBRIC}}" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
+                <span style="color: #fd7e14; font-weight: bold;">📊 Rubric chấm cuối kỳ (Excel)</span><br>
+                <span style="color: #6c757d; font-size: 13px;">27 tiêu chí theo 4 CLO: mô tả từng mức, gợi ý chấm, minh chứng cần có; dùng để tự kiểm tra sản phẩm trước Demo Day.</span>
+            </a>
+            <a href="{{LINK_DE_CUONG}}" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
+                <span style="color: #fd7e14; font-weight: bold;">📑 Đề cương học phần 111114</span><br>
+                <span style="color: #6c757d; font-size: 13px;">Chuẩn đầu ra (CLO), hình thức và tỷ trọng đánh giá cuối kỳ (file Word).</span>
+            </a>
+            <a href="{{LINK_GIAO_TRINH}}" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
+                <span style="color: #fd7e14; font-weight: bold;">📘 Giáo trình nội bộ – Chương 12: Báo cáo đồ án, Demo Day và tổng kết</span><br>
+                <span style="color: #6c757d; font-size: 13px;">Lý thuyết chi tiết, mã nguồn LHU Food và bài tập hướng dẫn theo dự án ở cuối Chương 12 (file Word).</span>
+            </a>
+            <a href="{{LINK_SRS_LHU_FOOD}}" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
+                <span style="color: #fd7e14; font-weight: bold;">🧾 SRS dự án LHU Food</span><br>
+                <span style="color: #6c757d; font-size: 13px;">Đọc SRS mục 4 (user story), mục 10.1 (truy vết theo chương), mục 7 (dữ liệu); rubric cuối kỳ (mục 12.1). User story của buổi: toàn bộ story Must; story Should/Could đã làm là điểm cộng.</span>
+            </a>
+            <a href="{{LINK_AGILE_SCRUM}}" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
+                <span style="color: #fd7e14; font-weight: bold;">🗂 Kế hoạch Agile &amp; Product Backlog</span><br>
+                <span style="color: #6c757d; font-size: 13px;">Ma trận truy vết SRS → backlog, release burndown và danh sách story Must cần demo.</span>
+            </a>
         </div>
     </div>
 </details>

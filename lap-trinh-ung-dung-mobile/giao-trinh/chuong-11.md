@@ -46,7 +46,7 @@ Nhóm nên chuẩn bị đủ các thông tin này trước buổi 11, để th�
 
 ### 11.2.1. Dựng CSDL từ script
 
-Chương 7 đã tổ chức thư mục `database/` theo phiên bản. Trên server:
+Chương 7 đã tổ chức thư mục `database/` theo phiên bản. Trên server [14]:
 
 1. Tạo CSDL trống, ví dụ `LhuFood`.
 2. Chạy lần lượt các script theo thứ tự số: `01-tables.sql`, `02-procedures.sql`, `03-auth.sql`, …, `08-notifications.sql`, cuối cùng `99-seed.sql`.
@@ -97,7 +97,7 @@ Sau khi đã có dữ liệu thật trên server, **không** xóa CSDL để ch�
 
 ### 11.3.1. Build và cấu hình
 
-Trên server, lấy mã nguồn từ repo (nhánh phát hành) rồi:
+Trên server, lấy mã nguồn từ repo (nhánh phát hành) rồi [12]:
 
 ```powershell
 npm ci            # cài đúng phiên bản trong package-lock.json
@@ -220,7 +220,7 @@ Thư mục `uploads/` (Chương 8) nằm cạnh mã backend trên server. Lưu �
 
 ### 11.4.1. Từ `app.json` sang `app.config.ts`
 
-`app.json` là cấu hình tĩnh. Đổi sang `app.config.ts` để viết cấu hình bằng TypeScript và đọc biến môi trường khi cần:
+`app.json` là cấu hình tĩnh. Đổi sang `app.config.ts` để viết cấu hình bằng TypeScript và đọc biến môi trường khi cần [4], [9]:
 
 ```ts
 // app.config.ts
@@ -273,7 +273,7 @@ Khi chuyển, chép đủ nội dung `app.json` hiện có (quyền, plugin came
 
 ### 11.4.2. Địa chỉ API theo môi trường
 
-`lib/api.ts` (Chương 5) và `useRealtime` (Chương 9) đều đọc `process.env.EXPO_PUBLIC_API_URL`. Giá trị này khác nhau theo môi trường:
+`lib/api.ts` (Chương 5) và `useRealtime` (Chương 9) đều đọc `process.env.EXPO_PUBLIC_API_URL`. Giá trị này khác nhau theo môi trường [5]:
 
 | Môi trường | `EXPO_PUBLIC_API_URL` | Khai báo ở |
 |---|---|---|
@@ -285,7 +285,7 @@ Biến `EXPO_PUBLIC_*` được **thay vào mã khi đóng gói**. Đổi địa
 
 ### 11.4.3. Kết nối HTTP không mã hóa
 
-Từ Android 9, ứng dụng mặc định **không được** kết nối HTTP không mã hóa (cleartext). Khi chạy bằng Expo Go hoặc bản phát triển, giới hạn này được nới để tiện phát triển; bản APK build cho người dùng thì không. Hiện tượng: Swagger mở được trên trình duyệt, nhưng APK báo "Network request failed".
+Từ Android 9, ứng dụng mặc định **không được** kết nối HTTP không mã hóa (cleartext). Khi chạy bằng Expo Go hoặc bản phát triển, giới hạn này được nới để tiện phát triển; bản APK build cho người dùng thì không. Hiện tượng: Swagger mở được trên trình duyệt, nhưng APK báo "Network request failed" [8].
 
 - **Cách đúng:** server Khoa cung cấp HTTPS (chứng chỉ, tên miền). Hỏi bộ phận hỗ trợ trước.
 - **Nếu chỉ có HTTP trong phạm vi đồ án:** cho phép cleartext trong bản build bằng plugin `expo-build-properties` (tùy chọn `android.usesCleartextTraffic`), theo hướng dẫn trong tài liệu Expo. Ghi rõ trong báo cáo đây là cấu hình tạm cho môi trường học tập; bản phát hành thật phải dùng HTTPS.
@@ -294,7 +294,7 @@ Từ Android 9, ứng dụng mặc định **không được** kết nối HTTP 
 
 ### 11.5.1. Chuẩn bị
 
-EAS Build biên dịch ứng dụng trên máy chủ của Expo, nên không cần cài Android Studio. Mỗi sinh viên dùng tài khoản Expo miễn phí đã đăng ký.
+EAS Build biên dịch ứng dụng trên máy chủ của Expo, nên không cần cài Android Studio. Mỗi sinh viên dùng tài khoản Expo miễn phí đã đăng ký [1].
 
 ```bash
 npm install -g eas-cli
@@ -340,7 +340,7 @@ Dự án Expo thuộc tài khoản của người chạy `eas init`. Nhóm thố
 | `preview` | **APK** | Cài trực tiếp lên điện thoại để kiểm thử và Demo Day (**bắt buộc**) |
 | `production` | **AAB** (Android App Bundle) | Tải lên Google Play; không cài trực tiếp được |
 
-Khóa `GOOGLE_MAPS_API_KEY` là bí mật dùng khi build, nên không ghi vào `eas.json` (file nằm trong repo). Khai báo nó thành biến môi trường của dự án trên trang Expo (EAS environment variables) theo hướng dẫn của Expo.
+Khóa `GOOGLE_MAPS_API_KEY` là bí mật dùng khi build, nên không ghi vào `eas.json` (file nằm trong repo). Khai báo nó thành biến môi trường của dự án trên trang Expo (EAS environment variables) theo hướng dẫn của Expo [2], [6].
 
 ### 11.5.3. Build APK
 
@@ -348,7 +348,7 @@ Khóa `GOOGLE_MAPS_API_KEY` là bí mật dùng khi build, nên không ghi vào 
 eas build -p android --profile preview
 ```
 
-Lệnh tải mã nguồn lên Expo, xếp hàng và build. Khi xong, terminal và trang Expo hiển thị **link tải và mã QR**; quét mã trên điện thoại Android để tải và cài APK (cần cho phép cài ứng dụng từ nguồn này trong cài đặt Android).
+Lệnh tải mã nguồn lên Expo, xếp hàng và build. Khi xong, terminal và trang Expo hiển thị **link tải và mã QR**; quét mã trên điện thoại Android để tải và cài APK (cần cho phép cài ứng dụng từ nguồn này trong cài đặt Android) [3].
 
 Kiểm tra trên APK, không phải Expo Go:
 
@@ -360,7 +360,7 @@ Kiểm tra trên APK, không phải Expo Go:
 
 ### 11.5.4. Ký ứng dụng
 
-Mỗi bản cài Android phải được **ký** bằng một khóa (keystore). Ở lần build đầu, EAS đề nghị tạo keystore và lưu trên máy chủ Expo; chọn đồng ý. Lưu ý:
+Mỗi bản cài Android phải được **ký** bằng một khóa (keystore). Ở lần build đầu, EAS đề nghị tạo keystore và lưu trên máy chủ Expo; chọn đồng ý. Lưu ý [7]:
 
 - Mọi bản cập nhật của ứng dụng phải ký bằng **cùng** keystore. Android từ chối cài đè bản ký bằng khóa khác; Google Play từ chối bản cập nhật.
 - Keystore gắn với tài khoản sở hữu dự án; không xóa dự án trên Expo khi chưa tải keystore về sao lưu (`eas credentials`).
@@ -384,7 +384,7 @@ Android là bắt buộc; iOS là phần mở rộng. Để cài lên iPhone th�
 
 ### 11.6.1. Cập nhật qua mạng (OTA)
 
-Ứng dụng React Native gồm hai phần: **mã native** (đã biên dịch trong APK) và **gói JavaScript** (giao diện và logic). EAS Update cho phép gửi gói JavaScript mới tới các bản đã cài mà không build lại. Ứng dụng kiểm tra bản cập nhật khi mở và áp dụng ở lần mở tiếp theo (hành vi mặc định).
+Ứng dụng React Native gồm hai phần: **mã native** (đã biên dịch trong APK) và **gói JavaScript** (giao diện và logic). EAS Update cho phép gửi gói JavaScript mới tới các bản đã cài mà không build lại. Ứng dụng kiểm tra bản cập nhật khi mở và áp dụng ở lần mở tiếp theo (hành vi mặc định) [10].
 
 ```bash
 npx expo install expo-updates
@@ -399,7 +399,7 @@ eas update --channel preview --message "Sửa lỗi hiển thị tổng tiền"
 
 ### 11.6.2. Channel và runtime version
 
-- **Channel:** bản build profile `preview` gắn channel `preview` (khai báo trong `eas.json`), chỉ nhận bản cập nhật gửi lên channel đó. Gửi nhầm channel thì người dùng không nhận được.
+- **Channel:** bản build profile `preview` gắn channel `preview` (khai báo trong `eas.json`), chỉ nhận bản cập nhật gửi lên channel đó. Gửi nhầm channel thì người dùng không nhận được [11].
 - **Runtime version:** đánh dấu phần native mà gói JavaScript tương thích. Bản cập nhật chỉ đến các bản build cùng runtime version, tránh gửi mã JavaScript cần một thư viện native mà APK cũ không có.
 
 ### 11.6.3. Khi nào phải build lại
@@ -418,7 +418,7 @@ Với tài khoản miễn phí, EAS Update là cách tiết kiệm lượt build
 
 ### 11.7.1. Hồ sơ cửa hàng
 
-Đồ án không bắt buộc đưa ứng dụng lên Google Play (cần tài khoản nhà phát triển trả phí và quy trình duyệt), nhưng nhóm chuẩn bị hồ sơ như khi phát hành thật, đặt trong thư mục `store-listing/` của repo ứng dụng:
+Đồ án không bắt buộc đưa ứng dụng lên Google Play (cần tài khoản nhà phát triển trả phí và quy trình duyệt), nhưng nhóm chuẩn bị hồ sơ như khi phát hành thật, đặt trong thư mục `store-listing/` của repo ứng dụng [15]:
 
 | Thành phần | Yêu cầu |
 |---|---|
@@ -449,7 +449,7 @@ Chính sách phải **đúng với ứng dụng thật**. Xin quyền mà chính
 
 ### 11.8.1. Log phía backend
 
-NestJS có sẵn lớp `Logger`. Ghi log có ngữ cảnh ở các chỗ quan trọng, đặc biệt trong `DatabaseService` khi thủ tục lỗi ngoài các mã nghiệp vụ:
+NestJS có sẵn lớp `Logger`. Ghi log có ngữ cảnh ở các chỗ quan trọng, đặc biệt trong `DatabaseService` khi thủ tục lỗi ngoài các mã nghiệp vụ [13]:
 
 ```ts
 import { Logger } from '@nestjs/common';
@@ -533,18 +533,32 @@ Mục README "Triển khai trên Windows Server" gồm: yêu cầu (phiên bản
 
 ## Tài liệu tham khảo
 
-- Expo - Create your first build: https://docs.expo.dev/build/setup/
-- Expo - Configure EAS Build with eas.json: https://docs.expo.dev/build/eas-json/
-- Expo - Build APKs for Android emulators and devices: https://docs.expo.dev/build-reference/apk/
-- Expo - App config (app.json / app.config.ts): https://docs.expo.dev/workflow/configuration/
-- Expo - Environment variables in Expo: https://docs.expo.dev/guides/environment-variables/
-- Expo - Environment variables in EAS: https://docs.expo.dev/eas/environment-variables/
-- Expo - App signing / credentials: https://docs.expo.dev/app-signing/app-credentials/
-- Expo - BuildProperties (expo-build-properties): https://docs.expo.dev/versions/latest/sdk/build-properties/
-- Expo - MapView (Google Maps API key): https://docs.expo.dev/versions/latest/sdk/map-view/
-- Expo - Get started with EAS Update: https://docs.expo.dev/eas-update/getting-started/
-- Expo - Runtime versions and updates: https://docs.expo.dev/eas-update/runtime-versions/
-- NestJS - Configuration: https://docs.nestjs.com/techniques/configuration
-- NestJS - Logger: https://docs.nestjs.com/techniques/logger
-- Microsoft - sqlcmd utility: https://learn.microsoft.com/sql/tools/sqlcmd/sqlcmd-utility
-- Google Play Console Help - Add preview assets: https://support.google.com/googleplay/android-developer/answer/9866151
+[1] Expo, “Create your first build,” *Expo Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://docs.expo.dev/build/setup/
+
+[2] Expo, “Configure EAS Build with eas.json,” *Expo Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://docs.expo.dev/build/eas-json/
+
+[3] Expo, “Build APKs for Android Emulators and devices,” *Expo Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://docs.expo.dev/build-reference/apk/
+
+[4] Expo, “Configure with app config,” *Expo Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://docs.expo.dev/workflow/configuration/
+
+[5] Expo, “Environment variables in Expo,” *Expo Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://docs.expo.dev/guides/environment-variables/
+
+[6] Expo, “Environment variables in EAS,” *Expo Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://docs.expo.dev/eas/environment-variables/
+
+[7] Expo, “App credentials,” *Expo Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://docs.expo.dev/app-signing/app-credentials/
+
+[8] Expo, “BuildProperties,” *Expo Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://docs.expo.dev/versions/latest/sdk/build-properties/
+
+[9] Expo, “MapView,” *Expo Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://docs.expo.dev/versions/latest/sdk/map-view/
+
+[10] Expo, “Get started with EAS Update,” *Expo Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://docs.expo.dev/eas-update/getting-started/
+
+[11] Expo, “Runtime versions and updates,” *Expo Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://docs.expo.dev/eas-update/runtime-versions/
+
+[12] NestJS, “Configuration,” *NestJS Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://docs.nestjs.com/techniques/configuration
+
+[13] NestJS, “Logger,” *NestJS Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://docs.nestjs.com/techniques/logger
+
+[14] Microsoft, “sqlcmd utility,” *Microsoft Learn*. Accessed: Oct. 30, 2026. [Online]. Available: https://learn.microsoft.com/sql/tools/sqlcmd/sqlcmd-utility
+
+[15] Google, “Add preview assets to showcase your app,” *Play Console Help*. Accessed: Oct. 30, 2026. [Online]. Available: https://support.google.com/googleplay/android-developer/answer/9866151

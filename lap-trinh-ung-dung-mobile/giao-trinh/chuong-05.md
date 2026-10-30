@@ -97,7 +97,7 @@ Vẽ lại ERD bằng dbdiagram.io hoặc draw.io với đầy đủ kiểu dữ
 
 ### 5.3.2. Quy ước
 
-- Tên: `sp_<Thực thể>_<Hành động>`, ví dụ `sp_Product_GetList`, `sp_Order_Create`.
+- Tên: `sp_<Thực thể>_<Hành động>`, ví dụ `sp_Product_GetList`, `sp_Order_Create` [3].
 - Mở đầu bằng `SET NOCOUNT ON;` để không trả về thông điệp "n rows affected" thừa.
 - Dùng `CREATE OR ALTER PROCEDURE` để chạy lại script nhiều lần không lỗi.
 - Thủ tục trả dữ liệu cho ứng dụng **đặt bí danh cột theo camelCase** (`ProductId AS id`), để JSON từ API khớp với kiểu dữ liệu trong ứng dụng.
@@ -153,11 +153,11 @@ END;
 GO
 ```
 
-`OFFSET ... FETCH NEXT` (có từ SQL Server 2012) phân trang dựa trên `ORDER BY`. Luôn sắp xếp theo một cột duy nhất để trang sau không lặp lại phần tử của trang trước.
+`OFFSET ... FETCH NEXT` (có từ SQL Server 2012) phân trang dựa trên `ORDER BY`. Luôn sắp xếp theo một cột duy nhất để trang sau không lặp lại phần tử của trang trước [2].
 
 ### 5.3.4. Thủ tục ghi dữ liệu
 
-Danh sách món trong đơn được truyền vào thủ tục dưới dạng chuỗi JSON và đọc bằng `OPENJSON` (SQL Server 2016 trở lên). Giá món được lấy từ bảng `Products`, **không** tin giá do ứng dụng gửi lên.
+Danh sách món trong đơn được truyền vào thủ tục dưới dạng chuỗi JSON và đọc bằng `OPENJSON` (SQL Server 2016 trở lên). Giá món được lấy từ bảng `Products`, **không** tin giá do ứng dụng gửi lên [4].
 
 ```sql
 CREATE OR ALTER PROCEDURE sp_Order_Create
@@ -217,7 +217,7 @@ npm install mssql @nestjs/config @nestjs/swagger class-validator class-transform
 npm install -D @types/mssql
 ```
 
-File `.env` (thêm vào `.gitignore`):
+File `.env` (thêm vào `.gitignore`) [1]:
 
 ```text
 DB_SERVER=localhost
@@ -289,9 +289,11 @@ import { DatabaseService } from './database.service';
 export class DatabaseModule {}
 ```
 
-`@Global()` cho phép mọi module dùng `DatabaseService` mà không cần import lại. Nạp biến môi trường bằng `ConfigModule.forRoot()` trong `AppModule`, đặt trước `DatabaseModule`.
+`@Global()` cho phép mọi module dùng `DatabaseService` mà không cần import lại. Nạp biến môi trường bằng `ConfigModule.forRoot()` trong `AppModule`, đặt trước `DatabaseModule` [1].
 
 ### 5.4.3. Module Products
+
+Tham khảo [5].
 
 `src/products/products.service.ts`:
 
@@ -388,7 +390,7 @@ export class OrdersService {
 }
 ```
 
-Trước khi có đăng nhập (Chương 6), controller tạm truyền `userId = 1` ứng với một người dùng mẫu.
+Trước khi có đăng nhập (Chương 6), controller tạm truyền `userId = 1` ứng với một người dùng mẫu [5].
 
 ### 5.4.5. Cấu hình khởi động
 
@@ -413,7 +415,7 @@ async function bootstrap() {
 bootstrap();
 ```
 
-- `whitelist: true` loại bỏ các trường không khai báo trong DTO.
+- `whitelist: true` loại bỏ các trường không khai báo trong DTO [6].
 - Swagger tại `http://<IP>:3000/api` là "hợp đồng" giữa người làm backend và người làm mobile.
 
 ### 5.4.6. Vibe coding cho backend
@@ -471,7 +473,7 @@ NestJS trả lỗi kiểm tra DTO dưới dạng mảng `message`; hàm trên g�
 
 ### 5.5.3. TanStack Query
 
-TanStack Query quản lý **dữ liệu server**: trạng thái đang tải, lỗi, cache, tải lại khi cần. Cài đặt: `npx expo install @tanstack/react-query`.
+TanStack Query quản lý **dữ liệu server**: trạng thái đang tải, lỗi, cache, tải lại khi cần. Cài đặt: `npx expo install @tanstack/react-query` [7].
 
 `app/_layout.tsx`:
 
@@ -603,10 +605,16 @@ Trang trả về ít hơn kích thước trang (20) nghĩa là đã hết dữ l
 
 ## Tài liệu tham khảo
 
-- mssql (node-mssql): https://www.npmjs.com/package/mssql
-- Microsoft Learn - CREATE PROCEDURE (Transact-SQL): https://learn.microsoft.com/sql/t-sql/statements/create-procedure-transact-sql
-- Microsoft Learn - THROW (Transact-SQL): https://learn.microsoft.com/sql/t-sql/language-elements/throw-transact-sql
-- Microsoft Learn - OPENJSON (Transact-SQL): https://learn.microsoft.com/sql/t-sql/functions/openjson-transact-sql
-- NestJS - Controllers, Providers, Validation: https://docs.nestjs.com/controllers
-- NestJS - OpenAPI (Swagger): https://docs.nestjs.com/openapi/introduction
-- TanStack Query - React: https://tanstack.com/query/latest/docs/framework/react/overview
+[1] tediousjs, “mssql: Microsoft SQL Server client for Node.js,” *npm*. Accessed: Oct. 30, 2026. [Online]. Available: https://www.npmjs.com/package/mssql
+
+[2] Microsoft, “CREATE PROCEDURE (Transact-SQL),” *Microsoft Learn*. Accessed: Oct. 30, 2026. [Online]. Available: https://learn.microsoft.com/sql/t-sql/statements/create-procedure-transact-sql
+
+[3] Microsoft, “THROW (Transact-SQL),” *Microsoft Learn*. Accessed: Oct. 30, 2026. [Online]. Available: https://learn.microsoft.com/sql/t-sql/language-elements/throw-transact-sql
+
+[4] Microsoft, “OPENJSON (Transact-SQL),” *Microsoft Learn*. Accessed: Oct. 30, 2026. [Online]. Available: https://learn.microsoft.com/sql/t-sql/functions/openjson-transact-sql
+
+[5] NestJS, “Controllers,” *NestJS Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://docs.nestjs.com/controllers
+
+[6] NestJS, “OpenAPI (Swagger),” *NestJS Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://docs.nestjs.com/openapi/introduction
+
+[7] TanStack, “Overview,” *TanStack Query Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://tanstack.com/query/latest/docs/framework/react/overview

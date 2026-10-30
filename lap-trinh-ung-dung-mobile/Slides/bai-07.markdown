@@ -166,3 +166,13 @@ export const useCart = create<CartState>()(
 - Script đánh số, chạy lại được từ đầu
 - Dữ liệu chuẩn ở SQL Server; app chỉ giữ bản sao tạm
 **Hoạt động**: Làm quiz Bài 07 ở cuối trang bài học
+
+---
+
+## Slide 15: Tài liệu của buổi
+**Đọc thêm**:
+- Giáo trình nội bộ, Chương 7: CSDL SQL Server nâng cao và đồng bộ dữ liệu qua backend
+- Bài tập hướng dẫn theo dự án LHU Food (cuối Chương 7)
+- SRS LHU Food: mục 5.5, 5.6, 5.10, 5.11, BR-07…BR-11
+**Ghi chú giảng viên**:
+- Các file Word/Excel nằm ở mục Tài liệu của bài trên LMS và trang học phần (giao-trinh/, srs/, rubric/).
