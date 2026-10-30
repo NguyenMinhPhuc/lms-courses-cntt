@@ -12,7 +12,7 @@ Sau khi học xong chương này, bạn có thể:
 
 ## 4.1. Ba loại trạng thái
 
-Trạng thái (state) là dữ liệu thay đổi theo thời gian và làm giao diện thay đổi theo. Chọn sai nơi lưu state là nguyên nhân của nhiều lỗi khó tìm.
+Trạng thái (state) là dữ liệu thay đổi theo thời gian và làm giao diện thay đổi theo. Chọn sai nơi lưu state là nguyên nhân của nhiều lỗi khó tìm [1].
 
 | Loại | Đặc điểm | Ví dụ LHU Food | Công cụ |
 |---|---|---|---|
@@ -44,9 +44,11 @@ const [state, dispatch] = useReducer(reducer, { quantity: 1 });
 
 ### 4.2.1. Vì sao chọn Zustand
 
-Zustand là thư viện quản lý state nhỏ gọn: không cần bọc ứng dụng trong Provider, khai báo store bằng một hàm, và component chỉ vẽ lại khi phần state nó chọn thay đổi. Cài đặt: `npx expo install zustand`.
+Zustand là thư viện quản lý state nhỏ gọn: không cần bọc ứng dụng trong Provider, khai báo store bằng một hàm, và component chỉ vẽ lại khi phần state nó chọn thay đổi. Cài đặt: `npx expo install zustand` [2].
 
 ### 4.2.2. Store giỏ hàng
+
+Tham khảo [2].
 
 `stores/cart.ts`:
 
@@ -117,6 +119,8 @@ Hiển thị số món trên biểu tượng tab:
 
 ### 4.3.2. Các thuộc tính chính
 
+Tham khảo [3].
+
 | Thuộc tính | Vai trò |
 |---|---|
 | `data` | Mảng dữ liệu |
@@ -133,6 +137,8 @@ Hiển thị số món trên biểu tượng tab:
 Đặt `FlatList` dọc bên trong `ScrollView` dọc làm mất cơ chế ảo hóa và React Native sẽ cảnh báo. Phần nội dung phía trên danh sách (lời chào, ô tìm kiếm, banner) đưa vào `ListHeaderComponent`.
 
 ### 4.3.4. SectionList
+
+Tham khảo [4].
 
 `SectionList` hiển thị danh sách chia nhóm có tiêu đề, ví dụ thực đơn theo từng danh mục:
 
@@ -156,7 +162,7 @@ Hiển thị số món trên biểu tượng tab:
 - **React Hook Form** quản lý giá trị các ô, trạng thái lỗi và việc gửi form, hạn chế vẽ lại không cần thiết.
 - **@hookform/resolvers** nối Zod vào React Hook Form.
 
-Cài đặt: `npx expo install react-hook-form zod @hookform/resolvers`.
+Cài đặt: `npx expo install react-hook-form zod @hookform/resolvers` [5].
 
 ### 4.4.2. Schema đăng ký tài khoản
 
@@ -183,11 +189,11 @@ export const registerSchema = z
 export type RegisterForm = z.infer<typeof registerSchema>;
 ```
 
-`.refine` kiểm tra điều kiện liên quan nhiều trường; `path` chỉ định lỗi hiển thị ở ô nào.
+`.refine` kiểm tra điều kiện liên quan nhiều trường; `path` chỉ định lỗi hiển thị ở ô nào [6].
 
 ### 4.4.3. Gắn TextInput bằng Controller
 
-React Native không có thẻ `<input>` với thuộc tính `name`, nên mỗi ô được nối qua `Controller`:
+React Native không có thẻ `<input>` với thuộc tính `name`, nên mỗi ô được nối qua `Controller` [5]:
 
 ```tsx
 const { control, handleSubmit, formState: { errors, isSubmitting } } = useForm<RegisterForm>({
@@ -291,9 +297,14 @@ Trong tuần này, thành viên phụ trách backend của nhóm:
 
 ## Tài liệu tham khảo
 
-- React - Choosing the State Structure: https://react.dev/learn/choosing-the-state-structure
-- Zustand Documentation: https://zustand.docs.pmnd.rs
-- React Native - FlatList: https://reactnative.dev/docs/flatlist
-- React Native - SectionList: https://reactnative.dev/docs/sectionlist
-- React Hook Form - React Native: https://react-hook-form.com/get-started#ReactNative
-- Zod Documentation: https://zod.dev
+[1] Meta Platforms, Inc., “Choosing the State Structure,” *React Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://react.dev/learn/choosing-the-state-structure
+
+[2] Poimandres, “Introduction,” *Zustand Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://zustand.docs.pmnd.rs
+
+[3] Meta Platforms, Inc., “FlatList,” *React Native Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://reactnative.dev/docs/flatlist
+
+[4] Meta Platforms, Inc., “SectionList,” *React Native Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://reactnative.dev/docs/sectionlist
+
+[5] React Hook Form, “Get Started: React Native,” *React Hook Form Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://react-hook-form.com/get-started#ReactNative
+
+[6] C. McDonnell, “Intro,” *Zod Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://zod.dev

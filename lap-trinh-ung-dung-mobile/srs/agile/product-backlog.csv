@@ -1,0 +1,679 @@
+﻿Issue Id,Issue Type,Summary,Epic,Parent Id,Description,Acceptance Criteria,Priority,MoSCoW,Story Points,Sprint,Labels
+E1,Epic,[E1] Quản lý tài khoản & phân quyền,Quản lý tài khoản & phân quyền,,"Đăng ký, đăng nhập, giữ phiên, hồ sơ, ảnh đại diện, giao diện theo vai trò
+Module SRS: M01, M07
+Sprint: 1–3
+Tổng story point: 23",,Highest,Must-have,,,must-have
+E2,Epic,[E2] Thực đơn & tìm kiếm,Thực đơn & tìm kiếm,,"Danh mục, danh sách món, tìm kiếm không dấu, chi tiết món
+Module SRS: M02
+Sprint: 1, 3
+Tổng story point: 12",,Highest,Must-have,,,must-have
+E3,Epic,[E3] Giỏ hàng & đặt món,Giỏ hàng & đặt món,,"Giỏ hàng, đặt món có giao dịch, chặn đặt quá tồn kho, đặt lại đơn
+Module SRS: M03, M04
+Sprint: 1–3, 5
+Tổng story point: 21",,Highest,Must-have,,,must-have
+E4,Epic,[E4] Quản lý đơn hàng,Quản lý đơn hàng,,"Lịch sử, chi tiết, hủy đơn của khách; nhận và xử lý đơn của nhân viên
+Module SRS: M04, M09
+Sprint: 2, 4, 5
+Tổng story point: 21",,Highest,Must-have,,,must-have
+E5,Epic,[E5] Thông báo thời gian thực,Thông báo thời gian thực,,"Socket.IO có xác thực, lưu thông báo, thông báo trạng thái đơn, badge
+Module SRS: M08
+Sprint: 3, 5
+Tổng story point: 18",,Highest,Must-have,,,must-have
+E6,Epic,"[E6] Quầy, vị trí & bản đồ","Quầy, vị trí & bản đồ",,"Bản đồ quầy, chọn quầy nhận, quầy gần nhất
+Module SRS: M06
+Sprint: 3–5
+Tổng story point: 11",,High,Should-have,,,should-have
+E7,Epic,[E7] Yêu thích & đánh giá,Yêu thích & đánh giá,,"Món yêu thích, đánh giá món đã nhận
+Module SRS: M05, F07.4
+Sprint: 3, 5
+Tổng story point: 8",,High,Should-have,,,should-have
+E8,Epic,[E8] Vận hành căn tin & báo cáo,Vận hành căn tin & báo cáo,,"Bật/tắt món, tồn kho, báo cáo doanh thu, món bán chạy
+Module SRS: M09, M10
+Sprint: 4, 5
+Tổng story point: 13",,High,Should-have,,,should-have
+E9,Epic,[E9] Quản trị hệ thống (web),Quản trị hệ thống (web),,"Quản lý danh mục, món, quầy, tài khoản nhân viên, tình trạng hệ thống
+Module SRS: M11
+Sprint: 4, 5
+Tổng story point: 16",,Highest,Must-have,,,must-have
+E10,Epic,"[E10] Hạ tầng, chất lượng & phát hành","Hạ tầng, chất lượng & phát hành",,"Khởi tạo dự án, CSDL, kiểm thử, hiệu năng, triển khai server Khoa, build APK
+Module SRS: M12
+Sprint: 1, 5
+Tổng story point: 30",,Highest,Must-have,,,must-have
+E11,Epic,[E11] Thanh toán,Thanh toán,,"Thanh toán trực tuyến, hóa đơn điện tử
+Module SRS: Ngoài phạm vi (SRS 1.2)
+Sprint: Release 2
+Tổng story point: 18",,Lowest,Won't-have,,,wont-have
+E12,Epic,[E12] Giao hàng,Giao hàng,,"Giao món tận nơi trong khuôn viên trường
+Module SRS: Ngoài phạm vi (SRS 1.2)
+Sprint: Release 2
+Tổng story point: 13",,Lowest,Won't-have,,,wont-have
+TS-01,Task,"[TS-01] Khởi tạo repo ứng dụng Expo, repo backend, quy ước nhánh và file AGENTS.md","Hạ tầng, chất lượng & phát hành",E10,"As a nhóm phát triển, I want khởi tạo repo ứng dụng Expo, repo backend, quy ước nhánh và file AGENTS.md, so that mọi thành viên làm việc trên cùng nền tảng và trợ lý AI sinh mã đúng quy ước
+
+Acceptance Criteria:
+- Given repo mới
+- When thành viên clone và chạy theo README
+- Then ứng dụng mở được trên Expo Go và API trả /health
+- ✓ Nhánh main được bảo vệ, bắt buộc pull request có người duyệt
+- ✓ AGENTS.md có tóm tắt nghiệp vụ từ SRS","- Given repo mới
+- When thành viên clone và chạy theo README
+- Then ứng dụng mở được trên Expo Go và API trả /health
+- ✓ Nhánh main được bảo vệ, bắt buộc pull request có người duyệt
+- ✓ AGENTS.md có tóm tắt nghiệp vụ từ SRS",Highest,Must-have,5,Sprint 1,must-have
+TS-02,Task,"[TS-02] Script CSDL (bảng, ràng buộc, stored procedure nền tảng, dữ liệu mẫu) chạy được từ đầu","Hạ tầng, chất lượng & phát hành",E10,"As a nhóm phát triển, I want script CSDL (bảng, ràng buộc, stored procedure nền tảng, dữ liệu mẫu) chạy được từ đầu, so that mọi máy có cùng CSDL và backend chỉ truy cập qua thủ tục
+
+Acceptance Criteria:
+- Given CSDL trống
+- When chạy script database/ theo thứ tự số
+- Then có đủ bảng Categories, Products, Users, Orders, OrderItems và dữ liệu mẫu
+- ✓ Chạy lại nhiều lần không lỗi
+- ✓ Backend không chứa câu SQL trực tiếp","- Given CSDL trống
+- When chạy script database/ theo thứ tự số
+- Then có đủ bảng Categories, Products, Users, Orders, OrderItems và dữ liệu mẫu
+- ✓ Chạy lại nhiều lần không lỗi
+- ✓ Backend không chứa câu SQL trực tiếp",Highest,Must-have,5,Sprint 1,must-have
+US-G01,Story,[US-G01] Xem thực đơn theo danh mục,Thực đơn & tìm kiếm,E2,"As a khách vãng lai, I want xem thực đơn theo danh mục, so that biết căn tin hôm nay bán gì
+
+Acceptance Criteria:
+- Given có 3 danh mục và 10 món đang bán
+- When mở Trang chủ
+- Then thấy thanh danh mục và danh sách món có tên, giá ""35.000 đ"", ảnh
+- ✓ Chọn danh mục chỉ hiện món của danh mục đó
+- ✓ Mất mạng: hiện ""Không tải được thực đơn"" và nút Thử lại, không màn hình đỏ","- Given có 3 danh mục và 10 món đang bán
+- When mở Trang chủ
+- Then thấy thanh danh mục và danh sách món có tên, giá ""35.000 đ"", ảnh
+- ✓ Chọn danh mục chỉ hiện món của danh mục đó
+- ✓ Mất mạng: hiện ""Không tải được thực đơn"" và nút Thử lại, không màn hình đỏ",Highest,Must-have,5,Sprint 1,must-have
+US-G03,Story,[US-G03] Xem chi tiết một món,Thực đơn & tìm kiếm,E2,"As a khách vãng lai, I want xem chi tiết một món, so that quyết định có đặt hay không
+
+Acceptance Criteria:
+- Given món tồn tại
+- When bấm vào món
+- Then mở màn hình product/[id] với ảnh, mô tả, giá, số suất
+- ✓ Món hết (IsAvailable = 0 hoặc Stock = 0) hiện nhãn ""Hết món"", nút Thêm vào giỏ bị vô hiệu
+- ✓ Nút Back của Android quay về danh sách","- Given món tồn tại
+- When bấm vào món
+- Then mở màn hình product/[id] với ảnh, mô tả, giá, số suất
+- ✓ Món hết (IsAvailable = 0 hoặc Stock = 0) hiện nhãn ""Hết món"", nút Thêm vào giỏ bị vô hiệu
+- ✓ Nút Back của Android quay về danh sách",Highest,Must-have,3,Sprint 1,must-have
+US-G04,Story,[US-G04] Đăng ký tài khoản bằng email trường,Quản lý tài khoản & phân quyền,E1,"As a khách vãng lai, I want đăng ký tài khoản bằng email trường, so that có thể đặt món
+
+Acceptance Criteria:
+- Given form họ tên, email, mật khẩu, nhập lại mật khẩu
+- When nhập sai định dạng
+- Then lỗi tiếng Việt hiện dưới từng ô (Zod)
+- ✓ Email đã tồn tại: API trả 409, hiện ""Email đã được sử dụng""
+- ✓ Mật khẩu băm bcrypt, CSDL không lưu mật khẩu gốc","- Given form họ tên, email, mật khẩu, nhập lại mật khẩu
+- When nhập sai định dạng
+- Then lỗi tiếng Việt hiện dưới từng ô (Zod)
+- ✓ Email đã tồn tại: API trả 409, hiện ""Email đã được sử dụng""
+- ✓ Mật khẩu băm bcrypt, CSDL không lưu mật khẩu gốc",Highest,Must-have,5,Sprint 1,must-have
+US-G05,Story,[US-G05] Đăng nhập,Quản lý tài khoản & phân quyền,E1,"As a khách vãng lai, I want đăng nhập, so that dùng được chức năng của khách hàng
+
+Acceptance Criteria:
+- Given tài khoản hợp lệ
+- When đăng nhập đúng
+- Then token lưu bằng SecureStore và chuyển về màn hình trước đó
+- ✓ Sai email hoặc mật khẩu: một thông báo chung ""Email hoặc mật khẩu không đúng""
+- ✓ Tài khoản bị khóa không đăng nhập được","- Given tài khoản hợp lệ
+- When đăng nhập đúng
+- Then token lưu bằng SecureStore và chuyển về màn hình trước đó
+- ✓ Sai email hoặc mật khẩu: một thông báo chung ""Email hoặc mật khẩu không đúng""
+- ✓ Tài khoản bị khóa không đăng nhập được",Highest,Must-have,5,Sprint 1,must-have
+US-C01,Story,[US-C01] Thêm món vào giỏ (thêm trùng thì cộng dồn),Giỏ hàng & đặt món,E3,"As a khách hàng, I want thêm món vào giỏ (thêm trùng thì cộng dồn), so that đặt nhiều món trong một lần
+
+Acceptance Criteria:
+- Given giỏ trống
+- When thêm cùng một món hai lần
+- Then giỏ có một dòng, số lượng 2
+- ✓ Badge tab Giỏ hàng hiện tổng số suất
+- ✓ Chưa đăng nhập thì chuyển tới màn hình Đăng nhập","- Given giỏ trống
+- When thêm cùng một món hai lần
+- Then giỏ có một dòng, số lượng 2
+- ✓ Badge tab Giỏ hàng hiện tổng số suất
+- ✓ Chưa đăng nhập thì chuyển tới màn hình Đăng nhập",Highest,Must-have,3,Sprint 1,must-have
+US-C02,Story,"[US-C02] Tăng, giảm, xóa món trong giỏ và thấy tổng tiền",Giỏ hàng & đặt món,E3,"As a khách hàng, I want tăng, giảm, xóa món trong giỏ và thấy tổng tiền, so that kiểm soát chi phí
+
+Acceptance Criteria:
+- Given giỏ có món
+- When giảm số lượng về 0
+- Then món bị xóa khỏi giỏ
+- ✓ Tổng tiền = tổng (giá × số lượng), cập nhật ngay
+- ✓ Giỏ trống hiện ""Giỏ hàng đang trống"" và nút về Trang chủ","- Given giỏ có món
+- When giảm số lượng về 0
+- Then món bị xóa khỏi giỏ
+- ✓ Tổng tiền = tổng (giá × số lượng), cập nhật ngay
+- ✓ Giỏ trống hiện ""Giỏ hàng đang trống"" và nút về Trang chủ",Highest,Must-have,3,Sprint 1,must-have
+US-C14,Story,[US-C14] Giữ đăng nhập khi mở lại ứng dụng,Quản lý tài khoản & phân quyền,E1,"As a khách hàng, I want giữ đăng nhập khi mở lại ứng dụng, so that không phải đăng nhập mỗi lần
+
+Acceptance Criteria:
+- Given refresh token còn hạn
+- When mở lại ứng dụng
+- Then vào thẳng Trang chủ đã đăng nhập
+- ✓ API trả 401 thì tự gọi /auth/refresh một lần rồi gửi lại request
+- ✓ Refresh token đã dùng không dùng lại được (xoay vòng)","- Given refresh token còn hạn
+- When mở lại ứng dụng
+- Then vào thẳng Trang chủ đã đăng nhập
+- ✓ API trả 401 thì tự gọi /auth/refresh một lần rồi gửi lại request
+- ✓ Refresh token đã dùng không dùng lại được (xoay vòng)",Highest,Must-have,3,Sprint 2,must-have
+US-C13,Story,[US-C13] Xem hồ sơ và đăng xuất,Quản lý tài khoản & phân quyền,E1,"As a khách hàng, I want xem hồ sơ và đăng xuất, so that bảo vệ tài khoản trên máy dùng chung
+
+Acceptance Criteria:
+- Given đã đăng nhập
+- When bấm Đăng xuất ở tab Tài khoản
+- Then refresh token bị thu hồi ở server, token trên máy và giỏ hàng bị xóa, về màn hình Đăng nhập
+- ✓ Tab Tài khoản hiện họ tên, email, vai trò","- Given đã đăng nhập
+- When bấm Đăng xuất ở tab Tài khoản
+- Then refresh token bị thu hồi ở server, token trên máy và giỏ hàng bị xóa, về màn hình Đăng nhập
+- ✓ Tab Tài khoản hiện họ tên, email, vai trò",Highest,Must-have,2,Sprint 2,must-have
+US-S01,Story,[US-S01] Đăng nhập và thấy giao diện dành cho nhân viên,Quản lý tài khoản & phân quyền,E1,"As a nhân viên, I want đăng nhập và thấy giao diện dành cho nhân viên, so that làm việc mà không thấy chức năng của khách
+
+Acceptance Criteria:
+- Given tài khoản vai trò staff
+- When đăng nhập
+- Then thấy tab ""Đơn mới"" thay cho tab Giỏ hàng
+- ✓ Tài khoản customer gọi API nhân viên nhận 403
+- ✓ Customer không mở được màn hình nhân viên kể cả gõ đường dẫn","- Given tài khoản vai trò staff
+- When đăng nhập
+- Then thấy tab ""Đơn mới"" thay cho tab Giỏ hàng
+- ✓ Tài khoản customer gọi API nhân viên nhận 403
+- ✓ Customer không mở được màn hình nhân viên kể cả gõ đường dẫn",Highest,Must-have,3,Sprint 2,must-have
+US-C04,Story,[US-C04] Đặt món kèm ghi chú,Giỏ hàng & đặt món,E3,"As a khách hàng, I want đặt món kèm ghi chú, so that căn tin chuẩn bị đúng ý
+
+Acceptance Criteria:
+- Given giỏ có món còn hàng
+- When bấm Đặt món
+- Then tạo đơn pending, trừ tồn kho, trả mã đơn, xóa giỏ, mở chi tiết đơn
+- ✓ Giá lấy từ CSDL tại thời điểm đặt, không lấy giá ứng dụng gửi
+- ✓ Có món không đủ: 409, không tạo đơn, không trừ tồn kho món nào
+- ✓ Nút Đặt món bị vô hiệu khi đang gửi","- Given giỏ có món còn hàng
+- When bấm Đặt món
+- Then tạo đơn pending, trừ tồn kho, trả mã đơn, xóa giỏ, mở chi tiết đơn
+- ✓ Giá lấy từ CSDL tại thời điểm đặt, không lấy giá ứng dụng gửi
+- ✓ Có món không đủ: 409, không tạo đơn, không trừ tồn kho món nào
+- ✓ Nút Đặt món bị vô hiệu khi đang gửi",Highest,Must-have,8,Sprint 2,must-have
+US-SYS03,Story,[US-SYS03] Hệ thống chặn đặt quá tồn kho kể cả khi nhiều người đặt cùng lúc,Giỏ hàng & đặt món,E3,"As a quản lý căn tin, I want hệ thống chặn đặt quá tồn kho kể cả khi nhiều người đặt cùng lúc, so that không bán quá số suất đã chuẩn bị
+
+Acceptance Criteria:
+- Given món còn 1 suất
+- When hai khách cùng đặt 1 suất gần như đồng thời
+- Then đúng một đơn thành công, đơn còn lại nhận 409
+- ✓ Tồn kho bằng 0, không âm
+- ✓ Có kịch bản kiểm thử T-SQL hai phiên chứng minh","- Given món còn 1 suất
+- When hai khách cùng đặt 1 suất gần như đồng thời
+- Then đúng một đơn thành công, đơn còn lại nhận 409
+- ✓ Tồn kho bằng 0, không âm
+- ✓ Có kịch bản kiểm thử T-SQL hai phiên chứng minh",Highest,Must-have,3,Sprint 2,must-have
+US-C06,Story,[US-C06] Xem lịch sử đơn hàng,Quản lý đơn hàng,E4,"As a khách hàng, I want xem lịch sử đơn hàng, so that theo dõi các lần đặt
+
+Acceptance Criteria:
+- Given có nhiều đơn
+- When mở tab Đơn hàng
+- Then danh sách mới nhất trước, mỗi dòng có mã đơn, thời gian, tổng tiền, trạng thái bằng chữ
+- ✓ Cuộn gần cuối tải trang tiếp theo
+- ✓ Kéo xuống để tải lại","- Given có nhiều đơn
+- When mở tab Đơn hàng
+- Then danh sách mới nhất trước, mỗi dòng có mã đơn, thời gian, tổng tiền, trạng thái bằng chữ
+- ✓ Cuộn gần cuối tải trang tiếp theo
+- ✓ Kéo xuống để tải lại",Highest,Must-have,3,Sprint 2,must-have
+US-C07,Story,[US-C07] Xem chi tiết và trạng thái hiện tại của một đơn,Quản lý đơn hàng,E4,"As a khách hàng, I want xem chi tiết và trạng thái hiện tại của một đơn, so that biết khi nào đi lấy món
+
+Acceptance Criteria:
+- Given đơn của tôi
+- When mở chi tiết đơn
+- Then thấy từng món, số lượng, đơn giá lúc đặt, tổng tiền, ghi chú, trạng thái
+- ✓ Đơn của người khác trả 404
+- ✓ (Sprint 3) trạng thái tự cập nhật khi có sự kiện realtime","- Given đơn của tôi
+- When mở chi tiết đơn
+- Then thấy từng món, số lượng, đơn giá lúc đặt, tổng tiền, ghi chú, trạng thái
+- ✓ Đơn của người khác trả 404
+- ✓ (Sprint 3) trạng thái tự cập nhật khi có sự kiện realtime",Highest,Must-have,3,Sprint 2,must-have
+US-C08,Story,[US-C08] Hủy đơn khi chưa được chuẩn bị,Quản lý đơn hàng,E4,"As a khách hàng, I want hủy đơn khi chưa được chuẩn bị, so that không mất món khi đổi ý
+
+Acceptance Criteria:
+- Given đơn pending
+- When bấm Hủy và xác nhận
+- Then đơn chuyển cancelled, tồn kho được hoàn lại
+- ✓ Nút Hủy chỉ hiện khi pending
+- ✓ Hủy đơn đã preparing hoặc đơn người khác: 409","- Given đơn pending
+- When bấm Hủy và xác nhận
+- Then đơn chuyển cancelled, tồn kho được hoàn lại
+- ✓ Nút Hủy chỉ hiện khi pending
+- ✓ Hủy đơn đã preparing hoặc đơn người khác: 409",Highest,Must-have,3,Sprint 2,must-have
+US-S02a,Story,[US-S02a] Xem danh sách đơn cần xử lý trong ngày,Quản lý đơn hàng,E4,"As a nhân viên, I want xem danh sách đơn cần xử lý trong ngày, so that chuẩn bị món kịp thời
+
+Acceptance Criteria:
+- Given có đơn pending, preparing, ready
+- When mở tab Đơn mới
+- Then thấy các đơn chưa kết thúc theo thời gian đặt, có tóm tắt món, tổng tiền, quầy
+- ✓ Kéo xuống để tải lại (realtime ở US-S02b)","- Given có đơn pending, preparing, ready
+- When mở tab Đơn mới
+- Then thấy các đơn chưa kết thúc theo thời gian đặt, có tóm tắt món, tổng tiền, quầy
+- ✓ Kéo xuống để tải lại (realtime ở US-S02b)",Highest,Must-have,3,Sprint 2,must-have
+US-S03,Story,[US-S03] Chuyển trạng thái đơn theo đúng trình tự,Quản lý đơn hàng,E4,"As a nhân viên, I want chuyển trạng thái đơn theo đúng trình tự, so that khách biết tiến độ
+
+Acceptance Criteria:
+- Given đơn pending
+- When bấm nút chuyển trạng thái kế tiếp
+- Then đơn đi pending → preparing → ready → completed
+- ✓ Chuyển sai trình tự hoặc đơn đã kết thúc: 409
+- ✓ Mỗi lần chuyển tạo một bản ghi thông báo cho khách","- Given đơn pending
+- When bấm nút chuyển trạng thái kế tiếp
+- Then đơn đi pending → preparing → ready → completed
+- ✓ Chuyển sai trình tự hoặc đơn đã kết thúc: 409
+- ✓ Mỗi lần chuyển tạo một bản ghi thông báo cho khách",Highest,Must-have,5,Sprint 2,must-have
+US-SYS01,Story,[US-SYS01] Hệ thống từ chối kết nối socket không có token hợp lệ,Thông báo thời gian thực,E5,"As a quản lý căn tin, I want hệ thống từ chối kết nối socket không có token hợp lệ, so that thông báo không bị lộ
+
+Acceptance Criteria:
+- Given client kết nối Socket.IO
+- When token thiếu, sai hoặc hết hạn
+- Then kết nối bị từ chối (connect_error), không vào room nào
+- ✓ Token hợp lệ vào room user:{id}; staff vào thêm room staff","- Given client kết nối Socket.IO
+- When token thiếu, sai hoặc hết hạn
+- Then kết nối bị từ chối (connect_error), không vào room nào
+- ✓ Token hợp lệ vào room user:{id}; staff vào thêm room staff",Highest,Must-have,3,Sprint 3,must-have
+US-SYS02,Story,[US-SYS02] Thông báo được lưu trên SQL Server trước khi gửi,Thông báo thời gian thực,E5,"As a khách hàng, I want thông báo được lưu trên SQL Server trước khi gửi, so that vẫn xem lại được khi ứng dụng đang tắt
+
+Acceptance Criteria:
+- Given ứng dụng khách đã tắt
+- When nhân viên đổi trạng thái đơn
+- Then bản ghi Notifications được tạo
+- ✓ Mở lại ứng dụng thấy thông báo trong danh sách","- Given ứng dụng khách đã tắt
+- When nhân viên đổi trạng thái đơn
+- Then bản ghi Notifications được tạo
+- ✓ Mở lại ứng dụng thấy thông báo trong danh sách",Highest,Must-have,3,Sprint 3,must-have
+US-C09,Story,[US-C09] Nhận thông báo ngay khi đơn chuyển trạng thái,Thông báo thời gian thực,E5,"As a khách hàng, I want nhận thông báo ngay khi đơn chuyển trạng thái, so that không phải mở ứng dụng kiểm tra
+
+Acceptance Criteria:
+- Given ứng dụng đang mở hoặc chạy nền
+- When nhân viên chuyển đơn sang ready
+- Then trong vài giây hiện thông báo ""Đơn #12 đã sẵn sàng""
+- ✓ Bấm thông báo mở chi tiết đơn #12
+- ✓ Mất mạng rồi có mạng: tự kết nối lại và làm mới dữ liệu","- Given ứng dụng đang mở hoặc chạy nền
+- When nhân viên chuyển đơn sang ready
+- Then trong vài giây hiện thông báo ""Đơn #12 đã sẵn sàng""
+- ✓ Bấm thông báo mở chi tiết đơn #12
+- ✓ Mất mạng rồi có mạng: tự kết nối lại và làm mới dữ liệu",Highest,Must-have,5,Sprint 3,must-have
+US-C10,Story,[US-C10] Xem danh sách thông báo và số chưa đọc trên tab,Thông báo thời gian thực,E5,"As a khách hàng, I want xem danh sách thông báo và số chưa đọc trên tab, so that không bỏ sót cập nhật
+
+Acceptance Criteria:
+- Given có thông báo chưa đọc
+- When mở tab Thông báo
+- Then danh sách mới nhất trước, badge hiện số chưa đọc
+- ✓ Bấm một thông báo: đánh dấu đã đọc, badge giảm, mở đúng đơn","- Given có thông báo chưa đọc
+- When mở tab Thông báo
+- Then danh sách mới nhất trước, badge hiện số chưa đọc
+- ✓ Bấm một thông báo: đánh dấu đã đọc, badge giảm, mở đúng đơn",Highest,Must-have,3,Sprint 3,must-have
+US-S02b,Story,[US-S02b] Đơn mới tự xuất hiện kèm âm báo,Thông báo thời gian thực,E5,"As a nhân viên, I want đơn mới tự xuất hiện kèm âm báo, so that không phải tải lại liên tục
+
+Acceptance Criteria:
+- Given nhân viên đang mở tab Đơn mới
+- When khách đặt đơn
+- Then đơn xuất hiện ngay trên mọi máy nhân viên (sự kiện order:new) kèm âm báo
+- ✓ Đơn được nhân viên khác cập nhật cũng tự đổi trạng thái (order:updated)","- Given nhân viên đang mở tab Đơn mới
+- When khách đặt đơn
+- Then đơn xuất hiện ngay trên mọi máy nhân viên (sự kiện order:new) kèm âm báo
+- ✓ Đơn được nhân viên khác cập nhật cũng tự đổi trạng thái (order:updated)",Highest,Must-have,3,Sprint 3,must-have
+US-G02,Story,[US-G02] Tìm món theo tên,Thực đơn & tìm kiếm,E2,"As a khách vãng lai, I want tìm món theo tên, so that nhanh chóng thấy món mình muốn
+
+Acceptance Criteria:
+- Given thực đơn có ""Cơm gà""
+- When gõ ""com ga""
+- Then thấy ""Cơm gà"" (không phân biệt hoa thường, dấu)
+- ✓ Không có kết quả: hiện ""Không tìm thấy món phù hợp""
+- ✓ Chỉ gọi API sau khi ngừng gõ khoảng 300 ms","- Given thực đơn có ""Cơm gà""
+- When gõ ""com ga""
+- Then thấy ""Cơm gà"" (không phân biệt hoa thường, dấu)
+- ✓ Không có kết quả: hiện ""Không tìm thấy món phù hợp""
+- ✓ Chỉ gọi API sau khi ngừng gõ khoảng 300 ms",Highest,Must-have,3,Sprint 3,must-have
+US-C03,Story,[US-C03] Giỏ hàng vẫn còn khi tắt và mở lại ứng dụng,Giỏ hàng & đặt món,E3,"As a khách hàng, I want giỏ hàng vẫn còn khi tắt và mở lại ứng dụng, so that không phải chọn lại
+
+Acceptance Criteria:
+- Given giỏ có 2 món
+- When tắt hẳn rồi mở lại ứng dụng
+- Then giỏ còn nguyên
+- ✓ Đăng xuất hoặc đặt món thành công thì giỏ được xóa","- Given giỏ có 2 món
+- When tắt hẳn rồi mở lại ứng dụng
+- Then giỏ còn nguyên
+- ✓ Đăng xuất hoặc đặt món thành công thì giỏ được xóa",High,Should-have,2,Sprint 3,should-have
+US-C11,Story,[US-C11] Đánh dấu món yêu thích và xem lại danh sách,Yêu thích & đánh giá,E7,"As a khách hàng, I want đánh dấu món yêu thích và xem lại danh sách, so that đặt nhanh món quen
+
+Acceptance Criteria:
+- Given đang xem món
+- When bấm biểu tượng trái tim
+- Then biểu tượng đổi ngay (optimistic update) và món có trong danh sách Yêu thích
+- ✓ Lỗi mạng thì tự hoàn tác
+- ✓ Thêm trùng không lỗi","- Given đang xem món
+- When bấm biểu tượng trái tim
+- Then biểu tượng đổi ngay (optimistic update) và món có trong danh sách Yêu thích
+- ✓ Lỗi mạng thì tự hoàn tác
+- ✓ Thêm trùng không lỗi",High,Should-have,3,Sprint 3,should-have
+US-C12,Story,[US-C12] Đổi ảnh đại diện bằng camera hoặc thư viện ảnh,Quản lý tài khoản & phân quyền,E1,"As a khách hàng, I want đổi ảnh đại diện bằng camera hoặc thư viện ảnh, so that cá nhân hóa tài khoản
+
+Acceptance Criteria:
+- Given ở tab Tài khoản
+- When chọn Chụp ảnh hoặc Chọn từ thư viện
+- Then ứng dụng xin quyền đúng lúc, cắt ảnh vuông, tải lên và hiển thị ảnh mới
+- ✓ Chỉ nhận ảnh JPEG/PNG/WebP, tối đa 2 MB
+- ✓ Từ chối quyền: ứng dụng vẫn dùng được, có hướng dẫn mở Cài đặt","- Given ở tab Tài khoản
+- When chọn Chụp ảnh hoặc Chọn từ thư viện
+- Then ứng dụng xin quyền đúng lúc, cắt ảnh vuông, tải lên và hiển thị ảnh mới
+- ✓ Chỉ nhận ảnh JPEG/PNG/WebP, tối đa 2 MB
+- ✓ Từ chối quyền: ứng dụng vẫn dùng được, có hướng dẫn mở Cài đặt",High,Should-have,5,Sprint 3,should-have
+US-G06,Story,[US-G06] Xem các quầy trên bản đồ,"Quầy, vị trí & bản đồ",E6,"As a khách vãng lai, I want xem các quầy trên bản đồ, so that biết nơi nhận món
+
+Acceptance Criteria:
+- Given có 3 quầy đang hoạt động
+- When mở màn hình Bản đồ
+- Then thấy marker từng quầy đúng tọa độ, bấm marker hiện tên và mô tả
+- ✓ Bản đồ hiển thị được trên bản APK (có Google Maps API key)","- Given có 3 quầy đang hoạt động
+- When mở màn hình Bản đồ
+- Then thấy marker từng quầy đúng tọa độ, bấm marker hiện tên và mô tả
+- ✓ Bản đồ hiển thị được trên bản APK (có Google Maps API key)",High,Should-have,5,Sprint 3,should-have
+US-G07,Story,[US-G07] Kéo xuống để tải lại thực đơn,Thực đơn & tìm kiếm,E2,"As a khách vãng lai, I want kéo xuống để tải lại thực đơn, so that thấy món vừa hết hoặc vừa có
+
+Acceptance Criteria:
+- Given đang ở Trang chủ
+- When kéo xuống
+- Then danh sách tải lại, có biểu tượng đang tải
+- ✓ Món vừa bị tắt không còn hiển thị","- Given đang ở Trang chủ
+- When kéo xuống
+- Then danh sách tải lại, có biểu tượng đang tải
+- ✓ Món vừa bị tắt không còn hiển thị",High,Should-have,1,Sprint 3,should-have
+US-S04,Story,[US-S04] Đánh dấu một món hết hoặc còn bán,Vận hành căn tin & báo cáo,E8,"As a nhân viên, I want đánh dấu một món hết hoặc còn bán, so that khách không đặt món đã hết
+
+Acceptance Criteria:
+- Given đang ở màn hình Món trong ngày
+- When tắt công tắc một món
+- Then món không còn trên thực đơn của khách
+- ✓ Khách đặt món đã tắt: 409
+- ✓ Customer gọi API này: 403","- Given đang ở màn hình Món trong ngày
+- When tắt công tắc một món
+- Then món không còn trên thực đơn của khách
+- ✓ Khách đặt món đã tắt: 409
+- ✓ Customer gọi API này: 403",High,Should-have,2,Sprint 4,should-have
+US-S05,Story,[US-S05] Cập nhật số suất còn lại của từng món,Vận hành căn tin & báo cáo,E8,"As a nhân viên, I want cập nhật số suất còn lại của từng món, so that hệ thống tự chặn khi hết
+
+Acceptance Criteria:
+- Given món đang bán (web)
+- When nhập số suất mới
+- Then tồn kho được cập nhật, khách thấy số suất mới
+- ✓ Số âm: 400
+- ✓ Đặt vượt số suất mới: 409","- Given món đang bán (web)
+- When nhập số suất mới
+- Then tồn kho được cập nhật, khách thấy số suất mới
+- ✓ Số âm: 400
+- ✓ Đặt vượt số suất mới: 409",High,Should-have,3,Sprint 4,should-have
+US-S06,Story,[US-S06] Lọc đơn theo trạng thái,Quản lý đơn hàng,E4,"As a nhân viên, I want lọc đơn theo trạng thái, so that tập trung vào việc đang làm
+
+Acceptance Criteria:
+- Given danh sách đơn trong ngày
+- When chọn bộ lọc Chờ / Đang làm / Sẵn sàng
+- Then chỉ hiện đơn đúng trạng thái
+- ✓ Bộ lọc giữ nguyên khi có đơn mới đến","- Given danh sách đơn trong ngày
+- When chọn bộ lọc Chờ / Đang làm / Sẵn sàng
+- Then chỉ hiện đơn đúng trạng thái
+- ✓ Bộ lọc giữ nguyên khi có đơn mới đến",High,Should-have,2,Sprint 4,should-have
+US-S08,Story,[US-S08] Xem doanh thu hôm nay và món bán chạy,Vận hành căn tin & báo cáo,E8,"As a nhân viên, I want xem doanh thu hôm nay và món bán chạy, so that báo cáo cuối ca
+
+Acceptance Criteria:
+- Given có đơn trong ngày
+- When mở Báo cáo nhanh
+- Then thấy số đơn, doanh thu, 5 món bán chạy
+- ✓ Không tính đơn đã hủy
+- ✓ Số liệu khớp truy vấn trực tiếp trên CSDL","- Given có đơn trong ngày
+- When mở Báo cáo nhanh
+- Then thấy số đơn, doanh thu, 5 món bán chạy
+- ✓ Không tính đơn đã hủy
+- ✓ Số liệu khớp truy vấn trực tiếp trên CSDL",High,Should-have,3,Sprint 4,should-have
+US-A01,Story,"[US-A01] Thêm, sửa, xóa danh mục trên web",Quản trị hệ thống (web),E9,"As a quản lý, I want thêm, sửa, xóa danh mục trên web, so that tổ chức thực đơn
+
+Acceptance Criteria:
+- Given đăng nhập vai trò admin
+- When thêm danh mục mới
+- Then danh mục xuất hiện trên ứng dụng của khách
+- ✓ Tên trùng: 409
+- ✓ Xóa danh mục còn món: 409
+- ✓ Vai trò khác gọi API: 403","- Given đăng nhập vai trò admin
+- When thêm danh mục mới
+- Then danh mục xuất hiện trên ứng dụng của khách
+- ✓ Tên trùng: 409
+- ✓ Xóa danh mục còn món: 409
+- ✓ Vai trò khác gọi API: 403",Highest,Must-have,3,Sprint 4,must-have
+US-A02,Story,"[US-A02] Thêm, sửa món, tải ảnh và ngừng bán món",Quản trị hệ thống (web),E9,"As a quản lý, I want thêm, sửa món, tải ảnh và ngừng bán món, so that cập nhật thực đơn
+
+Acceptance Criteria:
+- Given trang Quản lý món
+- When thêm món kèm ảnh
+- Then món hiện trên thực đơn với ảnh mới
+- ✓ Giá âm: 400
+- ✓ Món đã có trong đơn chỉ được ngừng bán, không xóa hẳn","- Given trang Quản lý món
+- When thêm món kèm ảnh
+- Then món hiện trên thực đơn với ảnh mới
+- ✓ Giá âm: 400
+- ✓ Món đã có trong đơn chỉ được ngừng bán, không xóa hẳn",Highest,Must-have,5,Sprint 4,must-have
+US-A04,Story,"[US-A04] Tạo, khóa, mở khóa tài khoản nhân viên",Quản trị hệ thống (web),E9,"As a quản lý, I want tạo, khóa, mở khóa tài khoản nhân viên, so that kiểm soát người được xử lý đơn
+
+Acceptance Criteria:
+- Given trang Quản lý nhân viên
+- When tạo tài khoản staff
+- Then nhân viên đăng nhập được và thấy giao diện nhân viên
+- ✓ Khóa tài khoản: không đăng nhập, không làm mới token được
+- ✓ Không tự khóa tài khoản của mình","- Given trang Quản lý nhân viên
+- When tạo tài khoản staff
+- Then nhân viên đăng nhập được và thấy giao diện nhân viên
+- ✓ Khóa tài khoản: không đăng nhập, không làm mới token được
+- ✓ Không tự khóa tài khoản của mình",Highest,Must-have,5,Sprint 4,must-have
+US-A05,Story,[US-A05] Xem doanh thu theo khoảng ngày và món bán chạy,Vận hành căn tin & báo cáo,E8,"As a quản lý, I want xem doanh thu theo khoảng ngày và món bán chạy, so that lập kế hoạch nấu
+
+Acceptance Criteria:
+- Given chọn khoảng ngày
+- When xem báo cáo
+- Then thấy doanh thu từng ngày và biểu đồ món bán chạy
+- ✓ Ngày bắt đầu sau ngày kết thúc: 400
+- ✓ Không tính đơn hủy","- Given chọn khoảng ngày
+- When xem báo cáo
+- Then thấy doanh thu từng ngày và biểu đồ món bán chạy
+- ✓ Ngày bắt đầu sau ngày kết thúc: 400
+- ✓ Không tính đơn hủy",Highest,Must-have,3,Sprint 4,must-have
+US-A03,Story,[US-A03] Quản lý danh sách quầy và tọa độ,Quản trị hệ thống (web),E9,"As a quản lý, I want quản lý danh sách quầy và tọa độ, so that bản đồ trên ứng dụng chính xác
+
+Acceptance Criteria:
+- Given trang Quản lý quầy
+- When sửa tọa độ một quầy
+- Then marker trên ứng dụng ở vị trí mới
+- ✓ Tọa độ ngoài phạm vi: 400
+- ✓ Quầy ngừng hoạt động không hiện cho khách","- Given trang Quản lý quầy
+- When sửa tọa độ một quầy
+- Then marker trên ứng dụng ở vị trí mới
+- ✓ Tọa độ ngoài phạm vi: 400
+- ✓ Quầy ngừng hoạt động không hiện cho khách",High,Should-have,2,Sprint 4,should-have
+US-C05,Story,[US-C05] Chọn quầy nhận món khi đặt,"Quầy, vị trí & bản đồ",E6,"As a khách hàng, I want chọn quầy nhận món khi đặt, so that đến đúng nơi
+
+Acceptance Criteria:
+- Given giỏ có món
+- When chọn quầy rồi đặt món
+- Then đơn lưu quầy nhận, hiện trên chi tiết đơn và màn hình nhân viên
+- ✓ Mặc định quầy chọn lần trước
+- ✓ Quầy không tồn tại hoặc ngừng hoạt động: 404","- Given giỏ có món
+- When chọn quầy rồi đặt món
+- Then đơn lưu quầy nhận, hiện trên chi tiết đơn và màn hình nhân viên
+- ✓ Mặc định quầy chọn lần trước
+- ✓ Quầy không tồn tại hoặc ngừng hoạt động: 404",High,Should-have,3,Sprint 4,should-have
+TS-03,Task,[TS-03] Bộ test tự động cho các story Must,"Hạ tầng, chất lượng & phát hành",E10,"As a nhóm phát triển, I want bộ test tự động cho các story Must, so that phát hiện lỗi ngay khi sửa mã
+
+Acceptance Criteria:
+- Given tiêu chí nghiệm thu của story Must
+- When chạy npm test và script kiểm thử thủ tục
+- Then mọi test xanh
+- ✓ Mỗi tiêu chí của US-C01, C02, C04, SYS03 có ít nhất một test
+- ✓ Mutation thủ công với 3 lỗi cố ý đều bị bắt","- Given tiêu chí nghiệm thu của story Must
+- When chạy npm test và script kiểm thử thủ tục
+- Then mọi test xanh
+- ✓ Mỗi tiêu chí của US-C01, C02, C04, SYS03 có ít nhất một test
+- ✓ Mutation thủ công với 3 lỗi cố ý đều bị bắt",Highest,Must-have,5,Sprint 5,must-have
+US-SYS04,Story,[US-SYS04] Hệ thống chạy như dịch vụ nền trên server Khoa và có endpoint kiểm tra sức khỏe,"Hạ tầng, chất lượng & phát hành",E10,"As a quản lý căn tin, I want hệ thống chạy như dịch vụ nền trên server Khoa và có endpoint kiểm tra sức khỏe, so that phục vụ ổn định
+
+Acceptance Criteria:
+- Given server Windows của Khoa
+- When triển khai theo README
+- Then /health trả ok từ máy khác
+- ✓ Khởi động lại server thì API tự chạy lại
+- ✓ Login SQL của API chỉ có quyền EXECUTE","- Given server Windows của Khoa
+- When triển khai theo README
+- Then /health trả ok từ máy khác
+- ✓ Khởi động lại server thì API tự chạy lại
+- ✓ Login SQL của API chỉ có quyền EXECUTE",Highest,Must-have,5,Sprint 5,must-have
+TS-05,Task,[TS-05] Build APK bằng EAS và phát hành bản cập nhật OTA,"Hạ tầng, chất lượng & phát hành",E10,"As a nhóm phát triển, I want build APK bằng EAS và phát hành bản cập nhật OTA, so that người dùng cài và nhận bản sửa lỗi
+
+Acceptance Criteria:
+- Given cấu hình app.config và eas.json
+- When build profile preview
+- Then APK cài được trên máy người ngoài nhóm, kết nối server Khoa
+- ✓ Một bản EAS Update được nhận mà không cài lại","- Given cấu hình app.config và eas.json
+- When build profile preview
+- Then APK cài được trên máy người ngoài nhóm, kết nối server Khoa
+- ✓ Một bản EAS Update được nhận mà không cài lại",Highest,Must-have,3,Sprint 5,must-have
+TS-04,Task,[TS-04] Ứng dụng mượt và dễ dùng cho mọi người,"Hạ tầng, chất lượng & phát hành",E10,"As a khách hàng, I want ứng dụng mượt và dễ dùng cho mọi người, so that đặt món nhanh trên máy tầm trung
+
+Acceptance Criteria:
+- Given danh sách 200 món
+- When gõ tìm kiếm trên máy Android tầm trung
+- Then không giật, có số liệu Profiler trước/sau
+- ✓ Nút biểu tượng có accessibilityLabel
+- ✓ Không vỡ giao diện ở cỡ chữ lớn nhất","- Given danh sách 200 món
+- When gõ tìm kiếm trên máy Android tầm trung
+- Then không giật, có số liệu Profiler trước/sau
+- ✓ Nút biểu tượng có accessibilityLabel
+- ✓ Không vỡ giao diện ở cỡ chữ lớn nhất",High,Should-have,3,Sprint 5,should-have
+US-SYS05,Story,[US-SYS05] Ghi log lỗi không thuộc nghiệp vụ,"Hạ tầng, chất lượng & phát hành",E10,"As a nhóm phát triển, I want ghi log lỗi không thuộc nghiệp vụ, so that tìm nguyên nhân sự cố nhanh
+
+Acceptance Criteria:
+- Given lỗi SQL hoặc lỗi không mong đợi
+- When xảy ra
+- Then log có thời gian, request id, endpoint, mã lỗi
+- ✓ Không log mật khẩu, token
+- ✓ Lỗi nghiệp vụ 400/404/409 không ghi mức error","- Given lỗi SQL hoặc lỗi không mong đợi
+- When xảy ra
+- Then log có thời gian, request id, endpoint, mã lỗi
+- ✓ Không log mật khẩu, token
+- ✓ Lỗi nghiệp vụ 400/404/409 không ghi mức error",High,Should-have,2,Sprint 5,should-have
+TS-06,Task,"[TS-06] Hồ sơ phát hành (mô tả, ảnh chụp, chính sách quyền riêng tư)","Hạ tầng, chất lượng & phát hành",E10,"As a Product Owner, I want hồ sơ phát hành (mô tả, ảnh chụp, chính sách quyền riêng tư), so that sẵn sàng đưa lên cửa hàng
+
+Acceptance Criteria:
+- Given ứng dụng hoàn chỉnh
+- When chuẩn bị store-listing
+- Then có biểu tượng 512×512, ít nhất 4 ảnh chụp thật, mô tả ngắn và đầy đủ
+- ✓ Chính sách quyền riêng tư nêu đúng dữ liệu và quyền ứng dụng dùng","- Given ứng dụng hoàn chỉnh
+- When chuẩn bị store-listing
+- Then có biểu tượng 512×512, ít nhất 4 ảnh chụp thật, mô tả ngắn và đầy đủ
+- ✓ Chính sách quyền riêng tư nêu đúng dữ liệu và quyền ứng dụng dùng",High,Should-have,2,Sprint 5,should-have
+US-C15,Story,[US-C15] Tìm quầy gần vị trí hiện tại,"Quầy, vị trí & bản đồ",E6,"As a khách hàng, I want tìm quầy gần vị trí hiện tại, so that chọn nơi nhận thuận tiện
+
+Acceptance Criteria:
+- Given cấp quyền vị trí
+- When bấm ""Quầy gần tôi""
+- Then danh sách quầy sắp theo khoảng cách, bản đồ đưa tới quầy gần nhất
+- ✓ Quyền chỉ xin khi bấm nút","- Given cấp quyền vị trí
+- When bấm ""Quầy gần tôi""
+- Then danh sách quầy sắp theo khoảng cách, bản đồ đưa tới quầy gần nhất
+- ✓ Quyền chỉ xin khi bấm nút",Medium,Could-have,3,Sprint 5,could-have
+US-C17,Story,[US-C17] Đánh giá món đã nhận,Yêu thích & đánh giá,E7,"As a khách hàng, I want đánh giá món đã nhận, so that góp ý cho căn tin
+
+Acceptance Criteria:
+- Given đơn completed của tôi
+- When chấm 1–5 sao và viết nhận xét
+- Then đánh giá hiện ở chi tiết món, điểm trung bình cập nhật
+- ✓ Đánh giá lần 2 cùng món trong cùng đơn: 409
+- ✓ Đơn chưa completed: 409","- Given đơn completed của tôi
+- When chấm 1–5 sao và viết nhận xét
+- Then đánh giá hiện ở chi tiết món, điểm trung bình cập nhật
+- ✓ Đánh giá lần 2 cùng món trong cùng đơn: 409
+- ✓ Đơn chưa completed: 409",Medium,Could-have,5,Sprint 5,could-have
+US-C16,Story,[US-C16] Đặt lại một đơn cũ bằng một nút,Giỏ hàng & đặt món,E3,"As a khách hàng, I want đặt lại một đơn cũ bằng một nút, so that tiết kiệm thời gian
+
+Acceptance Criteria:
+- Given chi tiết một đơn cũ
+- When bấm Đặt lại
+- Then các món còn bán được đưa vào giỏ với giá hiện tại
+- ✓ Món ngừng bán bị bỏ qua và có thông báo
+- ✓ Không tạo đơn ngay","- Given chi tiết một đơn cũ
+- When bấm Đặt lại
+- Then các món còn bán được đưa vào giỏ với giá hiện tại
+- ✓ Món ngừng bán bị bỏ qua và có thông báo
+- ✓ Không tạo đơn ngay",Medium,Could-have,2,Sprint 5,could-have
+US-S07,Story,[US-S07] Hủy đơn không phục vụ được và ghi lý do,Quản lý đơn hàng,E4,"As a nhân viên, I want hủy đơn không phục vụ được và ghi lý do, so that khách được báo rõ ràng
+
+Acceptance Criteria:
+- Given đơn pending hoặc preparing
+- When nhân viên hủy kèm lý do
+- Then đơn cancelled, tồn kho hoàn lại, khách nhận thông báo có lý do
+- ✓ Lý do dưới 3 ký tự: 400
+- ✓ Đơn đã ready: 409","- Given đơn pending hoặc preparing
+- When nhân viên hủy kèm lý do
+- Then đơn cancelled, tồn kho hoàn lại, khách nhận thông báo có lý do
+- ✓ Lý do dưới 3 ký tự: 400
+- ✓ Đơn đã ready: 409",Medium,Could-have,2,Sprint 5,could-have
+US-A06,Story,[US-A06] Xem số đơn theo trạng thái và tỉ lệ hủy,Vận hành căn tin & báo cáo,E8,"As a quản lý, I want xem số đơn theo trạng thái và tỉ lệ hủy, so that đánh giá vận hành
+
+Acceptance Criteria:
+- Given khoảng ngày
+- When mở thống kê trạng thái
+- Then thấy số đơn và phần trăm từng trạng thái
+- ✓ Tổng phần trăm bằng 100","- Given khoảng ngày
+- When mở thống kê trạng thái
+- Then thấy số đơn và phần trăm từng trạng thái
+- ✓ Tổng phần trăm bằng 100",Medium,Could-have,2,Sprint 5,could-have
+US-C18,Story,[US-C18] Bật hoặc tắt nhận thông báo trong ứng dụng,Thông báo thời gian thực,E5,"As a khách hàng, I want bật hoặc tắt nhận thông báo trong ứng dụng, so that không bị làm phiền
+
+Acceptance Criteria:
+- Given công tắc trong tab Tài khoản
+- When tắt thông báo
+- Then không hiện thông báo cục bộ, danh sách thông báo vẫn cập nhật
+- ✓ Thiết lập giữ khi mở lại ứng dụng","- Given công tắc trong tab Tài khoản
+- When tắt thông báo
+- Then không hiện thông báo cục bộ, danh sách thông báo vẫn cập nhật
+- ✓ Thiết lập giữ khi mở lại ứng dụng",Medium,Could-have,1,Sprint 5,could-have
+US-A07,Story,[US-A07] Xem tình trạng hệ thống,Quản trị hệ thống (web),E9,"As a quản lý, I want xem tình trạng hệ thống, so that phát hiện sự cố sớm
+
+Acceptance Criteria:
+- Given trang Tình trạng hệ thống
+- When mở trang
+- Then thấy trạng thái từng service và CSDL từ /health
+- ✓ Service không phản hồi hiện ""down""","- Given trang Tình trạng hệ thống
+- When mở trang
+- Then thấy trạng thái từng service và CSDL từ /health
+- ✓ Service không phản hồi hiện ""down""",Medium,Could-have,1,Sprint 5,could-have
+W-01,Story,[W-01] Thanh toán trực tuyến khi đặt món,Thanh toán,E11,"As a khách hàng, I want thanh toán trực tuyến khi đặt món, so that không phải trả tiền mặt tại quầy
+
+Acceptance Criteria:
+- Ngoài phạm vi release 1.0 (SRS 1.2)
+- Cần tách nhỏ và làm rõ cổng thanh toán, đối soát, hoàn tiền trước khi đưa vào sprint","- Ngoài phạm vi release 1.0 (SRS 1.2)
+- Cần tách nhỏ và làm rõ cổng thanh toán, đối soát, hoàn tiền trước khi đưa vào sprint",Lowest,Won't-have,13,Release 2,wont-have
+W-02,Story,[W-02] Nhận hóa đơn điện tử,Thanh toán,E11,"As a khách hàng, I want nhận hóa đơn điện tử, so that lưu chứng từ chi tiêu
+
+Acceptance Criteria:
+- Ngoài phạm vi release 1.0
+- Phụ thuộc W-01","- Ngoài phạm vi release 1.0
+- Phụ thuộc W-01",Lowest,Won't-have,5,Release 2,wont-have
+W-03,Story,[W-03] Món được giao tới phòng làm việc,Giao hàng,E12,"As a giảng viên, I want món được giao tới phòng làm việc, so that không phải rời văn phòng
+
+Acceptance Criteria:
+- Ngoài phạm vi release 1.0 (SRS 1.2)
+- Cần quy trình người giao, phí giao, theo dõi vị trí","- Ngoài phạm vi release 1.0 (SRS 1.2)
+- Cần quy trình người giao, phí giao, theo dõi vị trí",Lowest,Won't-have,13,Release 2,wont-have
+W-04,Story,[W-04] Nhận push notification khi ứng dụng đã tắt hẳn,Thông báo thời gian thực,E5,"As a khách hàng, I want nhận push notification khi ứng dụng đã tắt hẳn, so that không bỏ lỡ đơn sẵn sàng
+
+Acceptance Criteria:
+- Ngoài phạm vi release 1.0 (SRS 10.3)
+- Cần development build và dịch vụ push","- Ngoài phạm vi release 1.0 (SRS 10.3)
+- Cần development build và dịch vụ push",Lowest,Won't-have,8,Release 2,wont-have
+W-05,Story,[W-05] Hẹn giờ nhận món theo khung giờ,Giỏ hàng & đặt món,E3,"As a khách hàng, I want hẹn giờ nhận món theo khung giờ, so that món vừa xong khi tôi tới
+
+Acceptance Criteria:
+- Ngoài phạm vi release 1.0 (SRS 10.3)
+- Cần giới hạn số đơn mỗi khung giờ","- Ngoài phạm vi release 1.0 (SRS 10.3)
+- Cần giới hạn số đơn mỗi khung giờ",Lowest,Won't-have,5,Release 2,wont-have
+W-06,Story,[W-06] Tích điểm cho mỗi đơn,Quản lý tài khoản & phân quyền,E1,"As a khách hàng, I want tích điểm cho mỗi đơn, so that được ưu đãi khi đặt thường xuyên
+
+Acceptance Criteria:
+- Ngoài phạm vi release 1.0 (SRS 1.2)",- Ngoài phạm vi release 1.0 (SRS 1.2),Lowest,Won't-have,8,Release 2,wont-have

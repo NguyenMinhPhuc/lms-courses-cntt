@@ -154,7 +154,7 @@ npm install @nestjs/jwt bcrypt
 npm install -D @types/bcrypt
 ```
 
-Thêm vào `.env` của backend:
+Thêm vào `.env` của backend [1]:
 
 ```text
 JWT_SECRET=<chuỗi ngẫu nhiên dài>
@@ -248,11 +248,11 @@ export class AuthService {
 }
 ```
 
-Lưu ý: thông báo khi sai email và khi sai mật khẩu **giống nhau**, để không tiết lộ email nào đã đăng ký.
+Lưu ý: thông báo khi sai email và khi sai mật khẩu **giống nhau**, để không tiết lộ email nào đã đăng ký [1].
 
 ### 6.4.3. AuthGuard
 
-Theo mẫu trong tài liệu NestJS:
+Theo mẫu trong tài liệu NestJS [3]:
 
 ```ts
 import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from '@nestjs/common';
@@ -297,7 +297,7 @@ export class RolesGuard implements CanActivate {
 }
 ```
 
-Sử dụng trong controller:
+Sử dụng trong controller [2]:
 
 ```ts
 @Controller('orders')
@@ -330,7 +330,7 @@ export class OrdersController {
 | Dùng cho | Access token, refresh token | Thiết lập không nhạy cảm: giao diện sáng/tối, ngôn ngữ |
 | Giới hạn | Phù hợp với chuỗi ngắn | Phù hợp với dữ liệu nhỏ |
 
-Cài đặt: `npx expo install expo-secure-store`. **Không bao giờ lưu mật khẩu** trên điện thoại, kể cả để "ghi nhớ đăng nhập"; refresh token làm việc đó.
+Cài đặt: `npx expo install expo-secure-store`. **Không bao giờ lưu mật khẩu** trên điện thoại, kể cả để "ghi nhớ đăng nhập"; refresh token làm việc đó [4].
 
 ### 6.5.2. Store xác thực
 
@@ -423,7 +423,7 @@ export default function TabLayout() {
 }
 ```
 
-Màn hình đăng nhập gọi API, lưu token rồi chuyển hướng bằng `router.replace('/')` để nút Back không quay lại màn hình đăng nhập. Phiên bản Expo Router mới có thêm cơ chế khai báo màn hình được bảo vệ; tham khảo mục Authentication trong tài liệu Expo Router.
+Màn hình đăng nhập gọi API, lưu token rồi chuyển hướng bằng `router.replace('/')` để nút Back không quay lại màn hình đăng nhập. Phiên bản Expo Router mới có thêm cơ chế khai báo màn hình được bảo vệ; tham khảo mục Authentication trong tài liệu Expo Router [5].
 
 ### 6.5.5. Xử lý token hết hạn
 
@@ -437,6 +437,8 @@ Khi API trả `401`, ứng dụng nên:
 Đây là nội dung bài thực hành không hướng dẫn của buổi 06; hãy tự cài đặt trước khi tham khảo lời giải của giảng viên.
 
 ## 6.6. Rủi ro bảo mật thường gặp
+
+Tham khảo [7].
 
 | Rủi ro | Hậu quả | Cách phòng |
 |---|---|---|
@@ -457,7 +459,7 @@ CREATE USER lhufood_api FOR LOGIN lhufood_api;
 GRANT EXECUTE ON SCHEMA::dbo TO lhufood_api;
 ```
 
-Tài khoản này chạy được mọi thủ tục trong schema `dbo` nhưng không `SELECT`, `INSERT` hay `DROP` trực tiếp được bảng nào. Nhờ quy tắc "chỉ truy cập qua stored procedure", đây là cấu hình đủ quyền mà vẫn an toàn.
+Tài khoản này chạy được mọi thủ tục trong schema `dbo` nhưng không `SELECT`, `INSERT` hay `DROP` trực tiếp được bảng nào. Nhờ quy tắc "chỉ truy cập qua stored procedure", đây là cấu hình đủ quyền mà vẫn an toàn [6].
 
 ### 6.6.2. Review bảo mật mã do AI sinh
 
@@ -497,10 +499,16 @@ Cuối buổi 06, mỗi nhóm:
 
 ## Tài liệu tham khảo
 
-- NestJS - Authentication: https://docs.nestjs.com/security/authentication
-- NestJS - Authorization: https://docs.nestjs.com/security/authorization
-- NestJS - Guards: https://docs.nestjs.com/guards
-- Expo - SecureStore: https://docs.expo.dev/versions/latest/sdk/securestore/
-- Expo Router - Authentication: https://docs.expo.dev/router/advanced/authentication/
-- Microsoft Learn - GRANT Schema Permissions: https://learn.microsoft.com/sql/t-sql/statements/grant-schema-permissions-transact-sql
-- OWASP Mobile Application Security: https://mas.owasp.org/
+[1] NestJS, “Authentication,” *NestJS Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://docs.nestjs.com/security/authentication
+
+[2] NestJS, “Authorization,” *NestJS Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://docs.nestjs.com/security/authorization
+
+[3] NestJS, “Guards,” *NestJS Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://docs.nestjs.com/guards
+
+[4] Expo, “SecureStore,” *Expo Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://docs.expo.dev/versions/latest/sdk/securestore/
+
+[5] Expo, “Authentication in Expo Router,” *Expo Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://docs.expo.dev/router/advanced/authentication/
+
+[6] Microsoft, “GRANT Schema Permissions (Transact-SQL),” *Microsoft Learn*. Accessed: Oct. 30, 2026. [Online]. Available: https://learn.microsoft.com/sql/t-sql/statements/grant-schema-permissions-transact-sql
+
+[7] OWASP Foundation, “OWASP Mobile Application Security,” *OWASP Mobile Application Security*. Accessed: Oct. 30, 2026. [Online]. Available: https://mas.owasp.org/

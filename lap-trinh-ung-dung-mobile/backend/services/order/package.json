@@ -1,0 +1,12 @@
+{
+  "name": "@lhufood/order-service",
+  "version": "1.0.0",
+  "private": true,
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "@lhufood/shared": "1.0.0"
+  }
+}

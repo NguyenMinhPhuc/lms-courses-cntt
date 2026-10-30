@@ -144,3 +144,13 @@ if (status === 'granted') {
 - Vị trí khi dùng ứng dụng; bản đồ lấy dữ liệu từ API
 - Ưu tiên thư viện Expo SDK để dùng Expo Go
 **Hoạt động**: Làm quiz Bài 08 ở cuối trang bài học
+
+---
+
+## Slide 14: Tài liệu của buổi
+**Đọc thêm**:
+- Giáo trình nội bộ, Chương 8: Tính năng thiết bị: Camera, Ảnh, Vị trí và Bản đồ
+- Bài tập hướng dẫn theo dự án LHU Food (cuối Chương 8)
+- SRS LHU Food: mục 5.7 (M06), 5.8 (F07.2, F07.4), BR-12, BR-13
+**Ghi chú giảng viên**:
+- Các file Word/Excel nằm ở mục Tài liệu của bài trên LMS và trang học phần (giao-trinh/, srs/, rubric/).

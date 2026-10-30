@@ -166,3 +166,14 @@ const { id } = useLocalSearchParams<{ id: string }>();
 - Route động `[id]` + `useLocalSearchParams`
 - Màn hình → thực thể → ERD sơ bộ
 **Hoạt động**: Làm quiz Bài 03 ở cuối trang bài học
+
+---
+
+## Slide 16: Tài liệu của buổi
+**Đọc thêm**:
+- Giáo trình nội bộ, Chương 3: Điều hướng với Expo Router
+- Bài tập hướng dẫn theo dự án LHU Food (cuối Chương 3)
+- SRS LHU Food: mục 5.14.1 (màn hình, route), 7.1 (bảng)
+- Kế hoạch Agile & Product Backlog (Definition of Done, tiêu chí nghiệm thu)
+**Ghi chú giảng viên**:
+- Các file Word/Excel nằm ở mục Tài liệu của bài trên LMS và trang học phần (giao-trinh/, srs/, rubric/).

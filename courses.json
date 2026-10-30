@@ -24,6 +24,32 @@
     "icon": "fa-solid fa-book-bookmark"
   },
   {
+    "id": "lap-trinh-frontend",
+    "code": "CNTT",
+    "title": "Lập Trình Front‑End",
+    "englishTitle": "Lap Trinh Frontend",
+    "credits": 3,
+    "hours": "45 tiết",
+    "semester": "Chương trình Đào tạo CNTT",
+    "folder": "lap-trinh-frontend",
+    "entryFile": "index.html",
+    "courseLanding": null,
+    "syllabusFile": "thong-tin-hoc-phan.html",
+    "assessmentFile": "danh-gia-hoc-phan.html",
+    "quizBank": null,
+    "description": "Học phần Lập trình Front-End (Next.js, TypeScript & Vibe Coding) - Đại học Lạc Hồng. 60 tiết theo mô hình lớp học đảo ngược, 70% thực hành, xây dựng dự án Smart Event Hub từ Wireframe đến Deploy Vercel với Ant Design, REST API và AI.",
+    "instructor": "Bộ môn CNTT - LHU",
+    "tags": [
+      "CNTT",
+      "LHU",
+      "ABET",
+      "AI-First",
+      "Web Dev"
+    ],
+    "badgeColor": "blue",
+    "icon": "fa-solid fa-book-bookmark"
+  },
+  {
     "id": "lap-trinh-ung-dung-mobile",
     "code": "111114",
     "title": "Lập trình ứng dụng di động",

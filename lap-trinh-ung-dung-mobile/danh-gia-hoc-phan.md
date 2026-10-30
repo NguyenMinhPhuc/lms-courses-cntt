@@ -56,6 +56,17 @@
                 <li><strong>Đúng quy trình:</strong> nộp qua GitHub, commit rõ ràng, có prompt trong <code>PROMPTS.md</code>.</li>
             </ul>
         </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.4. Tài liệu đánh giá</h3>
+            <a href="{{LINK_RUBRIC}}" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
+                <span style="color: #fd7e14; font-weight: bold;">📊 Rubric chi tiết theo CLO (Excel)</span><br>
+                <span style="color: #6c757d; font-size: 13px;">27 tiêu chí, mỗi tiêu chí chấm một vấn đề: mô tả 4 mức, gợi ý chấm, minh chứng cần có, phạm vi nhóm/cá nhân.</span>
+            </a>
+            <a href="{{LINK_DE_CUONG}}" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
+                <span style="color: #fd7e14; font-weight: bold;">📑 Đề cương học phần 111114</span><br>
+                <span style="color: #6c757d; font-size: 13px;">Mục Đánh giá môn học: thành phần A1 Quá trình 30%, A2 Thực hành 30%, A3 Cuối kỳ 40% và CLO tương ứng.</span>
+            </a>
+        </div>
     </div>
 </details>
 

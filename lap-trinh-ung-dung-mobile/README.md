@@ -54,8 +54,16 @@ Sinh viên đạt CLO khi được ≥ 50% điểm của CLO; CLO đạt ở c�
 ## 5. Giáo trình nội bộ
 
 - Nguồn: [giao-trinh/](giao-trinh/) gồm `00-loi-noi-dau.md` và `chuong-01.md` … `chuong-12.md` (mỗi chương ứng với một buổi).
-- Bản Word: [giao-trinh/Giao-trinh-lap-trinh-ung-dung-mobile.docx](giao-trinh/Giao-trinh-lap-trinh-ung-dung-mobile.docx) (135 trang, đủ chương 1–12, có trang bìa và mục lục).
+- Bài tập hướng dẫn theo dự án LHU Food: [giao-trinh/bai-tap-huong-dan/](giao-trinh/bai-tap-huong-dan/) `bt-01.md` … `bt-12.md`, được `build-textbook.py` chèn vào cuối chương tương ứng (trước Tài liệu tham khảo).
+- Bản Word: [giao-trinh/Giao-trinh-lap-trinh-ung-dung-mobile.docx](giao-trinh/Giao-trinh-lap-trinh-ung-dung-mobile.docx) (160 trang, đủ chương 1–12 kèm bài tập hướng dẫn, tài liệu tham khảo chuẩn IEEE, watermark "Công nghệ thông tin - LHU").
 - Tạo lại bản Word sau khi sửa: `uv run --with python-docx python build-textbook.py lap-trinh-ung-dung-mobile`, rồi mở file trong Word, chọn mục lục và nhấn F9 để cập nhật số trang.
+
+## 6. Đặc tả yêu cầu dự án LHU Food (SRS)
+
+- Nguồn: [srs/](srs/) gồm `01-gioi-thieu.md` (mô tả ứng dụng), `02-actor.md` (actor và hành vi), `03-user-stories.md` (user story theo actor, phân biệt mobile/web, tiêu chí chấp nhận), `04-module.md` (module và chức năng chi tiết, danh sách màn hình), `05-du-lieu-api.md` (quy tắc nghiệp vụ, dữ liệu, API, phi chức năng, truy vết).
+- Bản Word: [srs/SRS-LHU-Food.docx](srs/SRS-LHU-Food.docx) (37 trang).
+- Tạo lại: `uv run --with python-docx python build-textbook.py lap-trinh-ung-dung-mobile --srs`, rồi cập nhật mục lục trong Word.
+- Kế hoạch Agile/Scrum chuyển từ SRS: [srs/agile-scrum.docx](srs/agile-scrum.docx) (12 Epic, 58 mục backlog, 5 sprint × 2 tuần, MVP hết Sprint 2). Nguồn Markdown: [srs/agile/](srs/agile/); file nhập Jira/Trello/Notion: [srs/agile/product-backlog.csv](srs/agile/product-backlog.csv). Tạo lại cả hai: `uv run --with python-docx python build-textbook.py lap-trinh-ung-dung-mobile --agile`.
 
 ## 6. Cập nhật nội dung
 
@@ -67,3 +75,16 @@ uv run --with python-pptx python build-slides.py lap-trinh-ung-dung-mobile
 uv run python build-quiz.py lap-trinh-ung-dung-mobile --balance
 uv run python validate-course.py lap-trinh-ung-dung-mobile
 ```
+
+## 7. Backend mẫu LHU Food (API cho sinh viên)
+
+- Mã nguồn: [backend/](backend/) - Node.js microservice (API Gateway + identity, catalog, order, notification), SQL Server 2019+ chỉ qua stored procedure, JWT, Swagger UI, cache (Redis hoặc bộ nhớ), Socket.IO. Endpoint và định dạng dữ liệu khớp giáo trình Chương 5–11 và SRS.
+- Hướng dẫn cài đặt, triển khai trên Windows Server và cách sinh viên dùng API: [backend/README.md](backend/README.md). Tài liệu API trực tiếp tại `<địa chỉ server>:3000/docs`.
+
+## 8. Rubric chấm điểm theo CLO
+
+- Nguồn duy nhất: [rubric/rubric.json](rubric/rubric.json): 4 CLO, 27 tiêu chí (mỗi tiêu chí chấm một vấn đề), 5 mức (A 100%, B 75%, C 50%, D 25%, 0), mô tả từng mức, gợi ý chấm, minh chứng cần có, phạm vi chấm nhóm/cá nhân.
+- File Excel: [rubric/Rubric-111114.xlsx](rubric/Rubric-111114.xlsx) gồm Hướng dẫn, Rubric, Bảng điểm (60 dòng, kiểm tra dữ liệu, tự tính điểm CLO, tổng, Đạt/Chưa đạt) và Mức đạt CLO (tỷ lệ SV đạt, kết luận cấp lớp theo ngưỡng 75%).
+- Công cụ chấm trên web: [cham-diem.html](cham-diem.html): nhập danh sách (dán từ Excel/CSV), chấm theo mức hoặc điểm lẻ, tiêu chí nhóm chấm một lần áp dụng cả nhóm (có chấm riêng từng SV), thống kê mức đạt CLO, xuất Excel theo tiêu chí và CLO. Dữ liệu lưu trong trình duyệt; sao lưu/khôi phục bằng JSON.
+- Tạo lại sau khi sửa rubric.json: `uv run --with openpyxl python build-rubric.py lap-trinh-ung-dung-mobile` (hook tự chạy khi Claude sửa rubric.json).
+

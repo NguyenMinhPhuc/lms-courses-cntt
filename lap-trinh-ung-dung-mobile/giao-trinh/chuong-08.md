@@ -13,7 +13,7 @@ Sau khi học xong chương này, bạn có thể:
 
 ### 8.1.1. Mô hình quyền
 
-Từ Android 6.0, các quyền nhạy cảm (camera, vị trí, micro, ảnh) là **quyền thời gian chạy (runtime permission)**: ứng dụng phải hỏi người dùng khi cần, và người dùng có thể từ chối hoặc thu hồi bất cứ lúc nào trong Cài đặt. Android có thể cho người dùng chọn "Chỉ lần này" hoặc chỉ cấp quyền chọn một số ảnh thay vì toàn bộ thư viện. iOS có mô hình tương tự và bắt buộc lời giải thích cho từng quyền.
+Từ Android 6.0, các quyền nhạy cảm (camera, vị trí, micro, ảnh) là **quyền thời gian chạy (runtime permission)**: ứng dụng phải hỏi người dùng khi cần, và người dùng có thể từ chối hoặc thu hồi bất cứ lúc nào trong Cài đặt. Android có thể cho người dùng chọn "Chỉ lần này" hoặc chỉ cấp quyền chọn một số ảnh thay vì toàn bộ thư viện. iOS có mô hình tương tự và bắt buộc lời giải thích cho từng quyền [1].
 
 Mỗi lần xin quyền có ba kết quả cần xử lý:
 
@@ -25,14 +25,14 @@ Mỗi lần xin quyền có ba kết quả cần xử lý:
 
 ### 8.1.2. Nguyên tắc xin quyền
 
-1. **Xin đúng lúc:** khi người dùng bấm chức năng cần quyền, không xin tất cả ngay lúc mở app.
+1. **Xin đúng lúc:** khi người dùng bấm chức năng cần quyền, không xin tất cả ngay lúc mở app [2].
 2. **Giải thích trước:** cho người dùng biết vì sao cần quyền, bằng một dòng chữ hoặc màn hình ngắn trước hộp thoại của hệ thống.
 3. **Xin ít nhất có thể:** vị trí "khi dùng ứng dụng" thay cho vị trí nền; chọn ảnh từ thư viện thường không cần quyền đọc toàn bộ thư viện.
 4. **Ứng dụng vẫn chạy khi bị từ chối:** chỉ tính năng đó bị hạn chế.
 
 ### 8.1.3. Khai báo quyền trong app.json
 
-Các thư viện Expo cấu hình quyền qua **config plugin** trong `app.json`. Lời giải thích hiển thị trên iOS và được dùng khi build bản cài đặt:
+Các thư viện Expo cấu hình quyền qua **config plugin** trong `app.json`. Lời giải thích hiển thị trên iOS và được dùng khi build bản cài đặt [2]:
 
 ```json
 {
@@ -56,7 +56,7 @@ Sau khi sửa phần `plugins`, khởi động lại `npx expo start`. Với dev
 
 ### 8.2.1. expo-image-picker
 
-Cài đặt: `npx expo install expo-image-picker`.
+Cài đặt: `npx expo install expo-image-picker` [3].
 
 `hooks/useAvatarPicker.ts`:
 
@@ -126,7 +126,7 @@ export async function uploadAvatar(uri: string): Promise<string> {
 
 ### 8.2.3. Nhận file trong NestJS
 
-Cài kiểu dữ liệu cho Multer: `npm install -D @types/multer`.
+Cài kiểu dữ liệu cho Multer: `npm install -D @types/multer` [7].
 
 `src/users/users.controller.ts`:
 
@@ -204,7 +204,7 @@ CSDL **chỉ lưu đường dẫn**, không lưu nội dung ảnh trong bảng. 
 
 ### 8.3.1. Lấy vị trí hiện tại
 
-Cài đặt: `npx expo install expo-location`.
+Cài đặt: `npx expo install expo-location` [4].
 
 ```ts
 import * as Location from 'expo-location';
@@ -266,7 +266,7 @@ Dùng hàm này để sắp xếp danh sách quầy theo khoảng cách tới v�
 
 ### 8.3.4. Màn hình bản đồ
 
-Cài đặt: `npx expo install react-native-maps`.
+Cài đặt: `npx expo install react-native-maps` [5].
 
 `app/map.tsx`:
 
@@ -327,6 +327,8 @@ Khi người dùng từ chối quyền vị trí, bản đồ vẫn hiển thị
 
 ### 8.4.1. So sánh
 
+Tham khảo [6].
+
 | | Expo Go | Development build |
 |---|---|---|
 | Bản chất | Ứng dụng dùng chung, đóng gói sẵn các thư viện native của Expo SDK | Bản ứng dụng riêng của dự án, chứa đúng các thư viện native dự án cần |
@@ -341,7 +343,7 @@ npx expo install expo-dev-client
 npx eas-cli build --profile development --platform android
 ```
 
-Lệnh build tạo file APK cài lên điện thoại; sau đó chạy `npx expo start` và mở dự án bằng ứng dụng vừa cài thay cho Expo Go. Mã JavaScript vẫn cập nhật bằng Fast Refresh; chỉ khi thêm thư viện native mới phải build lại.
+Lệnh build tạo file APK cài lên điện thoại; sau đó chạy `npx expo start` và mở dự án bằng ứng dụng vừa cài thay cho Expo Go. Mã JavaScript vẫn cập nhật bằng Fast Refresh; chỉ khi thêm thư viện native mới phải build lại [6].
 
 ### 8.4.3. Chọn thư viện thông minh
 
@@ -374,10 +376,16 @@ Lệnh build tạo file APK cài lên điện thoại; sau đó chạy `npx expo
 
 ## Tài liệu tham khảo
 
-- Android Developers - Request runtime permissions: https://developer.android.com/training/permissions/requesting
-- Expo - Permissions: https://docs.expo.dev/guides/permissions/
-- Expo - ImagePicker: https://docs.expo.dev/versions/latest/sdk/imagepicker/
-- Expo - Location: https://docs.expo.dev/versions/latest/sdk/location/
-- Expo - MapView: https://docs.expo.dev/versions/latest/sdk/map-view/
-- Expo - Development builds: https://docs.expo.dev/develop/development-builds/introduction/
-- NestJS - File upload: https://docs.nestjs.com/techniques/file-upload
+[1] Google, “Request runtime permissions,” *Android Developers*. Accessed: Oct. 30, 2026. [Online]. Available: https://developer.android.com/training/permissions/requesting
+
+[2] Expo, “Permissions,” *Expo Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://docs.expo.dev/guides/permissions/
+
+[3] Expo, “ImagePicker,” *Expo Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://docs.expo.dev/versions/latest/sdk/imagepicker/
+
+[4] Expo, “Location,” *Expo Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://docs.expo.dev/versions/latest/sdk/location/
+
+[5] Expo, “MapView,” *Expo Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://docs.expo.dev/versions/latest/sdk/map-view/
+
+[6] Expo, “Introduction to development builds,” *Expo Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://docs.expo.dev/develop/development-builds/introduction/
+
+[7] NestJS, “File upload,” *NestJS Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://docs.nestjs.com/techniques/file-upload

@@ -9,6 +9,9 @@ Giáo trình:  <hoc-phan>/giao-trinh/00-loi-noi-dau.md, chuong-01.md, ...  → g
              (giao-trinh/bai-tap-huong-dan/bt-XX.md, nếu có, được chèn vào chương XX trước "Tài liệu tham khảo")
 SRS (--srs): <hoc-phan>/srs/01-*.md, 02-*.md, ...  → srs/SRS-<srsProject>.docx
              (tên dự án lấy từ "srsProject" trong course.json)
+Agile (--agile): <hoc-phan>/srs/agile/01-*.md, ...  → srs/agile-scrum.docx (phần nội dung khổ ngang cho bảng backlog)
+                 và srs/agile/product-backlog.csv (Epic + backlog, nhập Jira/Trello/Notion)
+Watermark:   chữ mờ giữa mọi trang, mặc định "Công nghệ thông tin - LHU" ("watermark" trong course.json, "" để tắt)
 
 Hỗ trợ phần Markdown dùng trong giáo trình: tiêu đề #..####, đoạn văn, **đậm**, *nghiêng*, `code`,
 danh sách - và 1. (lồng 2 cấp), bảng |...|, khối ``` code ```, trích dẫn >.
@@ -22,7 +25,7 @@ from datetime import date
 from pathlib import Path
 
 from docx import Document
-from docx.enum.section import WD_SECTION
+from docx.enum.section import WD_ORIENT, WD_SECTION
 from docx.enum.table import WD_TABLE_ALIGNMENT
 from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_BREAK
 from docx.oxml import OxmlElement
@@ -40,6 +43,7 @@ CODE_FONT = "Consolas"
 LHU_BLUE = RGBColor(0x01, 0x3D, 0x88)
 CODE_BG = "F1F3F5"
 TABLE_HEADER_BG = "E7F1FF"
+DEFAULT_WATERMARK = "Công nghệ thông tin - LHU"  # ghi đè bằng "watermark" trong course.json; "" để tắt
 
 
 # ---------------------------------------------------------------- helpers
@@ -196,6 +200,41 @@ def setup_header_footer(section, title: str):
     add_field(footer, "PAGE", "1")
 
 
+WATERMARK_SHAPETYPE = (
+    '<v:shapetype id="_x0000_t136" coordsize="21600,21600" o:spt="136" adj="10800" '
+    'path="m@7,l@8,m@5,21600l@6,21600e"><v:formulas>'
+    + "".join(f'<v:f eqn="{e}"/>' for e in [
+        "sum #0 0 10800", "prod #0 2 1", "sum 21600 0 @1", "sum 0 0 @2", "sum 21600 0 @3",
+        "if @0 @3 0", "if @0 21600 @1", "if @0 0 @2", "if @0 @4 21600", "mid @5 @6",
+        "mid @8 @5", "mid @7 @8", "mid @6 @7", "sum @6 0 @5"])
+    + '</v:formulas><v:path textpathok="t" o:connecttype="custom" '
+    'o:connectlocs="@9,0;@10,10800;@11,21600;@12,10800" o:connectangles="270,180,90,0"/>'
+    '<v:textpath on="t" fitshape="t"/><v:handles><v:h position="#0,bottomRight" xrange="6629,14971"/>'
+    '</v:handles><o:lock v:ext="edit" text="t" shapetype="t"/></v:shapetype>'
+)
+
+
+def add_watermark(section, text: str):
+    """Watermark chữ nghiêng mờ giữa trang (WordArt VML trong header, kiểu Design > Watermark của Word)."""
+    from docx.oxml import parse_xml
+    from xml.sax.saxutils import quoteattr
+    paragraph = section.header.paragraphs[0]
+    run = parse_xml(
+        '<w:r xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" '
+        'xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">'
+        '<w:pict>' + WATERMARK_SHAPETYPE +
+        '<v:shape id="LhuWatermark" o:spid="_x0000_s2049" type="#_x0000_t136" '
+        'style="position:absolute;margin-left:0;margin-top:0;width:470pt;height:70pt;rotation:315;'
+        'z-index:-251654144;mso-position-horizontal:center;mso-position-horizontal-relative:margin;'
+        'mso-position-vertical:center;mso-position-vertical-relative:margin" '
+        'o:allowincell="f" fillcolor="#c8d3e6" stroked="f">'
+        '<v:fill opacity=".35"/>'
+        f'<v:textpath style="font-family:&quot;Arial&quot;;font-size:1pt" string={quoteattr(text)}/>'
+        '</v:shape></w:pict></w:r>'
+    )
+    paragraph._p.append(run)
+
+
 # ---------------------------------------------------------------- markdown → docx
 def add_table(doc: Document, rows: list[list[str]]):
     header, body = rows[0], rows[1:]
@@ -335,19 +374,27 @@ def chapter_text(f: Path) -> str:
     return text
 
 
-def render_document(files: list[Path], out: Path, header: str, cover) -> Path:
+def render_document(files: list[Path], out: Path, header: str, cover, watermark: str | None = None,
+                    landscape: bool = False) -> Path:
     doc = Document()
     setup_styles(doc)
     cover(doc)
     add_toc(doc)
 
     body = doc.add_section(WD_SECTION.NEW_PAGE)
+    if landscape:  # bảng nhiều cột (ví dụ product backlog) cần trang ngang
+        body.orientation = WD_ORIENT.LANDSCAPE
+        body.page_width, body.page_height = body.page_height, body.page_width
     body.header.is_linked_to_previous = False
     body.footer.is_linked_to_previous = False
     setup_header_footer(body, header)
 
     for index, f in enumerate(files):
         render_markdown(doc, chapter_text(f), first_chapter=index == 0)
+
+    if watermark:
+        for section in doc.sections:
+            add_watermark(section, watermark)
 
     doc.save(out)
     return out
@@ -366,7 +413,95 @@ def build(course_dir: Path) -> Path:
     config = load_config(course_dir)
     return render_document(files, src / f"Giao-trinh-{course_dir.name}.docx",
                            f"Giáo trình {config.get('name', course_dir.name)}",
-                           lambda doc: add_cover(doc, config, course_dir))
+                           lambda doc: add_cover(doc, config, course_dir),
+                           watermark=config.get("watermark", DEFAULT_WATERMARK))
+
+
+def read_md_table(path: Path, first_header: str) -> list[dict]:
+    """Đọc bảng Markdown đầu tiên có cột đầu là first_header, trả về danh sách dòng dạng dict."""
+    lines = path.read_text(encoding="utf-8").splitlines()
+    start = next((i for i, l in enumerate(lines) if re.match(rf"^\|\s*{re.escape(first_header)}\s*\|", l)), None)
+    if start is None:
+        raise FileNotFoundError(f"Không thấy bảng có cột '{first_header}' trong {path.name}")
+    split = lambda l: [c.strip() for c in l.strip().strip("|").split("|")]
+    header, rows = split(lines[start]), []
+    for line in lines[start + 2:]:
+        if not line.strip().startswith("|"):
+            break
+        cells = split(line)
+        if len(cells) != len(header):
+            raise ValueError(f"{path.name}: dòng '{cells[0]}' có {len(cells)} cột, cần {len(header)}")
+        rows.append(dict(zip(header, cells)))
+    return rows
+
+
+JIRA_PRIORITY = {"Must-have": "Highest", "Should-have": "High", "Could-have": "Medium", "Won't-have": "Lowest"}
+
+
+def export_backlog_csv(src: Path, out: Path) -> int:
+    """Xuất Epic + Product Backlog ra CSV nhập được vào Jira (Issue Id/Parent Id), Trello, Notion.
+
+    Một dòng mỗi Epic (Issue Type = Epic) và mỗi story; story liên kết Epic qua Parent Id.
+    Priority theo thang Jira, MoSCoW giữ ở cột riêng và Labels. UTF-8 có BOM để Excel đọc đúng tiếng Việt.
+    """
+    import csv
+
+    epics = read_md_table(next(src.glob("[0-9][0-9]-epic*.md")), "ID")
+    stories = read_md_table(next(src.glob("[0-9][0-9]-product-backlog*.md")), "ID")
+    columns = ["Issue Id", "Issue Type", "Summary", "Epic", "Parent Id", "Description", "Acceptance Criteria",
+               "Priority", "MoSCoW", "Story Points", "Sprint", "Labels"]
+    plain = lambda s: re.sub(r"\*\*|`", "", s)
+
+    epic_names = {e["ID"]: e["Epic"] for e in epics}
+    rows = []
+    for e in epics:
+        sp = e["Tổng SP"].strip("()")
+        rows.append({
+            "Issue Id": e["ID"], "Issue Type": "Epic", "Summary": f"[{e['ID']}] {e['Epic']}", "Epic": e["Epic"],
+            "Parent Id": "", "Description": f"{e['Mô tả']}\nModule SRS: {e['Module SRS']}\nSprint: {e['Sprint']}\nTổng story point: {sp}",
+            "Acceptance Criteria": "", "Priority": JIRA_PRIORITY.get(e["Ưu tiên"], ""), "MoSCoW": e["Ưu tiên"],
+            "Story Points": "", "Sprint": "", "Labels": e["Ưu tiên"].lower().replace("'", ""),
+        })
+    for s in stories:
+        story = plain(s["User Story"])
+        want = re.search(r"I want (.+?), so that", story)
+        title = (want.group(1) if want else story)[:200]
+        criteria = "\n".join(f"- {part.strip()}" for part in plain(s["Acceptance Criteria"]).split(" · ") if part.strip())
+        epic_id = s["Epic"].split()[0]
+        if epic_id not in epic_names:
+            raise ValueError(f"{s['ID']}: Epic {epic_id} không có trong danh sách Epic")
+        rows.append({
+            "Issue Id": s["ID"], "Issue Type": "Task" if s["ID"].startswith("TS-") else "Story",
+            "Summary": f"[{s['ID']}] {title[:1].upper()}{title[1:]}", "Epic": epic_names[epic_id], "Parent Id": epic_id,
+            "Description": f"{story}\n\nAcceptance Criteria:\n{criteria}", "Acceptance Criteria": criteria,
+            "Priority": JIRA_PRIORITY.get(s["Priority"], ""), "MoSCoW": s["Priority"], "Story Points": s["Story Points"],
+            "Sprint": s["Target Sprint"], "Labels": s["Priority"].lower().replace("'", ""),
+        })
+
+    with out.open("w", encoding="utf-8-sig", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=columns, quoting=csv.QUOTE_MINIMAL)
+        writer.writeheader()
+        writer.writerows(rows)
+    return len(rows)
+
+
+def build_agile(course_dir: Path) -> Path:
+    src = course_dir / "srs" / "agile"
+    files = sorted(src.glob("[0-9][0-9]-*.md"))
+    if not files:
+        raise FileNotFoundError(f"Không có file Markdown trong {src.relative_to(ROOT_DIR)}")
+    csv_out = src / "product-backlog.csv"
+    count = export_backlog_csv(src, csv_out)
+    print(f"[+] Đã ghi {csv_out.relative_to(ROOT_DIR)} ({count} dòng: Epic + story)")
+    config = load_config(course_dir)
+    project = config.get("srsProject", course_dir.name)
+    subtitle = ["Epic · User Story · Acceptance Criteria · Story Point · MoSCoW · Sprint Planning",
+                f"Chuyển đổi từ tài liệu SRS dự án {project}"]
+    return render_document(files, course_dir / "srs" / "agile-scrum.docx",
+                           f"Agile Project Plan {project} - {config.get('name', course_dir.name)}",
+                           lambda doc: add_cover(doc, config, course_dir, kind="KẾ HOẠCH DỰ ÁN AGILE & PRODUCT BACKLOG",
+                                                 title=f"Dự án {project}", subtitle_lines=subtitle),
+                           watermark=config.get("watermark", DEFAULT_WATERMARK), landscape=True)
 
 
 def build_srs(course_dir: Path) -> Path:
@@ -381,17 +516,19 @@ def build_srs(course_dir: Path) -> Path:
     out = src / f"SRS-{project.replace(' ', '-')}.docx"
     return render_document(files, out, f"SRS {project} - {config.get('name', course_dir.name)}",
                            lambda doc: add_cover(doc, config, course_dir, kind="ĐẶC TẢ YÊU CẦU PHẦN MỀM (SRS)",
-                                                 title=f"Dự án {project}", subtitle_lines=subtitle))
+                                                 title=f"Dự án {project}", subtitle_lines=subtitle),
+                           watermark=config.get("watermark", DEFAULT_WATERMARK))
 
 
 def main():
     parser = argparse.ArgumentParser(description="Ghép giáo trình Markdown thành file Word")
     parser.add_argument("course", help="Thư mục học phần")
     parser.add_argument("--srs", action="store_true", help="Ghép tài liệu SRS trong <hoc-phan>/srs/ thay cho giáo trình")
+    parser.add_argument("--agile", action="store_true", help="Ghép kế hoạch Agile/Scrum trong <hoc-phan>/srs/agile/")
     args = parser.parse_args()
     course_dir = ROOT_DIR / args.course.strip("/\\")
     try:
-        out = build_srs(course_dir) if args.srs else build(course_dir)
+        out = build_agile(course_dir) if args.agile else build_srs(course_dir) if args.srs else build(course_dir)
     except FileNotFoundError as e:
         print(f"[LỖI] {e}")
         return 1

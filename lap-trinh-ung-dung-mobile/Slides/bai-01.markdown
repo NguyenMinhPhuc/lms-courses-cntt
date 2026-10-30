@@ -172,3 +172,14 @@ Từ React web đến ứng dụng Android, cùng quy trình vibe coding có ki�
 - Chữ phải nằm trong Text; onPress thay onClick; StyleSheet thay CSS
 - Vibe coding: AI sinh mã, bạn hiểu và chịu trách nhiệm
 **Hoạt động**: Làm quiz Bài 01 (10 câu) ở cuối trang bài học
+
+---
+
+## Slide 16: Tài liệu của buổi
+**Đọc thêm**:
+- Giáo trình nội bộ, Chương 1: Tổng quan phát triển ứng dụng di động và khởi động dự án
+- Bài tập hướng dẫn theo dự án LHU Food (cuối Chương 1)
+- SRS LHU Food: mục 2 (mô tả), 3 (actor), 5.14 (màn hình)
+- Kế hoạch Agile & Product Backlog (Definition of Done, tiêu chí nghiệm thu)
+**Ghi chú giảng viên**:
+- Các file Word/Excel nằm ở mục Tài liệu của bài trên LMS và trang học phần (giao-trinh/, srs/, rubric/).

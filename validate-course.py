@@ -247,12 +247,27 @@ def check_slides(course_dir: Path, lessons: list[str], r: Report):
         r.ok(f"Slide đủ {len(lessons)} bài (.markdown + .pptx)")
 
 
+def check_documents(course_dir: Path, r: Report):
+    """"documents" trong course.json phải trỏ tới file có thật (dùng để thay placeholder trên trang web)."""
+    config_file = course_dir / "course.json"
+    docs = json.loads(config_file.read_text(encoding="utf-8")).get("documents") if config_file.is_file() else None
+    if not docs:
+        return
+    missing = [f"{k} → {rel}" for k, rel in docs.items() if not (course_dir / rel).is_file()]
+    if missing:
+        r.error("documents trong course.json trỏ tới file không tồn tại: " + "; ".join(missing))
+    else:
+        r.ok(f"{len(docs)} tài liệu trong course.json đều có file ({', '.join(docs)})")
+
+
 def check_links_and_placeholders(course_dir: Path, r: Report):
     samples = sample_links()
     reused = {}
     placeholders = {}
     for f in sorted(course_dir.rglob("*")):
         if f.suffix not in (".md", ".html", ".txt", ".json") or not f.is_file() or f.name == "template-lesson.md":
+            continue
+        if "node_modules" in f.parts:
             continue
         # Trang .html sinh từ .md đã được kiểm tra đồng bộ ở trên, không báo trùng
         if f.suffix == ".html" and f.with_suffix(".md").is_file():
@@ -280,6 +295,7 @@ def validate(course_dir: Path, build) -> Report:
     lessons = check_lessons(course_dir, r, build)
     check_quizzes(course_dir, lessons, r)
     check_slides(course_dir, lessons, r)
+    check_documents(course_dir, r)
     check_links_and_placeholders(course_dir, r)
     return r
 

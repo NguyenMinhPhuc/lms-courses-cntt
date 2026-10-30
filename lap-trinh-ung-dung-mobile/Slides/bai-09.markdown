@@ -162,3 +162,14 @@ useEffect(() => {
 - Lưu thông báo vào SQL Server trước, gửi socket sau
 - App: kết nối theo token, làm mới cache, hiện thông báo, mở đúng màn hình
 **Hoạt động**: Làm quiz Bài 09 ở cuối trang bài học
+
+---
+
+## Slide 16: Tài liệu của buổi
+**Đọc thêm**:
+- Giáo trình nội bộ, Chương 9: Thông báo thời gian thực với Socket.IO
+- Bài tập hướng dẫn theo dự án LHU Food (cuối Chương 9)
+- SRS LHU Food: mục 5.9 (M08), 5.10, 6.1, 8 (sự kiện Socket.IO)
+- Kế hoạch Agile & Product Backlog (Definition of Done, tiêu chí nghiệm thu)
+**Ghi chú giảng viên**:
+- Các file Word/Excel nằm ở mục Tài liệu của bài trên LMS và trang học phần (giao-trinh/, srs/, rubric/).

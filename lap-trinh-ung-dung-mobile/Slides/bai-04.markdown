@@ -162,3 +162,13 @@ const schema = z.object({
 - FlatList cho danh sách dài; luôn có trạng thái rỗng
 - Zod mô tả quy tắc; tự kiểm tra trường hợp biên mã AI sinh ra
 **Hoạt động**: Làm quiz Bài 04 ở cuối trang bài học
+
+---
+
+## Slide 15: Tài liệu của buổi
+**Đọc thêm**:
+- Giáo trình nội bộ, Chương 4: Quản lý trạng thái, danh sách và form
+- Bài tập hướng dẫn theo dự án LHU Food (cuối Chương 4)
+- SRS LHU Food: mục 4.7 (US-C01, C02, G02, G04), 5.4, BR-02, BR-07
+**Ghi chú giảng viên**:
+- Các file Word/Excel nằm ở mục Tài liệu của bài trên LMS và trang học phần (giao-trinh/, srs/, rubric/).

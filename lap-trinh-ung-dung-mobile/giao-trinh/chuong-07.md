@@ -45,7 +45,7 @@ Khi thêm cột `NOT NULL` vào bảng đã có dữ liệu, bắt buộc kèm `
 
 ### 7.2.1. Chỉ mục là gì
 
-**Chỉ mục (index)** giống mục lục của một cuốn sách: thay vì đọc toàn bộ bảng, SQL Server tra chỉ mục để đến thẳng các dòng cần tìm.
+**Chỉ mục (index)** giống mục lục của một cuốn sách: thay vì đọc toàn bộ bảng, SQL Server tra chỉ mục để đến thẳng các dòng cần tìm [5].
 
 - **Clustered index:** sắp xếp chính dữ liệu của bảng; mỗi bảng có tối đa một. Khóa chính mặc định tạo clustered index.
 - **Nonclustered index:** cấu trúc riêng trỏ tới dữ liệu; một bảng có thể có nhiều.
@@ -71,7 +71,7 @@ Mỗi chỉ mục làm thao tác `INSERT`/`UPDATE` chậm thêm một chút và 
 
 ### 7.3.1. Khái niệm và tính chất ACID
 
-**Giao dịch (transaction)** là một nhóm câu lệnh được thực hiện như một đơn vị. Giao dịch đảm bảo bốn tính chất **ACID**:
+**Giao dịch (transaction)** là một nhóm câu lệnh được thực hiện như một đơn vị. Giao dịch đảm bảo bốn tính chất **ACID** [1]:
 
 - **Atomicity (nguyên tử):** tất cả thành công hoặc không có gì thay đổi.
 - **Consistency (nhất quán):** dữ liệu luôn thỏa các ràng buộc sau giao dịch.
@@ -95,13 +95,13 @@ BEGIN CATCH
 END CATCH
 ```
 
-- `SET XACT_ABORT ON`: khi có lỗi thời gian chạy, SQL Server tự hủy toàn bộ giao dịch; tránh trường hợp giao dịch "treo" giữa chừng.
+- `SET XACT_ABORT ON`: khi có lỗi thời gian chạy, SQL Server tự hủy toàn bộ giao dịch; tránh trường hợp giao dịch "treo" giữa chừng [2], [3].
 - `@@TRANCOUNT > 0`: chỉ `ROLLBACK` khi đang có giao dịch mở.
 - `THROW;` (không tham số) ném lại **đúng lỗi gốc**, giữ nguyên mã như 50409, để `DatabaseService` (Chương 5) chuyển thành mã HTTP.
 
 ### 7.3.3. Tranh chấp đồng thời: suất cơm cuối cùng
 
-Giả sử món còn 1 suất và hai khách cùng đặt trong cùng một thời điểm. Nếu cả hai giao dịch cùng đọc `Stock = 1` trước khi bên nào kịp trừ, cả hai đều thấy "đủ hàng" và tồn kho bị trừ thành -1 (hoặc một giao dịch lỗi ở ràng buộc `CHECK` với thông báo khó hiểu).
+Giả sử món còn 1 suất và hai khách cùng đặt trong cùng một thời điểm. Nếu cả hai giao dịch cùng đọc `Stock = 1` trước khi bên nào kịp trừ, cả hai đều thấy "đủ hàng" và tồn kho bị trừ thành -1 (hoặc một giao dịch lỗi ở ràng buộc `CHECK` với thông báo khó hiểu) [4].
 
 Gợi ý khóa `WITH (UPDLOCK, HOLDLOCK)` khi đọc tồn kho:
 
@@ -331,7 +331,7 @@ Dữ liệu thay đổi do người khác (trạng thái đơn hàng) không d�
 
 ### 7.6.3. Optimistic update
 
-**Cập nhật lạc quan** đổi giao diện ngay khi người dùng thao tác, gửi API ở nền, và hoàn tác nếu API lỗi. Phù hợp với thao tác nhỏ, hầu như luôn thành công: thêm yêu thích, đánh dấu đã đọc.
+**Cập nhật lạc quan** đổi giao diện ngay khi người dùng thao tác, gửi API ở nền, và hoàn tác nếu API lỗi. Phù hợp với thao tác nhỏ, hầu như luôn thành công: thêm yêu thích, đánh dấu đã đọc [6].
 
 ```ts
 export function useToggleFavorite() {
@@ -384,7 +384,7 @@ export const useCart = create<CartState>()(
 );
 ```
 
-Cú pháp `create<CartState>()(persist(...))` có thêm một cặp ngoặc so với Chương 4; đây là yêu cầu của Zustand khi dùng middleware với TypeScript. Khi đăng xuất, gọi `useCart.getState().clear()` để giỏ hàng của người này không sang người khác trên cùng máy.
+Cú pháp `create<CartState>()(persist(...))` có thêm một cặp ngoặc so với Chương 4; đây là yêu cầu của Zustand khi dùng middleware với TypeScript. Khi đăng xuất, gọi `useCart.getState().clear()` để giỏ hàng của người này không sang người khác trên cùng máy [7].
 
 ## 7.7. Mã nguồn bổ sung của chương
 
@@ -437,10 +437,16 @@ Khóa chính `(UserId, ProductId)` chặn một người thêm trùng một món
 
 ## Tài liệu tham khảo
 
-- Microsoft Learn - Transactions (Transact-SQL): https://learn.microsoft.com/sql/t-sql/language-elements/transactions-transact-sql
-- Microsoft Learn - TRY...CATCH (Transact-SQL): https://learn.microsoft.com/sql/t-sql/language-elements/try-catch-transact-sql
-- Microsoft Learn - SET XACT_ABORT: https://learn.microsoft.com/sql/t-sql/statements/set-xact-abort-transact-sql
-- Microsoft Learn - Table hints: https://learn.microsoft.com/sql/t-sql/queries/hints-transact-sql-table
-- Microsoft Learn - Indexes: https://learn.microsoft.com/sql/relational-databases/indexes/indexes
-- TanStack Query - Optimistic Updates: https://tanstack.com/query/latest/docs/framework/react/guides/optimistic-updates
-- Zustand - persist middleware: https://zustand.docs.pmnd.rs/middlewares/persist
+[1] Microsoft, “Transactions (Transact-SQL),” *Microsoft Learn*. Accessed: Oct. 30, 2026. [Online]. Available: https://learn.microsoft.com/sql/t-sql/language-elements/transactions-transact-sql
+
+[2] Microsoft, “TRY...CATCH (Transact-SQL),” *Microsoft Learn*. Accessed: Oct. 30, 2026. [Online]. Available: https://learn.microsoft.com/sql/t-sql/language-elements/try-catch-transact-sql
+
+[3] Microsoft, “SET XACT_ABORT (Transact-SQL),” *Microsoft Learn*. Accessed: Oct. 30, 2026. [Online]. Available: https://learn.microsoft.com/sql/t-sql/statements/set-xact-abort-transact-sql
+
+[4] Microsoft, “Table hints (Transact-SQL),” *Microsoft Learn*. Accessed: Oct. 30, 2026. [Online]. Available: https://learn.microsoft.com/sql/t-sql/queries/hints-transact-sql-table
+
+[5] Microsoft, “Indexes,” *Microsoft Learn*. Accessed: Oct. 30, 2026. [Online]. Available: https://learn.microsoft.com/sql/relational-databases/indexes/indexes
+
+[6] TanStack, “Optimistic Updates,” *TanStack Query Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://tanstack.com/query/latest/docs/framework/react/guides/optimistic-updates
+
+[7] Poimandres, “persist,” *Zustand Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://zustand.docs.pmnd.rs/middlewares/persist

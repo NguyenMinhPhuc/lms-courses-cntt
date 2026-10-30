@@ -148,3 +148,13 @@ export const fontSize = { body: 16, title: 20, heading: 24 };
 - Theme + component dùng chung = giao diện nhất quán
 - AI dựng nhanh, bạn so với thiết kế và sửa
 **Hoạt động**: Làm quiz Bài 02 ở cuối trang bài học
+
+---
+
+## Slide 15: Tài liệu của buổi
+**Đọc thêm**:
+- Giáo trình nội bộ, Chương 2: Core Components, Styling và Layout với Flexbox
+- Bài tập hướng dẫn theo dự án LHU Food (cuối Chương 2)
+- SRS LHU Food: mục 4.2, 4.7 (US-G01, US-G03), 5.1, 5.14.1
+**Ghi chú giảng viên**:
+- Các file Word/Excel nằm ở mục Tài liệu của bài trên LMS và trang học phần (giao-trinh/, srs/, rubric/).

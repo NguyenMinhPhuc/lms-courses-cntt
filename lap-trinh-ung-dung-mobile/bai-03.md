@@ -129,6 +129,21 @@ import { Link } from 'expo-router';
             </a>
         </div>
         <div style="margin-top: 16px;">
+            <p style="margin: 0 0 8px 0; color: #fd7e14; font-weight: bold;">📚 Giáo trình &amp; tài liệu dự án</p>
+            <a href="{{LINK_GIAO_TRINH}}" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
+                <span style="color: #fd7e14; font-weight: bold;">📘 Giáo trình nội bộ – Chương 3: Điều hướng với Expo Router</span><br>
+                <span style="color: #6c757d; font-size: 13px;">Lý thuyết chi tiết, mã nguồn LHU Food và bài tập hướng dẫn theo dự án ở cuối Chương 3 (file Word).</span>
+            </a>
+            <a href="{{LINK_SRS_LHU_FOOD}}" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
+                <span style="color: #fd7e14; font-weight: bold;">🧾 SRS dự án LHU Food</span><br>
+                <span style="color: #6c757d; font-size: 13px;">Đọc SRS mục 5.14.1 (màn hình và route), mục 7.1 (các bảng), mục 4.3 (US-C02, US-C06 để dựng khung). User story của buổi: US-G01, US-G03 (điều hướng); khung màn hình cho US-C02, US-C06, US-C13.</span>
+            </a>
+            <a href="{{LINK_AGILE_SCRUM}}" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
+                <span style="color: #fd7e14; font-weight: bold;">🗂 Kế hoạch Agile &amp; Product Backlog</span><br>
+                <span style="color: #6c757d; font-size: 13px;">Sprint Goal, tiêu chí nghiệm thu và Definition of Done để chuẩn bị Checkpoint Sprint 1 (Sprint Review).</span>
+            </a>
+        </div>
+        <div style="margin-top: 16px;">
             <p style="margin: 0 0 8px 0; color: #fd7e14; font-weight: bold;">📖 Tài liệu đọc thêm (chính thức)</p>
             <a href="https://docs.expo.dev/router/introduction/" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
                 <span style="color: #fd7e14; font-weight: bold;">🔗 Expo Router - Introduction</span><br>

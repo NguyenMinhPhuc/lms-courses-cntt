@@ -249,6 +249,17 @@ const orders = useInfiniteQuery({
             </a>
         </div>
         <div style="margin-top: 16px;">
+            <p style="margin: 0 0 8px 0; color: #fd7e14; font-weight: bold;">📚 Giáo trình &amp; tài liệu dự án</p>
+            <a href="{{LINK_GIAO_TRINH}}" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
+                <span style="color: #fd7e14; font-weight: bold;">📘 Giáo trình nội bộ – Chương 5: Thiết kế CSDL, stored procedure, API NestJS và kết nối ứng dụng</span><br>
+                <span style="color: #6c757d; font-size: 13px;">Lý thuyết chi tiết, mã nguồn LHU Food và bài tập hướng dẫn theo dự án ở cuối Chương 5 (file Word).</span>
+            </a>
+            <a href="{{LINK_SRS_LHU_FOOD}}" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
+                <span style="color: #fd7e14; font-weight: bold;">🧾 SRS dự án LHU Food</span><br>
+                <span style="color: #6c757d; font-size: 13px;">Đọc SRS mục 5.3 (M02), 5.5 (F04.1, F04.2), mục 7 (bảng, script), mục 8 (danh mục API). User story của buổi: US-G01, US-G03, US-G07, US-C04 (bản đầu, chưa có giao dịch), US-C06.</span>
+            </a>
+        </div>
+        <div style="margin-top: 16px;">
             <p style="margin: 0 0 8px 0; color: #fd7e14; font-weight: bold;">📖 Tài liệu đọc thêm (chính thức)</p>
             <a href="https://www.npmjs.com/package/mssql" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
                 <span style="color: #fd7e14; font-weight: bold;">🔗 mssql (node-mssql)</span><br>
