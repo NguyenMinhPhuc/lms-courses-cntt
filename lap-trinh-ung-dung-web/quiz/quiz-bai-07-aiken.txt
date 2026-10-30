@@ -1,0 +1,69 @@
+Khi phân tích một user story quản trị như US-A01 (quản lý danh mục), cần lần theo những tầng nào?
+A. Chỉ giao diện và màu sắc
+B. Chỉ bảng dữ liệu
+C. Dữ liệu, stored procedure, API, trang web
+D. Chỉ API và Swagger
+ANSWER: C
+
+CSDL của nhóm cần thay đổi cấu trúc (thêm cột IsLocked). Cách làm đúng là gì?
+A. Viết file script mới có kiểm tra trước khi đổi, không sửa file đã chạy
+B. Sửa trực tiếp file 01-tables.sql
+C. Xóa CSDL rồi chạy lại từ đầu trên server thật
+D. Thêm cột bằng giao diện SSMS, không cần script
+ANSWER: A
+
+Vì sao script quản trị của web được đánh số từ 20 (ví dụ 20-admin.sql)?
+A. Vì SQL Server yêu cầu số lớn hơn 20
+B. Để không trùng với các script 01–09 theo giáo trình di động mà nhóm đã và sẽ thêm
+C. Vì script số nhỏ chạy chậm hơn
+D. Vì Next.js chỉ đọc script từ số 20
+ANSWER: B
+
+IF COL_LENGTH('dbo.Users', 'IsLocked') IS NULL dùng để làm gì?
+A. Xóa cột IsLocked
+B. Đếm số tài khoản bị khóa
+C. Đổi kiểu dữ liệu của cột
+D. Chỉ thêm cột khi chưa có, để script chạy lại nhiều lần không lỗi
+ANSWER: D
+
+Quy tắc "không xóa danh mục còn món" nên được đặt chắc chắn ở đâu?
+A. Trong stored procedure (THROW 50409), để mọi nơi gọi vào đều bị kiểm tra
+B. Chỉ ẩn nút Xóa trên web
+C. Chỉ trong ứng dụng di động
+D. Trong file README
+ANSWER: A
+
+Mã lỗi 50404 phát ra từ stored procedure được DatabaseService chuyển thành mã HTTP nào?
+A. 400
+B. 409
+C. 404
+D. 500
+ANSWER: C
+
+Theo RolesGuard của giáo trình di động, vì sao tài khoản admin có thể nhận 403 ở route chỉ ghi @Roles(['staff'])?
+A. Vì admin chưa đăng nhập
+B. Vì guard so khớp đúng tên vai trò, admin không tự có quyền của staff
+C. Vì token admin không có trường role
+D. Vì Swagger chặn admin
+ANSWER: B
+
+Khi khóa tài khoản, mã người quản lý thực hiện (@ActorId) nên lấy từ đâu?
+A. Từ body do web gửi lên
+B. Từ tham số trên URL
+C. Từ localStorage
+D. Từ token đã xác thực (req.user.sub)
+ANSWER: D
+
+Trước khi đổi API_URL của web sang backend nhóm, việc nên làm là gì?
+A. So khớp hợp đồng API (đường dẫn, tham số, tên trường, mã lỗi) giữa API mẫu và backend nhóm
+B. Xóa toàn bộ test case cũ
+C. Viết lại toàn bộ trang web
+D. Tắt kiểm tra quyền để dễ thử
+ANSWER: A
+
+Kiểm thử hồi quy sau khi chuyển sang backend nhóm có nghĩa là gì?
+A. Chỉ thử các trang mới của Sprint 3
+B. Chạy lại các test case Sprint 1–2 để chắc chắn chức năng cũ vẫn đạt
+C. Kiểm tra tốc độ mạng
+D. So sánh giao diện với Figma
+ANSWER: B

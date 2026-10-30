@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chấm điểm theo rubric | Cơ sở Văn hóa Việt Nam (112317)</title>
+  <meta name="description" content="Công cụ chấm điểm các thành phần đánh giá của học phần Cơ sở Văn hóa Việt Nam (112317): chấm theo tiêu chí và hệ số mức, tính điểm thành phần, điểm học phần, mức đạt CLO và xuất Excel.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- SheetJS chỉ dùng để GHI file Excel; danh sách sinh viên nhập bằng dán hoặc CSV -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: {
+        fontFamily: { sans: ['Inter', 'sans-serif'] },
+        colors: { asu: { maroon: '#8C1D40', gold: '#FFC627' }, lhu: { blue: '#013D88', dark: '#01295C', light: '#EEF5FC' } }
+      } }
+    }
+  </script>
+  <style>
+    .lv-btn[aria-pressed="true"] { outline: 2px solid currentColor; outline-offset: 1px; }
+    details > summary { list-style: none; cursor: pointer; }
+    details > summary::-webkit-details-marker { display: none; }
+    @media print { header, nav, .no-print { display: none !important; } }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col">
+
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur shadow-sm border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-3">
+      <a href="index.html" class="flex items-center gap-2.5 min-w-0">
+        <span class="w-9 h-9 rounded-xl bg-lhu-blue text-white flex items-center justify-center"><i class="fa-solid fa-clipboard-check"></i></span>
+        <div class="min-w-0">
+          <div class="text-[11px] font-bold text-slate-500 uppercase">Chấm điểm theo rubric</div>
+          <div class="text-sm font-extrabold text-lhu-blue truncate">Cơ sở Văn hóa Việt Nam (112317)</div>
+        </div>
+      </a>
+      <div class="flex items-center gap-2 text-xs">
+        <span id="saveState" class="hidden sm:inline text-slate-400"></span>
+        <button data-action="export-xlsx" class="px-3 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl"><i class="fa-solid fa-file-excel mr-1"></i><span class="hidden sm:inline">Xuất Excel</span></button>
+        <a href="index.html" class="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl"><i class="fa-solid fa-arrow-left"></i><span class="hidden sm:inline ml-1">Học phần</span></a>
+      </div>
+    </div>
+    <nav class="max-w-7xl mx-auto px-4 flex gap-1 text-sm font-bold overflow-x-auto" id="tabs"></nav>
+  </header>
+
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 py-6" id="view"></main>
+
+  <footer class="text-center text-xs text-slate-400 py-4 no-print">
+    Dữ liệu chấm lưu trong trình duyệt này. Sao lưu JSON trước khi xóa lịch sử trình duyệt hoặc chuyển máy.
+  </footer>
+
+<script>
+const RUBRIC = {"course": {"code": "112317", "name": "Cơ sở Văn hóa Việt Nam", "assessment": "Đánh giá theo 3 thành phần: A1 Quá trình 30%, A2 Giữa kỳ (Portfolio) 30%, A3 Cuối kỳ (báo cáo dự án video) 40%", "scale": 10, "studentThreshold": 0.5, "classThreshold": 0.75, "note": "Điểm tiêu chí = hệ số mức (0–1) × trọng số. Mỗi thành phần chấm thang 10. Sinh viên đạt một CLO khi được ít nhất 50% điểm tối đa của CLO đó (tính trên cả 3 thành phần theo tỷ trọng). CLO đạt ở cấp lớp khi ít nhất 75% số sinh viên đạt.", "aiNote": "Mọi sản phẩm nộp đều kèm các prompt AI đã dùng."}, "clos": [{"id": "CLO1", "name": "Phân tích được các quy luật vận động, hệ thống các thành tố văn hóa và đặc điểm các vùng văn hóa Việt Nam trong mối tương quan với bối cảnh truyền thông hiện đại", "plo": "Kiến thức (4) / PI 2.1"}, {"id": "CLO2", "name": "Thiết lập được các ý tưởng sáng tạo và giải pháp kỹ thuật dựa trên việc khai thác chất liệu văn hóa truyền thống để sản xuất sản phẩm truyền thông đa phương tiện", "plo": "Kỹ năng (4) / PI 4.2"}, {"id": "CLO3", "name": "Gìn giữ bản sắc văn hóa dân tộc, thể hiện trách nhiệm đạo đức nghề nghiệp và tôn trọng sự khác biệt văn hóa trong môi trường số", "plo": "Thái độ (5) / PI 5.1"}], "levels": [{"code": "CD", "name": "Chưa đạt", "min": 0, "max": 0.4}, {"code": "D", "name": "Đạt yêu cầu", "min": 0.5, "max": 0.6}, {"code": "T", "name": "Tốt", "min": 0.7, "max": 0.8}, {"code": "XS", "name": "Xuất sắc", "min": 0.9, "max": 1}], "components": [{"id": "A1", "name": "Quá trình", "weight": 0.3, "when": "Cả 6 buổi; chốt sau buổi 4 (kịch bản) và buổi 5 (thực địa)", "criteria": [{"id": "A1.1", "label": "1", "name": "Chuyên cần, đúng giờ (cả buổi thực địa)", "clo": {"CLO3": 1.5}, "weight": 1.5, "scope": "individual", "levels": {"CD": "Vắng >20% hoặc vắng buổi thực địa không phép", "D": "Vắng ≤20%; trễ nhiều lần", "T": "Đi đủ; trễ không quá 1 lần", "XS": "Đi đủ, đúng giờ toàn bộ"}, "guide": "Lấy từ điểm danh 6 buổi; buổi 5 (thực địa) điểm danh tại địa điểm quay.", "evidence": "Danh sách điểm danh trên LMS/giấy; điểm danh tại thực địa."}, {"id": "A1.2", "label": "2", "name": "Tinh thần tham gia (phát biểu, chấm chéo, góp ý, phản biện)", "clo": {"CLO3": 2}, "weight": 2, "scope": "individual", "levels": {"CD": "Không tham gia", "D": "Tham gia khi được gọi", "T": "Chủ động, chấm chéo nghiêm túc", "XS": "Đóng góp ý có chất lượng"}, "guide": "Ghi nhận phát biểu ở phần thảo luận, phiếu chấm chéo buổi 2–3 và góp ý ở workshop kịch bản buổi 4.", "evidence": "Phiếu chấm chéo; bài đăng diễn đàn; ghi chú của giảng viên."}, {"id": "A1.3", "label": "3", "name": "Ứng xử văn hóa trong lớp, nhóm và tại thực địa", "clo": {"CLO3": 2}, "weight": 2, "scope": "individual", "levels": {"CD": "Thiếu tôn trọng; vi phạm quy định nơi tham quan", "D": "Đúng mực nhưng hợp tác yếu", "T": "Tôn trọng, hợp tác tốt", "XS": "Ứng xử mẫu mực, hỗ trợ bạn bè"}, "guide": "Quan sát trên lớp và tại thực địa; tham khảo đánh giá chéo trong nhóm khi có mâu thuẫn.", "evidence": "Ghi chú của giảng viên; phản ánh của nơi quay (nếu có)."}, {"id": "A1.4", "label": "4", "name": "Đúng hạn và trung thực", "clo": {"CLO3": 1.5}, "weight": 1.5, "scope": "individual", "levels": {"CD": "Trễ hạn nhiều lần hoặc sao chép", "D": "Trễ 1–2 lần", "T": "Đúng hạn, có ghi nguồn", "XS": "Luôn đúng hạn, ghi nguồn chuẩn"}, "guide": "Đối chiếu thời gian nộp trên LMS; kiểm tra ghi nguồn tư liệu, ảnh và prompt AI đã dùng.", "evidence": "Lịch sử nộp bài trên LMS; danh mục nguồn và prompt AI trong sản phẩm."}, {"id": "A1.5", "label": "5", "name": "Bài tập nhỏ trên lớp/LMS", "clo": {"CLO1": 1}, "weight": 1, "scope": "individual", "levels": {"CD": "Đúng <50%", "D": "Đúng 50–64%", "T": "Đúng 65–84%", "XS": "Đúng ≥85%, vận dụng tốt"}, "guide": "Trung bình tỷ lệ đúng của các quiz bài học và trắc nghiệm ôn tập buổi 3; hệ số lấy theo tỷ lệ đúng.", "evidence": "Kết quả quiz trên LMS; kết quả Kahoot buổi 3."}, {"id": "A1.6", "label": "6", "name": "Kịch bản quay (bản đã sửa theo góp ý buổi 4)", "clo": {"CLO2": 1, "CLO3": 1}, "weight": 2, "scope": "group", "levels": {"CD": "Không nộp; sơ sài; không qua checklist văn hóa", "D": "Đủ cấu trúc nhưng còn chung chung; shot list thiếu", "T": "Rõ hook – câu chuyện – giá trị; shot list khả thi; đạt checklist", "XS": "Sáng tạo, chi tiết đến từng cảnh; sửa tốt theo góp ý"}, "guide": "Chấm bản kịch bản nộp sau buổi 4, so với góp ý ở workshop. Trọng số chia đều CLO2 (1) và CLO3 (1).", "evidence": "Google Doc kịch bản + danh sách cảnh quay; Checklist văn hóa đã đối chiếu."}]}, {"id": "A2", "name": "Giữa kỳ (Portfolio)", "weight": 0.3, "when": "Buổi 2 (nhóm 1–6) và buổi 3 (nhóm 7–12)", "criteria": [{"id": "A2.1", "label": "1", "name": "Phân tích sản phẩm văn hóa theo thành tố/vùng văn hóa", "clo": {"CLO1": 2}, "weight": 2, "scope": "group", "levels": {"CD": "Xếp sai thành tố/vùng; chỉ mô tả bề ngoài", "D": "Xếp đúng nhưng giải thích giá trị còn chung chung", "T": "Phân tích đúng giá trị, gắn với đặc trưng thành tố/vùng", "XS": "Phân tích sâu, liên hệ được quy luật (tiếp biến, loại hình gốc nông nghiệp)"}, "guide": "Kiểm tra sản phẩm được xếp đúng thành tố (buổi 2) hoặc vùng (buổi 3) và lý giải được giá trị.", "evidence": "Slide/ePortfolio của nhóm."}, {"id": "A2.2", "label": "2", "name": "Tư liệu và trích dẫn nguồn", "clo": {"CLO1": 1}, "weight": 1, "scope": "group", "levels": {"CD": "Không có nguồn hoặc thông tin sai", "D": "Có nguồn nhưng thiếu nguồn uy tín", "T": "Dẫn giáo trình + nguồn uy tín, thông tin chính xác", "XS": "Nhiều nguồn uy tín, đối chiếu và ghi nguồn chuẩn"}, "guide": "Xem slide nguồn/tài liệu tham khảo; kiểm tra ngẫu nhiên 1–2 thông tin.", "evidence": "Slide tài liệu tham khảo; chú thích nguồn ảnh."}, {"id": "A2.3", "label": "3", "name": "Ý tưởng chuyển hóa chất liệu thành sản phẩm truyền thông", "clo": {"CLO2": 1.5}, "weight": 1.5, "scope": "group", "levels": {"CD": "Không có đề xuất ứng dụng", "D": "Có đề xuất nhưng chung chung", "T": "Đề xuất cụ thể (định dạng, kênh, cách kể)", "XS": "Đề xuất sáng tạo, khả thi, có giá trị khác biệt"}, "guide": "Nhóm phải có ít nhất một slide đề xuất: định dạng, kênh, cách kể.", "evidence": "Slide đề xuất ứng dụng."}, {"id": "A2.4", "label": "4", "name": "Thiết kế slide/ePortfolio", "clo": {"CLO2": 1}, "weight": 1, "scope": "group", "levels": {"CD": "Rối, nhiều chữ, ảnh kém", "D": "Đủ nội dung, trình bày đơn điệu", "T": "Bố cục rõ, hình ảnh tốt, chữ đủ lớn", "XS": "Có tính thẩm mỹ cao, bản sắc thị giác phù hợp chủ đề"}, "guide": "Chỉ chấm hình thức thị giác; nội dung đã chấm ở 1–3.", "evidence": "File slide/link ePortfolio."}, {"id": "A2.5", "label": "5", "name": "Lý do lựa chọn và thái độ với di sản", "clo": {"CLO3": 1.5}, "weight": 1.5, "scope": "group", "levels": {"CD": "Có chi tiết xuyên tạc hoặc thiếu tôn trọng; dùng ảnh không rõ nguồn", "D": "Thái độ đúng mực, lý do lựa chọn mờ nhạt", "T": "Lý do rõ, thể hiện sự trân trọng; ghi nguồn ảnh", "XS": "Truyền được niềm tự hào; tôn trọng khác biệt vùng miền"}, "guide": "Chú ý cách gọi tên, hình ảnh minh họa và ảnh AI: có làm sai lệch hay rập khuôn không.", "evidence": "Slide/ePortfolio; prompt AI đã dùng."}, {"id": "A2.6", "label": "6", "name": "Trình bày – Cấu trúc và thời gian", "clo": {}, "weight": 1, "scope": "group", "levels": {"CD": "Lộn xộn; vượt quá 7 phút", "D": "Có cấu trúc nhưng chưa mạch lạc; lệch ±2 phút", "T": "Mạch lạc; đúng 5 phút ±1", "XS": "Mở – thân – kết cuốn hút; đúng thời gian"}, "guide": "Bấm giờ 5 phút cho mỗi nhóm.", "evidence": "Ghi chú bấm giờ."}, {"id": "A2.7", "label": "7", "name": "Trình bày – Kỹ năng thuyết trình và phối hợp nhóm", "clo": {}, "weight": 1, "scope": "group", "levels": {"CD": "Đọc slide; một người nói thay cả nhóm", "D": "Nói rõ nhưng thiếu tương tác", "T": "Tự tin, giao tiếp mắt; 3 thành viên cùng tham gia", "XS": "Truyền cảm, tương tác tốt với lớp; chuyển giao giữa thành viên mượt"}, "guide": "Thành viên không tham gia trình bày: chấm riêng, hạ mức.", "evidence": "Quan sát trực tiếp; phiếu chấm chéo."}, {"id": "A2.8", "label": "8", "name": "Trình bày – Trả lời câu hỏi", "clo": {}, "weight": 1, "scope": "group", "levels": {"CD": "Không trả lời được hoặc trả lời sai", "D": "Trả lời được một phần", "T": "Trả lời đúng, rõ ràng", "XS": "Trả lời sắc, có dẫn chứng, mở rộng vấn đề"}, "guide": "Hỏi 2–3 câu; có thể chỉ định thành viên trả lời và chấm riêng.", "evidence": "Ghi chú câu hỏi và câu trả lời."}]}, {"id": "A3", "name": "Cuối kỳ (Dự án video)", "weight": 0.4, "when": "Buổi 6: chiếu video, trình bày 5 phút và vấn đáp 3 phút mỗi nhóm", "criteria": [{"id": "A3.1.1", "label": "1.1", "name": "Cơ sở văn hóa trong báo cáo (giá trị, thành tố, vùng văn hóa của sản phẩm gốm/hiện vật)", "clo": {"CLO1": 1.5}, "weight": 1.5, "scope": "group", "levels": {"CD": "Không phân tích hoặc phân tích sai", "D": "Mô tả đúng nhưng thiếu phân tích", "T": "Phân tích đúng, dẫn giáo trình", "XS": "Phân tích sâu, liên hệ quy luật và bối cảnh truyền thông số"}, "guide": "Đọc mục Cơ sở văn hóa của báo cáo.", "evidence": "Báo cáo (pdf), mục Cơ sở văn hóa và tài liệu tham khảo."}, {"id": "A3.1.2", "label": "1.2", "name": "Độ chính xác thông tin trong video", "clo": {"CLO1": 1}, "weight": 1, "scope": "group", "levels": {"CD": "Có lỗi kiến thức nghiêm trọng", "D": "Có lỗi nhỏ", "T": "Chính xác; có chú thích khi cần", "XS": "Chính xác tuyệt đối; nguồn ghi rõ trong video/caption"}, "guide": "Xem video, ghi lại mọi thông tin dữ kiện (niên đại, tên gọi, ý nghĩa) và đối chiếu.", "evidence": "Video (mp4); caption bài đăng."}, {"id": "A3.1.3", "label": "1.3", "name": "Vấn đáp kiến thức (cá nhân)", "clo": {"CLO1": 0.5}, "weight": 0.5, "scope": "individual", "levels": {"CD": "Không trả lời được", "D": "Trả lời đúng một phần", "T": "Trả lời đúng, rõ", "XS": "Trả lời sâu, liên hệ được kiến thức cả môn"}, "guide": "Mỗi thành viên ít nhất 1 câu hỏi kiến thức trong 3 phút vấn đáp.", "evidence": "Ghi chú vấn đáp."}, {"id": "A3.2.1", "label": "2.1", "name": "Ý tưởng và câu chuyện (hook, chuyển hóa chất liệu thành câu chuyện)", "clo": {"CLO2": 1.5}, "weight": 1.5, "scope": "group", "levels": {"CD": "Không có ý tưởng; chỉ quay lướt", "D": "Có câu chuyện nhưng nhạt, hook yếu", "T": "Câu chuyện rõ, hook tốt, chất liệu văn hóa là trung tâm", "XS": "Sáng tạo, cảm xúc, khác biệt, có “phần hồn”"}, "guide": "Bị giới hạn tối đa 0,6 nếu vi phạm nghiêm trọng tiêu chí 3.1.", "evidence": "Video; kịch bản đã duyệt."}, {"id": "A3.2.2", "label": "2.2", "name": "Kỹ thuật quay và dựng (hình, âm thanh, nhịp, phụ đề)", "clo": {"CLO2": 1.5}, "weight": 1.5, "scope": "group", "levels": {"CD": "Hình rung, mờ; âm thanh hỏng", "D": "Xem được nhưng dựng thô", "T": "Hình ảnh đẹp, nhịp tốt, có phụ đề", "XS": "Chất lượng gần chuyên nghiệp; màu, âm thanh, chuyển cảnh tinh tế"}, "guide": "Bị giới hạn tối đa 0,6 nếu vi phạm nghiêm trọng tiêu chí 3.1.", "evidence": "Video (mp4) bản gốc."}, {"id": "A3.2.3", "label": "2.3", "name": "Đăng bài và phân tích kết quả (caption, hashtag, đọc chỉ số, đọc bình luận, rút kinh nghiệm)", "clo": {"CLO2": 1}, "weight": 1, "scope": "group", "levels": {"CD": "Không đăng hoặc không có số liệu", "D": "Có số liệu nhưng không phân tích", "T": "Phân tích số liệu và bình luận, rút được bài học", "XS": "Phân tích sắc, đề xuất cải tiến cụ thể cho lần sau"}, "guide": "Đối chiếu số liệu trong báo cáo với ảnh chụp trang thống kê của bài đăng.", "evidence": "Link bài đăng; ảnh chụp chỉ số; mục Kết quả sau đăng của báo cáo."}, {"id": "A3.3.1", "label": "3.1", "name": "Tuân thủ Checklist văn hóa và đạo đức nghề (xin phép, bản quyền nhạc, tôn trọng di sản)", "clo": {"CLO3": 1.5}, "weight": 1.5, "scope": "group", "levels": {"CD": "Vi phạm checklist hoặc quyền hình ảnh, bản quyền", "D": "Đạt checklist nhưng thiếu minh chứng", "T": "Đạt đủ checklist, có minh chứng xin phép", "XS": "Đạt đủ, minh chứng đầy đủ, xử lý tốt tình huống phát sinh"}, "guide": "Kiểm tra Checklist văn hóa đã đánh dấu, giấy xin phép quay, nguồn nhạc. Vi phạm nghiêm trọng (xúc phạm di sản, quay khi không được phép) thì đánh dấu ô vi phạm để giới hạn 2.1 và 2.2.", "evidence": "Checklist đã đánh dấu; giấy xin phép; nguồn/giấy phép nhạc."}, {"id": "A3.3.2", "label": "3.2", "name": "Thông điệp tôn vinh bản sắc; phản hồi bình luận văn minh", "clo": {"CLO3": 1}, "weight": 1, "scope": "group", "levels": {"CD": "Thông điệp lệch, phản cảm hoặc giật gân", "D": "Thông điệp đúng nhưng mờ", "T": "Thông điệp tích cực, rõ; phản hồi bình luận lịch sự", "XS": "Lan tỏa niềm tự hào; ứng xử mẫu mực với bình luận trái chiều"}, "guide": "Xem thông điệp kết video và các phản hồi bình luận của nhóm trên bài đăng.", "evidence": "Video; ảnh chụp phần bình luận và phản hồi."}, {"id": "A3.3.3", "label": "3.3", "name": "Rút kinh nghiệm cá nhân 1 trang (vấn đề – giải pháp)", "clo": {"CLO3": 0.5}, "weight": 0.5, "scope": "individual", "levels": {"CD": "Không nộp hoặc sơ sài", "D": "Kể lại quá trình", "T": "Nêu được thay đổi nhận thức về văn hóa", "XS": "Nêu được cam kết cụ thể khi đăng bài từ nay"}, "guide": "Chấm riêng từng sinh viên.", "evidence": "Google Doc phản tư cá nhân."}]}], "rules": [{"id": "violation-3.1", "component": "A3", "label": "Vi phạm nghiêm trọng tiêu chí 3.1 (xúc phạm di sản, quay khi không được phép)", "scope": "group", "cap": {"criteria": ["A3.2.1", "A3.2.2"], "max": 0.6}}], "cloMax": {"CLO1": 2.4, "CLO2": 2.65, "CLO3": 4.05}};
+const COURSE = RUBRIC.course;
+const STORE_KEY = 'rubric-components-' + COURSE.code;
+const COMPS = RUBRIC.components;
+const CRITERIA = COMPS.flatMap((comp) => comp.criteria.map((c) => ({ ...c, comp })));
+const RULES = RUBRIC.rules || [];
+const CLO_MAX = RUBRIC.cloMax;
+const SCOPE = { group: 'Nhóm', individual: 'Cá nhân' };
+const COMP_STYLE = ['bg-blue-50 border-blue-200 text-blue-800', 'bg-emerald-50 border-emerald-200 text-emerald-800',
+                    'bg-amber-50 border-amber-200 text-amber-800', 'bg-purple-50 border-purple-200 text-purple-800'];
+const LEVEL_STYLE = { XS: 'text-emerald-700 bg-emerald-50 border-emerald-200', T: 'text-sky-700 bg-sky-50 border-sky-200',
+                      D: 'text-amber-700 bg-amber-50 border-amber-200', CD: 'text-rose-700 bg-rose-50 border-rose-200' };
+const LEVELS_DESC = [...RUBRIC.levels].reverse();
+
+// ---------------------------------------------------------------- trạng thái và lưu trữ
+const blank = () => ({ version: 1, students: [], groupScores: {}, groupFlags: {}, selected: null, comp: COMPS[0].id });
+let state = load();
+let tab = 'grade';
+let search = '';
+const openDetails = new Set();
+
+function load() {
+  try {
+    const raw = localStorage.getItem(STORE_KEY);
+    const data = raw ? JSON.parse(raw) : null;
+    if (data && Array.isArray(data.students)) return { ...blank(), ...data };
+  } catch { /* trình duyệt chặn lưu trữ: vẫn chấm được, nhớ xuất file */ }
+  return blank();
+}
+function save() {
+  const el = document.getElementById('saveState');
+  try {
+    localStorage.setItem(STORE_KEY, JSON.stringify(state));
+    el.textContent = 'Đã lưu ' + new Date().toLocaleTimeString('vi-VN');
+  } catch {
+    el.textContent = 'Không lưu được trên trình duyệt: hãy xuất JSON sao lưu';
+  }
+}
+
+// ---------------------------------------------------------------- tính điểm
+const round2 = (v) => Math.round(v * 100) / 100;
+const fmt = (v) => (v === null || v === undefined || v === '' ? '–' : Number(v).toLocaleString('vi-VN', { maximumFractionDigits: 2 }));
+const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
+const pctText = (w) => `${round2(w * 100)}%`;
+const usesGroup = (st, c) => c.scope === 'group' && st.group && !(st.overrides || {})[c.id];
+const cloText = (c) => Object.entries(c.clo || {}).map(([k, w]) => `${k} (${fmt(w)})`).join(' + ') || 'Không gắn CLO';
+
+function coef(st, c) {
+  const v = usesGroup(st, c) ? (state.groupScores[st.group] || {})[c.id] : (st.scores || {})[c.id];
+  return v === undefined ? null : v;
+}
+function flagged(st, rule) {
+  return rule.scope === 'group' && st.group ? !!(state.groupFlags[st.group] || {})[rule.id] : !!(st.flags || {})[rule.id];
+}
+function capOf(st, c) {
+  return RULES.filter((r) => r.cap.criteria.includes(c.id) && flagged(st, r)).reduce((m, r) => Math.min(m, r.cap.max), 1);
+}
+function eff(st, c) {
+  const v = coef(st, c);
+  return v === null ? null : Math.min(v, capOf(st, c));
+}
+function compScore(st, comp) {
+  const vals = comp.criteria.map((c) => eff(st, CRITERIA.find((x) => x.id === c.id)));
+  return vals.every((v) => v !== null) ? round2(comp.criteria.reduce((a, c, i) => a + c.weight * vals[i], 0)) : null;
+}
+function compPartial(st, comp) {
+  return round2(comp.criteria.reduce((a, c) => a + c.weight * (eff(st, CRITERIA.find((x) => x.id === c.id)) ?? 0), 0));
+}
+function courseScore(st) {
+  const vals = COMPS.map((comp) => compScore(st, comp));
+  return vals.every((v) => v !== null) ? round2(COMPS.reduce((a, comp, i) => a + comp.weight * vals[i], 0)) : null;
+}
+function cloScore(st, cloId) {
+  if (COMPS.some((comp) => compScore(st, comp) === null)) return null;
+  return round2(CRITERIA.reduce((a, c) => a + c.comp.weight * ((c.clo || {})[cloId] || 0) * eff(st, c), 0));
+}
+const passed = (v, cloId) => (v === null ? null : v >= CLO_MAX[cloId] * COURSE.studentThreshold - 1e-9);
+const gradedCount = (st, comp) => (comp ? comp.criteria : CRITERIA).filter((c) => coef(st, CRITERIA.find((x) => x.id === c.id)) !== null).length;
+const groupSize = (g) => state.students.filter((s) => s.group === g).length;
+
+function setCoef(st, c, value) {
+  const v = value === null || value === '' || Number.isNaN(value) ? null : round2(Math.min(1, Math.max(0, Number(value))));
+  if (usesGroup(st, c)) {
+    state.groupScores[st.group] = state.groupScores[st.group] || {};
+    if (v === null) delete state.groupScores[st.group][c.id]; else state.groupScores[st.group][c.id] = v;
+  } else {
+    st.scores = st.scores || {};
+    if (v === null) delete st.scores[c.id]; else st.scores[c.id] = v;
+  }
+  save();
+  render();
+}
+function setFlag(st, rule, on) {
+  if (rule.scope === 'group' && st.group) {
+    state.groupFlags[st.group] = state.groupFlags[st.group] || {};
+    if (on) state.groupFlags[st.group][rule.id] = true; else delete state.groupFlags[st.group][rule.id];
+  } else {
+    st.flags = st.flags || {};
+    if (on) st.flags[rule.id] = true; else delete st.flags[rule.id];
+  }
+  save();
+  render();
+}
+
+function stats() {
+  const clos = RUBRIC.clos.map((clo) => {
+    const vals = state.students.map((s) => cloScore(s, clo.id)).filter((v) => v !== null);
+    const pass = vals.filter((v) => passed(v, clo.id)).length;
+    const rate = vals.length ? pass / vals.length : null;
+    return { clo, n: vals.length, pass, rate, avg: vals.length ? round2(vals.reduce((a, b) => a + b, 0) / vals.length) : null,
+             ok: rate === null ? null : rate >= COURSE.classThreshold - 1e-9 };
+  });
+  const comps = COMPS.map((comp) => {
+    const vals = state.students.map((s) => compScore(s, comp)).filter((v) => v !== null);
+    return { comp, n: vals.length, avg: vals.length ? round2(vals.reduce((a, b) => a + b, 0) / vals.length) : null };
+  });
+  const crits = CRITERIA.map((c) => {
+    const vals = state.students.map((s) => eff(s, c)).filter((v) => v !== null);
+    const avg = vals.length ? round2(vals.reduce((a, b) => a + b, 0) / vals.length) : null;
+    return { c, n: vals.length, avg };
+  });
+  return { clos, comps, crits };
+}
+
+// ---------------------------------------------------------------- giao diện chung
+const TABS = [
+  { id: 'grade', icon: 'fa-pen-to-square', label: 'Chấm điểm' },
+  { id: 'report', icon: 'fa-chart-column', label: 'Tổng hợp & CLO' },
+  { id: 'rubric', icon: 'fa-table-list', label: 'Rubric' },
+  { id: 'data', icon: 'fa-users', label: 'Sinh viên & dữ liệu' },
+];
+
+// Thay innerHTML gỡ ô đang focus → blur → change → render lồng nhau. Chặn lồng, vẽ lại một lần sau.
+let rendering = false, pendingRender = false;
+function render() {
+  if (rendering) { pendingRender = true; return; }
+  rendering = true;
+  try { draw(); } finally { rendering = false; }
+  if (pendingRender) { pendingRender = false; render(); }
+}
+
+function draw() {
+  document.getElementById('tabs').innerHTML = TABS.map((t) =>
+    `<button data-action="tab" data-tab="${t.id}" class="px-4 py-2.5 border-b-2 whitespace-nowrap ${tab === t.id ? 'border-lhu-blue text-lhu-blue' : 'border-transparent text-slate-500 hover:text-slate-800'}"><i class="fa-solid ${t.icon} mr-1.5"></i>${t.label}</button>`).join('');
+  document.getElementById('view').innerHTML = { grade: viewGrade, report: viewReport, rubric: viewRubric, data: viewData }[tab]();
+}
+
+const badge = (text, cls) => `<span class="inline-flex items-center px-2 py-0.5 rounded-lg border text-[11px] font-bold ${cls}">${text}</span>`;
+const passBadge = (p) => (p === null ? badge('Chưa đủ', 'bg-slate-50 border-slate-200 text-slate-500')
+  : p ? badge('Đạt', 'bg-emerald-50 border-emerald-200 text-emerald-700') : badge('Chưa đạt', 'bg-rose-50 border-rose-200 text-rose-700'));
+
+// ---------------------------------------------------------------- tab Chấm điểm
+function viewGrade() {
+  if (!state.students.length) {
+    return `<div class="max-w-xl mx-auto text-center bg-white border border-slate-200 rounded-3xl p-10">
+      <i class="fa-solid fa-users text-4xl text-slate-300"></i>
+      <h2 class="mt-4 text-lg font-extrabold">Chưa có danh sách sinh viên</h2>
+      <p class="mt-2 text-sm text-slate-500">Dán danh sách MSSV, họ tên, nhóm từ Excel hoặc nhập file CSV.</p>
+      <button data-action="tab" data-tab="data" class="mt-5 px-5 py-2.5 bg-lhu-blue text-white font-bold rounded-xl">Nhập danh sách</button></div>`;
+  }
+  if (!state.students.some((s) => s.id === state.selected)) state.selected = state.students[0].id;
+  if (!COMPS.some((c) => c.id === state.comp)) state.comp = COMPS[0].id;
+  const st = state.students.find((s) => s.id === state.selected);
+  return `<div class="grid lg:grid-cols-[300px_1fr] gap-5">${sidebar()}${studentPanel(st)}</div>`;
+}
+
+function sidebar() {
+  const q = search.trim().toLowerCase();
+  const comp = COMPS.find((c) => c.id === state.comp);
+  const list = state.students.filter((s) => !q || `${s.mssv} ${s.name} ${s.group}`.toLowerCase().includes(q));
+  const groups = [...new Set(list.map((s) => s.group || '(chưa có nhóm)'))].sort((a, b) => a.localeCompare(b, 'vi', { numeric: true }));
+  return `<aside class="bg-white border border-slate-200 rounded-2xl p-3 lg:sticky lg:top-28 lg:max-h-[calc(100vh-8rem)] overflow-auto no-print">
+    <input id="search" value="${esc(search)}" placeholder="Tìm MSSV, tên, nhóm…" class="w-full px-3 py-2 border border-slate-200 rounded-xl text-sm mb-1">
+    <p class="text-[11px] text-slate-400 px-1 mb-2">Số bên phải: điểm ${esc(comp.id)} (hoặc số tiêu chí đã chấm)</p>
+    ${groups.map((g) => `<div class="mb-3"><div class="text-[11px] font-bold uppercase text-slate-400 px-1 mb-1">Nhóm ${esc(g)}</div>
+      ${list.filter((s) => (s.group || '(chưa có nhóm)') === g).map((s) => {
+        const t = compScore(s, comp);
+        return `<button data-action="select" data-id="${s.id}" class="w-full text-left px-3 py-2 rounded-xl mb-1 flex items-center justify-between gap-2 ${s.id === state.selected ? 'bg-lhu-blue text-white' : 'hover:bg-slate-100'}">
+          <span class="min-w-0"><span class="block text-sm font-bold truncate">${esc(s.name)}</span><span class="block text-[11px] opacity-70">${esc(s.mssv)}</span></span>
+          <span class="text-xs font-extrabold whitespace-nowrap">${t !== null ? fmt(t) : `${gradedCount(s, comp)}/${comp.criteria.length}`}</span></button>`;
+      }).join('')}</div>`).join('') || '<p class="text-sm text-slate-400 px-1">Không tìm thấy.</p>'}
+  </aside>`;
+}
+
+function studentPanel(st) {
+  const idx = state.students.indexOf(st);
+  const t = courseScore(st);
+  const comp = COMPS.find((c) => c.id === state.comp);
+  const k = COMPS.indexOf(comp);
+  const head = `<div class="bg-white border border-slate-200 rounded-2xl p-4 flex flex-wrap items-center justify-between gap-3">
+    <div><div class="text-xs text-slate-500">${esc(st.mssv)} · Nhóm ${esc(st.group || '–')} (${st.group ? groupSize(st.group) : 1} SV)</div>
+      <h2 class="text-xl font-extrabold">${esc(st.name)}</h2>
+      <div class="mt-2 flex flex-wrap gap-1.5">${COMPS.map((c, i) => {
+        const v = compScore(st, c);
+        return `<span class="px-2.5 py-1 rounded-lg border text-xs font-bold ${COMP_STYLE[i % 4]}">${c.id}: ${v !== null ? fmt(v) : fmt(compPartial(st, c)) + '…'} / ${COURSE.scale}</span>`;
+      }).join(' ')}</div>
+      <div class="mt-1.5 flex flex-wrap gap-1.5 text-xs">${RUBRIC.clos.map((clo) => { const v = cloScore(st, clo.id); return `<span class="text-slate-500">${clo.id}: <strong>${fmt(v)}</strong>/${fmt(CLO_MAX[clo.id])}</span> ${passBadge(passed(v, clo.id))}`; }).join(' ')}</div></div>
+    <div class="text-right"><div class="text-xs text-slate-500">Điểm học phần (${COURSE.scale})</div><div class="text-3xl font-black text-lhu-blue">${t !== null ? fmt(t) : '–'}</div>
+      <div class="text-[11px] text-slate-400">${gradedCount(st)}/${CRITERIA.length} tiêu chí</div>
+      <div class="mt-2 flex gap-1 justify-end no-print">
+        <button data-action="move" data-step="-1" ${idx === 0 ? 'disabled' : ''} class="px-3 py-1.5 bg-slate-100 rounded-lg text-xs font-bold disabled:opacity-40"><i class="fa-solid fa-chevron-left"></i> Trước</button>
+        <button data-action="move" data-step="1" ${idx === state.students.length - 1 ? 'disabled' : ''} class="px-3 py-1.5 bg-slate-100 rounded-lg text-xs font-bold disabled:opacity-40">Sau <i class="fa-solid fa-chevron-right"></i></button>
+      </div></div></div>`;
+  const compTabs = `<div class="flex flex-wrap gap-2 no-print">${COMPS.map((c, i) => `<button data-action="comp" data-comp="${c.id}" class="px-4 py-2 rounded-xl border text-sm font-bold ${c.id === comp.id ? COMP_STYLE[i % 4] + ' ring-2 ring-offset-1 ring-current' : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50'}">${c.id}. ${esc(c.name)} · ${pctText(c.weight)} <span class="font-normal">(${gradedCount(st, c)}/${c.criteria.length})</span></button>`).join('')}</div>`;
+  const rules = RULES.filter((r) => r.component === comp.id).map((r) => `<label class="flex items-start gap-2 p-3 rounded-xl border border-rose-200 bg-rose-50 text-sm text-rose-800">
+      <input type="checkbox" data-action="flag" data-rule="${r.id}" ${flagged(st, r) ? 'checked' : ''} class="mt-1">
+      <span><strong>${esc(r.label)}</strong><br><span class="text-xs">Khi đánh dấu: tiêu chí ${r.cap.criteria.map((id) => esc(CRITERIA.find((c) => c.id === id).label)).join(', ')} tối đa hệ số ${fmt(r.cap.max)}${r.scope === 'group' && st.group ? ` · áp dụng cho cả nhóm ${esc(st.group)}` : ''}.</span></span></label>`).join('');
+  const section = `<section class="bg-white border border-slate-200 rounded-2xl overflow-hidden">
+      <div class="px-4 py-3 border-b ${COMP_STYLE[k % 4]}"><div class="font-extrabold">${comp.id}. ${esc(comp.name)} · ${pctText(comp.weight)} điểm học phần · thang ${COURSE.scale}</div>
+        <div class="text-xs mt-0.5">${esc(comp.when || '')}</div></div>
+      <div class="p-3 space-y-3">${rules}${comp.criteria.map((c) => criterionRow(st, CRITERIA.find((x) => x.id === c.id))).join('')}</div></section>`;
+  const note = `<div class="bg-white border border-slate-200 rounded-2xl p-4"><label class="text-sm font-bold">Ghi chú cho sinh viên</label>
+    <textarea data-input="note" rows="2" class="mt-2 w-full px-3 py-2 border border-slate-200 rounded-xl text-sm" placeholder="Nhận xét, minh chứng còn thiếu…">${esc(st.note || '')}</textarea></div>`;
+  return `<div class="space-y-4 min-w-0">${head}${compTabs}${section}${note}</div>`;
+}
+
+function criterionRow(st, c) {
+  const v = coef(st, c);
+  const cap = capOf(st, c);
+  const e = eff(st, c);
+  const viaGroup = usesGroup(st, c);
+  const groupInfo = c.scope === 'group' && st.group
+    ? `<label class="flex items-center gap-1.5 text-[11px] text-slate-500 no-print"><input type="checkbox" data-action="override" data-crit="${c.id}" ${viaGroup ? '' : 'checked'}> Chấm riêng cho SV này</label>
+       <span class="text-[11px] ${viaGroup ? 'text-sky-700' : 'text-amber-700'}">${viaGroup ? `Hệ số chung nhóm ${esc(st.group)} · ${groupSize(st.group)} SV` : 'Hệ số riêng (không theo nhóm)'}</span>` : '';
+  const buttons = [{ code: 'CD', name: 'Không có', value: 0 }, ...RUBRIC.levels.map((l) => ({ ...l, value: l.max }))].map((l) => {
+    const on = v !== null && Math.abs(v - l.value) < 1e-9;
+    const range = l.min === undefined ? '0' : `${fmt(l.min)}–${fmt(l.max)}`;
+    return `<button data-action="level" data-crit="${c.id}" data-value="${l.value}" aria-pressed="${on}" title="${esc(l.name)}${c.levels[l.code] && l.min !== undefined ? ': ' + esc(c.levels[l.code]) : ''}"
+      class="lv-btn px-2.5 py-1.5 rounded-lg border text-xs font-bold ${LEVEL_STYLE[l.code]} ${on ? '' : 'opacity-70 hover:opacity-100'}">${esc(l.name)} · ${range}</button>`;
+  }).join('');
+  const levelsText = LEVELS_DESC.map((l) => `<li><strong class="${LEVEL_STYLE[l.code].split(' ')[0]}">${esc(l.name)} (${fmt(l.min)}–${fmt(l.max)}):</strong> ${esc(c.levels[l.code])}</li>`).join('');
+  return `<div class="border border-slate-200 rounded-xl p-3 ${v === null ? '' : 'bg-slate-50/60'}">
+    <div class="flex flex-wrap items-start justify-between gap-2">
+      <div class="min-w-0"><div class="font-bold text-sm">${esc(c.label)}. ${esc(c.name)}</div>
+        <div class="flex flex-wrap items-center gap-2 mt-1">${badge(SCOPE[c.scope], c.scope === 'group' ? 'bg-sky-50 border-sky-200 text-sky-700' : 'bg-amber-50 border-amber-200 text-amber-700')}
+          <span class="text-[11px] text-slate-500">Trọng số ${fmt(c.weight)} · ${esc(cloText(c))}</span>${groupInfo}</div>
+        ${cap < 1 ? `<div class="mt-1 text-[11px] font-bold text-rose-700"><i class="fa-solid fa-triangle-exclamation mr-1"></i>Bị giới hạn tối đa hệ số ${fmt(cap)} do vi phạm</div>` : ''}</div>
+      <div class="flex items-center gap-1.5">
+        <input type="number" data-input="score" data-crit="${c.id}" value="${v ?? ''}" min="0" max="1" step="0.05" class="w-20 px-2 py-1.5 border border-slate-300 rounded-lg text-sm font-bold text-right" aria-label="Hệ số ${esc(c.label)}">
+        <span class="text-xs text-slate-500 w-20 text-right">= ${e === null ? '–' : fmt(round2(e * c.weight))} / ${fmt(c.weight)}</span>
+        <button data-action="clear" data-crit="${c.id}" class="px-2 py-1.5 text-slate-400 hover:text-rose-600 no-print" title="Xóa điểm"><i class="fa-solid fa-xmark"></i></button>
+      </div></div>
+    <div class="flex flex-wrap gap-1.5 mt-2 no-print">${buttons}</div>
+    <details data-crit="${c.id}" class="mt-2 text-xs" ${openDetails.has(c.id) ? 'open' : ''}>
+      <summary class="text-lhu-blue font-bold"><i class="fa-solid fa-circle-info mr-1"></i>Mô tả mức · Gợi ý chấm · Minh chứng</summary>
+      <ul class="mt-2 space-y-1 text-slate-600">${levelsText}</ul>
+      <p class="mt-2"><strong>Gợi ý chấm:</strong> ${esc(c.guide)}</p>
+      <p class="mt-1"><strong>Minh chứng cần có:</strong> ${esc(c.evidence)}</p>
+    </details></div>`;
+}
+
+// ---------------------------------------------------------------- tab Tổng hợp & CLO
+function viewReport() {
+  const { clos, comps, crits } = stats();
+  const pct = (r) => (r === null ? '–' : (r * 100).toLocaleString('vi-VN', { maximumFractionDigits: 1 }) + '%');
+  const compCards = comps.map((s, k) => `<div class="bg-white border border-slate-200 rounded-2xl p-4">
+      <span class="px-2.5 py-1 rounded-lg border text-xs font-extrabold ${COMP_STYLE[k % 4]}">${s.comp.id} · ${pctText(s.comp.weight)}</span>
+      <div class="mt-2 text-sm font-bold">${esc(s.comp.name)}</div>
+      <div class="mt-1 text-2xl font-black text-lhu-blue">${fmt(s.avg)}</div><div class="text-xs text-slate-500">Điểm TB · ${s.n} SV đã chấm đủ</div></div>`).join('');
+  const cloCards = clos.map((s) => `<div class="bg-white border border-slate-200 rounded-2xl p-4">
+      <div class="flex items-center justify-between"><span class="font-extrabold">${s.clo.id}</span>${s.ok === null ? badge('Chưa có điểm', 'bg-slate-50 border-slate-200 text-slate-500') : s.ok ? badge('Đạt cấp lớp', 'bg-emerald-50 border-emerald-200 text-emerald-700') : badge('Chưa đạt cấp lớp', 'bg-rose-50 border-rose-200 text-rose-700')}</div>
+      <div class="mt-3 text-3xl font-black ${s.ok === false ? 'text-rose-600' : 'text-lhu-blue'}">${pct(s.rate)}</div>
+      <div class="text-xs text-slate-500">${s.pass}/${s.n} SV đạt (≥ ${fmt(CLO_MAX[s.clo.id] * COURSE.studentThreshold)} / ${fmt(CLO_MAX[s.clo.id])}) · ngưỡng lớp ${COURSE.classThreshold * 100}%</div>
+      <div class="mt-2 h-2 bg-slate-100 rounded-full overflow-hidden"><div class="h-full ${s.ok === false ? 'bg-rose-500' : 'bg-emerald-500'}" style="width:${(s.rate ?? 0) * 100}%"></div></div>
+      <div class="mt-2 text-xs text-slate-500">Điểm TB: <strong>${fmt(s.avg)}</strong></div></div>`).join('');
+  const critRows = crits.map(({ c, n, avg }) => `<tr class="border-t border-slate-100">
+      <td class="py-1.5 px-2 font-bold whitespace-nowrap">${c.comp.id} · ${esc(c.label)}</td><td class="py-1.5 px-2">${esc(c.name)}</td><td class="py-1.5 px-2 text-xs">${esc(cloText(c))}</td>
+      <td class="py-1.5 px-2 text-right">${n}</td><td class="py-1.5 px-2 text-right font-bold">${fmt(avg)}</td>
+      <td class="py-1.5 px-2 w-40"><div class="h-2 bg-slate-100 rounded-full overflow-hidden"><div class="h-full ${avg !== null && avg < 0.5 ? 'bg-rose-500' : 'bg-sky-500'}" style="width:${(avg ?? 0) * 100}%"></div></div></td></tr>`).join('');
+  const stuRows = state.students.map((s) => `<tr class="border-t border-slate-100">
+      <td class="py-1.5 px-2">${esc(s.mssv)}</td><td class="py-1.5 px-2 font-bold">${esc(s.name)}</td><td class="py-1.5 px-2 text-center">${esc(s.group)}</td>
+      ${COMPS.map((comp) => `<td class="py-1.5 px-2 text-right">${fmt(compScore(s, comp))}</td>`).join('')}
+      <td class="py-1.5 px-2 text-right font-extrabold">${fmt(courseScore(s))}</td>
+      ${RUBRIC.clos.map((clo) => { const v = cloScore(s, clo.id); return `<td class="py-1.5 px-2 text-right ${passed(v, clo.id) === false ? 'text-rose-600 font-bold' : ''}">${fmt(v)}</td>`; }).join('')}</tr>`).join('');
+  const cols = 4 + COMPS.length + RUBRIC.clos.length;
+  return `<div class="space-y-5">
+    <p class="text-sm text-slate-600">${esc(COURSE.note)} Điểm CLO chỉ tính khi sinh viên đã chấm đủ cả ${COMPS.length} thành phần.</p>
+    <div class="grid sm:grid-cols-3 gap-4">${compCards}</div>
+    <div class="grid sm:grid-cols-3 gap-4">${cloCards}</div>
+    <div class="bg-white border border-slate-200 rounded-2xl p-4 overflow-x-auto"><h3 class="font-extrabold mb-2">Điểm theo sinh viên</h3>
+      <table class="w-full text-sm"><thead class="text-xs text-slate-500"><tr><th class="text-left px-2">MSSV</th><th class="text-left px-2">Họ và tên</th><th class="px-2">Nhóm</th>${COMPS.map((c) => `<th class="text-right px-2">${c.id} (${pctText(c.weight)})</th>`).join('')}<th class="text-right px-2">Học phần</th>${RUBRIC.clos.map((c) => `<th class="text-right px-2">${c.id} (/${fmt(CLO_MAX[c.id])})</th>`).join('')}</tr></thead><tbody>${stuRows || `<tr><td colspan="${cols}" class="py-4 text-center text-slate-400">Chưa có sinh viên</td></tr>`}</tbody></table></div>
+    <div class="bg-white border border-slate-200 rounded-2xl p-4 overflow-x-auto"><h3 class="font-extrabold mb-2">Hệ số trung bình theo tiêu chí</h3>
+      <table class="w-full text-sm"><thead class="text-xs text-slate-500"><tr><th class="text-left px-2">Mã</th><th class="text-left px-2">Tiêu chí</th><th class="text-left px-2">CLO</th><th class="text-right px-2">Số SV</th><th class="text-right px-2">Hệ số TB</th><th class="px-2"></th></tr></thead><tbody>${critRows}</tbody></table></div>
+  </div>`;
+}
+
+// ---------------------------------------------------------------- tab Rubric
+function viewRubric() {
+  return `<div class="space-y-5"><p class="text-sm text-slate-600">${esc(COURSE.assessment)}. Điểm tiêu chí = hệ số mức × trọng số; mức: ${RUBRIC.levels.map((l) => `<strong>${esc(l.name)}</strong> ${fmt(l.min)}–${fmt(l.max)}`).join(' · ')}. ${esc(COURSE.aiNote || '')}</p>
+  ${COMPS.map((comp, k) => `<section class="bg-white border border-slate-200 rounded-2xl overflow-hidden">
+    <div class="px-4 py-3 border-b ${COMP_STYLE[k % 4]}"><span class="font-extrabold">${comp.id}. ${esc(comp.name)} · ${pctText(comp.weight)}</span> <span class="text-xs">(thang ${COURSE.scale})</span><div class="text-xs mt-0.5">${esc(comp.when || '')}</div></div>
+    <div class="overflow-x-auto"><table class="w-full text-xs min-w-[960px]"><thead class="bg-slate-50 text-slate-600"><tr>
+      <th class="p-2 text-left w-52">Tiêu chí</th>${LEVELS_DESC.slice().reverse().map((l) => `<th class="p-2 text-left">${esc(l.name)} (${fmt(l.min)}–${fmt(l.max)})</th>`).join('')}<th class="p-2 text-left w-52">Gợi ý chấm</th><th class="p-2 text-left w-44">Minh chứng</th></tr></thead>
+      <tbody>${comp.criteria.map((c) => `<tr class="border-t border-slate-100 align-top"><td class="p-2"><div class="font-bold">${esc(c.label)}. ${esc(c.name)}</div><div class="text-slate-500 mt-1">${SCOPE[c.scope]} · trọng số ${fmt(c.weight)} · ${esc(cloText(c))}</div></td>
+        ${RUBRIC.levels.map((l) => `<td class="p-2">${esc(c.levels[l.code])}</td>`).join('')}<td class="p-2 text-slate-600">${esc(c.guide)}</td><td class="p-2 text-slate-600">${esc(c.evidence)}</td></tr>`).join('')}</tbody></table></div>
+    ${RULES.filter((r) => r.component === comp.id).map((r) => `<p class="px-4 py-2 text-xs font-bold text-rose-700 border-t border-slate-100">Lưu ý: ${esc(r.label)} → tiêu chí ${r.cap.criteria.map((id) => esc(CRITERIA.find((c) => c.id === id).label)).join(', ')} tối đa hệ số ${fmt(r.cap.max)}.</p>`).join('')}</section>`).join('')}</div>`;
+}
+
+// ---------------------------------------------------------------- tab Sinh viên & dữ liệu
+function viewData() {
+  const rows = state.students.map((s) => `<tr class="border-t border-slate-100">
+    <td class="p-1.5"><input data-edit="mssv" data-id="${s.id}" value="${esc(s.mssv)}" class="w-28 px-2 py-1 border border-slate-200 rounded-lg text-sm"></td>
+    <td class="p-1.5"><input data-edit="name" data-id="${s.id}" value="${esc(s.name)}" class="w-full min-w-[12rem] px-2 py-1 border border-slate-200 rounded-lg text-sm"></td>
+    <td class="p-1.5"><input data-edit="group" data-id="${s.id}" value="${esc(s.group)}" class="w-20 px-2 py-1 border border-slate-200 rounded-lg text-sm"></td>
+    <td class="p-1.5 text-right text-xs text-slate-500">${gradedCount(s)}/${CRITERIA.length}</td>
+    <td class="p-1.5 text-right"><button data-action="remove" data-id="${s.id}" class="text-slate-400 hover:text-rose-600" title="Xóa sinh viên"><i class="fa-solid fa-trash"></i></button></td></tr>`).join('');
+  return `<div class="grid lg:grid-cols-2 gap-5">
+    <div class="space-y-5">
+      <div class="bg-white border border-slate-200 rounded-2xl p-4">
+        <h3 class="font-extrabold">Thêm sinh viên</h3>
+        <p class="text-xs text-slate-500 mt-1">Mỗi dòng: <strong>MSSV, Họ và tên, Nhóm</strong>. Có thể chọn 3 cột trong Excel rồi dán (tách bằng Tab), hoặc dùng dấu phẩy/chấm phẩy. Dòng tiêu đề có chữ "MSSV" được bỏ qua; MSSV đã có thì cập nhật tên và nhóm.</p>
+        <textarea id="paste" rows="7" class="mt-3 w-full px-3 py-2 border border-slate-200 rounded-xl text-sm font-mono" placeholder="121000001	Nguyễn Văn A	1&#10;121000002	Trần Thị B	1&#10;121000003	Lê Văn C	2"></textarea>
+        <div class="mt-3 flex flex-wrap gap-2">
+          <button data-action="paste" class="px-4 py-2 bg-lhu-blue text-white font-bold rounded-xl text-sm"><i class="fa-solid fa-plus mr-1"></i>Thêm vào danh sách</button>
+          <label class="px-4 py-2 bg-slate-100 hover:bg-slate-200 font-bold rounded-xl text-sm cursor-pointer"><i class="fa-solid fa-file-csv mr-1"></i>Nhập file CSV<input type="file" accept=".csv,.txt" data-input="csv" class="hidden"></label>
+        </div>
+      </div>
+      <div class="bg-white border border-slate-200 rounded-2xl p-4">
+        <h3 class="font-extrabold">Xuất và sao lưu</h3>
+        <div class="mt-3 flex flex-wrap gap-2">
+          <button data-action="export-xlsx" class="px-4 py-2 bg-emerald-600 text-white font-bold rounded-xl text-sm"><i class="fa-solid fa-file-excel mr-1"></i>Xuất Excel (tiêu chí, thành phần, CLO)</button>
+          <button data-action="export-json" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 font-bold rounded-xl text-sm"><i class="fa-solid fa-download mr-1"></i>Sao lưu JSON</button>
+          <label class="px-4 py-2 bg-slate-100 hover:bg-slate-200 font-bold rounded-xl text-sm cursor-pointer"><i class="fa-solid fa-upload mr-1"></i>Khôi phục JSON<input type="file" accept=".json" data-input="json" class="hidden"></label>
+          <button data-action="reset" class="px-4 py-2 bg-rose-50 text-rose-700 hover:bg-rose-100 font-bold rounded-xl text-sm"><i class="fa-solid fa-eraser mr-1"></i>Xóa toàn bộ</button>
+        </div>
+        <p class="text-xs text-slate-500 mt-3">Dữ liệu tự lưu trong trình duyệt này (khóa ${esc(STORE_KEY)}). Sao lưu JSON để chuyển sang máy khác hoặc chia việc chấm giữa các giảng viên.</p>
+      </div>
+    </div>
+    <div class="bg-white border border-slate-200 rounded-2xl p-4 overflow-x-auto">
+      <h3 class="font-extrabold">Danh sách (${state.students.length} sinh viên, ${new Set(state.students.map((s) => s.group).filter(Boolean)).size} nhóm)</h3>
+      <table class="w-full mt-2 text-sm"><thead class="text-xs text-slate-500"><tr><th class="text-left p-1.5">MSSV</th><th class="text-left p-1.5">Họ và tên</th><th class="text-left p-1.5">Nhóm</th><th class="text-right p-1.5">Đã chấm</th><th></th></tr></thead>
+      <tbody>${rows || '<tr><td colspan="5" class="py-6 text-center text-slate-400">Chưa có sinh viên</td></tr>'}</tbody></table>
+    </div></div>`;
+}
+
+function parseStudents(text) {
+  let added = 0, updated = 0;
+  for (const raw of text.split(/\r?\n/)) {
+    const line = raw.trim();
+    if (!line || /mssv/i.test(line)) continue;
+    const parts = line.split(line.includes('\t') ? '\t' : /[;,]/).map((p) => p.trim().replace(/^"|"$/g, ''));
+    const [mssv, name, group = ''] = parts;
+    if (!mssv || !name) continue;
+    const found = state.students.find((s) => s.mssv === mssv);
+    if (found) { found.name = name; found.group = group; updated++; continue; }
+    state.students.push({ id: crypto.randomUUID ? crypto.randomUUID() : String(Date.now() + Math.random()), mssv, name, group, scores: {}, overrides: {}, flags: {}, note: '' });
+    added++;
+  }
+  save();
+  return { added, updated };
+}
+
+// ---------------------------------------------------------------- xuất file
+function download(name, blob) {
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = name;
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+}
+const stamp = () => new Date().toISOString().slice(0, 10);
+
+function gradeTable() {
+  const head = ['STT', 'MSSV', 'Họ và tên', 'Nhóm',
+    ...CRITERIA.map((c) => `${c.comp.id}.${c.label} ${c.name} (×${c.weight})`),
+    ...RULES.map((r) => `Vi phạm: ${r.label}`),
+    ...COMPS.map((c) => `${c.id} ${c.name} (/${COURSE.scale})`), `Điểm học phần (/${COURSE.scale})`,
+    ...RUBRIC.clos.map((c) => `${c.id} (/${CLO_MAX[c.id]})`), ...RUBRIC.clos.map((c) => `Đạt ${c.id}`), 'Ghi chú'];
+  const rows = state.students.map((s, i) => [i + 1, s.mssv, s.name, s.group,
+    ...CRITERIA.map((c) => coef(s, c) ?? ''),
+    ...RULES.map((r) => (flagged(s, r) ? 'x' : '')),
+    ...COMPS.map((comp) => compScore(s, comp) ?? ''), courseScore(s) ?? '',
+    ...RUBRIC.clos.map((clo) => cloScore(s, clo.id) ?? ''),
+    ...RUBRIC.clos.map((clo) => { const p = passed(cloScore(s, clo.id), clo.id); return p === null ? '' : p ? 'Đạt' : 'Chưa đạt'; }), s.note || '']);
+  return [head, ...rows];
+}
+
+function exportXlsx() {
+  if (!state.students.length) return alert('Chưa có sinh viên để xuất.');
+  const table = gradeTable();
+  if (typeof XLSX === 'undefined') {
+    // Không tải được thư viện (mất mạng): xuất CSV mở được bằng Excel
+    const csv = '﻿' + table.map((r) => r.map((v) => `"${String(v).replace(/"/g, '""')}"`).join(',')).join('\r\n');
+    return download(`Diem-${COURSE.code}-${stamp()}.csv`, new Blob([csv], { type: 'text/csv;charset=utf-8' }));
+  }
+  const { clos, comps, crits } = stats();
+  const wb = XLSX.utils.book_new();
+  const ws1 = XLSX.utils.aoa_to_sheet(table);
+  ws1['!cols'] = table[0].map((_, i) => ({ wch: i === 2 ? 24 : i < 4 ? 10 : 12 }));
+  XLSX.utils.book_append_sheet(wb, ws1, 'Bảng điểm');
+
+  const ws2 = XLSX.utils.aoa_to_sheet([
+    [`Tổng hợp - ${COURSE.name} (${COURSE.code}) - xuất ngày ${new Date().toLocaleDateString('vi-VN')}`], [COURSE.note], [],
+    ['Thành phần', 'Tên', 'Tỷ trọng', 'Số SV chấm đủ', 'Điểm TB'],
+    ...comps.map((s) => [s.comp.id, s.comp.name, pctText(s.comp.weight), s.n, s.avg ?? '']), [],
+    ['CLO', 'Nội dung', 'Điểm tối đa', 'Ngưỡng SV đạt', 'Số SV có điểm', 'Số SV đạt', 'Tỷ lệ đạt (%)', 'Điểm TB', 'Kết luận cấp lớp'],
+    ...clos.map((s) => [s.clo.id, s.clo.name, CLO_MAX[s.clo.id], round2(CLO_MAX[s.clo.id] * COURSE.studentThreshold), s.n, s.pass,
+      s.rate === null ? '' : round2(s.rate * 100), s.avg ?? '', s.ok === null ? '' : s.ok ? 'Đạt' : 'Chưa đạt']),
+  ]);
+  ws2['!cols'] = [{ wch: 10 }, { wch: 60 }, { wch: 11 }, { wch: 13 }, { wch: 13 }, { wch: 10 }, { wch: 13 }, { wch: 9 }, { wch: 16 }];
+  XLSX.utils.book_append_sheet(wb, ws2, 'Mức đạt CLO');
+
+  const ws3 = XLSX.utils.aoa_to_sheet([
+    ['Thành phần', 'Mã', 'Tiêu chí', 'CLO', 'Phạm vi', 'Trọng số', 'Số SV', 'Hệ số TB'],
+    ...crits.map(({ c, n, avg }) => [c.comp.id, c.label, c.name, cloText(c), SCOPE[c.scope], c.weight, n, avg ?? '']),
+  ]);
+  ws3['!cols'] = [{ wch: 10 }, { wch: 6 }, { wch: 50 }, { wch: 18 }, { wch: 9 }, { wch: 9 }, { wch: 8 }, { wch: 9 }];
+  XLSX.utils.book_append_sheet(wb, ws3, 'Theo tiêu chí');
+
+  const ws4 = XLSX.utils.aoa_to_sheet([
+    ['Thành phần', 'Mã', 'Tiêu chí', 'CLO', 'Phạm vi', 'Trọng số', ...RUBRIC.levels.map((l) => `${l.name} (${l.min}–${l.max})`), 'Gợi ý chấm', 'Minh chứng'],
+    ...CRITERIA.map((c) => [c.comp.id, c.label, c.name, cloText(c), SCOPE[c.scope], c.weight, ...RUBRIC.levels.map((l) => c.levels[l.code]), c.guide, c.evidence]),
+  ]);
+  ws4['!cols'] = [{ wch: 10 }, { wch: 6 }, { wch: 32 }, { wch: 16 }, { wch: 9 }, { wch: 9 }, ...RUBRIC.levels.map(() => ({ wch: 34 })), { wch: 40 }, { wch: 34 }];
+  XLSX.utils.book_append_sheet(wb, ws4, 'Rubric');
+
+  XLSX.writeFile(wb, `Diem-${COURSE.code}-${stamp()}.xlsx`);
+}
+
+// ---------------------------------------------------------------- sự kiện
+document.addEventListener('click', (e) => {
+  const el = e.target.closest('[data-action]');
+  if (!el) return;
+  const st = state.students.find((s) => s.id === state.selected);
+  const crit = el.dataset.crit && CRITERIA.find((c) => c.id === el.dataset.crit);
+  switch (el.dataset.action) {
+    case 'tab': tab = el.dataset.tab; render(); window.scrollTo(0, 0); break;
+    case 'comp': state.comp = el.dataset.comp; save(); render(); break;
+    case 'select': state.selected = el.dataset.id; save(); render(); window.scrollTo(0, 0); break;
+    case 'move': {
+      const i = state.students.indexOf(st) + Number(el.dataset.step);
+      if (state.students[i]) { state.selected = state.students[i].id; save(); render(); window.scrollTo(0, 0); }
+      break;
+    }
+    case 'level': setCoef(st, crit, Number(el.dataset.value)); break;
+    case 'clear': setCoef(st, crit, null); break;
+    case 'flag': setFlag(st, RULES.find((r) => r.id === el.dataset.rule), el.checked); break;
+    case 'override': {
+      st.overrides = st.overrides || {};
+      if (el.checked) {
+        st.overrides[crit.id] = true;
+        // Bắt đầu chấm riêng từ hệ số nhóm hiện có
+        const g = (state.groupScores[st.group] || {})[crit.id];
+        if (g !== undefined && (st.scores || {})[crit.id] === undefined) { st.scores = st.scores || {}; st.scores[crit.id] = g; }
+      } else {
+        delete st.overrides[crit.id];
+        if (st.scores) delete st.scores[crit.id];
+      }
+      save(); render(); break;
+    }
+    case 'paste': {
+      const box = document.getElementById('paste');
+      const r = parseStudents(box.value);
+      box.value = '';
+      render();
+      alert(`Đã thêm ${r.added} sinh viên, cập nhật ${r.updated} sinh viên.`);
+      break;
+    }
+    case 'remove': {
+      const s = state.students.find((x) => x.id === el.dataset.id);
+      if (s && confirm(`Xóa ${s.name} (${s.mssv}) và điểm đã chấm?`)) { state.students = state.students.filter((x) => x !== s); save(); render(); }
+      break;
+    }
+    case 'export-xlsx': exportXlsx(); break;
+    case 'export-json':
+      download(`Cham-diem-${COURSE.code}-${stamp()}.json`, new Blob([JSON.stringify({ ...state, course: COURSE.code, exportedAt: new Date().toISOString() }, null, 2)], { type: 'application/json' }));
+      break;
+    case 'reset':
+      if (confirm('Xóa toàn bộ danh sách và điểm đã chấm trên trình duyệt này? Nên sao lưu JSON trước.')) { state = blank(); save(); render(); }
+      break;
+  }
+});
+
+document.addEventListener('input', (e) => {
+  const el = e.target;
+  if (el.id === 'search') {
+    search = el.value;
+    const pos = el.selectionStart;
+    render();
+    const box = document.getElementById('search');
+    box.focus(); box.setSelectionRange(pos, pos);
+    return;
+  }
+  if (el.dataset.input === 'note') {
+    const st = state.students.find((s) => s.id === state.selected);
+    st.note = el.value; save();
+  }
+  if (el.dataset.edit) {
+    const s = state.students.find((x) => x.id === el.dataset.id);
+    s[el.dataset.edit] = el.value.trim(); save();
+  }
+});
+
+document.addEventListener('change', async (e) => {
+  const el = e.target;
+  if (el.dataset.input === 'score') {
+    const st = state.students.find((s) => s.id === state.selected);
+    const crit = CRITERIA.find((c) => c.id === el.dataset.crit);
+    if (!st || !crit) return;
+    const next = el.value === '' ? null : Number(el.value.replace(',', '.'));
+    if (next !== coef(st, crit)) setCoef(st, crit, next);
+  }
+  if (el.dataset.edit) render();
+  if (el.dataset.input === 'csv' && el.files[0]) {
+    const r = parseStudents(await el.files[0].text());
+    render();
+    alert(`Đã thêm ${r.added} sinh viên, cập nhật ${r.updated} sinh viên.`);
+  }
+  if (el.dataset.input === 'json' && el.files[0]) {
+    try {
+      const data = JSON.parse(await el.files[0].text());
+      if (!Array.isArray(data.students)) throw new Error('Thiếu danh sách students');
+      if (data.course && data.course !== COURSE.code && !confirm(`File thuộc học phần ${data.course}, vẫn khôi phục?`)) return;
+      state = { ...blank(), students: data.students, groupScores: data.groupScores || {}, groupFlags: data.groupFlags || {}, selected: data.selected || null };
+      save(); render();
+      alert(`Đã khôi phục ${state.students.length} sinh viên.`);
+    } catch (err) {
+      alert('File JSON không hợp lệ: ' + err.message);
+    }
+  }
+});
+
+document.addEventListener('toggle', (e) => {
+  const d = e.target;
+  if (d.tagName === 'DETAILS' && d.dataset.crit) { d.open ? openDetails.add(d.dataset.crit) : openDetails.delete(d.dataset.crit); }
+}, true);
+
+render();
+</script>
+</body>
+</html>

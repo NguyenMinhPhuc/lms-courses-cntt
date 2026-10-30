@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 07 - Module quản trị trên backend của nhóm (5 tiết: 2 LT / 3 TH) | Khoa CNTT - Đại học Lạc Hồng</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome 6.4.0 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            asu: {
+              maroon: '#8C1D40',
+              gold: '#FFC627',
+              dark: '#5C142B',
+              light: '#FAEDF0'
+            },
+            lhu: {
+              blue: '#013D88',
+              sky: '#007BFF',
+              dark: '#01295C',
+              light: '#EEF5FC'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    @media print {
+      header, footer, .no-print {
+        display: none !important;
+      }
+      details {
+        break-inside: avoid;
+        margin-bottom: 20px;
+      }
+      details[open] summary {
+        border-bottom: 1px solid #ccc;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-slate-100 text-slate-800 font-sans antialiased selection:bg-asu-gold selection:text-slate-900 min-h-screen flex flex-col">
+
+  <!-- TOP BAR -->
+  <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800 no-print">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+      <div class="flex items-center gap-2">
+        <span class="text-asu-gold font-semibold"><i class="fa-solid fa-certificate mr-1"></i> CHUẨN KIỂM ĐỊNH ABET (USA)</span>
+        <span class="text-slate-600 hidden sm:inline">•</span>
+        <span class="hidden sm:inline">Đối tác chiến lược: <strong>Arizona State University (ASU)</strong></span>
+      </div>
+      <div class="flex items-center gap-4 text-xs font-mono">
+        <span>Mã học phần: <strong class="text-white">111102</strong></span>
+        <span>Số tín chỉ: <strong class="text-asu-gold">3</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="sticky top-0 z-40 bg-white shadow-sm border-b border-slate-200 no-print">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="index.html" class="flex items-center gap-2.5 text-slate-800 hover:text-lhu-blue transition-colors">
+          <img src="../nhap-mon-nganh/LHU_ASU_VI_Small_Ngang.png" alt="Logo LHU" class="h-8 w-auto">
+          <div class="border-l border-slate-300 pl-2.5">
+            <div class="text-[11px] font-bold text-slate-500 uppercase">Khoa CNTT - LHU</div>
+            <div class="text-xs font-extrabold text-lhu-blue">LẬP TRÌNH ỨNG DỤNG WEB (111102)</div>
+          </div>
+        </a>
+      </div>
+
+      <div class="flex items-center gap-3 text-xs">
+        <a href="index.html" class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-arrow-left"></i>
+          <span>Về Landing Page</span>
+        </a>
+        <button onclick="window.print()" class="hidden sm:flex px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-all items-center gap-1.5" title="In hoặc lưu file PDF">
+          <i class="fa-solid fa-print"></i>
+          <span>In Đề Cương</span>
+        </button>
+        <a href="https://learn.lhu.edu.vn" target="_blank" class="px-4 py-2 bg-lhu-blue hover:bg-lhu-dark text-white font-bold rounded-xl shadow transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-graduation-cap text-asu-gold"></i>
+          <span>Vào lớp LMS</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="flex-grow max-w-5xl w-full mx-auto px-4 sm:px-6 py-8">
+    
+    <!-- Title Card -->
+    <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 mb-8">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-5">
+        <div>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 text-lhu-blue font-bold text-xs uppercase tracking-wider mb-2">
+            <i class="fa-solid fa-book-open"></i> ĐẠI HỌC LẠC HỒNG • KHOA CÔNG NGHỆ THÔNG TIN
+          </span>
+          <h1 class="text-2xl sm:text-3xl font-black text-slate-900 leading-tight">
+            Bài 07 - Module quản trị trên backend của nhóm (5 tiết: 2 LT / 3 TH)
+          </h1>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1 font-mono">
+            Học phần: Lập trình ứng dụng web • Mã môn: 111102 • PBL · Vibe Coding
+          </p>
+        </div>
+
+        <div class="flex-shrink-0 flex sm:flex-col items-center sm:items-end justify-between gap-1 text-xs">
+          <span class="px-3 py-1.5 bg-emerald-50 text-emerald-700 font-bold rounded-lg border border-emerald-200">
+            <i class="fa-solid fa-check-circle mr-1"></i> Lưu hành nội bộ 2026
+          </span>
+          <span class="text-slate-400 text-[11px]">Định dạng LMS Accordion</span>
+        </div>
+      </div>
+
+      <!-- Quick Action Controls for Accordions -->
+      <div class="flex items-center justify-between pt-4 text-xs no-print">
+        <span class="text-slate-500">
+          <i class="fa-solid fa-circle-info text-blue-500 mr-1"></i>
+          Nhấp vào từng thanh tiêu đề để đóng/mở nội dung chi tiết.
+        </span>
+        <div class="flex items-center gap-2">
+          <button onclick="toggleAllDetails(true)" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg transition-colors">
+            Mở tất cả
+          </button>
+          <button onclick="toggleAllDetails(false)" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg transition-colors">
+            Thu gọn
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Accordion Blocks -->
+    <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200">
+      <details open="" style="border: 1px solid #007bff; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #e7f1ff; color: #007bff; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>📘 1. Tổng quan bài học</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <p><strong>BÀI 07 - Module quản trị trên backend của nhóm (5 tiết: 2 LT / 3 TH)</strong></p>
+        <p><em>Hai sprint đầu, web của nhóm sống nhờ API mẫu của giảng viên. Từ hôm nay nhóm tự chịu trách nhiệm toàn bộ: CSDL, stored procedure, API và trang web. Backend của đồ án di động chưa biết "quản lý" là ai, chưa khóa được tài khoản, chưa xóa được danh mục. Việc đầu tiên không phải là viết code, mà là tìm ra backend còn thiếu những gì.</em></p>
+        <p><strong>Mục tiêu:</strong> Phân tích được nghiệp vụ quản trị từ SRS thành thay đổi CSDL, stored procedure và API; viết được script CSDL phiên bản mới chạy lại an toàn; xây dựng được API quản trị có phân quyền <code>admin</code> và tài liệu Swagger; chuyển được web từ API mẫu sang backend của nhóm và kiểm thử hồi quy.</p>
+        <p><strong>Nội dung:</strong></p>
+        <ul>
+            <li><strong>Ý chính 1 - Phân tích nghiệp vụ quản trị:</strong> từ user story US-A01…A04 tới dữ liệu, thủ tục, API, trang; tìm khoảng trống của backend hiện tại.</li>
+            <li><strong>Ý chính 2 - Stored procedure quản trị:</strong> CRUD có ràng buộc nghiệp vụ, mã lỗi 50400/50404/50409, script phiên bản mới.</li>
+            <li><strong>Ý chính 3 - API quản trị:</strong> phân quyền <code>admin</code>, DTO, Swagger, khóa tài khoản.</li>
+            <li><strong>Ý chính 4 - Chuyển web sang backend nhóm:</strong> so khớp hợp đồng API, lớp chuyển đổi, kiểm thử hồi quy Sprint 1–2.</li>
+        </ul>
+        <p><strong>Kết quả cần đạt:</strong> Backend nhóm có module quản trị danh mục, quầy và tài khoản (gọi stored procedure, phân quyền admin); web chạy trên backend nhóm, các test case Sprint 1–2 vẫn đạt.</p>
+        <p style="margin-bottom: 0;"><strong>CLO liên quan:</strong> CLO1.</p>
+    </div>
+</details>
+
+<details style="border: 1px solid #fd7e14; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #fff5eb; color: #fd7e14; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>📚 2. Học liệu chính</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.1. Phân tích nghiệp vụ quản trị</h3>
+            <p>Mỗi user story quản trị được lần theo năm tầng. Bảng này là phần "phân tích module quản trị" của báo cáo (CLO1) và là danh sách việc của Sprint 3.</p>
+            <table style="border-collapse: collapse; width: 100%; max-width: 860px; font-size: 13px;">
+                <thead><tr style="background-color: #ffe8d1;"><th style="border: 1px solid #ffd6ad; padding: 6px;">Story</th><th style="border: 1px solid #ffd6ad; padding: 6px;">Dữ liệu</th><th style="border: 1px solid #ffd6ad; padding: 6px;">Stored procedure</th><th style="border: 1px solid #ffd6ad; padding: 6px;">API (admin)</th><th style="border: 1px solid #ffd6ad; padding: 6px;">Trang web</th></tr></thead>
+                <tbody>
+                    <tr><td style="border: 1px solid #ffd6ad; padding: 6px;">US-A01 danh mục</td><td style="border: 1px solid #ffd6ad; padding: 6px;">Categories</td><td style="border: 1px solid #ffd6ad; padding: 6px;"><code>sp_Category_Create/Update/Delete</code></td><td style="border: 1px solid #ffd6ad; padding: 6px;"><code>POST/PUT/DELETE /admin/categories</code></td><td style="border: 1px solid #ffd6ad; padding: 6px;"><code>/admin/categories</code></td></tr>
+                    <tr><td style="border: 1px solid #ffd6ad; padding: 6px;">US-A02 món</td><td style="border: 1px solid #ffd6ad; padding: 6px;">Products (ImageUrl, IsAvailable)</td><td style="border: 1px solid #ffd6ad; padding: 6px;"><code>sp_Product_Create/Update/SetAvailability/UpdateImage</code></td><td style="border: 1px solid #ffd6ad; padding: 6px;"><code>/admin/products</code>, <code>…/image</code></td><td style="border: 1px solid #ffd6ad; padding: 6px;"><code>/admin/products</code> (bài 08)</td></tr>
+                    <tr><td style="border: 1px solid #ffd6ad; padding: 6px;">US-A03 quầy</td><td style="border: 1px solid #ffd6ad; padding: 6px;">Counters (tọa độ, IsActive)</td><td style="border: 1px solid #ffd6ad; padding: 6px;"><code>sp_Counter_Create/Update</code></td><td style="border: 1px solid #ffd6ad; padding: 6px;"><code>/admin/counters</code></td><td style="border: 1px solid #ffd6ad; padding: 6px;"><code>/admin/counters</code></td></tr>
+                    <tr><td style="border: 1px solid #ffd6ad; padding: 6px;">US-A04 tài khoản</td><td style="border: 1px solid #ffd6ad; padding: 6px;">Users (Role admin, IsLocked)</td><td style="border: 1px solid #ffd6ad; padding: 6px;"><code>sp_User_CreateStaff/GetList/SetLocked</code></td><td style="border: 1px solid #ffd6ad; padding: 6px;"><code>/admin/users</code>, <code>…/lock</code></td><td style="border: 1px solid #ffd6ad; padding: 6px;"><code>/admin/users</code> (bài 08)</td></tr>
+                    <tr><td style="border: 1px solid #ffd6ad; padding: 6px;">US-A05, A06 báo cáo</td><td style="border: 1px solid #ffd6ad; padding: 6px;">Orders, OrderItems</td><td style="border: 1px solid #ffd6ad; padding: 6px;"><code>sp_Report_*</code> (đã có từ Chương 7 di động)</td><td style="border: 1px solid #ffd6ad; padding: 6px;"><code>/reports/*</code></td><td style="border: 1px solid #ffd6ad; padding: 6px;"><code>/admin/reports</code> (bài 08)</td></tr>
+                </tbody>
+            </table>
+            <p style="margin-top: 10px;"><strong>Khoảng trống của backend hiện tại.</strong> Đối chiếu với CSDL đã xây trong học phần di động (Chương 5–7):</p>
+            <ul style="margin-bottom: 0;">
+                <li>Cột <code>Users.Role</code> chỉ cho phép <code>customer</code> và <code>staff</code>: chưa có vai trò quản lý.</li>
+                <li>Chưa có cột khóa tài khoản; BR của US-A04 yêu cầu tài khoản bị khóa không đăng nhập và không làm mới token được.</li>
+                <li>Chưa có thủ tục thêm, sửa, xóa danh mục. Quy tắc: không xóa danh mục còn món (409); món đã có trong đơn chỉ được ngừng bán, không xóa hẳn (BR-16).</li>
+                <li>Bảng <code>Counters</code> do Chương 8 di động tạo (<code>07-counters.sql</code>) chưa có cột mô tả và trạng thái hoạt động.</li>
+            </ul>
+        </div>
+
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.2. Script CSDL và stored procedure quản trị</h3>
+            <p>Thay đổi CSDL viết thành <strong>file mới</strong>, không sửa file mà các thành viên đã chạy. Giáo trình di động dùng các số 01–09, nên module quản trị của web dùng số từ 20 để không trùng: <code>database/20-admin.sql</code>. Mỗi lệnh đổi cấu trúc đều kiểm tra trước, chạy lại nhiều lần không lỗi.</p>
+<pre style="background-color: #1e293b; color: #e2e8f0; padding: 12px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5;"><code>-- database/20-admin.sql: vai trò admin, khóa tài khoản, quản trị danh mục
+-- 1) Mở rộng ràng buộc vai trò (ràng buộc cũ không đặt tên nên tìm theo nội dung)
+IF OBJECT_ID('dbo.CK_Users_Role') IS NULL
+BEGIN
+  DECLARE @ck SYSNAME = (SELECT TOP 1 name FROM sys.check_constraints
+                         WHERE parent_object_id = OBJECT_ID('dbo.Users') AND definition LIKE '%customer%');
+  IF @ck IS NOT NULL EXEC('ALTER TABLE dbo.Users DROP CONSTRAINT ' + QUOTENAME(@ck));
+  ALTER TABLE dbo.Users ADD CONSTRAINT CK_Users_Role CHECK (Role IN (N'customer', N'staff', N'admin'));
+END;
+GO
+-- 2) Khóa tài khoản
+IF COL_LENGTH('dbo.Users', 'IsLocked') IS NULL
+  ALTER TABLE dbo.Users ADD IsLocked BIT NOT NULL CONSTRAINT DF_Users_IsLocked DEFAULT 0;
+GO
+
+-- 3) Danh mục: thêm, sửa, xóa có ràng buộc
+CREATE OR ALTER PROCEDURE dbo.sp_Category_Create @Name NVARCHAR(100)
+AS
+BEGIN
+  SET NOCOUNT ON;
+  IF LEN(LTRIM(RTRIM(@Name))) &lt; 2 THROW 50400, N'Tên danh mục tối thiểu 2 ký tự', 1;
+  IF EXISTS (SELECT 1 FROM dbo.Categories WHERE Name = @Name)
+    THROW 50409, N'Tên danh mục đã tồn tại', 1;
+  INSERT INTO dbo.Categories (Name)
+  OUTPUT inserted.CategoryId AS id, inserted.Name AS name
+  VALUES (@Name);
+END;
+GO
+
+CREATE OR ALTER PROCEDURE dbo.sp_Category_Delete @CategoryId INT
+AS
+BEGIN
+  SET NOCOUNT ON;
+  IF NOT EXISTS (SELECT 1 FROM dbo.Categories WHERE CategoryId = @CategoryId)
+    THROW 50404, N'Không tìm thấy danh mục', 1;
+  IF EXISTS (SELECT 1 FROM dbo.Products WHERE CategoryId = @CategoryId)
+    THROW 50409, N'Danh mục còn món, không xóa được', 1;
+  DELETE FROM dbo.Categories WHERE CategoryId = @CategoryId;
+END;
+GO
+-- sp_Category_Update: kiểm tra 50404 và trùng tên 50409 (trừ chính nó), OUTPUT dòng đã sửa
+
+-- 4) Khóa / mở khóa tài khoản; không cho tự khóa chính mình
+CREATE OR ALTER PROCEDURE dbo.sp_User_SetLocked @UserId INT, @IsLocked BIT, @ActorId INT
+AS
+BEGIN
+  SET NOCOUNT ON;
+  IF @UserId = @ActorId THROW 50400, N'Không thể tự khóa tài khoản của mình', 1;
+  IF NOT EXISTS (SELECT 1 FROM dbo.Users WHERE UserId = @UserId)
+    THROW 50404, N'Không tìm thấy tài khoản', 1;
+  UPDATE dbo.Users SET IsLocked = @IsLocked
+  OUTPUT inserted.UserId AS userId, inserted.FullName AS fullName, inserted.Role AS role, inserted.IsLocked AS isLocked
+  WHERE UserId = @UserId;
+  IF @IsLocked = 1                                                          -- thu hồi phiên đang mở
+    UPDATE dbo.RefreshTokens SET RevokedAt = SYSDATETIME() WHERE UserId = @UserId AND RevokedAt IS NULL;
+END;
+GO
+-- Tài khoản admin đầu tiên: tạo bằng script seed riêng (mật khẩu đã băm bcrypt), không tạo qua API</code></pre>
+            <table style="border-collapse: collapse; width: 100%; max-width: 860px; font-size: 13px; margin-top: 10px;">
+                <thead><tr style="background-color: #ffe8d1;"><th style="border: 1px solid #ffd6ad; padding: 6px;">Mã lỗi trong thủ tục</th><th style="border: 1px solid #ffd6ad; padding: 6px;">HTTP (DatabaseService)</th><th style="border: 1px solid #ffd6ad; padding: 6px;">Ví dụ trong module quản trị</th></tr></thead>
+                <tbody>
+                    <tr><td style="border: 1px solid #ffd6ad; padding: 6px;"><code>50400</code></td><td style="border: 1px solid #ffd6ad; padding: 6px;">400 Bad Request</td><td style="border: 1px solid #ffd6ad; padding: 6px;">Tự khóa chính mình; tọa độ ngoài phạm vi</td></tr>
+                    <tr><td style="border: 1px solid #ffd6ad; padding: 6px;"><code>50404</code></td><td style="border: 1px solid #ffd6ad; padding: 6px;">404 Not Found</td><td style="border: 1px solid #ffd6ad; padding: 6px;">Sửa danh mục không tồn tại</td></tr>
+                    <tr><td style="border: 1px solid #ffd6ad; padding: 6px;"><code>50409</code></td><td style="border: 1px solid #ffd6ad; padding: 6px;">409 Conflict</td><td style="border: 1px solid #ffd6ad; padding: 6px;">Trùng tên danh mục; xóa danh mục còn món</td></tr>
+                </tbody>
+            </table>
+            <p style="margin: 10px 0 0 0;">Ràng buộc nghiệp vụ đặt trong thủ tục (và ràng buộc CSDL) nên web, ứng dụng di động hay Swagger gọi vào đều bị kiểm tra như nhau. Tên thủ tục và tham số theo quy ước <code>sp_&lt;Đối tượng&gt;_&lt;Hành động&gt;</code> của Chương 5 giáo trình di động.</p>
+        </div>
+
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.3. API quản trị trên NestJS</h3>
+            <p>Học phần khuyến khích dùng chung backend NestJS với đồ án di động. Nhóm dùng backend khác (Express, ASP.NET…) vẫn phải gọi stored procedure, phân quyền ở server và có Swagger.</p>
+<pre style="background-color: #1e293b; color: #e2e8f0; padding: 12px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5;"><code>// src/admin/dto/category.dto.ts
+import { ApiProperty } from '@nestjs/swagger';
+import { IsString, Length } from 'class-validator';
+
+export class CategoryDto {
+  @ApiProperty({ example: 'Đồ uống' })
+  @IsString() @Length(2, 100)
+  name!: string;
+}
+
+// src/admin/admin-categories.controller.ts
+@ApiTags('Admin - Categories')
+@ApiBearerAuth()
+@Controller('admin/categories')
+@UseGuards(AuthGuard, RolesGuard)
+@Roles(['admin'])                                   // áp dụng cho mọi route của controller
+export class AdminCategoriesController {
+  constructor(private readonly db: DatabaseService) {}
+
+  @Post()
+  async create(@Body() dto: CategoryDto) {
+    const [row] = await this.db.execute('sp_Category_Create', { Name: { type: sql.NVarChar(100), value: dto.name } });
+    return row;
+  }
+
+  @Put(':id')
+  async update(@Param('id', ParseIntPipe) id: number, @Body() dto: CategoryDto) {
+    const [row] = await this.db.execute('sp_Category_Update', {
+      CategoryId: { type: sql.Int, value: id }, Name: { type: sql.NVarChar(100), value: dto.name },
+    });
+    return row;
+  }
+
+  @Delete(':id') @HttpCode(204)
+  async remove(@Param('id', ParseIntPipe) id: number) {
+    await this.db.execute('sp_Category_Delete', { CategoryId: { type: sql.Int, value: id } });
+  }
+}</code></pre>
+            <ul style="margin-bottom: 0;">
+                <li><strong>RolesGuard của giáo trình di động</strong> so khớp đúng tên vai trò, nên <code>admin</code> không tự có quyền của <code>staff</code>. Sửa các route nhân viên thành <code>@Roles(['staff', 'admin'])</code> theo ma trận phân quyền bài 05, hoặc cho guard coi <code>admin</code> bao gồm <code>staff</code>. Ghi quyết định này vào báo cáo.</li>
+                <li><strong>Khóa tài khoản:</strong> <code>sp_User_GetByEmail</code> trả thêm <code>IsLocked</code>; <code>AuthService.login</code> trả 403 "Tài khoản đã bị khóa" khi <code>IsLocked = 1</code>; làm mới token cũng kiểm tra lại. Nếu <code>@Roles</code> đặt trên controller, đọc bằng <code>reflector.getAllAndOverride(Roles, [context.getHandler(), context.getClass()])</code>.</li>
+                <li><strong>Mã người quản lý</strong> (<code>@ActorId</code>) lấy từ token (<code>req.user.sub</code>), không lấy từ body.</li>
+                <li>Swagger (<code>/api</code>) là hợp đồng giữa người làm backend, người làm web và người làm mobile: mỗi route có ví dụ body và mã lỗi.</li>
+            </ul>
+        </div>
+
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.4. Chuyển web sang backend của nhóm</h3>
+            <p>Đổi <code>API_URL</code> trong <code>.env.local</code> là bước cuối cùng, không phải bước đầu. Trước đó, so khớp hợp đồng API giữa API mẫu (tài liệu tại <code>/docs</code>) và backend nhóm (<code>/api</code>):</p>
+            <table style="border-collapse: collapse; width: 100%; max-width: 860px; font-size: 13px;">
+                <thead><tr style="background-color: #ffe8d1;"><th style="border: 1px solid #ffd6ad; padding: 6px;">Endpoint web đang dùng</th><th style="border: 1px solid #ffd6ad; padding: 6px;">Điểm cần so khớp</th><th style="border: 1px solid #ffd6ad; padding: 6px;">Ví dụ khác biệt hay gặp</th></tr></thead>
+                <tbody>
+                    <tr><td style="border: 1px solid #ffd6ad; padding: 6px;"><code>GET /products</code></td><td style="border: 1px solid #ffd6ad; padding: 6px;">Tham số lọc, kiểu trả về (mảng hay object phân trang), tên trường</td><td style="border: 1px solid #ffd6ad; padding: 6px;">Nhóm chưa hỗ trợ <code>keyword</code>, <code>includeUnavailable</code></td></tr>
+                    <tr><td style="border: 1px solid #ffd6ad; padding: 6px;"><code>GET /counters</code></td><td style="border: 1px solid #ffd6ad; padding: 6px;">Tên trường tọa độ</td><td style="border: 1px solid #ffd6ad; padding: 6px;"><code>lat</code>/<code>lng</code> (Chương 8 di động) so với <code>latitude</code>/<code>longitude</code></td></tr>
+                    <tr><td style="border: 1px solid #ffd6ad; padding: 6px;"><code>POST /auth/login</code></td><td style="border: 1px solid #ffd6ad; padding: 6px;">Dạng phản hồi, mã lỗi 401/403</td><td style="border: 1px solid #ffd6ad; padding: 6px;">Không trả <code>role</code> ở ngoài, chỉ có trong token</td></tr>
+                    <tr><td style="border: 1px solid #ffd6ad; padding: 6px;"><code>GET /orders/staff</code></td><td style="border: 1px solid #ffd6ad; padding: 6px;">Đường dẫn, các trường hiển thị</td><td style="border: 1px solid #ffd6ad; padding: 6px;">Thiếu <code>summary</code>, <code>customerName</code></td></tr>
+                </tbody>
+            </table>
+            <p style="margin-top: 10px;">Hai cách xử lý khác biệt: <strong>sửa backend</strong> cho đúng hợp đồng chung (ưu tiên, vì ứng dụng di động cũng dùng), hoặc thêm hàm chuyển đổi trong <code>lib/api.ts</code> để trang web không phải sửa:</p>
+<pre style="background-color: #1e293b; color: #e2e8f0; padding: 12px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5;"><code>// lib/api.ts: chỉ một chỗ biết khác biệt giữa backend và kiểu dữ liệu của web
+type CounterDto = { id: number; name: string; lat: number; lng: number };
+export const toCounter = (c: CounterDto): Counter =&gt;
+  ({ id: c.id, name: c.name, latitude: c.lat, longitude: c.lng, isActive: true });</code></pre>
+            <p><strong>Kiểm thử hồi quy.</strong> Sau khi đổi <code>API_URL</code>, chạy lại toàn bộ test case Sprint 1–2 (TC-01…05, 11…17, 21…28, 31…37) trên backend nhóm, ghi vào cột "Kết quả trên backend nhóm". Test nào trước đạt mà giờ không đạt là một lỗi hồi quy, phải có thẻ trên board.</p>
+            <p style="margin-bottom: 0;">Trang <code>/admin/categories</code> dùng lại mẫu Server Action của bài 06: <code>requireRole('admin')</code>, gọi <code>apiAuth('/admin/categories', …)</code>, bắt 409 để hiện "Danh mục còn món, không xóa được", rồi <code>revalidatePath</code>.</p>
+        </div>
+
+        <div style="margin-top: 16px;">
+            <p style="margin: 0 0 8px 0; color: #fd7e14; font-weight: bold;">📄 Slide &amp; video bài giảng</p>
+            <a href="Slides/bai-07.pptx" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
+                <span style="color: #fd7e14; font-weight: bold;">📄 Slide Bài 07: Module quản trị trên backend của nhóm</span>
+            </a>
+        </div>
+        <div style="margin-top: 16px;">
+            <p style="margin: 0 0 8px 0; color: #fd7e14; font-weight: bold;">📚 Tài liệu dự án</p>
+            <a href="../lap-trinh-ung-dung-mobile/srs/SRS-LHU-Food.docx" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
+                <span style="color: #fd7e14; font-weight: bold;">🧾 SRS dự án LHU Food</span><br>
+                <span style="color: #6c757d; font-size: 13px;">Module quản trị (F09.3, F10, F11), user story US-A01…A04, quy tắc BR-16; mục 8: các endpoint /admin.</span>
+            </a>
+            <a href="../lap-trinh-ung-dung-mobile/srs/agile-scrum.docx" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
+                <span style="color: #fd7e14; font-weight: bold;">🗂 Kế hoạch Agile &amp; Product Backlog</span><br>
+                <span style="color: #6c757d; font-size: 13px;">Epic quản trị và story của Sprint 3.</span>
+            </a>
+        </div>
+        <div style="margin-top: 16px;">
+            <p style="margin: 0 0 8px 0; color: #fd7e14; font-weight: bold;">📖 Tài liệu đọc thêm (chính thức)</p>
+            <a href="https://docs.nestjs.com/security/authorization" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
+                <span style="color: #fd7e14; font-weight: bold;">🔗 NestJS - Authorization</span><br>
+                <span style="color: #6c757d; font-size: 13px;">Roles decorator, RolesGuard, đọc metadata ở cả handler và controller.</span>
+            </a>
+            <a href="https://docs.nestjs.com/openapi/introduction" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
+                <span style="color: #fd7e14; font-weight: bold;">🔗 NestJS - OpenAPI (Swagger)</span><br>
+                <span style="color: #6c757d; font-size: 13px;">ApiProperty, ApiTags, ApiBearerAuth, ví dụ request và response.</span>
+            </a>
+            <a href="https://learn.microsoft.com/sql/t-sql/language-elements/throw-transact-sql" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
+                <span style="color: #fd7e14; font-weight: bold;">🔗 Microsoft Learn - THROW (Transact-SQL)</span><br>
+                <span style="color: #6c757d; font-size: 13px;">Phát lỗi có mã tự đặt từ stored procedure.</span>
+            </a>
+        </div>
+    </div>
+</details>
+
+<details style="border: 1px solid #28a745; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #eafaf1; color: #28a745; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>💡 3. Hoạt động &amp; Thực hành trên lớp</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <div style="max-width: 760px; padding: 10px 12px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <p style="margin: 0 0 6px 0;"><strong style="color: #28a745;">🧑‍🏫 Thực hành có hướng dẫn (1,5 tiết): Quản lý danh mục từ CSDL đến web</strong></p>
+            <ol style="margin: 0; color: #495057;">
+                <li>Viết <code>database/20-admin.sql</code>, chạy hai lần liên tiếp trên CSDL nhóm để chứng minh chạy lại không lỗi; tạo tài khoản admin bằng script seed.</li>
+                <li>Chạy thử từng thủ tục trong SSMS: xóa danh mục còn món phải nhận lỗi 50409.</li>
+                <li>Tạo <code>AdminCategoriesController</code>, DTO, cập nhật <code>RolesGuard</code>; thử trên Swagger bằng token admin và token staff (mong đợi 403).</li>
+                <li>Trang <code>/admin/categories</code> trên web: danh sách, thêm, sửa, xóa qua Server Action, gọi backend nhóm.</li>
+            </ol>
+        </div>
+        <div style="max-width: 760px; padding: 10px 12px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <p style="margin: 0 0 6px 0;"><strong style="color: #28a745;">✍️ Thực hành không hướng dẫn (1 tiết): Quản lý quầy</strong></p>
+            <p style="margin: 0 0 6px 0; color: #495057;">Bổ sung vào <code>20-admin.sql</code> các cột <code>Description</code>, <code>IsActive</code> cho bảng <code>Counters</code> (có kiểm tra trước), thủ tục <code>sp_Counter_Create</code> và <code>sp_Counter_Update</code> (tên 2–100 ký tự, vĩ độ −90…90, kinh độ −180…180, sai thì <code>THROW 50400</code>); API <code>POST/PUT /admin/counters</code> chỉ cho admin, có Swagger.</p>
+            <p style="margin: 0 0 8px 0; color: #495057;"><strong>Hoàn thành khi:</strong> nộp link repo, ảnh chụp Swagger và kết quả 4 lần gọi: tạo hợp lệ (201), vĩ độ 91 (400), sửa quầy không tồn tại (404), gọi bằng token staff (403).</p>
+            <a href="{{LINK_NOP_BAI_07}}" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 6px 12px; background-color: #eafaf1; color: #28a745; border: 1px solid #28a745; border-radius: 6px; text-decoration: none; font-weight: bold;">Nộp bài</a>
+        </div>
+        <div style="max-width: 760px; padding: 10px 12px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <p style="margin: 0 0 6px 0;"><strong style="color: #28a745;">👥 Thử thách nhóm (0,5 tiết + ở nhà)</strong></p>
+            <p style="margin: 0; color: #495057;">Hoàn thành bảng phân tích mục 2.1 cho đề tài nhóm; vẽ <strong>ERD phần quản trị</strong> và lập <strong>danh mục stored procedure</strong> (tên, tham số, kết quả, mã lỗi) (CLO1). Xây module quản trị trên backend nhóm, chuyển web sang backend nhóm, chạy hồi quy và mở thẻ cho mọi lỗi hồi quy.</p>
+        </div>
+        <div style="max-width: 760px; padding: 10px 12px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <p style="margin: 0 0 6px 0;"><strong style="color: #28a745;">💬 Diễn đàn thảo luận</strong></p>
+            <p style="margin: 0 0 8px 0; color: #495057;">Quy tắc "không xóa danh mục còn món" nên đặt ở đâu: trang web (ẩn nút Xóa), API (kiểm tra trước khi gọi thủ tục) hay stored procedure? Nếu chỉ đặt ở một nơi, bạn chọn nơi nào và vì sao?</p>
+            <a href="{{LINK_DIEN_DAN_BAI_07}}" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 6px 12px; background-color: #eafaf1; color: #28a745; border: 1px solid #28a745; border-radius: 6px; text-decoration: none; font-weight: bold;">Tham gia diễn đàn</a>
+        </div>
+        <div style="max-width: 760px; padding: 10px 12px; margin: 8px 0; background-color: #f4fff8; border: 1px solid #bfe8cc; border-radius: 8px;">
+            <p style="margin: 0 0 6px 0;"><strong style="color: #28a745;">📝 Trắc nghiệm nhanh (Quiz)</strong></p>
+            <p style="margin: 0 0 8px 0; color: #495057;">10 câu ôn tập phân tích module quản trị, script phiên bản, stored procedure, phân quyền admin và hợp đồng API.</p>
+            <a href="{{LINK_QUIZ_BAI_07}}" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 6px 12px; background-color: #eafaf1; color: #28a745; border: 1px solid #28a745; border-radius: 6px; text-decoration: none; font-weight: bold;">Làm bài Quiz Bài 07</a>
+        </div>
+    </div>
+</details>
+
+<details style="border: 1px solid #6f42c1; border-radius: 8px; margin-bottom: 15px; font-family: sans-serif; overflow: hidden;">
+    <summary style="padding: 15px; background-color: #f3e5f5; color: #6f42c1; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>🆘 4. Góc trợ giúp và mở rộng</span>
+        <span style="font-size: 12px;">▼</span>
+    </summary>
+    <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
+        <p><strong>Lỗi 547 khi thêm ràng buộc <code>CK_Users_Role</code>:</strong> trong bảng đã có dòng mang vai trò khác ba giá trị cho phép. Tìm bằng <code>SELECT DISTINCT Role FROM dbo.Users</code> và sửa dữ liệu trước.</p>
+        <p><strong>Token admin vẫn nhận 403 ở route nhân viên:</strong> <code>RolesGuard</code> so khớp đúng tên vai trò. Thêm <code>'admin'</code> vào <code>@Roles</code> hoặc sửa guard (mục 2.3).</p>
+        <p><strong>Lỗi 500 thay vì 409:</strong> thủ tục dùng <code>RAISERROR</code> hoặc mã lỗi khác 50400/50404/50409, nên <code>DatabaseService</code> không chuyển được thành mã HTTP. Dùng <code>THROW</code> với đúng mã.</p>
+        <p><strong>Web lỗi sau khi đổi <code>API_URL</code>:</strong> mở tab Network của trình duyệt không thấy gì vì Next.js gọi API từ server. Xem log ở terminal chạy <code>npm run dev</code> và so với Swagger của nhóm.</p>
+        <p><strong>Kiến thức mở rộng:</strong> nhật ký thao tác quản trị (bảng <code>AuditLogs</code> ghi ai sửa gì, lúc nào) bằng trigger hoặc ghi trong thủ tục; kiểm thử hợp đồng API tự động bằng cách so file OpenAPI của hai backend.</p>
+        <p style="margin-bottom: 0;"><strong>Tự đánh giá:</strong> Một thành viên mới chạy lần lượt mọi script trong <code>database/</code> trên CSDL trống. Họ có được đúng CSDL của nhóm, kể cả tài khoản admin, không?</p>
+    </div>
+</details>
+
+
+    </div>
+
+    <!-- Practice Quiz: luyện tập trực tiếp, chỉ báo số câu đúng/sai, không lưu và không hiển thị đáp án -->
+    <section id="luyen-tap" class="no-print mt-8 bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
+        <div>
+          <h2 class="text-lg sm:text-xl font-black text-slate-900 flex items-center gap-2">
+            <i class="fa-solid fa-pen-to-square text-emerald-600"></i> Luyện tập trắc nghiệm - Bài 07
+          </h2>
+          <p class="text-xs text-slate-500 mt-1">10 câu · Chấm ngay khi nộp · Không lưu kết quả · Không hiển thị đáp án</p>
+        </div>
+        <button type="button" id="pq-start" class="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold rounded-xl shadow transition-all flex items-center gap-2 justify-center">
+          <i class="fa-solid fa-play"></i> Bắt đầu làm bài
+        </button>
+      </div>
+
+      <form id="pq-form" class="hidden pt-5 space-y-5" novalidate></form>
+
+      <div id="pq-footer" class="hidden pt-5 mt-5 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <span id="pq-progress" class="text-sm text-slate-500"></span>
+        <button type="button" id="pq-submit" class="px-5 py-2.5 bg-lhu-blue hover:bg-lhu-dark text-white text-sm font-bold rounded-xl shadow transition-all flex items-center gap-2 justify-center">
+          <i class="fa-solid fa-check-double"></i> Nộp bài
+        </button>
+      </div>
+
+      <div id="pq-result" class="hidden mt-5 rounded-2xl border p-5" role="status" aria-live="polite"></div>
+    </section>
+
+    <script>
+      (function () {
+        // Dữ liệu sinh từ quiz/quiz-bai-07-aiken.txt. Đáp án được mã hóa nhẹ để không lộ khi xem nhanh;
+        // đây là bài luyện tập, không phải cơ chế chống gian lận.
+        const QUESTIONS = [{"q": "Khi phân tích một user story quản trị như US-A01 (quản lý danh mục), cần lần theo những tầng nào?", "o": ["Chỉ giao diện và màu sắc", "Chỉ bảng dữ liệu", "Dữ liệu, stored procedure, API, trang web", "Chỉ API và Swagger"], "k": 3}, {"q": "CSDL của nhóm cần thay đổi cấu trúc (thêm cột IsLocked). Cách làm đúng là gì?", "o": ["Viết file script mới có kiểm tra trước khi đổi, không sửa file đã chạy", "Sửa trực tiếp file 01-tables.sql", "Xóa CSDL rồi chạy lại từ đầu trên server thật", "Thêm cột bằng giao diện SSMS, không cần script"], "k": 0}, {"q": "Vì sao script quản trị của web được đánh số từ 20 (ví dụ 20-admin.sql)?", "o": ["Vì SQL Server yêu cầu số lớn hơn 20", "Để không trùng với các script 01–09 theo giáo trình di động mà nhóm đã và sẽ thêm", "Vì script số nhỏ chạy chậm hơn", "Vì Next.js chỉ đọc script từ số 20"], "k": 0}, {"q": "IF COL_LENGTH('dbo.Users', 'IsLocked') IS NULL dùng để làm gì?", "o": ["Xóa cột IsLocked", "Đếm số tài khoản bị khóa", "Đổi kiểu dữ liệu của cột", "Chỉ thêm cột khi chưa có, để script chạy lại nhiều lần không lỗi"], "k": 1}, {"q": "Quy tắc \"không xóa danh mục còn món\" nên được đặt chắc chắn ở đâu?", "o": ["Trong stored procedure (THROW 50409), để mọi nơi gọi vào đều bị kiểm tra", "Chỉ ẩn nút Xóa trên web", "Chỉ trong ứng dụng di động", "Trong file README"], "k": 1}, {"q": "Mã lỗi 50404 phát ra từ stored procedure được DatabaseService chuyển thành mã HTTP nào?", "o": ["400", "409", "404", "500"], "k": 2}, {"q": "Theo RolesGuard của giáo trình di động, vì sao tài khoản admin có thể nhận 403 ở route chỉ ghi @Roles(['staff'])?", "o": ["Vì admin chưa đăng nhập", "Vì guard so khớp đúng tên vai trò, admin không tự có quyền của staff", "Vì token admin không có trường role", "Vì Swagger chặn admin"], "k": 0}, {"q": "Khi khóa tài khoản, mã người quản lý thực hiện (@ActorId) nên lấy từ đâu?", "o": ["Từ body do web gửi lên", "Từ tham số trên URL", "Từ localStorage", "Từ token đã xác thực (req.user.sub)"], "k": 1}, {"q": "Trước khi đổi API_URL của web sang backend nhóm, việc nên làm là gì?", "o": ["So khớp hợp đồng API (đường dẫn, tham số, tên trường, mã lỗi) giữa API mẫu và backend nhóm", "Xóa toàn bộ test case cũ", "Viết lại toàn bộ trang web", "Tắt kiểm tra quyền để dễ thử"], "k": 1}, {"q": "Kiểm thử hồi quy sau khi chuyển sang backend nhóm có nghĩa là gì?", "o": ["Chỉ thử các trang mới của Sprint 3", "Chạy lại các test case Sprint 1–2 để chắc chắn chức năng cũ vẫn đạt", "Kiểm tra tốc độ mạng", "So sánh giao diện với Figma"], "k": 1}];
+        const decode = (q, i) => ((q.k - i * 3 - 5) % q.o.length + q.o.length) % q.o.length;
+
+        const form = document.getElementById("pq-form");
+        const footer = document.getElementById("pq-footer");
+        const progress = document.getElementById("pq-progress");
+        const result = document.getElementById("pq-result");
+        const startBtn = document.getElementById("pq-start");
+        const submitBtn = document.getElementById("pq-submit");
+        const LETTERS = "ABCDEFGH";
+
+        function shuffle(list) {
+          const a = list.slice();
+          for (let i = a.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [a[i], a[j]] = [a[j], a[i]];
+          }
+          return a;
+        }
+
+        function render() {
+          form.innerHTML = "";
+          shuffle(QUESTIONS.map((_, i) => i)).forEach((qi, pos) => {
+            const q = QUESTIONS[qi];
+            const box = document.createElement("fieldset");
+            box.className = "border border-slate-200 rounded-2xl p-4";
+            box.dataset.q = qi;
+            const legend = document.createElement("legend");
+            legend.className = "px-2 text-sm font-bold text-slate-800";
+            legend.textContent = "Câu " + (pos + 1) + ". " + q.q;
+            box.appendChild(legend);
+            shuffle(q.o.map((_, oi) => oi)).forEach((oi, shown) => {
+              const label = document.createElement("label");
+              label.className = "flex items-start gap-3 mt-2 p-2.5 rounded-xl border border-transparent hover:bg-slate-50 cursor-pointer text-sm text-slate-700 has-[:checked]:border-lhu-sky has-[:checked]:bg-blue-50";
+              const input = document.createElement("input");
+              input.type = "radio";
+              input.name = "q" + qi;
+              input.value = oi;
+              input.className = "mt-0.5 accent-blue-700";
+              input.addEventListener("change", updateProgress);
+              const text = document.createElement("span");
+              text.textContent = LETTERS[shown] + ". " + q.o[oi];
+              label.append(input, text);
+              box.appendChild(label);
+            });
+            form.appendChild(box);
+          });
+          form.classList.remove("hidden");
+          footer.classList.remove("hidden");
+          result.classList.add("hidden");
+          submitBtn.disabled = false;
+          submitBtn.classList.remove("opacity-50");
+          updateProgress();
+        }
+
+        function answeredCount() {
+          return QUESTIONS.filter((_, i) => form.querySelector('input[name="q' + i + '"]:checked')).length;
+        }
+
+        function updateProgress() {
+          progress.textContent = "Đã trả lời " + answeredCount() + "/" + QUESTIONS.length + " câu";
+        }
+
+        function submit() {
+          const blank = QUESTIONS.length - answeredCount();
+          if (blank > 0 && !confirm("Còn " + blank + " câu chưa trả lời. Bạn vẫn muốn nộp bài?")) return;
+          let correct = 0;
+          QUESTIONS.forEach((q, i) => {
+            const picked = form.querySelector('input[name="q' + i + '"]:checked');
+            if (picked && Number(picked.value) === decode(q, i)) correct++;
+          });
+          const wrong = QUESTIONS.length - correct - blank;
+          const percent = Math.round(correct * 100 / QUESTIONS.length);
+          const good = percent >= 80, ok = percent >= 50;
+          result.className = "mt-5 rounded-2xl border p-5 " + (good ? "bg-emerald-50 border-emerald-200" : ok ? "bg-amber-50 border-amber-200" : "bg-rose-50 border-rose-200");
+          result.innerHTML =
+            '<div class="flex flex-wrap items-center gap-3 text-sm font-bold">' +
+              '<span class="px-3 py-1.5 rounded-lg bg-emerald-600 text-white"><i class="fa-solid fa-check mr-1"></i>Đúng: ' + correct + '</span>' +
+              '<span class="px-3 py-1.5 rounded-lg bg-rose-600 text-white"><i class="fa-solid fa-xmark mr-1"></i>Sai: ' + wrong + '</span>' +
+              (blank ? '<span class="px-3 py-1.5 rounded-lg bg-slate-500 text-white">Bỏ trống: ' + blank + '</span>' : '') +
+              '<span class="text-slate-700">' + correct + "/" + QUESTIONS.length + " câu (" + percent + "%)</span>" +
+            "</div>" +
+            '<p class="text-sm text-slate-700 mt-3">' +
+              (good ? "Rất tốt! Bạn đã nắm vững nội dung bài học." : ok ? "Khá ổn. Hãy xem lại các phần còn chưa chắc trong bài học rồi làm lại." : "Bạn nên đọc lại phần Học liệu chính của bài trước khi làm lại.") +
+            "</p>" +
+            '<button type="button" id="pq-retry" class="mt-4 px-4 py-2 bg-white hover:bg-slate-100 border border-slate-300 text-slate-800 text-sm font-bold rounded-xl transition-all"><i class="fa-solid fa-rotate-right mr-1"></i> Làm lại (đổi thứ tự câu hỏi)</button>';
+          result.classList.remove("hidden");
+          form.querySelectorAll("input").forEach(input => input.disabled = true);
+          submitBtn.disabled = true;
+          submitBtn.classList.add("opacity-50");
+          document.getElementById("pq-retry").addEventListener("click", () => {
+            render();
+            document.getElementById("luyen-tap").scrollIntoView({ behavior: "smooth" });
+          });
+          result.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+
+        startBtn.addEventListener("click", () => {
+          startBtn.classList.add("hidden");
+          render();
+        });
+        submitBtn.addEventListener("click", submit);
+      })();
+    </script>
+
+    <!-- Bottom Navigation between lessons -->
+    <div class="flex items-center justify-between gap-4 mt-8 no-print text-xs font-bold">
+      <a href="bai-06.html" class="px-4 py-2.5 bg-white border border-slate-200 hover:border-lhu-blue text-slate-700 hover:text-lhu-blue rounded-xl shadow-sm transition-all flex items-center gap-2"><i class="fa-solid fa-chevron-left"></i> Bài trước</a>
+      
+      <a href="index.html" class="px-4 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-800 rounded-xl transition-all flex items-center gap-2">
+        <i class="fa-solid fa-table-cells-large"></i> Danh mục bài học
+      </a>
+
+      <a href="bai-08.html" class="px-4 py-2.5 bg-white border border-slate-200 hover:border-lhu-blue text-slate-700 hover:text-lhu-blue rounded-xl shadow-sm transition-all flex items-center gap-2">Bài tiếp theo <i class="fa-solid fa-chevron-right"></i></a>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-slate-200 py-6 text-xs text-slate-500 mt-12 no-print">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <strong>Khoa Công nghệ Thông tin - Trường Đại học Lạc Hồng</strong><br>
+        Phòng B301 - B302, Cơ sở 1, Số 10 Huỳnh Văn Nghệ, P. Bửu Long, TP. Biên Hòa, Đồng Nai.
+      </div>
+      <div class="text-right">
+        <span>Email: cntt@lhu.edu.vn • Hotline: (0251) 3952 251</span><br>
+        <span>Hệ thống LMS: <a href="https://learn.lhu.edu.vn" target="_blank" class="text-lhu-blue font-bold">learn.lhu.edu.vn</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleAllDetails(open) {
+      document.querySelectorAll("details").forEach(d => {
+        if (open) {
+          d.setAttribute("open", "");
+        } else {
+          d.removeAttribute("open");
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>

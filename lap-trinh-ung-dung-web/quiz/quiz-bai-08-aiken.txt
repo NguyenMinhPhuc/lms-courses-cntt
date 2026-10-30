@@ -1,0 +1,69 @@
+Vì sao các trang quản trị nên dùng chung một mẫu CRUD (danh sách, tạo, sửa, form dùng chung)?
+A. Vì Next.js bắt buộc
+B. Người dùng học một lần dùng được mọi trang, nhóm viết một lần nhân bản được
+C. Để trang tải chậm hơn
+D. Để không cần kiểm thử
+ANSWER: B
+
+Theo BR-16, món đã có trong đơn hàng được xử lý thế nào khi không bán nữa?
+A. Xóa hẳn khỏi CSDL
+B. Đổi tên món
+C. Chuyển sang ngừng bán, không xóa hẳn
+D. Xóa luôn các đơn có món đó
+ANSWER: C
+
+Khi gửi FormData chứa ảnh tới API bằng fetch, cần lưu ý gì về header Content-Type?
+A. Không tự đặt, để fetch tự sinh multipart/form-data kèm boundary
+B. Đặt application/json
+C. Đặt text/plain
+D. Đặt image/jpeg
+ANSWER: A
+
+Tải ảnh 2 MB qua Server Action báo lỗi vượt giới hạn. Nguyên nhân hay gặp là gì?
+A. Recharts chưa cài
+B. Thiếu import React
+C. Ảnh phải là PNG
+D. Giới hạn mặc định của Server Action là 1 MB, cần tăng serverActions.bodySizeLimit
+ANSWER: D
+
+Vì sao không nên tin phần mở rộng tên file (.jpg) khi kiểm tra ảnh tải lên?
+A. Vì tên file luôn viết hoa
+B. Vì người dùng có thể đổi tên một file PDF thành .jpg
+C. Vì trình duyệt xóa phần mở rộng
+D. Vì API không đọc được tên file
+ANSWER: B
+
+Vì sao component biểu đồ Recharts phải là Client Component?
+A. Vì Recharts vẽ bằng JavaScript trong trình duyệt
+B. Vì Recharts gọi CSDL trực tiếp
+C. Vì Server Component không hiển thị được số
+D. Vì Recharts cần cookie
+ANSWER: A
+
+Câu hỏi "doanh thu thay đổi thế nào theo từng ngày" phù hợp nhất với loại biểu đồ nào?
+A. Biểu đồ tròn nhiều màu
+B. Bảng không có số
+C. Biểu đồ cột hoặc đường theo trục thời gian
+D. Biểu đồ radar
+ANSWER: C
+
+Vì sao file CSV xuất cho Excel cần thêm ký tự BOM (﻿) ở đầu?
+A. Để file nhỏ hơn
+B. Để Excel nhận đúng mã hóa UTF-8 và hiển thị đúng tiếng Việt
+C. Để file không mở được trên điện thoại
+D. Để mã hóa mật khẩu
+ANSWER: B
+
+Route Handler xuất CSV nằm dưới /admin đã được proxy.ts bảo vệ. Có cần gọi requireRole trong Route Handler không?
+A. Không, proxy là đủ
+B. Chỉ cần khi chạy production
+C. Chỉ cần khi file lớn
+D. Có, theo nguyên tắc kiểm tra quyền nhiều lớp
+ANSWER: D
+
+Test case nào kiểm tra đúng tiêu chí "số liệu báo cáo khớp với truy vấn trực tiếp trên CSDL" của US-A05?
+A. So doanh thu một ngày trên web với SELECT SUM trên CSDL, bỏ đơn cancelled
+B. Mở trang báo cáo xem có biểu đồ không
+C. Đổi màu biểu đồ
+D. Tải lại trang báo cáo ba lần
+ANSWER: A

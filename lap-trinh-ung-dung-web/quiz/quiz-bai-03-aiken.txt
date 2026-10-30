@@ -1,0 +1,69 @@
+Biến môi trường API_URL (không có tiền tố NEXT_PUBLIC_) đọc được ở đâu?
+A. Không đọc được ở đâu
+B. Ở cả server và trình duyệt
+C. Chỉ ở trình duyệt
+D. Chỉ ở server
+ANSWER: D
+
+fetch(url, { next: { revalidate: 30 } }) có nghĩa là gì?
+A. Gọi API 30 lần
+B. Dùng lại kết quả trong 30 giây rồi làm mới
+C. Hủy request sau 30 giây
+D. Chỉ gọi API sau 30 giây
+ANSWER: B
+
+Vì sao danh mục món dùng revalidate dài hơn danh sách món?
+A. Vì danh mục ít thay đổi, còn tồn kho món thay đổi thường xuyên
+B. Vì API danh mục chậm hơn
+C. Vì danh mục nhiều dữ liệu hơn
+D. Vì danh mục cần đăng nhập
+ANSWER: A
+
+loading.tsx dùng để làm gì?
+A. Hiển thị giao diện chờ trong lúc trang đang tải dữ liệu
+B. Cấu hình cache
+C. Bắt lỗi của trang
+D. Lưu dữ liệu tải về
+ANSWER: A
+
+Thư viện server-only trong lib/api.ts giúp gì?
+A. Tự động cache mọi request
+B. Tăng tốc độ fetch
+C. Mã hóa dữ liệu API
+D. Báo lỗi khi file chỉ dùng ở server bị import vào Client Component
+ANSWER: D
+
+Form tìm kiếm dùng thẻ form GET với action="/menu" có ưu điểm gì?
+A. Bắt buộc phải có JavaScript mới chạy
+B. Ẩn từ khóa tìm kiếm
+C. Gửi dữ liệu lên SQL Server trực tiếp
+D. Không cần JavaScript phía client và kết quả nằm trong URL, chia sẻ được
+ANSWER: D
+
+Test case tốt cho US-G03 khi mở /product/999999 cần có gì?
+A. Chỉ ghi "chạy thử thấy được"
+B. Mã nguồn của trang
+C. Bước thực hiện và kết quả mong đợi đo được (hiện trang 404 thân thiện)
+D. Số lượng món trong CSDL
+ANSWER: C
+
+Test case nên được viết từ đâu để truy vết tới yêu cầu?
+A. Từ tên file trong dự án
+B. Từ tiêu chí nghiệm thu của user story trong SRS
+C. Từ màu sắc thiết kế
+D. Từ giao diện đối thủ
+ANSWER: B
+
+Phần "kế hoạch so với thực tế" trong báo cáo sprint rèn luyện CLO nào chủ yếu?
+A. CLO4 - Sắp xếp công việc
+B. CLO1 - Phân tích thành phần
+C. CLO2 - Kiểm thử
+D. Không thuộc CLO nào
+ANSWER: A
+
+Khi chọn story cho Sprint 2, nhóm nên dựa vào gì?
+A. Chọn càng nhiều càng tốt
+B. Story dễ nhất
+C. Velocity thực tế của Sprint 1 và mức ưu tiên trong backlog
+D. Ý kiến của AI
+ANSWER: C

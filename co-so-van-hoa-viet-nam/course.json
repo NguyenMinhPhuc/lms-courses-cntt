@@ -1,0 +1,35 @@
+{
+  "name": "Cơ sở Văn hóa Việt Nam",
+  "portalTitle": "Cơ sở Văn hóa Việt Nam",
+  "code": "112317",
+  "credits": "3",
+  "hours": "3 TC (2 LT + 1 bài tập), 6 buổi × 5 tiết",
+  "semester": "Học kỳ 1",
+  "instructor": "Trần Thị Diệu Hiền",
+  "faculty": {
+    "name": "Khoa Truyền thông đa phương tiện",
+    "short": "Khoa TTĐPT"
+  },
+  "tags": [
+    "Văn hóa Việt Nam",
+    "Truyền thông đa phương tiện",
+    "Dự án video",
+    "AI tạo ảnh"
+  ],
+  "description": "Nền tảng văn hóa Việt Nam cho sinh viên Truyền thông đa phương tiện: khái niệm và tiến trình văn hóa, hệ thống thành tố, các vùng văn hóa, khai thác chất liệu văn hóa trong sáng tạo và trách nhiệm khi quảng bá bản sắc trên môi trường số; dự án nhóm làm video về một sản phẩm gốm/hiện vật.",
+  "headerLabel": "CƠ SỞ VĂN HÓA VIỆT NAM (112317)",
+  "subtitleTag": "Dự án video văn hóa",
+  "year": 2026,
+  "landingPage": "index.html",
+  "coursePages": true,
+  "slides": true,
+  "lessonTitles": {
+    "01": "Văn hóa và tiếp cận truyền thông",
+    "02": "Hệ thống thành tố văn hóa Việt Nam",
+    "03": "Các vùng văn hóa Việt Nam · Ôn tập và giữa kỳ"
+  },
+  "documents": {
+    "LINK_DE_CUONG": "HK1-112317-Cơ sở Văn hóa Việt Nam.docx",
+    "LINK_RUBRIC": "rubric/Rubric-112317.xlsx"
+  }
+}

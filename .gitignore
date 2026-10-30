@@ -218,3 +218,6 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Giáo trình có bản quyền (bản tải về để giảng viên tham khảo, không phát hành qua repo)
+co-so-van-hoa-viet-nam/thong-tin-mon-hoc/*.pdf

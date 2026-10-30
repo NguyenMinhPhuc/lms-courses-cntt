@@ -1,0 +1,31 @@
+{
+  "name": "Lập trình ứng dụng web",
+  "portalTitle": "Lập trình ứng dụng web",
+  "code": "111102",
+  "credits": "3",
+  "hours": "60 tiết (15 LT + 45 TH)",
+  "semester": "Học kỳ 6",
+  "instructor": "ThS. Nguyễn Minh Phúc",
+  "tags": [
+    "Next.js",
+    "React",
+    "PBL",
+    "Vibe Coding",
+    "SQL Server"
+  ],
+  "description": "Xây dựng ứng dụng web full-stack bằng Next.js (App Router) theo hình thức PBL và vibe coding: trang quản trị, màn hình quầy realtime và web đặt món cho dự án LHU Food, kết nối API NestJS + SQL Server qua stored procedure, kiểm thử và triển khai lên Windows Server của Khoa.",
+  "headerLabel": "LẬP TRÌNH ỨNG DỤNG WEB (111102)",
+  "subtitleTag": "PBL · Vibe Coding",
+  "year": 2026,
+  "landingPage": "index.html",
+  "coursePages": true,
+  "slides": true,
+  "srsProject": "LHU Food",
+  "documents": {
+    "LINK_GIAO_TRINH": "giao-trinh/Giao-trinh-lap-trinh-ung-dung-web.docx",
+    "LINK_DE_CUONG": "HK6-111102-Lập trình ứng dụng web.docx",
+    "LINK_SRS_LHU_FOOD": "../lap-trinh-ung-dung-mobile/srs/SRS-LHU-Food.docx",
+    "LINK_AGILE_SCRUM": "../lap-trinh-ung-dung-mobile/srs/agile-scrum.docx",
+    "LINK_RUBRIC": "rubric/Rubric-111102.xlsx"
+  }
+}

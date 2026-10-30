@@ -1,0 +1,69 @@
+Trong kiến trúc LHU Food của học phần, Next.js lấy dữ liệu bằng cách nào?
+A. Kết nối SQL Server trực tiếp bằng mssql
+B. Gọi backend API; backend chỉ truy cập dữ liệu qua stored procedure
+C. Đọc file JSON trong thư mục public
+D. Gọi stored procedure từ trình duyệt
+ANSWER: B
+
+Trang thực đơn nên là loại component nào?
+A. Server Component lấy dữ liệu trên server, chỉ tách phần tương tác nhỏ thành Client Component
+B. Client Component toàn bộ trang
+C. Route Handler
+D. Server Action
+ANSWER: A
+
+Token đăng nhập trên web LHU Food được lưu ở đâu?
+A. localStorage
+B. sessionStorage
+C. Cookie httpOnly, chỉ server đọc được
+D. Trong URL
+ANSWER: C
+
+Ba lớp kiểm tra quyền của web gồm những gì?
+A. HTML, CSS, JavaScript
+B. Header, footer, sidebar
+C. Git, GitHub, board
+D. proxy.ts (chuyển hướng sớm), Data Access Layer (trang và Server Action), API (dữ liệu)
+ANSWER: D
+
+Sau khi Server Action đổi dữ liệu, gọi revalidatePath để làm gì?
+A. Để trang được render lại với dữ liệu mới
+B. Để đăng xuất người dùng
+C. Để xóa đơn hàng
+D. Để gửi email
+ANSWER: A
+
+Khi nhận sự kiện order:new, màn hình quầy làm gì?
+A. Chèn thẳng dữ liệu sự kiện vào CSDL
+B. Phát âm báo và lấy lại danh sách đơn từ API
+C. Tự chuyển đơn sang completed
+D. Ngắt kết nối socket
+ANSWER: B
+
+Theo rubric của học phần, minh chứng chính cho điểm cuối kỳ là gì?
+A. Số dòng mã
+B. Số commit
+C. Báo cáo đồ án, đối chiếu với 27 tiêu chí theo 4 CLO
+D. Điểm Lighthouse
+ANSWER: C
+
+Trong phần bảo vệ kỹ thuật, ai trả lời câu hỏi về một đoạn mã?
+A. Trưởng nhóm
+B. Thành viên giỏi nhất nhóm
+C. Giảng viên tự giải thích
+D. Thành viên đã commit đoạn mã đó
+ANSWER: D
+
+Một CLO được coi là đạt khi nào?
+A. Khi điểm CLO đạt từ 50% trọng số trở lên
+B. Khi sản phẩm chạy được, không cần minh chứng
+C. Khi nhóm nộp đúng hạn
+D. Khi có ít nhất một commit
+ANSWER: A
+
+Phương án dự phòng phù hợp nhất khi server Khoa gặp sự cố ngay trước giờ demo là gì?
+A. Hủy phần trình bày
+B. Video quay sẵn toàn bộ kịch bản trên bản đã triển khai, kèm ảnh kết quả kiểm tra sau triển khai
+C. Demo trên máy cá nhân nhưng nói là server Khoa
+D. Chỉ trình bày slide lý thuyết
+ANSWER: B

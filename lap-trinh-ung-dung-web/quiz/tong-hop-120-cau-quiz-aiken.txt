@@ -1,0 +1,839 @@
+Trong mô hình CSR (React SPA), HTML của trang được tạo ở đâu?
+A. Trên server cho từng request
+B. Trong trình duyệt sau khi tải JavaScript
+C. Lúc build ứng dụng
+D. Trong SQL Server
+ANSWER: B
+
+React Server Component khác Client Component ở điểm nào?
+A. Bắt buộc dùng useState
+B. Chỉ dùng được trong Pages Router
+C. Chạy trên server và không gửi mã component xuống trình duyệt
+D. Chạy trên điện thoại
+ANSWER: C
+
+Trong Next.js App Router, file nào định nghĩa nội dung của một đường dẫn?
+A. route.config.ts
+B. page.tsx
+C. index.html
+D. _app.tsx
+ANSWER: B
+
+Component trong thư mục app/ mặc định là loại nào?
+A. Client Component
+B. Web Component
+C. Server Component
+D. Class Component
+ANSWER: C
+
+Khi nào cần thêm "use client" ở đầu file?
+A. Khi muốn trang được Google tìm thấy
+B. Khi component gọi API ở server
+C. Với mọi file trong app/
+D. Khi component cần state hoặc xử lý sự kiện như onClick
+ANSWER: D
+
+Theo quy tắc của học phần, ứng dụng Next.js lấy dữ liệu LHU Food bằng cách nào?
+A. Kết nối thẳng SQL Server bằng thư viện mssql
+B. Dùng ORM sinh truy vấn trong Next.js
+C. Đọc file JSON trong thư mục public/
+D. Gọi backend API; backend chỉ truy cập SQL Server qua stored procedure
+ANSWER: D
+
+Theo SRS, khu vực web nào là bắt buộc trong đồ án?
+A. Chỉ trang giới thiệu căn tin
+B. Chỉ web đặt món cho khách
+C. Trang quản trị và màn hình quầy cho nhân viên
+D. Ứng dụng di động
+ANSWER: C
+
+Sprint Goal là gì?
+A. Mục tiêu ngắn gọn mà nhóm cam kết đạt được trong sprint
+B. Điểm số cuối kỳ
+C. Tên nhánh Git của sprint
+D. Danh sách mọi tính năng của sản phẩm
+ANSWER: A
+
+Một thẻ công việc trên board được tổ chức tốt cần có gì?
+A. Chỉ tên công việc
+B. Người phụ trách, trạng thái và liên kết tới Pull Request
+C. Mật khẩu tài khoản API
+D. Toàn bộ mã nguồn
+ANSWER: B
+
+AI sinh mã có getServerSideProps cho dự án của nhóm. Bạn nên làm gì?
+A. Nhận ra đây là mã Pages Router, yêu cầu AI viết lại theo App Router dựa trên AGENTS.md
+B. Giữ nguyên vì chạy được
+C. Chuyển cả dự án sang Pages Router
+D. Xóa file AGENTS.md
+ANSWER: A
+
+Thư mục (shop) trong app/(shop)/menu/page.tsx có tác dụng gì?
+A. Tạo đường dẫn /shop/menu
+B. Khai báo Client Component
+C. Đánh dấu trang cần đăng nhập
+D. Gom route chung một layout mà không xuất hiện trong URL
+ANSWER: D
+
+File app/product/[id]/page.tsx ứng với đường dẫn nào?
+A. /product/[id]
+B. /id/product
+C. /product?id=12
+D. /product/12 với id thay đổi theo món
+ANSWER: D
+
+Từ Next.js 15, đọc params trong trang động thế nào cho đúng?
+A. Dùng trực tiếp params.id như đối tượng thường
+B. Gọi useParams() trong Server Component
+C. Khai báo params là Promise và dùng await params
+D. Đọc từ localStorage
+ANSWER: C
+
+Gọi notFound() trong trang có tác dụng gì?
+A. Xóa món khỏi CSDL
+B. Chuyển về trang chủ
+C. Hiển thị giao diện not-found.tsx với mã 404
+D. Tải lại trang
+ANSWER: C
+
+Vì sao layout quản trị giữ nguyên sidebar khi chuyển giữa các trang con?
+A. Layout bọc các trang con và không vẽ lại khi điều hướng trong cùng khu vực
+B. Vì sidebar được lưu trong SQL Server
+C. Vì dùng thẻ iframe
+D. Vì trình duyệt cache toàn trang
+ANSWER: A
+
+error.tsx phải là loại component nào?
+A. Client Component
+B. Component của Pages Router
+C. Server Component
+D. Component bất kỳ
+ANSWER: A
+
+Class Tailwind grid-cols-1 md:grid-cols-3 nghĩa là gì?
+A. Luôn 3 cột
+B. 3 cột trên điện thoại, 1 cột trên máy tính
+C. Chỉ hiển thị trên máy tính
+D. 1 cột mặc định, 3 cột từ kích thước màn hình md trở lên
+ANSWER: D
+
+Điểm khác biệt của shadcn/ui so với thư viện UI cài sẵn là gì?
+A. Mã nguồn component được chép vào dự án nên nhóm sửa được
+B. Chỉ dùng được với Angular
+C. Không cần Tailwind CSS
+D. Phải trả phí bản quyền
+ANSWER: A
+
+Bảng ánh xạ route – chức năng – vai trò – API là minh chứng cho CLO nào?
+A. CLO3 - Viết báo cáo
+B. CLO1 - Phân tích thành phần chức năng
+C. CLO4 - Sắp xếp công việc
+D. Không thuộc CLO nào
+ANSWER: B
+
+Vì sao không nên ghép tên class Tailwind động như `bg-${color}-500`?
+A. Vì Tailwind cấm dùng màu
+B. Vì Tailwind chỉ tạo CSS cho tên class viết đầy đủ trong mã
+C. Vì làm trang chậm khi chạy
+D. Vì TypeScript báo lỗi
+ANSWER: B
+
+Biến môi trường API_URL (không có tiền tố NEXT_PUBLIC_) đọc được ở đâu?
+A. Không đọc được ở đâu
+B. Ở cả server và trình duyệt
+C. Chỉ ở trình duyệt
+D. Chỉ ở server
+ANSWER: D
+
+fetch(url, { next: { revalidate: 30 } }) có nghĩa là gì?
+A. Gọi API 30 lần
+B. Dùng lại kết quả trong 30 giây rồi làm mới
+C. Hủy request sau 30 giây
+D. Chỉ gọi API sau 30 giây
+ANSWER: B
+
+Vì sao danh mục món dùng revalidate dài hơn danh sách món?
+A. Vì danh mục ít thay đổi, còn tồn kho món thay đổi thường xuyên
+B. Vì API danh mục chậm hơn
+C. Vì danh mục nhiều dữ liệu hơn
+D. Vì danh mục cần đăng nhập
+ANSWER: A
+
+loading.tsx dùng để làm gì?
+A. Hiển thị giao diện chờ trong lúc trang đang tải dữ liệu
+B. Cấu hình cache
+C. Bắt lỗi của trang
+D. Lưu dữ liệu tải về
+ANSWER: A
+
+Thư viện server-only trong lib/api.ts giúp gì?
+A. Tự động cache mọi request
+B. Tăng tốc độ fetch
+C. Mã hóa dữ liệu API
+D. Báo lỗi khi file chỉ dùng ở server bị import vào Client Component
+ANSWER: D
+
+Form tìm kiếm dùng thẻ form GET với action="/menu" có ưu điểm gì?
+A. Bắt buộc phải có JavaScript mới chạy
+B. Ẩn từ khóa tìm kiếm
+C. Gửi dữ liệu lên SQL Server trực tiếp
+D. Không cần JavaScript phía client và kết quả nằm trong URL, chia sẻ được
+ANSWER: D
+
+Test case tốt cho US-G03 khi mở /product/999999 cần có gì?
+A. Chỉ ghi "chạy thử thấy được"
+B. Mã nguồn của trang
+C. Bước thực hiện và kết quả mong đợi đo được (hiện trang 404 thân thiện)
+D. Số lượng món trong CSDL
+ANSWER: C
+
+Test case nên được viết từ đâu để truy vết tới yêu cầu?
+A. Từ tên file trong dự án
+B. Từ tiêu chí nghiệm thu của user story trong SRS
+C. Từ màu sắc thiết kế
+D. Từ giao diện đối thủ
+ANSWER: B
+
+Phần "kế hoạch so với thực tế" trong báo cáo sprint rèn luyện CLO nào chủ yếu?
+A. CLO4 - Sắp xếp công việc
+B. CLO1 - Phân tích thành phần
+C. CLO2 - Kiểm thử
+D. Không thuộc CLO nào
+ANSWER: A
+
+Khi chọn story cho Sprint 2, nhóm nên dựa vào gì?
+A. Chọn càng nhiều càng tốt
+B. Story dễ nhất
+C. Velocity thực tế của Sprint 1 và mức ưu tiên trong backlog
+D. Ý kiến của AI
+ANSWER: C
+
+Trên trang chi tiết món, phần nào nên là Client Component?
+A. Toàn bộ trang chi tiết món
+B. Chỉ nút "Thêm vào giỏ"
+C. Layout gốc của ứng dụng
+D. Hàm gọi API lấy thông tin món
+ANSWER: B
+
+Vì sao không nên đặt "use client" ở layout hoặc page?
+A. Vì Next.js không cho phép
+B. Vì layout sẽ không hiển thị được
+C. Vì cả nhánh component con bị kéo xuống trình duyệt
+D. Vì page sẽ bị cache vĩnh viễn
+ANSWER: C
+
+Prop nào KHÔNG truyền được từ Server Component sang Client Component?
+A. Một hàm xử lý sự kiện
+B. Một chuỗi tên món
+C. Một mảng các món
+D. Một object chứa giá và số lượng
+ANSWER: A
+
+Middleware persist của Zustand dùng để làm gì trong giỏ hàng LHU Food?
+A. Gửi giỏ hàng lên server mỗi giây
+B. Mã hóa giá tiền
+C. Chia sẻ giỏ hàng giữa các người dùng
+D. Lưu giỏ vào localStorage để tải lại trang vẫn còn
+ANSWER: D
+
+Vì sao biểu tượng số món trong giỏ có thể gây lỗi "Hydration failed"?
+A. Vì Zustand không chạy được trên trình duyệt
+B. Vì HTML từ server (giỏ rỗng) khác HTML trình duyệt (giỏ có món)
+C. Vì localStorage chỉ lưu được chuỗi
+D. Vì thiếu import React
+ANSWER: B
+
+Theo tiêu chí US-C04, giá tiền của đơn hàng được lấy từ đâu?
+A. Từ giỏ hàng trong localStorage
+B. Từ form đặt món
+C. Từ bảng Products trong CSDL tại thời điểm đặt
+D. Từ cache của Next.js
+ANSWER: C
+
+Vì sao Server Action vẫn phải kiểm tra lại dữ liệu bằng Zod dù form đã kiểm tra ở trình duyệt?
+A. Người dùng có thể tắt JavaScript hoặc gửi request trực tiếp tới server
+B. Vì React Hook Form không hỗ trợ Zod
+C. Vì kiểm tra ở trình duyệt chậm hơn
+D. Vì Zod chỉ chạy được trên server
+ANSWER: A
+
+Khi đăng ký bằng email đã tồn tại, API mẫu trả mã nào và web hiển thị gì?
+A. 404, "Không tìm thấy"
+B. 500, "Lỗi máy chủ"
+C. 401, "Bạn cần đăng nhập"
+D. 409, "Email đã được sử dụng"
+ANSWER: D
+
+Mật khẩu yêu cầu tối thiểu 8 ký tự. Cặp test case giá trị biên phù hợp nhất là gì?
+A. 1 ký tự và 100 ký tự
+B. 7 ký tự (sai) và 8 ký tự (hợp lệ)
+C. 0 ký tự và 20 ký tự
+D. 8 ký tự và 9 ký tự (đều hợp lệ)
+ANSWER: B
+
+Vì sao nút "Đặt món" cần bị vô hiệu trong lúc đang gửi?
+A. Để giảm dung lượng trang
+B. Để Zod chạy nhanh hơn
+C. Để tránh tạo hai đơn khi người dùng bấm nhiều lần
+D. Để trình duyệt không lưu cache
+ANSWER: C
+
+Vì sao web LHU Food lưu token trong cookie httpOnly thay vì localStorage?
+A. Vì cookie lưu được nhiều dữ liệu hơn
+B. Vì JavaScript trong trang không đọc được cookie httpOnly, giảm rủi ro bị XSS lấy cắp token
+C. Vì localStorage không có trên trình duyệt hiện đại
+D. Vì cookie không bao giờ hết hạn
+ANSWER: B
+
+Thuộc tính SameSite=Lax của cookie giúp phòng chống rủi ro nào chủ yếu?
+A. SQL Injection
+B. Lộ biến môi trường
+C. CSRF (trang khác gửi request POST kèm cookie của người dùng)
+D. Tràn bộ nhớ
+ANSWER: C
+
+Từ Next.js 16, file middleware.ts được đổi tên thành gì?
+A. proxy.ts
+B. guard.ts
+C. router.ts
+D. edge.ts
+ANSWER: A
+
+Vì sao không được chỉ dựa vào proxy.ts (middleware) để phân quyền?
+A. Vì proxy chạy chậm hơn trang
+B. Vì proxy không đọc được cookie
+C. Vì proxy chỉ chạy khi build
+D. Vì proxy chỉ đọc token mà không xác minh chữ ký, và có thể bị bỏ qua nếu có lỗ hổng như CVE-2025-29927
+ANSWER: D
+
+Hàm requireRole trong lib/dal.ts xác định người dùng hiện tại bằng cách nào?
+A. Gọi GET /users/me của API kèm token, để backend xác minh token
+B. Đọc vai trò từ localStorage
+C. Đọc tham số role trên URL
+D. Giải mã JWT trên trình duyệt
+ANSWER: A
+
+Một khách hàng gõ thẳng /admin/products. Kết quả đúng theo ma trận phân quyền là gì?
+A. Trang mở nhưng ẩn nút Xóa
+B. Trang 403, không thấy dữ liệu quản trị
+C. Chuyển về trang chủ không báo gì
+D. Trang mở bình thường
+ANSWER: B
+
+Khi đăng nhập sai mật khẩu hoặc email không tồn tại, web nên hiển thị gì (BR-03)?
+A. "Email không tồn tại" hoặc "Sai mật khẩu" tùy trường hợp
+B. Mã lỗi 401 kèm stack trace
+C. Một thông báo chung "Email hoặc mật khẩu không đúng"
+D. Không hiển thị gì
+ANSWER: C
+
+Tham số /login?next=https://trang-gia.com có thể gây lỗ hổng gì nếu không kiểm tra?
+A. XSS lưu trữ
+B. Open redirect (chuyển người dùng sang trang giả sau khi đăng nhập)
+C. Tràn cookie
+D. Lộ mã nguồn
+ANSWER: B
+
+Biến môi trường NEXT_PUBLIC_API_KEY có đặc điểm gì?
+A. Chỉ đọc được ở server
+B. Được mã hóa tự động
+C. Bị xóa khi build production
+D. Được chép vào mã JavaScript gửi xuống trình duyệt, ai cũng xem được
+ANSWER: D
+
+Khi người dùng đăng xuất, web LHU Food cần làm gì để đáp ứng US-C13?
+A. Gọi POST /auth/logout để thu hồi refresh token, xóa cookie, xóa giỏ hàng, về trang đăng nhập
+B. Chỉ ẩn tên người dùng trên header
+C. Chỉ xóa access_token, giữ refresh_token để lần sau đăng nhập nhanh
+D. Tải lại trang
+ANSWER: A
+
+Server Action trong Next.js là gì?
+A. Một API của trình duyệt
+B. Hàm async có chỉ thị 'use server', chạy trên server và được gọi từ form hoặc Client Component
+C. Một loại Client Component đặc biệt
+D. File cấu hình của Next.js
+ANSWER: B
+
+Vì sao mỗi Server Action phải tự kiểm tra quyền (ví dụ gọi requireRole)?
+A. Vì Server Action là endpoint công khai, ai cũng có thể gửi request tới
+B. Vì Next.js yêu cầu bắt buộc
+C. Vì Server Action không đọc được cookie
+D. Vì proxy.ts không chạy với Server Action
+ANSWER: A
+
+revalidatePath('/admin/orders') có tác dụng gì?
+A. Chuyển người dùng sang /admin/orders
+B. Xóa đơn hàng trong CSDL
+C. Xóa cache của trang để lần render sau lấy dữ liệu mới
+D. Kiểm tra quyền truy cập trang
+ANSWER: C
+
+useActionState trả về những gì?
+A. Chỉ một hàm gửi form
+B. Dữ liệu từ API
+C. Token của người dùng
+D. [state, formAction, isPending]
+ANSWER: D
+
+useOptimistic được dùng trên màn hình quầy để làm gì?
+A. Lưu đơn hàng vào localStorage
+B. Hiện ngay trạng thái mới trong lúc chờ server xác nhận
+C. Gửi thông báo cho khách
+D. Sắp xếp đơn theo thời gian
+ANSWER: B
+
+Theo BR-15, trình tự chuyển trạng thái đơn nào là đúng?
+A. pending → ready → preparing → completed
+B. preparing → pending → ready → completed
+C. pending → preparing → ready → completed
+D. pending → completed → ready
+ANSWER: C
+
+Hai nhân viên cùng bấm "Bắt đầu làm" một đơn. API mẫu xử lý thế nào với người bấm sau?
+A. Trả 409, web báo đơn đã được cập nhật và làm mới danh sách
+B. Tạo thêm một đơn mới
+C. Chuyển đơn thẳng sang completed
+D. Trả 500
+ANSWER: A
+
+Vì sao lọc và phân trang bảng món nên đặt trong tham số URL (?q=com&page=2)?
+A. Vì TanStack Table bắt buộc
+B. Vì URL nhanh hơn state
+C. Vì API không nhận tham số khác
+D. Vì tải lại trang hoặc gửi link vẫn giữ nguyên bộ lọc, và Server Component gọi API đúng trang
+ANSWER: D
+
+API mẫu trả về mảng món không có tổng số dòng. Làm sao biết còn trang sau?
+A. Luôn hiện nút Trang sau
+B. Còn trang sau khi số phần tử trả về bằng pageSize
+C. Gọi API đếm tổng số món
+D. Khi mảng rỗng
+ANSWER: B
+
+Velocity của nhóm trong một sprint được tính như thế nào?
+A. Tổng story point thực sự hoàn thành (đạt Definition of Done) trong sprint
+B. Tổng story point đã cam kết đầu sprint
+C. Số giờ làm việc của cả nhóm
+D. Số Pull Request đã mở
+ANSWER: A
+
+Khi phân tích một user story quản trị như US-A01 (quản lý danh mục), cần lần theo những tầng nào?
+A. Chỉ giao diện và màu sắc
+B. Chỉ bảng dữ liệu
+C. Dữ liệu, stored procedure, API, trang web
+D. Chỉ API và Swagger
+ANSWER: C
+
+CSDL của nhóm cần thay đổi cấu trúc (thêm cột IsLocked). Cách làm đúng là gì?
+A. Viết file script mới có kiểm tra trước khi đổi, không sửa file đã chạy
+B. Sửa trực tiếp file 01-tables.sql
+C. Xóa CSDL rồi chạy lại từ đầu trên server thật
+D. Thêm cột bằng giao diện SSMS, không cần script
+ANSWER: A
+
+Vì sao script quản trị của web được đánh số từ 20 (ví dụ 20-admin.sql)?
+A. Vì SQL Server yêu cầu số lớn hơn 20
+B. Để không trùng với các script 01–09 theo giáo trình di động mà nhóm đã và sẽ thêm
+C. Vì script số nhỏ chạy chậm hơn
+D. Vì Next.js chỉ đọc script từ số 20
+ANSWER: B
+
+IF COL_LENGTH('dbo.Users', 'IsLocked') IS NULL dùng để làm gì?
+A. Xóa cột IsLocked
+B. Đếm số tài khoản bị khóa
+C. Đổi kiểu dữ liệu của cột
+D. Chỉ thêm cột khi chưa có, để script chạy lại nhiều lần không lỗi
+ANSWER: D
+
+Quy tắc "không xóa danh mục còn món" nên được đặt chắc chắn ở đâu?
+A. Trong stored procedure (THROW 50409), để mọi nơi gọi vào đều bị kiểm tra
+B. Chỉ ẩn nút Xóa trên web
+C. Chỉ trong ứng dụng di động
+D. Trong file README
+ANSWER: A
+
+Mã lỗi 50404 phát ra từ stored procedure được DatabaseService chuyển thành mã HTTP nào?
+A. 400
+B. 409
+C. 404
+D. 500
+ANSWER: C
+
+Theo RolesGuard của giáo trình di động, vì sao tài khoản admin có thể nhận 403 ở route chỉ ghi @Roles(['staff'])?
+A. Vì admin chưa đăng nhập
+B. Vì guard so khớp đúng tên vai trò, admin không tự có quyền của staff
+C. Vì token admin không có trường role
+D. Vì Swagger chặn admin
+ANSWER: B
+
+Khi khóa tài khoản, mã người quản lý thực hiện (@ActorId) nên lấy từ đâu?
+A. Từ body do web gửi lên
+B. Từ tham số trên URL
+C. Từ localStorage
+D. Từ token đã xác thực (req.user.sub)
+ANSWER: D
+
+Trước khi đổi API_URL của web sang backend nhóm, việc nên làm là gì?
+A. So khớp hợp đồng API (đường dẫn, tham số, tên trường, mã lỗi) giữa API mẫu và backend nhóm
+B. Xóa toàn bộ test case cũ
+C. Viết lại toàn bộ trang web
+D. Tắt kiểm tra quyền để dễ thử
+ANSWER: A
+
+Kiểm thử hồi quy sau khi chuyển sang backend nhóm có nghĩa là gì?
+A. Chỉ thử các trang mới của Sprint 3
+B. Chạy lại các test case Sprint 1–2 để chắc chắn chức năng cũ vẫn đạt
+C. Kiểm tra tốc độ mạng
+D. So sánh giao diện với Figma
+ANSWER: B
+
+Vì sao các trang quản trị nên dùng chung một mẫu CRUD (danh sách, tạo, sửa, form dùng chung)?
+A. Vì Next.js bắt buộc
+B. Người dùng học một lần dùng được mọi trang, nhóm viết một lần nhân bản được
+C. Để trang tải chậm hơn
+D. Để không cần kiểm thử
+ANSWER: B
+
+Theo BR-16, món đã có trong đơn hàng được xử lý thế nào khi không bán nữa?
+A. Xóa hẳn khỏi CSDL
+B. Đổi tên món
+C. Chuyển sang ngừng bán, không xóa hẳn
+D. Xóa luôn các đơn có món đó
+ANSWER: C
+
+Khi gửi FormData chứa ảnh tới API bằng fetch, cần lưu ý gì về header Content-Type?
+A. Không tự đặt, để fetch tự sinh multipart/form-data kèm boundary
+B. Đặt application/json
+C. Đặt text/plain
+D. Đặt image/jpeg
+ANSWER: A
+
+Tải ảnh 2 MB qua Server Action báo lỗi vượt giới hạn. Nguyên nhân hay gặp là gì?
+A. Recharts chưa cài
+B. Thiếu import React
+C. Ảnh phải là PNG
+D. Giới hạn mặc định của Server Action là 1 MB, cần tăng serverActions.bodySizeLimit
+ANSWER: D
+
+Vì sao không nên tin phần mở rộng tên file (.jpg) khi kiểm tra ảnh tải lên?
+A. Vì tên file luôn viết hoa
+B. Vì người dùng có thể đổi tên một file PDF thành .jpg
+C. Vì trình duyệt xóa phần mở rộng
+D. Vì API không đọc được tên file
+ANSWER: B
+
+Vì sao component biểu đồ Recharts phải là Client Component?
+A. Vì Recharts vẽ bằng JavaScript trong trình duyệt
+B. Vì Recharts gọi CSDL trực tiếp
+C. Vì Server Component không hiển thị được số
+D. Vì Recharts cần cookie
+ANSWER: A
+
+Câu hỏi "doanh thu thay đổi thế nào theo từng ngày" phù hợp nhất với loại biểu đồ nào?
+A. Biểu đồ tròn nhiều màu
+B. Bảng không có số
+C. Biểu đồ cột hoặc đường theo trục thời gian
+D. Biểu đồ radar
+ANSWER: C
+
+Vì sao file CSV xuất cho Excel cần thêm ký tự BOM (﻿) ở đầu?
+A. Để file nhỏ hơn
+B. Để Excel nhận đúng mã hóa UTF-8 và hiển thị đúng tiếng Việt
+C. Để file không mở được trên điện thoại
+D. Để mã hóa mật khẩu
+ANSWER: B
+
+Route Handler xuất CSV nằm dưới /admin đã được proxy.ts bảo vệ. Có cần gọi requireRole trong Route Handler không?
+A. Không, proxy là đủ
+B. Chỉ cần khi chạy production
+C. Chỉ cần khi file lớn
+D. Có, theo nguyên tắc kiểm tra quyền nhiều lớp
+ANSWER: D
+
+Test case nào kiểm tra đúng tiêu chí "số liệu báo cáo khớp với truy vấn trực tiếp trên CSDL" của US-A05?
+A. So doanh thu một ngày trên web với SELECT SUM trên CSDL, bỏ đơn cancelled
+B. Mở trang báo cáo xem có biểu đồ không
+C. Đổi màu biểu đồ
+D. Tải lại trang báo cáo ba lần
+ANSWER: A
+
+Trong Next.js, kết nối Socket.IO nên được tạo ở đâu?
+A. Trong Server Component
+B. Trong Client Component, bên trong useEffect, và đóng ở hàm dọn dẹp
+C. Trong proxy.ts
+D. Trong next.config.ts
+ANSWER: B
+
+Theo quy tắc của học phần, socket được dùng để làm gì?
+A. Chỉ để báo tin; mọi thao tác ghi vẫn qua REST API và stored procedure
+B. Thay hoàn toàn cho REST API
+C. Gửi mật khẩu người dùng
+D. Truy vấn CSDL trực tiếp từ trình duyệt
+ANSWER: A
+
+Access token nằm trong cookie httpOnly. Client Component lấy token để kết nối socket bằng cách nào?
+A. Đọc document.cookie
+B. Đọc localStorage
+C. Gọi Route Handler cùng tên miền (/api/socket-token) trả token sau khi kiểm tra phiên
+D. Ghi token cố định trong mã nguồn
+ANSWER: C
+
+Vì sao tùy chọn auth của socket.io-client nên viết dạng hàm?
+A. Vì dạng hàm chạy nhanh hơn
+B. Vì server chỉ nhận hàm
+C. Để mã ngắn hơn
+D. Vì hàm được gọi lại ở mỗi lần kết nối lại, nên luôn có token mới
+ANSWER: D
+
+Khi server từ chối kết nối vì token hết hạn (connect_error), client Socket.IO xử lý thế nào?
+A. Không tự kết nối lại; cần xin token mới rồi gọi socket.connect()
+B. Tự kết nối lại ngay với token cũ
+C. Tự đăng xuất người dùng
+D. Chuyển sang dùng REST
+ANSWER: A
+
+Vì sao màn hình quầy gọi router.refresh() khi sự kiện connect xảy ra?
+A. Để đổi giao diện sang chế độ tối
+B. Để lấy lại danh sách đơn, bù các đơn đã lỡ trong lúc mất kết nối
+C. Để xóa cache trình duyệt
+D. Để đăng nhập lại
+ANSWER: B
+
+Sự kiện order:updated gửi vào room staff giúp đạt điều gì?
+A. Khách nhận thông báo đơn sẵn sàng
+B. Tăng tốc độ đặt món
+C. Nhiều nhân viên luôn thấy cùng một trạng thái đơn khi một người vừa thay đổi
+D. Xóa đơn đã hoàn tất
+ANSWER: C
+
+Vì sao màn hình quầy cần nút "Bật âm báo"?
+A. Vì trình duyệt chặn phát âm thanh khi người dùng chưa tương tác với trang
+B. Vì âm thanh làm chậm socket
+C. Vì Web Audio chỉ chạy trên điện thoại
+D. Vì âm báo tốn dung lượng
+ANSWER: A
+
+Sơ đồ tuần tự trong báo cáo Checkpoint 3 cần thể hiện điều gì?
+A. Màu sắc của từng trang
+B. Danh sách thành viên nhóm
+C. Cấu trúc thư mục dự án
+D. Ai gọi ai, theo thứ tự nào, qua kênh REST hay socket
+ANSWER: D
+
+Test case nào kiểm tra yêu cầu US-SYS01 (từ chối kết nối socket không có token hợp lệ)?
+A. Đặt món khi có mạng
+B. Kết nối socket không có token hoặc token bị sửa, mong đợi connect_error và không vào room nào
+C. Mở hai cửa sổ quầy cùng lúc
+D. Bật âm báo
+ANSWER: B
+
+Kiểm tra "thêm cùng một món hai lần thì giỏ có một dòng, số lượng 2" phù hợp nhất với mức kiểm thử nào?
+A. Kiểm thử đầu-cuối bằng Playwright
+B. Kiểm thử đơn vị bằng Vitest
+C. Kiểm thử thủ công trên điện thoại
+D. Đo Lighthouse
+ANSWER: B
+
+Vì sao trang Server Component async được kiểm thử bằng Playwright thay vì Vitest?
+A. Vì Vitest chưa hỗ trợ Server Component async
+B. Vì Playwright chạy nhanh hơn Vitest
+C. Vì Server Component không có giao diện
+D. Vì Vitest không chạy được TypeScript
+ANSWER: A
+
+Ma trận truy vết trong báo cáo kiểm thử nối những gì với nhau?
+A. Thành viên với số commit
+B. Trang web với màu sắc
+C. Tiêu chí nghiệm thu trong SRS, test kiểm tra nó và kết quả lần chạy cuối
+D. Endpoint API với cổng mạng
+ANSWER: C
+
+Khi test một Server Action có import 'server-only' bằng Vitest, cần làm gì?
+A. Xóa import 'server-only' khỏi mã nguồn
+B. Chạy test trên server thật
+C. Đổi Server Action thành Client Component
+D. Thêm vi.mock('server-only', () => ({})) ở đầu file test
+ANSWER: D
+
+Vì sao Testing Library khuyến khích tìm phần tử bằng getByRole và tên hiển thị?
+A. Test tìm như người dùng thấy, đồng thời kiểm luôn accessibility
+B. Vì nhanh hơn tìm bằng class CSS
+C. Vì class CSS bị cấm trong Next.js
+D. Vì getByRole không cần render
+ANSWER: A
+
+Trong kịch bản Playwright "khách đặt món, nhân viên xử lý", vì sao dùng hai browser context?
+A. Để chạy nhanh gấp đôi
+B. Để hai vai trò có phiên đăng nhập và cookie độc lập
+C. Vì Playwright chỉ cho một trang mỗi context
+D. Để tránh dùng backend
+ANSWER: B
+
+Đột biến thủ công (mutation) dùng để làm gì?
+A. Tăng tốc độ chạy test
+B. Sinh dữ liệu thử ngẫu nhiên
+C. Cố ý làm hỏng mã để kiểm tra test có phát hiện được không
+D. Đổi tên các file test
+ANSWER: C
+
+Đổi .min(8) thành .min(7) trong schema mật khẩu mà mọi test vẫn đạt. Điều đó cho thấy gì?
+A. Mã nguồn đúng
+B. Vitest bị lỗi
+C. Không cần test mật khẩu
+D. Chưa có test nào kiểm tra biên 7/8 ký tự, cần viết thêm
+ANSWER: D
+
+Chỉ số CLS trong Core Web Vitals đo điều gì?
+A. Độ "nhảy" bố cục khi trang tải
+B. Thời gian hiện nội dung lớn nhất
+C. Độ trễ khi bấm nút
+D. Dung lượng JavaScript
+ANSWER: A
+
+Vì sao phải đo Lighthouse trên bản production (npm run build && npm start) thay vì npm run dev?
+A. Vì Lighthouse không mở được localhost
+B. Vì bản dev chậm hơn nhiều và không phản ánh hiệu năng thực tế
+C. Vì bản dev không có CSS
+D. Vì bản production không cần đăng nhập
+ANSWER: B
+
+Chế độ output: 'standalone' của Next.js mang lại điều gì khi triển khai?
+A. Gom mã chạy và gói cần thiết vào .next/standalone, chạy bằng node server.js
+B. Biến web thành ứng dụng di động
+C. Tắt toàn bộ Server Components
+D. Không cần backend nữa
+ANSWER: A
+
+Sau khi build standalone, trang hiện nhưng mất CSS và ảnh. Nguyên nhân thường gặp là gì?
+A. Thiếu cookie
+B. Sai cổng API
+C. Chưa chép thư mục public và .next/static vào thư mục standalone
+D. Thiếu tài khoản admin
+ANSWER: C
+
+Vì sao đổi NEXT_PUBLIC_SOCKET_URL trên server phải build lại web?
+A. Vì server không đọc được biến môi trường
+B. Vì biến NEXT_PUBLIC_* được ghi cứng vào JavaScript lúc build
+C. Vì Socket.IO yêu cầu
+D. Vì Windows Server không hỗ trợ biến môi trường
+ANSWER: B
+
+Server chưa có HTTPS. Đăng nhập báo thành công nhưng bị đẩy về /login ngay. Vì sao?
+A. Mật khẩu sai
+B. API chưa chạy
+C. Thiếu proxy.ts
+D. Trình duyệt không lưu cookie có cờ Secure qua HTTP thường
+ANSWER: D
+
+Theo học phần, các thao tác như đăng ký dịch vụ nền, mở cổng firewall, cấu hình HTTPS trên server Khoa được thực hiện thế nào?
+A. Theo hướng dẫn hoặc với sự hỗ trợ của bộ phận hỗ trợ triển khai
+B. Sinh viên tự cài bất kỳ công cụ nào
+C. Không cần làm
+D. Nhờ nhóm khác làm hộ
+ANSWER: A
+
+Server Action báo "Invalid Server Actions request" khi chạy sau reverse proxy có tên miền khác Host. Cách xử lý phù hợp là gì?
+A. Tắt toàn bộ Server Actions
+B. Đổi sang Pages Router
+C. Thêm tên miền vào serverActions.allowedOrigins hoặc chuyển tiếp đúng header Host
+D. Xóa cookie
+ANSWER: C
+
+Endpoint /api/health trong bài dùng để làm gì?
+A. Đăng nhập nhanh
+B. Kiểm tra nhanh web đang chạy và kết nối được API sau khi triển khai
+C. Xóa cache
+D. Hiển thị doanh thu
+ANSWER: B
+
+Trong báo cáo đồ án, cách đánh số hình đúng quy định là gì?
+A. Gõ tay "Hình 1" in đậm dưới mỗi ảnh
+B. Không cần đánh số nếu ảnh rõ
+C. Đặt tên file ảnh theo số thứ tự
+D. Dùng Insert Caption để đánh số tự động và Cross-reference khi nhắc tới hình
+ANSWER: D
+
+Biểu đồ burndown của bản phát hành thể hiện điều gì?
+A. Story point còn lại qua từng sprint, so giữa kế hoạch và thực tế
+B. Số dòng mã mỗi thành viên viết
+C. Thời gian tải trang
+D. Số lỗi bảo mật
+ANSWER: A
+
+Chương "Kế hoạch và tiến độ" của báo cáo nên lấy số liệu từ đâu?
+A. Từ trí nhớ của trưởng nhóm
+B. Từ board công việc, báo cáo sprint và lịch sử Pull Request
+C. Từ báo cáo của nhóm khác
+D. Từ số liệu Lighthouse
+ANSWER: B
+
+Trong kiến trúc LHU Food của học phần, Next.js lấy dữ liệu bằng cách nào?
+A. Kết nối SQL Server trực tiếp bằng mssql
+B. Gọi backend API; backend chỉ truy cập dữ liệu qua stored procedure
+C. Đọc file JSON trong thư mục public
+D. Gọi stored procedure từ trình duyệt
+ANSWER: B
+
+Trang thực đơn nên là loại component nào?
+A. Server Component lấy dữ liệu trên server, chỉ tách phần tương tác nhỏ thành Client Component
+B. Client Component toàn bộ trang
+C. Route Handler
+D. Server Action
+ANSWER: A
+
+Token đăng nhập trên web LHU Food được lưu ở đâu?
+A. localStorage
+B. sessionStorage
+C. Cookie httpOnly, chỉ server đọc được
+D. Trong URL
+ANSWER: C
+
+Ba lớp kiểm tra quyền của web gồm những gì?
+A. HTML, CSS, JavaScript
+B. Header, footer, sidebar
+C. Git, GitHub, board
+D. proxy.ts (chuyển hướng sớm), Data Access Layer (trang và Server Action), API (dữ liệu)
+ANSWER: D
+
+Sau khi Server Action đổi dữ liệu, gọi revalidatePath để làm gì?
+A. Để trang được render lại với dữ liệu mới
+B. Để đăng xuất người dùng
+C. Để xóa đơn hàng
+D. Để gửi email
+ANSWER: A
+
+Khi nhận sự kiện order:new, màn hình quầy làm gì?
+A. Chèn thẳng dữ liệu sự kiện vào CSDL
+B. Phát âm báo và lấy lại danh sách đơn từ API
+C. Tự chuyển đơn sang completed
+D. Ngắt kết nối socket
+ANSWER: B
+
+Theo rubric của học phần, minh chứng chính cho điểm cuối kỳ là gì?
+A. Số dòng mã
+B. Số commit
+C. Báo cáo đồ án, đối chiếu với 27 tiêu chí theo 4 CLO
+D. Điểm Lighthouse
+ANSWER: C
+
+Trong phần bảo vệ kỹ thuật, ai trả lời câu hỏi về một đoạn mã?
+A. Trưởng nhóm
+B. Thành viên giỏi nhất nhóm
+C. Giảng viên tự giải thích
+D. Thành viên đã commit đoạn mã đó
+ANSWER: D
+
+Một CLO được coi là đạt khi nào?
+A. Khi điểm CLO đạt từ 50% trọng số trở lên
+B. Khi sản phẩm chạy được, không cần minh chứng
+C. Khi nhóm nộp đúng hạn
+D. Khi có ít nhất một commit
+ANSWER: A
+
+Phương án dự phòng phù hợp nhất khi server Khoa gặp sự cố ngay trước giờ demo là gì?
+A. Hủy phần trình bày
+B. Video quay sẵn toàn bộ kịch bản trên bản đã triển khai, kèm ảnh kết quả kiểm tra sau triển khai
+C. Demo trên máy cá nhân nhưng nói là server Khoa
+D. Chỉ trình bày slide lý thuyết
+ANSWER: B
