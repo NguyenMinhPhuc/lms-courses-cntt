@@ -1,0 +1,190 @@
+{
+  "course": {
+    "code": "112317",
+    "name": "Cơ sở Văn hóa Việt Nam",
+    "assessment": "Đánh giá theo 3 thành phần: A1 Quá trình 30%, A2 Giữa kỳ (Portfolio) 30%, A3 Cuối kỳ (báo cáo dự án video) 40%",
+    "scale": 10,
+    "studentThreshold": 0.5,
+    "classThreshold": 0.75,
+    "note": "Điểm tiêu chí = hệ số mức (0–1) × trọng số. Mỗi thành phần chấm thang 10. Sinh viên đạt một CLO khi được ít nhất 50% điểm tối đa của CLO đó (tính trên cả 3 thành phần theo tỷ trọng). CLO đạt ở cấp lớp khi ít nhất 75% số sinh viên đạt.",
+    "aiNote": "Mọi sản phẩm nộp đều kèm các prompt AI đã dùng."
+  },
+  "clos": [
+    { "id": "CLO1", "name": "Phân tích được các quy luật vận động, hệ thống các thành tố văn hóa và đặc điểm các vùng văn hóa Việt Nam trong mối tương quan với bối cảnh truyền thông hiện đại", "plo": "Kiến thức (4) / PI 2.1" },
+    { "id": "CLO2", "name": "Thiết lập được các ý tưởng sáng tạo và giải pháp kỹ thuật dựa trên việc khai thác chất liệu văn hóa truyền thống để sản xuất sản phẩm truyền thông đa phương tiện", "plo": "Kỹ năng (4) / PI 4.2" },
+    { "id": "CLO3", "name": "Gìn giữ bản sắc văn hóa dân tộc, thể hiện trách nhiệm đạo đức nghề nghiệp và tôn trọng sự khác biệt văn hóa trong môi trường số", "plo": "Thái độ (5) / PI 5.1" }
+  ],
+  "levels": [
+    { "code": "CD", "name": "Chưa đạt", "min": 0, "max": 0.4 },
+    { "code": "D", "name": "Đạt yêu cầu", "min": 0.5, "max": 0.6 },
+    { "code": "T", "name": "Tốt", "min": 0.7, "max": 0.8 },
+    { "code": "XS", "name": "Xuất sắc", "min": 0.9, "max": 1 }
+  ],
+  "components": [
+    {
+      "id": "A1", "name": "Quá trình", "weight": 0.3,
+      "when": "Cả 6 buổi; chốt sau buổi 4 (kịch bản) và buổi 5 (thực địa)",
+      "criteria": [
+        {
+          "id": "A1.1", "label": "1", "name": "Chuyên cần, đúng giờ (cả buổi thực địa)", "clo": { "CLO3": 1.5 }, "weight": 1.5, "scope": "individual",
+          "levels": { "CD": "Vắng >20% hoặc vắng buổi thực địa không phép", "D": "Vắng ≤20%; trễ nhiều lần", "T": "Đi đủ; trễ không quá 1 lần", "XS": "Đi đủ, đúng giờ toàn bộ" },
+          "guide": "Lấy từ điểm danh 6 buổi; buổi 5 (thực địa) điểm danh tại địa điểm quay.",
+          "evidence": "Danh sách điểm danh trên LMS/giấy; điểm danh tại thực địa."
+        },
+        {
+          "id": "A1.2", "label": "2", "name": "Tinh thần tham gia (phát biểu, chấm chéo, góp ý, phản biện)", "clo": { "CLO3": 2 }, "weight": 2, "scope": "individual",
+          "levels": { "CD": "Không tham gia", "D": "Tham gia khi được gọi", "T": "Chủ động, chấm chéo nghiêm túc", "XS": "Đóng góp ý có chất lượng" },
+          "guide": "Ghi nhận phát biểu ở phần thảo luận, phiếu chấm chéo buổi 2–3 và góp ý ở workshop kịch bản buổi 4.",
+          "evidence": "Phiếu chấm chéo; bài đăng diễn đàn; ghi chú của giảng viên."
+        },
+        {
+          "id": "A1.3", "label": "3", "name": "Ứng xử văn hóa trong lớp, nhóm và tại thực địa", "clo": { "CLO3": 2 }, "weight": 2, "scope": "individual",
+          "levels": { "CD": "Thiếu tôn trọng; vi phạm quy định nơi tham quan", "D": "Đúng mực nhưng hợp tác yếu", "T": "Tôn trọng, hợp tác tốt", "XS": "Ứng xử mẫu mực, hỗ trợ bạn bè" },
+          "guide": "Quan sát trên lớp và tại thực địa; tham khảo đánh giá chéo trong nhóm khi có mâu thuẫn.",
+          "evidence": "Ghi chú của giảng viên; phản ánh của nơi quay (nếu có)."
+        },
+        {
+          "id": "A1.4", "label": "4", "name": "Đúng hạn và trung thực", "clo": { "CLO3": 1.5 }, "weight": 1.5, "scope": "individual",
+          "levels": { "CD": "Trễ hạn nhiều lần hoặc sao chép", "D": "Trễ 1–2 lần", "T": "Đúng hạn, có ghi nguồn", "XS": "Luôn đúng hạn, ghi nguồn chuẩn" },
+          "guide": "Đối chiếu thời gian nộp trên LMS; kiểm tra ghi nguồn tư liệu, ảnh và prompt AI đã dùng.",
+          "evidence": "Lịch sử nộp bài trên LMS; danh mục nguồn và prompt AI trong sản phẩm."
+        },
+        {
+          "id": "A1.5", "label": "5", "name": "Bài tập nhỏ trên lớp/LMS", "clo": { "CLO1": 1 }, "weight": 1, "scope": "individual",
+          "levels": { "CD": "Đúng <50%", "D": "Đúng 50–64%", "T": "Đúng 65–84%", "XS": "Đúng ≥85%, vận dụng tốt" },
+          "guide": "Trung bình tỷ lệ đúng của các quiz bài học và trắc nghiệm ôn tập buổi 3; hệ số lấy theo tỷ lệ đúng.",
+          "evidence": "Kết quả quiz trên LMS; kết quả Kahoot buổi 3."
+        },
+        {
+          "id": "A1.6", "label": "6", "name": "Kịch bản quay (bản đã sửa theo góp ý buổi 4)", "clo": { "CLO2": 1, "CLO3": 1 }, "weight": 2, "scope": "group",
+          "levels": { "CD": "Không nộp; sơ sài; không qua checklist văn hóa", "D": "Đủ cấu trúc nhưng còn chung chung; shot list thiếu", "T": "Rõ hook – câu chuyện – giá trị; shot list khả thi; đạt checklist", "XS": "Sáng tạo, chi tiết đến từng cảnh; sửa tốt theo góp ý" },
+          "guide": "Chấm bản kịch bản nộp sau buổi 4, so với góp ý ở workshop. Trọng số chia đều CLO2 (1) và CLO3 (1).",
+          "evidence": "Google Doc kịch bản + danh sách cảnh quay; Checklist văn hóa đã đối chiếu."
+        }
+      ]
+    },
+    {
+      "id": "A2", "name": "Giữa kỳ (Portfolio)", "weight": 0.3,
+      "when": "Buổi 2 (nhóm 1–6) và buổi 3 (nhóm 7–12)",
+      "criteria": [
+        {
+          "id": "A2.1", "label": "1", "name": "Phân tích sản phẩm văn hóa theo thành tố/vùng văn hóa", "clo": { "CLO1": 2 }, "weight": 2, "scope": "group",
+          "levels": { "CD": "Xếp sai thành tố/vùng; chỉ mô tả bề ngoài", "D": "Xếp đúng nhưng giải thích giá trị còn chung chung", "T": "Phân tích đúng giá trị, gắn với đặc trưng thành tố/vùng", "XS": "Phân tích sâu, liên hệ được quy luật (tiếp biến, loại hình gốc nông nghiệp)" },
+          "guide": "Kiểm tra sản phẩm được xếp đúng thành tố (buổi 2) hoặc vùng (buổi 3) và lý giải được giá trị.",
+          "evidence": "Slide/ePortfolio của nhóm."
+        },
+        {
+          "id": "A2.2", "label": "2", "name": "Tư liệu và trích dẫn nguồn", "clo": { "CLO1": 1 }, "weight": 1, "scope": "group",
+          "levels": { "CD": "Không có nguồn hoặc thông tin sai", "D": "Có nguồn nhưng thiếu nguồn uy tín", "T": "Dẫn giáo trình + nguồn uy tín, thông tin chính xác", "XS": "Nhiều nguồn uy tín, đối chiếu và ghi nguồn chuẩn" },
+          "guide": "Xem slide nguồn/tài liệu tham khảo; kiểm tra ngẫu nhiên 1–2 thông tin.",
+          "evidence": "Slide tài liệu tham khảo; chú thích nguồn ảnh."
+        },
+        {
+          "id": "A2.3", "label": "3", "name": "Ý tưởng chuyển hóa chất liệu thành sản phẩm truyền thông", "clo": { "CLO2": 1.5 }, "weight": 1.5, "scope": "group",
+          "levels": { "CD": "Không có đề xuất ứng dụng", "D": "Có đề xuất nhưng chung chung", "T": "Đề xuất cụ thể (định dạng, kênh, cách kể)", "XS": "Đề xuất sáng tạo, khả thi, có giá trị khác biệt" },
+          "guide": "Nhóm phải có ít nhất một slide đề xuất: định dạng, kênh, cách kể.",
+          "evidence": "Slide đề xuất ứng dụng."
+        },
+        {
+          "id": "A2.4", "label": "4", "name": "Thiết kế slide/ePortfolio", "clo": { "CLO2": 1 }, "weight": 1, "scope": "group",
+          "levels": { "CD": "Rối, nhiều chữ, ảnh kém", "D": "Đủ nội dung, trình bày đơn điệu", "T": "Bố cục rõ, hình ảnh tốt, chữ đủ lớn", "XS": "Có tính thẩm mỹ cao, bản sắc thị giác phù hợp chủ đề" },
+          "guide": "Chỉ chấm hình thức thị giác; nội dung đã chấm ở 1–3.",
+          "evidence": "File slide/link ePortfolio."
+        },
+        {
+          "id": "A2.5", "label": "5", "name": "Lý do lựa chọn và thái độ với di sản", "clo": { "CLO3": 1.5 }, "weight": 1.5, "scope": "group",
+          "levels": { "CD": "Có chi tiết xuyên tạc hoặc thiếu tôn trọng; dùng ảnh không rõ nguồn", "D": "Thái độ đúng mực, lý do lựa chọn mờ nhạt", "T": "Lý do rõ, thể hiện sự trân trọng; ghi nguồn ảnh", "XS": "Truyền được niềm tự hào; tôn trọng khác biệt vùng miền" },
+          "guide": "Chú ý cách gọi tên, hình ảnh minh họa và ảnh AI: có làm sai lệch hay rập khuôn không.",
+          "evidence": "Slide/ePortfolio; prompt AI đã dùng."
+        },
+        {
+          "id": "A2.6", "label": "6", "name": "Trình bày – Cấu trúc và thời gian", "clo": {}, "weight": 1, "scope": "group",
+          "levels": { "CD": "Lộn xộn; vượt quá 7 phút", "D": "Có cấu trúc nhưng chưa mạch lạc; lệch ±2 phút", "T": "Mạch lạc; đúng 5 phút ±1", "XS": "Mở – thân – kết cuốn hút; đúng thời gian" },
+          "guide": "Bấm giờ 5 phút cho mỗi nhóm.",
+          "evidence": "Ghi chú bấm giờ."
+        },
+        {
+          "id": "A2.7", "label": "7", "name": "Trình bày – Kỹ năng thuyết trình và phối hợp nhóm", "clo": {}, "weight": 1, "scope": "group",
+          "levels": { "CD": "Đọc slide; một người nói thay cả nhóm", "D": "Nói rõ nhưng thiếu tương tác", "T": "Tự tin, giao tiếp mắt; 3 thành viên cùng tham gia", "XS": "Truyền cảm, tương tác tốt với lớp; chuyển giao giữa thành viên mượt" },
+          "guide": "Thành viên không tham gia trình bày: chấm riêng, hạ mức.",
+          "evidence": "Quan sát trực tiếp; phiếu chấm chéo."
+        },
+        {
+          "id": "A2.8", "label": "8", "name": "Trình bày – Trả lời câu hỏi", "clo": {}, "weight": 1, "scope": "group",
+          "levels": { "CD": "Không trả lời được hoặc trả lời sai", "D": "Trả lời được một phần", "T": "Trả lời đúng, rõ ràng", "XS": "Trả lời sắc, có dẫn chứng, mở rộng vấn đề" },
+          "guide": "Hỏi 2–3 câu; có thể chỉ định thành viên trả lời và chấm riêng.",
+          "evidence": "Ghi chú câu hỏi và câu trả lời."
+        }
+      ]
+    },
+    {
+      "id": "A3", "name": "Cuối kỳ (Dự án video)", "weight": 0.4,
+      "when": "Buổi 6: chiếu video, trình bày 5 phút và vấn đáp 3 phút mỗi nhóm",
+      "criteria": [
+        {
+          "id": "A3.1.1", "label": "1.1", "name": "Cơ sở văn hóa trong báo cáo (giá trị, thành tố, vùng văn hóa của sản phẩm gốm/hiện vật)", "clo": { "CLO1": 1.5 }, "weight": 1.5, "scope": "group",
+          "levels": { "CD": "Không phân tích hoặc phân tích sai", "D": "Mô tả đúng nhưng thiếu phân tích", "T": "Phân tích đúng, dẫn giáo trình", "XS": "Phân tích sâu, liên hệ quy luật và bối cảnh truyền thông số" },
+          "guide": "Đọc mục Cơ sở văn hóa của báo cáo.",
+          "evidence": "Báo cáo (pdf), mục Cơ sở văn hóa và tài liệu tham khảo."
+        },
+        {
+          "id": "A3.1.2", "label": "1.2", "name": "Độ chính xác thông tin trong video", "clo": { "CLO1": 1 }, "weight": 1, "scope": "group",
+          "levels": { "CD": "Có lỗi kiến thức nghiêm trọng", "D": "Có lỗi nhỏ", "T": "Chính xác; có chú thích khi cần", "XS": "Chính xác tuyệt đối; nguồn ghi rõ trong video/caption" },
+          "guide": "Xem video, ghi lại mọi thông tin dữ kiện (niên đại, tên gọi, ý nghĩa) và đối chiếu.",
+          "evidence": "Video (mp4); caption bài đăng."
+        },
+        {
+          "id": "A3.1.3", "label": "1.3", "name": "Vấn đáp kiến thức (cá nhân)", "clo": { "CLO1": 0.5 }, "weight": 0.5, "scope": "individual",
+          "levels": { "CD": "Không trả lời được", "D": "Trả lời đúng một phần", "T": "Trả lời đúng, rõ", "XS": "Trả lời sâu, liên hệ được kiến thức cả môn" },
+          "guide": "Mỗi thành viên ít nhất 1 câu hỏi kiến thức trong 3 phút vấn đáp.",
+          "evidence": "Ghi chú vấn đáp."
+        },
+        {
+          "id": "A3.2.1", "label": "2.1", "name": "Ý tưởng và câu chuyện (hook, chuyển hóa chất liệu thành câu chuyện)", "clo": { "CLO2": 1.5 }, "weight": 1.5, "scope": "group",
+          "levels": { "CD": "Không có ý tưởng; chỉ quay lướt", "D": "Có câu chuyện nhưng nhạt, hook yếu", "T": "Câu chuyện rõ, hook tốt, chất liệu văn hóa là trung tâm", "XS": "Sáng tạo, cảm xúc, khác biệt, có “phần hồn”" },
+          "guide": "Bị giới hạn tối đa 0,6 nếu vi phạm nghiêm trọng tiêu chí 3.1.",
+          "evidence": "Video; kịch bản đã duyệt."
+        },
+        {
+          "id": "A3.2.2", "label": "2.2", "name": "Kỹ thuật quay và dựng (hình, âm thanh, nhịp, phụ đề)", "clo": { "CLO2": 1.5 }, "weight": 1.5, "scope": "group",
+          "levels": { "CD": "Hình rung, mờ; âm thanh hỏng", "D": "Xem được nhưng dựng thô", "T": "Hình ảnh đẹp, nhịp tốt, có phụ đề", "XS": "Chất lượng gần chuyên nghiệp; màu, âm thanh, chuyển cảnh tinh tế" },
+          "guide": "Bị giới hạn tối đa 0,6 nếu vi phạm nghiêm trọng tiêu chí 3.1.",
+          "evidence": "Video (mp4) bản gốc."
+        },
+        {
+          "id": "A3.2.3", "label": "2.3", "name": "Đăng bài và phân tích kết quả (caption, hashtag, đọc chỉ số, đọc bình luận, rút kinh nghiệm)", "clo": { "CLO2": 1 }, "weight": 1, "scope": "group",
+          "levels": { "CD": "Không đăng hoặc không có số liệu", "D": "Có số liệu nhưng không phân tích", "T": "Phân tích số liệu và bình luận, rút được bài học", "XS": "Phân tích sắc, đề xuất cải tiến cụ thể cho lần sau" },
+          "guide": "Đối chiếu số liệu trong báo cáo với ảnh chụp trang thống kê của bài đăng.",
+          "evidence": "Link bài đăng; ảnh chụp chỉ số; mục Kết quả sau đăng của báo cáo."
+        },
+        {
+          "id": "A3.3.1", "label": "3.1", "name": "Tuân thủ Checklist văn hóa và đạo đức nghề (xin phép, bản quyền nhạc, tôn trọng di sản)", "clo": { "CLO3": 1.5 }, "weight": 1.5, "scope": "group",
+          "levels": { "CD": "Vi phạm checklist hoặc quyền hình ảnh, bản quyền", "D": "Đạt checklist nhưng thiếu minh chứng", "T": "Đạt đủ checklist, có minh chứng xin phép", "XS": "Đạt đủ, minh chứng đầy đủ, xử lý tốt tình huống phát sinh" },
+          "guide": "Kiểm tra Checklist văn hóa đã đánh dấu, giấy xin phép quay, nguồn nhạc. Vi phạm nghiêm trọng (xúc phạm di sản, quay khi không được phép) thì đánh dấu ô vi phạm để giới hạn 2.1 và 2.2.",
+          "evidence": "Checklist đã đánh dấu; giấy xin phép; nguồn/giấy phép nhạc."
+        },
+        {
+          "id": "A3.3.2", "label": "3.2", "name": "Thông điệp tôn vinh bản sắc; phản hồi bình luận văn minh", "clo": { "CLO3": 1 }, "weight": 1, "scope": "group",
+          "levels": { "CD": "Thông điệp lệch, phản cảm hoặc giật gân", "D": "Thông điệp đúng nhưng mờ", "T": "Thông điệp tích cực, rõ; phản hồi bình luận lịch sự", "XS": "Lan tỏa niềm tự hào; ứng xử mẫu mực với bình luận trái chiều" },
+          "guide": "Xem thông điệp kết video và các phản hồi bình luận của nhóm trên bài đăng.",
+          "evidence": "Video; ảnh chụp phần bình luận và phản hồi."
+        },
+        {
+          "id": "A3.3.3", "label": "3.3", "name": "Rút kinh nghiệm cá nhân 1 trang (vấn đề – giải pháp)", "clo": { "CLO3": 0.5 }, "weight": 0.5, "scope": "individual",
+          "levels": { "CD": "Không nộp hoặc sơ sài", "D": "Kể lại quá trình", "T": "Nêu được thay đổi nhận thức về văn hóa", "XS": "Nêu được cam kết cụ thể khi đăng bài từ nay" },
+          "guide": "Chấm riêng từng sinh viên.",
+          "evidence": "Google Doc phản tư cá nhân."
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "violation-3.1",
+      "component": "A3",
+      "label": "Vi phạm nghiêm trọng tiêu chí 3.1 (xúc phạm di sản, quay khi không được phép)",
+      "scope": "group",
+      "cap": { "criteria": ["A3.2.1", "A3.2.2"], "max": 0.6 }
+    }
+  ]
+}

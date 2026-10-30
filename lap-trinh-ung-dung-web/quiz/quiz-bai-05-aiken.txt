@@ -1,0 +1,69 @@
+Vì sao web LHU Food lưu token trong cookie httpOnly thay vì localStorage?
+A. Vì cookie lưu được nhiều dữ liệu hơn
+B. Vì JavaScript trong trang không đọc được cookie httpOnly, giảm rủi ro bị XSS lấy cắp token
+C. Vì localStorage không có trên trình duyệt hiện đại
+D. Vì cookie không bao giờ hết hạn
+ANSWER: B
+
+Thuộc tính SameSite=Lax của cookie giúp phòng chống rủi ro nào chủ yếu?
+A. SQL Injection
+B. Lộ biến môi trường
+C. CSRF (trang khác gửi request POST kèm cookie của người dùng)
+D. Tràn bộ nhớ
+ANSWER: C
+
+Từ Next.js 16, file middleware.ts được đổi tên thành gì?
+A. proxy.ts
+B. guard.ts
+C. router.ts
+D. edge.ts
+ANSWER: A
+
+Vì sao không được chỉ dựa vào proxy.ts (middleware) để phân quyền?
+A. Vì proxy chạy chậm hơn trang
+B. Vì proxy không đọc được cookie
+C. Vì proxy chỉ chạy khi build
+D. Vì proxy chỉ đọc token mà không xác minh chữ ký, và có thể bị bỏ qua nếu có lỗ hổng như CVE-2025-29927
+ANSWER: D
+
+Hàm requireRole trong lib/dal.ts xác định người dùng hiện tại bằng cách nào?
+A. Gọi GET /users/me của API kèm token, để backend xác minh token
+B. Đọc vai trò từ localStorage
+C. Đọc tham số role trên URL
+D. Giải mã JWT trên trình duyệt
+ANSWER: A
+
+Một khách hàng gõ thẳng /admin/products. Kết quả đúng theo ma trận phân quyền là gì?
+A. Trang mở nhưng ẩn nút Xóa
+B. Trang 403, không thấy dữ liệu quản trị
+C. Chuyển về trang chủ không báo gì
+D. Trang mở bình thường
+ANSWER: B
+
+Khi đăng nhập sai mật khẩu hoặc email không tồn tại, web nên hiển thị gì (BR-03)?
+A. "Email không tồn tại" hoặc "Sai mật khẩu" tùy trường hợp
+B. Mã lỗi 401 kèm stack trace
+C. Một thông báo chung "Email hoặc mật khẩu không đúng"
+D. Không hiển thị gì
+ANSWER: C
+
+Tham số /login?next=https://trang-gia.com có thể gây lỗ hổng gì nếu không kiểm tra?
+A. XSS lưu trữ
+B. Open redirect (chuyển người dùng sang trang giả sau khi đăng nhập)
+C. Tràn cookie
+D. Lộ mã nguồn
+ANSWER: B
+
+Biến môi trường NEXT_PUBLIC_API_KEY có đặc điểm gì?
+A. Chỉ đọc được ở server
+B. Được mã hóa tự động
+C. Bị xóa khi build production
+D. Được chép vào mã JavaScript gửi xuống trình duyệt, ai cũng xem được
+ANSWER: D
+
+Khi người dùng đăng xuất, web LHU Food cần làm gì để đáp ứng US-C13?
+A. Gọi POST /auth/logout để thu hồi refresh token, xóa cookie, xóa giỏ hàng, về trang đăng nhập
+B. Chỉ ẩn tên người dùng trên header
+C. Chỉ xóa access_token, giữ refresh_token để lần sau đăng nhập nhanh
+D. Tải lại trang
+ANSWER: A

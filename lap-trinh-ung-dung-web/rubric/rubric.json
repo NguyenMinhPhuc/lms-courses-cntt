@@ -1,0 +1,349 @@
+{
+  "course": {
+    "code": "111102",
+    "name": "Lập trình ứng dụng web",
+    "assessment": "Đánh giá cuối kỳ: báo cáo đồ án nhóm (Report) và Demo Day chung với học phần di động (buổi 12)",
+    "scale": 10,
+    "studentThreshold": 0.5,
+    "classThreshold": 0.75,
+    "note": "Sinh viên đạt một CLO khi được ít nhất 50% điểm tối đa của CLO đó. CLO đạt ở cấp lớp khi ít nhất 75% số sinh viên đạt. Minh chứng chính là báo cáo đồ án; Demo Day dùng để kiểm chứng sản phẩm và phần phụ trách của từng thành viên."
+  },
+  "levels": [
+    { "code": "A", "name": "Xuất sắc", "ratio": 1 },
+    { "code": "B", "name": "Tốt", "ratio": 0.75 },
+    { "code": "C", "name": "Đạt", "ratio": 0.5 },
+    { "code": "D", "name": "Chưa đạt", "ratio": 0.25 },
+    { "code": "0", "name": "Không có minh chứng", "ratio": 0 }
+  ],
+  "clos": [
+    {
+      "id": "CLO1",
+      "name": "Phân tích các thành phần chức năng của ứng dụng web phù hợp với mô hình đã phân tích",
+      "plo": "PLO2 / PI 2.4",
+      "max": 4,
+      "criteria": [
+        {
+          "id": "1.1", "name": "Phân tích yêu cầu và phạm vi web", "scope": "group", "max": 0.5,
+          "levels": {
+            "A": "Xác định đúng actor và toàn bộ user story web của đề tài (quản trị, quầy, khách), truy vết tới SRS, nêu rõ phạm vi làm/không làm và lý do.",
+            "B": "Đủ actor và user story chính, có truy vết SRS; phạm vi chưa nêu lý do.",
+            "C": "Liệt kê chức năng nhưng thiếu actor hoặc không truy vết tới SRS.",
+            "D": "Mô tả chung chung, không xác định được phạm vi web."
+          },
+          "guide": "Chỉ chấm phần phân tích yêu cầu (chương Phân tích của báo cáo); sơ đồ chức năng chấm ở 1.2.",
+          "evidence": "Chương Phân tích yêu cầu trong báo cáo; bảng user story đã chọn từ backlog."
+        },
+        {
+          "id": "1.2", "name": "Sơ đồ chức năng và sitemap", "scope": "group", "max": 0.5,
+          "levels": {
+            "A": "Sơ đồ phân rã chức năng web và sitemap đầy đủ theo vai trò, khớp với sản phẩm đã triển khai.",
+            "B": "Đủ chức năng chính và trang chính, khớp sản phẩm; thiếu vài chức năng phụ.",
+            "C": "Có sơ đồ nhưng thiếu một nhóm chức năng hoặc lệch so với sản phẩm.",
+            "D": "Sơ đồ sơ sài, không phản ánh ứng dụng."
+          },
+          "guide": "Đặt sitemap cạnh web đang chạy, đánh dấu trang có/không có.",
+          "evidence": "Sơ đồ chức năng, sitemap (file nguồn + ảnh) trong báo cáo."
+        },
+        {
+          "id": "1.3", "name": "Ánh xạ route – chức năng – vai trò – API", "scope": "group", "max": 0.5,
+          "levels": {
+            "A": "Bảng ánh xạ đầy đủ mọi route của App Router tới chức năng, vai trò được truy cập và endpoint API/stored procedure tương ứng; khớp mã nguồn.",
+            "B": "Bảng đủ route chính, khớp mã; thiếu cột vai trò hoặc API ở vài dòng.",
+            "C": "Bảng thiếu nhiều route hoặc không khớp cấu trúc thư mục app/.",
+            "D": "Không có bảng ánh xạ, chỉ liệt kê trang."
+          },
+          "guide": "So bảng với cây thư mục app/ của repo.",
+          "evidence": "Bảng ánh xạ trong báo cáo; cây thư mục app/."
+        },
+        {
+          "id": "1.4", "name": "Thiết kế component và ranh giới Server/Client", "scope": "group", "max": 0.5,
+          "levels": {
+            "A": "Cây component cho các trang chính, nêu rõ component nào là Server/Client và lý do (dữ liệu, tương tác, bảo mật); component dùng chung được tách hợp lý.",
+            "B": "Có cây component và phân loại Server/Client; lý do chưa đầy đủ.",
+            "C": "Có danh sách component nhưng không phân tích ranh giới Server/Client.",
+            "D": "Không có phân tích component; \"use client\" đặt tràn lan không giải thích."
+          },
+          "guide": "Kiểm tra ngẫu nhiên 2 file có \"use client\" trong repo, đối chiếu với lý do trong báo cáo.",
+          "evidence": "Mục Thiết kế component trong báo cáo; repo web."
+        },
+        {
+          "id": "1.5", "name": "Phân tích module quản trị", "scope": "group", "max": 0.5,
+          "levels": {
+            "A": "Nghiệp vụ quản trị được phân tích thành bảng, stored procedure và API có phân quyền admin; nêu ràng buộc nghiệp vụ (không xóa danh mục còn món, món đã bán chỉ ngừng bán…).",
+            "B": "Phân tích đủ thủ tục và API cho CRUD chính; thiếu ràng buộc nghiệp vụ.",
+            "C": "Chỉ liệt kê màn hình quản trị, chưa phân tích tới dữ liệu và API.",
+            "D": "Không có phân tích module quản trị."
+          },
+          "guide": "Chấm phần phân tích; mức hoàn thành sản phẩm chấm ở 1.8.",
+          "evidence": "Chương phân tích module quản trị; ERD phần quản trị; danh mục stored procedure."
+        },
+        {
+          "id": "1.6", "name": "Phân tích phân quyền và bảo mật", "scope": "group", "max": 0.4,
+          "levels": {
+            "A": "Ma trận vai trò × chức năng đầy đủ; mô tả cơ chế cookie httpOnly, middleware và kiểm tra quyền ở server; nhận diện rủi ro (XSS, CSRF, lộ biến môi trường) và cách phòng.",
+            "B": "Có ma trận phân quyền và cơ chế xác thực; phần rủi ro còn sơ sài.",
+            "C": "Chỉ mô tả đăng nhập, không có ma trận phân quyền.",
+            "D": "Không phân tích phân quyền."
+          },
+          "guide": "Đối chiếu ma trận với hành vi thật khi đăng nhập bằng tài khoản customer.",
+          "evidence": "Ma trận phân quyền; mục Bảo mật trong báo cáo."
+        },
+        {
+          "id": "1.7", "name": "Phân tích luồng thời gian thực", "scope": "group", "max": 0.4,
+          "levels": {
+            "A": "Sơ đồ tuần tự màn hình quầy đủ các bên (web nhân viên, ứng dụng khách, API, thủ tục, Socket.IO, room), đúng thứ tự lưu trước gửi sau; nêu cách xử lý mất kết nối.",
+            "B": "Đủ các bên chính; thiếu xử lý kết nối lại hoặc một bước.",
+            "C": "Chỉ thể hiện client ↔ server.",
+            "D": "Không có phân tích luồng realtime."
+          },
+          "guide": "So với cài đặt thật của màn hình quầy.",
+          "evidence": "Sơ đồ tuần tự trong báo cáo; slide."
+        },
+        {
+          "id": "1.8", "name": "Sản phẩm triển khai khớp phân tích", "scope": "group", "max": 0.4,
+          "levels": {
+            "A": "Web chạy trên server Khoa, mọi chức năng bắt buộc đã phân tích (quản trị, màn hình quầy realtime, web khách cơ bản) hoạt động trong demo.",
+            "B": "Chức năng bắt buộc hoạt động; 1–2 chức năng phụ đã phân tích chưa có.",
+            "C": "Thiếu một nhóm chức năng bắt buộc hoặc chỉ chạy trên máy cá nhân.",
+            "D": "Sản phẩm không chạy hoặc lệch xa so với phân tích."
+          },
+          "guide": "Chấm tại Demo Day theo kịch bản của nhóm; đối chiếu với sơ đồ chức năng.",
+          "evidence": "Demo trên server Khoa; link web đã triển khai."
+        },
+        {
+          "id": "1.9", "name": "Giải thích phân tích và mã phần phụ trách", "scope": "individual", "max": 0.3,
+          "levels": {
+            "A": "Giải thích đúng phần phân tích và đoạn mã mình commit, nêu được lý do thiết kế và hệ quả khi thay đổi.",
+            "B": "Giải thích đúng; lúng túng ở câu hỏi thay đổi giả định.",
+            "C": "Giải thích được một phần, cần gợi ý nhiều.",
+            "D": "Không giải thích được phần mình phụ trách."
+          },
+          "guide": "Chọn ngẫu nhiên đoạn mã của chính sinh viên (git blame). Phần mã không giải thích được có thể hạ điểm tiêu chí nhóm liên quan cho riêng sinh viên đó.",
+          "evidence": "Hỏi đáp tại Demo Day; lịch sử commit."
+        }
+      ]
+    },
+    {
+      "id": "CLO2",
+      "name": "Thực hiện các bài kiểm thử để kiểm tra các yêu cầu chức năng phù hợp với các mục tiêu dự án",
+      "plo": "PLO4 / PI 4.1",
+      "max": 2,
+      "criteria": [
+        {
+          "id": "2.1", "name": "Kế hoạch kiểm thử", "scope": "group", "max": 0.3,
+          "levels": {
+            "A": "Kế hoạch nêu phạm vi, loại kiểm thử (thủ công, đơn vị, đầu-cuối, phi chức năng), môi trường, dữ liệu thử, tiêu chí bắt đầu/dừng, phân công.",
+            "B": "Đủ phạm vi, loại kiểm thử và môi trường; thiếu tiêu chí dừng hoặc phân công.",
+            "C": "Chỉ liệt kê việc sẽ kiểm thử.",
+            "D": "Không có kế hoạch kiểm thử."
+          },
+          "guide": "Chấm tài liệu kế hoạch, không chấm số lượng test.",
+          "evidence": "Mục Kế hoạch kiểm thử trong báo cáo kiểm thử."
+        },
+        {
+          "id": "2.2", "name": "Test case truy vết tới yêu cầu", "scope": "group", "max": 0.5,
+          "levels": {
+            "A": "Test case viết từ tiêu chí nghiệm thu, có ma trận truy vết yêu cầu ↔ test case, gồm trường hợp hợp lệ, không hợp lệ và giá trị biên; mọi story Must có test case.",
+            "B": "Test case truy vết được yêu cầu, phủ story Must; thiếu trường hợp biên.",
+            "C": "Có test case nhưng không truy vết tới yêu cầu hoặc chỉ có trường hợp hợp lệ.",
+            "D": "Test case sơ sài, không kiểm tra được yêu cầu."
+          },
+          "guide": "Chọn 3 story Must, kiểm tra mỗi story có test case và kết quả.",
+          "evidence": "Bảng test case, ma trận truy vết."
+        },
+        {
+          "id": "2.3", "name": "Kiểm thử tự động đơn vị và component", "scope": "group", "max": 0.4,
+          "levels": {
+            "A": "Vitest/Testing Library cho logic và component chính chạy xanh; chứng minh test có giá trị bằng mutation thủ công.",
+            "B": "Test tự động chạy xanh cho phần lớn logic chính; chưa kiểm chứng giá trị test.",
+            "C": "Có vài test tự động, phủ ít logic quan trọng.",
+            "D": "Không có test tự động hoặc test không chạy."
+          },
+          "guide": "Yêu cầu chạy npm test tại chỗ hoặc xem ảnh kết quả có thời gian.",
+          "evidence": "Kết quả npm test; bảng mutation thủ công."
+        },
+        {
+          "id": "2.4", "name": "Kiểm thử đầu-cuối luồng chính", "scope": "group", "max": 0.3,
+          "levels": {
+            "A": "Kịch bản Playwright cho luồng chính (đăng nhập → đặt món → nhân viên xử lý; quản trị CRUD) chạy được, có báo cáo kết quả.",
+            "B": "Có kịch bản Playwright cho một luồng chính chạy được.",
+            "C": "Chỉ có kịch bản kiểm thử thủ công đầu-cuối được ghi lại.",
+            "D": "Không kiểm thử đầu-cuối."
+          },
+          "guide": "Xem báo cáo HTML của Playwright hoặc chạy thử một kịch bản.",
+          "evidence": "Thư mục kịch bản Playwright; báo cáo chạy."
+        },
+        {
+          "id": "2.5", "name": "Kết quả kiểm thử và quản lý lỗi", "scope": "group", "max": 0.3,
+          "levels": {
+            "A": "Bảng kết quả từng test case (đạt/không đạt), bug log có mức độ, nguyên nhân, cách sửa, kiểm thử hồi quy sau sửa; tổng hợp số liệu.",
+            "B": "Có kết quả và bug log; thiếu kiểm thử hồi quy hoặc tổng hợp.",
+            "C": "Chỉ ghi kết quả chung (\"đã test, chạy tốt\").",
+            "D": "Không có kết quả kiểm thử."
+          },
+          "guide": "Đối chiếu 2 lỗi trong bug log với commit sửa.",
+          "evidence": "Báo cáo kiểm thử; bug log; commit sửa lỗi."
+        },
+        {
+          "id": "2.6", "name": "Kiểm thử phi chức năng", "scope": "group", "max": 0.2,
+          "levels": {
+            "A": "Kiểm thử phân quyền/truy cập trái phép, đo Lighthouse (hiệu năng, accessibility) có số liệu trước/sau cải tiến.",
+            "B": "Có kiểm thử phân quyền và số liệu Lighthouse; chưa có cải tiến.",
+            "C": "Chỉ có một loại kiểm thử phi chức năng.",
+            "D": "Không có."
+          },
+          "guide": "Chấm số liệu và kết luận, không chấm điểm Lighthouse tuyệt đối.",
+          "evidence": "Mục kiểm thử phi chức năng trong báo cáo."
+        }
+      ]
+    },
+    {
+      "id": "CLO3",
+      "name": "Viết báo cáo trình bày nội dung các công việc đã thực hiện bằng văn bản một cách hợp lý và đúng quy định về định dạng",
+      "plo": "PLO3 / PI 3.1",
+      "max": 2,
+      "criteria": [
+        {
+          "id": "3.1", "name": "Cấu trúc báo cáo", "scope": "group", "max": 0.4,
+          "levels": {
+            "A": "Đủ thành phần theo mẫu: bìa, lời cảm ơn, mục lục, danh mục hình/bảng, các chương (giới thiệu, phân tích, thiết kế, hiện thực, kiểm thử, triển khai, kế hoạch và tiến độ, kết luận), tài liệu tham khảo, phụ lục.",
+            "B": "Đủ chương chính; thiếu 1–2 thành phần phụ (danh mục hình, phụ lục).",
+            "C": "Thiếu một chương chính hoặc sắp xếp lộn xộn.",
+            "D": "Không theo cấu trúc báo cáo."
+          },
+          "guide": "Chỉ chấm cấu trúc; chất lượng nội dung chấm ở 3.2.",
+          "evidence": "Báo cáo đồ án (file nộp)."
+        },
+        {
+          "id": "3.2", "name": "Nội dung hợp lý và có minh chứng", "scope": "group", "max": 0.4,
+          "levels": {
+            "A": "Trình bày mạch lạc từ yêu cầu → phân tích → hiện thực → kết quả; mỗi khẳng định có minh chứng (số liệu, ảnh sản phẩm, link repo); kết luận nêu đã đạt, chưa đạt, hướng phát triển.",
+            "B": "Mạch lạc, có minh chứng cho phần lớn nội dung; kết luận còn chung chung.",
+            "C": "Nội dung rời rạc hoặc nhiều khẳng định không có minh chứng.",
+            "D": "Chép lý thuyết, không trình bày công việc đã làm."
+          },
+          "guide": "Chọn 3 khẳng định trong báo cáo, kiểm tra minh chứng đi kèm.",
+          "evidence": "Báo cáo đồ án."
+        },
+        {
+          "id": "3.3", "name": "Định dạng trình bày", "scope": "group", "max": 0.4,
+          "levels": {
+            "A": "Đúng toàn bộ quy định: A4, Times New Roman 13, giãn dòng 1,3–1,5, lề trái 3 cm / phải 2 cm / trên dưới 2–2,5 cm, tiêu đề đánh số nhiều cấp nhất quán, đánh số trang, mục lục tự động.",
+            "B": "Đúng phần lớn quy định; 1–2 lỗi nhỏ (lề, giãn dòng ở vài trang).",
+            "C": "Nhiều lỗi định dạng (font/cỡ chữ lẫn lộn, tiêu đề không nhất quán).",
+            "D": "Không theo quy định định dạng."
+          },
+          "guide": "Kiểm tra bằng Word: Page Setup, Styles, mục lục cập nhật được.",
+          "evidence": "File Word báo cáo đồ án."
+        },
+        {
+          "id": "3.4", "name": "Hình, bảng và sơ đồ", "scope": "group", "max": 0.3,
+          "levels": {
+            "A": "Mọi hình, bảng được đánh số theo chương, có chú thích, được dẫn chiếu trong văn bản, rõ nét, đúng vị trí.",
+            "B": "Đánh số và chú thích đầy đủ; vài hình chưa được dẫn chiếu hoặc mờ.",
+            "C": "Thiếu đánh số/chú thích ở nhiều hình, bảng.",
+            "D": "Hình chụp màn hình tràn lan không chú thích."
+          },
+          "guide": "Lật ngẫu nhiên 5 hình/bảng.",
+          "evidence": "Báo cáo đồ án."
+        },
+        {
+          "id": "3.5", "name": "Trích dẫn và tài liệu tham khảo", "scope": "group", "max": 0.2,
+          "levels": {
+            "A": "Danh mục tài liệu theo chuẩn IEEE, nhất quán; mọi tài liệu được trích dẫn [n] trong văn bản.",
+            "B": "Đúng chuẩn IEEE; vài tài liệu không được trích dẫn trong văn bản.",
+            "C": "Có danh mục nhưng sai chuẩn hoặc không nhất quán.",
+            "D": "Không có tài liệu tham khảo."
+          },
+          "guide": "Kiểm tra 3 mục trong danh mục và vị trí trích dẫn tương ứng.",
+          "evidence": "Mục Tài liệu tham khảo của báo cáo."
+        },
+        {
+          "id": "3.6", "name": "Ngôn ngữ và văn phong", "scope": "group", "max": 0.3,
+          "levels": {
+            "A": "Không lỗi chính tả, câu rõ ràng, văn phong khách quan, thuật ngữ thống nhất (có bảng thuật ngữ/viết tắt).",
+            "B": "Rất ít lỗi chính tả; thuật ngữ đôi chỗ chưa thống nhất.",
+            "C": "Nhiều lỗi chính tả hoặc câu tối nghĩa.",
+            "D": "Lỗi ngôn ngữ làm khó hiểu nội dung."
+          },
+          "guide": "Đọc kỹ 2 trang bất kỳ.",
+          "evidence": "Báo cáo đồ án."
+        }
+      ]
+    },
+    {
+      "id": "CLO4",
+      "name": "Sử dụng kỹ năng trong việc sắp xếp công việc cá nhân hoặc nhóm phù hợp với mục tiêu công việc đề ra",
+      "plo": "PLO5 / PI 5.1",
+      "max": 2,
+      "criteria": [
+        {
+          "id": "4.1", "name": "Backlog và kế hoạch sprint", "scope": "group", "max": 0.4,
+          "levels": {
+            "A": "Product Backlog có story ước lượng, ưu tiên (MoSCoW); mỗi sprint có Sprint Goal và Sprint Backlog phù hợp năng lực nhóm.",
+            "B": "Có backlog và kế hoạch sprint; ước lượng hoặc ưu tiên chưa đầy đủ.",
+            "C": "Chỉ có danh sách công việc, không chia sprint.",
+            "D": "Không có kế hoạch."
+          },
+          "guide": "Xem board và mục Kế hoạch trong báo cáo.",
+          "evidence": "GitHub Projects/Jira; kế hoạch các sprint."
+        },
+        {
+          "id": "4.2", "name": "Phân công và theo dõi công việc", "scope": "group", "max": 0.3,
+          "levels": {
+            "A": "Mọi công việc trên board có người phụ trách, trạng thái cập nhật đều suốt các sprint, liên kết tới PR.",
+            "B": "Có phân công và cập nhật; đôi chỗ thiếu người phụ trách hoặc cập nhật dồn.",
+            "C": "Board lập cho có, ít cập nhật.",
+            "D": "Không theo dõi công việc."
+          },
+          "guide": "Xem lịch sử board (activity) của các sprint.",
+          "evidence": "Board công việc; liên kết issue ↔ PR."
+        },
+        {
+          "id": "4.3", "name": "Tiến độ so với kế hoạch", "scope": "group", "max": 0.3,
+          "levels": {
+            "A": "Có burndown/velocity từng sprint, giải thích chênh lệch kế hoạch – thực tế và điều chỉnh ở sprint sau.",
+            "B": "Có số liệu tiến độ; giải thích chênh lệch còn sơ sài.",
+            "C": "Chỉ mô tả tiến độ bằng lời.",
+            "D": "Không đối chiếu tiến độ."
+          },
+          "guide": "Chấm phần tổng kết kế hoạch trong báo cáo (bài 11).",
+          "evidence": "Mục Kế hoạch và tiến độ trong báo cáo; báo cáo sprint."
+        },
+        {
+          "id": "4.4", "name": "Hoàn thành nhiệm vụ cá nhân đúng hạn", "scope": "individual", "max": 0.4,
+          "levels": {
+            "A": "Hoàn thành mọi công việc được giao trong sprint cam kết.",
+            "B": "Hoàn thành phần lớn; một việc trễ một sprint.",
+            "C": "Nhiều việc trễ hoặc phải chuyển cho người khác.",
+            "D": "Không hoàn thành nhiệm vụ được giao."
+          },
+          "guide": "Đối chiếu board với người phụ trách từng việc.",
+          "evidence": "Board; lịch sử commit/PR."
+        },
+        {
+          "id": "4.5", "name": "Báo cáo vai trò và sắp xếp công việc cá nhân", "scope": "individual", "max": 0.4,
+          "levels": {
+            "A": "Báo cáo cá nhân nêu nhiệm vụ, kế hoạch cá nhân theo sprint, đóng góp có link PR, khó khăn và cách sắp xếp lại công việc; khớp lịch sử repo.",
+            "B": "Đủ nhiệm vụ và đóng góp có minh chứng; phần sắp xếp công việc còn chung chung.",
+            "C": "Thiếu minh chứng hoặc thiếu phần kế hoạch cá nhân.",
+            "D": "Không nộp hoặc không khớp đóng góp thật."
+          },
+          "guide": "Kiểm tra ngẫu nhiên 2 link PR trong báo cáo cá nhân.",
+          "evidence": "Báo cáo vai trò cá nhân."
+        },
+        {
+          "id": "4.6", "name": "Phối hợp nhóm", "scope": "individual", "max": 0.2,
+          "levels": {
+            "A": "Tham gia đều Sprint Review/Retrospective, review PR của thành viên khác có nhận xét cụ thể.",
+            "B": "Tham gia phần lớn các buổi, có review PR.",
+            "C": "Vắng nhiều buổi hoặc review hình thức.",
+            "D": "Không tham gia hoạt động nhóm."
+          },
+          "guide": "Xem biên bản sprint và tab Pull requests (Reviewed by).",
+          "evidence": "Biên bản Sprint Review/Retrospective; lịch sử review PR."
+        }
+      ]
+    }
+  ]
+}

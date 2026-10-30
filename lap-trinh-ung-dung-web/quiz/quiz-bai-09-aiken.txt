@@ -1,0 +1,69 @@
+Trong Next.js, kết nối Socket.IO nên được tạo ở đâu?
+A. Trong Server Component
+B. Trong Client Component, bên trong useEffect, và đóng ở hàm dọn dẹp
+C. Trong proxy.ts
+D. Trong next.config.ts
+ANSWER: B
+
+Theo quy tắc của học phần, socket được dùng để làm gì?
+A. Chỉ để báo tin; mọi thao tác ghi vẫn qua REST API và stored procedure
+B. Thay hoàn toàn cho REST API
+C. Gửi mật khẩu người dùng
+D. Truy vấn CSDL trực tiếp từ trình duyệt
+ANSWER: A
+
+Access token nằm trong cookie httpOnly. Client Component lấy token để kết nối socket bằng cách nào?
+A. Đọc document.cookie
+B. Đọc localStorage
+C. Gọi Route Handler cùng tên miền (/api/socket-token) trả token sau khi kiểm tra phiên
+D. Ghi token cố định trong mã nguồn
+ANSWER: C
+
+Vì sao tùy chọn auth của socket.io-client nên viết dạng hàm?
+A. Vì dạng hàm chạy nhanh hơn
+B. Vì server chỉ nhận hàm
+C. Để mã ngắn hơn
+D. Vì hàm được gọi lại ở mỗi lần kết nối lại, nên luôn có token mới
+ANSWER: D
+
+Khi server từ chối kết nối vì token hết hạn (connect_error), client Socket.IO xử lý thế nào?
+A. Không tự kết nối lại; cần xin token mới rồi gọi socket.connect()
+B. Tự kết nối lại ngay với token cũ
+C. Tự đăng xuất người dùng
+D. Chuyển sang dùng REST
+ANSWER: A
+
+Vì sao màn hình quầy gọi router.refresh() khi sự kiện connect xảy ra?
+A. Để đổi giao diện sang chế độ tối
+B. Để lấy lại danh sách đơn, bù các đơn đã lỡ trong lúc mất kết nối
+C. Để xóa cache trình duyệt
+D. Để đăng nhập lại
+ANSWER: B
+
+Sự kiện order:updated gửi vào room staff giúp đạt điều gì?
+A. Khách nhận thông báo đơn sẵn sàng
+B. Tăng tốc độ đặt món
+C. Nhiều nhân viên luôn thấy cùng một trạng thái đơn khi một người vừa thay đổi
+D. Xóa đơn đã hoàn tất
+ANSWER: C
+
+Vì sao màn hình quầy cần nút "Bật âm báo"?
+A. Vì trình duyệt chặn phát âm thanh khi người dùng chưa tương tác với trang
+B. Vì âm thanh làm chậm socket
+C. Vì Web Audio chỉ chạy trên điện thoại
+D. Vì âm báo tốn dung lượng
+ANSWER: A
+
+Sơ đồ tuần tự trong báo cáo Checkpoint 3 cần thể hiện điều gì?
+A. Màu sắc của từng trang
+B. Danh sách thành viên nhóm
+C. Cấu trúc thư mục dự án
+D. Ai gọi ai, theo thứ tự nào, qua kênh REST hay socket
+ANSWER: D
+
+Test case nào kiểm tra yêu cầu US-SYS01 (từ chối kết nối socket không có token hợp lệ)?
+A. Đặt món khi có mạng
+B. Kết nối socket không có token hoặc token bị sửa, mong đợi connect_error và không vào room nào
+C. Mở hai cửa sổ quầy cùng lúc
+D. Bật âm báo
+ANSWER: B

@@ -1,0 +1,69 @@
+Chế độ output: 'standalone' của Next.js mang lại điều gì khi triển khai?
+A. Gom mã chạy và gói cần thiết vào .next/standalone, chạy bằng node server.js
+B. Biến web thành ứng dụng di động
+C. Tắt toàn bộ Server Components
+D. Không cần backend nữa
+ANSWER: A
+
+Sau khi build standalone, trang hiện nhưng mất CSS và ảnh. Nguyên nhân thường gặp là gì?
+A. Thiếu cookie
+B. Sai cổng API
+C. Chưa chép thư mục public và .next/static vào thư mục standalone
+D. Thiếu tài khoản admin
+ANSWER: C
+
+Vì sao đổi NEXT_PUBLIC_SOCKET_URL trên server phải build lại web?
+A. Vì server không đọc được biến môi trường
+B. Vì biến NEXT_PUBLIC_* được ghi cứng vào JavaScript lúc build
+C. Vì Socket.IO yêu cầu
+D. Vì Windows Server không hỗ trợ biến môi trường
+ANSWER: B
+
+Server chưa có HTTPS. Đăng nhập báo thành công nhưng bị đẩy về /login ngay. Vì sao?
+A. Mật khẩu sai
+B. API chưa chạy
+C. Thiếu proxy.ts
+D. Trình duyệt không lưu cookie có cờ Secure qua HTTP thường
+ANSWER: D
+
+Theo học phần, các thao tác như đăng ký dịch vụ nền, mở cổng firewall, cấu hình HTTPS trên server Khoa được thực hiện thế nào?
+A. Theo hướng dẫn hoặc với sự hỗ trợ của bộ phận hỗ trợ triển khai
+B. Sinh viên tự cài bất kỳ công cụ nào
+C. Không cần làm
+D. Nhờ nhóm khác làm hộ
+ANSWER: A
+
+Server Action báo "Invalid Server Actions request" khi chạy sau reverse proxy có tên miền khác Host. Cách xử lý phù hợp là gì?
+A. Tắt toàn bộ Server Actions
+B. Đổi sang Pages Router
+C. Thêm tên miền vào serverActions.allowedOrigins hoặc chuyển tiếp đúng header Host
+D. Xóa cookie
+ANSWER: C
+
+Endpoint /api/health trong bài dùng để làm gì?
+A. Đăng nhập nhanh
+B. Kiểm tra nhanh web đang chạy và kết nối được API sau khi triển khai
+C. Xóa cache
+D. Hiển thị doanh thu
+ANSWER: B
+
+Trong báo cáo đồ án, cách đánh số hình đúng quy định là gì?
+A. Gõ tay "Hình 1" in đậm dưới mỗi ảnh
+B. Không cần đánh số nếu ảnh rõ
+C. Đặt tên file ảnh theo số thứ tự
+D. Dùng Insert Caption để đánh số tự động và Cross-reference khi nhắc tới hình
+ANSWER: D
+
+Biểu đồ burndown của bản phát hành thể hiện điều gì?
+A. Story point còn lại qua từng sprint, so giữa kế hoạch và thực tế
+B. Số dòng mã mỗi thành viên viết
+C. Thời gian tải trang
+D. Số lỗi bảo mật
+ANSWER: A
+
+Chương "Kế hoạch và tiến độ" của báo cáo nên lấy số liệu từ đâu?
+A. Từ trí nhớ của trưởng nhóm
+B. Từ board công việc, báo cáo sprint và lịch sử Pull Request
+C. Từ báo cáo của nhóm khác
+D. Từ số liệu Lighthouse
+ANSWER: B

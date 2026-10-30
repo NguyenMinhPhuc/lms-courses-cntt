@@ -80,6 +80,32 @@ window.DEFAULT_COURSES = [
     "icon": "fa-solid fa-book-bookmark"
   },
   {
+    "id": "lap-trinh-ung-dung-web",
+    "code": "111102",
+    "title": "Lập trình ứng dụng web",
+    "englishTitle": "Lap Trinh Ung Dung Web",
+    "credits": 3,
+    "hours": "60 tiết (15 LT + 45 TH)",
+    "semester": "Học kỳ 6",
+    "folder": "lap-trinh-ung-dung-web",
+    "entryFile": "index.html",
+    "courseLanding": "index.html",
+    "syllabusFile": "thong-tin-hoc-phan.html",
+    "assessmentFile": "danh-gia-hoc-phan.html",
+    "quizBank": "quiz/index.html",
+    "description": "Xây dựng ứng dụng web full-stack bằng Next.js (App Router) theo hình thức PBL và vibe coding: trang quản trị, màn hình quầy realtime và web đặt món cho dự án LHU Food, kết nối API NestJS + SQL Server qua stored procedure, kiểm thử và triển khai lên Windows Server của Khoa.",
+    "instructor": "ThS. Nguyễn Minh Phúc",
+    "tags": [
+      "Next.js",
+      "React",
+      "PBL",
+      "Vibe Coding",
+      "SQL Server"
+    ],
+    "badgeColor": "blue",
+    "icon": "fa-solid fa-globe"
+  },
+  {
     "id": "nhap-mon-nganh",
     "code": "111106",
     "title": "Nhập Môn Công Nghệ Thông Tin",

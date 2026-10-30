@@ -1,0 +1,69 @@
+Server Action trong Next.js là gì?
+A. Một API của trình duyệt
+B. Hàm async có chỉ thị 'use server', chạy trên server và được gọi từ form hoặc Client Component
+C. Một loại Client Component đặc biệt
+D. File cấu hình của Next.js
+ANSWER: B
+
+Vì sao mỗi Server Action phải tự kiểm tra quyền (ví dụ gọi requireRole)?
+A. Vì Server Action là endpoint công khai, ai cũng có thể gửi request tới
+B. Vì Next.js yêu cầu bắt buộc
+C. Vì Server Action không đọc được cookie
+D. Vì proxy.ts không chạy với Server Action
+ANSWER: A
+
+revalidatePath('/admin/orders') có tác dụng gì?
+A. Chuyển người dùng sang /admin/orders
+B. Xóa đơn hàng trong CSDL
+C. Xóa cache của trang để lần render sau lấy dữ liệu mới
+D. Kiểm tra quyền truy cập trang
+ANSWER: C
+
+useActionState trả về những gì?
+A. Chỉ một hàm gửi form
+B. Dữ liệu từ API
+C. Token của người dùng
+D. [state, formAction, isPending]
+ANSWER: D
+
+useOptimistic được dùng trên màn hình quầy để làm gì?
+A. Lưu đơn hàng vào localStorage
+B. Hiện ngay trạng thái mới trong lúc chờ server xác nhận
+C. Gửi thông báo cho khách
+D. Sắp xếp đơn theo thời gian
+ANSWER: B
+
+Theo BR-15, trình tự chuyển trạng thái đơn nào là đúng?
+A. pending → ready → preparing → completed
+B. preparing → pending → ready → completed
+C. pending → preparing → ready → completed
+D. pending → completed → ready
+ANSWER: C
+
+Hai nhân viên cùng bấm "Bắt đầu làm" một đơn. API mẫu xử lý thế nào với người bấm sau?
+A. Trả 409, web báo đơn đã được cập nhật và làm mới danh sách
+B. Tạo thêm một đơn mới
+C. Chuyển đơn thẳng sang completed
+D. Trả 500
+ANSWER: A
+
+Vì sao lọc và phân trang bảng món nên đặt trong tham số URL (?q=com&page=2)?
+A. Vì TanStack Table bắt buộc
+B. Vì URL nhanh hơn state
+C. Vì API không nhận tham số khác
+D. Vì tải lại trang hoặc gửi link vẫn giữ nguyên bộ lọc, và Server Component gọi API đúng trang
+ANSWER: D
+
+API mẫu trả về mảng món không có tổng số dòng. Làm sao biết còn trang sau?
+A. Luôn hiện nút Trang sau
+B. Còn trang sau khi số phần tử trả về bằng pageSize
+C. Gọi API đếm tổng số món
+D. Khi mảng rỗng
+ANSWER: B
+
+Velocity của nhóm trong một sprint được tính như thế nào?
+A. Tổng story point thực sự hoàn thành (đạt Definition of Done) trong sprint
+B. Tổng story point đã cam kết đầu sprint
+C. Số giờ làm việc của cả nhóm
+D. Số Pull Request đã mở
+ANSWER: A

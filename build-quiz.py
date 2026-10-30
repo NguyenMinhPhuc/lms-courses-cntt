@@ -126,6 +126,7 @@ def write_bank_page(course_dir: Path, counts: list[tuple[Path, int]], summary: P
     values = {
         "COURSE_NAME": html.escape(config.get("name", course_dir.name)),
         "COURSE_CODE": html.escape(config.get("code", "")),
+        "FACULTY_SHORT": html.escape((config.get("faculty") or {}).get("short") or "Khoa CNTT"),
         "LANDING_PAGE": config.get("landingPage", "index.html"),
         "TOTAL": str(total),
         "LESSON_COUNT": str(len(counts)),

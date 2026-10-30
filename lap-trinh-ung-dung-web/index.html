@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lập trình ứng dụng web | Khoa CNTT - Đại học Lạc Hồng</title>
+  <meta name="description" content="Học phần Lập trình ứng dụng web (Mã học phần: 111102): xây dựng ứng dụng web full-stack bằng Next.js (App Router) theo PBL và vibe coding cho dự án LHU Food: trang quản trị, màn hình quầy realtime, web đặt món; kiểm thử, báo cáo và triển khai lên Windows Server của Khoa.">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
+          colors: {
+            asu: { maroon: '#8C1D40', gold: '#FFC627' },
+            lhu: { blue: '#013D88', sky: '#007BFF', dark: '#01295C', light: '#EEF5FC' }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .gradient-hero { background: linear-gradient(135deg, #01295C 0%, #013D88 50%, #8C1D40 100%); }
+  </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col">
+
+  <!-- TOP BAR -->
+  <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+      <span><i class="fa-solid fa-globe text-asu-gold mr-1"></i> Khoa Công nghệ Thông tin - Trường Đại học Lạc Hồng</span>
+      <div class="flex items-center gap-4 font-mono">
+        <span>Mã học phần: <strong class="text-white">111102</strong></span>
+        <span>60 tiết: <strong class="text-asu-gold">15 LT + 45 TH</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur shadow-sm border-b border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
+      <a href="../index.html" class="flex items-center gap-2.5 min-w-0">
+        <img src="../nhap-mon-nganh/LHU_ASU_VI_Small_Ngang.png" alt="Logo LHU" class="h-8 w-auto" onerror="this.style.display='none'">
+        <div class="border-l border-slate-300 pl-2.5 min-w-0">
+          <div class="text-[11px] font-bold text-slate-500 uppercase">Khoa CNTT - LHU</div>
+          <div class="text-xs font-extrabold text-lhu-blue truncate">LẬP TRÌNH ỨNG DỤNG WEB (111102)</div>
+        </div>
+      </a>
+      <div class="flex items-center gap-2 text-xs">
+        <a href="../index.html" class="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl flex items-center gap-1.5"><i class="fa-solid fa-arrow-left"></i><span class="hidden sm:inline">Danh mục học phần</span></a>
+        <a href="https://learn.lhu.edu.vn" target="_blank" rel="noopener noreferrer" class="px-3 py-2 bg-lhu-blue hover:bg-lhu-dark text-white font-bold rounded-xl flex items-center gap-1.5"><i class="fa-solid fa-graduation-cap text-asu-gold"></i><span class="hidden sm:inline">Vào lớp LMS</span></a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="gradient-hero text-white py-12 sm:py-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 grid lg:grid-cols-3 gap-8 items-center">
+      <div class="lg:col-span-2 space-y-4">
+        <div class="inline-flex flex-wrap items-center gap-2 text-xs font-semibold">
+          <span class="px-3 py-1 rounded-full bg-white/10 border border-white/20 text-asu-gold">Học kỳ 6</span>
+          <span class="px-3 py-1 rounded-full bg-white/10 border border-white/20">PBL · 4 sprint</span>
+          <span class="px-3 py-1 rounded-full bg-white/10 border border-white/20">Vibe coding</span>
+        </div>
+        <h1 class="text-3xl sm:text-5xl font-black leading-tight">Lập trình ứng dụng<br><span class="text-asu-gold">web</span></h1>
+        <p class="text-sm sm:text-base text-slate-200 leading-relaxed max-w-2xl">
+          Xây dựng phần web của dự án <strong>LHU Food</strong> bằng <strong>Next.js (App Router)</strong>: trang quản trị, màn hình quầy thời gian thực và web đặt món, dùng chung backend với ứng dụng di động. Luyện phân tích thành phần, kiểm thử theo yêu cầu, viết báo cáo đúng quy định và sắp xếp công việc theo sprint.
+        </p>
+        <div class="flex flex-wrap gap-3 pt-2 text-sm font-bold">
+          <a href="bai-01.html" class="px-5 py-2.5 bg-asu-gold text-slate-900 rounded-xl shadow hover:brightness-105"><i class="fa-solid fa-play mr-1"></i> Bắt đầu Bài 01</a>
+          <a href="thong-tin-hoc-phan.html" class="px-5 py-2.5 bg-white/10 border border-white/30 rounded-xl hover:bg-white/20"><i class="fa-solid fa-book-open mr-1"></i> Đề cương</a>
+          <a href="danh-gia-hoc-phan.html" class="px-5 py-2.5 bg-white/10 border border-white/30 rounded-xl hover:bg-white/20"><i class="fa-solid fa-clipboard-check mr-1"></i> Đánh giá</a>
+          <a href="cham-diem.html" class="px-5 py-2.5 bg-white/10 border border-white/30 rounded-xl hover:bg-white/20"><i class="fa-solid fa-list-check mr-1"></i> Rubric &amp; chấm điểm</a>
+        </div>
+      </div>
+      <div class="bg-white/10 border border-white/20 rounded-3xl p-5 text-sm space-y-2">
+        <div><span class="text-slate-300">Giảng viên phụ trách</span><div class="font-bold">ThS. Nguyễn Minh Phúc</div></div>
+        <div><span class="text-slate-300">Cùng tham gia</span><div class="font-bold">Lê Minh Nhật, Hồ Ngọc Hoàng Long</div></div>
+        <div><span class="text-slate-300">Thời lượng</span><div class="font-bold">60 tiết · 12 buổi × 5 tiết</div></div>
+        <div><span class="text-slate-300">Dự án xuyên suốt</span><div class="font-bold">LHU Food (chung với học phần di động)</div></div>
+      </div>
+    </div>
+  </section>
+
+  <main class="flex-grow max-w-6xl w-full mx-auto px-4 sm:px-6 py-10 space-y-10">
+
+    <!-- TECH -->
+    <section>
+      <h2 class="text-xl sm:text-2xl font-black text-slate-900 mb-4">Bạn sẽ làm việc với</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
+        <div class="bg-white border border-slate-200 rounded-2xl p-4"><i class="fa-brands fa-react text-sky-500 text-xl"></i><div class="font-bold mt-2">Next.js App Router</div><div class="text-slate-500 text-xs">Server &amp; Client Components</div></div>
+        <div class="bg-white border border-slate-200 rounded-2xl p-4"><i class="fa-solid fa-palette text-teal-600 text-xl"></i><div class="font-bold mt-2">Tailwind + shadcn/ui</div><div class="text-slate-500 text-xs">Giao diện quản trị responsive</div></div>
+        <div class="bg-white border border-slate-200 rounded-2xl p-4"><i class="fa-solid fa-server text-rose-600 text-xl"></i><div class="font-bold mt-2">API + SQL Server</div><div class="text-slate-500 text-xs">API mẫu → backend nhóm, stored procedure</div></div>
+        <div class="bg-white border border-slate-200 rounded-2xl p-4"><i class="fa-solid fa-vial-circle-check text-purple-600 text-xl"></i><div class="font-bold mt-2">Vitest · Playwright</div><div class="text-slate-500 text-xs">Kiểm thử theo yêu cầu</div></div>
+      </div>
+    </section>
+
+    <!-- ROADMAP -->
+    <section>
+      <h2 class="text-xl sm:text-2xl font-black text-slate-900 mb-1">Lộ trình 12 buổi</h2>
+      <p class="text-sm text-slate-500 mb-4">Mỗi buổi: lý thuyết → thực hành có hướng dẫn → thực hành không hướng dẫn → thử thách nhóm. Mỗi checkpoint nộp phân tích, test case, báo cáo sprint và kế hoạch sprint.</p>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-white border border-slate-200 rounded-3xl p-5">
+          <div class="text-xs font-bold text-lhu-sky uppercase">Sprint 1</div>
+          <div class="font-black text-slate-900 mb-3">Nền tảng &amp; Giao diện</div>
+          <ul class="space-y-2 text-sm">
+            <li><a href="bai-01.html" class="flex items-center justify-between gap-2 p-2.5 rounded-xl bg-lhu-light hover:bg-blue-100"><span><strong>01</strong> · Next.js &amp; khởi động dự án</span><i class="fa-solid fa-arrow-right text-lhu-blue"></i></a></li>
+            <li><a href="bai-02.html" class="flex items-center justify-between gap-2 p-2.5 rounded-xl bg-lhu-light hover:bg-blue-100"><span><strong>02</strong> · Routing, layout &amp; Tailwind</span><i class="fa-solid fa-arrow-right text-lhu-blue"></i></a></li>
+            <li><a href="bai-03.html" class="flex items-center justify-between gap-2 p-2.5 rounded-xl bg-lhu-light hover:bg-blue-100"><span><strong>03</strong> · Server Components &amp; API</span><i class="fa-solid fa-flag-checkered text-lhu-blue"></i></a></li>
+          </ul>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-3xl p-5">
+          <div class="text-xs font-bold text-emerald-600 uppercase">Sprint 2</div>
+          <div class="font-black text-slate-900 mb-3">Người dùng &amp; Tương tác</div>
+          <ul class="space-y-2 text-sm">
+            <li><a href="bai-04.html" class="flex items-center justify-between gap-2 p-2.5 rounded-xl bg-lhu-light hover:bg-blue-100"><span><strong>04</strong> · Client Components, trạng thái &amp; form</span><i class="fa-solid fa-arrow-right text-lhu-blue"></i></a></li>
+            <li><a href="bai-05.html" class="flex items-center justify-between gap-2 p-2.5 rounded-xl bg-lhu-light hover:bg-blue-100"><span><strong>05</strong> · Xác thực, phân quyền &amp; bảo mật</span><i class="fa-solid fa-arrow-right text-lhu-blue"></i></a></li>
+            <li><a href="bai-06.html" class="flex items-center justify-between gap-2 p-2.5 rounded-xl bg-lhu-light hover:bg-blue-100"><span><strong>06</strong> · Server Actions &amp; màn hình quầy</span><i class="fa-solid fa-flag-checkered text-lhu-blue"></i></a></li>
+          </ul>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-3xl p-5">
+          <div class="text-xs font-bold text-amber-600 uppercase">Sprint 3</div>
+          <div class="font-black text-slate-900 mb-3">Quản trị &amp; Realtime</div>
+          <ul class="space-y-2 text-sm">
+            <li><a href="bai-07.html" class="flex items-center justify-between gap-2 p-2.5 rounded-xl bg-lhu-light hover:bg-blue-100"><span><strong>07</strong> · Module quản trị trên backend nhóm</span><i class="fa-solid fa-arrow-right text-lhu-blue"></i></a></li>
+            <li><a href="bai-08.html" class="flex items-center justify-between gap-2 p-2.5 rounded-xl bg-lhu-light hover:bg-blue-100"><span><strong>08</strong> · CRUD, tải ảnh, báo cáo &amp; biểu đồ</span><i class="fa-solid fa-arrow-right text-lhu-blue"></i></a></li>
+            <li><a href="bai-09.html" class="flex items-center justify-between gap-2 p-2.5 rounded-xl bg-lhu-light hover:bg-blue-100"><span><strong>09</strong> · Màn hình quầy realtime Socket.IO</span><i class="fa-solid fa-flag-checkered text-lhu-blue"></i></a></li>
+          </ul>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-3xl p-5">
+          <div class="text-xs font-bold text-asu-maroon uppercase">Sprint 4</div>
+          <div class="font-black text-slate-900 mb-3">Chất lượng &amp; Phát hành</div>
+          <ul class="space-y-2 text-sm">
+            <li><a href="bai-10.html" class="flex items-center justify-between gap-2 p-2.5 rounded-xl bg-lhu-light hover:bg-blue-100"><span><strong>10</strong> · Kiểm thử, hiệu năng &amp; accessibility</span><i class="fa-solid fa-arrow-right text-lhu-blue"></i></a></li>
+            <li><a href="bai-11.html" class="flex items-center justify-between gap-2 p-2.5 rounded-xl bg-lhu-light hover:bg-blue-100"><span><strong>11</strong> · Triển khai server Khoa &amp; báo cáo</span><i class="fa-solid fa-arrow-right text-lhu-blue"></i></a></li>
+            <li><a href="bai-12.html" class="flex items-center justify-between gap-2 p-2.5 rounded-xl bg-lhu-light hover:bg-blue-100"><span><strong>12</strong> · Demo Day chung &amp; báo cáo đồ án</span><i class="fa-solid fa-trophy text-lhu-blue"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- DOCUMENTS -->
+    <section>
+      <h2 class="text-xl sm:text-2xl font-black text-slate-900 mb-4">Tài liệu học phần</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 text-sm">
+        <a href="giao-trinh/Giao-trinh-lap-trinh-ung-dung-web.docx" download class="bg-white border border-slate-200 rounded-2xl p-4 hover:border-lhu-blue hover:shadow-sm flex items-start gap-3"><i class="fa-solid fa-book text-lhu-blue text-xl mt-0.5"></i><span><span class="block font-bold">Giáo trình nội bộ</span><span class="block text-slate-500 text-xs">12 chương, bài tập hướng dẫn theo dự án LHU Food</span><span class="inline-block mt-1 text-[11px] font-bold text-slate-400"><i class="fa-solid fa-download mr-1"></i>Word</span></span></a>
+        <a href="HK6-111102-Lập trình ứng dụng web.docx" download class="bg-white border border-slate-200 rounded-2xl p-4 hover:border-lhu-blue hover:shadow-sm flex items-start gap-3"><i class="fa-solid fa-file-lines text-sky-600 text-xl mt-0.5"></i><span><span class="block font-bold">Đề cương học phần</span><span class="block text-slate-500 text-xs">Theo mẫu đề cương của Khoa</span><span class="inline-block mt-1 text-[11px] font-bold text-slate-400"><i class="fa-solid fa-download mr-1"></i>Word</span></span></a>
+        <a href="../lap-trinh-ung-dung-mobile/srs/SRS-LHU-Food.docx" download class="bg-white border border-slate-200 rounded-2xl p-4 hover:border-lhu-blue hover:shadow-sm flex items-start gap-3"><i class="fa-solid fa-diagram-project text-emerald-600 text-xl mt-0.5"></i><span><span class="block font-bold">SRS dự án LHU Food</span><span class="block text-slate-500 text-xs">Dùng chung: user story web, module quản trị, API</span><span class="inline-block mt-1 text-[11px] font-bold text-slate-400"><i class="fa-solid fa-download mr-1"></i>Word</span></span></a>
+        <a href="../lap-trinh-ung-dung-mobile/srs/agile-scrum.docx" download class="bg-white border border-slate-200 rounded-2xl p-4 hover:border-lhu-blue hover:shadow-sm flex items-start gap-3"><i class="fa-solid fa-list-check text-amber-600 text-xl mt-0.5"></i><span><span class="block font-bold">Kế hoạch Agile &amp; Backlog</span><span class="block text-slate-500 text-xs">Dùng chung: epic, tiêu chí nghiệm thu, sprint</span><span class="inline-block mt-1 text-[11px] font-bold text-slate-400"><i class="fa-solid fa-download mr-1"></i>Word</span></span></a>
+        <a href="rubric/Rubric-111102.xlsx" download class="bg-white border border-slate-200 rounded-2xl p-4 hover:border-lhu-blue hover:shadow-sm flex items-start gap-3"><i class="fa-solid fa-table text-purple-600 text-xl mt-0.5"></i><span><span class="block font-bold">Rubric chấm điểm</span><span class="block text-slate-500 text-xs">27 tiêu chí theo 4 CLO</span><span class="inline-block mt-1 text-[11px] font-bold text-slate-400"><i class="fa-solid fa-download mr-1"></i>Excel</span></span></a>
+      </div>
+    </section>
+
+    <!-- RULES -->
+    <section class="bg-lhu-light border border-blue-200 rounded-3xl p-6">
+      <h2 class="text-lg font-black text-lhu-dark mb-3"><i class="fa-solid fa-shield-halved mr-2"></i>Quy tắc của học phần</h2>
+      <ul class="text-sm space-y-2 text-slate-700">
+        <li><strong>Không hiểu thì không merge:</strong> mã do AI sinh ra vẫn phải được bạn giải thích được; prompt chính ghi trong <code>PROMPTS.md</code>.</li>
+        <li><strong>Next.js không kết nối CSDL:</strong> mọi dữ liệu qua backend API; backend chỉ gọi stored procedure trên SQL Server.</li>
+        <li><strong>Truy vết yêu cầu:</strong> mỗi trang ứng với user story trong SRS; mỗi story có test case và kết quả chạy.</li>
+        <li><strong>Báo cáo đúng quy định:</strong> báo cáo sprint và báo cáo đồ án theo định dạng ở trang Đánh giá; kế hoạch và tiến độ theo dõi trên board.</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer class="bg-white border-t border-slate-200 py-6 text-xs text-slate-500">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div><strong>Khoa Công nghệ Thông tin - Trường Đại học Lạc Hồng</strong></div>
+      <div>Hệ thống LMS: <a href="https://learn.lhu.edu.vn" target="_blank" rel="noopener noreferrer" class="text-lhu-blue font-bold">learn.lhu.edu.vn</a></div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,69 @@
+Kiểm tra "thêm cùng một món hai lần thì giỏ có một dòng, số lượng 2" phù hợp nhất với mức kiểm thử nào?
+A. Kiểm thử đầu-cuối bằng Playwright
+B. Kiểm thử đơn vị bằng Vitest
+C. Kiểm thử thủ công trên điện thoại
+D. Đo Lighthouse
+ANSWER: B
+
+Vì sao trang Server Component async được kiểm thử bằng Playwright thay vì Vitest?
+A. Vì Vitest chưa hỗ trợ Server Component async
+B. Vì Playwright chạy nhanh hơn Vitest
+C. Vì Server Component không có giao diện
+D. Vì Vitest không chạy được TypeScript
+ANSWER: A
+
+Ma trận truy vết trong báo cáo kiểm thử nối những gì với nhau?
+A. Thành viên với số commit
+B. Trang web với màu sắc
+C. Tiêu chí nghiệm thu trong SRS, test kiểm tra nó và kết quả lần chạy cuối
+D. Endpoint API với cổng mạng
+ANSWER: C
+
+Khi test một Server Action có import 'server-only' bằng Vitest, cần làm gì?
+A. Xóa import 'server-only' khỏi mã nguồn
+B. Chạy test trên server thật
+C. Đổi Server Action thành Client Component
+D. Thêm vi.mock('server-only', () => ({})) ở đầu file test
+ANSWER: D
+
+Vì sao Testing Library khuyến khích tìm phần tử bằng getByRole và tên hiển thị?
+A. Test tìm như người dùng thấy, đồng thời kiểm luôn accessibility
+B. Vì nhanh hơn tìm bằng class CSS
+C. Vì class CSS bị cấm trong Next.js
+D. Vì getByRole không cần render
+ANSWER: A
+
+Trong kịch bản Playwright "khách đặt món, nhân viên xử lý", vì sao dùng hai browser context?
+A. Để chạy nhanh gấp đôi
+B. Để hai vai trò có phiên đăng nhập và cookie độc lập
+C. Vì Playwright chỉ cho một trang mỗi context
+D. Để tránh dùng backend
+ANSWER: B
+
+Đột biến thủ công (mutation) dùng để làm gì?
+A. Tăng tốc độ chạy test
+B. Sinh dữ liệu thử ngẫu nhiên
+C. Cố ý làm hỏng mã để kiểm tra test có phát hiện được không
+D. Đổi tên các file test
+ANSWER: C
+
+Đổi .min(8) thành .min(7) trong schema mật khẩu mà mọi test vẫn đạt. Điều đó cho thấy gì?
+A. Mã nguồn đúng
+B. Vitest bị lỗi
+C. Không cần test mật khẩu
+D. Chưa có test nào kiểm tra biên 7/8 ký tự, cần viết thêm
+ANSWER: D
+
+Chỉ số CLS trong Core Web Vitals đo điều gì?
+A. Độ "nhảy" bố cục khi trang tải
+B. Thời gian hiện nội dung lớn nhất
+C. Độ trễ khi bấm nút
+D. Dung lượng JavaScript
+ANSWER: A
+
+Vì sao phải đo Lighthouse trên bản production (npm run build && npm start) thay vì npm run dev?
+A. Vì Lighthouse không mở được localhost
+B. Vì bản dev chậm hơn nhiều và không phản ánh hiệu năng thực tế
+C. Vì bản dev không có CSS
+D. Vì bản production không cần đăng nhập
+ANSWER: B

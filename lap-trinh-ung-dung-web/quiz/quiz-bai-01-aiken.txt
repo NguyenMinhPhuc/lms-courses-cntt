@@ -1,0 +1,69 @@
+Trong mô hình CSR (React SPA), HTML của trang được tạo ở đâu?
+A. Trên server cho từng request
+B. Trong trình duyệt sau khi tải JavaScript
+C. Lúc build ứng dụng
+D. Trong SQL Server
+ANSWER: B
+
+React Server Component khác Client Component ở điểm nào?
+A. Bắt buộc dùng useState
+B. Chỉ dùng được trong Pages Router
+C. Chạy trên server và không gửi mã component xuống trình duyệt
+D. Chạy trên điện thoại
+ANSWER: C
+
+Trong Next.js App Router, file nào định nghĩa nội dung của một đường dẫn?
+A. route.config.ts
+B. page.tsx
+C. index.html
+D. _app.tsx
+ANSWER: B
+
+Component trong thư mục app/ mặc định là loại nào?
+A. Client Component
+B. Web Component
+C. Server Component
+D. Class Component
+ANSWER: C
+
+Khi nào cần thêm "use client" ở đầu file?
+A. Khi muốn trang được Google tìm thấy
+B. Khi component gọi API ở server
+C. Với mọi file trong app/
+D. Khi component cần state hoặc xử lý sự kiện như onClick
+ANSWER: D
+
+Theo quy tắc của học phần, ứng dụng Next.js lấy dữ liệu LHU Food bằng cách nào?
+A. Kết nối thẳng SQL Server bằng thư viện mssql
+B. Dùng ORM sinh truy vấn trong Next.js
+C. Đọc file JSON trong thư mục public/
+D. Gọi backend API; backend chỉ truy cập SQL Server qua stored procedure
+ANSWER: D
+
+Theo SRS, khu vực web nào là bắt buộc trong đồ án?
+A. Chỉ trang giới thiệu căn tin
+B. Chỉ web đặt món cho khách
+C. Trang quản trị và màn hình quầy cho nhân viên
+D. Ứng dụng di động
+ANSWER: C
+
+Sprint Goal là gì?
+A. Mục tiêu ngắn gọn mà nhóm cam kết đạt được trong sprint
+B. Điểm số cuối kỳ
+C. Tên nhánh Git của sprint
+D. Danh sách mọi tính năng của sản phẩm
+ANSWER: A
+
+Một thẻ công việc trên board được tổ chức tốt cần có gì?
+A. Chỉ tên công việc
+B. Người phụ trách, trạng thái và liên kết tới Pull Request
+C. Mật khẩu tài khoản API
+D. Toàn bộ mã nguồn
+ANSWER: B
+
+AI sinh mã có getServerSideProps cho dự án của nhóm. Bạn nên làm gì?
+A. Nhận ra đây là mã Pages Router, yêu cầu AI viết lại theo App Router dựa trên AGENTS.md
+B. Giữ nguyên vì chạy được
+C. Chuyển cả dự án sang Pages Router
+D. Xóa file AGENTS.md
+ANSWER: A

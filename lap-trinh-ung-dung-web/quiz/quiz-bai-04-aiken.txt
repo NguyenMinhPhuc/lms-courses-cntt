@@ -1,0 +1,69 @@
+Trên trang chi tiết món, phần nào nên là Client Component?
+A. Toàn bộ trang chi tiết món
+B. Chỉ nút "Thêm vào giỏ"
+C. Layout gốc của ứng dụng
+D. Hàm gọi API lấy thông tin món
+ANSWER: B
+
+Vì sao không nên đặt "use client" ở layout hoặc page?
+A. Vì Next.js không cho phép
+B. Vì layout sẽ không hiển thị được
+C. Vì cả nhánh component con bị kéo xuống trình duyệt
+D. Vì page sẽ bị cache vĩnh viễn
+ANSWER: C
+
+Prop nào KHÔNG truyền được từ Server Component sang Client Component?
+A. Một hàm xử lý sự kiện
+B. Một chuỗi tên món
+C. Một mảng các món
+D. Một object chứa giá và số lượng
+ANSWER: A
+
+Middleware persist của Zustand dùng để làm gì trong giỏ hàng LHU Food?
+A. Gửi giỏ hàng lên server mỗi giây
+B. Mã hóa giá tiền
+C. Chia sẻ giỏ hàng giữa các người dùng
+D. Lưu giỏ vào localStorage để tải lại trang vẫn còn
+ANSWER: D
+
+Vì sao biểu tượng số món trong giỏ có thể gây lỗi "Hydration failed"?
+A. Vì Zustand không chạy được trên trình duyệt
+B. Vì HTML từ server (giỏ rỗng) khác HTML trình duyệt (giỏ có món)
+C. Vì localStorage chỉ lưu được chuỗi
+D. Vì thiếu import React
+ANSWER: B
+
+Theo tiêu chí US-C04, giá tiền của đơn hàng được lấy từ đâu?
+A. Từ giỏ hàng trong localStorage
+B. Từ form đặt món
+C. Từ bảng Products trong CSDL tại thời điểm đặt
+D. Từ cache của Next.js
+ANSWER: C
+
+Vì sao Server Action vẫn phải kiểm tra lại dữ liệu bằng Zod dù form đã kiểm tra ở trình duyệt?
+A. Người dùng có thể tắt JavaScript hoặc gửi request trực tiếp tới server
+B. Vì React Hook Form không hỗ trợ Zod
+C. Vì kiểm tra ở trình duyệt chậm hơn
+D. Vì Zod chỉ chạy được trên server
+ANSWER: A
+
+Khi đăng ký bằng email đã tồn tại, API mẫu trả mã nào và web hiển thị gì?
+A. 404, "Không tìm thấy"
+B. 500, "Lỗi máy chủ"
+C. 401, "Bạn cần đăng nhập"
+D. 409, "Email đã được sử dụng"
+ANSWER: D
+
+Mật khẩu yêu cầu tối thiểu 8 ký tự. Cặp test case giá trị biên phù hợp nhất là gì?
+A. 1 ký tự và 100 ký tự
+B. 7 ký tự (sai) và 8 ký tự (hợp lệ)
+C. 0 ký tự và 20 ký tự
+D. 8 ký tự và 9 ký tự (đều hợp lệ)
+ANSWER: B
+
+Vì sao nút "Đặt món" cần bị vô hiệu trong lúc đang gửi?
+A. Để giảm dung lượng trang
+B. Để Zod chạy nhanh hơn
+C. Để tránh tạo hai đơn khi người dùng bấm nhiều lần
+D. Để trình duyệt không lưu cache
+ANSWER: C

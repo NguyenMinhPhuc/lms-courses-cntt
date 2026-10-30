@@ -1,0 +1,69 @@
+Thư mục (shop) trong app/(shop)/menu/page.tsx có tác dụng gì?
+A. Tạo đường dẫn /shop/menu
+B. Khai báo Client Component
+C. Đánh dấu trang cần đăng nhập
+D. Gom route chung một layout mà không xuất hiện trong URL
+ANSWER: D
+
+File app/product/[id]/page.tsx ứng với đường dẫn nào?
+A. /product/[id]
+B. /id/product
+C. /product?id=12
+D. /product/12 với id thay đổi theo món
+ANSWER: D
+
+Từ Next.js 15, đọc params trong trang động thế nào cho đúng?
+A. Dùng trực tiếp params.id như đối tượng thường
+B. Gọi useParams() trong Server Component
+C. Khai báo params là Promise và dùng await params
+D. Đọc từ localStorage
+ANSWER: C
+
+Gọi notFound() trong trang có tác dụng gì?
+A. Xóa món khỏi CSDL
+B. Chuyển về trang chủ
+C. Hiển thị giao diện not-found.tsx với mã 404
+D. Tải lại trang
+ANSWER: C
+
+Vì sao layout quản trị giữ nguyên sidebar khi chuyển giữa các trang con?
+A. Layout bọc các trang con và không vẽ lại khi điều hướng trong cùng khu vực
+B. Vì sidebar được lưu trong SQL Server
+C. Vì dùng thẻ iframe
+D. Vì trình duyệt cache toàn trang
+ANSWER: A
+
+error.tsx phải là loại component nào?
+A. Client Component
+B. Component của Pages Router
+C. Server Component
+D. Component bất kỳ
+ANSWER: A
+
+Class Tailwind grid-cols-1 md:grid-cols-3 nghĩa là gì?
+A. Luôn 3 cột
+B. 3 cột trên điện thoại, 1 cột trên máy tính
+C. Chỉ hiển thị trên máy tính
+D. 1 cột mặc định, 3 cột từ kích thước màn hình md trở lên
+ANSWER: D
+
+Điểm khác biệt của shadcn/ui so với thư viện UI cài sẵn là gì?
+A. Mã nguồn component được chép vào dự án nên nhóm sửa được
+B. Chỉ dùng được với Angular
+C. Không cần Tailwind CSS
+D. Phải trả phí bản quyền
+ANSWER: A
+
+Bảng ánh xạ route – chức năng – vai trò – API là minh chứng cho CLO nào?
+A. CLO3 - Viết báo cáo
+B. CLO1 - Phân tích thành phần chức năng
+C. CLO4 - Sắp xếp công việc
+D. Không thuộc CLO nào
+ANSWER: B
+
+Vì sao không nên ghép tên class Tailwind động như `bg-${color}-500`?
+A. Vì Tailwind cấm dùng màu
+B. Vì Tailwind chỉ tạo CSS cho tên class viết đầy đủ trong mã
+C. Vì làm trang chậm khi chạy
+D. Vì TypeScript báo lỗi
+ANSWER: B

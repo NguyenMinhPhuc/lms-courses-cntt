@@ -166,6 +166,25 @@ def render_course_page(course_dir: Path, config: dict, lessons: list[str], name:
     return render_page(course_dir, config, template, title, md_content, prev_href, next_href)
 
 
+# Mặc định là Khoa CNTT; học phần của khoa khác khai báo "faculty" trong course.json
+DEFAULT_FACULTY = {
+    "name": "Khoa Công nghệ Thông tin",
+    "short": "Khoa CNTT",
+    "address": "Phòng B301 - B302, Cơ sở 1, Số 10 Huỳnh Văn Nghệ, P. Bửu Long, TP. Biên Hòa, Đồng Nai.",
+    "contact": "Email: cntt@lhu.edu.vn • Hotline: (0251) 3952 251",
+}
+
+
+def faculty_values(config: dict) -> dict:
+    faculty = config.get("faculty") or DEFAULT_FACULTY
+    return {
+        "FACULTY": faculty["name"],
+        "FACULTY_SHORT": faculty.get("short") or faculty["name"],
+        "FACULTY_ADDRESS": f'<br>\n        {faculty["address"]}' if faculty.get("address") else "",
+        "FACULTY_CONTACT": f'<span>{faculty["contact"]}</span><br>' if faculty.get("contact") else "",
+    }
+
+
 def render_page(course_dir: Path, config: dict, template: str, page_title: str, md_content: str,
                 prev_href: str | None, next_href: str | None, practice: str = "") -> str:
     values = {
@@ -176,6 +195,7 @@ def render_page(course_dir: Path, config: dict, template: str, page_title: str, 
         "HEADER_LABEL": config.get("headerLabel") or f'{config["name"].upper()} ({config["code"]})',
         "SUBTITLE_TAG": config.get("subtitleTag", "Chuẩn ABET Hoa Kỳ"),
         "YEAR": str(config.get("year", date.today().year)),
+        **faculty_values(config),
         "LANDING_PAGE": resolve_landing(course_dir, config),
         "LOGO": resolve_logo(config),
         "PREV_NAV": nav_link(prev_href, '<i class="fa-solid fa-chevron-left"></i> Bài trước'),
