@@ -19,6 +19,8 @@ Liên hoan phim · Đánh giá cuối kỳ A3
 - Ý tưởng (2.1) · Cơ sở văn hóa, dẫn giáo trình (1.1, 1.2)
 - Quá trình (2.2, 3.1) · Kết quả sau đăng (2.3, 3.2)
 - Bài học (2.3) · Phụ lục: checklist, giấy phép, nguồn nhạc, prompt AI, link
+![](images/bai-06-cau-truc-bao-cao.png)
+
 **Ghi chú giảng viên**:
 - Số trong ngoặc là tiêu chí A3 tương ứng.
 
@@ -41,6 +43,8 @@ Liên hoan phim · Đánh giá cuối kỳ A3
 - Cảm ơn, kiểm tra thông tin, đưa nguồn hoặc đính chính
 - Không tranh cãi, không xóa góp ý chính đáng
 - Xúc phạm, kỳ thị: ẩn hoặc báo cáo
+![](images/bai-06-phan-hoi-binh-luan.png)
+
 **Ghi chú giảng viên**:
 - Liên hệ tiêu chí 3.2: ứng xử với bình luận trái chiều.
 

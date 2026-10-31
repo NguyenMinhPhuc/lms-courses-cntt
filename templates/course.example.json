@@ -5,6 +5,8 @@
   "hours": "45 tiết (9 buổi)",
   "semester": "Học kỳ 1 • Năm 2",
   "instructor": "ThS. Họ Tên Giảng Viên",
+  "instructorEmail": "email giảng viên (không bắt buộc, hiện trên slide cảm ơn)",
+  "website": "lhu.edu.vn",
   "tags": ["ABET", "AI-First"],
   "description": "Mô tả ngắn hiển thị trên portal (không bắt buộc, mặc định lấy từ meta description của index.html).",
   "headerLabel": "TÊN VIẾT TẮT (123456)",

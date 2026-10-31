@@ -209,7 +209,7 @@ export async function GET(req: Request) {
                 <span style="color: #fd7e14; font-weight: bold;">🔗 Next.js - Route Handlers</span><br>
                 <span style="color: #6c757d; font-size: 13px;">Trả về file, header Content-Disposition.</span>
             </a>
-            <a href="https://recharts.org/en-US/guide" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
+            <a href="https://recharts.github.io/en-US/guide/" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
                 <span style="color: #fd7e14; font-weight: bold;">🔗 Recharts - Guide</span><br>
                 <span style="color: #6c757d; font-size: 13px;">BarChart, LineChart, ResponsiveContainer, Tooltip.</span>
             </a>

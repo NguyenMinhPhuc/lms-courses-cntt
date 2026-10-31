@@ -142,7 +142,7 @@ Phật giáo theo đường biển vào Việt Nam từ đầu Công nguyên; Lu
 
 ### 2.4.2. Nho giáo
 
-Nho giáo được quan lại phương Bắc truyền bá từ đầu Công nguyên nhưng chưa có chỗ đứng trong suốt thời chống Bắc thuộc. Năm 1070, Lý Thánh Tông lập Văn Miếu, đánh dấu Nho giáo được tiếp nhận chính thức. Nho giáo ở Việt Nam chủ yếu là Tống Nho; nó thịnh nhất dưới thời Lê [1, ch. VI, §3.3]. Khi vào Việt Nam, Nho giáo bị truyền thống coi trọng làng và nước, tinh thần dân chủ làng xã làm cho biến đổi.
+Nho giáo được quan lại phương Bắc truyền bá từ đầu Công nguyên nhưng chưa có chỗ đứng trong suốt thời chống Bắc thuộc. Năm 1070, Lý Thánh Tông cho dựng Văn Miếu; năm 1076, Lý Nhân Tông cho lập Quốc Tử Giám [2]. Hai sự kiện này đánh dấu Nho giáo được tiếp nhận chính thức. Nho giáo ở Việt Nam chủ yếu là Tống Nho; nó thịnh nhất dưới thời Lê [1, ch. VI, §3.3]. Khi vào Việt Nam, Nho giáo bị truyền thống coi trọng làng và nước, tinh thần dân chủ làng xã làm cho biến đổi.
 
 ### 2.4.3. Đạo giáo, Kitô giáo và văn hóa phương Tây
 
@@ -199,3 +199,5 @@ Một sản phẩm thường liên quan nhiều thành tố, điều này hoàn 
 ## Tài liệu tham khảo
 
 [1] Trần Ngọc Thêm (Chủ biên), *Cơ sở Văn hóa Việt Nam*. Hà Nội: NXB Giáo dục Việt Nam, 2022.
+
+[2] Trung tâm Hoạt động Văn hóa Khoa học Văn Miếu – Quốc Tử Giám, "Lịch sử di tích," *Văn Miếu – Quốc Tử Giám*. Accessed: Oct. 31, 2026. [Online]. Available: https://vanmieu.gov.vn/vi/introduction/site-history

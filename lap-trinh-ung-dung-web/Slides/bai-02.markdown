@@ -29,6 +29,7 @@ Sprint 1 · Nền tảng & Giao diện
 - Quản lý món (US-A02) → /admin/products → admin
 - Màn hình quầy (US-S02) → /admin/orders → staff, admin
 **Hoạt động**: Nhóm điền bảng ánh xạ cho 3 chức năng của đề tài
+![](images/bai-02-chuc-nang-route.png)
 
 ---
 
@@ -52,6 +53,7 @@ app/
 - Không xuất hiện trong URL
 - Mỗi nhóm có layout riêng
 - Cẩn thận: hai nhóm không được trùng đường dẫn
+![](images/bai-02-route-group.png)
 
 ---
 
@@ -85,6 +87,7 @@ export default async function ProductPage(
 - Layout không vẽ lại khi chuyển trang con
 - metadata: tiêu đề từng trang
 - Cây component: layout → trang → ProductCard, OrderTable
+![](images/bai-02-cay-component.png)
 
 ---
 
@@ -94,6 +97,7 @@ export default async function ProductPage(
 - Mobile-first: sm:, md:, lg: áp dụng từ kích thước đó trở lên
 - grid-cols-1 md:grid-cols-3
 - Viết đủ tên class, không ghép chuỗi động
+![](images/bai-02-breakpoint.png)
 
 ---
 
@@ -114,6 +118,7 @@ npx shadcn@latest add button card table dialog
 - Yêu cầu dùng shadcn/ui và class Tailwind
 - Kiểm tra: màu, khoảng cách, responsive 3 kích thước
 - Loại bỏ thư viện UI lạ do AI tự thêm
+![](images/bai-02-figma-ma.png)
 
 ---
 

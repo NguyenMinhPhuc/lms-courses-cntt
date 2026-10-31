@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quy Trình Xây Dựng CTĐT | Khoa Công Nghệ Thông Tin - Đại Học Lạc Hồng</title>
+  <meta name="description" content="Hướng dẫn yêu cầu Claude Code xây dựng, điều chỉnh và rà soát bộ hồ sơ chương trình đào tạo đại học chính quy theo biểu mẫu PĐT.QT.08 - Khoa Công nghệ Thông tin, Trường Đại học Lạc Hồng.">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6.4.0 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            asu: {
+              maroon: '#8C1D40',
+              gold: '#FFC627',
+              dark: '#5C142B',
+              light: '#FAEDF0'
+            },
+            lhu: {
+              blue: '#013D88',
+              sky: '#007BFF',
+              dark: '#01295C',
+              light: '#EEF5FC'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .gradient-hero {
+      background: linear-gradient(135deg, #01295C 0%, #013D88 45%, #8C1D40 100%);
+    }
+    pre { white-space: pre-wrap; word-break: break-word; }
+    .step-num {
+      width: 2.5rem; height: 2.5rem; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 9999px; font-weight: 900;
+    }
+    @media print {
+      header, footer, .no-print { display: none !important; }
+    }
+  </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col selection:bg-asu-gold selection:text-slate-900">
+
+  <!-- NAVIGATION HEADER -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3 group">
+        <img src="nhap-mon-nganh/LHU_ASU_VI_Small_Ngang.png" alt="LHU - ASU Logo" class="h-10 sm:h-12 w-auto object-contain" onerror="this.style.display='none'">
+        <div class="border-l border-slate-300 pl-3">
+          <div class="text-xs font-bold text-slate-500 uppercase tracking-wider">Khoa Công Nghệ Thông Tin</div>
+          <div class="text-base font-black text-lhu-blue group-hover:text-asu-maroon transition-colors">CỔNG HỌC PHẦN TRỰC TUYẾN</div>
+        </div>
+      </a>
+      <div class="flex items-center gap-3">
+        <a href="index.html" class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl text-xs transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-arrow-left"></i>
+          <span class="hidden sm:inline">Về danh mục học phần</span>
+        </a>
+        <button onclick="window.print()" class="no-print hidden sm:flex px-3.5 py-2 bg-blue-50 hover:bg-blue-100 text-lhu-blue font-bold rounded-xl text-xs transition-all items-center gap-1.5">
+          <i class="fa-solid fa-print"></i>
+          <span>In hướng dẫn</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="gradient-hero text-white relative overflow-hidden py-10 sm:py-14">
+    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-4">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs font-semibold text-asu-gold">
+        <i class="fa-solid fa-sitemap"></i>
+        <span>DÀNH CHO TRƯỞNG NGÀNH, GIẢNG VIÊN XÂY DỰNG CTĐT</span>
+      </div>
+      <h1 class="text-2xl sm:text-4xl font-black leading-tight tracking-tight">
+        Quy trình xây dựng chương trình đào tạo <br>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-asu-gold via-yellow-200 to-white">với Claude Code</span>
+      </h1>
+      <p class="text-sm sm:text-base text-slate-200 leading-relaxed max-w-3xl">
+        Từ thông tin của ngành và CTĐT khóa trước đến bộ hồ sơ trình ban hành theo biểu mẫu PĐT.QT.08: đánh giá CTĐT (BM08), đối sánh (BM04), phiếu ý kiến (BM01), chuẩn đầu ra (BM02), kế hoạch đào tạo (BM03), đề cương (BM05), biên bản họp (BM06), cuốn CTĐT (BM09.2) và tờ trình (BM07). Dữ liệu chỉ nhập một lần; mọi biểu mẫu được sinh từ đó nên mã, tên, tín chỉ luôn khớp nhau.
+      </p>
+    </div>
+  </section>
+
+  <main class="flex-grow max-w-5xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10">
+
+    <!-- OVERVIEW FLOW -->
+    <section>
+      <h2 class="text-xl sm:text-2xl font-black text-slate-900 mb-4">Toàn cảnh quy trình</h2>
+      <ol class="grid grid-cols-2 sm:grid-cols-5 gap-3 text-xs sm:text-sm">
+        <li><a href="#buoc-1" class="block h-full bg-white border border-slate-200 hover:border-lhu-sky rounded-2xl p-3 shadow-sm"><span class="text-lhu-blue font-black">1.</span> Chuẩn bị thông tin <span class="block text-slate-400 mt-1">Người lập CTĐT</span></a></li>
+        <li><a href="#buoc-2" class="block h-full bg-white border border-slate-200 hover:border-lhu-sky rounded-2xl p-3 shadow-sm"><span class="text-lhu-blue font-black">2.</span> Giao việc cho Claude <span class="block text-slate-400 mt-1">1 câu lệnh</span></a></li>
+        <li><a href="#buoc-3" class="block h-full bg-white border border-slate-200 hover:border-lhu-sky rounded-2xl p-3 shadow-sm"><span class="text-lhu-blue font-black">3.</span> Đánh giá, đối sánh <span class="block text-slate-400 mt-1">BM08, BM04</span></a></li>
+        <li><a href="#buoc-4" class="block h-full bg-white border border-slate-200 hover:border-lhu-sky rounded-2xl p-3 shadow-sm"><span class="text-lhu-blue font-black">4.</span> Lấy ý kiến <span class="block text-slate-400 mt-1">BM01.1, BM01.2</span></a></li>
+        <li><a href="#buoc-5" class="block h-full bg-white border border-slate-200 hover:border-lhu-sky rounded-2xl p-3 shadow-sm"><span class="text-lhu-blue font-black">5.</span> Chuẩn đầu ra <span class="block text-slate-400 mt-1">BM02, file PLO</span></a></li>
+        <li><a href="#buoc-6" class="block h-full bg-white border border-slate-200 hover:border-lhu-sky rounded-2xl p-3 shadow-sm"><span class="text-lhu-blue font-black">6.</span> Kế hoạch đào tạo <span class="block text-slate-400 mt-1">BM03, điều hành</span></a></li>
+        <li><a href="#buoc-7" class="block h-full bg-white border border-slate-200 hover:border-lhu-sky rounded-2xl p-3 shadow-sm"><span class="text-lhu-blue font-black">7.</span> Đề cương <span class="block text-slate-400 mt-1">BM05, tóm tắt</span></a></li>
+        <li><a href="#buoc-8" class="block h-full bg-white border border-slate-200 hover:border-lhu-sky rounded-2xl p-3 shadow-sm"><span class="text-lhu-blue font-black">8.</span> Họp Hội đồng <span class="block text-slate-400 mt-1">BM06</span></a></li>
+        <li><a href="#buoc-9" class="block h-full bg-white border border-slate-200 hover:border-lhu-sky rounded-2xl p-3 shadow-sm"><span class="text-lhu-blue font-black">9.</span> Cuốn CTĐT, tờ trình <span class="block text-slate-400 mt-1">BM09.2, BM07</span></a></li>
+        <li><a href="#buoc-10" class="block h-full bg-white border border-slate-200 hover:border-lhu-sky rounded-2xl p-3 shadow-sm"><span class="text-lhu-blue font-black">10.</span> Rà soát, trình ký <span class="block text-slate-400 mt-1">validate-ctdt.py</span></a></li>
+      </ol>
+
+      <div class="grid sm:grid-cols-3 gap-4 mt-6">
+        <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+          <div class="flex items-center gap-2 font-bold text-emerald-700 mb-2"><i class="fa-solid fa-folder-open"></i> Điều chỉnh từ khóa trước</div>
+          <p class="text-sm text-slate-600">Có bộ hồ sơ Word/Excel của khóa trước. Claude nhập dữ liệu từ hồ sơ đó, bạn chỉ cung cấp phần thay đổi. <strong>Cách nhanh nhất.</strong></p>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+          <div class="flex items-center gap-2 font-bold text-asu-maroon mb-2"><i class="fa-solid fa-list-check"></i> Xây dựng mới</div>
+          <p class="text-sm text-slate-600">Chưa có hồ sơ. Claude <strong>hỏi bạn từng ý</strong> theo đúng thứ tự lập hồ sơ và ghi vào bộ dữ liệu sau mỗi câu trả lời.</p>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+          <div class="flex items-center gap-2 font-bold text-lhu-blue mb-2"><i class="fa-solid fa-magnifying-glass"></i> Chỉ rà soát</div>
+          <p class="text-sm text-slate-600">Có bộ hồ sơ do người khác lập, cần kiểm tra trước khi trình ký. Claude chạy kiểm tra tự động, đọc thêm phần nội dung và lập báo cáo theo mức ưu tiên.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 1 -->
+    <section id="buoc-1" class="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 sm:p-8 scroll-mt-24">
+      <div class="flex items-start gap-4">
+        <div class="step-num bg-lhu-blue text-white">1</div>
+        <div class="space-y-3 min-w-0">
+          <h2 class="text-lg sm:text-xl font-black text-slate-900">Chuẩn bị thông tin <span class="text-xs font-bold text-slate-400 align-middle">(người lập CTĐT)</span></h2>
+          <p class="text-sm text-slate-600">Không cần đủ hết ngay từ đầu: thiếu mục nào, Claude để dạng <code class="bg-slate-100 px-1.5 py-0.5 rounded">{{...}}</code> và hỏi lại ở bước tương ứng. Nhưng càng đủ thì càng ít phải sửa.</p>
+          <ul class="text-sm space-y-1.5">
+            <li><i class="fa-solid fa-check text-emerald-600 mr-2"></i><strong>Ngành và khóa:</strong> tên ngành (Việt, Anh), mã ngành, niên khóa, khóa tuyển, danh hiệu văn bằng, tổng tín chỉ dự kiến.</li>
+            <li><i class="fa-solid fa-check text-emerald-600 mr-2"></i><strong>Hồ sơ khóa trước (nếu có):</strong> cả thư mục BM01–BM09, kế hoạch đào tạo BM03, file PLO, chương trình điều hành, đề cương BM05. Chép vào một thư mục trong repo, ví dụ <code class="bg-slate-100 px-1.5 py-0.5 rounded">templates/xay-dung-ctdt-Dai hoc chinh quy/</code>.</li>
+            <li><i class="fa-solid fa-check text-emerald-600 mr-2"></i><strong>Văn bản của Trường cho đợt này:</strong> thông báo, kế hoạch của Hiệu trưởng; quy chế đào tạo áp dụng cho khóa (số, ngày); quy định về chuẩn đầu ra ngoại ngữ, tin học.</li>
+            <li><i class="fa-solid fa-check text-emerald-600 mr-2"></i><strong>Nhân sự:</strong> trưởng khoa, trưởng ngành; thành phần Hội đồng khoa học và đào tạo theo quyết định thành lập; danh sách doanh nghiệp, cựu sinh viên, chuyên gia sẽ lấy ý kiến; giảng viên phụ trách từng đề cương.</li>
+            <li><i class="fa-solid fa-check text-emerald-600 mr-2"></i><strong>Thay đổi dự kiến:</strong> học phần thêm, bỏ, đổi học kỳ, đổi tín chỉ (kèm mã mới do Phòng Đào tạo cấp); chương trình của trường đối sánh (link, năm áp dụng).</li>
+          </ul>
+          <div class="bg-amber-50 border border-amber-200 rounded-xl p-3 text-sm text-amber-900">
+            <i class="fa-solid fa-triangle-exclamation mr-1"></i> Claude <strong>không tự viết</strong> ý kiến góp ý, phát biểu và kết luận trong họp, kết quả biểu quyết, số văn bản, ngày ký, chữ ký. Những phần này bạn cung cấp từ phiếu và cuộc họp thật.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 2 -->
+    <section id="buoc-2" class="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 sm:p-8 scroll-mt-24">
+      <div class="flex items-start gap-4">
+        <div class="step-num bg-lhu-blue text-white">2</div>
+        <div class="space-y-3 min-w-0 w-full">
+          <h2 class="text-lg sm:text-xl font-black text-slate-900">Giao việc cho Claude</h2>
+          <p class="text-sm text-slate-600">Mở VS Code tại thư mục repo, mở Claude Code và gõ yêu cầu. Câu lệnh có nhắc tới "chương trình đào tạo", "CTĐT", "BM03", "đề cương BM05"… sẽ tự kích hoạt skill <code class="bg-slate-100 px-1.5 py-0.5 rounded">ctdt-builder</code>. Mọi kết quả nằm trong <code class="bg-slate-100 px-1.5 py-0.5 rounded">chuong-trinh-dao-tao/&lt;ngành&gt;-&lt;khóa&gt;/</code>.</p>
+
+          <p class="text-sm font-bold text-slate-700 mt-4">Mẫu A: điều chỉnh từ hồ sơ khóa trước</p>
+          <div class="relative">
+            <button onclick="copyPrompt(this)" class="no-print absolute top-2 right-2 px-2.5 py-1 bg-white/90 hover:bg-white text-slate-700 text-xs font-bold rounded-lg border border-slate-200"><i class="fa-regular fa-copy mr-1"></i>Sao chép</button>
+            <pre class="bg-slate-900 text-slate-100 text-xs sm:text-sm rounded-xl p-4 pr-24">Xây dựng CTĐT ngành Công nghệ thông tin, niên khóa 2027 - 2031, khóa tuyển 2027.
+Lấy dữ liệu từ hồ sơ khóa 2026 trong "templates/xay-dung-ctdt-Dai hoc chinh quy".
+Thay đổi: bỏ học phần 111179; thêm học phần An toàn thông tin (mã {{...}}, 3 TC, 1-2-0) ở HK6;
+chuyển 111168 về HK4. Chuẩn đầu ra giữ nguyên.
+Làm kế hoạch đào tạo trước để tôi duyệt.</pre>
+          </div>
+
+          <p class="text-sm font-bold text-slate-700 mt-4">Mẫu B: xây dựng mới, hỏi tôi từng ý</p>
+          <div class="relative">
+            <button onclick="copyPrompt(this)" class="no-print absolute top-2 right-2 px-2.5 py-1 bg-white/90 hover:bg-white text-slate-700 text-xs font-bold rounded-lg border border-slate-200"><i class="fa-regular fa-copy mr-1"></i>Sao chép</button>
+            <pre class="bg-slate-900 text-slate-100 text-xs sm:text-sm rounded-xl p-4 pr-24">Xây dựng CTĐT mới cho ngành Trí tuệ nhân tạo, khóa tuyển 2027.
+Chưa có hồ sơ khóa trước. Hãy hỏi tôi từng ý theo thứ tự lập hồ sơ,
+ghi vào bộ dữ liệu sau mỗi lượt và dừng ở các bước cần tôi duyệt.</pre>
+          </div>
+
+          <p class="text-sm font-bold text-slate-700 mt-4">Mẫu C: rà soát bộ hồ sơ có sẵn</p>
+          <div class="relative">
+            <button onclick="copyPrompt(this)" class="no-print absolute top-2 right-2 px-2.5 py-1 bg-white/90 hover:bg-white text-slate-700 text-xs font-bold rounded-lg border border-slate-200"><i class="fa-regular fa-copy mr-1"></i>Sao chép</button>
+            <pre class="bg-slate-900 text-slate-100 text-xs sm:text-sm rounded-xl p-4 pr-24">Rà soát bộ hồ sơ CTĐT ngành Thương mại điện tử 2027 trong thư mục "tai-lieu/ho-so-tmdt-2027".
+Lập báo cáo lỗi theo mức ưu tiên, lưu vào chuong-trinh-dao-tao/tmdt-2027/ra-soat/.
+Chưa sửa gì trong hồ sơ gốc.</pre>
+          </div>
+
+          <p class="text-sm font-bold text-slate-700 mt-4">Mẫu D: chỉ làm một phần</p>
+          <div class="relative">
+            <button onclick="copyPrompt(this)" class="no-print absolute top-2 right-2 px-2.5 py-1 bg-white/90 hover:bg-white text-slate-700 text-xs font-bold rounded-lg border border-slate-200"><i class="fa-regular fa-copy mr-1"></i>Sao chép</button>
+            <pre class="bg-slate-900 text-slate-100 text-xs sm:text-sm rounded-xl p-4 pr-24">Trong CTĐT cntt-2027, soạn đề cương BM05 cho các học phần học kỳ 3
+từ bài giảng LMS trong repo (nếu có). Giảng viên phụ trách: xem danh sách đính kèm.
+Gửi tôi CLO và ma trận CLO–PI để duyệt trước khi soạn kế hoạch 15 tuần.</pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 3 -->
+    <section id="buoc-3" class="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 sm:p-8 scroll-mt-24">
+      <div class="flex items-start gap-4">
+        <div class="step-num bg-lhu-blue text-white">3</div>
+        <div class="space-y-3 min-w-0">
+          <h2 class="text-lg sm:text-xl font-black text-slate-900">Đánh giá CTĐT đang thực hiện và đối sánh <span class="text-xs font-bold text-slate-400 align-middle">(BM08, BM04)</span></h2>
+          <ul class="text-sm space-y-1.5 text-slate-600">
+            <li><i class="fa-solid fa-user text-asu-maroon mr-2"></i><strong>Bạn cung cấp:</strong> khóa đã tốt nghiệp và khóa giữa chương trình cần đánh giá; hiện trạng phương pháp dạy học, đội ngũ giảng viên, cơ sở vật chất (có năm số liệu); chương trình đối sánh (ít nhất 1 trong nước, 1 nước ngoài, có link).</li>
+            <li><i class="fa-solid fa-robot text-lhu-blue mr-2"></i><strong>Claude làm:</strong> lập bảng khối kiến thức của khóa cũ, ghép học phần tương đương với chương trình đối sánh và tự tính tỷ lệ %. Claude có thể tra cứu chương trình đối sánh trên web nhưng sẽ ghi nguồn để bạn kiểm tra.</li>
+          </ul>
+          <pre class="bg-slate-100 text-slate-800 text-xs sm:text-sm rounded-xl p-3">Đối sánh với CTĐT Công nghệ thông tin của Trường ĐH Công nghệ Thông tin – ĐHQG TP.HCM (link ...)
+và chương trình Information Technology của Arizona State University (link ...). Làm BM04.</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 4 -->
+    <section id="buoc-4" class="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 sm:p-8 scroll-mt-24">
+      <div class="flex items-start gap-4">
+        <div class="step-num bg-asu-maroon text-white">4</div>
+        <div class="space-y-3 min-w-0">
+          <h2 class="text-lg sm:text-xl font-black text-slate-900">Lấy ý kiến các bên liên quan <span class="text-xs font-bold text-asu-maroon align-middle">(DỪNG chờ phiếu thật)</span></h2>
+          <p class="text-sm text-slate-600">Gửi Claude danh sách người góp ý (họ tên, đơn vị; doanh nghiệp, cựu sinh viên, chuyên gia dùng BM01.1, thành viên Hội đồng dùng BM01.2). Claude sinh phiếu trống và phiếu in sẵn tên từng người trong <code class="bg-slate-100 px-1.5 py-0.5 rounded">ho-so/BM01-Phieu-y-kien/</code>.</p>
+          <p class="text-sm text-slate-600">Bạn gửi phiếu, nhận lại phiếu có chữ ký rồi cho Claude biết các ý kiến chính để đưa vào phần tiếp thu – giải trình của biên bản.</p>
+          <p class="text-sm text-slate-500"><i class="fa-solid fa-lightbulb text-amber-500 mr-1"></i>Phiếu nên có ngày trước ngày họp Hội đồng. Kiểm tra ý kiến đúng ngành: đợt 2026 có phiếu chép nhầm từ hồ sơ ngành Thương mại điện tử.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 5 -->
+    <section id="buoc-5" class="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 sm:p-8 scroll-mt-24">
+      <div class="flex items-start gap-4">
+        <div class="step-num bg-asu-maroon text-white">5</div>
+        <div class="space-y-3 min-w-0">
+          <h2 class="text-lg sm:text-xl font-black text-slate-900">Mục tiêu và chuẩn đầu ra <span class="text-xs font-bold text-asu-maroon align-middle">(DỪNG để duyệt)</span></h2>
+          <p class="text-sm text-slate-600">Claude cập nhật PEO, PLO (SO), PI, ma trận PEO – PLO và vị trí việc làm sau tốt nghiệp, sinh BM02 và file PLO. Bạn duyệt chuẩn đầu ra <strong>trước</strong> khi làm kế hoạch đào tạo, vì mọi đề cương sẽ gắn CLO vào các PI này.</p>
+          <pre class="bg-slate-100 text-slate-800 text-xs sm:text-sm rounded-xl p-3">PLO giữ nguyên như khóa 2026. Sửa PEO1: thay "công nghệ kỹ thuật thông tin" bằng "công nghệ thông tin".
+Chuẩn đầu ra tiếng Anh: TOEIC từ 400 hoặc chứng chỉ tương đương. Duyệt, làm tiếp kế hoạch.</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 6 -->
+    <section id="buoc-6" class="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 sm:p-8 scroll-mt-24">
+      <div class="flex items-start gap-4">
+        <div class="step-num bg-asu-maroon text-white">6</div>
+        <div class="space-y-3 min-w-0">
+          <h2 class="text-lg sm:text-xl font-black text-slate-900">Kế hoạch đào tạo <span class="text-xs font-bold text-asu-maroon align-middle">(DỪNG để duyệt)</span></h2>
+          <p class="text-sm text-slate-600">Toàn bộ học phần nằm trong một file <code class="bg-slate-100 px-1.5 py-0.5 rounded">du-lieu/ke-hoach.csv</code> (mở bằng Excel): học kỳ, mã, tên, tín chỉ, LT/TH/BT, khối kiến thức, nhóm tự chọn, học phần trước. Từ file này Claude sinh BM03 (Excel), chương trình điều hành và bảng CTĐT trong BM06, BM07, BM09.2.</p>
+          <p class="text-sm text-slate-600">Kiểm tra tự động báo ngay các lỗi:</p>
+          <ul class="text-sm space-y-1 text-slate-600 list-disc pl-5">
+            <li>dòng tổng sai;</li>
+            <li>học phần trước xếp cùng hoặc sau học kỳ;</li>
+            <li>học phần bắt buộc lại yêu cầu một học phần tự chọn;</li>
+            <li>các môn trong cùng nhóm tự chọn có số tín chỉ khác nhau.</li>
+          </ul>
+          <p class="text-sm text-slate-600">Bạn trả lời từng lỗi (đổi học kỳ, đổi điều kiện…), Claude sửa dữ liệu và sinh lại.</p>
+          <pre class="bg-slate-100 text-slate-800 text-xs sm:text-sm rounded-xl p-3">111246 và 199008 đổi thành song hành với 111245. 111244 và 111186 đổi thành học trước 111166. Build lại.</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 7 -->
+    <section id="buoc-7" class="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 sm:p-8 scroll-mt-24">
+      <div class="flex items-start gap-4">
+        <div class="step-num bg-lhu-blue text-white">7</div>
+        <div class="space-y-3 min-w-0">
+          <h2 class="text-lg sm:text-xl font-black text-slate-900">Đề cương học phần và tóm tắt học phần <span class="text-xs font-bold text-slate-400 align-middle">(BM05, BM05a, BM05b)</span></h2>
+          <ul class="text-sm space-y-1.5 text-slate-600">
+            <li><i class="fa-solid fa-file-lines text-lhu-blue mr-2"></i>Mỗi học phần một file <code class="bg-slate-100 px-1.5 py-0.5 rounded">du-lieu/de-cuong/&lt;mã&gt;.md</code>: mô tả, CLO, kế hoạch 15 tuần, ma trận LLO – CLO, đánh giá, quy định, tài liệu, phần mềm. Tên, tín chỉ, môn học trước tự lấy từ kế hoạch đào tạo, không phải ghi lại.</li>
+            <li><i class="fa-solid fa-diagram-project text-lhu-blue mr-2"></i>Ma trận CLO – PI của toàn chương trình (file PLO, BM09.2) được sinh từ bảng CLO của các đề cương, nên luôn khớp nhau.</li>
+            <li><i class="fa-solid fa-building-columns text-lhu-blue mr-2"></i>Học phần dùng học liệu Arizona State University: cho Claude biết là <strong>tích hợp toàn phần</strong> (BM05a) hay <strong>tăng cường</strong> (BM05b) và học phần ASU nguồn. Claude soạn khối bản quyền, nhãn nguồn [U]/[U-adapt]/[L] theo hướng dẫn của Trường.</li>
+            <li><i class="fa-solid fa-user-check text-asu-maroon mr-2"></i>Giảng viên phụ trách duyệt CLO, cơ cấu đánh giá và tài liệu của học phần mình.</li>
+          </ul>
+          <p class="text-sm text-slate-500"><i class="fa-solid fa-lightbulb text-amber-500 mr-1"></i>Làm theo đợt (mỗi học kỳ một đợt). Học phần đã có bài giảng LMS trong repo thì nói cho Claude dùng làm nguồn.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 8 -->
+    <section id="buoc-8" class="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 sm:p-8 scroll-mt-24">
+      <div class="flex items-start gap-4">
+        <div class="step-num bg-asu-maroon text-white">8</div>
+        <div class="space-y-3 min-w-0">
+          <h2 class="text-lg sm:text-xl font-black text-slate-900">Họp Hội đồng khoa học và đào tạo Khoa <span class="text-xs font-bold text-slate-400 align-middle">(BM06)</span></h2>
+          <p class="text-sm text-slate-600">Trước họp, Claude sinh <strong>khung biên bản</strong> gồm:</p>
+          <ul class="text-sm space-y-1 text-slate-600 list-disc pl-5">
+            <li>thành phần Hội đồng và khách mời;</li>
+            <li>các văn bản căn cứ;</li>
+            <li>nội dung trình bày;</li>
+            <li>bảng thay đổi so với khóa trước (học phần mới, bỏ, đổi học kỳ, đổi tín chỉ), tự lập khi có kế hoạch khóa trước;</li>
+            <li>bảng CTĐT.</li>
+          </ul>
+          <p class="text-sm text-slate-600">Sau họp, thư ký điền ý kiến từng người, kết luận tiếp thu hoặc giải trình, kết quả biểu quyết. Muốn Claude sửa dữ liệu theo kết luận thì gửi kết luận cho Claude.</p>
+          <div class="bg-amber-50 border border-amber-200 rounded-xl p-3 text-sm text-amber-900">
+            <i class="fa-solid fa-triangle-exclamation mr-1"></i> Biên bản chỉ được căn cứ vào văn bản đã ban hành <strong>trước ngày họp</strong>. Claude cảnh báo khi phát hiện căn cứ có ngày sau ngày họp.
+            <br><br>
+            File biên bản đã điền tay nên đổi tên, để lần sinh lại sau không ghi đè.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 9 -->
+    <section id="buoc-9" class="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 sm:p-8 scroll-mt-24">
+      <div class="flex items-start gap-4">
+        <div class="step-num bg-lhu-blue text-white">9</div>
+        <div class="space-y-3 min-w-0">
+          <h2 class="text-lg sm:text-xl font-black text-slate-900">Cuốn CTĐT và tờ trình ban hành <span class="text-xs font-bold text-slate-400 align-middle">(BM09.2, BM07)</span></h2>
+          <p class="text-sm text-slate-600">Cuốn CTĐT gồm mục tiêu, chuẩn đầu ra, ma trận học phần – PI, chuỗi môn, tỷ lệ khối kiến thức, kế hoạch giảng dạy mẫu, điều kiện tốt nghiệp, mô tả vắn tắt học phần. Tất cả được ghép tự động từ dữ liệu.</p>
+          <p class="text-sm text-slate-600">Tờ trình lấy số, ngày của biên bản BM06 và bảng CTĐT bản cuối. Bạn cung cấp:</p>
+          <ul class="text-sm space-y-1 text-slate-600 list-disc pl-5">
+            <li>ngày hoàn thành từng văn bản;</li>
+            <li>số tờ trình;</li>
+            <li>điều kiện tốt nghiệp theo quy định của Trường cho khóa.</li>
+          </ul>
+          <p class="text-sm text-slate-500"><i class="fa-solid fa-lightbulb text-amber-500 mr-1"></i>Mở BM09.2 bằng Word, nhấn F9 ở trang mục lục để cập nhật số trang.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 10 -->
+    <section id="buoc-10" class="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 sm:p-8 scroll-mt-24">
+      <div class="flex items-start gap-4">
+        <div class="step-num bg-emerald-600 text-white">10</div>
+        <div class="space-y-3 min-w-0">
+          <h2 class="text-lg sm:text-xl font-black text-slate-900">Rà soát và trình ký</h2>
+          <p class="text-sm text-slate-600">Mỗi lần sinh hồ sơ, kiểm tra tự động chạy lại và ghi <code class="bg-slate-100 px-1.5 py-0.5 rounded">ra-soat/ra-soat-tu-dong.md</code>. Script kiểm tra:</p>
+          <ul class="text-sm space-y-1 text-slate-600 list-disc pl-5">
+            <li>mã, tên, tín chỉ giữa các văn bản;</li>
+            <li>học phần trước;</li>
+            <li>CLO, PI và tỷ lệ đánh giá trong đề cương;</li>
+            <li>chỗ còn để trống, dấu vết mẫu cũ;</li>
+            <li>ngày của văn bản căn cứ.</li>
+          </ul>
+          <p class="text-sm text-slate-600">Phần script không kiểm tra được (ý kiến đúng ngành, CLO đo được, mô tả khớp nội dung tuần) thì nhờ Claude rà theo danh mục:</p>
+          <pre class="bg-slate-100 text-slate-800 text-xs sm:text-sm rounded-xl p-3">Rà soát toàn bộ hồ sơ cntt-2027 theo danh mục trước khi trình ký. Liệt kê các chỗ còn {{...}} cần tôi điền.</pre>
+          <p class="text-sm text-slate-600">Cuối cùng, bạn đọc lại bản Word, điền chữ ký, số văn bản rồi trình ký theo quy định của Trường.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHO DOES WHAT -->
+    <section class="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 sm:p-8">
+      <h2 class="text-lg sm:text-xl font-black text-slate-900 mb-4"><i class="fa-solid fa-people-arrows text-lhu-blue mr-2"></i>Ai làm phần nào</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm border-collapse min-w-[560px]">
+          <thead><tr class="bg-slate-100 text-left"><th class="p-2 border border-slate-200">Claude soạn và sinh</th><th class="p-2 border border-slate-200">Bạn cung cấp hoặc duyệt</th><th class="p-2 border border-slate-200">Chỉ người thật làm</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="p-2 border border-slate-200 align-top">Bảng biểu, tổng tín chỉ, tỷ lệ %, ma trận; đề cương nháp; khung biên bản; phiếu trống; cuốn CTĐT; báo cáo rà soát</td>
+              <td class="p-2 border border-slate-200 align-top">Thông tin ngành, khóa; thay đổi học phần, mã mới; chuẩn đầu ra; giảng viên phụ trách; chương trình đối sánh; ngày, số văn bản; duyệt CLO, kế hoạch</td>
+              <td class="p-2 border border-slate-200 align-top">Ý kiến góp ý; phát biểu, kết luận, biểu quyết tại họp; chữ ký; quyết định thành lập Hội đồng</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- REFERENCE -->
+    <section class="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 sm:p-8">
+      <h2 class="text-lg sm:text-xl font-black text-slate-900 mb-4"><i class="fa-solid fa-terminal text-lhu-blue mr-2"></i>Tra cứu nhanh: lệnh và file</h2>
+      <p class="text-sm text-slate-600 mb-3">Thường Claude tự chạy các lệnh này. Bạn chỉ cần chạy khi tự sửa dữ liệu bằng tay (ví dụ sửa <code>ke-hoach.csv</code> trong Excel).</p>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm border-collapse min-w-[560px]">
+          <thead><tr class="bg-slate-100 text-left"><th class="p-2 border border-slate-200">Lệnh (chạy tại thư mục repo)</th><th class="p-2 border border-slate-200">Tác dụng</th></tr></thead>
+          <tbody>
+            <tr><td class="p-2 border border-slate-200 font-mono text-xs">uv run --with python-docx --with openpyxl python build-ctdt.py init chuong-trinh-dao-tao/cntt-2027</td><td class="p-2 border border-slate-200">Tạo bộ dữ liệu mẫu cho CTĐT mới</td></tr>
+            <tr><td class="p-2 border border-slate-200 font-mono text-xs">… build-ctdt.py init chuong-trinh-dao-tao/cntt-2027 --tu-ho-so "&lt;thư mục hồ sơ cũ&gt;"</td><td class="p-2 border border-slate-200">Nhập dữ liệu từ bộ hồ sơ Word/Excel đã có</td></tr>
+            <tr><td class="p-2 border border-slate-200 font-mono text-xs">… build-ctdt.py build chuong-trinh-dao-tao/cntt-2027</td><td class="p-2 border border-slate-200">Sinh toàn bộ hồ sơ vào <code>ho-so/</code> và rà soát tự động</td></tr>
+            <tr><td class="p-2 border border-slate-200 font-mono text-xs">… build-ctdt.py build chuong-trinh-dao-tao/cntt-2027 --chi BM03,DH,PLO</td><td class="p-2 border border-slate-200">Chỉ sinh một số biểu mẫu (BM01…BM09, PLO, DH = chương trình điều hành, TT = tóm tắt học phần)</td></tr>
+            <tr><td class="p-2 border border-slate-200 font-mono text-xs">… validate-ctdt.py "&lt;thư mục hồ sơ&gt;" --nam 2027</td><td class="p-2 border border-slate-200">Chỉ rà soát một bộ hồ sơ có sẵn, không sinh lại</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="font-bold text-slate-800 mt-6 mb-2">Cấu trúc thư mục một CTĐT</h3>
+      <pre class="bg-slate-900 text-slate-100 text-xs sm:text-sm rounded-xl p-4">chuong-trinh-dao-tao/cntt-2027/
+├── du-lieu/                     # SỬA Ở ĐÂY (hoặc nhờ Claude sửa)
+│   ├── thong-tin.json           # ngành, niên khóa, ngày và số văn bản, Hội đồng, căn cứ, người góp ý
+│   ├── ke-hoach.csv             # học kỳ, mã, tên, tín chỉ, khối, tự chọn, học phần trước (mở bằng Excel)
+│   ├── chuan-dau-ra.json        # PEO, PLO, PI, vị trí việc làm
+│   ├── doi-sanh.csv             # chương trình đối sánh ↔ học phần tương đương
+│   ├── ke-hoach-khoa-truoc.csv  # (tùy chọn) để lập bảng thay đổi và BM08
+│   └── de-cuong/111155.md …     # đề cương từng học phần
+├── ho-so/                       # SINH TỰ ĐỘNG: BM01…BM09, file PLO, chương trình điều hành, BM05-De-cuong/
+└── ra-soat/                     # báo cáo rà soát</pre>
+    </section>
+
+    <!-- RULES -->
+    <section class="bg-lhu-light border border-blue-200 rounded-3xl p-6 sm:p-8">
+      <h2 class="text-lg sm:text-xl font-black text-lhu-dark mb-3"><i class="fa-solid fa-shield-halved mr-2"></i>Nguyên tắc cần nhớ</h2>
+      <ul class="text-sm space-y-2 text-slate-700">
+        <li><strong>Một nguồn dữ liệu:</strong> sửa mã, tên, tín chỉ, CLO trong <code>du-lieu/</code> rồi sinh lại; không sửa tay file trong <code>ho-so/</code> vì sẽ bị ghi đè.</li>
+        <li><strong>Không bịa:</strong> Claude không tự đặt ý kiến, số văn bản, ngày ký, thành phần Hội đồng hay số liệu. Thông tin chưa có được để dạng <code>{{...}}</code> để bạn điền.</li>
+        <li><strong>Ngày tháng theo thứ tự lập:</strong> BM08, BM04, BM01 → BM02 → BM03 → BM05 → BM06 → BM09.2 → BM07. Văn bản chỉ căn cứ vào văn bản đã có trước nó.</li>
+        <li><strong>Căn cứ còn hiệu lực:</strong> từ 07/7/2026, quy chế đào tạo trình độ đại học theo Thông tư 56/2026/TT-BGDĐT (thay Thông tư 08/2021). Văn bản dẫn trong hồ sơ cần đối chiếu bản gốc.</li>
+        <li><strong>Dữ liệu cá nhân:</strong> hồ sơ có họ tên, chức vụ của người góp ý và thành viên Hội đồng. Cân nhắc trước khi đưa thư mục <code>chuong-trinh-dao-tao/</code> lên repo công khai.</li>
+        <li><strong>CTĐT đã ban hành:</strong> đổi học phần, tín chỉ hay chuẩn đầu ra phải đi lại quy trình thẩm định, ban hành theo quy định của Trường.</li>
+        <li><strong>Người lập CTĐT chịu trách nhiệm nội dung:</strong> luôn duyệt chuẩn đầu ra, kế hoạch, đề cương và đọc bản Word trước khi trình ký.</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-slate-200 py-8 text-xs text-slate-500 mt-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="space-y-1 text-center md:text-left">
+        <div class="font-bold text-slate-800 text-sm">Khoa Công nghệ Thông tin - Trường Đại học Lạc Hồng</div>
+        <p>Phòng B301 - B302, Cơ sở 1, Số 10 Huỳnh Văn Nghệ, P. Bửu Long, TP. Biên Hòa, Tỉnh Đồng Nai.</p>
+      </div>
+      <div class="flex flex-col items-center md:items-end gap-2 text-center md:text-right">
+        <div>Email: <a href="mailto:cntt@lhu.edu.vn" class="text-lhu-blue font-bold">cntt@lhu.edu.vn</a> • Hotline: (0251) 3952 251</div>
+        <div>Hệ thống LMS: <a href="https://learn.lhu.edu.vn" target="_blank" class="text-lhu-blue font-bold">learn.lhu.edu.vn</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function copyPrompt(button) {
+      const text = button.parentElement.querySelector("pre").innerText;
+      const done = () => {
+        const original = button.innerHTML;
+        button.innerHTML = '<i class="fa-solid fa-check mr-1"></i>Đã chép';
+        setTimeout(() => { button.innerHTML = original; }, 1500);
+      };
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(done);
+      } else {
+        // Dự phòng khi mở trực tiếp bằng file:/// (không có Clipboard API)
+        const area = document.createElement("textarea");
+        area.value = text;
+        document.body.appendChild(area);
+        area.select();
+        document.execCommand("copy");
+        area.remove();
+        done();
+      }
+    }
+  </script>
+
+</body>
+</html>

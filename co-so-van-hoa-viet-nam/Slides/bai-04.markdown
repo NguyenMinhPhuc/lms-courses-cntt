@@ -19,6 +19,8 @@ Từ biểu tượng đến kịch bản video · Workshop kịch bản
 - Cùng một chiếc bình gốm: video A giữ người xem đến giây cuối, video B quay lướt quanh tủ kính
 - Khác biệt nằm ở đâu?
 **Hoạt động**: Hỏi nhanh 3 nhóm: sản phẩm của nhóm có "câu chuyện" gì?
+![Gốm Chu Đậu thế kỷ 15–16 · Ảnh: Gary Todd (CC0)](images/bai-04-gom-chu-dau.jpg)
+
 **Ghi chú giảng viên**:
 - Dẫn vào ý: phải biết chất liệu văn hóa của mình là gì và kể bằng biểu tượng nào.
 
@@ -30,6 +32,8 @@ Từ biểu tượng đến kịch bản video · Workshop kịch bản
 - **Tín ngưỡng**: thờ cúng tổ tiên, Thành hoàng, thờ Mẫu
 - **Phong tục – lễ hội**: Tết, cưới hỏi, lễ hội làng, chợ phiên
 - **Nghệ thuật**: ngôn từ, thanh sắc, hình khối
+![](images/bai-04-bon-nhom-chat-lieu.png)
+
 **Ghi chú giảng viên**:
 - Mỗi nhóm xác định sản phẩm của mình thuộc nhóm chất liệu nào.
 
@@ -52,6 +56,8 @@ Từ biểu tượng đến kịch bản video · Workshop kịch bản
 - **Biểu cảm**: thiên cảm xúc → để nhân vật, âm thanh dẫn dắt
 - **Tổng hợp**: nhiều loại hình → hình, tiếng nói, âm hiện trường, chữ
 - **Linh hoạt**: tùy biến → nhiều phiên bản cho nhiều nền tảng
+![](images/bai-04-nghe-thuat-cach-ke.png)
+
 **Ghi chú giảng viên**:
 - Theo giáo trình [1]; nhấn mạnh tính biểu trưng cho hook.
 
@@ -75,6 +81,8 @@ Từ biểu tượng đến kịch bản video · Workshop kịch bản
 - Hư cấu phải được nói rõ là hư cấu
 - Biểu tượng thiêng giữ vị trí trang trọng
 **Hoạt động**: Thảo luận câu 1: ranh giới giữa sáng tạo và xuyên tạc nằm ở đâu?
+![](images/bai-04-sang-tao-xuyen-tac.png)
+
 **Ghi chú giảng viên**:
 - Cho sinh viên lấy ví dụ từ sản phẩm họ từng xem.
 
@@ -121,6 +129,8 @@ Từ biểu tượng đến kịch bản video · Workshop kịch bản
 - **Câu chuyện**: nhân vật, hành trình, khó khăn
 - **Giá trị**: nói ra hoặc để người xem tự cảm
 - **Kêu gọi**: một hành động cụ thể, vừa sức
+![](images/bai-04-cau-truc-kich-ban.png)
+
 **Ghi chú giảng viên**:
 - Dùng ví dụ chiếc bình gốm trong bài học (mục 2.4).
 
@@ -133,6 +143,8 @@ Từ biểu tượng đến kịch bản video · Workshop kịch bản
 - Giá trị: ý nghĩa hoa văn; sự nhẫn nại, tinh thần giữ nghề
 - Kêu gọi: "Lần tới ghé bảo tàng, hãy tìm hoa văn này"
 **Hoạt động**: Thảo luận câu 3: sản phẩm của nhóm mang giá trị gì, kể bằng biểu tượng nào?
+![Làng gốm Bát Tràng · Ảnh: Steven C. Price (CC BY-SA 4.0)](images/bai-04-bat-trang.jpg)
+
 **Ghi chú giảng viên**:
 - Mỗi nhóm ghi ngay hook và giá trị của mình trước workshop.
 

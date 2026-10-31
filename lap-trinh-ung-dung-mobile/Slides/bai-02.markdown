@@ -89,6 +89,7 @@ export const fontSize = { body: 16, title: 20, heading: 24 };
 - `Input`: có nhãn và dòng báo lỗi
 - Dark mode: `useColorScheme()` để chọn bảng màu sáng/tối
 **Hoạt động**: Hỏi lớp: màn hình Trang chủ LHU Food dùng lại được những component nào?
+![](images/bai-02-design-system.png)
 
 ---
 
@@ -98,6 +99,8 @@ export const fontSize = { body: 16, title: 20, heading: 24 };
 - 2. Prompt có ràng buộc: dùng theme, dùng component có sẵn, không thêm thư viện
 - 3. Chạy thử, **đặt cạnh ảnh thiết kế** để so
 - 4. Sửa chỗ lệch, tách component, ghi `PROMPTS.md`
+![](images/bai-02-figma-ma.png)
+
 **Ghi chú giảng viên**:
 - Demo prompt mẫu ở mục 2.4 của bài học với Copilot Chat.
 
@@ -120,6 +123,7 @@ export const fontSize = { body: 16, title: 20, heading: 24 };
 - Minh chứng cho CLO1 và CLO3
 **Ví dụ**:
 - LHU Food: Khách hàng (thực đơn, giỏ hàng, đặt hàng, theo dõi đơn) · Nhân viên (đơn mới, cập nhật trạng thái, quản lý món, thống kê) · Tài khoản
+![](images/bai-02-so-do-chuc-nang.png)
 
 ---
 

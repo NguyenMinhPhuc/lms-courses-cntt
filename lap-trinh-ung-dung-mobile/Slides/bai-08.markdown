@@ -29,6 +29,7 @@ Những gì ứng dụng di động làm tốt hơn web app
 - **Giải thích trước** vì sao cần quyền
 - **Xử lý từ chối**: app vẫn chạy, hướng dẫn mở Cài đặt
 **Hoạt động**: Hỏi lớp: ứng dụng nào từng xin quyền khiến bạn khó chịu?
+![](images/bai-08-xin-quyen.png)
 
 ---
 
@@ -76,6 +77,8 @@ await fetch(`${API_URL}/users/me/avatar`, {
 - Server tự đặt tên file: mã người dùng + thời điểm
 - Lưu file vào `uploads/`, SQL Server **chỉ lưu đường dẫn** qua `sp_User_UpdateAvatar`
 - Phục vụ file tĩnh bằng `useStaticAssets`
+![](images/bai-08-tai-anh.png)
+
 **Ghi chú giảng viên**:
 - Mã đầy đủ ở mục 2.2 của bài học.
 
@@ -114,6 +117,8 @@ if (status === 'granted') {
 - **Development build**: thư viện native ngoài SDK, push từ xa
 - Development build tốn một lượt build EAS
 - Bản cài đặt dùng Google Maps cần API key trong `app.json`
+![](images/bai-08-expo-go-dev-build.png)
+
 **Ghi chú giảng viên**:
 - Nhắc sinh viên kiểm tra thư viện AI gợi ý có trong tài liệu Expo không.
 

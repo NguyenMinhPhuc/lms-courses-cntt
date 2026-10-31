@@ -30,6 +30,7 @@ Giỏ hàng dùng chung, thực đơn cuộn mượt, form kiểm tra dữ liệ
 **Ví dụ**:
 - Số lượng đang chọn (cục bộ) · Giỏ hàng (toàn cục) · Thực đơn (server)
 **Hoạt động**: Lớp phân loại nhanh 6 dữ liệu của LHU Food
+![](images/bai-04-ba-loai-trang-thai.png)
 
 ---
 
@@ -66,6 +67,8 @@ const add = useCart((state) => state.add);
 - `ScrollView` vẽ **tất cả** phần tử ngay lập tức
 - `FlatList` chỉ vẽ phần tử đang hiển thị → mượt, ít bộ nhớ
 - Không lồng FlatList trong ScrollView; phần đầu trang đưa vào `ListHeaderComponent`
+![](images/bai-04-scrollview-flatlist.png)
+
 **Ghi chú giảng viên**:
 - Demo: 500 món bằng ScrollView và FlatList trên máy Android tầm trung.
 
@@ -133,6 +136,8 @@ const schema = z.object({
 - 4. Sửa schema chỗ AI sai, ghi `PROMPTS.md`
 **Ví dụ**:
 - Số điện thoại 9, 10, 11 chữ số; mật khẩu 7 và 8 ký tự
+![](images/bai-04-vibe-quy-tac.png)
+
 **Ghi chú giảng viên**:
 - Liên hệ kỹ thuật giá trị biên ở môn Kiểm thử phần mềm.
 

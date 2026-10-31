@@ -28,6 +28,7 @@ Sprint 1 · Nền tảng & Giao diện
 - **SSR**: server tạo HTML cho từng request
 - **SSG/ISR**: tạo sẵn lúc build, ISR làm mới định kỳ
 - **Server Components**: chạy trên server, chỉ gửi kết quả
+![](images/bai-01-mo-hinh-render.png)
 
 ---
 
@@ -36,6 +37,7 @@ Sprint 1 · Nền tảng & Giao diện
 - Thực đơn: render trên server, tải nhanh, tốt cho tìm kiếm
 - Quản trị, giỏ hàng, màn hình quầy: "đảo" tương tác ở trình duyệt
 - Một ứng dụng, kết hợp nhiều mô hình
+![](images/bai-01-ket-hop-mo-hinh.png)
 
 ---
 
@@ -69,17 +71,15 @@ app/
 - "use client": dùng useState, onClick
 - Chỉ dùng Client Component cho phần cần tương tác
 **Hoạt động**: Lớp phân loại 5 thành phần của trang thực đơn
+![](images/bai-01-server-client.png)
 
 ---
 
 ## Slide 8: Kiến trúc dữ liệu
 **Nội dung chính**:
-```text
-Trình duyệt → Next.js → API (gateway) → SQL Server
-                        chỉ gọi stored procedure
-```
 - Next.js KHÔNG kết nối CSDL trực tiếp
 - Sprint 1–2: API mẫu; Sprint 3–4: backend của nhóm
+![](images/bai-01-kien-truc-du-lieu.png)
 
 ---
 
@@ -98,6 +98,7 @@ Trình duyệt → Next.js → API (gateway) → SQL Server
 - Ước lượng story point, đặt Sprint Goal
 - Board: Cần làm → Đang làm → Chờ review → Xong
 - Mỗi thẻ: người phụ trách + liên kết Pull Request
+![](images/bai-01-board.png)
 
 ---
 

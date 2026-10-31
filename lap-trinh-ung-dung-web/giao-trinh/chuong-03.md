@@ -93,34 +93,7 @@ export default async function MenuPage({ searchParams }: Props) {
 
   const [categories, products] = await Promise.all([
     apiGet<Category[]>('/categories', 300),          // danh mục ít đổi: 5 phút
-    apiGet<Product[]>(`/products?${query}`, 30),     // tồn kho đổi thường xuyên: 30 giây
-  ]);
-
-  return (
-    <main className="mx-auto max-w-5xl p-6">
-      <form action="/menu" className="mb-4">
-        <input name="q" defaultValue={q} placeholder="Tìm món…" className="w-full rounded border px-3 py-2" />
-      </form>
-      <nav className="mb-4 flex gap-2 overflow-x-auto">
-        {categories.map((c) => (
-          <Link key={c.id} href={`/menu?category=${c.id}`} className="rounded-full border px-3 py-1">{c.name}</Link>
-        ))}
-      </nav>
-      {products.length === 0 ? (
-        <p className="text-slate-500">Không tìm thấy món phù hợp.</p>
-      ) : (
-        <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {products.map((p) => (
-            <li key={p.id} className="rounded-xl border bg-white p-4">
-              <Link href={`/product/${p.id}`} className="font-bold">{p.name}</Link>
-              <p>{p.price.toLocaleString('vi-VN')} đ</p>
-            </li>
-          ))}
-        </ul>
-      )}
-    </main>
-  );
-}
+// … (trích 15/43 dòng; mã đầy đủ ở Phụ lục A, mục A.1)
 ```
 
 Những điểm cần chú ý:

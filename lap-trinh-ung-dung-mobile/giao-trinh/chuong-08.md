@@ -286,37 +286,7 @@ export default function MapScreen() {
   const [me, setMe] = useState<{ lat: number; lng: number } | null>(null);
 
   useEffect(() => {
-    getMyLocation().then((pos) => pos && setMe({ lat: pos.latitude, lng: pos.longitude }));
-  }, []);
-
-  const first = counters[0];
-  if (!first) return <Text style={{ padding: 16 }}>Chưa có dữ liệu quầy.</Text>;
-
-  const nearest = me ? [...counters].sort((a, b) => distanceKm(me, a) - distanceKm(me, b))[0] : null;
-
-  return (
-    <View style={{ flex: 1 }}>
-      <MapView
-        style={StyleSheet.absoluteFill}
-        showsUserLocation
-        initialRegion={{ latitude: first.lat, longitude: first.lng, latitudeDelta: 0.01, longitudeDelta: 0.01 }}
-      >
-        {counters.map((c) => (
-          <Marker key={c.id} coordinate={{ latitude: c.lat, longitude: c.lng }} title={c.name} />
-        ))}
-      </MapView>
-      {nearest && me && (
-        <View style={styles.banner}>
-          <Text>Quầy gần bạn nhất: {nearest.name} ({Math.round(distanceKm(me, nearest) * 1000)} m)</Text>
-        </View>
-      )}
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  banner: { position: 'absolute', left: 16, right: 16, bottom: 24, padding: 12, borderRadius: 12, backgroundColor: '#fff' },
-});
+// … (trích 15/46 dòng; mã đầy đủ ở Phụ lục A, mục A.6)
 ```
 
 Khi người dùng từ chối quyền vị trí, bản đồ vẫn hiển thị các quầy; chỉ phần "gần bạn nhất" bị ẩn.

@@ -45,6 +45,8 @@ Nhận thức – Tổ chức cộng đồng – Ứng xử với tự nhiên v�
 - Quy luật 2: âm dương chuyển hóa ("sông có khúc, người có lúc")
 **Ví dụ**:
 - Bánh chưng vuông – bánh giầy tròn; tư duy cặp đôi
+![](images/bai-02-am-duong.png)
+
 **Ghi chú giảng viên**:
 - Chốt sau lượt 1; liên hệ sản phẩm nhóm vừa trình bày.
 
@@ -67,6 +69,8 @@ Nhận thức – Tổ chức cộng đồng – Ứng xử với tự nhiên v�
 - Ngũ sắc: đen, đỏ, xanh, trắng, vàng; gắn với phương hướng, mùa
 **Ví dụ**:
 - Mâm ngũ quả, cờ ngũ sắc trong lễ hội
+![](images/bai-02-ngu-hanh.png)
+
 **Ghi chú giảng viên**:
 - Nhấn mạnh ứng dụng màu sắc trong thiết kế: chọn màu có lý do văn hóa.
 
@@ -87,6 +91,8 @@ Nhận thức – Tổ chức cộng đồng – Ứng xử với tự nhiên v�
 - Người trong làng gắn kết theo huyết thống, nơi ở, nghề, sở thích, giới – tuổi
 - **Tính cộng đồng**: cây đa, bến nước, sân đình
 - **Tính tự trị**: lũy tre
+![Cổng làng Thanh Lương · Ảnh: Quachanhnon (CC BY-SA 4.0)](images/bai-02-cong-lang.jpg)
+
 **Ghi chú giảng viên**:
 - Hai đặc trưng là hai mặt của cùng một tổ chức làng.
 
@@ -97,6 +103,8 @@ Nhận thức – Tổ chức cộng đồng – Ứng xử với tự nhiên v�
 - Cộng đồng: đoàn kết, tương trợ ↔ dựa dẫm, cào bằng, đố kỵ
 - Tự trị: tự lập, cần cù ↔ ích kỷ, bè phái, cục bộ địa phương
 **Hoạt động**: Thảo luận câu 2: trên mạng xã hội, tính cộng đồng là đùm bọc hay "ném đá"?
+![](images/bai-02-hai-mat-lang-xa.png)
+
 **Ghi chú giảng viên**:
 - Gợi ý ví dụ chiến dịch quyên góp lan tỏa và hiện tượng "ném đá" tập thể.
 
@@ -107,6 +115,8 @@ Nhận thức – Tổ chức cộng đồng – Ứng xử với tự nhiên v�
 - Đình: thờ Thành hoàng, trung tâm hành chính và sinh hoạt văn hóa
 - Lễ hội: phần lễ (nghi thức) và phần hội (trò chơi, diễn xướng)
 - Phần lớn lễ hội gắn với chu kỳ nông nghiệp
+![Đình Tây Đằng · Ảnh: Duyphuong (CC BY-SA 4.0)](images/bai-02-dinh-tay-dang.jpg)
+
 **Ghi chú giảng viên**:
 - Nếu có nhóm trình bày đình làng hoặc lễ hội, dùng sản phẩm của nhóm làm ví dụ.
 
@@ -118,6 +128,8 @@ Nhận thức – Tổ chức cộng đồng – Ứng xử với tự nhiên v�
 - **Mặc**: tơ, lụa, đay, gai; yếm, áo tứ thân, nón lá
 - **Ở**: nhà sàn, mái cong, hướng nam
 - **Đi lại**: thuyền, ghe; "trên bến dưới thuyền"
+![Nón lá · Ảnh: steve the archivist (CC BY-SA 2.0)](images/bai-02-non-la.jpg)
+
 **Ghi chú giảng viên**:
 - Chốt sau lượt 2 cùng slide 12.
 
@@ -129,6 +141,8 @@ Nhận thức – Tổ chức cộng đồng – Ứng xử với tự nhiên v�
 - **Nho giáo**: chính thống thời Đại Việt; "trung" thành trung với nước
 - **Đạo giáo**: chủ yếu dạng dân gian, hòa lẫn với tín ngưỡng dân gian
 - **Phương Tây**: chữ Quốc ngữ, kiến trúc, báo chí, được Việt hóa dần
+![Chùa Dâu, ngôi chùa Tứ pháp · Ảnh: Bùi Thế Tâm (CC BY-SA 3.0)](images/bai-02-chua-dau.jpg)
+
 **Ghi chú giảng viên**:
 - Đặc trưng chung: dung hợp và linh hoạt.
 
@@ -139,6 +153,8 @@ Nhận thức – Tổ chức cộng đồng – Ứng xử với tự nhiên v�
 - Phật, Nho, Đạo cùng tồn tại, bổ sung cho nhau
 - Tiếp nhận có chọn lọc, biến đổi cho hợp hoàn cảnh
 - Câu chuyện "tiếp biến" là chất liệu hấp dẫn cho video ngắn
+![](images/bai-02-tam-giao.png)
+
 **Ghi chú giảng viên**:
 - Câu chuyện tiếp biến có xung đột, bất ngờ và kết thúc tự hào: cấu trúc tốt cho video.
 

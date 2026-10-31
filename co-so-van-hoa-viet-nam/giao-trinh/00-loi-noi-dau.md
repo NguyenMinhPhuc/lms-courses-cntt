@@ -44,6 +44,13 @@ Mỗi chương gồm:
 
 Điểm học phần gồm A1 Quá trình (30%), A2 Giữa kỳ – Portfolio (30%) và A3 Cuối kỳ – dự án video (40%), chấm theo checklist công bố trên trang *Đánh giá học phần*.
 
+## Học liệu đi kèm
+
+- **Bài học trên LMS** (`bai-XX`): mỗi buổi một trang gồm mục tiêu, nội dung, hoạt động và bài luyện tập; nội dung khớp với chương cùng số.
+- **Slide bài giảng** (`Slides/bai-XX.pptx`): dùng trên lớp, có ghi chú giảng viên.
+- **Ngân hàng câu hỏi trắc nghiệm** (`quiz/`): luyện tập cuối mỗi bài trên web và import vào Moodle.
+- **Thông tin học phần, trang đánh giá và rubric chấm điểm theo CLO** (`rubric/`).
+
 ## Quy ước dùng AI
 
 Học phần cho phép dùng trợ lý AI và công cụ tạo ảnh (Midjourney, DALL-E) để tìm ý, phác thảo bố cục và moodboard. Ba nguyên tắc áp dụng cho mọi sản phẩm:
@@ -51,5 +58,7 @@ Học phần cho phép dùng trợ lý AI và công cụ tạo ảnh (Midjourney
 1. **Nộp kèm prompt đã dùng.**
 2. **Kiểm chứng thông tin** do AI đưa ra bằng giáo trình hoặc nguồn uy tín; AI thường sai niên đại, tên gọi và ý nghĩa biểu tượng.
 3. **Không dùng ảnh AI thay cho hiện vật thật** và luôn ghi chú khi một hình ảnh được tạo bằng AI.
+
+**AI trong quá trình biên soạn.** Bản thảo giáo trình được soạn với sự hỗ trợ của trợ lý AI ở các khâu: lập dàn ý, diễn đạt, viết mã nguồn ví dụ, vẽ sơ đồ và rà soát định dạng. Nội dung chuyên môn được đối chiếu với tài liệu tham khảo ghi ở cuối mỗi chương; người biên soạn chịu trách nhiệm về tính chính xác, bản quyền và toàn bộ nội dung của giáo trình.
 
 Tài liệu đang ở dạng bản thảo, lưu hành nội bộ. Mọi góp ý xin gửi về nhóm giảng viên học phần qua kênh trao đổi trên LMS.

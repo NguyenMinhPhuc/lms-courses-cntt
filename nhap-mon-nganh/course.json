@@ -6,7 +6,13 @@
   "hours": "45 tiết (9 buổi)",
   "semester": "Học kỳ 1 • Năm 1",
   "instructor": "ThS. Nguyễn Minh Phúc",
-  "tags": ["ABET", "AI-First", "Vibe Coding", "Cơ sở ngành"],
+  "instructorEmail": "phuc@lhu.edu.vn",
+  "tags": [
+    "ABET",
+    "AI-First",
+    "Vibe Coding",
+    "Cơ sở ngành"
+  ],
   "headerLabel": "NHẬP MÔN CNTT (111106)",
   "subtitleTag": "Chuẩn ABET Hoa Kỳ",
   "year": 2026,
@@ -22,5 +28,10 @@
     "07": "Dịch thuật chuyên ngành, Viết báo cáo & Kiểm soát ảo giác AI",
     "08": "Kỹ thuật Prompt nâng cao: Đóng vai Chuyên gia & Vibe Coding",
     "09": "Xây dựng Lộ trình học tập 4 năm & Báo cáo Đồ án cuối kỳ"
-  }
+  },
+  "textbookKind": "Giáo trình",
+  "textbookSubtitle": [
+    "Dành cho sinh viên năm thứ nhất ngành Công nghệ Thông tin",
+    "Kế thừa giáo trình Áp dụng ChatGPT vào học tập và công việc (ThS. Nguyễn Minh Phúc)"
+  ]
 }

@@ -1,0 +1,83 @@
+Có biến toàn cục tong = 0 và hàm def cong(d): tong = tong + d. Gọi cong(8) gây lỗi gì?
+A. NameError
+B. UnboundLocalError
+C. TypeError
+D. Không lỗi, tong thành 8
+ANSWER: B
+
+Biến được tạo bên trong một hàm (kể cả tham số) có phạm vi thế nào?
+A. Chỉ dùng được trong hàm đó và mất đi khi hàm kết thúc
+B. Dùng được ở mọi hàm trong cùng file
+C. Dùng được ở mọi file của dự án
+D. Tồn tại mãi tới khi tắt máy
+ANSWER: A
+
+Tên hàm nào đúng quy ước PEP 8?
+A. TinhDiemTB
+B. tinh_diem_tb
+C. tinhDiemTb
+D. TINH_DIEM_TB
+ANSWER: B
+
+Theo PEP 8, một giá trị không đổi như ngưỡng đạt 4,0 nên đặt tên thế nào?
+A. nguong = 4.0
+B. Nguong_Dat = 4.0
+C. nguongDat = 4.0
+D. NGUONG_DAT = 4.0
+ANSWER: D
+
+PEP 8 quy định thụt lề mỗi cấp bằng bao nhiêu dấu cách?
+A. 4
+B. 2
+C. 8
+D. Tùy ý, miễn thống nhất
+ANSWER: A
+
+Docstring của một hàm được viết ở đâu?
+A. Ngay trước dòng def, bắt đầu bằng dấu #
+B. Ở cuối file, sau tất cả các hàm
+C. Trong một file .txt riêng
+D. Ngay dưới dòng def, là chuỗi đặt trong ba dấu nháy
+ANSWER: D
+
+Chú thích nào hữu ích nhất?
+A. # trọng số theo đề cương: quá trình 30%, giữa kỳ 30%, cuối kỳ 40%
+B. # đây là biến
+C. # cộng 1 vào i (cho dòng i += 1)
+D. # code của tôi
+ANSWER: A
+
+Refactor là gì?
+A. Thêm chức năng mới vào chương trình
+B. Viết lại chương trình bằng ngôn ngữ khác
+C. Sửa cấu trúc code cho dễ đọc, dễ sửa mà không làm đổi kết quả
+D. Xóa các dòng chú thích cho code ngắn hơn
+ANSWER: C
+
+Sau mỗi bước refactor nhỏ, việc quan trọng nhất là gì?
+A. Commit ngay mà không chạy lại
+B. Thêm chú thích cho mọi dòng
+C. Đổi tên file
+D. Chạy lại với cùng bộ dữ liệu và so kết quả với trước khi sửa
+ANSWER: D
+
+Lệnh ruff format làm được việc gì?
+A. Tự viết docstring cho mọi hàm
+B. Đổi tên biến cho có nghĩa
+C. Tự sửa khoảng trắng, thụt lề, xuống dòng theo chuẩn, nhưng không đổi tên biến
+D. Tìm và sửa mọi lỗi logic
+ANSWER: C
+
+Ruff báo F401 "imported but unused". Nghĩa là gì?
+A. Hàm thiếu return
+B. Tên biến không đúng PEP 8
+C. Có dòng import nhưng không dùng tới thứ được import
+D. Dòng code quá dài
+ANSWER: C
+
+Trong code có dòng if diem >= 4: với số 4 viết thẳng, không giải thích. Cách refactor phù hợp là gì?
+A. Đổi 4 thành 4.0 là đủ
+B. Đặt hằng số NGUONG_DAT = 4.0 và viết if diem >= NGUONG_DAT:
+C. Xóa điều kiện này
+D. Thêm chú thích # số 4
+ANSWER: B

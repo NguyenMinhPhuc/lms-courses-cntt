@@ -54,6 +54,7 @@ CREATE INDEX IX_Products_CategoryId ON Products (CategoryId) WHERE IsAvailable =
 - Đặt hàng = tạo Orders + tạo OrderItems + trừ Stock
 **Ví dụ**:
 - Bước trừ tồn kho lỗi → đơn và chi tiết đơn cũng phải bị hủy
+![](images/bai-07-giao-dich.png)
 
 ---
 
@@ -125,6 +126,7 @@ database/
 - TanStack Query: `onMutate` (cập nhật cache), `onError` (hoàn tác), `onSettled` (tải lại)
 **Ví dụ**:
 - Nút trái tim "Món yêu thích" đổi màu ngay
+![](images/bai-07-optimistic.png)
 
 ---
 

@@ -87,64 +87,7 @@ GO
 CREATE OR ALTER PROCEDURE sp_Order_UpdateStatus
   @OrderId INT, @Status NVARCHAR(20)
 AS
-BEGIN
-  SET NOCOUNT ON;
-  DECLARE @Current NVARCHAR(20) = (SELECT Status FROM Orders WHERE OrderId = @OrderId);
-  IF @Current IS NULL
-    THROW 50404, N'Không tìm thấy đơn hàng', 1;
-  IF @Current IN (N'completed', N'cancelled')
-    THROW 50409, N'Đơn đã kết thúc, không thể đổi trạng thái', 1;
-
-  UPDATE Orders SET Status = @Status
-  OUTPUT inserted.OrderId AS orderId, inserted.UserId AS userId, inserted.Status AS status
-  WHERE OrderId = @OrderId;
-END;
-GO
-
-CREATE OR ALTER PROCEDURE sp_Notification_Create
-  @UserId INT, @Title NVARCHAR(100), @Body NVARCHAR(300), @OrderId INT = NULL
-AS
-BEGIN
-  SET NOCOUNT ON;
-  INSERT INTO Notifications (UserId, Title, Body, OrderId)
-  OUTPUT inserted.NotificationId AS id, inserted.Title AS title, inserted.Body AS body,
-         inserted.OrderId AS orderId, inserted.IsRead AS isRead, inserted.CreatedAt AS createdAt
-  VALUES (@UserId, @Title, @Body, @OrderId);
-END;
-GO
-
-CREATE OR ALTER PROCEDURE sp_Notification_GetList
-  @UserId INT, @Page INT = 1, @PageSize INT = 20
-AS
-BEGIN
-  SET NOCOUNT ON;
-  SELECT NotificationId AS id, Title AS title, Body AS body, OrderId AS orderId,
-         IsRead AS isRead, CreatedAt AS createdAt
-  FROM Notifications
-  WHERE UserId = @UserId
-  ORDER BY CreatedAt DESC
-  OFFSET (@Page - 1) * @PageSize ROWS FETCH NEXT @PageSize ROWS ONLY;
-END;
-GO
-
-CREATE OR ALTER PROCEDURE sp_Notification_CountUnread @UserId INT
-AS
-BEGIN
-  SET NOCOUNT ON;
-  SELECT COUNT(*) AS unread FROM Notifications WHERE UserId = @UserId AND IsRead = 0;
-END;
-GO
-
-CREATE OR ALTER PROCEDURE sp_Notification_MarkRead @NotificationId INT, @UserId INT
-AS
-BEGIN
-  SET NOCOUNT ON;
-  UPDATE Notifications SET IsRead = 1
-  WHERE NotificationId = @NotificationId AND UserId = @UserId;   -- chỉ thông báo của chính mình
-  IF @@ROWCOUNT = 0
-    THROW 50404, N'Không tìm thấy thông báo', 1;
-END;
-GO
+-- … (trích 15/73 dòng; mã đầy đủ ở Phụ lục A, mục A.7)
 ```
 
 - Mệnh đề `OUTPUT inserted....` trả về dòng vừa thêm/sửa, giúp backend có ngay dữ liệu để gửi qua socket mà không cần gọi thêm thủ tục.
@@ -288,34 +231,7 @@ export function useRealtime() {
   const token = useAuth((s) => s.token);
   const role = useAuth((s) => s.role);
   const queryClient = useQueryClient();
-
-  useEffect(() => {
-    if (!token) return;
-    const socket = io(process.env.EXPO_PUBLIC_API_URL!, {
-      auth: { token },
-      transports: ['websocket'],
-    });
-
-    socket.on('order:status', async ({ order, notification }: OrderStatusEvent) => {
-      queryClient.invalidateQueries({ queryKey: ['orders'] });
-      queryClient.invalidateQueries({ queryKey: ['notifications'] });
-      await Notifications.scheduleNotificationAsync({
-        content: { title: notification.title, body: notification.body, data: { url: `/order/${order.orderId}` } },
-        trigger: null,
-      });
-    });
-
-    if (role === 'staff') {
-      socket.on('order:new', () => queryClient.invalidateQueries({ queryKey: ['orders'] }));
-    }
-
-    socket.on('connect', () => queryClient.invalidateQueries({ queryKey: ['notifications'] }));
-
-    return () => {
-      socket.disconnect();
-    };
-  }, [token, role, queryClient]);
-}
+// … (trích 15/43 dòng; mã đầy đủ ở Phụ lục A, mục A.8)
 ```
 
 - **Vòng đời kết nối theo đăng nhập:** effect phụ thuộc `token`. Đăng xuất (`token = null`) thì ngắt; làm mới token (Chương 6) thì effect chạy lại và kết nối bằng token mới [4].

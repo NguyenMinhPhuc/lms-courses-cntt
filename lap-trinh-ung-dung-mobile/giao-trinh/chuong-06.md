@@ -81,64 +81,7 @@ ALTER TABLE Orders ADD CONSTRAINT FK_Orders_Users FOREIGN KEY (UserId) REFERENCE
 CREATE TABLE RefreshTokens (
   TokenId   INT IDENTITY(1,1) PRIMARY KEY,
   UserId    INT NOT NULL REFERENCES Users(UserId),
-  TokenHash CHAR(64) NOT NULL UNIQUE,      -- SHA-256 dạng hex
-  ExpiresAt DATETIME2 NOT NULL,
-  RevokedAt DATETIME2 NULL
-);
-GO
-
-CREATE OR ALTER PROCEDURE sp_User_Register
-  @FullName NVARCHAR(100), @Email NVARCHAR(255), @PasswordHash NVARCHAR(255)
-AS
-BEGIN
-  SET NOCOUNT ON;
-  IF EXISTS (SELECT 1 FROM Users WHERE Email = @Email)
-    THROW 50409, N'Email đã được sử dụng', 1;
-
-  INSERT INTO Users (FullName, Email, PasswordHash) VALUES (@FullName, @Email, @PasswordHash);
-  SELECT CAST(SCOPE_IDENTITY() AS INT) AS userId;
-END;
-GO
-
--- Thủ tục nội bộ cho backend: trả PasswordHash, không bao giờ gửi kết quả này cho ứng dụng
-CREATE OR ALTER PROCEDURE sp_User_GetByEmail
-  @Email NVARCHAR(255)
-AS
-BEGIN
-  SET NOCOUNT ON;
-  SELECT UserId, FullName, Email, PasswordHash, Role FROM Users WHERE Email = @Email;
-END;
-GO
-
-CREATE OR ALTER PROCEDURE sp_RefreshToken_Save
-  @UserId INT, @TokenHash CHAR(64), @ExpiresAt DATETIME2
-AS
-BEGIN
-  SET NOCOUNT ON;
-  INSERT INTO RefreshTokens (UserId, TokenHash, ExpiresAt) VALUES (@UserId, @TokenHash, @ExpiresAt);
-END;
-GO
-
-CREATE OR ALTER PROCEDURE sp_RefreshToken_Use
-  @TokenHash CHAR(64)
-AS
-BEGIN
-  SET NOCOUNT ON;
-  -- Mỗi refresh token chỉ dùng một lần: thu hồi bản cũ, trả về người dùng nếu còn hiệu lực
-  UPDATE RefreshTokens SET RevokedAt = SYSDATETIME()
-  OUTPUT inserted.UserId AS userId
-  WHERE TokenHash = @TokenHash AND RevokedAt IS NULL AND ExpiresAt > SYSDATETIME();
-END;
-GO
-
-CREATE OR ALTER PROCEDURE sp_RefreshToken_Revoke
-  @TokenHash CHAR(64)
-AS
-BEGIN
-  SET NOCOUNT ON;
-  UPDATE RefreshTokens SET RevokedAt = SYSDATETIME() WHERE TokenHash = @TokenHash AND RevokedAt IS NULL;
-END;
-GO
+-- … (trích 15/73 dòng; mã đầy đủ ở Phụ lục A, mục A.3)
 ```
 
 Refresh token được lưu dưới dạng **băm SHA-256** chứ không phải bcrypt, vì backend cần **tìm** bản ghi theo chuỗi băm; bcrypt sinh chuỗi khác nhau mỗi lần nên không tra cứu được.
@@ -192,60 +135,7 @@ export class AuthService {
   constructor(private readonly db: DatabaseService, private readonly jwt: JwtService) {}
 
   async register(fullName: string, email: string, password: string) {
-    const passwordHash = await bcrypt.hash(password, 10);
-    const [row] = await this.db.execute<{ userId: number }>('sp_User_Register', {
-      FullName: { type: sql.NVarChar(100), value: fullName },
-      Email: { type: sql.NVarChar(255), value: email },
-      PasswordHash: { type: sql.NVarChar(255), value: passwordHash },
-    });
-    return row;
-  }
-
-  async login(email: string, password: string) {
-    const [user] = await this.db.execute<UserRow>('sp_User_GetByEmail', {
-      Email: { type: sql.NVarChar(255), value: email },
-    });
-    if (!user || !(await bcrypt.compare(password, user.PasswordHash))) {
-      throw new UnauthorizedException('Email hoặc mật khẩu không đúng');
-    }
-    return this.issueTokens(user.UserId, user.Role);
-  }
-
-  async refresh(refreshToken: string) {
-    let payload: { sub: number; role: string };
-    try {
-      payload = await this.jwt.verifyAsync(refreshToken, { secret: process.env.JWT_REFRESH_SECRET });
-    } catch {
-      throw new UnauthorizedException();
-    }
-    const [row] = await this.db.execute<{ userId: number }>('sp_RefreshToken_Use', {
-      TokenHash: { type: sql.Char(64), value: sha256(refreshToken) },
-    });
-    if (!row) throw new UnauthorizedException();
-    return this.issueTokens(payload.sub, payload.role);
-  }
-
-  async logout(refreshToken: string) {
-    await this.db.execute('sp_RefreshToken_Revoke', {
-      TokenHash: { type: sql.Char(64), value: sha256(refreshToken) },
-    });
-  }
-
-  private async issueTokens(userId: number, role: string) {
-    const payload = { sub: userId, role };
-    const accessToken = await this.jwt.signAsync(payload);
-    const refreshToken = await this.jwt.signAsync(payload, {
-      secret: process.env.JWT_REFRESH_SECRET,
-      expiresIn: '7d',
-    });
-    await this.db.execute('sp_RefreshToken_Save', {
-      UserId: { type: sql.Int, value: userId },
-      TokenHash: { type: sql.Char(64), value: sha256(refreshToken) },
-      ExpiresAt: { type: sql.DateTime2, value: new Date(Date.now() + 7 * 24 * 3600 * 1000) },
-    });
-    return { accessToken, refreshToken, role };
-  }
-}
+// … (trích 15/69 dòng; mã đầy đủ ở Phụ lục A, mục A.4)
 ```
 
 Lưu ý: thông báo khi sai email và khi sai mật khẩu **giống nhau**, để không tiết lộ email nào đã đăng ký [1].

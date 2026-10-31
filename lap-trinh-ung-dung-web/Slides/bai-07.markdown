@@ -28,6 +28,7 @@ Sprint 3 · Quản trị & Realtime
 - US-A01 danh mục: Categories → sp_Category_* → /admin/categories
 - US-A04 tài khoản: Users (Role, IsLocked) → sp_User_SetLocked → /admin/users/:id/lock
 **Hoạt động**: Nhóm điền bảng 5 tầng cho các story quản trị của đề tài
+![](images/bai-07-nam-tang.png)
 
 ---
 
@@ -79,6 +80,7 @@ IF EXISTS (SELECT 1 FROM dbo.Products WHERE CategoryId = @CategoryId)
 - 50404 → 404: không tìm thấy
 - 50409 → 409: xung đột, trùng
 - Đặt ở thủ tục: web, mobile, Swagger đều bị kiểm tra như nhau
+![](images/bai-07-ma-loi.png)
 
 ---
 
@@ -127,6 +129,7 @@ export class AdminCategoriesController { ... }
 - Chạy lại TC Sprint 1–2 trên backend nhóm
 - Trước đạt, giờ trượt = lỗi hồi quy → thẻ trên board
 - Ghi cột "Kết quả trên backend nhóm"
+![](images/bai-07-hoi-quy.png)
 
 ---
 

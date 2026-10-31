@@ -28,6 +28,7 @@ Sprint 3 · Checkpoint Sprint 3
 - Thao tác ghi vẫn qua REST và stored procedure
 - Lưu trước, gửi sau
 - Như Chương 9 giáo trình di động
+![](images/bai-09-luu-truoc-gui-sau.png)
 
 ---
 
@@ -37,6 +38,7 @@ Sprint 3 · Checkpoint Sprint 3
 - Token trong cookie httpOnly: JS không đọc được
 - Xin token qua /api/socket-token, giữ trong bộ nhớ
 - Bị từ chối (connect_error): không tự kết nối lại
+![](images/bai-09-socket-token.png)
 
 ---
 
@@ -73,6 +75,7 @@ const socket = io(process.env.NEXT_PUBLIC_SOCKET_URL!, {
 - order:new → âm báo + router.refresh()
 - order:updated → router.refresh(): đồng bộ nhiều nhân viên
 - connect_error → thử lại sau 3 giây
+![](images/bai-09-su-kien.png)
 
 ---
 
@@ -104,12 +107,7 @@ const socket = io(process.env.NEXT_PUBLIC_SOCKET_URL!, {
 
 ## Slide 11: Sơ đồ tuần tự (CLO1)
 **Nội dung chính**:
-```text
-Mobile ─POST /orders─▶ API ─sp_Order_Create─▶ SQL Server
-API ─order:new (staff)─▶ Web quầy ─GET /orders/staff─▶ API
-Web A ─PATCH status─▶ API ─order:status─▶ Mobile
-                       └─order:updated─▶ Web B
-```
+![](images/bai-09-tuan-tu-realtime.png)
 
 ---
 

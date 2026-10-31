@@ -4,6 +4,12 @@ Giáo trình *Lập trình ứng dụng web* được biên soạn cho học ph�
 
 Nội dung được tổng hợp từ **tài liệu chính thức** của Next.js, React, Tailwind CSS, shadcn/ui, NestJS, Socket.IO, Vitest, Playwright, OWASP và Microsoft SQL Server, sắp xếp lại theo trình tự 12 buổi học. Khi một API hay câu lệnh có thể thay đổi theo phiên bản, giáo trình ghi rõ nguồn để người học tra lại tài liệu gốc.
 
+## Cách trích dẫn giáo trình
+
+Khoa Công nghệ Thông tin, Trường Đại học Lạc Hồng, *Giáo trình Lập trình ứng dụng web*, Bản thảo lưu hành nội bộ. Đồng Nai, Việt Nam, 2026.
+
+Khi trích dẫn một nội dung kỹ thuật (API, câu lệnh, cấu hình), hãy dẫn **tài liệu chính thức** được ghi ở cuối chương tương ứng, vì tài liệu gốc được cập nhật theo phiên bản còn giáo trình thì không.
+
 ## Học phần song hành với Lập trình ứng dụng di động
 
 Học phần học cùng học kỳ với *Lập trình ứng dụng di động* (111114) và dùng chung đề tài **LHU Food** (đặt món căn tin trường). Hai học phần chia nhau một hệ thống:
@@ -23,6 +29,7 @@ Mỗi chương tương ứng một buổi học và gồm:
 - **Tóm tắt, câu hỏi ôn tập và bài tập:** dùng để tự kiểm tra trước buổi học sau.
 - **Bài tập hướng dẫn theo dự án LHU Food:** nhiệm vụ của buổi học gắn với user story trong SRS, gồm chuẩn bị môi trường, các bước triển khai, cách vibe coding (prompt mẫu và cách kiểm tra mã do AI sinh) và tiêu chí hoàn thành.
 - **Tài liệu tham khảo:** trình bày theo chuẩn IEEE, được trích dẫn bằng số trong ngoặc vuông tại đúng mục sử dụng.
+- **Phụ lục A. Mã nguồn đầy đủ:** các đoạn mã dài hơn 40 dòng; trong chương chỉ trích phần đầu và ghi số mục phụ lục.
 
 Giáo trình gồm **12 chương** theo 4 sprint: Chương 1–3 (Sprint 1: nền tảng và giao diện, dùng API mẫu), Chương 4–6 (Sprint 2: người dùng và tương tác, dùng API mẫu), Chương 7–9 (Sprint 3: quản trị và realtime, chuyển sang backend của nhóm), Chương 10–12 (Sprint 4: chất lượng, triển khai, báo cáo và Demo Day chung).
 
@@ -35,11 +42,25 @@ Giáo trình gồm **12 chương** theo 4 sprint: Chương 1–3 (Sprint 1: nề
 | CLO3 | Viết báo cáo trình bày công việc đã thực hiện hợp lý và đúng quy định về định dạng | Báo cáo sprint (Chương 3, 6, 9), báo cáo đồ án (Chương 11) |
 | CLO4 | Sắp xếp công việc cá nhân hoặc nhóm phù hợp với mục tiêu đề ra | Kế hoạch sprint (Chương 1), velocity (Chương 6), kế hoạch Sprint 4 (Chương 9), tổng kết tiến độ (Chương 11) |
 
+## Học liệu đi kèm
+
+- **Bài học trên LMS** (`bai-XX`): mỗi buổi một trang gồm mục tiêu, nội dung, hoạt động và bài luyện tập; nội dung khớp với chương cùng số.
+- **Slide bài giảng** (`Slides/bai-XX.pptx`): dùng trên lớp, có ghi chú giảng viên.
+- **Ngân hàng câu hỏi trắc nghiệm** (`quiz/`): luyện tập cuối mỗi bài trên web và import vào Moodle.
+- **Thông tin học phần, trang đánh giá và rubric chấm điểm theo CLO** (`rubric/`).
+- **Đặc tả yêu cầu (SRS) và Kế hoạch Agile & Product Backlog dự án LHU Food:** dùng chung với học phần Lập trình ứng dụng di động.
+
 ## Ba nguyên tắc xuyên suốt
 
 1. **Vibe coding có kiểm soát.** Bạn được dùng Google Antigravity và GitHub Copilot Chat để sinh mã, nhưng phải hiểu, kiểm tra và giải thích được mọi dòng mã mình nộp. Prompt chính được ghi lại trong `PROMPTS.md`. Không hiểu thì không merge.
 2. **Next.js không kết nối cơ sở dữ liệu.** Mọi dữ liệu đi qua backend API; backend chỉ truy cập Microsoft SQL Server qua **stored procedure** có tham số.
 3. **Phân tích trước, mã sau, kiểm thử để chứng minh.** Mỗi trang truy vết được tới một user story; mỗi tiêu chí chấp nhận có ít nhất một test case có kết quả.
+
+## Quy ước dùng AI
+
+Ngoài nguyên tắc vibe coding có kiểm soát ở trên: ghi prompt chính vào `PROMPTS.md`, chạy thử và giải thích được mã AI sinh trước khi merge, không đưa khóa bí mật hay dữ liệu cá nhân thật vào prompt.
+
+**AI trong quá trình biên soạn.** Bản thảo giáo trình được soạn với sự hỗ trợ của trợ lý AI ở các khâu: lập dàn ý, diễn đạt, viết mã nguồn ví dụ, vẽ sơ đồ và rà soát định dạng. Nội dung chuyên môn được đối chiếu với tài liệu tham khảo ghi ở cuối mỗi chương; người biên soạn chịu trách nhiệm về tính chính xác, bản quyền và toàn bộ nội dung của giáo trình.
 
 ## Quy ước trình bày
 

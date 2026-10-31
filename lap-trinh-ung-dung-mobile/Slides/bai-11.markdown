@@ -18,10 +18,7 @@ Sprint 4 · Đưa sản phẩm ra ngoài phòng máy
 **Nội dung chính**:
 - Hiện tại: app chỉ chạy khi máy bạn bật, cùng Wi-Fi
 - Mục tiêu: người ngoài nhóm cài APK, đặt món qua mạng, nhận thông báo realtime
-```text
-Điện thoại (APK) → API NestJS trên Windows Server Khoa → SQL Server
-                 ← Socket.IO (cùng server)
-```
+![](images/bai-11-trien-khai.png)
 
 ---
 
@@ -30,6 +27,7 @@ Sprint 4 · Đưa sản phẩm ra ngoài phòng máy
 - Chạy theo thứ tự số: 01-tables.sql → 02-procedures.sql → … → 08-notifications.sql → 99-seed.sql
 - Script chạy lại được: CREATE OR ALTER PROCEDURE, kiểm tra tồn tại
 - Dùng SQL Server Management Studio hoặc sqlcmd
+![](images/bai-11-script-csdl.png)
 
 ---
 
@@ -53,6 +51,8 @@ GRANT EXECUTE ON SCHEMA::dbo TO lhufood_api;
 - **Dịch vụ nền**: theo hướng dẫn của bộ phận hỗ trợ, tự chạy lại khi server khởi động lại
 - **Firewall**: mở cổng API và socket
 - Kiểm tra Swagger từ một máy khác
+![](images/bai-11-chay-backend.png)
+
 **Ghi chú giảng viên**:
 - Các thao tác cấp server (login, firewall, service) phối hợp với bộ phận hỗ trợ triển khai của Khoa.
 
@@ -88,6 +88,7 @@ const config: ExpoConfig = {
 - EXPO_PUBLIC_* được nhúng vào app: không đặt mật khẩu, khóa bí mật
 - HTTP bị Android chặn trong bản build: cho phép cleartext cho đồ án, phát hành thật dùng HTTPS
 - Bản đồ (bài 08): cần API key Google Maps cho Android
+![](images/bai-11-moi-truong.png)
 
 ---
 

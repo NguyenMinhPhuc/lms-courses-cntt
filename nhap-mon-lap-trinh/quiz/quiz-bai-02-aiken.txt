@@ -1,0 +1,83 @@
+Biểu thức 7 / 2 trong Python cho kết quả nào?
+A. 3
+B. 4
+C. 1
+D. 3.5
+ANSWER: D
+
+Biểu thức 7 // 2 trong Python cho kết quả nào?
+A. 3.5
+B. 3
+C. 1
+D. 4
+ANSWER: B
+
+Biểu thức 17 % 5 cho kết quả nào?
+A. 3
+B. 3.4
+C. 2
+D. 85
+ANSWER: C
+
+Biểu thức 2 + 3 * 4 ** 2 // 5 cho kết quả nào?
+A. 11
+B. 14
+C. 20
+D. 9
+ANSWER: A
+
+Cách viết nào tính đúng trung bình cộng của hai biến a và b?
+A. a + b / 2
+B. a / 2 + b
+C. a + (b / 2)
+D. (a + b) / 2
+ANSWER: D
+
+Với diem = 11, biểu thức 0 <= diem <= 10 cho kết quả nào?
+A. True
+B. Báo lỗi SyntaxError
+C. 11
+D. False
+ANSWER: D
+
+Biểu thức True and not False cho kết quả nào?
+A. None
+B. False
+C. True
+D. Báo lỗi
+ANSWER: C
+
+Sau ba lệnh tong = 10, tong += 5, tong *= 2 thì tong bằng bao nhiêu?
+A. 20
+B. 25
+C. 30
+D. 17
+ANSWER: C
+
+Lệnh print(f"{3.14159:.2f}") in ra gì?
+A. 3.14
+B. 3.1
+C. 3.14159
+D. 3.142
+ANSWER: A
+
+Biểu thức 0.1 + 0.2 == 0.3 cho kết quả False. Nguyên nhân là gì?
+A. Số thực được lưu ở hệ nhị phân nên có sai số nhỏ
+B. Python tính sai phép cộng
+C. Phải viết 0.1 + 0.2 = 0.3 mới đúng
+D. Toán tử == không dùng được với số
+ANSWER: A
+
+Theo bảng giá giả định của bài (50 kWh đầu 2.000 đ/kWh, 50 kWh tiếp theo 2.500 đ/kWh, phần còn lại 3.000 đ/kWh), dùng 40 kWh phải trả bao nhiêu?
+A. 100.000 đồng
+B. 80.000 đồng
+C. 120.000 đồng
+D. 92.500 đồng
+ANSWER: B
+
+Lệnh print(f"{1234567:,}") in ra gì?
+A. 1234567
+B. 1,234,567
+C. 1.234.567
+D. 1 234 567
+ANSWER: B

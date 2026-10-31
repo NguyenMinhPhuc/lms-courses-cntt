@@ -1,0 +1,83 @@
+Theo yêu cầu của học phần, chương trình Mini Project cần có ít nhất bao nhiêu chức năng trên menu?
+A. 4
+B. 3
+C. 2
+D. 10
+ANSWER: A
+
+Mỗi nhóm Mini Project gồm bao nhiêu sinh viên?
+A. 1–2
+B. 5–6
+C. 3–4
+D. Không giới hạn
+ANSWER: C
+
+Kiến thức nào là yêu cầu bắt buộc của Mini Project?
+A. Lập trình hướng đối tượng với class
+B. try – except cho mọi chỗ nhập liệu
+C. Đọc/ghi cơ sở dữ liệu
+D. Giao diện đồ họa
+ANSWER: B
+
+Khi phân tích đề tài, bảng Input – Process – Output nên lập cho phạm vi nào?
+A. Chỉ một bảng cho cả chương trình
+B. Không cần lập vì đã có lưu đồ
+C. Chỉ cho chức năng khó nhất
+D. Cho từng chức năng
+ANSWER: D
+
+Sơ đồ phân rã chức năng của nhóm dùng để làm gì?
+A. Chia chương trình thành các hàm và làm căn cứ phân công công việc
+B. Thay thế cho code
+C. Trang trí báo cáo
+D. Đo tốc độ chương trình
+ANSWER: A
+
+Ở buổi 11, nhóm sửa lại code của một chức năng. Lưu đồ của chức năng đó cần xử lý thế nào?
+A. Giữ nguyên lưu đồ cũ
+B. Xóa lưu đồ khỏi báo cáo
+C. Cập nhật lại cho khớp với code mới
+D. Nhờ AI vẽ lại mà không kiểm tra
+ANSWER: C
+
+Nhóm nhận ra đề tài có 9 chức năng, quá lớn so với 2 buổi còn lại. Cách xử lý phù hợp là gì?
+A. Làm cả 9 chức năng, mỗi chức năng chạy một phần
+B. Giữ khoảng 4 chức năng chính chạy chắc chắn, các ý tưởng còn lại ghi vào Hướng phát triển
+C. Nhờ AI viết hộ các chức năng còn lại
+D. Đổi sang đề tài khác ở buổi 12
+ANSWER: B
+
+Quy định nào đúng về bảng phân công trong Mini Project?
+A. Không cần bảng phân công nếu nhóm thân nhau
+B. Một người viết toàn bộ code, các bạn còn lại làm báo cáo
+C. Mỗi thành viên tự viết ít nhất một chức năng hoàn chỉnh
+D. Chỉ trưởng nhóm được commit
+ANSWER: C
+
+Prompt nào phù hợp nhất để nhờ AI brainstorm đề tài?
+A. "Nhóm năm nhất, mới học biến, if, vòng lặp, list, hàm, try-except. Gợi ý 6 chức năng cho đề tài quản lý chi tiêu, kèm độ khó. Không viết code."
+B. "Cho tôi code Python quản lý chi tiêu có giao diện đẹp."
+C. "Viết cho tôi chương trình quản lý chi tiêu hoàn chỉnh."
+D. "Quản lý chi tiêu là gì?"
+ANSWER: A
+
+Một thành viên không tham gia làm Mini Project. Nhóm nên làm gì?
+A. Làm thay và vẫn ghi tên bạn ấy vào phần việc
+B. Chờ tới buổi 12 rồi trình bày
+C. Xóa tên bạn ấy khỏi nhóm mà không báo ai
+D. Báo giảng viên sớm, không đợi tới buổi Showcase
+ANSWER: D
+
+File lưu đồ .drawio của nhóm nên lưu ở đâu?
+A. Trên máy của một thành viên
+B. Trong thư mục docs/ của dự án để cả nhóm cùng dùng
+C. Gửi qua tin nhắn mỗi khi sửa
+D. Không cần lưu, chỉ cần ảnh chụp màn hình
+ANSWER: B
+
+Nhóm muốn chương trình lưu dữ liệu ra file để không mất khi tắt máy. Theo quy định của học phần, nhóm nên làm gì?
+A. Làm luôn, không cần hỏi
+B. Bị cấm hoàn toàn
+C. Dán code từ mạng vào là được
+D. Hỏi giảng viên trước vì đọc/ghi file ngoài phạm vi học phần, và vẫn phải giải thích được phần code đó
+ANSWER: D

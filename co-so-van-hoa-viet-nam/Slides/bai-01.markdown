@@ -21,6 +21,8 @@ Hiểu văn hóa trước khi bấm quay
 - MV mặc áo tứ thân nhảy nhạc điện tử thì sao?
 - Người làm truyền thông cần một cách nhìn rõ ràng trước khi bấm quay
 **Hoạt động**: Hỏi nhanh 3 sinh viên, ghi các ý kiến lên bảng để đối chiếu cuối buổi
+![Bánh chưng ngày Tết · Ảnh: Syced (CC0)](images/bai-01-banh-chung.jpg)
+
 **Ghi chú giảng viên**:
 - Không chốt đáp án ngay; quay lại câu hỏi này ở slide 13.
 
@@ -56,6 +58,8 @@ Hiểu văn hóa trước khi bấm quay
 - **Tính lịch sử** → chức năng giáo dục
 **Ví dụ**:
 - Tục gói bánh chưng: có hệ thống (Tết, gia đình), có giá trị (hiếu kính), do con người tạo, truyền qua nhiều đời
+![](images/bai-01-dac-trung-chuc-nang.png)
+
 **Ghi chú giảng viên**:
 - Đây là "bộ lọc" để kiểm tra một nội dung số có văn hóa hay không (câu thảo luận 1).
 
@@ -78,6 +82,8 @@ Hiểu văn hóa trước khi bấm quay
 - Văn hóa tổ chức cộng đồng
 - Văn hóa ứng xử với môi trường tự nhiên
 - Văn hóa ứng xử với môi trường xã hội
+![](images/bai-01-he-thong-van-hoa.png)
+
 **Ghi chú giảng viên**:
 - 4 thành tố theo giáo trình [1] và CLO1; học chi tiết ở Bài 02.
 - Timeline ghi "cấu trúc 3 thành tố": nếu giảng viên dùng khung 3 tọa độ (slide 8), trình bày thêm ở đây.
@@ -89,6 +95,8 @@ Hiểu văn hóa trước khi bấm quay
 - **Chủ thể**: người Việt cùng các dân tộc anh em
 - **Không gian**: vùng nhiệt đới gió mùa, sông nước
 - **Thời gian**: tiến trình hàng nghìn năm
+![Cày ruộng bằng trâu · Ảnh: Thomas Schoch (CC BY-SA 2.5)](images/bai-01-lua-nuoc.jpg)
+
 **Ghi chú giảng viên**:
 - Không gian nhiệt đới ẩm gió mùa là gốc của loại hình văn hóa nông nghiệp (slide 9).
 
@@ -100,6 +108,8 @@ Hiểu văn hóa trước khi bấm quay
 - Nhận thức: tổng hợp, biện chứng ↔ phân tích, lý tính
 - Tổ chức cộng đồng: trọng tình, trọng đức, trọng văn, trọng nữ, tập thể ↔ trọng lý, trọng võ, cá nhân
 - Ứng xử xã hội: dung hợp, mềm dẻo ↔ độc tôn, cứng rắn
+![](images/bai-01-nong-nghiep-du-muc.png)
+
 **Ghi chú giảng viên**:
 - Liên hệ: vì sao quảng cáo Tết về sum họp gia đình dễ chạm cảm xúc khán giả Việt (trọng tình).
 
@@ -110,6 +120,8 @@ Hiểu văn hóa trước khi bấm quay
 - **Lớp bản địa**: tiền sử; Văn Lang – Âu Lạc (Đông Sơn, trống đồng)
 - **Lớp giao lưu với Trung Hoa và khu vực**: chống Bắc thuộc; Đại Việt (Lý – Trần, Lê)
 - **Lớp giao lưu với phương Tây**: Đại Nam; văn hóa hiện đại (chữ Quốc ngữ, báo chí, môi trường số)
+![](images/bai-01-tien-trinh-van-hoa.png)
+
 **Ghi chú giảng viên**:
 - Nhắc gốm Chu Đậu, Bát Tràng ở giai đoạn Đại Việt để nối với dự án gốm/hiện vật.
 
@@ -121,6 +133,8 @@ Hiểu văn hóa trước khi bấm quay
 - **Áo dài**: từ áo ngũ thân, cải tiến thập niên 1930 theo kỹ thuật may phương Tây; tinh thần kín đáo, thanh lịch là của người Việt
 - **Phở**: hình thành ở Bắc Bộ đầu thế kỷ 20, nhiều giả thuyết về ảnh hưởng Pháp, Hoa; cách ăn rất Việt
 **Hoạt động**: Thảo luận câu 2: vì sao áo dài, phở vừa "ngoại nhập" vừa "rất Việt"?
+![Áo dài · Ảnh: Anh Khoa (CC BY-SA 2.0)](images/bai-01-ao-dai.jpg)
+
 **Ghi chú giảng viên**:
 - Nguồn gốc phở có nhiều giả thuyết; khuyến khích sinh viên ghi "theo một giả thuyết" khi làm nội dung.
 
@@ -133,6 +147,8 @@ Hiểu văn hóa trước khi bấm quay
 - **Sản phẩm**: định dạng, kênh, cách kể nào phù hợp khán giả?
 **Ví dụ**:
 - Bình gốm men lam: sự nhẫn nại của nghệ nhân → vết tay trên bàn xoay → video dọc 60 giây
+![](images/bai-01-gia-tri-bieu-tuong-san-pham.png)
+
 **Ghi chú giảng viên**:
 - Đây là khung xuyên suốt cho Portfolio, kịch bản và báo cáo cuối kỳ.
 

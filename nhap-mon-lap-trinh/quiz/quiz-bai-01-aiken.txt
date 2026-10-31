@@ -1,0 +1,83 @@
+Trong Python, giá trị trả về của hàm input() luôn có kiểu dữ liệu nào?
+A. int
+B. str
+C. float
+D. bool
+ANSWER: B
+
+Bài toán in thẻ hồ sơ nhận họ tên, năm sinh, lớp và in ra tuổi. Bước "tuổi = 2026 - năm sinh" thuộc phần nào trong bảng Input – Process – Output?
+A. Input
+B. Output
+C. Process
+D. Không thuộc phần nào
+ANSWER: C
+
+Tên biến nào sau đây hợp lệ trong Python?
+A. 2nam
+B. nam-sinh
+C. for
+D. nam_sinh
+ANSWER: D
+
+Giá trị 8.25 trong Python có kiểu dữ liệu nào?
+A. int
+B. bool
+C. str
+D. float
+ANSWER: D
+
+Chương trình gồm hai dòng nam_sinh = input("Năm sinh: ") và tuoi = 2026 - nam_sinh. Khi chạy và nhập 2007, chương trình báo lỗi gì?
+A. TypeError
+B. NameError
+C. SyntaxError
+D. IndentationError
+ANSWER: A
+
+Với tuoi = 19, lệnh print(f"Tuổi: {tuoi}") in ra gì?
+A. Tuổi: {tuoi}
+B. f"Tuổi: 19"
+C. Tuổi: 19
+D. Tuổi: tuoi
+ANSWER: C
+
+Với tuoi = 19, lệnh print("Tuổi: {tuoi}") (quên chữ f trước chuỗi) in ra gì?
+A. Tuổi: 19
+B. Tuổi: {tuoi}
+C. Báo lỗi NameError
+D. Tuổi:
+ANSWER: B
+
+Biểu thức "=" * 5 cho kết quả gì?
+A. Báo lỗi TypeError
+B. "= 5"
+C. 5
+D. "====="
+ANSWER: D
+
+Phát biểu nào đúng về cách chạy chương trình Python?
+A. Phải biên dịch thành file .exe trước khi chạy
+B. Chỉ chạy được trong trình duyệt web
+C. Trình thông dịch Python đọc file .py và thực hiện lần lượt các lệnh
+D. Chỉ chạy được khi có kết nối Internet
+ANSWER: C
+
+Bạn chưa hiểu cú pháp f-string trong bài lab. Cách dùng AI nào đúng với quy định của học phần?
+A. Hỏi AI giải thích cú pháp, tự viết lại code và ghi prompt vào Nhật ký Prompt
+B. Dán nguyên đề bài cho AI và nộp code AI viết
+C. Không được dùng AI trong mọi trường hợp
+D. Chép code của bạn cùng nhóm rồi nhờ AI sửa tên biến
+ANSWER: A
+
+Chương trình cần in tuổi trung bình của hai sinh viên. Dữ liệu đầu vào tối thiểu cần nhập là gì?
+A. Họ tên của hai sinh viên
+B. Năm sinh của hai sinh viên
+C. Lớp của hai sinh viên
+D. Tuổi trung bình của hai sinh viên
+ANSWER: B
+
+Lệnh print(type(True)) in ra gì?
+A. <class 'bool'>
+B. <class 'int'>
+C. <class 'str'>
+D. <class 'float'>
+ANSWER: A

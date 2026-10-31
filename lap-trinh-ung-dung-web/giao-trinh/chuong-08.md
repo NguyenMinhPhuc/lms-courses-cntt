@@ -280,6 +280,6 @@ Mỗi ràng buộc nghiệp vụ trong danh mục stored procedure (Chương 7) 
 
 [4] Vercel, “Image Component,” *Next.js Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://nextjs.org/docs/app/api-reference/components/image
 
-[5] Recharts, “Getting Started,” *Recharts Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://recharts.org/en-US/guide
+[5] Recharts, “Getting Started,” *Recharts Documentation*. Accessed: Oct. 31, 2026. [Online]. Available: https://recharts.github.io/en-US/guide/
 
 [6] Vercel, “Route Handlers,” *Next.js Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://nextjs.org/docs/app/getting-started/route-handlers

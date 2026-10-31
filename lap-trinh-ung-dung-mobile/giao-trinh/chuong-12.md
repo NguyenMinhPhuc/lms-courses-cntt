@@ -324,4 +324,4 @@ Câu hỏi thảo luận cuối học phần:
 
 [5] Microsoft, “sys.foreign_keys (Transact-SQL),” *Microsoft Learn*. Accessed: Oct. 30, 2026. [Online]. Available: https://learn.microsoft.com/sql/relational-databases/system-catalog-views/sys-foreign-keys-transact-sql
 
-[6] JGraph Ltd., “draw.io documentation,” *draw.io Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://www.drawio.com/doc/
+[6] JGraph Ltd., “draw.io documentation,” *draw.io Documentation*. Accessed: Oct. 31, 2026. [Online]. Available: https://www.drawio.com/docs/

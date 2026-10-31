@@ -1,0 +1,83 @@
+Trong lưu đồ thuật toán, khối hình thoi dùng để biểu diễn gì?
+A. Bắt đầu hoặc kết thúc
+B. Điều kiện có hai lối ra Đúng/Sai
+C. Nhập hoặc xuất dữ liệu
+D. Phép gán, tính toán
+ANSWER: B
+
+Trong lưu đồ thuật toán, lệnh input() và print() được vẽ bằng khối nào?
+A. Hình bình hành
+B. Hình thoi
+C. Hình chữ nhật
+D. Hình chữ nhật bo tròn hai đầu
+ANSWER: A
+
+Python xác định các lệnh thuộc cùng một nhánh của if bằng cách nào?
+A. Dấu ngoặc nhọn { }
+B. Từ khóa end ở cuối nhánh
+C. Thụt lề đầu dòng
+D. Dấu chấm phẩy cuối mỗi lệnh
+ANSWER: C
+
+Dòng if diem >= 4.0 bị thiếu dấu hai chấm ở cuối. Khi chạy, Python báo lỗi gì?
+A. TypeError
+B. ValueError
+C. SyntaxError
+D. ZeroDivisionError
+ANSWER: C
+
+Với x = 7, đoạn code if x % 2 == 0: print("Chẵn") else: print("Lẻ") (viết đúng thụt lề) in ra gì?
+A. Lẻ
+B. Chẵn
+C. Không in gì
+D. Báo lỗi
+ANSWER: A
+
+Đoạn code kiểm tra theo thứ tự: if diem >= 5 thì "Trung bình", elif diem >= 8 thì "Giỏi", else thì "Yếu". Với diem = 9.5, kết quả là gì?
+A. Giỏi
+B. Yếu
+C. Báo lỗi vì có hai điều kiện cùng đúng
+D. Trung bình
+ANSWER: D
+
+Theo thang xếp loại ví dụ của bài (từ 9 Xuất sắc, từ 8 Giỏi, từ 6,5 Khá, từ 5 Trung bình, dưới 5 Yếu), điểm 8 được xếp loại gì?
+A. Xuất sắc
+B. Trung bình
+C. Khá
+D. Giỏi
+ANSWER: D
+
+Chương trình ATM của bài có số dư 2.000.000 đồng; người dùng nhập đúng PIN và rút 120.000 đồng. Kết quả là gì?
+A. Rút thành công, số dư còn 1.880.000 đồng
+B. Không rút được vì 120.000 không phải bội số của 50.000
+C. Không rút được vì vượt số dư
+D. Báo sai mã PIN
+ANSWER: B
+
+Quy tắc phân loại khách hàng: VIP khi tổng chi từ 5.000.000 và từ 2 năm thành viên; Thân thiết khi tổng chi từ 2.000.000 hoặc từ 3 năm; còn lại là Thường. Khách tổng chi 6.000.000 đồng, 1 năm thành viên thuộc hạng nào?
+A. VIP
+B. Thân thiết
+C. Thường
+D. Không xác định được
+ANSWER: B
+
+Cần kiểm thử điều kiện diem >= 6.5. Bộ giá trị nào phát hiện lỗi ở ngưỡng tốt nhất?
+A. 2 và 10
+B. 0 và 5
+C. 7 và 8
+D. 6.5 và 6.49
+ANSWER: D
+
+Trường hợp nào nên dùng rẽ nhánh lồng nhau (một if nằm trong nhánh của if khác)?
+A. Khi điều kiện sau chỉ có ý nghĩa nếu điều kiện trước đã đúng
+B. Khi có nhiều hơn hai giá trị đầu vào
+C. Khi muốn chương trình chạy nhanh hơn
+D. Khi không muốn dùng elif
+ANSWER: A
+
+Biểu thức "C" == "c" trong Python cho kết quả nào?
+A. True
+B. Báo lỗi TypeError
+C. False
+D. None
+ANSWER: C

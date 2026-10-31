@@ -40,6 +40,8 @@ Thống nhất trong đa dạng · Ôn tập và giữa kỳ
 **Nội dung chính**:
 - Tây Bắc · Việt Bắc · Châu thổ Bắc Bộ
 - Trung Bộ · Tây Nguyên · Nam Bộ
+![](images/bai-03-sau-vung-van-hoa.png)
+
 **Ghi chú giảng viên**:
 - Chèn bản đồ minh họa có ghi nguồn; hỏi sinh viên quê thuộc vùng nào.
 
@@ -50,6 +52,8 @@ Thống nhất trong đa dạng · Ôn tập và giữa kỳ
 - Núi cao, thung lũng lòng chảo; người Thái, Mường, H'Mông, Dao
 - Ruộng bậc thang, thủy lợi mương phai; nhà sàn
 - Múa xòe, khăn piêu; truyện thơ dân tộc
+![Mù Cang Chải · Ảnh: Viethavvh (PD)](images/bai-03-mu-cang-chai.jpg)
+
 **Ghi chú giảng viên**:
 - Chốt sau nhóm trình bày vùng Tây Bắc.
 
@@ -60,6 +64,8 @@ Thống nhất trong đa dạng · Ôn tập và giữa kỳ
 - Núi đá vôi, rừng, sông suối; người Tày, Nùng
 - Hát then, đàn tính; trang phục nhuộm chàm
 - Chợ phiên; lễ hội xuống đồng (Lồng tồng)
+![Đàn tính · Ảnh: DTH-BD-NVT (CC BY-SA 4.0)](images/bai-03-dan-tinh.jpg)
+
 **Ghi chú giảng viên**:
 - Phân biệt với Tây Bắc: vị trí, chủ thể tiêu biểu.
 
@@ -70,6 +76,8 @@ Thống nhất trong đa dạng · Ôn tập và giữa kỳ
 - Đồng bằng sông Hồng, sông Thái Bình; người Việt; cái nôi văn hóa Việt
 - Làng xã, đình, lũy tre; quan họ, chèo, ca trù, rối nước
 - Tranh Đông Hồ, gốm Bát Tràng; truyền thống hiếu học
+![Múa rối nước · Ảnh: 嘉銘 詹 (CC BY-SA 2.0)](images/bai-03-roi-nuoc.jpg)
+
 **Ghi chú giảng viên**:
 - Gợi ý nối với dự án: kỹ thuật và hoa văn gốm truyền thống Bắc Bộ.
 
@@ -80,6 +88,8 @@ Thống nhất trong đa dạng · Ôn tập và giữa kỳ
 - Dải đất hẹp, khí hậu khắc nghiệt; người Việt và người Chăm
 - Tháp Chăm, Mỹ Sơn; cung đình Huế, nhã nhạc; Hội An
 - Cần kiệm, hiếu học; ẩm thực đậm vị
+![Thánh địa Mỹ Sơn · Ảnh: Tycho (CC BY 3.0)](images/bai-03-my-son.jpg)
+
 **Ghi chú giảng viên**:
 - Liên hệ gốm Chăm nếu danh sách sản phẩm có hiện vật Chăm.
 
@@ -90,6 +100,8 @@ Thống nhất trong đa dạng · Ôn tập và giữa kỳ
 - Cao nguyên đất đỏ; Ê Đê, Ba Na, Gia Rai, M'Nông, Xơ Đăng
 - Nhà rông, nhà dài; không gian văn hóa cồng chiêng
 - Sử thi Đăm Săn; tượng nhà mồ; lễ mừng lúa mới
+![Nhà rông Kon Klor · Ảnh: Taynguyenjk (CC BY-SA 4.0)](images/bai-03-nha-rong.jpg)
+
 **Ghi chú giảng viên**:
 - Nhắc nguyên tắc tôn trọng khi quay lễ nghi của đồng bào.
 
@@ -101,6 +113,8 @@ Thống nhất trong đa dạng · Ôn tập và giữa kỳ
 - Người Việt, Hoa, Khmer, Chăm; chợ nổi, xuồng ghe
 - Đờn ca tài tử, cải lương; cởi mở, phóng khoáng, trọng nghĩa
 **Hoạt động**: Thảo luận câu 1: điều gì làm một sản phẩm "rất Nam Bộ" khác "rất Bắc Bộ"?
+![Chợ nổi Cái Răng · Ảnh: Christophe95 (CC BY-SA 4.0)](images/bai-03-cho-noi-cai-rang.jpg)
+
 **Ghi chú giảng viên**:
 - Yêu cầu trả lời theo ba bước tự nhiên → chủ thể → sản phẩm.
 
@@ -111,6 +125,8 @@ Thống nhất trong đa dạng · Ôn tập và giữa kỳ
 - Đa dạng: khác nhau về tự nhiên, tộc người, lịch sử
 - Thống nhất: nền tảng lúa nước, lịch sử dựng nước – giữ nước, tiếng Việt, ý thức quốc gia
 - Di sản UNESCO vùng miền: nhã nhạc Huế, cồng chiêng Tây Nguyên, quan họ, đờn ca tài tử
+![](images/bai-03-thong-nhat-da-dang.png)
+
 **Ghi chú giảng viên**:
 - Nhắc kiểm tra tên gọi, năm ghi danh trên nguồn chính thức trước khi đăng.
 
@@ -123,6 +139,8 @@ Thống nhất trong đa dạng · Ôn tập và giữa kỳ
 - Không biến trang phục dân tộc thành đồ hóa trang → tìm hiểu ý nghĩa, hỏi cộng đồng
 - Không chỉ chọn hình ảnh nghèo khó → cân bằng đời sống và niềm tự hào
 **Hoạt động**: Thảo luận câu 2: làm nội dung về vùng miền khác, cần tránh gì?
+![](images/bai-03-noi-dung-vung-mien.png)
+
 **Ghi chú giảng viên**:
 - Đây là nền cho tiêu chí "thái độ với di sản" và Checklist văn hóa ở buổi 04.
 

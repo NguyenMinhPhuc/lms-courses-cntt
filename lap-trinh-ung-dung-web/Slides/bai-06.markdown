@@ -51,6 +51,7 @@ export async function advanceStatus(orderId, status) {
 - revalidatePath: trang vẽ lại với dữ liệu mới
 - useOptimistic: hiện ngay kết quả mong đợi
 - Thất bại: giao diện trở về dữ liệu thật
+![](images/bai-06-optimistic.png)
 
 ---
 
@@ -73,12 +74,9 @@ export async function advanceStatus(orderId, status) {
 
 ## Slide 8: Trạng thái đơn (BR-15)
 **Nội dung chính**:
-```text
-pending → preparing → ready → completed
-   └──── cancelled (khách: pending; nhân viên: pending/preparing)
-```
 - Sai trình tự: API trả 409
 **Hoạt động**: Vẽ sơ đồ trạng thái cho thực thể chính của đề tài nhóm
+![](images/bai-06-trang-thai-don.png)
 
 ---
 
@@ -88,6 +86,7 @@ pending → preparing → ready → completed
 - Ba cột theo trạng thái, lọc ?status= (US-S06)
 - OrderCard: nút theo trạng thái kế tiếp
 - Trạng thái bằng chữ, không chỉ bằng màu
+![](images/bai-06-man-hinh-quay.png)
 
 ---
 
@@ -97,6 +96,7 @@ pending → preparing → ready → completed
 - Hai người cùng bấm: người sau nhận 409, danh sách làm mới
 - Tạm làm mới mỗi 15 giây bằng router.refresh()
 - Bài 09: Socket.IO, đơn mới hiện ngay
+![](images/bai-06-xung-dot.png)
 
 ---
 

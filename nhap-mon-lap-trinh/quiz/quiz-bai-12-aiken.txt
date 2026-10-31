@@ -1,0 +1,83 @@
+Theo cách làm của học phần, thứ tự hợp lý khi giải một bài toán lập trình là gì?
+A. Viết code, rồi vẽ lưu đồ cho đẹp báo cáo
+B. Bảng IPO, lưu đồ, viết code, kiểm thử
+C. Hỏi AI viết code, rồi kiểm thử
+D. Kiểm thử, viết code, rồi lập bảng IPO
+ANSWER: B
+
+list(range(1, 10, 3)) cho kết quả nào?
+A. [1, 4, 7, 10]
+B. [1, 4, 7]
+C. [1, 3, 6, 9]
+D. [3, 6, 9]
+ANSWER: B
+
+Với def g(x): return x * 2, lời gọi g(g(3)) trả về gì?
+A. 6
+B. 9
+C. 36
+D. 12
+ANSWER: D
+
+len("LHU 2026") cho kết quả nào?
+A. 8
+B. 7
+C. 9
+D. 4
+ANSWER: A
+
+Sau đoạn ds = [4, 9, 2], m = ds[0], rồi for x in ds: if x > m: m = x, biến m bằng bao nhiêu?
+A. 4
+B. 2
+C. 9
+D. 15
+ANSWER: C
+
+Biểu thức "abc" == "ABC".lower() cho kết quả nào?
+A. True
+B. False
+C. Báo lỗi
+D. "abc"
+ANSWER: A
+
+Vòng lặp while True: không chứa break hay lệnh dừng nào sẽ chạy thế nào?
+A. Chạy mãi (vòng lặp vô hạn)
+B. Không chạy lần nào
+C. Chạy đúng một lần
+D. Báo SyntaxError
+ANSWER: A
+
+Lệnh int(" 5 ") (có dấu cách hai bên) cho kết quả nào?
+A. Báo lỗi ValueError
+B. " 5 "
+C. 5.0
+D. 5
+ANSWER: D
+
+Đặc điểm nào cho thấy một hàm được thiết kế tốt?
+A. Làm nhiều việc nhất có thể để giảm số hàm
+B. Luôn in kết quả bằng print thay vì return
+C. Làm một việc, có tên rõ nghĩa và trả về kết quả bằng return
+D. Dùng biến toàn cục để trao đổi dữ liệu
+ANSWER: C
+
+Lỗi logic (chương trình chạy nhưng kết quả sai) được phát hiện chủ yếu bằng cách nào?
+A. Đọc Traceback
+B. Chạy ruff format
+C. Kiểm thử với dữ liệu đã tính tay kết quả trước
+D. Thêm try – except
+ANSWER: C
+
+AI viết cho bạn một đoạn code chạy đúng nhưng bạn không hiểu. Cách xử lý đúng với quy định học phần là gì?
+A. Nhờ bạn cùng nhóm nhận là đã viết đoạn đó
+B. Nộp luôn vì chương trình chạy đúng
+C. Xóa phần ghi chép trong Nhật ký Prompt để không bị trừ điểm
+D. Nhờ AI giải thích, tự viết lại phần mình hiểu, kiểm thử và ghi vào Nhật ký Prompt
+ANSWER: D
+
+Minh chứng nào được dùng để chấm CLO2 (trình bày ý tưởng bằng công cụ đồ họa) trong Mini Project?
+A. Số dòng code
+B. Bảng IPO, lưu đồ khớp với code và sơ đồ phân rã
+C. Lịch sử commit
+D. Số lượt thích bài đăng truyền thông
+ANSWER: B

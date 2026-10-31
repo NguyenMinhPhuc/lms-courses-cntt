@@ -21,6 +21,7 @@
 - **4 phút** thiết kế: sơ đồ chức năng, ERD, sơ đồ tuần tự realtime
 - **5 phút** hỏi đáp và bảo vệ kỹ thuật
 - Mọi thành viên đều trình bày phần của mình
+![](images/bai-12-15-phut.png)
 
 ---
 
@@ -32,6 +33,7 @@
 - Chụp ảnh, chọn vị trí trên bản đồ
 - Đổi trạng thái đơn → thông báo realtime
 - Đặt món hết hàng → thông báo lỗi đúng
+![](images/bai-12-kich-ban-demo.png)
 
 ---
 
@@ -61,6 +63,7 @@
 - **CLO3** (2 điểm, đạt ≥ 1): ERD cuối, tuần tự realtime, luồng màn hình
 - **CLO4** (3 điểm, đạt ≥ 1,5): báo cáo cá nhân, commit/PR, trình bày và trả lời
 - Điểm cuối kỳ chiếm 40% điểm học phần
+![](images/bai-12-rubric.png)
 
 ---
 

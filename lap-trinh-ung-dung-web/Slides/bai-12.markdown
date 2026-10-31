@@ -21,6 +21,7 @@ Sprint 4 · Đánh giá cuối kỳ
 - 3 phút: bảo vệ thiết kế (sơ đồ, ma trận, truy vết)
 - 1 phút: kế hoạch so với thực tế
 - 5 phút: hỏi đáp
+![](images/bai-12-cau-truc-demo.png)
 
 ---
 
@@ -31,6 +32,7 @@ Sprint 4 · Đánh giá cuối kỳ
 - Hai nhân viên: một người đổi trạng thái, máy kia và app cập nhật
 - Báo cáo doanh thu thay đổi
 - Lỗi: quá tồn kho (409), customer vào /admin (403)
+![](images/bai-12-kich-ban-demo.png)
 
 ---
 
@@ -40,6 +42,7 @@ Sprint 4 · Đánh giá cuối kỳ
 - CLO2 (2 điểm): 2.1–2.6 → Chương 5
 - CLO3 (2 điểm): 3.1–3.6 → cả báo cáo
 - CLO4 (2 điểm): 4.1–4.3 nhóm, 4.4–4.6 cá nhân → Chương 7, báo cáo cá nhân
+![](images/bai-12-rubric-chuong.png)
 
 ---
 

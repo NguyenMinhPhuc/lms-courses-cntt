@@ -1,0 +1,83 @@
+Biểu thức type(7 // 2) cho kết quả nào?
+A. <class 'float'>
+B. <class 'str'>
+C. <class 'int'>
+D. <class 'bool'>
+ANSWER: C
+
+Biểu thức 10 % 3 + 2 ** 3 cho kết quả nào?
+A. 9
+B. 7
+C. 11
+D. 125
+ANSWER: A
+
+Với x = 15, đoạn if x > 10: print("A") elif x > 5: print("B") else: print("C") in ra gì?
+A. A và B
+B. B
+C. A
+D. C
+ANSWER: C
+
+Biểu thức not (3 > 2 and 1 > 2) cho kết quả nào?
+A. Báo lỗi
+B. False
+C. True
+D. None
+ANSWER: C
+
+Biểu thức "LHU" * 2 cho kết quả nào?
+A. Báo lỗi TypeError
+B. "LHULHU"
+C. "LHU LHU"
+D. "LHU2"
+ANSWER: B
+
+Đoạn for i in range(3): print(i, end="") in ra gì?
+A. 012
+B. 123
+C. 0 1 2
+D. 0123
+ANSWER: A
+
+Sau đoạn s = 0, rồi for x in [2, 4, 6]: s += x, biến s bằng bao nhiêu?
+A. 6
+B. 3
+C. 12
+D. 48
+ANSWER: C
+
+Cần nhập điểm sao cho người dùng gõ chữ hoặc số ngoài 0–10 thì được hỏi lại, chương trình không bị dừng. Cách nào phù hợp nhất?
+A. Một lệnh if kiểm tra 0 <= diem <= 10
+B. Vòng lặp for chạy 3 lần
+C. Chỉ dùng float(input()) một lần
+D. Vòng lặp while True kết hợp try – except và break khi hợp lệ
+ANSWER: D
+
+Trên lưu đồ thuật toán, dấu hiệu nào cho biết có vòng lặp?
+A. Có hình bình hành
+B. Có hình chữ nhật bo tròn
+C. Có nhiều hơn một khối Kết thúc
+D. Có mũi tên quay ngược lên một khối điều kiện phía trên
+ANSWER: D
+
+Lệnh float("abc") gây ra lỗi gì?
+A. Không lỗi, trả về 0.0
+B. TypeError
+C. NameError
+D. ValueError
+ANSWER: D
+
+Với diem_list = [], lệnh sum(diem_list) / len(diem_list) gây ra lỗi gì?
+A. ValueError
+B. ZeroDivisionError
+C. IndexError
+D. Không lỗi, trả về 0
+ANSWER: B
+
+Lệnh print(f"{1500000:,}") in ra gì?
+A. 1500000
+B. 1,500,000
+C. 1.500.000
+D. 1 500 000
+ANSWER: B

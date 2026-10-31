@@ -55,10 +55,7 @@ app/admin/products/
 
 ## Slide 6: Luồng tải ảnh
 **Nội dung chính**:
-```text
-Trình duyệt ─FormData─▶ Server Action ─multipart─▶ API (Multer, trường "file")
-                        kiểm tra loại, dung lượng      lưu file, sp_Product_UpdateImage
-```
+![](images/bai-08-luong-tai-anh.png)
 
 ---
 
@@ -77,6 +74,7 @@ Trình duyệt ─FormData─▶ Server Action ─multipart─▶ API (Multer, t
 - accept trên input: tiện cho người dùng
 - Server Action: chặn sớm; API: chặn thật
 - Không tin phần mở rộng tên file
+![](images/bai-08-ba-lop-anh.png)
 
 ---
 
@@ -95,6 +93,7 @@ Trình duyệt ─FormData─▶ Server Action ─multipart─▶ API (Multer, t
 - Món bán chạy: cột ngang, giảm dần
 - Tỉ lệ trạng thái: cột chồng 100% hoặc bảng phần trăm
 - Một màu một chuỗi; có tiêu đề, đơn vị, bảng số liệu
+![](images/bai-08-chon-bieu-do.png)
 
 ---
 

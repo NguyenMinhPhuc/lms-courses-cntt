@@ -252,7 +252,7 @@ export function OrderCard({ order }: { order: StaffOrder }) {
         </div>
         <div style="margin-top: 16px;">
             <p style="margin: 0 0 8px 0; color: #fd7e14; font-weight: bold;">📖 Tài liệu đọc thêm (chính thức)</p>
-            <a href="https://nextjs.org/docs/app/getting-started/updating-data" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
+            <a href="https://nextjs.org/docs/app/getting-started/mutating-data" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
                 <span style="color: #fd7e14; font-weight: bold;">🔗 Next.js - Updating Data</span><br>
                 <span style="color: #6c757d; font-size: 13px;">Server Functions, form, trạng thái chờ, revalidate sau khi ghi.</span>
             </a>
@@ -260,7 +260,7 @@ export function OrderCard({ order }: { order: StaffOrder }) {
                 <span style="color: #fd7e14; font-weight: bold;">🔗 React - useOptimistic, useActionState</span><br>
                 <span style="color: #6c757d; font-size: 13px;">Cập nhật lạc quan và quản lý trạng thái của action.</span>
             </a>
-            <a href="https://tanstack.com/table/latest/docs/introduction" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
+            <a href="https://tanstack.com/table/latest/docs/overview" target="_blank" rel="noopener noreferrer" style="display: block; max-width: 760px; padding: 10px 12px; margin: 6px 0; background-color: #fff8f1; color: #212529; border: 1px solid #ffd6ad; border-radius: 8px; text-decoration: none;">
                 <span style="color: #fd7e14; font-weight: bold;">🔗 TanStack Table</span><br>
                 <span style="color: #6c757d; font-size: 13px;">Định nghĩa cột, sắp xếp, phân trang thủ công (manual pagination).</span>
             </a>

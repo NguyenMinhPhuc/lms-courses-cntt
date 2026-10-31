@@ -30,11 +30,11 @@ window.DEFAULT_COURSES = [
   },
   {
     "id": "kiem-thu-phan-mem",
-    "code": "222201",
+    "code": "111117",
     "title": "Kiểm thử và Đảm bảo chất lượng phần mềm",
     "englishTitle": "Kiem Thu Phan Mem",
     "credits": 3,
-    "hours": "60 tiết (15 LT + 45 TH)",
+    "hours": "45 tiết (15 LT + 30 TH)",
     "semester": "Chương trình Đào tạo CNTT",
     "folder": "kiem-thu-phan-mem",
     "entryFile": "index.html",
@@ -129,6 +129,30 @@ window.DEFAULT_COURSES = [
     ],
     "badgeColor": "blue",
     "icon": "fa-solid fa-globe"
+  },
+  {
+    "id": "nhap-mon-lap-trinh",
+    "code": "111155",
+    "title": "Nhập môn lập trình (Python with AI Logic & Thinking)",
+    "englishTitle": "Nhap Mon Lap Trinh",
+    "credits": 3,
+    "hours": "60 tiết (12 buổi × 5 tiết: 15 LT + 45 TH)",
+    "semester": "Học kỳ 1 • Năm 1",
+    "folder": "nhap-mon-lap-trinh",
+    "entryFile": "index.html",
+    "courseLanding": "index.html",
+    "syllabusFile": "thong-tin-hoc-phan.html",
+    "assessmentFile": "danh-gia-hoc-phan.html",
+    "quizBank": "quiz/index.html",
+    "description": "Rèn tư duy lập trình và logic giải quyết vấn đề với Python 3: phân tích Input – Process – Output, lưu đồ thuật toán, biến, rẽ nhánh, vòng lặp, xử lý ngoại lệ, hàm; dùng AI như trợ giảng để giải thích, tìm lỗi chứ không viết hộ code.",
+    "instructor": "ThS. Nguyễn Minh Phúc",
+    "tags": [
+      "Python",
+      "AI-First",
+      "Vibe Coding"
+    ],
+    "badgeColor": "blue",
+    "icon": "fa-solid fa-book-bookmark"
   },
   {
     "id": "nhap-mon-nganh",

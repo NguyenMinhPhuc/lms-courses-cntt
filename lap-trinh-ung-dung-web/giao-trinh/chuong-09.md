@@ -84,51 +84,7 @@ export function OrdersRealtime() {
   const [lastOrder, setLastOrder] = useState<number | null>(null);
   const soundOn = useRef(false);
 
-  useEffect(() => {
-    const socket = io(process.env.NEXT_PUBLIC_SOCKET_URL!, {
-      transports: ['websocket'],
-      // auth dạng hàm: được gọi lại ở MỖI lần (kết nối lại), nên luôn có token mới
-      auth: (cb) => {
-        fetch('/api/socket-token', { cache: 'no-store' })
-          .then((r) => (r.ok ? r.json() : { token: '' }))
-          .then((d) => cb({ token: d.token }));
-      },
-    });
-
-    socket.on('connect', () => { setConn('online'); router.refresh(); });   // bù các đơn lỡ khi mất kết nối
-    socket.on('disconnect', () => setConn('offline'));
-    socket.on('connect_error', () => {
-      setConn('offline');
-      setTimeout(() => socket.connect(), 3000);              // token bị từ chối: tự thử lại
-    });
-    socket.on('order:new', (e: { orderId: number }) => {
-      setLastOrder(e.orderId);
-      if (soundOn.current) beep();
-      router.refresh();
-    });
-    socket.on('order:updated', () => router.refresh());     // nhân viên khác vừa đổi trạng thái
-
-    return () => { socket.disconnect(); };
-  }, [router]);
-
-  return (
-    <div className="flex items-center gap-3">
-      <p aria-live="polite" className="text-sm">{LABEL[conn]}{lastOrder && ` · Đơn mới nhất #${lastOrder}`}</p>
-      <button onClick={() => { soundOn.current = true; beep(); }} className="rounded border px-2 py-1 text-sm">
-        Bật âm báo
-      </button>
-    </div>
-  );
-}
-
-function beep() {
-  const ctx = new AudioContext();
-  const osc = ctx.createOscillator();
-  osc.frequency.value = 880;
-  osc.connect(ctx.destination);
-  osc.start();
-  osc.stop(ctx.currentTime + 0.2);
-}
+// … (trích 15/60 dòng; mã đầy đủ ở Phụ lục A, mục A.6)
 ```
 
 ### 9.3.2. Phân tích các quyết định

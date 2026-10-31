@@ -14,7 +14,7 @@ Thư mục học phần: `<ten-hoc-phan>/` ở gốc repo, tên viết thường
 | Bài tập | Khối 3 của từng bài | 1 nhiệm vụ thực hành/bài |
 | Quiz | `quiz/quiz-bai-XX-aiken.txt` + file tổng hợp | ≥ 10 câu/bài |
 | Dàn ý chi tiết | `dan-y-chi-tiet.md` | Chỉ khi soạn từ outline; giảng viên đã duyệt |
-| Slide | `Slides/bai-XX.markdown` + `Slides/bai-XX.pptx` | Khi `"slides": true`; `.pptx` sinh bằng `build-slides.py` |
+| Slide | `Slides/bai-XX.markdown` + `Slides/bai-XX.pptx` | Khi `"slides": true`; `.pptx` sinh bằng `build-slides.py` trên `templates/Template-slide.pptx`; có hình minh họa trong `Slides/images/`, không còn khung chờ hình |
 | Landing page | `index.html` | Bắt buộc để portal nhận diện |
 
 ## `index.html` - để portal tự nhận diện

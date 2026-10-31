@@ -28,6 +28,8 @@ Sprint 4 · Chất lượng sản phẩm
 - **Component test**: vẽ component, thao tác như người dùng
 - **Kiểm thử thủ tục**: script T-SQL trên CSDL kiểm thử
 - **Kiểm thử thủ công**: chạy luồng chính trên điện thoại thật
+![](images/bai-10-tang-kiem-thu.png)
+
 **Ghi chú giảng viên**:
 - Liên hệ học phần Kiểm thử phần mềm: test plan, test case, bug report.
 
@@ -125,6 +127,7 @@ END CATCH
 - 2. Khoanh vùng: app, API, thủ tục hay dữ liệu?
 - 3. Viết test tái hiện lỗi (đỏ) → sửa → test xanh
 - 4. Ghi bug log: mô tả, mức độ, nguyên nhân, cách sửa, commit
+![](images/bai-10-xu-ly-loi.png)
 
 ---
 
@@ -175,6 +178,8 @@ const handleAdd = useCallback((item: Product) => add(item), [add]);
 - **Mutation thủ công**: cố ý sửa sai logic, ví dụ đổi nhân thành cộng
 - Test vẫn xanh → test vô giá trị → thêm expect
 - Ghi prompt sinh test vào PROMPTS.md
+![](images/bai-10-mutation.png)
+
 **Ghi chú giảng viên**:
 - Nhấn mạnh nguyên tắc "không hiểu thì không merge" áp dụng cả cho test.
 

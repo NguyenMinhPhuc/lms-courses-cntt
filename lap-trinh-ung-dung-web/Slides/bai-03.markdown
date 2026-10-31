@@ -28,6 +28,7 @@ Sprint 1 · Checkpoint Sprint 1
 - **Client**: state, sự kiện, API trình duyệt; gửi mã xuống
 - Trang = Server Component; tách phần tương tác nhỏ
 **Hoạt động**: Chỉ ra ranh giới "use client" trên trang chi tiết món
+![](images/bai-01-server-client.png)
 
 ---
 
@@ -53,7 +54,6 @@ export async function apiGet<T>(path: string, revalidate = 30) {
   return res.json() as Promise<T>;
 }
 ```
-
 ---
 
 ## Slide 6: Trang thực đơn
@@ -76,6 +76,7 @@ const [categories, products] = await Promise.all([
 - revalidate: dùng lại kết quả N giây rồi làm mới
 - Danh mục 5 phút, món 30 giây: theo mức thay đổi dữ liệu
 - Món vừa hết hàng: khách thấy sau tối đa 30 giây
+![](images/bai-03-revalidate.png)
 
 ---
 
@@ -114,6 +115,7 @@ const [categories, products] = await Promise.all([
 - Cập nhật backlog
 - Chọn story theo velocity thực tế của Sprint 1
 - Board cập nhật trước khi rời lớp
+![](images/bai-03-sprint.png)
 
 ---
 

@@ -25,7 +25,7 @@ Biểu tượng là hình ảnh, đồ vật, con vật, cây cỏ hay hoa văn 
 Giáo trình [1, ch. IV, bài 1] trình bày ba nhóm tín ngưỡng của người Việt:
 
 - **Tín ngưỡng phồn thực:** từ nhu cầu duy trì sự sống (mùa màng) và phát triển sự sống (sinh sôi), là "mặt kia" của triết lý âm dương.
-- **Tín ngưỡng sùng bái tự nhiên:** đa thần, nữ thần chiếm ưu thế; tục thờ Mẫu là một tín ngưỡng Việt Nam điển hình.
+- **Tín ngưỡng sùng bái tự nhiên:** đa thần, nữ thần chiếm ưu thế; tục thờ Mẫu là một tín ngưỡng Việt Nam điển hình. Năm 2016, *Thực hành tín ngưỡng thờ Mẫu Tam phủ của người Việt* được UNESCO ghi vào Danh sách di sản văn hóa phi vật thể đại diện của nhân loại [2].
 - **Tín ngưỡng sùng bái con người:** quan niệm hồn – vía; thờ cúng tổ tiên; thờ Thổ công; thờ Thành hoàng làng; thờ Tứ bất tử (Tản Viên, Thánh Gióng, Chử Đồng Tử, Liễu Hạnh).
 
 Tín ngưỡng thuộc phạm vi thiêng liêng của cộng đồng. Đây là chất liệu giàu cảm xúc nhưng cũng nhạy cảm nhất.
@@ -41,6 +41,8 @@ Giáo trình [1, ch. IV, bài 3–4] chia nghệ thuật thành:
 - **Nghệ thuật ngôn từ:** ca dao, tục ngữ, thành ngữ, truyện kể.
 - **Nghệ thuật thanh sắc:** dân ca, chèo, tuồng, cải lương, ca trù.
 - **Nghệ thuật hình khối:** kiến trúc, điêu khắc, hội họa, đồ gốm, tranh dân gian.
+
+Nhiều loại hình trong số này đã được UNESCO ghi danh [2]: nhã nhạc cung đình Huế (ghi vào Danh sách đại diện năm 2008), dân ca quan họ Bắc Ninh (2009), đờn ca tài tử Nam Bộ (2013), dân ca ví, giặm Nghệ Tĩnh (2014), nghệ thuật bài chòi Trung Bộ và hát xoan Phú Thọ (2017), nghệ thuật xòe Thái (2021). Ca trù (2009), nghệ thuật làm gốm của người Chăm (2022) và nghề làm tranh dân gian Đông Hồ (2025) nằm trong **Danh sách cần bảo vệ khẩn cấp**: đây là chất liệu hấp dẫn nhưng mong manh, càng cần được giới thiệu đúng và tôn trọng người nắm giữ di sản.
 
 ## 4.2. Đặc trưng nghệ thuật truyền thống và cách kể chuyện
 
@@ -183,3 +185,5 @@ Ví dụ prompt phác thảo có trách nhiệm (ghi rõ mục đích, không y�
 ## Tài liệu tham khảo
 
 [1] Trần Ngọc Thêm (Chủ biên), *Cơ sở Văn hóa Việt Nam*. Hà Nội: NXB Giáo dục Việt Nam, 2022.
+
+[2] UNESCO, "Viet Nam – Elements on the Lists of Intangible Cultural Heritage," *Intangible Cultural Heritage*. Accessed: Oct. 31, 2026. [Online]. Available: https://ich.unesco.org/en/state/viet-nam-VN

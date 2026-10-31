@@ -39,6 +39,8 @@ Script sẽ quét toàn bộ các thư mục con, trích xuất metadata từ `i
 | `uv run --with python-docx python build-textbook.py <hoc-phan>` | Ghép giáo trình nội bộ `<hoc-phan>/giao-trinh/*.md` thành file Word có trang bìa và mục lục (mở bằng Word, nhấn F9 ở mục lục để cập nhật số trang). |
 | `uv run python build-quiz.py <hoc-phan> [--balance]` | Ghép các file `quiz-bai-XX-aiken.txt` thành file tổng hợp và sinh trang tải `quiz/index.html` cho giảng viên; `--balance` chia đều vị trí đáp án đúng A/B/C/D (không đổi nội dung). |
 | `uv run python validate-course.py <hoc-phan>` | Kiểm tra đủ file, 4 khối accordion, cú pháp quiz Aiken, link mẫu chép nhầm, placeholder chưa điền. |
+| `uv run --with python-docx --with openpyxl python build-ctdt.py build chuong-trinh-dao-tao/<ngành>-<khóa>` | Sinh bộ hồ sơ xây dựng CTĐT (BM01–BM09, file PLO, đề cương BM05) vào `ho-so/` từ dữ liệu trong `du-lieu/`, dùng đầu trang và logo của file mẫu; `init` để tạo dữ liệu mới hoặc nhập từ hồ sơ cũ (`--tu-ho-so`). |
+| `uv run --with python-docx --with openpyxl python validate-ctdt.py "<thư mục hồ sơ>" --nam 2026` | Rà soát hồ sơ xây dựng chương trình đào tạo (BM01–BM09, đề cương BM05): tổng tín chỉ, học phần trước, mã/tên/tín chỉ giữa các văn bản, CLO–PI, dấu vết mẫu chưa điền, ngày căn cứ. |
 
 Quy trình: chỉ sửa `bai-XX.md` / file quiz → chạy `build-lessons.py` và `build-quiz.py` → chạy `validate-course.py` → chạy `scan-courses.py`.
 
@@ -47,6 +49,8 @@ Trang `bai-XX.html` có khung **Luyện tập trắc nghiệm** sinh từ file q
 Khi làm việc với Claude Code, hook trong `.claude/settings.json` tự chạy `build-lessons.py` / `build-quiz.py` ngay sau khi Claude sửa `bai-XX.md`, `thong-tin-hoc-phan.md`, `danh-gia-hoc-phan.md` hoặc file quiz.
 
 Skill soạn bài giảng cho Claude Code nằm tại `.claude/skills/lms-lecture-builder/`, được kích hoạt khi yêu cầu Claude soạn bài/học phần LMS. Skill làm được cả khi chỉ có outline/đề cương (soạn dàn ý chi tiết để giảng viên duyệt trước) và làm slide PowerPoint.
+
+Skill `.claude/skills/ctdt-builder/` hướng dẫn xây dựng và rà soát chương trình đào tạo theo bộ biểu mẫu PĐT.QT.08 (mẫu gốc ở `templates/xay-dung-ctdt-Dai hoc chinh quy/`); hướng dẫn cách yêu cầu Claude ở [`huong-dan-xay-dung-ctdt.html`](huong-dan-xay-dung-ctdt.html) (có nút trên trang chủ portal). Mỗi CTĐT là một thư mục `chuong-trinh-dao-tao/<ngành>-<khóa>/` gồm `du-lieu/` (nhập một lần), `ho-so/` (sinh bằng `build-ctdt.py`) và `ra-soat/` (báo cáo rà soát).
 
 📘 **Hướng dẫn từng bước cho giảng viên:** [`huong-dan-soan-bai-giang.html`](huong-dan-soan-bai-giang.html) (có nút truy cập trên trang chủ portal).
 
@@ -82,6 +86,9 @@ lms-courses-cntt/
 ├── build-textbook.py              # Ghép giáo trình Markdown thành file Word
 ├── huong-dan-soan-bai-giang.html  # Trang hướng dẫn quy trình soạn bài giảng
 ├── validate-course.py             # Kiểm tra học phần đủ thành phần & đúng định dạng
+├── validate-ctdt.py               # Rà soát hồ sơ xây dựng chương trình đào tạo
+├── build-ctdt.py                  # Sinh bộ hồ sơ CTĐT (BM01–BM09) từ một bộ dữ liệu
+├── chuong-trinh-dao-tao/          # CTĐT theo ngành, khóa: du-lieu/, ho-so/, ra-soat/
 ├── templates/                     # Khung trang bài học + mẫu course.json
 ├── watch-courses.py               # Script theo dõi thư mục theo thời gian thực
 ├── start-portal.bat               # Khởi chạy cổng 1-click

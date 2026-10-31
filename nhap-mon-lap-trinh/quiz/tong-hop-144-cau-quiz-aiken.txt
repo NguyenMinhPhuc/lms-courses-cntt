@@ -1,0 +1,1007 @@
+Trong Python, giá trị trả về của hàm input() luôn có kiểu dữ liệu nào?
+A. int
+B. str
+C. float
+D. bool
+ANSWER: B
+
+Bài toán in thẻ hồ sơ nhận họ tên, năm sinh, lớp và in ra tuổi. Bước "tuổi = 2026 - năm sinh" thuộc phần nào trong bảng Input – Process – Output?
+A. Input
+B. Output
+C. Process
+D. Không thuộc phần nào
+ANSWER: C
+
+Tên biến nào sau đây hợp lệ trong Python?
+A. 2nam
+B. nam-sinh
+C. for
+D. nam_sinh
+ANSWER: D
+
+Giá trị 8.25 trong Python có kiểu dữ liệu nào?
+A. int
+B. bool
+C. str
+D. float
+ANSWER: D
+
+Chương trình gồm hai dòng nam_sinh = input("Năm sinh: ") và tuoi = 2026 - nam_sinh. Khi chạy và nhập 2007, chương trình báo lỗi gì?
+A. TypeError
+B. NameError
+C. SyntaxError
+D. IndentationError
+ANSWER: A
+
+Với tuoi = 19, lệnh print(f"Tuổi: {tuoi}") in ra gì?
+A. Tuổi: {tuoi}
+B. f"Tuổi: 19"
+C. Tuổi: 19
+D. Tuổi: tuoi
+ANSWER: C
+
+Với tuoi = 19, lệnh print("Tuổi: {tuoi}") (quên chữ f trước chuỗi) in ra gì?
+A. Tuổi: 19
+B. Tuổi: {tuoi}
+C. Báo lỗi NameError
+D. Tuổi:
+ANSWER: B
+
+Biểu thức "=" * 5 cho kết quả gì?
+A. Báo lỗi TypeError
+B. "= 5"
+C. 5
+D. "====="
+ANSWER: D
+
+Phát biểu nào đúng về cách chạy chương trình Python?
+A. Phải biên dịch thành file .exe trước khi chạy
+B. Chỉ chạy được trong trình duyệt web
+C. Trình thông dịch Python đọc file .py và thực hiện lần lượt các lệnh
+D. Chỉ chạy được khi có kết nối Internet
+ANSWER: C
+
+Bạn chưa hiểu cú pháp f-string trong bài lab. Cách dùng AI nào đúng với quy định của học phần?
+A. Hỏi AI giải thích cú pháp, tự viết lại code và ghi prompt vào Nhật ký Prompt
+B. Dán nguyên đề bài cho AI và nộp code AI viết
+C. Không được dùng AI trong mọi trường hợp
+D. Chép code của bạn cùng nhóm rồi nhờ AI sửa tên biến
+ANSWER: A
+
+Chương trình cần in tuổi trung bình của hai sinh viên. Dữ liệu đầu vào tối thiểu cần nhập là gì?
+A. Họ tên của hai sinh viên
+B. Năm sinh của hai sinh viên
+C. Lớp của hai sinh viên
+D. Tuổi trung bình của hai sinh viên
+ANSWER: B
+
+Lệnh print(type(True)) in ra gì?
+A. <class 'bool'>
+B. <class 'int'>
+C. <class 'str'>
+D. <class 'float'>
+ANSWER: A
+
+Biểu thức 7 / 2 trong Python cho kết quả nào?
+A. 3
+B. 4
+C. 1
+D. 3.5
+ANSWER: D
+
+Biểu thức 7 // 2 trong Python cho kết quả nào?
+A. 3.5
+B. 3
+C. 1
+D. 4
+ANSWER: B
+
+Biểu thức 17 % 5 cho kết quả nào?
+A. 3
+B. 3.4
+C. 2
+D. 85
+ANSWER: C
+
+Biểu thức 2 + 3 * 4 ** 2 // 5 cho kết quả nào?
+A. 11
+B. 14
+C. 20
+D. 9
+ANSWER: A
+
+Cách viết nào tính đúng trung bình cộng của hai biến a và b?
+A. a + b / 2
+B. a / 2 + b
+C. a + (b / 2)
+D. (a + b) / 2
+ANSWER: D
+
+Với diem = 11, biểu thức 0 <= diem <= 10 cho kết quả nào?
+A. True
+B. Báo lỗi SyntaxError
+C. 11
+D. False
+ANSWER: D
+
+Biểu thức True and not False cho kết quả nào?
+A. None
+B. False
+C. True
+D. Báo lỗi
+ANSWER: C
+
+Sau ba lệnh tong = 10, tong += 5, tong *= 2 thì tong bằng bao nhiêu?
+A. 20
+B. 25
+C. 30
+D. 17
+ANSWER: C
+
+Lệnh print(f"{3.14159:.2f}") in ra gì?
+A. 3.14
+B. 3.1
+C. 3.14159
+D. 3.142
+ANSWER: A
+
+Biểu thức 0.1 + 0.2 == 0.3 cho kết quả False. Nguyên nhân là gì?
+A. Số thực được lưu ở hệ nhị phân nên có sai số nhỏ
+B. Python tính sai phép cộng
+C. Phải viết 0.1 + 0.2 = 0.3 mới đúng
+D. Toán tử == không dùng được với số
+ANSWER: A
+
+Theo bảng giá giả định của bài (50 kWh đầu 2.000 đ/kWh, 50 kWh tiếp theo 2.500 đ/kWh, phần còn lại 3.000 đ/kWh), dùng 40 kWh phải trả bao nhiêu?
+A. 100.000 đồng
+B. 80.000 đồng
+C. 120.000 đồng
+D. 92.500 đồng
+ANSWER: B
+
+Lệnh print(f"{1234567:,}") in ra gì?
+A. 1234567
+B. 1,234,567
+C. 1.234.567
+D. 1 234 567
+ANSWER: B
+
+Trong lưu đồ thuật toán, khối hình thoi dùng để biểu diễn gì?
+A. Bắt đầu hoặc kết thúc
+B. Điều kiện có hai lối ra Đúng/Sai
+C. Nhập hoặc xuất dữ liệu
+D. Phép gán, tính toán
+ANSWER: B
+
+Trong lưu đồ thuật toán, lệnh input() và print() được vẽ bằng khối nào?
+A. Hình bình hành
+B. Hình thoi
+C. Hình chữ nhật
+D. Hình chữ nhật bo tròn hai đầu
+ANSWER: A
+
+Python xác định các lệnh thuộc cùng một nhánh của if bằng cách nào?
+A. Dấu ngoặc nhọn { }
+B. Từ khóa end ở cuối nhánh
+C. Thụt lề đầu dòng
+D. Dấu chấm phẩy cuối mỗi lệnh
+ANSWER: C
+
+Dòng if diem >= 4.0 bị thiếu dấu hai chấm ở cuối. Khi chạy, Python báo lỗi gì?
+A. TypeError
+B. ValueError
+C. SyntaxError
+D. ZeroDivisionError
+ANSWER: C
+
+Với x = 7, đoạn code if x % 2 == 0: print("Chẵn") else: print("Lẻ") (viết đúng thụt lề) in ra gì?
+A. Lẻ
+B. Chẵn
+C. Không in gì
+D. Báo lỗi
+ANSWER: A
+
+Đoạn code kiểm tra theo thứ tự: if diem >= 5 thì "Trung bình", elif diem >= 8 thì "Giỏi", else thì "Yếu". Với diem = 9.5, kết quả là gì?
+A. Giỏi
+B. Yếu
+C. Báo lỗi vì có hai điều kiện cùng đúng
+D. Trung bình
+ANSWER: D
+
+Theo thang xếp loại ví dụ của bài (từ 9 Xuất sắc, từ 8 Giỏi, từ 6,5 Khá, từ 5 Trung bình, dưới 5 Yếu), điểm 8 được xếp loại gì?
+A. Xuất sắc
+B. Trung bình
+C. Khá
+D. Giỏi
+ANSWER: D
+
+Chương trình ATM của bài có số dư 2.000.000 đồng; người dùng nhập đúng PIN và rút 120.000 đồng. Kết quả là gì?
+A. Rút thành công, số dư còn 1.880.000 đồng
+B. Không rút được vì 120.000 không phải bội số của 50.000
+C. Không rút được vì vượt số dư
+D. Báo sai mã PIN
+ANSWER: B
+
+Quy tắc phân loại khách hàng: VIP khi tổng chi từ 5.000.000 và từ 2 năm thành viên; Thân thiết khi tổng chi từ 2.000.000 hoặc từ 3 năm; còn lại là Thường. Khách tổng chi 6.000.000 đồng, 1 năm thành viên thuộc hạng nào?
+A. VIP
+B. Thân thiết
+C. Thường
+D. Không xác định được
+ANSWER: B
+
+Cần kiểm thử điều kiện diem >= 6.5. Bộ giá trị nào phát hiện lỗi ở ngưỡng tốt nhất?
+A. 2 và 10
+B. 0 và 5
+C. 7 và 8
+D. 6.5 và 6.49
+ANSWER: D
+
+Trường hợp nào nên dùng rẽ nhánh lồng nhau (một if nằm trong nhánh của if khác)?
+A. Khi điều kiện sau chỉ có ý nghĩa nếu điều kiện trước đã đúng
+B. Khi có nhiều hơn hai giá trị đầu vào
+C. Khi muốn chương trình chạy nhanh hơn
+D. Khi không muốn dùng elif
+ANSWER: A
+
+Biểu thức "C" == "c" trong Python cho kết quả nào?
+A. True
+B. Báo lỗi TypeError
+C. False
+D. None
+ANSWER: C
+
+Hàm range(5) sinh ra dãy số nào?
+A. 1, 2, 3, 4
+B. 1, 2, 3, 4, 5
+C. 0, 1, 2, 3, 4, 5
+D. 0, 1, 2, 3, 4
+ANSWER: D
+
+Vòng lặp for i in range(1, 11) chạy bao nhiêu lần?
+A. 11
+B. 10
+C. 9
+D. 12
+ANSWER: B
+
+list(range(0, 21, 5)) cho kết quả nào?
+A. [0, 5, 10, 15]
+B. [5, 10, 15, 20]
+C. [0, 5, 10, 15, 20]
+D. [0, 5, 10, 15, 20, 25]
+ANSWER: C
+
+Với range(10, 0, -1), giá trị đầu tiên và cuối cùng của biến lặp là gì?
+A. 0 và 10
+B. 10 và 0
+C. 9 và 0
+D. 10 và 1
+ANSWER: D
+
+Sau đoạn code tong = 0, rồi for i in range(1, 6): tong += i, biến tong bằng bao nhiêu?
+A. 10
+B. 21
+C. 15
+D. 6
+ANSWER: C
+
+Bạn đặt nhầm dòng tong = 0 vào bên trong vòng lặp tính tổng. Kết quả sau vòng lặp là gì?
+A. tong chỉ còn giá trị cộng ở chu kỳ cuối cùng
+B. Chương trình báo lỗi SyntaxError
+C. tong vẫn đúng như khi đặt ngoài vòng lặp
+D. tong luôn bằng 0
+ANSWER: A
+
+Với s = "Python", biểu thức s[-1] cho kết quả nào?
+A. "n"
+B. "o"
+C. "P"
+D. Báo lỗi IndexError
+ANSWER: A
+
+Với diem = [7.5, 8.0, 9.0], biểu thức diem[0] cho kết quả nào?
+A. Báo lỗi IndexError
+B. 8.0
+C. 9.0
+D. 7.5
+ANSWER: D
+
+Với diem = [7.5, 8.0, 9.0], sau lệnh diem.append(6.5) thì len(diem) bằng bao nhiêu?
+A. 3
+B. 4
+C. 5
+D. 6.5
+ANSWER: B
+
+Đoạn code for i in range(3): for j in range(2): print("*") (viết đúng thụt lề, vòng trong nằm trong vòng ngoài) in bao nhiêu dấu *?
+A. 5
+B. 6
+C. 2
+D. 3
+ANSWER: B
+
+Với diem = [7.5, 8.0, 9.0], lệnh print(diem[3]) gây lỗi gì?
+A. TypeError
+B. ValueError
+C. IndexError
+D. Không lỗi, in ra 9.0
+ANSWER: C
+
+Duyệt list [3.5, 8, 2, 4] và đếm các phần tử nhỏ hơn 4 (điều kiện d < 4). Kết quả đếm là bao nhiêu?
+A. 2
+B. 1
+C. 3
+D. 4
+ANSWER: A
+
+Vòng lặp while kiểm tra điều kiện vào lúc nào?
+A. Chỉ một lần trước khi bắt đầu
+B. Trước mỗi chu kỳ lặp
+C. Sau khi kết thúc toàn bộ vòng lặp
+D. Chỉ khi gặp lệnh break
+ANSWER: B
+
+Trường hợp nào nên dùng while thay cho for?
+A. In bảng cửu chương từ 1 đến 10
+B. Duyệt từng ký tự của một chuỗi
+C. Hỏi lại người dùng cho tới khi nhập điểm hợp lệ
+D. Tính tổng các phần tử của một list
+ANSWER: C
+
+Đoạn code dem = 5, rồi while dem > 0: print(dem) (không có dòng giảm dem) sẽ chạy thế nào?
+A. In số 5 mãi mãi (vòng lặp vô hạn)
+B. Không in gì
+C. In số 5 một lần rồi dừng
+D. In 5 4 3 2 1 rồi dừng
+ANSWER: A
+
+Chương trình đang chạy vòng lặp vô hạn trong Terminal. Tổ hợp phím nào dừng chương trình?
+A. F5
+B. Ctrl + S
+C. Ctrl + Z rồi Enter trong mọi trường hợp
+D. Ctrl + C
+ANSWER: D
+
+Lệnh break trong vòng lặp có tác dụng gì?
+A. Bỏ qua chu kỳ hiện tại, sang chu kỳ tiếp theo
+B. Thoát khỏi vòng lặp ngay lập tức
+C. Dừng toàn bộ chương trình và báo lỗi
+D. Quay lại đầu chương trình
+ANSWER: B
+
+Lệnh continue trong vòng lặp có tác dụng gì?
+A. Thoát khỏi vòng lặp ngay lập tức
+B. Lặp lại chu kỳ hiện tại thêm một lần
+C. Tạm dừng chờ người dùng nhấn Enter
+D. Bỏ phần còn lại của chu kỳ hiện tại, sang chu kỳ tiếp theo
+ANSWER: D
+
+Sau đoạn code x = 10, rồi while x > 0: x -= 3, giá trị của x bằng bao nhiêu?
+A. 1
+B. 0
+C. -3
+D. -2
+ANSWER: D
+
+Lệnh random.randint(1, 100) có thể trả về số 100 không?
+A. Chỉ khi gọi lần đầu tiên
+B. Không, vì giống range thì số 100 bị loại
+C. Có, vì randint gồm cả hai đầu khoảng
+D. Không, kết quả luôn nhỏ hơn 100
+ANSWER: C
+
+Menu viết điều kiện if chon == 1 với chon = input("Chọn: "). Người dùng nhập 1 thì điều gì xảy ra?
+A. Vào đúng nhánh vì 1 bằng 1
+B. Không vào nhánh này vì chon là chuỗi "1", khác số 1
+C. Báo lỗi TypeError
+D. Chương trình tự đổi chon sang số
+ANSWER: B
+
+Với tong = 0, i = 0, rồi while i < 5: i += 1; if i == 3: continue; tong += i. Sau vòng lặp, tong bằng bao nhiêu?
+A. 12
+B. 15
+C. 3
+D. 10
+ANSWER: A
+
+Đoán một số bí mật từ 1 đến 100, sau mỗi lần được gợi ý "lớn hơn" hoặc "nhỏ hơn". Chiến lược nào luôn đoán đúng trong tối đa 7 lần?
+A. Luôn đoán số ở giữa khoảng còn lại
+B. Đoán ngẫu nhiên mỗi lần
+C. Đoán lần lượt 1, 2, 3, …
+D. Đoán các số chia hết cho 10 trước
+ANSWER: A
+
+Trong trò chơi đoán số, biến doan_dung = False được gán True ngay trước break. Biến này dùng để làm gì?
+A. Đếm số lần đoán
+B. Lưu số bí mật
+C. Ghi nhớ đã đoán đúng hay chưa để in thông báo sau vòng lặp
+D. Làm vòng lặp chạy nhanh hơn
+ANSWER: C
+
+Muốn tính trung bình của 8 và 9 nhưng viết 8 + 9 / 2, chương trình chạy không báo lỗi và in 12.5. Đây là loại lỗi gì?
+A. Lỗi cú pháp
+B. Lỗi logic
+C. Lỗi thực thi
+D. Lỗi thụt lề
+ANSWER: B
+
+Lệnh int("mười") gây ra lỗi gì?
+A. TypeError
+B. ValueError
+C. NameError
+D. ZeroDivisionError
+ANSWER: B
+
+Lệnh print(8 / 0) gây ra lỗi gì?
+A. Không lỗi, in ra inf
+B. ValueError
+C. ArithmeticWarning
+D. ZeroDivisionError
+ANSWER: D
+
+Khi đọc một Traceback, nên đọc phần nào trước tiên?
+A. Dòng đầu tiên "Traceback (most recent call last)"
+B. Đường dẫn file
+C. Dòng cuối cùng: loại lỗi và thông điệp
+D. Dòng có dấu ^
+ANSWER: C
+
+Khối try – except xử lý được loại lỗi nào?
+A. Lỗi cú pháp như thiếu dấu hai chấm
+B. Lỗi thực thi (ngoại lệ) xảy ra khi chương trình đang chạy
+C. Lỗi logic như sai công thức
+D. Mọi loại lỗi
+ANSWER: B
+
+Trong cấu trúc try – except – else, khối else chạy khi nào?
+A. Luôn luôn chạy
+B. Khi khối try gây lỗi
+C. Khi khối try không gây lỗi
+D. Chỉ khi có lệnh break
+ANSWER: C
+
+Trong cấu trúc try – except – finally, khối finally chạy khi nào?
+A. Chỉ khi có lỗi
+B. Chỉ khi không có lỗi
+C. Không bao giờ chạy nếu đã có except
+D. Luôn chạy, dù có lỗi hay không
+ANSWER: D
+
+Vì sao không nên viết except: (không ghi loại lỗi)?
+A. Nó bắt mọi lỗi, kể cả lỗi gõ sai tên biến, làm lỗi khó phát hiện
+B. Python báo lỗi cú pháp
+C. Chương trình chạy chậm hơn nhiều
+D. Nó không bắt được ValueError
+ANSWER: A
+
+Lệnh int("7.5") cho kết quả nào?
+A. Báo lỗi ValueError
+B. 8
+C. 7.5
+D. 7
+ANSWER: A
+
+Sau đoạn try: x = int("12") / except ValueError: x = 0 / else: x += 1, biến x bằng bao nhiêu?
+A. 12
+B. 1
+C. 0
+D. 13
+ANSWER: D
+
+Khi debug trong VS Code, phím nào chạy dòng lệnh tiếp theo (Step Over)?
+A. F5
+B. F9
+C. F10
+D. F12
+ANSWER: C
+
+Đoạn try: print(10 / 0) / except ValueError: print("A") chạy thế nào?
+A. Chương trình dừng với ZeroDivisionError vì except không bắt đúng loại lỗi
+B. In ra A
+C. In ra 0
+D. Không in gì và chạy tiếp bình thường
+ANSWER: A
+
+Biểu thức type(7 // 2) cho kết quả nào?
+A. <class 'float'>
+B. <class 'str'>
+C. <class 'int'>
+D. <class 'bool'>
+ANSWER: C
+
+Biểu thức 10 % 3 + 2 ** 3 cho kết quả nào?
+A. 9
+B. 7
+C. 11
+D. 125
+ANSWER: A
+
+Với x = 15, đoạn if x > 10: print("A") elif x > 5: print("B") else: print("C") in ra gì?
+A. A và B
+B. B
+C. A
+D. C
+ANSWER: C
+
+Biểu thức not (3 > 2 and 1 > 2) cho kết quả nào?
+A. Báo lỗi
+B. False
+C. True
+D. None
+ANSWER: C
+
+Biểu thức "LHU" * 2 cho kết quả nào?
+A. Báo lỗi TypeError
+B. "LHULHU"
+C. "LHU LHU"
+D. "LHU2"
+ANSWER: B
+
+Đoạn for i in range(3): print(i, end="") in ra gì?
+A. 012
+B. 123
+C. 0 1 2
+D. 0123
+ANSWER: A
+
+Sau đoạn s = 0, rồi for x in [2, 4, 6]: s += x, biến s bằng bao nhiêu?
+A. 6
+B. 3
+C. 12
+D. 48
+ANSWER: C
+
+Cần nhập điểm sao cho người dùng gõ chữ hoặc số ngoài 0–10 thì được hỏi lại, chương trình không bị dừng. Cách nào phù hợp nhất?
+A. Một lệnh if kiểm tra 0 <= diem <= 10
+B. Vòng lặp for chạy 3 lần
+C. Chỉ dùng float(input()) một lần
+D. Vòng lặp while True kết hợp try – except và break khi hợp lệ
+ANSWER: D
+
+Trên lưu đồ thuật toán, dấu hiệu nào cho biết có vòng lặp?
+A. Có hình bình hành
+B. Có hình chữ nhật bo tròn
+C. Có nhiều hơn một khối Kết thúc
+D. Có mũi tên quay ngược lên một khối điều kiện phía trên
+ANSWER: D
+
+Lệnh float("abc") gây ra lỗi gì?
+A. Không lỗi, trả về 0.0
+B. TypeError
+C. NameError
+D. ValueError
+ANSWER: D
+
+Với diem_list = [], lệnh sum(diem_list) / len(diem_list) gây ra lỗi gì?
+A. ValueError
+B. ZeroDivisionError
+C. IndexError
+D. Không lỗi, trả về 0
+ANSWER: B
+
+Lệnh print(f"{1500000:,}") in ra gì?
+A. 1500000
+B. 1,500,000
+C. 1.500.000
+D. 1 500 000
+ANSWER: B
+
+Trong Python, từ khóa nào dùng để định nghĩa một hàm?
+A. function
+B. def
+C. func
+D. define
+ANSWER: B
+
+Một hàm không có lệnh return thì khi gọi sẽ trả về giá trị gì?
+A. None
+B. Chuỗi rỗng ""
+C. 0
+D. Báo lỗi
+ANSWER: A
+
+Với def tinh(a, b): return a + b, lời gọi tinh(2, 3) trả về gì?
+A. None
+B. 23
+C. 6
+D. 5
+ANSWER: D
+
+Trong dòng def tinh_diem_tb(qt, gk, ck):, các tên qt, gk, ck được gọi là gì?
+A. Đối số
+B. Tham số
+C. Hằng số
+D. Module
+ANSWER: B
+
+Với def f(a, b=2): return a * b, lời gọi f(5) trả về gì?
+A. 5
+B. 7
+C. Báo lỗi vì thiếu đối số b
+D. 10
+ANSWER: D
+
+Với def f(a, b=2): return a * b, lời gọi f(3, 4) trả về gì?
+A. 6
+B. 7
+C. 12
+D. 8
+ANSWER: C
+
+Hàm thong_ke trả về (thấp nhất, cao nhất, trung bình). Sau lệnh thap, cao, tb = thong_ke([6, 8, 7]), biến cao bằng bao nhiêu?
+A. (6, 8, 7.0)
+B. 6
+C. 7.0
+D. 8
+ANSWER: D
+
+Hàm tinh_diem_tb có 3 tham số nhưng được gọi tinh_diem_tb(8, 7). Kết quả là gì?
+A. Báo lỗi TypeError vì thiếu một đối số
+B. Tham số thứ ba tự nhận giá trị 0
+C. Báo lỗi ValueError
+D. Trả về None
+ANSWER: A
+
+Hàm in_xep_loai chỉ dùng print để in "Giỏi", không có return. Sau lệnh kq = in_xep_loai(8.5), biến kq bằng gì?
+A. "Giỏi"
+B. None
+C. True
+D. 8.5
+ANSWER: B
+
+Lợi ích chính khi gom đoạn "nhập số an toàn" đang bị chép 4 lần thành một hàm là gì?
+A. Chương trình luôn chạy nhanh gấp 4 lần
+B. Không cần dùng try – except nữa
+C. Viết một lần, gọi nhiều lần; sửa ở một chỗ là mọi nơi gọi hàm đều được sửa
+D. Không cần kiểm thử nữa
+ANSWER: C
+
+Trong main.py, dòng if __name__ == "__main__": main() có tác dụng gì?
+A. Chỉ gọi main() khi chạy trực tiếp file này, không gọi khi file khác import nó
+B. Bắt buộc phải có thì Python mới chạy được file
+C. Chuyển main.py thành thư viện có sẵn của Python
+D. Làm cho main() chạy hai lần
+ANSWER: A
+
+Lệnh from tinh_toan import xep_loai trong main.py báo ModuleNotFoundError. Nguyên nhân thường gặp nhất là gì?
+A. Hàm xep_loai không có return
+B. Python không cho import hàm tự viết
+C. File tinh_toan.py không nằm cùng thư mục với main.py hoặc đang chạy từ thư mục khác
+D. Thiếu docstring trong tinh_toan.py
+ANSWER: C
+
+Có biến toàn cục tong = 0 và hàm def cong(d): tong = tong + d. Gọi cong(8) gây lỗi gì?
+A. NameError
+B. UnboundLocalError
+C. TypeError
+D. Không lỗi, tong thành 8
+ANSWER: B
+
+Biến được tạo bên trong một hàm (kể cả tham số) có phạm vi thế nào?
+A. Chỉ dùng được trong hàm đó và mất đi khi hàm kết thúc
+B. Dùng được ở mọi hàm trong cùng file
+C. Dùng được ở mọi file của dự án
+D. Tồn tại mãi tới khi tắt máy
+ANSWER: A
+
+Tên hàm nào đúng quy ước PEP 8?
+A. TinhDiemTB
+B. tinh_diem_tb
+C. tinhDiemTb
+D. TINH_DIEM_TB
+ANSWER: B
+
+Theo PEP 8, một giá trị không đổi như ngưỡng đạt 4,0 nên đặt tên thế nào?
+A. nguong = 4.0
+B. Nguong_Dat = 4.0
+C. nguongDat = 4.0
+D. NGUONG_DAT = 4.0
+ANSWER: D
+
+PEP 8 quy định thụt lề mỗi cấp bằng bao nhiêu dấu cách?
+A. 4
+B. 2
+C. 8
+D. Tùy ý, miễn thống nhất
+ANSWER: A
+
+Docstring của một hàm được viết ở đâu?
+A. Ngay trước dòng def, bắt đầu bằng dấu #
+B. Ở cuối file, sau tất cả các hàm
+C. Trong một file .txt riêng
+D. Ngay dưới dòng def, là chuỗi đặt trong ba dấu nháy
+ANSWER: D
+
+Chú thích nào hữu ích nhất?
+A. # trọng số theo đề cương: quá trình 30%, giữa kỳ 30%, cuối kỳ 40%
+B. # đây là biến
+C. # cộng 1 vào i (cho dòng i += 1)
+D. # code của tôi
+ANSWER: A
+
+Refactor là gì?
+A. Thêm chức năng mới vào chương trình
+B. Viết lại chương trình bằng ngôn ngữ khác
+C. Sửa cấu trúc code cho dễ đọc, dễ sửa mà không làm đổi kết quả
+D. Xóa các dòng chú thích cho code ngắn hơn
+ANSWER: C
+
+Sau mỗi bước refactor nhỏ, việc quan trọng nhất là gì?
+A. Commit ngay mà không chạy lại
+B. Thêm chú thích cho mọi dòng
+C. Đổi tên file
+D. Chạy lại với cùng bộ dữ liệu và so kết quả với trước khi sửa
+ANSWER: D
+
+Lệnh ruff format làm được việc gì?
+A. Tự viết docstring cho mọi hàm
+B. Đổi tên biến cho có nghĩa
+C. Tự sửa khoảng trắng, thụt lề, xuống dòng theo chuẩn, nhưng không đổi tên biến
+D. Tìm và sửa mọi lỗi logic
+ANSWER: C
+
+Ruff báo F401 "imported but unused". Nghĩa là gì?
+A. Hàm thiếu return
+B. Tên biến không đúng PEP 8
+C. Có dòng import nhưng không dùng tới thứ được import
+D. Dòng code quá dài
+ANSWER: C
+
+Trong code có dòng if diem >= 4: với số 4 viết thẳng, không giải thích. Cách refactor phù hợp là gì?
+A. Đổi 4 thành 4.0 là đủ
+B. Đặt hằng số NGUONG_DAT = 4.0 và viết if diem >= NGUONG_DAT:
+C. Xóa điều kiện này
+D. Thêm chú thích # số 4
+ANSWER: B
+
+Theo yêu cầu của học phần, chương trình Mini Project cần có ít nhất bao nhiêu chức năng trên menu?
+A. 4
+B. 3
+C. 2
+D. 10
+ANSWER: A
+
+Mỗi nhóm Mini Project gồm bao nhiêu sinh viên?
+A. 1–2
+B. 5–6
+C. 3–4
+D. Không giới hạn
+ANSWER: C
+
+Kiến thức nào là yêu cầu bắt buộc của Mini Project?
+A. Lập trình hướng đối tượng với class
+B. try – except cho mọi chỗ nhập liệu
+C. Đọc/ghi cơ sở dữ liệu
+D. Giao diện đồ họa
+ANSWER: B
+
+Khi phân tích đề tài, bảng Input – Process – Output nên lập cho phạm vi nào?
+A. Chỉ một bảng cho cả chương trình
+B. Không cần lập vì đã có lưu đồ
+C. Chỉ cho chức năng khó nhất
+D. Cho từng chức năng
+ANSWER: D
+
+Sơ đồ phân rã chức năng của nhóm dùng để làm gì?
+A. Chia chương trình thành các hàm và làm căn cứ phân công công việc
+B. Thay thế cho code
+C. Trang trí báo cáo
+D. Đo tốc độ chương trình
+ANSWER: A
+
+Ở buổi 11, nhóm sửa lại code của một chức năng. Lưu đồ của chức năng đó cần xử lý thế nào?
+A. Giữ nguyên lưu đồ cũ
+B. Xóa lưu đồ khỏi báo cáo
+C. Cập nhật lại cho khớp với code mới
+D. Nhờ AI vẽ lại mà không kiểm tra
+ANSWER: C
+
+Nhóm nhận ra đề tài có 9 chức năng, quá lớn so với 2 buổi còn lại. Cách xử lý phù hợp là gì?
+A. Làm cả 9 chức năng, mỗi chức năng chạy một phần
+B. Giữ khoảng 4 chức năng chính chạy chắc chắn, các ý tưởng còn lại ghi vào Hướng phát triển
+C. Nhờ AI viết hộ các chức năng còn lại
+D. Đổi sang đề tài khác ở buổi 12
+ANSWER: B
+
+Quy định nào đúng về bảng phân công trong Mini Project?
+A. Không cần bảng phân công nếu nhóm thân nhau
+B. Một người viết toàn bộ code, các bạn còn lại làm báo cáo
+C. Mỗi thành viên tự viết ít nhất một chức năng hoàn chỉnh
+D. Chỉ trưởng nhóm được commit
+ANSWER: C
+
+Prompt nào phù hợp nhất để nhờ AI brainstorm đề tài?
+A. "Nhóm năm nhất, mới học biến, if, vòng lặp, list, hàm, try-except. Gợi ý 6 chức năng cho đề tài quản lý chi tiêu, kèm độ khó. Không viết code."
+B. "Cho tôi code Python quản lý chi tiêu có giao diện đẹp."
+C. "Viết cho tôi chương trình quản lý chi tiêu hoàn chỉnh."
+D. "Quản lý chi tiêu là gì?"
+ANSWER: A
+
+Một thành viên không tham gia làm Mini Project. Nhóm nên làm gì?
+A. Làm thay và vẫn ghi tên bạn ấy vào phần việc
+B. Chờ tới buổi 12 rồi trình bày
+C. Xóa tên bạn ấy khỏi nhóm mà không báo ai
+D. Báo giảng viên sớm, không đợi tới buổi Showcase
+ANSWER: D
+
+File lưu đồ .drawio của nhóm nên lưu ở đâu?
+A. Trên máy của một thành viên
+B. Trong thư mục docs/ của dự án để cả nhóm cùng dùng
+C. Gửi qua tin nhắn mỗi khi sửa
+D. Không cần lưu, chỉ cần ảnh chụp màn hình
+ANSWER: B
+
+Nhóm muốn chương trình lưu dữ liệu ra file để không mất khi tắt máy. Theo quy định của học phần, nhóm nên làm gì?
+A. Làm luôn, không cần hỏi
+B. Bị cấm hoàn toàn
+C. Dán code từ mạng vào là được
+D. Hỏi giảng viên trước vì đọc/ghi file ngoài phạm vi học phần, và vẫn phải giải thích được phần code đó
+ANSWER: D
+
+Trong Git, commit là gì?
+A. Lệnh xóa repository
+B. Một lần lưu thay đổi của mã nguồn kèm thông điệp mô tả
+C. Một file cấu hình của GitHub
+D. Lệnh chạy chương trình Python
+ANSWER: B
+
+Thao tác push có tác dụng gì?
+A. Lấy thay đổi mới của bạn cùng nhóm về máy
+B. Tạo repository mới
+C. Đẩy các commit trên máy lên repository trên GitHub
+D. Xóa commit cuối cùng
+ANSWER: C
+
+Thao tác pull dùng để làm gì?
+A. Lấy các thay đổi mới trên GitHub về máy mình
+B. Mời thành viên vào repository
+C. Đẩy code lên GitHub
+D. Đổi tên repository
+ANSWER: A
+
+Thông điệp commit nào tốt nhất?
+A. update
+B. final
+C. sửa
+D. Sửa lỗi chia cho 0 khi chưa có khoản chi
+ANSWER: D
+
+GitHub Desktop báo push bị từ chối (rejected) vì trên GitHub đã có commit mới của bạn khác. Nên làm gì?
+A. Đổi tên file rồi push
+B. Xóa repository và tạo lại
+C. Pull về trước rồi push lại
+D. Gửi code qua tin nhắn thay vì push
+ANSWER: C
+
+Xung đột (conflict) khi ghép code thường xảy ra khi nào?
+A. Hai người commit vào hai file khác nhau
+B. Hai người sửa cùng một đoạn trong cùng một file
+C. Một người viết README
+D. Repository có nhiều hơn 3 file
+ANSWER: B
+
+Kiểm thử tích hợp trong Mini Project là gì?
+A. Thử từng hàm riêng lẻ trong chế độ tương tác
+B. Đọc lại code bằng mắt
+C. Chạy cả chương trình qua menu, theo từng chức năng, với dữ liệu thường, biên và sai
+D. Chạy ruff check
+ANSWER: C
+
+Với chức năng "Thêm khoản chi" có ngân sách còn lại 200.000 đồng, dữ liệu nào là giá trị biên?
+A. 50000
+B. 200000
+C. Để trống
+D. "năm mươi nghìn"
+ANSWER: B
+
+README.md của Mini Project cần có những nội dung nào?
+A. Mật khẩu GitHub của nhóm
+B. Chỉ tên đề tài
+C. Toàn bộ mã nguồn dán vào
+D. Giới thiệu, thành viên và vai trò, cách chạy, ảnh chụp màn hình, khai báo dùng AI
+ANSWER: D
+
+Trên GitHub, minh chứng nào thể hiện vai trò cá nhân (CLO3) rõ nhất?
+A. Lịch sử commit của từng thành viên
+B. Số sao (star) của repository
+C. Màu giao diện GitHub
+D. Tên repository
+ANSWER: A
+
+Trưởng nhóm muốn các thành viên push được vào repository của nhóm. Cần làm gì trên github.com?
+A. Đổi repository sang chế độ riêng tư
+B. Tạo thêm một repository cho mỗi người
+C. Không cần làm gì, ai cũng push được
+D. Vào Settings → Collaborators và mời các thành viên
+ANSWER: D
+
+Kịch bản demo 3 phút nên chuẩn bị thế nào?
+A. Chuẩn bị sẵn dữ liệu, chạy chức năng chính và cố ý nhập sai một lần để cho thấy chương trình không dừng
+B. Chỉ chiếu slide, không chạy chương trình
+C. Chạy mọi chức năng phụ trước, chức năng chính sau
+D. Nghĩ dữ liệu khi đứng trước lớp
+ANSWER: A
+
+Theo cách làm của học phần, thứ tự hợp lý khi giải một bài toán lập trình là gì?
+A. Viết code, rồi vẽ lưu đồ cho đẹp báo cáo
+B. Bảng IPO, lưu đồ, viết code, kiểm thử
+C. Hỏi AI viết code, rồi kiểm thử
+D. Kiểm thử, viết code, rồi lập bảng IPO
+ANSWER: B
+
+list(range(1, 10, 3)) cho kết quả nào?
+A. [1, 4, 7, 10]
+B. [1, 4, 7]
+C. [1, 3, 6, 9]
+D. [3, 6, 9]
+ANSWER: B
+
+Với def g(x): return x * 2, lời gọi g(g(3)) trả về gì?
+A. 6
+B. 9
+C. 36
+D. 12
+ANSWER: D
+
+len("LHU 2026") cho kết quả nào?
+A. 8
+B. 7
+C. 9
+D. 4
+ANSWER: A
+
+Sau đoạn ds = [4, 9, 2], m = ds[0], rồi for x in ds: if x > m: m = x, biến m bằng bao nhiêu?
+A. 4
+B. 2
+C. 9
+D. 15
+ANSWER: C
+
+Biểu thức "abc" == "ABC".lower() cho kết quả nào?
+A. True
+B. False
+C. Báo lỗi
+D. "abc"
+ANSWER: A
+
+Vòng lặp while True: không chứa break hay lệnh dừng nào sẽ chạy thế nào?
+A. Chạy mãi (vòng lặp vô hạn)
+B. Không chạy lần nào
+C. Chạy đúng một lần
+D. Báo SyntaxError
+ANSWER: A
+
+Lệnh int(" 5 ") (có dấu cách hai bên) cho kết quả nào?
+A. Báo lỗi ValueError
+B. " 5 "
+C. 5.0
+D. 5
+ANSWER: D
+
+Đặc điểm nào cho thấy một hàm được thiết kế tốt?
+A. Làm nhiều việc nhất có thể để giảm số hàm
+B. Luôn in kết quả bằng print thay vì return
+C. Làm một việc, có tên rõ nghĩa và trả về kết quả bằng return
+D. Dùng biến toàn cục để trao đổi dữ liệu
+ANSWER: C
+
+Lỗi logic (chương trình chạy nhưng kết quả sai) được phát hiện chủ yếu bằng cách nào?
+A. Đọc Traceback
+B. Chạy ruff format
+C. Kiểm thử với dữ liệu đã tính tay kết quả trước
+D. Thêm try – except
+ANSWER: C
+
+AI viết cho bạn một đoạn code chạy đúng nhưng bạn không hiểu. Cách xử lý đúng với quy định học phần là gì?
+A. Nhờ bạn cùng nhóm nhận là đã viết đoạn đó
+B. Nộp luôn vì chương trình chạy đúng
+C. Xóa phần ghi chép trong Nhật ký Prompt để không bị trừ điểm
+D. Nhờ AI giải thích, tự viết lại phần mình hiểu, kiểm thử và ghi vào Nhật ký Prompt
+ANSWER: D
+
+Minh chứng nào được dùng để chấm CLO2 (trình bày ý tưởng bằng công cụ đồ họa) trong Mini Project?
+A. Số dòng code
+B. Bảng IPO, lưu đồ khớp với code và sơ đồ phân rã
+C. Lịch sử commit
+D. Số lượt thích bài đăng truyền thông
+ANSWER: B

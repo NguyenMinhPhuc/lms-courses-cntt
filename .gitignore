@@ -221,3 +221,13 @@ __marimo__/
 
 # Giáo trình có bản quyền (bản tải về để giảng viên tham khảo, không phát hành qua repo)
 co-so-van-hoa-viet-nam/thong-tin-mon-hoc/*.pdf
+
+# Dữ liệu cá nhân và hồ sơ nội bộ: chỉ giữ trên máy, không đưa lên repo công khai
+# - Bộ biểu mẫu gốc xây dựng CTĐT của Trường (có phiếu ý kiến, biên bản ghi tên người)
+templates/xay-dung-ctdt-Dai hoc chinh quy/
+# - Phiếu ý kiến, biên bản họp và danh sách người góp ý/Hội đồng của từng bộ CTĐT
+chuong-trinh-dao-tao/*/ho-so/BM01-Phieu-y-kien/
+chuong-trinh-dao-tao/*/ho-so/BM06-*
+chuong-trinh-dao-tao/*/du-lieu/thong-tin.json
+# - Đáp án bài lab dành cho giảng viên
+*/lab/dap-an-*.md

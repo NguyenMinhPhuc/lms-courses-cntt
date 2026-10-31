@@ -29,6 +29,7 @@ Sprint 2 · Người dùng & Tương tác
 - "use client" đặt ở lá, không đặt ở layout/page
 - Props truyền xuống phải tuần tự hóa được
 **Hoạt động**: Đánh dấu Server/Client cho 6 thành phần của trang giỏ hàng
+![](images/bai-04-dao-tuong-tac.png)
 
 ---
 
@@ -52,6 +53,7 @@ export function AddToCartButton({ product }) {
 - add: món trùng thì cộng dồn (US-C01)
 - setQuantity: về 0 thì xóa (US-C02)
 - persist: lưu localStorage, tải lại trang vẫn còn
+![](images/bai-04-store-gio-hang.png)
 
 ---
 
@@ -61,6 +63,7 @@ export function AddToCartButton({ product }) {
 - Trình duyệt đọc được giỏ 3 món
 - Hai bản HTML khác nhau → "Hydration failed"
 - Cách xử lý: cờ mounted, chỉ hiện số sau khi gắn vào trình duyệt
+![](images/bai-04-hydration.png)
 
 ---
 
@@ -83,7 +86,6 @@ export const registerSchema = z.object({
   confirm: z.string(),
 }).refine((d) => d.password === d.confirm, { path: ['confirm'], ... });
 ```
-
 ---
 
 ## Slide 9: Form với React Hook Form
@@ -101,6 +103,7 @@ export const registerSchema = z.object({
 - safeParse lại cùng schema
 - Gọi POST /auth/register; 409 → "Email đã được sử dụng"
 - Lý do: ai cũng tắt được JavaScript hoặc gửi request thẳng
+![](images/bai-04-mot-schema.png)
 
 ---
 

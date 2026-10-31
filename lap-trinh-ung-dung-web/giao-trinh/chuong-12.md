@@ -95,7 +95,7 @@ Nguyên tắc cả học phần: **không hiểu thì không merge**. Trả lờ
 
 ### 12.5.1. Review chéo
 
-Mỗi nhóm được phân công đánh giá một số nhóm khác theo rubric (thang 10, tách 4 CLO), dựa trên phần trình bày và báo cáo. Mỗi điểm số kèm một nhận xét cụ thể: một điểm mạnh và một đề xuất cải tiến. Review chéo rèn kỹ năng đọc sản phẩm của người khác theo tiêu chí, kỹ năng cần thiết khi review Pull Request trong công việc thật. Điểm review chéo là ý kiến tham khảo cho giảng viên và được tính vào phần tham gia review ở điểm quá trình.
+Mỗi nhóm được phân công đánh giá một số nhóm khác theo rubric (thang 10, tách 4 CLO), dựa trên phần trình bày và báo cáo. Mỗi điểm số kèm một nhận xét cụ thể: một điểm mạnh và một đề xuất cải tiến. Review chéo rèn kỹ năng đọc sản phẩm của người khác theo tiêu chí, kỹ năng cần thiết khi review Pull Request trong công việc thật [2]. Điểm review chéo là ý kiến tham khảo cho giảng viên và được tính vào phần tham gia review ở điểm quá trình.
 
 ### 12.5.2. Nhìn lại bốn chuẩn đầu ra
 
@@ -104,7 +104,7 @@ Mỗi nhóm được phân công đánh giá một số nhóm khác theo rubric 
 | CLO1 | Phân tích phạm vi, sitemap, bảng ánh xạ, ranh giới Server/Client, ma trận phân quyền, module quản trị, luồng realtime trước khi viết mã |
 | CLO2 | Viết test case từ tiêu chí chấp nhận, giá trị biên, truy cập trái phép, luồng nghiệp vụ, kiểm thử tự động có kiểm chứng bằng đột biến |
 | CLO3 | Bốn báo cáo sprint và một báo cáo đồ án đúng quy định, có minh chứng |
-| CLO4 | Lập kế hoạch sprint, theo dõi trên board, điều chỉnh theo velocity, tổng kết tiến độ |
+| CLO4 | Lập kế hoạch sprint, theo dõi trên board, điều chỉnh theo velocity, tổng kết tiến độ theo khung Scrum [1] |
 
 ### 12.5.3. Đi tiếp sau học phần
 

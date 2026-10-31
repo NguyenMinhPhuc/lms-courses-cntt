@@ -36,36 +36,7 @@ export async function advanceStatus(orderId: number, status: NextStatus): Promis
   try {
     await apiAuth(`/orders/${orderId}/status`, { method: 'PATCH', body: JSON.stringify({ status }) });
     return { ok: true };
-  } catch (e) {
-    if (e instanceof ApiError && e.status === 409)
-      return { ok: false, message: `Đơn #${orderId} đã được cập nhật bởi người khác` };
-    return { ok: false, message: 'Không cập nhật được trạng thái, vui lòng thử lại' };
-  } finally {
-    revalidatePath('/admin/orders');                         // vẽ lại trang với dữ liệu mới
-  }
-}
-
-const cancelSchema = z.object({
-  orderId: z.coerce.number().int().positive(),
-  reason: z.string().trim().min(3, 'Nhập lý do hủy (tối thiểu 3 ký tự)').max(200, 'Lý do tối đa 200 ký tự'),
-});
-
-// Dùng với useActionState: nhận state trước và FormData
-export async function staffCancel(_prev: ActionResult, formData: FormData): Promise<ActionResult> {
-  await requireRole('staff', 'admin');
-  const parsed = cancelSchema.safeParse(Object.fromEntries(formData));
-  if (!parsed.success) return { ok: false, message: parsed.error.issues[0].message };
-  try {
-    await apiAuth(`/orders/${parsed.data.orderId}/staff-cancel`, {
-      method: 'POST', body: JSON.stringify({ reason: parsed.data.reason }),
-    });
-  } catch (e) {
-    if (e instanceof ApiError && e.status === 409) return { ok: false, message: 'Đơn đã sẵn sàng hoặc đã hoàn tất, không hủy được' };
-    return { ok: false, message: 'Không hủy được đơn, vui lòng thử lại' };
-  }
-  revalidatePath('/admin/orders');
-  return { ok: true, message: 'Đã hủy đơn và báo cho khách' };
-}
+// … (trích 15/45 dòng; mã đầy đủ ở Phụ lục A, mục A.3)
 ```
 
 Dữ liệu từ `FormData` luôn là chuỗi; `z.coerce.number()` chuyển `"12"` thành `12` trước khi kiểm tra.
@@ -155,39 +126,7 @@ const columns: ColumnDef<Product>[] = [
   { accessorKey: 'price', header: 'Giá', cell: (c) => `${c.getValue<number>().toLocaleString('vi-VN')} đ` },
   { accessorKey: 'stock', header: 'Tồn' },
   { id: 'available', header: 'Còn bán', cell: ({ row }) => (
-      <form action={toggleAvailability.bind(null, row.original.id, !row.original.isAvailable)}>
-        <button className="underline">{row.original.isAvailable ? 'Đang bán' : 'Ngừng bán'}</button>
-      </form>) },
-];
-
-export function ProductTable({ data, page, q, hasNext }:
-  { data: Product[]; page: number; q: string; hasNext: boolean }) {
-  const [sorting, setSorting] = useState<SortingState>([]);
-  const table = useReactTable({ data, columns, state: { sorting }, onSortingChange: setSorting,
-    getCoreRowModel: getCoreRowModel(), getSortedRowModel: getSortedRowModel() });
-  const href = (p: number) => `?${new URLSearchParams({ q, page: String(p) })}`;
-  return (
-    <>
-      <table className="w-full text-sm">
-        <thead>{table.getHeaderGroups().map((g) => (
-          <tr key={g.id}>{g.headers.map((h) => (
-            <th key={h.id} onClick={h.column.getToggleSortingHandler()} className="cursor-pointer text-left">
-              {flexRender(h.column.columnDef.header, h.getContext())}
-              {{ asc: ' ▲', desc: ' ▼' }[h.column.getIsSorted() as string] ?? ''}
-            </th>))}</tr>))}
-        </thead>
-        <tbody>{table.getRowModel().rows.map((r) => (
-          <tr key={r.id}>{r.getVisibleCells().map((c) => (
-            <td key={c.id}>{flexRender(c.column.columnDef.cell, c.getContext())}</td>))}</tr>))}
-        </tbody>
-      </table>
-      <nav className="mt-3 flex gap-3">
-        {page > 1 && <Link href={href(page - 1)}>← Trang trước</Link>}
-        {hasNext && <Link href={href(page + 1)}>Trang sau →</Link>}
-      </nav>
-    </>
-  );
-}
+// … (trích 15/48 dòng; mã đầy đủ ở Phụ lục A, mục A.4)
 ```
 
 `toggleAvailability.bind(null, id, value)` gắn sẵn tham số cho Server Action để dùng làm `action` của form. `toggleAvailability` gọi `PATCH /products/:id/availability`, kiểm tra quyền staff và gọi `revalidatePath('/admin/products')`. shadcn/ui có mẫu "Data Table" dựng sẵn trên TanStack Table, nhóm có thể dùng.
@@ -228,33 +167,7 @@ const NEXT: Record<string, { to: NextStatus; label: string } | undefined> = {
 };
 const LABEL: Record<string, string> = {
   pending: 'Chờ xác nhận', preparing: 'Đang chuẩn bị', ready: 'Sẵn sàng', completed: 'Hoàn tất', cancelled: 'Đã hủy',
-};
-
-export function OrderCard({ order }: { order: StaffOrder }) {
-  const [status, setOptimisticStatus] = useOptimistic(order.status);
-  const [isPending, startTransition] = useTransition();
-  const [error, setError] = useState('');
-  const next = NEXT[status];
-
-  const onAdvance = () => next && startTransition(async () => {
-    setError('');
-    setOptimisticStatus(next.to);                       // hiện ngay, chưa chờ server
-    const result = await advanceStatus(order.orderId, next.to);
-    if (!result.ok) setError(result.message ?? '');
-  });
-
-  return (
-    <article className="rounded-xl border bg-white p-3">
-      <p className="font-bold">#{order.orderId} · {order.customerName}</p>
-      <p>{order.summary}</p>
-      {order.note && <p className="text-amber-700">Ghi chú: {order.note}</p>}
-      <p className="text-sm">Trạng thái: <strong>{LABEL[status]}</strong></p>
-      {next && <button onClick={onAdvance} disabled={isPending}
-        className="mt-2 rounded bg-blue-900 px-3 py-1 text-white">{next.label}</button>}
-      {error && <p role="alert" className="text-sm text-red-600">{error}</p>}
-    </article>
-  );
-}
+// … (trích 15/42 dòng; mã đầy đủ ở Phụ lục A, mục A.5)
 ```
 
 - Hàm cập nhật của `useOptimistic` phải được gọi trong `startTransition` hoặc trong form action.
@@ -326,7 +239,7 @@ Báo cáo Sprint 2 theo cùng cấu trúc 6 mục của báo cáo Sprint 1 (Chư
 
 ## Tài liệu tham khảo
 
-[1] Vercel, “Updating Data,” *Next.js Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://nextjs.org/docs/app/getting-started/updating-data
+[1] Vercel, “Updating Data,” *Next.js Documentation*. Accessed: Oct. 31, 2026. [Online]. Available: https://nextjs.org/docs/app/getting-started/mutating-data
 
 [2] Meta Open Source, “useActionState,” *React Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://react.dev/reference/react/useActionState
 
@@ -334,6 +247,6 @@ Báo cáo Sprint 2 theo cùng cấu trúc 6 mục của báo cáo Sprint 1 (Chư
 
 [4] Meta Open Source, “useOptimistic,” *React Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://react.dev/reference/react/useOptimistic
 
-[5] TanStack, “Introduction,” *TanStack Table Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://tanstack.com/table/latest/docs/introduction
+[5] TanStack, “Introduction,” *TanStack Table Documentation*. Accessed: Oct. 31, 2026. [Online]. Available: https://tanstack.com/table/latest/docs/overview
 
 [6] K. Schwaber and J. Sutherland, “The Scrum Guide,” Nov. 2020. Accessed: Oct. 30, 2026. [Online]. Available: https://scrumguides.org/scrum-guide.html

@@ -27,6 +27,7 @@ Phần bắt buộc của học phần · Checkpoint Sprint 3
 - **Polling**: app hỏi định kỳ → chậm, tốn pin và tải server
 - **WebSocket**: kết nối mở liên tục, server chủ động gửi → gần như tức thời
 - **Socket.IO**: xây trên WebSocket, có sự kiện, room, tự kết nối lại, gửi auth
+![](images/bai-09-polling-websocket.png)
 
 ---
 
@@ -37,19 +38,14 @@ Phần bắt buộc của học phần · Checkpoint Sprint 3
 - `user:<mã>` cho từng người; `staff` cho nhân viên
 - **Handshake auth**: gửi JWT khi kết nối
 **Hoạt động**: Lớp đề xuất room cho đề tài của nhóm mình
+![](images/bai-09-khai-niem-socket.png)
 
 ---
 
 ## Slide 5: Sơ đồ tuần tự
 **Nội dung chính**:
-```text
-App nhân viên → PATCH /orders/12/status → API NestJS
-API → EXEC sp_Order_UpdateStatus → SQL Server (trả userId)
-API → EXEC sp_Notification_Create → SQL Server
-API → emit 'order:status' tới room user:5 → App khách hàng
-App khách hàng → hiện thông báo, làm mới đơn hàng
-```
 - Vẽ lại bằng draw.io: minh chứng CLO3
+![](images/bai-09-tuan-tu.png)
 
 ---
 
@@ -59,6 +55,7 @@ App khách hàng → hiện thông báo, làm mới đơn hàng
 - `sp_Notification_Create`, `GetList`, `CountUnread`, `MarkRead`
 - Người dùng đang tắt app vẫn xem lại được khi mở app
 - `sp_Order_UpdateStatus` trả về `userId` người đặt bằng `OUTPUT`
+![](images/bai-09-luu-truoc.png)
 
 ---
 

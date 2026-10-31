@@ -1,0 +1,83 @@
+Trong Git, commit là gì?
+A. Lệnh xóa repository
+B. Một lần lưu thay đổi của mã nguồn kèm thông điệp mô tả
+C. Một file cấu hình của GitHub
+D. Lệnh chạy chương trình Python
+ANSWER: B
+
+Thao tác push có tác dụng gì?
+A. Lấy thay đổi mới của bạn cùng nhóm về máy
+B. Tạo repository mới
+C. Đẩy các commit trên máy lên repository trên GitHub
+D. Xóa commit cuối cùng
+ANSWER: C
+
+Thao tác pull dùng để làm gì?
+A. Lấy các thay đổi mới trên GitHub về máy mình
+B. Mời thành viên vào repository
+C. Đẩy code lên GitHub
+D. Đổi tên repository
+ANSWER: A
+
+Thông điệp commit nào tốt nhất?
+A. update
+B. final
+C. sửa
+D. Sửa lỗi chia cho 0 khi chưa có khoản chi
+ANSWER: D
+
+GitHub Desktop báo push bị từ chối (rejected) vì trên GitHub đã có commit mới của bạn khác. Nên làm gì?
+A. Đổi tên file rồi push
+B. Xóa repository và tạo lại
+C. Pull về trước rồi push lại
+D. Gửi code qua tin nhắn thay vì push
+ANSWER: C
+
+Xung đột (conflict) khi ghép code thường xảy ra khi nào?
+A. Hai người commit vào hai file khác nhau
+B. Hai người sửa cùng một đoạn trong cùng một file
+C. Một người viết README
+D. Repository có nhiều hơn 3 file
+ANSWER: B
+
+Kiểm thử tích hợp trong Mini Project là gì?
+A. Thử từng hàm riêng lẻ trong chế độ tương tác
+B. Đọc lại code bằng mắt
+C. Chạy cả chương trình qua menu, theo từng chức năng, với dữ liệu thường, biên và sai
+D. Chạy ruff check
+ANSWER: C
+
+Với chức năng "Thêm khoản chi" có ngân sách còn lại 200.000 đồng, dữ liệu nào là giá trị biên?
+A. 50000
+B. 200000
+C. Để trống
+D. "năm mươi nghìn"
+ANSWER: B
+
+README.md của Mini Project cần có những nội dung nào?
+A. Mật khẩu GitHub của nhóm
+B. Chỉ tên đề tài
+C. Toàn bộ mã nguồn dán vào
+D. Giới thiệu, thành viên và vai trò, cách chạy, ảnh chụp màn hình, khai báo dùng AI
+ANSWER: D
+
+Trên GitHub, minh chứng nào thể hiện vai trò cá nhân (CLO3) rõ nhất?
+A. Lịch sử commit của từng thành viên
+B. Số sao (star) của repository
+C. Màu giao diện GitHub
+D. Tên repository
+ANSWER: A
+
+Trưởng nhóm muốn các thành viên push được vào repository của nhóm. Cần làm gì trên github.com?
+A. Đổi repository sang chế độ riêng tư
+B. Tạo thêm một repository cho mỗi người
+C. Không cần làm gì, ai cũng push được
+D. Vào Settings → Collaborators và mời các thành viên
+ANSWER: D
+
+Kịch bản demo 3 phút nên chuẩn bị thế nào?
+A. Chuẩn bị sẵn dữ liệu, chạy chức năng chính và cố ý nhập sai một lần để cho thấy chương trình không dừng
+B. Chỉ chiếu slide, không chạy chương trình
+C. Chạy mọi chức năng phụ trước, chức năng chính sau
+D. Nghĩ dữ liệu khi đứng trước lớp
+ANSWER: A

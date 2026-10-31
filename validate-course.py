@@ -239,12 +239,54 @@ def check_slides(course_dir: Path, lessons: list[str], r: Report):
             missing.append(md.name)
         elif not pptx.is_file() or pptx.stat().st_mtime < md.stat().st_mtime:
             stale.append(pptx.name)
+    no_image = []
+    for md in sorted(slides_dir.glob("bai-*.markdown")):
+        text = re.sub(r"```.*?```", "", md.read_text(encoding="utf-8"), flags=re.DOTALL)
+        for path in re.findall(r"^\s*!\[[^\]]*\]\(\s*<?([^)>]+?)>?\s*\)\s*$", text, re.MULTILINE):
+            if re.match(r"^https?://", path, re.IGNORECASE) or not (slides_dir / path).is_file():
+                no_image.append(f"{md.name} → {path}")
+    if no_image:
+        r.warn("Slide tham chiếu hình chưa có trong Slides/ (đang hiện khung chờ): " + "; ".join(no_image))
     if missing:
         r.error("Thiếu ghi chú slide: " + ", ".join(f"Slides/{m}" for m in missing))
     if stale:
         r.error("Slide .pptx chưa có hoặc cũ hơn .markdown: " + ", ".join(stale) + " (chạy build-slides.py)")
     if lessons and not missing and not stale:
         r.ok(f"Slide đủ {len(lessons)} bài (.markdown + .pptx)")
+
+
+TEXTBOOK_SECTIONS = ["Mục tiêu chương", "Tóm tắt chương", "Câu hỏi ôn tập", "Bài tập", "Tài liệu tham khảo"]
+
+
+def check_textbook(course_dir: Path, r: Report):
+    """Giáo trình (giao-trinh/chuong-XX.md): đủ mục bắt buộc, trích dẫn [n] khớp danh mục tài liệu tham khảo.
+    Xem skill giao-trinh-builder (Thông tư 62/2026/TT-BGDĐT, Điều 5)."""
+    src = course_dir / "giao-trinh"
+    chapters = sorted(src.glob("chuong-*.md")) if src.is_dir() else []
+    if not chapters:
+        return
+    problems = []
+    for ch in chapters:
+        text = ch.read_text(encoding="utf-8")
+        headings = re.findall(r"(?m)^##\s+(.+?)\s*$", text)
+        missing = [s for s in TEXTBOOK_SECTIONS if not any(h.startswith(s) for h in headings)]
+        if missing:
+            problems.append(f"{ch.name} thiếu mục: {', '.join(missing)}")
+        body, _, refs = text.partition("## Tài liệu tham khảo")
+        body = re.sub(r"`[^`\n]*`", "", re.sub(r"```.*?```", "", body, flags=re.DOTALL))  # arr[0] trong code không phải trích dẫn
+        listed = set(re.findall(r"(?m)^\[(\d+)\]", refs))
+        cited = set(re.findall(r"\[(\d+)(?:,[^\]\n]*)?\]", body))  # [6] hoặc [6, Điều 32]
+        if cited - listed:
+            problems.append(f"{ch.name} trích dẫn không có trong danh mục: [{'], ['.join(sorted(cited - listed, key=int))}]")
+        if listed - cited:
+            problems.append(f"{ch.name} tài liệu không được trích dẫn: [{'], ['.join(sorted(listed - cited, key=int))}]")
+    for p in problems:
+        r.warn("Giáo trình: " + p)
+    docx = list(src.glob("*.docx"))
+    if docx and any(ch.stat().st_mtime > max(d.stat().st_mtime for d in docx) for ch in chapters):
+        r.warn("Giáo trình .docx cũ hơn file chương .md (chạy build-textbook.py)")
+    if not problems:
+        r.ok(f"Giáo trình {len(chapters)} chương đủ mục bắt buộc, trích dẫn khớp tài liệu tham khảo")
 
 
 def check_documents(course_dir: Path, r: Report):
@@ -296,6 +338,7 @@ def validate(course_dir: Path, build) -> Report:
     check_quizzes(course_dir, lessons, r)
     check_slides(course_dir, lessons, r)
     check_documents(course_dir, r)
+    check_textbook(course_dir, r)
     check_links_and_placeholders(course_dir, r)
     return r
 

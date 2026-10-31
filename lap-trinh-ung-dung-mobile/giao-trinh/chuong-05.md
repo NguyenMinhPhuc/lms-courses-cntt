@@ -124,33 +124,7 @@ CREATE OR ALTER PROCEDURE sp_Product_GetList
 AS
 BEGIN
   SET NOCOUNT ON;
-  IF @Page < 1 OR @PageSize NOT BETWEEN 1 AND 100
-    THROW 50400, N'Tham số phân trang không hợp lệ', 1;
-
-  SELECT ProductId AS id, CategoryId AS categoryId, Name AS name,
-         Price AS price, ImageUrl AS imageUrl
-  FROM Products
-  WHERE IsAvailable = 1
-    AND (@CategoryId IS NULL OR CategoryId = @CategoryId)
-  ORDER BY ProductId
-  OFFSET (@Page - 1) * @PageSize ROWS FETCH NEXT @PageSize ROWS ONLY;
-END;
-GO
-
-CREATE OR ALTER PROCEDURE sp_Product_GetById
-  @ProductId INT
-AS
-BEGIN
-  SET NOCOUNT ON;
-  IF NOT EXISTS (SELECT 1 FROM Products WHERE ProductId = @ProductId)
-    THROW 50404, N'Không tìm thấy món ăn', 1;
-
-  SELECT ProductId AS id, CategoryId AS categoryId, Name AS name, Description AS description,
-         Price AS price, ImageUrl AS imageUrl, IsAvailable AS isAvailable
-  FROM Products
-  WHERE ProductId = @ProductId;
-END;
-GO
+-- … (trích 15/42 dòng; mã đầy đủ ở Phụ lục A, mục A.1)
 ```
 
 `OFFSET ... FETCH NEXT` (có từ SQL Server 2012) phân trang dựa trên `ORDER BY`. Luôn sắp xếp theo một cột duy nhất để trang sau không lặp lại phần tử của trang trước [2].
@@ -247,35 +221,7 @@ export class DatabaseService implements OnModuleInit, OnModuleDestroy {
   async onModuleInit() {
     this.pool = await new sql.ConnectionPool({
       server: process.env.DB_SERVER!,
-      database: process.env.DB_NAME!,
-      user: process.env.DB_USER!,
-      password: process.env.DB_PASSWORD!,
-      options: { encrypt: false, trustServerCertificate: true },
-    }).connect();
-  }
-
-  async onModuleDestroy() {
-    await this.pool?.close();
-  }
-
-  /** Cách DUY NHẤT để truy cập CSDL: chạy stored procedure với tham số có kiểu. */
-  async execute<T>(procedure: string, params: Record<string, SqlParam> = {}): Promise<T[]> {
-    const request = this.pool.request();
-    for (const [name, p] of Object.entries(params)) {
-      request.input(name, p.type, p.value);
-    }
-    try {
-      const result = await request.execute<T>(procedure);
-      return result.recordset ?? [];
-    } catch (err: any) {
-      // Chuyển mã lỗi tự đặt trong thủ tục thành mã HTTP
-      if (err?.number === 50400) throw new BadRequestException(err.message);
-      if (err?.number === 50404) throw new NotFoundException(err.message);
-      if (err?.number === 50409) throw new ConflictException(err.message);
-      throw err;
-    }
-  }
-}
+// … (trích 15/44 dòng; mã đầy đủ ở Phụ lục A, mục A.2)
 ```
 
 `src/database/database.module.ts`:

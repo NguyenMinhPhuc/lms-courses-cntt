@@ -29,6 +29,7 @@ Stack, Tab, Modal và từ màn hình đến dữ liệu · Checkpoint Sprint 1
 - **Modal**: trượt lên cho tác vụ ngắn, đóng xong về chỗ cũ
 **Ví dụ**:
 - LHU Food: Danh sách → Chi tiết (stack); Trang chủ/Giỏ hàng/Đơn hàng/Tài khoản (tab); Xác nhận đặt hàng (modal)
+![](images/bai-03-ba-kieu-dieu-huong.png)
 
 ---
 
@@ -97,6 +98,7 @@ const { id } = useLocalSearchParams<{ id: string }>();
 **Ví dụ**:
 - Đăng nhập xong dùng replace để Back không quay về màn hình đăng nhập
 **Hoạt động**: Hỏi lớp: luồng nào trong đề tài của nhóm cần replace?
+![](images/bai-03-push-back-replace.png)
 
 ---
 
@@ -105,6 +107,8 @@ const { id } = useLocalSearchParams<{ id: string }>();
 - Khai báo `"scheme": "lhufood"` trong `app.json`
 - `lhufood://product/12` mở thẳng chi tiết món 12
 - Bài 09: bấm thông báo realtime mở đúng đơn hàng
+![](images/bai-03-deep-link.png)
+
 **Ghi chú giảng viên**:
 - Chỉ giới thiệu, chưa yêu cầu sinh viên làm deep link ở buổi này.
 
@@ -115,6 +119,7 @@ const { id } = useLocalSearchParams<{ id: string }>();
 - Vẽ các màn hình và mũi tên chuyển giữa chúng
 - Thống nhất cấu trúc `app/` trước khi viết mã
 - Công cụ: draw.io, Figma (FigJam)
+![](images/bai-03-luong-man-hinh.png)
 
 ---
 
@@ -125,6 +130,8 @@ const { id } = useLocalSearchParams<{ id: string }>();
 - Đơn hàng → Orders, OrderItems
 **Ví dụ**:
 - Categories 1-n Products; Users 1-n Orders; Orders n-n Products qua OrderItems
+![](images/bai-03-erd-so-bo.png)
+
 **Ghi chú giảng viên**:
 - ERD sơ bộ là đầu vào cho bài 05: CSDL SQL Server và stored procedure.
 

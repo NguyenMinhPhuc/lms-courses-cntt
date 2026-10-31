@@ -1,0 +1,83 @@
+Muốn tính trung bình của 8 và 9 nhưng viết 8 + 9 / 2, chương trình chạy không báo lỗi và in 12.5. Đây là loại lỗi gì?
+A. Lỗi cú pháp
+B. Lỗi logic
+C. Lỗi thực thi
+D. Lỗi thụt lề
+ANSWER: B
+
+Lệnh int("mười") gây ra lỗi gì?
+A. TypeError
+B. ValueError
+C. NameError
+D. ZeroDivisionError
+ANSWER: B
+
+Lệnh print(8 / 0) gây ra lỗi gì?
+A. Không lỗi, in ra inf
+B. ValueError
+C. ArithmeticWarning
+D. ZeroDivisionError
+ANSWER: D
+
+Khi đọc một Traceback, nên đọc phần nào trước tiên?
+A. Dòng đầu tiên "Traceback (most recent call last)"
+B. Đường dẫn file
+C. Dòng cuối cùng: loại lỗi và thông điệp
+D. Dòng có dấu ^
+ANSWER: C
+
+Khối try – except xử lý được loại lỗi nào?
+A. Lỗi cú pháp như thiếu dấu hai chấm
+B. Lỗi thực thi (ngoại lệ) xảy ra khi chương trình đang chạy
+C. Lỗi logic như sai công thức
+D. Mọi loại lỗi
+ANSWER: B
+
+Trong cấu trúc try – except – else, khối else chạy khi nào?
+A. Luôn luôn chạy
+B. Khi khối try gây lỗi
+C. Khi khối try không gây lỗi
+D. Chỉ khi có lệnh break
+ANSWER: C
+
+Trong cấu trúc try – except – finally, khối finally chạy khi nào?
+A. Chỉ khi có lỗi
+B. Chỉ khi không có lỗi
+C. Không bao giờ chạy nếu đã có except
+D. Luôn chạy, dù có lỗi hay không
+ANSWER: D
+
+Vì sao không nên viết except: (không ghi loại lỗi)?
+A. Nó bắt mọi lỗi, kể cả lỗi gõ sai tên biến, làm lỗi khó phát hiện
+B. Python báo lỗi cú pháp
+C. Chương trình chạy chậm hơn nhiều
+D. Nó không bắt được ValueError
+ANSWER: A
+
+Lệnh int("7.5") cho kết quả nào?
+A. Báo lỗi ValueError
+B. 8
+C. 7.5
+D. 7
+ANSWER: A
+
+Sau đoạn try: x = int("12") / except ValueError: x = 0 / else: x += 1, biến x bằng bao nhiêu?
+A. 12
+B. 1
+C. 0
+D. 13
+ANSWER: D
+
+Khi debug trong VS Code, phím nào chạy dòng lệnh tiếp theo (Step Over)?
+A. F5
+B. F9
+C. F10
+D. F12
+ANSWER: C
+
+Đoạn try: print(10 / 0) / except ValueError: print("A") chạy thế nào?
+A. Chương trình dừng với ZeroDivisionError vì except không bắt đúng loại lỗi
+B. In ra A
+C. In ra 0
+D. Không in gì và chạy tiếp bình thường
+ANSWER: A

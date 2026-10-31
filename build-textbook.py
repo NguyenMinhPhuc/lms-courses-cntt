@@ -5,16 +5,19 @@ Cách dùng:
     uv run --with python-docx python build-textbook.py lap-trinh-ung-dung-mobile
     uv run --with python-docx python build-textbook.py lap-trinh-ung-dung-mobile --srs
 
-Giáo trình:  <hoc-phan>/giao-trinh/00-loi-noi-dau.md, chuong-01.md, ...  → giao-trinh/Giao-trinh-<hoc-phan>.docx
+Giáo trình:  <hoc-phan>/giao-trinh/00-loi-noi-dau.md, chuong-01.md, ..., phu-luc-a-*.md  → giao-trinh/Giao-trinh-<hoc-phan>.docx
              (giao-trinh/bai-tap-huong-dan/bt-XX.md, nếu có, được chèn vào chương XX trước "Tài liệu tham khảo")
 SRS (--srs): <hoc-phan>/srs/01-*.md, 02-*.md, ...  → srs/SRS-<srsProject>.docx
              (tên dự án lấy từ "srsProject" trong course.json)
 Agile (--agile): <hoc-phan>/srs/agile/01-*.md, ...  → srs/agile-scrum.docx (phần nội dung khổ ngang cho bảng backlog)
                  và srs/agile/product-backlog.csv (Epic + backlog, nhập Jira/Trello/Notion)
+Hồ sơ (--ho-so): <hoc-phan>/giao-trinh/ho-so/01-*.md, ...  → giao-trinh/ho-so/Ho-so-bien-soan-<hoc-phan>.docx
+                 (đề cương chi tiết, tổng hợp góp ý, báo cáo quá trình biên soạn theo Thông tư 62/2026/TT-BGDĐT)
 Watermark:   chữ mờ giữa mọi trang, mặc định "Công nghệ thông tin - LHU" ("watermark" trong course.json, "" để tắt)
 
 Hỗ trợ phần Markdown dùng trong giáo trình: tiêu đề #..####, đoạn văn, **đậm**, *nghiêng*, `code`,
-danh sách - và 1. (lồng 2 cấp), bảng |...|, khối ``` code ```, trích dẫn >.
+danh sách - và 1. (lồng 2 cấp), bảng |...|, khối ``` code ```, trích dẫn >,
+hình ![Hình X.Y. Chú thích](đường/dẫn.png) trên một dòng riêng (đường dẫn tính từ thư mục chứa file .md).
 Mục lục là trường TOC của Word: mở file trong Word rồi chọn Update Field (hoặc F9) để cập nhật số trang.
 """
 import re
@@ -302,7 +305,26 @@ def add_list_item(doc: Document, text: str, level: int, number: str | None):
     add_inline(p, text)
 
 
-def render_markdown(doc: Document, text: str, first_chapter: bool):
+def add_figure(doc: Document, caption: str, path: Path):
+    """Hình căn giữa, rộng tối đa 15 cm, cao tối đa 9 cm, chú thích in nghiêng bên dưới."""
+    if path.is_file():
+        p = doc.add_paragraph()
+        p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        p.paragraph_format.keep_with_next = True
+        pic = p.add_run().add_picture(str(path), width=Cm(15))
+        if pic.height > Cm(9):  # hình khổ dọc: giữ tỷ lệ, không chiếm cả trang
+            pic.width, pic.height = int(pic.width * Cm(9) / pic.height), Cm(9)
+    else:
+        print(f"  [!] Không tìm thấy hình: {path}")
+    p = doc.add_paragraph()
+    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    p.paragraph_format.space_after = Pt(8)
+    run = p.add_run(caption)
+    run.italic = True
+    run.font.size = Pt(11)
+
+
+def render_markdown(doc: Document, text: str, first_chapter: bool, base: Path | None = None):
     lines = text.replace("\r\n", "\n").split("\n")
     i, para = 0, []
 
@@ -323,6 +345,9 @@ def render_markdown(doc: Document, text: str, first_chapter: bool):
                 block.append(lines[i])
                 i += 1
             add_code_block(doc, block)
+        elif m := re.match(r"^!\[(.*)\]\((.+)\)\s*$", stripped):
+            flush()
+            add_figure(doc, m.group(1), (base or ROOT_DIR) / m.group(2))
         elif m := re.match(r"^(#{1,4})\s+(.*)$", line):
             flush()
             level = len(m.group(1))
@@ -391,7 +416,7 @@ def render_document(files: list[Path], out: Path, header: str, cover, watermark:
     setup_header_footer(body, header)
 
     for index, f in enumerate(files):
-        render_markdown(doc, chapter_text(f), first_chapter=index == 0)
+        render_markdown(doc, chapter_text(f), first_chapter=index == 0, base=f.parent)
 
     if watermark:
         for section in doc.sections:
@@ -408,7 +433,7 @@ def load_config(course_dir: Path) -> dict:
 
 def build(course_dir: Path) -> Path:
     src = course_dir / "giao-trinh"
-    files = sorted(src.glob("00-*.md")) + sorted(src.glob("chuong-*.md"))
+    files = sorted(src.glob("00-*.md")) + sorted(src.glob("chuong-*.md")) + sorted(src.glob("phu-luc-*.md"))
     if not files:
         raise FileNotFoundError(f"Không có file Markdown trong {src.relative_to(ROOT_DIR)}")
     config = load_config(course_dir)
@@ -523,15 +548,34 @@ def build_srs(course_dir: Path) -> Path:
                            watermark=config.get("watermark", DEFAULT_WATERMARK))
 
 
+def build_ho_so(course_dir: Path) -> Path:
+    """Hồ sơ biên soạn giáo trình (đề cương chi tiết, tổng hợp góp ý, báo cáo quá trình biên soạn...)
+    theo Thông tư 62/2026/TT-BGDĐT. Xem skill giao-trinh-builder."""
+    src = course_dir / "giao-trinh" / "ho-so"
+    files = sorted(src.glob("[0-9][0-9]-*.md"))
+    if not files:
+        raise FileNotFoundError(f"Không có file Markdown trong {src.relative_to(ROOT_DIR)}")
+    config = load_config(course_dir)
+    name = config.get("name", course_dir.name)
+    kind = config.get("textbookKind", "Giáo trình")
+    subtitle = [f"{kind} {name}", "Theo Thông tư 62/2026/TT-BGDĐT"]
+    return render_document(files, src / f"Ho-so-bien-soan-{course_dir.name}.docx", f"Hồ sơ biên soạn - {name}",
+                           lambda doc: add_cover(doc, config, course_dir, kind="HỒ SƠ BIÊN SOẠN GIÁO TRÌNH",
+                                                 title=name, subtitle_lines=subtitle),
+                           watermark=config.get("watermark", DEFAULT_WATERMARK))
+
+
 def main():
     parser = argparse.ArgumentParser(description="Ghép giáo trình Markdown thành file Word")
     parser.add_argument("course", help="Thư mục học phần")
     parser.add_argument("--srs", action="store_true", help="Ghép tài liệu SRS trong <hoc-phan>/srs/ thay cho giáo trình")
     parser.add_argument("--agile", action="store_true", help="Ghép kế hoạch Agile/Scrum trong <hoc-phan>/srs/agile/")
+    parser.add_argument("--ho-so", action="store_true", help="Ghép hồ sơ biên soạn trong <hoc-phan>/giao-trinh/ho-so/")
     args = parser.parse_args()
     course_dir = ROOT_DIR / args.course.strip("/\\")
     try:
-        out = build_agile(course_dir) if args.agile else build_srs(course_dir) if args.srs else build(course_dir)
+        out = (build_agile(course_dir) if args.agile else build_srs(course_dir) if args.srs
+               else build_ho_so(course_dir) if args.ho_so else build(course_dir))
     except FileNotFoundError as e:
         print(f"[LỖI] {e}")
         return 1

@@ -29,7 +29,7 @@
             <p><strong>Tên học phần:</strong> Kiểm thử và Đảm bảo chất lượng phần mềm (Software Testing).</p>
             <p><strong>Trọng tâm:</strong> Nguyên lý kiểm thử; lập Test Plan; phân tích yêu cầu kiểm thử; thiết kế và thực thi test case; nhận diện, phân loại, báo cáo lỗi; truy xuất yêu cầu; tổng hợp Test Report.</p>
             <p><strong>Bối cảnh thực hành:</strong> Todo App được dùng xuyên suốt làm ví dụ để xây dựng yêu cầu, kế hoạch, test case và báo cáo. Một số tài liệu sử dụng Notepad Cải Tiến để minh họa yêu cầu sản phẩm và tình huống kiểm thử.</p>
-            <p><strong>Số tín chỉ:</strong> 3 TC — 60 tiết (15 tiết lý thuyết + 45 tiết thực hành).</p>
+            <p><strong>Số tín chỉ:</strong> 3 TC — 45 tiết (15 tiết lý thuyết + 30 tiết thực hành).</p>
             <p><strong>Đánh giá:</strong> Quá trình 30% · Thực hành 30% · Báo cáo cuối kỳ 40%.</p>
             <p><strong>Lưu ý:</strong> Giảng viên, lịch học, phòng học và thông tin liên hệ được cập nhật theo thông báo của lớp trên Moodle.</p>
         </div>

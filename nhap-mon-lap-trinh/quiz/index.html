@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ngân hàng câu hỏi - Nhập môn lập trình (111155) | Khoa CNTT - Đại học Lạc Hồng</title>
+  <meta name="robots" content="noindex">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script>
+    tailwind.config = { theme: { extend: {
+      fontFamily: { sans: ['Inter', 'sans-serif'] },
+      colors: { lhu: { blue: '#013D88', dark: '#01295C', light: '#EEF5FC' }, asu: { maroon: '#8C1D40', gold: '#FFC627' } }
+    } } }
+  </script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen">
+  <!-- Trang sinh tự động bởi build-quiz.py. Không sửa tay. -->
+  <header class="bg-white border-b border-slate-200">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
+      <div class="min-w-0">
+        <div class="text-[11px] font-bold text-slate-500 uppercase">Ngân hàng câu hỏi · Dành cho giảng viên</div>
+        <div class="text-sm font-black text-lhu-blue truncate">Nhập môn lập trình (111155)</div>
+      </div>
+      <a href="../index.html" class="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl text-xs flex items-center gap-1.5 flex-shrink-0">
+        <i class="fa-solid fa-arrow-left"></i><span class="hidden sm:inline">Về học phần</span>
+      </a>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 py-8 space-y-6">
+    <div class="bg-amber-50 border border-amber-200 rounded-2xl p-4 text-sm text-amber-900">
+      <i class="fa-solid fa-lock mr-1"></i> Các file dưới đây <strong>có chứa đáp án</strong>, dùng để import vào Moodle. Không chia sẻ link trang này cho sinh viên. Sinh viên luyện tập trực tiếp ở cuối mỗi trang bài học.
+    </div>
+
+    <section class="bg-lhu-blue text-white rounded-3xl p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div>
+        <div class="text-xs font-bold text-asu-gold uppercase">Import một lần</div>
+        <div class="text-lg font-black">Toàn bộ 144 câu hỏi (12 bài)</div>
+        <div class="text-xs text-blue-100 font-mono mt-1">tong-hop-144-cau-quiz-aiken.txt</div>
+      </div>
+      <a href="tong-hop-144-cau-quiz-aiken.txt" download class="px-4 py-2.5 bg-asu-gold text-slate-900 font-bold rounded-xl text-sm flex items-center gap-2 justify-center">
+        <i class="fa-solid fa-download"></i> Tải file tổng hợp
+      </a>
+    </section>
+
+    <section class="bg-white border border-slate-200 rounded-3xl overflow-hidden">
+      <div class="px-6 py-4 border-b border-slate-100 font-black text-slate-900">Theo từng bài</div>
+      <ul class="divide-y divide-slate-100">
+        <li class="px-6 py-3 flex items-center justify-between gap-3">
+          <div class="min-w-0">
+            <div class="font-bold text-slate-800 text-sm">Bài 01</div>
+            <div class="text-xs text-slate-500 font-mono truncate">quiz-bai-01-aiken.txt · 12 câu</div>
+          </div>
+          <a href="quiz-bai-01-aiken.txt" download class="px-3 py-2 bg-lhu-light hover:bg-blue-100 text-lhu-blue font-bold rounded-xl text-xs flex items-center gap-1.5 flex-shrink-0"><i class="fa-solid fa-download"></i> Tải file</a>
+        </li>
+        <li class="px-6 py-3 flex items-center justify-between gap-3">
+          <div class="min-w-0">
+            <div class="font-bold text-slate-800 text-sm">Bài 02</div>
+            <div class="text-xs text-slate-500 font-mono truncate">quiz-bai-02-aiken.txt · 12 câu</div>
+          </div>
+          <a href="quiz-bai-02-aiken.txt" download class="px-3 py-2 bg-lhu-light hover:bg-blue-100 text-lhu-blue font-bold rounded-xl text-xs flex items-center gap-1.5 flex-shrink-0"><i class="fa-solid fa-download"></i> Tải file</a>
+        </li>
+        <li class="px-6 py-3 flex items-center justify-between gap-3">
+          <div class="min-w-0">
+            <div class="font-bold text-slate-800 text-sm">Bài 03</div>
+            <div class="text-xs text-slate-500 font-mono truncate">quiz-bai-03-aiken.txt · 12 câu</div>
+          </div>
+          <a href="quiz-bai-03-aiken.txt" download class="px-3 py-2 bg-lhu-light hover:bg-blue-100 text-lhu-blue font-bold rounded-xl text-xs flex items-center gap-1.5 flex-shrink-0"><i class="fa-solid fa-download"></i> Tải file</a>
+        </li>
+        <li class="px-6 py-3 flex items-center justify-between gap-3">
+          <div class="min-w-0">
+            <div class="font-bold text-slate-800 text-sm">Bài 04</div>
+            <div class="text-xs text-slate-500 font-mono truncate">quiz-bai-04-aiken.txt · 12 câu</div>
+          </div>
+          <a href="quiz-bai-04-aiken.txt" download class="px-3 py-2 bg-lhu-light hover:bg-blue-100 text-lhu-blue font-bold rounded-xl text-xs flex items-center gap-1.5 flex-shrink-0"><i class="fa-solid fa-download"></i> Tải file</a>
+        </li>
+        <li class="px-6 py-3 flex items-center justify-between gap-3">
+          <div class="min-w-0">
+            <div class="font-bold text-slate-800 text-sm">Bài 05</div>
+            <div class="text-xs text-slate-500 font-mono truncate">quiz-bai-05-aiken.txt · 12 câu</div>
+          </div>
+          <a href="quiz-bai-05-aiken.txt" download class="px-3 py-2 bg-lhu-light hover:bg-blue-100 text-lhu-blue font-bold rounded-xl text-xs flex items-center gap-1.5 flex-shrink-0"><i class="fa-solid fa-download"></i> Tải file</a>
+        </li>
+        <li class="px-6 py-3 flex items-center justify-between gap-3">
+          <div class="min-w-0">
+            <div class="font-bold text-slate-800 text-sm">Bài 06</div>
+            <div class="text-xs text-slate-500 font-mono truncate">quiz-bai-06-aiken.txt · 12 câu</div>
+          </div>
+          <a href="quiz-bai-06-aiken.txt" download class="px-3 py-2 bg-lhu-light hover:bg-blue-100 text-lhu-blue font-bold rounded-xl text-xs flex items-center gap-1.5 flex-shrink-0"><i class="fa-solid fa-download"></i> Tải file</a>
+        </li>
+        <li class="px-6 py-3 flex items-center justify-between gap-3">
+          <div class="min-w-0">
+            <div class="font-bold text-slate-800 text-sm">Bài 07</div>
+            <div class="text-xs text-slate-500 font-mono truncate">quiz-bai-07-aiken.txt · 12 câu</div>
+          </div>
+          <a href="quiz-bai-07-aiken.txt" download class="px-3 py-2 bg-lhu-light hover:bg-blue-100 text-lhu-blue font-bold rounded-xl text-xs flex items-center gap-1.5 flex-shrink-0"><i class="fa-solid fa-download"></i> Tải file</a>
+        </li>
+        <li class="px-6 py-3 flex items-center justify-between gap-3">
+          <div class="min-w-0">
+            <div class="font-bold text-slate-800 text-sm">Bài 08</div>
+            <div class="text-xs text-slate-500 font-mono truncate">quiz-bai-08-aiken.txt · 12 câu</div>
+          </div>
+          <a href="quiz-bai-08-aiken.txt" download class="px-3 py-2 bg-lhu-light hover:bg-blue-100 text-lhu-blue font-bold rounded-xl text-xs flex items-center gap-1.5 flex-shrink-0"><i class="fa-solid fa-download"></i> Tải file</a>
+        </li>
+        <li class="px-6 py-3 flex items-center justify-between gap-3">
+          <div class="min-w-0">
+            <div class="font-bold text-slate-800 text-sm">Bài 09</div>
+            <div class="text-xs text-slate-500 font-mono truncate">quiz-bai-09-aiken.txt · 12 câu</div>
+          </div>
+          <a href="quiz-bai-09-aiken.txt" download class="px-3 py-2 bg-lhu-light hover:bg-blue-100 text-lhu-blue font-bold rounded-xl text-xs flex items-center gap-1.5 flex-shrink-0"><i class="fa-solid fa-download"></i> Tải file</a>
+        </li>
+        <li class="px-6 py-3 flex items-center justify-between gap-3">
+          <div class="min-w-0">
+            <div class="font-bold text-slate-800 text-sm">Bài 10</div>
+            <div class="text-xs text-slate-500 font-mono truncate">quiz-bai-10-aiken.txt · 12 câu</div>
+          </div>
+          <a href="quiz-bai-10-aiken.txt" download class="px-3 py-2 bg-lhu-light hover:bg-blue-100 text-lhu-blue font-bold rounded-xl text-xs flex items-center gap-1.5 flex-shrink-0"><i class="fa-solid fa-download"></i> Tải file</a>
+        </li>
+        <li class="px-6 py-3 flex items-center justify-between gap-3">
+          <div class="min-w-0">
+            <div class="font-bold text-slate-800 text-sm">Bài 11</div>
+            <div class="text-xs text-slate-500 font-mono truncate">quiz-bai-11-aiken.txt · 12 câu</div>
+          </div>
+          <a href="quiz-bai-11-aiken.txt" download class="px-3 py-2 bg-lhu-light hover:bg-blue-100 text-lhu-blue font-bold rounded-xl text-xs flex items-center gap-1.5 flex-shrink-0"><i class="fa-solid fa-download"></i> Tải file</a>
+        </li>
+        <li class="px-6 py-3 flex items-center justify-between gap-3">
+          <div class="min-w-0">
+            <div class="font-bold text-slate-800 text-sm">Bài 12</div>
+            <div class="text-xs text-slate-500 font-mono truncate">quiz-bai-12-aiken.txt · 12 câu</div>
+          </div>
+          <a href="quiz-bai-12-aiken.txt" download class="px-3 py-2 bg-lhu-light hover:bg-blue-100 text-lhu-blue font-bold rounded-xl text-xs flex items-center gap-1.5 flex-shrink-0"><i class="fa-solid fa-download"></i> Tải file</a>
+        </li>
+      </ul>
+    </section>
+
+    <section class="bg-white border border-slate-200 rounded-3xl p-6">
+      <h2 class="font-black text-slate-900 mb-3"><i class="fa-solid fa-file-import text-lhu-blue mr-2"></i>Cách import vào Moodle (learn.lhu.edu.vn)</h2>
+      <ol class="list-decimal pl-5 space-y-1.5 text-sm text-slate-700">
+        <li>Vào khóa học → <strong>Question bank</strong> → <strong>Import</strong>.</li>
+        <li>Chọn <strong>File format: Aiken format</strong>.</li>
+        <li>Chọn <strong>Category</strong> để chứa câu hỏi, ví dụ <em>Quiz Bài 01</em>.</li>
+        <li>Kéo thả file <code>.txt</code> vừa tải (mã hóa UTF-8) → <strong>Import</strong> → kiểm tra số câu Moodle báo đã nhận.</li>
+        <li>Tạo hoạt động <strong>Quiz</strong>, thêm câu hỏi từ Category, rồi gửi link quiz để điền vào bài học.</li>
+      </ol>
+    </section>
+  </main>
+</body>
+</html>

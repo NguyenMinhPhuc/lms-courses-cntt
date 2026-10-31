@@ -120,32 +120,7 @@ test('thêm món mới thì số lượng là 1', () => {
 });
 
 test('thêm trùng món thì cộng dồn số lượng', () => {
-  useCart.getState().add(comGa);
-  useCart.getState().add(comGa);
-  expect(useCart.getState().items).toHaveLength(1);
-  expect(useCart.getState().items[0].quantity).toBe(2);
-});
-
-test('tổng tiền bằng tổng giá nhân số lượng', () => {
-  useCart.getState().add(comGa);
-  useCart.getState().add(comGa);
-  useCart.getState().add(traDao);
-  expect(useCart.getState().total()).toBe(90000);
-  expect(useCart.getState().count()).toBe(3);
-});
-
-test('giảm số lượng về 0 thì xóa món khỏi giỏ', () => {
-  useCart.getState().add(traDao);
-  useCart.getState().decrease(2);
-  expect(useCart.getState().items).toEqual([]);
-});
-
-test('xóa một món không ảnh hưởng món khác', () => {
-  useCart.getState().add(comGa);
-  useCart.getState().add(traDao);
-  useCart.getState().remove(1);
-  expect(useCart.getState().items.map((i) => i.id)).toEqual([2]);
-});
+// … (trích 15/41 dòng; mã đầy đủ ở Phụ lục A, mục A.9)
 ```
 
 Store Zustand là một biến dùng chung cho cả file test. Nếu không đặt lại trong `beforeEach`, món thêm ở test trước còn lại ở test sau, và kết quả phụ thuộc thứ tự chạy. **Mỗi test phải độc lập.**
@@ -559,4 +534,4 @@ docs/
 
 [10] Meta Platforms, Inc., “useCallback,” *React Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://react.dev/reference/react/useCallback
 
-[11] React Native Community, “Jest integration,” *Async Storage Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://react-native-async-storage.github.io/async-storage/docs/advanced/jest
+[11] React Native Community, “Jest integration,” *Async Storage Documentation*. Accessed: Oct. 31, 2026. [Online]. Available: https://react-native-async-storage.github.io/2.0/advanced/Jest-integration

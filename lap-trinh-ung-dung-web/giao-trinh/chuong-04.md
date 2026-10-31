@@ -316,12 +316,12 @@ Chạy thêm một lần với JavaScript bị tắt hoặc gửi request trực
 
 [1] Vercel, “Server and Client Components,” *Next.js Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://nextjs.org/docs/app/getting-started/server-and-client-components
 
-[2] Poimandres, “Zustand: Introduction,” *Zustand Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://zustand.docs.pmnd.rs/getting-started/introduction
+[2] Poimandres, “Zustand: Introduction,” *Zustand Documentation*. Accessed: Oct. 31, 2026. [Online]. Available: https://zustand.docs.pmnd.rs/learn/getting-started/introduction
 
 [3] Meta Open Source, “hydrateRoot,” *React Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://react.dev/reference/react-dom/client/hydrateRoot
 
 [4] Zod, “Basic usage,” *Zod Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://zod.dev/basics
 
-[5] Vercel, “Updating Data,” *Next.js Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://nextjs.org/docs/app/getting-started/updating-data
+[5] Vercel, “Updating Data,” *Next.js Documentation*. Accessed: Oct. 31, 2026. [Online]. Available: https://nextjs.org/docs/app/getting-started/mutating-data
 
 [6] React Hook Form, “Get Started,” *React Hook Form Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://react-hook-form.com/get-started

@@ -128,41 +128,7 @@ BEGIN
   DECLARE @Items TABLE (ProductId INT PRIMARY KEY, Quantity INT NOT NULL);
   INSERT INTO @Items (ProductId, Quantity)
   SELECT productId, SUM(quantity)
-  FROM OPENJSON(@ItemsJson) WITH (productId INT '$.productId', quantity INT '$.quantity')
-  GROUP BY productId;
-
-  IF NOT EXISTS (SELECT 1 FROM @Items) OR EXISTS (SELECT 1 FROM @Items WHERE Quantity <= 0)
-    THROW 50400, N'Số lượng món không hợp lệ', 1;
-
-  BEGIN TRY
-    BEGIN TRAN;
-
-    IF EXISTS (
-      SELECT 1 FROM @Items i
-      LEFT JOIN Products p WITH (UPDLOCK, HOLDLOCK) ON p.ProductId = i.ProductId
-      WHERE p.ProductId IS NULL OR p.IsAvailable = 0 OR p.Stock < i.Quantity)
-      THROW 50409, N'Có món đã hết hoặc không đủ số lượng', 1;
-
-    DECLARE @OrderId INT;
-    INSERT INTO Orders (UserId, Note) VALUES (@UserId, @Note);
-    SET @OrderId = CAST(SCOPE_IDENTITY() AS INT);
-
-    INSERT INTO OrderItems (OrderId, ProductId, Quantity, UnitPrice)
-    SELECT @OrderId, i.ProductId, i.Quantity, p.Price
-    FROM @Items i JOIN Products p ON p.ProductId = i.ProductId;
-
-    UPDATE p SET p.Stock = p.Stock - i.Quantity
-    FROM Products p JOIN @Items i ON i.ProductId = p.ProductId;
-
-    COMMIT;
-    SELECT @OrderId AS orderId;
-  END TRY
-  BEGIN CATCH
-    IF @@TRANCOUNT > 0 ROLLBACK;
-    THROW;
-  END CATCH
-END;
-GO
+-- … (trích 15/50 dòng; mã đầy đủ ở Phụ lục A, mục A.5)
 ```
 
 Biến bảng `@Items` có khóa chính `ProductId` nên tự gộp món trùng; giá luôn lấy từ `Products`. Backend NestJS không thay đổi: `OrdersService.create` vẫn chỉ gọi một thủ tục.
@@ -449,4 +415,4 @@ Khóa chính `(UserId, ProductId)` chặn một người thêm trùng một món
 
 [6] TanStack, “Optimistic Updates,” *TanStack Query Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://tanstack.com/query/latest/docs/framework/react/guides/optimistic-updates
 
-[7] Poimandres, “persist,” *Zustand Documentation*. Accessed: Oct. 30, 2026. [Online]. Available: https://zustand.docs.pmnd.rs/middlewares/persist
+[7] Poimandres, “persist,” *Zustand Documentation*. Accessed: Oct. 31, 2026. [Online]. Available: https://zustand.docs.pmnd.rs/reference/middlewares/persist

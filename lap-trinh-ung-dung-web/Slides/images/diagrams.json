@@ -1,0 +1,1015 @@
+{
+  "bai-01-mo-hinh-render.png": {
+    "type": "pairs",
+    "headers": [
+      "Mô hình",
+      "HTML tạo ở đâu, khi nào?"
+    ],
+    "items": [
+      [
+        "CSR",
+        "Trình duyệt, sau khi tải JS"
+      ],
+      [
+        "SSR",
+        "Server, cho từng request"
+      ],
+      [
+        "SSG / ISR",
+        "Lúc build; ISR làm mới định kỳ"
+      ],
+      [
+        "Server Components",
+        "Server; chỉ gửi kết quả"
+      ]
+    ]
+  },
+  "bai-01-ket-hop-mo-hinh.png": {
+    "type": "columns",
+    "columns": [
+      {
+        "title": "Render trên server",
+        "items": [
+          "Thực đơn",
+          "Chi tiết món",
+          "Tải nhanh, tốt cho tìm kiếm"
+        ]
+      },
+      {
+        "title": "Đảo tương tác (client)",
+        "items": [
+          "Trang quản trị",
+          "Giỏ hàng",
+          "Màn hình quầy"
+        ]
+      }
+    ]
+  },
+  "bai-01-server-client.png": {
+    "type": "columns",
+    "columns": [
+      {
+        "title": "Server Component",
+        "items": [
+          "Mặc định",
+          "async/await, gọi API",
+          "Đọc biến bí mật",
+          "Không gửi mã xuống trình duyệt"
+        ]
+      },
+      {
+        "title": "Client Component",
+        "items": [
+          "Khai báo \"use client\"",
+          "useState, onClick",
+          "API trình duyệt",
+          "Gửi mã JS xuống"
+        ]
+      }
+    ]
+  },
+  "bai-01-kien-truc-du-lieu.png": {
+    "type": "flow",
+    "steps": [
+      "Trình duyệt",
+      "Next.js",
+      [
+        "API (gateway)",
+        "chỉ gọi stored procedure"
+      ],
+      "SQL Server"
+    ]
+  },
+  "bai-01-board.png": {
+    "type": "flow",
+    "steps": [
+      "Cần làm",
+      "Đang làm",
+      "Chờ review",
+      "Xong"
+    ]
+  },
+  "bai-02-chuc-nang-route.png": {
+    "type": "pairs",
+    "headers": [
+      "Chức năng",
+      "Route"
+    ],
+    "items": [
+      [
+        "Xem thực đơn (US-G01)",
+        "/menu"
+      ],
+      [
+        "Chi tiết món (US-G03)",
+        "/product/[id]"
+      ],
+      [
+        "Quản lý món (US-A02)",
+        "/admin/products"
+      ],
+      [
+        "Màn hình quầy (US-S02)",
+        "/admin/orders"
+      ]
+    ]
+  },
+  "bai-02-route-group.png": {
+    "type": "tree",
+    "root": "app/",
+    "children": [
+      {
+        "name": "(shop)/ – layout khách",
+        "children": [
+          "/menu",
+          "/product/[id]"
+        ]
+      },
+      {
+        "name": "admin/ – layout sidebar",
+        "children": [
+          "/admin/products",
+          "/admin/orders"
+        ]
+      }
+    ]
+  },
+  "bai-02-cay-component.png": {
+    "type": "layers",
+    "layers": [
+      {
+        "name": "Layout",
+        "items": [
+          "Sidebar",
+          "Header"
+        ]
+      },
+      {
+        "name": "Trang",
+        "items": [
+          "page.tsx"
+        ]
+      },
+      {
+        "name": "Component",
+        "items": [
+          "ProductCard",
+          "OrderTable"
+        ]
+      }
+    ]
+  },
+  "bai-02-breakpoint.png": {
+    "type": "flow",
+    "direction": "v",
+    "steps": [
+      [
+        "Mặc định",
+        "điện thoại – viết trước"
+      ],
+      [
+        "sm:",
+        "từ 640px"
+      ],
+      [
+        "md:",
+        "từ 768px"
+      ],
+      [
+        "lg:",
+        "từ 1024px"
+      ]
+    ]
+  },
+  "bai-02-figma-ma.png": {
+    "type": "flow",
+    "direction": "v",
+    "steps": [
+      [
+        "Ảnh thiết kế Figma",
+        "+ bảng route + AGENTS.md"
+      ],
+      [
+        "AI sinh mã",
+        "shadcn/ui + Tailwind"
+      ],
+      [
+        "Kiểm tra",
+        "màu, khoảng cách, 3 kích thước"
+      ],
+      [
+        "Merge",
+        "khi đã hiểu mã"
+      ]
+    ]
+  },
+  "bai-03-revalidate.png": {
+    "type": "timeline",
+    "events": [
+      [
+        "Request đầu",
+        "gọi API, lưu kết quả"
+      ],
+      [
+        "Trong 30 giây",
+        "dùng lại kết quả"
+      ],
+      [
+        "Sau 30 giây",
+        "làm mới từ API"
+      ]
+    ]
+  },
+  "bai-03-sprint.png": {
+    "type": "cycle",
+    "center": "Sprint",
+    "steps": [
+      "Sprint Planning",
+      "Thực hiện + Daily",
+      "Sprint Review",
+      "Retrospective"
+    ]
+  },
+  "bai-04-dao-tuong-tac.png": {
+    "type": "tree",
+    "root": "page.tsx – Server Component",
+    "children": [
+      {
+        "name": "Thông tin món",
+        "children": [
+          "Server: ảnh, tên, giá"
+        ]
+      },
+      {
+        "name": "AddToCartButton",
+        "children": [
+          "\"use client\""
+        ]
+      }
+    ]
+  },
+  "bai-04-store-gio-hang.png": {
+    "type": "hub",
+    "center": "Store giỏ hàng (Zustand)",
+    "nodes": [
+      "Nút Thêm vào giỏ",
+      "Header (số món)",
+      "Trang giỏ hàng",
+      [
+        "localStorage",
+        "persist"
+      ]
+    ]
+  },
+  "bai-04-hydration.png": {
+    "type": "sequence",
+    "actors": [
+      "Server",
+      "Trình duyệt",
+      "localStorage"
+    ],
+    "messages": [
+      [
+        "Server",
+        "Trình duyệt",
+        "HTML: giỏ 0 món"
+      ],
+      [
+        "Trình duyệt",
+        "localStorage",
+        "đọc giỏ"
+      ],
+      [
+        "localStorage",
+        "Trình duyệt",
+        "3 món",
+        "return"
+      ],
+      [
+        "Trình duyệt",
+        "Trình duyệt",
+        "khác HTML → Hydration failed"
+      ]
+    ]
+  },
+  "bai-04-mot-schema.png": {
+    "type": "flow",
+    "title": "Một schema Zod, kiểm tra hai lần",
+    "steps": [
+      [
+        "Form",
+        "zodResolver"
+      ],
+      [
+        "Server Action",
+        "safeParse"
+      ],
+      [
+        "API",
+        "/auth/register"
+      ]
+    ]
+  },
+  "bai-05-luong-xac-thuc.png": {
+    "type": "sequence",
+    "actors": [
+      "Trình duyệt",
+      "Next.js",
+      "API"
+    ],
+    "messages": [
+      [
+        "Trình duyệt",
+        "Next.js",
+        "gửi form đăng nhập"
+      ],
+      [
+        "Next.js",
+        "API",
+        "POST /auth/login"
+      ],
+      [
+        "API",
+        "Next.js",
+        "access + refresh token",
+        "return"
+      ],
+      [
+        "Next.js",
+        "Trình duyệt",
+        "Set-Cookie (httpOnly)",
+        "return"
+      ],
+      [
+        "Trình duyệt",
+        "Next.js",
+        "request sau, kèm cookie"
+      ],
+      [
+        "Next.js",
+        "API",
+        "Authorization: Bearer"
+      ]
+    ]
+  },
+  "bai-05-ma-tran-quyen.png": {
+    "type": "pairs",
+    "headers": [
+      "Route",
+      "Ai được vào"
+    ],
+    "items": [
+      [
+        "/menu",
+        "Mọi người"
+      ],
+      [
+        "/checkout, /orders, /profile",
+        "Đã đăng nhập"
+      ],
+      [
+        "/admin/orders",
+        "staff, admin"
+      ],
+      [
+        "/admin/products, /admin/users",
+        "Chỉ admin"
+      ]
+    ]
+  },
+  "bai-05-ba-lop.png": {
+    "type": "layers",
+    "layers": [
+      [
+        "Lớp 1 – proxy.ts",
+        "chuyển hướng sớm → trải nghiệm"
+      ],
+      [
+        "Lớp 2 – Data Access Layer",
+        "kiểm tra lại trên server → trang"
+      ],
+      [
+        "Lớp 3 – API",
+        "403 / 404 → dữ liệu"
+      ]
+    ]
+  },
+  "bai-05-lam-moi-token.png": {
+    "type": "flow",
+    "direction": "v",
+    "steps": [
+      [
+        "access_token hết hạn",
+        "cookie 14 phút"
+      ],
+      [
+        "proxy gọi POST /auth/refresh",
+        "dùng refresh_token (7 ngày)"
+      ],
+      [
+        "Ghi cặp token mới",
+        ""
+      ],
+      [
+        "Refresh thất bại",
+        "→ về /login"
+      ]
+    ]
+  },
+  "bai-06-optimistic.png": {
+    "type": "flow",
+    "direction": "v",
+    "steps": [
+      [
+        "Bấm nút",
+        ""
+      ],
+      [
+        "useOptimistic",
+        "hiện ngay kết quả mong đợi"
+      ],
+      [
+        "Server Action gọi API",
+        ""
+      ],
+      [
+        "Thành công: revalidatePath",
+        "thất bại: trở về dữ liệu thật"
+      ]
+    ]
+  },
+  "bai-06-trang-thai-don.png": {
+    "type": "flow",
+    "steps": [
+      "pending",
+      "preparing",
+      "ready",
+      "completed"
+    ],
+    "branch": {
+      "from": [
+        0,
+        1
+      ],
+      "to": "cancelled",
+      "label": "khách: pending · nhân viên: pending/preparing"
+    }
+  },
+  "bai-06-man-hinh-quay.png": {
+    "type": "columns",
+    "columns": [
+      {
+        "title": "pending",
+        "items": [
+          "Chờ xác nhận",
+          "Nút: Bắt đầu làm"
+        ]
+      },
+      {
+        "title": "preparing",
+        "items": [
+          "Đang chuẩn bị",
+          "Nút chuyển sang ready"
+        ]
+      },
+      {
+        "title": "ready",
+        "items": [
+          "Chờ khách nhận",
+          "Nút chuyển sang completed"
+        ]
+      }
+    ]
+  },
+  "bai-06-xung-dot.png": {
+    "type": "sequence",
+    "actors": [
+      "Nhân viên A",
+      "API",
+      "Nhân viên B"
+    ],
+    "messages": [
+      [
+        "Nhân viên A",
+        "API",
+        "chuyển trạng thái đơn 12"
+      ],
+      [
+        "API",
+        "Nhân viên A",
+        "200 OK",
+        "return"
+      ],
+      [
+        "Nhân viên B",
+        "API",
+        "chuyển trạng thái đơn 12"
+      ],
+      [
+        "API",
+        "Nhân viên B",
+        "409 – đã đổi",
+        "return"
+      ],
+      [
+        "Nhân viên B",
+        "Nhân viên B",
+        "làm mới danh sách"
+      ]
+    ]
+  },
+  "bai-07-nam-tang.png": {
+    "type": "flow",
+    "direction": "v",
+    "steps": [
+      "Story",
+      "Dữ liệu",
+      "Stored procedure",
+      "API",
+      "Trang web"
+    ]
+  },
+  "bai-07-ma-loi.png": {
+    "type": "pairs",
+    "headers": [
+      "THROW trong thủ tục",
+      "HTTP trả về"
+    ],
+    "items": [
+      [
+        "50400",
+        "400 – sai nghiệp vụ"
+      ],
+      [
+        "50404",
+        "404 – không tìm thấy"
+      ],
+      [
+        "50409",
+        "409 – xung đột, trùng"
+      ]
+    ]
+  },
+  "bai-07-hoi-quy.png": {
+    "type": "flow",
+    "direction": "v",
+    "steps": [
+      [
+        "Đổi API_URL",
+        "bước cuối cùng"
+      ],
+      [
+        "Chạy lại TC Sprint 1–2",
+        "trên backend nhóm"
+      ],
+      [
+        "Trước đạt, giờ trượt",
+        "= lỗi hồi quy"
+      ],
+      [
+        "Tạo thẻ trên board",
+        ""
+      ]
+    ]
+  },
+  "bai-08-luong-tai-anh.png": {
+    "type": "sequence",
+    "actors": [
+      "Trình duyệt",
+      "Server Action",
+      "API",
+      "SQL Server"
+    ],
+    "size": [
+      10,
+      6
+    ],
+    "messages": [
+      [
+        "Trình duyệt",
+        "Server Action",
+        "FormData (ảnh)"
+      ],
+      [
+        "Server Action",
+        "Server Action",
+        "kiểm tra loại, dung lượng"
+      ],
+      [
+        "Server Action",
+        "API",
+        "multipart, trường \"file\""
+      ],
+      [
+        "API",
+        "API",
+        "Multer lưu file"
+      ],
+      [
+        "API",
+        "SQL Server",
+        "sp_Product_UpdateImage"
+      ]
+    ]
+  },
+  "bai-08-ba-lop-anh.png": {
+    "type": "layers",
+    "layers": [
+      [
+        "input accept",
+        "tiện cho người dùng"
+      ],
+      [
+        "Server Action",
+        "chặn sớm"
+      ],
+      [
+        "API",
+        "chặn thật"
+      ]
+    ]
+  },
+  "bai-08-chon-bieu-do.png": {
+    "type": "pairs",
+    "headers": [
+      "Câu hỏi",
+      "Biểu đồ"
+    ],
+    "items": [
+      [
+        "Doanh thu theo ngày?",
+        "Cột hoặc đường"
+      ],
+      [
+        "Món nào bán chạy?",
+        "Cột ngang, giảm dần"
+      ],
+      [
+        "Tỉ lệ trạng thái đơn?",
+        "Cột chồng 100% hoặc bảng %"
+      ]
+    ]
+  },
+  "bai-09-luu-truoc-gui-sau.png": {
+    "type": "flow",
+    "direction": "v",
+    "steps": [
+      [
+        "Thao tác ghi",
+        "qua REST + stored procedure"
+      ],
+      [
+        "Lưu vào SQL Server",
+        ""
+      ],
+      [
+        "Socket báo tin",
+        "chỉ là chuông báo"
+      ]
+    ]
+  },
+  "bai-09-socket-token.png": {
+    "type": "flow",
+    "direction": "v",
+    "steps": [
+      [
+        "Cookie httpOnly",
+        "JavaScript không đọc được"
+      ],
+      [
+        "GET /api/socket-token",
+        "Route Handler kiểm tra vai trò"
+      ],
+      [
+        "Token giữ trong bộ nhớ",
+        ""
+      ],
+      [
+        "io(..., { auth })",
+        "kết nối Socket.IO"
+      ]
+    ]
+  },
+  "bai-09-su-kien.png": {
+    "type": "pairs",
+    "headers": [
+      "Sự kiện",
+      "Xử lý"
+    ],
+    "items": [
+      [
+        "connect",
+        "router.refresh() – bù đơn đã lỡ"
+      ],
+      [
+        "order:new",
+        "âm báo + router.refresh()"
+      ],
+      [
+        "order:updated",
+        "router.refresh()"
+      ],
+      [
+        "connect_error",
+        "thử lại sau 3 giây"
+      ]
+    ]
+  },
+  "bai-09-tuan-tu-realtime.png": {
+    "type": "sequence",
+    "actors": [
+      "Mobile",
+      "API",
+      "SQL Server",
+      "Web A",
+      "Web B"
+    ],
+    "size": [
+      11,
+      6.5
+    ],
+    "messages": [
+      [
+        "Mobile",
+        "API",
+        "POST /orders"
+      ],
+      [
+        "API",
+        "SQL Server",
+        "sp_Order_Create"
+      ],
+      [
+        "API",
+        "Web A",
+        "order:new (staff)"
+      ],
+      [
+        "Web A",
+        "API",
+        "GET /orders/staff"
+      ],
+      [
+        "Web A",
+        "API",
+        "PATCH status"
+      ],
+      [
+        "API",
+        "Mobile",
+        "order:status"
+      ],
+      [
+        "API",
+        "Web B",
+        "order:updated"
+      ]
+    ]
+  },
+  "bai-10-muc-kiem-thu.png": {
+    "type": "layers",
+    "arrows": "none",
+    "layers": [
+      [
+        "Đầu-cuối – Playwright",
+        "luồng nghiệp vụ, Server Component async"
+      ],
+      [
+        "Server Action",
+        "API giả, xử lý 400/409"
+      ],
+      [
+        "Component – Testing Library",
+        "Client Component"
+      ],
+      [
+        "Đơn vị – Vitest",
+        "hàm, schema, store"
+      ]
+    ]
+  },
+  "bai-10-truy-vet.png": {
+    "type": "flow",
+    "direction": "v",
+    "steps": [
+      "Story",
+      "Tiêu chí nghiệm thu",
+      "Test",
+      "Mức kiểm thử",
+      "Kết quả",
+      "Lỗi"
+    ]
+  },
+  "bai-10-dot-bien.png": {
+    "type": "flow",
+    "direction": "v",
+    "steps": [
+      [
+        "Cố ý làm hỏng mã",
+        "đột biến"
+      ],
+      [
+        "Chạy lại bộ test",
+        ""
+      ],
+      [
+        "Test bắt được?",
+        "có: test có giá trị · lọt: viết thêm test"
+      ]
+    ]
+  },
+  "bai-10-web-vitals.png": {
+    "type": "columns",
+    "columns": [
+      {
+        "title": "LCP ≤ 2,5 s",
+        "items": [
+          "next/image",
+          "Server Component",
+          "cache"
+        ]
+      },
+      {
+        "title": "INP ≤ 200 ms",
+        "items": [
+          "Ít JavaScript ở client"
+        ]
+      },
+      {
+        "title": "CLS ≤ 0,1",
+        "items": [
+          "Ảnh có kích thước",
+          "Khung chờ đúng cỡ"
+        ]
+      }
+    ]
+  },
+  "bai-11-kien-truc-trien-khai.png": {
+    "type": "hub",
+    "center": "API nhóm",
+    "nodes": [
+      [
+        "Next.js",
+        "sau reverse proxy, HTTPS"
+      ],
+      [
+        "App di động",
+        "REST"
+      ],
+      [
+        "Trình duyệt quầy",
+        "Socket.IO"
+      ],
+      [
+        "SQL Server",
+        "stored procedure"
+      ]
+    ]
+  },
+  "bai-11-standalone.png": {
+    "type": "flow",
+    "direction": "v",
+    "steps": [
+      "npm ci",
+      "npm run build",
+      [
+        "Chép public, .next/static",
+        "vào .next/standalone"
+      ],
+      [
+        "node .next/standalone/server.js",
+        "PORT, HOSTNAME"
+      ]
+    ]
+  },
+  "bai-11-bien-moi-truong.png": {
+    "type": "columns",
+    "columns": [
+      {
+        "title": "Đọc lúc build",
+        "items": [
+          "Biến NEXT_PUBLIC_*",
+          "Đổi giá trị phải build lại",
+          "Gửi xuống trình duyệt"
+        ]
+      },
+      {
+        "title": "Đọc lúc chạy",
+        "items": [
+          "API_URL, SITE_URL",
+          "COOKIE_SECURE",
+          "Chỉ server đọc"
+        ]
+      }
+    ]
+  },
+  "bai-11-bao-cao-7-chuong.png": {
+    "type": "pairs",
+    "headers": [
+      "Chương",
+      "CLO"
+    ],
+    "items": [
+      [
+        "1–2: Giới thiệu, yêu cầu",
+        "CLO1"
+      ],
+      [
+        "3–4: Thiết kế, hiện thực",
+        "CLO1"
+      ],
+      [
+        "5: Kiểm thử",
+        "CLO2"
+      ],
+      [
+        "6: Triển khai",
+        "CLO1"
+      ],
+      [
+        "7: Kế hoạch, tiến độ",
+        "CLO4"
+      ]
+    ]
+  },
+  "bai-12-cau-truc-demo.png": {
+    "type": "timeline",
+    "size": [
+      11,
+      4.5
+    ],
+    "events": [
+      [
+        "1 phút",
+        "phạm vi, địa chỉ web"
+      ],
+      [
+        "5 phút",
+        "demo theo kịch bản"
+      ],
+      [
+        "3 phút",
+        "bảo vệ thiết kế"
+      ],
+      [
+        "1 phút",
+        "kế hoạch – thực tế"
+      ],
+      [
+        "5 phút",
+        "hỏi đáp"
+      ]
+    ]
+  },
+  "bai-12-kich-ban-demo.png": {
+    "type": "flow",
+    "direction": "v",
+    "steps": [
+      [
+        "Quản lý thêm món kèm ảnh",
+        "món hiện trên web và app"
+      ],
+      [
+        "Khách đặt trên app",
+        "quầy web nhận ngay, có âm báo"
+      ],
+      [
+        "Nhân viên đổi trạng thái",
+        "máy kia và app cập nhật"
+      ],
+      [
+        "Báo cáo doanh thu thay đổi",
+        ""
+      ],
+      [
+        "Thử lỗi",
+        "409 quá tồn kho · 403 customer vào /admin"
+      ]
+    ]
+  },
+  "bai-12-rubric-chuong.png": {
+    "type": "pairs",
+    "headers": [
+      "CLO (điểm)",
+      "Minh chứng"
+    ],
+    "items": [
+      [
+        "CLO1 (4)",
+        "Chương 2, 3, 6"
+      ],
+      [
+        "CLO2 (2)",
+        "Chương 5"
+      ],
+      [
+        "CLO3 (2)",
+        "Cả báo cáo"
+      ],
+      [
+        "CLO4 (2)",
+        "Chương 7, báo cáo cá nhân"
+      ]
+    ]
+  }
+}

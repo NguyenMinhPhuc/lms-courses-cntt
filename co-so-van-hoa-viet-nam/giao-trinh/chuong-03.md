@@ -149,4 +149,4 @@ Tính tự trị của làng xã (Chương 2) để lại dấu vết là óc đ
 
 [1] Trần Ngọc Thêm (Chủ biên), *Cơ sở Văn hóa Việt Nam*. Hà Nội: NXB Giáo dục Việt Nam, 2022.
 
-[2] UNESCO, "Viet Nam – Elements on the Lists of Intangible Cultural Heritage," Intangible Cultural Heritage. [Online]. Available: https://ich.unesco.org/en/state/viet-nam-VN
+[2] UNESCO, "Viet Nam – Elements on the Lists of Intangible Cultural Heritage," Intangible Cultural Heritage. Accessed: Oct. 31, 2026. [Online]. Available: https://ich.unesco.org/en/state/viet-nam-VN

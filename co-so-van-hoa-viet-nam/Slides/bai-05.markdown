@@ -28,6 +28,8 @@ Briefing trước khi quay thực địa · Công bố dự án cuối khóa
 - Cơ hội: nhóm nhỏ đưa văn hóa địa phương tới khán giả toàn cầu; làng nghề có thêm kênh
 - Nguy cơ: nội dung bị "làm phẳng" theo trào lưu; thuật toán ưu tiên giật gân
 - Thông tin sai lan nhanh hơn thông tin đúng
+![](images/bai-05-co-hoi-nguy-co.png)
+
 **Ghi chú giảng viên**:
 - Hỏi: sinh viên từng thấy thông tin văn hóa sai nào lan truyền?
 
@@ -61,6 +63,8 @@ Briefing trước khi quay thực địa · Công bố dự án cuối khóa
 - Bộ luật Dân sự: dùng hình ảnh cá nhân về nguyên tắc phải được người đó đồng ý
 - Không đồng ý → không quay rõ mặt hoặc làm mờ
 **Hoạt động**: Thảo luận câu 1: quay người khác cần xin phép thế nào?
+![](images/bai-05-xin-phep.png)
+
 **Ghi chú giảng viên**:
 - Cẩn trọng đặc biệt với trẻ em và người đang hành lễ.
 
@@ -125,6 +129,8 @@ Briefing trước khi quay thực địa · Công bố dự án cuối khóa
 - Dựng theo kịch bản; phụ đề, chú thích nguồn, ghi chú ảnh AI
 - Tự kiểm theo Checklist văn hóa, đính kèm minh chứng
 - Giảng viên duyệt bản dựng → đăng → theo dõi chỉ số
+![](images/bai-05-quy-trinh-sau-quay.png)
+
 **Ghi chú giảng viên**:
 - Không đăng nếu chưa qua checklist và chưa được duyệt.
 
@@ -135,6 +141,8 @@ Briefing trước khi quay thực địa · Công bố dự án cuối khóa
 - Chụp thống kê theo mốc: sau 24 giờ, 3 ngày, trước buổi 06
 - Ghi lại bình luận đáng chú ý và cách nhóm phản hồi
 - Đây là dữ liệu cho tiêu chí 2.3 và 3.2
+![](images/bai-05-moc-chi-so.png)
+
 **Ghi chú giảng viên**:
 - Nhắc lưu ảnh chụp ngay, vì một số nền tảng chỉ hiện số liệu trong thời gian ngắn.
 

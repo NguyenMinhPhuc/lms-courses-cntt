@@ -35,7 +35,7 @@ H. Jenkins mô tả môi trường truyền thông hiện nay là một **văn h
 
 ### 5.1.3. Công nghiệp văn hóa và người làm truyền thông
 
-Công nghiệp văn hóa và sáng tạo là các ngành biến giá trị văn hóa thành sản phẩm, dịch vụ. Chiến lược phát triển các ngành công nghiệp văn hóa Việt Nam (Quyết định số 1755/QĐ-TTg năm 2016) xác định 12 ngành, trong đó có quảng cáo, điện ảnh, thiết kế, phần mềm và trò chơi giải trí, truyền hình và phát thanh, du lịch văn hóa [3]. Người học truyền thông đa phương tiện sẽ làm việc trong chính những ngành này: sản phẩm của bạn vừa có giá trị kinh tế, vừa góp phần định hình hình ảnh văn hóa Việt Nam. Đọc thêm về công nghiệp văn hóa và sáng tạo ở Việt Nam trong [4], về văn hóa Việt Nam trong chuyển đổi số trong [5].
+Công nghiệp văn hóa và sáng tạo là các ngành biến giá trị văn hóa thành sản phẩm, dịch vụ. Chiến lược phát triển các ngành công nghiệp văn hóa Việt Nam đến năm 2030, tầm nhìn đến năm 2045 (Quyết định số 2486/QĐ-TTg ngày 14/11/2025, thay thế Quyết định số 1755/QĐ-TTg năm 2016) ưu tiên phát triển 10 ngành: điện ảnh; mỹ thuật, nhiếp ảnh và triển lãm; nghệ thuật biểu diễn; phần mềm và các trò chơi giải trí; quảng cáo; thủ công mỹ nghệ; du lịch văn hóa; thiết kế sáng tạo; truyền hình và phát thanh; xuất bản [3]. Chiến lược đặt mục tiêu đến năm 2030 các ngành này đóng góp khoảng 7% GDP [3]. Người học truyền thông đa phương tiện sẽ làm việc trong chính những ngành này: sản phẩm của bạn vừa có giá trị kinh tế, vừa góp phần định hình hình ảnh văn hóa Việt Nam. Đọc thêm về công nghiệp văn hóa và sáng tạo ở Việt Nam trong [4], về văn hóa Việt Nam trong chuyển đổi số trong [5].
 
 ### 5.1.4. Gìn giữ bản sắc khi quảng bá ra thế giới
 
@@ -204,7 +204,7 @@ Kể lại quá trình chỉ đạt mức Đạt yêu cầu; nêu được thay 
 
 [2] H. Jenkins, *Convergence Culture: Where Old and New Media Collide*. New York: New York University Press, 2006.
 
-[3] Thủ tướng Chính phủ, "Quyết định số 1755/QĐ-TTg phê duyệt Chiến lược phát triển các ngành công nghiệp văn hóa Việt Nam đến năm 2020, tầm nhìn đến năm 2030," Hà Nội, 2016.
+[3] Thủ tướng Chính phủ, "Quyết định số 2486/QĐ-TTg phê duyệt Chiến lược phát triển các ngành công nghiệp văn hóa Việt Nam đến năm 2030, tầm nhìn đến năm 2045," Hà Nội, 14/11/2025. {{CẦN KIỂM TRA: đối chiếu bản gốc trên Công báo; nội dung trên lấy theo Báo Văn hóa và Tạp chí Công Thương}}
 
 [4] Nguyễn Thị Thu Hà, *Công nghiệp văn hóa và sáng tạo tại Việt Nam*. Hà Nội: NXB Chính trị Quốc gia Sự thật, 2022.
 
@@ -212,4 +212,4 @@ Kể lại quá trình chỉ đạt mức Đạt yêu cầu; nêu được thay 
 
 [6] Quốc hội, "Bộ luật Dân sự, Luật số 91/2015/QH13," Hà Nội, 2015.
 
-[7] Quốc hội, "Luật Sở hữu trí tuệ, Luật số 50/2005/QH11 (sửa đổi, bổ sung năm 2009, 2019, 2022)," Hà Nội, 2005.
+[7] Quốc hội, "Luật Sở hữu trí tuệ, Luật số 50/2005/QH11, được sửa đổi, bổ sung bởi Luật số 36/2009/QH12, Luật số 42/2019/QH14, Luật số 07/2022/QH15, Luật số 93/2025/QH15 và Luật số 131/2025/QH15," Hà Nội.

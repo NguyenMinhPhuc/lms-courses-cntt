@@ -1,0 +1,83 @@
+Hàm range(5) sinh ra dãy số nào?
+A. 1, 2, 3, 4
+B. 1, 2, 3, 4, 5
+C. 0, 1, 2, 3, 4, 5
+D. 0, 1, 2, 3, 4
+ANSWER: D
+
+Vòng lặp for i in range(1, 11) chạy bao nhiêu lần?
+A. 11
+B. 10
+C. 9
+D. 12
+ANSWER: B
+
+list(range(0, 21, 5)) cho kết quả nào?
+A. [0, 5, 10, 15]
+B. [5, 10, 15, 20]
+C. [0, 5, 10, 15, 20]
+D. [0, 5, 10, 15, 20, 25]
+ANSWER: C
+
+Với range(10, 0, -1), giá trị đầu tiên và cuối cùng của biến lặp là gì?
+A. 0 và 10
+B. 10 và 0
+C. 9 và 0
+D. 10 và 1
+ANSWER: D
+
+Sau đoạn code tong = 0, rồi for i in range(1, 6): tong += i, biến tong bằng bao nhiêu?
+A. 10
+B. 21
+C. 15
+D. 6
+ANSWER: C
+
+Bạn đặt nhầm dòng tong = 0 vào bên trong vòng lặp tính tổng. Kết quả sau vòng lặp là gì?
+A. tong chỉ còn giá trị cộng ở chu kỳ cuối cùng
+B. Chương trình báo lỗi SyntaxError
+C. tong vẫn đúng như khi đặt ngoài vòng lặp
+D. tong luôn bằng 0
+ANSWER: A
+
+Với s = "Python", biểu thức s[-1] cho kết quả nào?
+A. "n"
+B. "o"
+C. "P"
+D. Báo lỗi IndexError
+ANSWER: A
+
+Với diem = [7.5, 8.0, 9.0], biểu thức diem[0] cho kết quả nào?
+A. Báo lỗi IndexError
+B. 8.0
+C. 9.0
+D. 7.5
+ANSWER: D
+
+Với diem = [7.5, 8.0, 9.0], sau lệnh diem.append(6.5) thì len(diem) bằng bao nhiêu?
+A. 3
+B. 4
+C. 5
+D. 6.5
+ANSWER: B
+
+Đoạn code for i in range(3): for j in range(2): print("*") (viết đúng thụt lề, vòng trong nằm trong vòng ngoài) in bao nhiêu dấu *?
+A. 5
+B. 6
+C. 2
+D. 3
+ANSWER: B
+
+Với diem = [7.5, 8.0, 9.0], lệnh print(diem[3]) gây lỗi gì?
+A. TypeError
+B. ValueError
+C. IndexError
+D. Không lỗi, in ra 9.0
+ANSWER: C
+
+Duyệt list [3.5, 8, 2, 4] và đếm các phần tử nhỏ hơn 4 (điều kiện d < 4). Kết quả đếm là bao nhiêu?
+A. 2
+B. 1
+C. 3
+D. 4
+ANSWER: A

@@ -1,0 +1,119 @@
+{
+  "bai-01-dac-trung-chuc-nang.png": {
+    "type": "pairs", "headers": ["Đặc trưng", "Chức năng"],
+    "items": [["Tính hệ thống", "Tổ chức xã hội"], ["Tính giá trị", "Điều chỉnh xã hội"],
+              ["Tính nhân sinh", "Giao tiếp"], ["Tính lịch sử", "Giáo dục"]]
+  },
+  "bai-01-he-thong-van-hoa.png": {
+    "type": "hub", "center": "Hệ thống văn hóa",
+    "nodes": ["Văn hóa nhận thức", "Văn hóa tổ chức cộng đồng", "Ứng xử với môi trường tự nhiên", "Ứng xử với môi trường xã hội"]
+  },
+  "bai-01-nong-nghiep-du-muc.png": {
+    "type": "columns",
+    "columns": [
+      {"title": "Gốc nông nghiệp", "items": ["Tôn trọng, hòa hợp với tự nhiên", "Tư duy tổng hợp, biện chứng", "Trọng tình, trọng đức, trọng văn, trọng nữ", "Dung hợp, mềm dẻo"]},
+      {"title": "Gốc du mục", "items": ["Chinh phục tự nhiên", "Tư duy phân tích, lý tính", "Trọng lý, trọng võ, cá nhân", "Độc tôn, cứng rắn"]}
+    ]
+  },
+  "bai-01-tien-trinh-van-hoa.png": {
+    "type": "layers", "arrows": "down",
+    "layers": [
+      {"name": "Lớp bản địa", "items": ["Tiền sử", "Văn Lang – Âu Lạc"]},
+      {"name": "Giao lưu Trung Hoa, khu vực", "items": ["Chống Bắc thuộc", "Đại Việt"]},
+      {"name": "Giao lưu phương Tây", "items": ["Đại Nam", "Hiện đại"]}
+    ]
+  },
+  "bai-01-gia-tri-bieu-tuong-san-pham.png": {
+    "type": "flow", "direction": "v",
+    "steps": [["Giá trị", "Sự nhẫn nại của nghệ nhân"], ["Biểu tượng", "Vết tay trên bàn xoay"], ["Sản phẩm", "Video dọc 60 giây"]]
+  },
+
+  "bai-02-am-duong.png": {
+    "type": "pairs", "headers": ["Âm", "Dương"], "both": true,
+    "items": [["Đất", "Trời"], ["Mưa", "Nắng"], ["Mẹ", "Cha"], ["Bánh chưng vuông", "Bánh giầy tròn"]]
+  },
+  "bai-02-ngu-hanh.png": {
+    "type": "cycle", "center": "Ngũ hành tương sinh",
+    "steps": ["Kim", "Thủy", "Mộc", "Hỏa", "Thổ"]
+  },
+  "bai-02-hai-mat-lang-xa.png": {
+    "type": "columns",
+    "columns": [
+      {"title": "Tính cộng đồng", "items": ["(+) Đoàn kết, tương trợ", "(−) Dựa dẫm, cào bằng, đố kỵ"]},
+      {"title": "Tính tự trị", "items": ["(+) Tự lập, cần cù", "(−) Ích kỷ, bè phái, cục bộ địa phương"]}
+    ]
+  },
+  "bai-02-tam-giao.png": {
+    "type": "hub", "center": "Tam giáo đồng nguyên",
+    "nodes": [["Phật giáo", "tiền Phật hậu Thần"], ["Nho giáo", "trung với nước"], ["Đạo giáo", "dạng dân gian"]]
+  },
+
+  "bai-03-sau-vung-van-hoa.png": {
+    "type": "hub", "center": "6 vùng văn hóa",
+    "nodes": [["Việt Bắc", "hát then, đàn tính"], ["Châu thổ Bắc Bộ", "làng xã, quan họ"], ["Trung Bộ", "tháp Chăm, cung đình Huế"],
+              ["Nam Bộ", "chợ nổi, đờn ca tài tử"], ["Tây Nguyên", "nhà rông, cồng chiêng"], ["Tây Bắc", "ruộng bậc thang, múa xòe"]]
+  },
+  "bai-03-thong-nhat-da-dang.png": {
+    "type": "columns",
+    "columns": [
+      {"title": "Đa dạng", "items": ["Tự nhiên khác nhau", "Nhiều tộc người", "Lịch sử khai phá khác nhau"]},
+      {"title": "Thống nhất", "items": ["Nền tảng lúa nước", "Lịch sử dựng nước – giữ nước", "Tiếng Việt", "Ý thức quốc gia"]}
+    ]
+  },
+  "bai-03-noi-dung-vung-mien.png": {
+    "type": "pairs", "headers": ["Không nên", "Nên"],
+    "items": [["Nhại giọng", "Người địa phương tự nói, có phụ đề"], ["Gắn cả vùng với một tính cách", "Giải thích bằng tự nhiên, lịch sử"],
+              ["Trang phục dân tộc làm đồ hóa trang", "Tìm hiểu ý nghĩa, hỏi cộng đồng"], ["Chỉ chọn hình ảnh nghèo khó", "Cân bằng đời sống và niềm tự hào"]]
+  },
+
+  "bai-04-bon-nhom-chat-lieu.png": {
+    "type": "hub", "center": "Chất liệu văn hóa",
+    "nodes": [["Biểu tượng", "trống đồng, sen, tre"], ["Tín ngưỡng", "thờ tổ tiên, thờ Mẫu"], ["Phong tục – lễ hội", "Tết, lễ hội làng"], ["Nghệ thuật", "ngôn từ, thanh sắc, hình khối"]]
+  },
+  "bai-04-nghe-thuat-cach-ke.png": {
+    "type": "pairs", "headers": ["Đặc trưng nghệ thuật", "Cách kể video"],
+    "items": [["Biểu trưng", "Chi tiết nhỏ gợi cả câu chuyện"], ["Biểu cảm", "Nhân vật, âm thanh dẫn dắt"],
+              ["Tổng hợp", "Hình, tiếng nói, âm hiện trường, chữ"], ["Linh hoạt", "Nhiều phiên bản cho nhiều nền tảng"]]
+  },
+  "bai-04-sang-tao-xuyen-tac.png": {
+    "type": "columns",
+    "columns": [
+      {"title": "Sáng tạo", "items": ["Đổi hình thức", "Giữ hoặc làm rõ giá trị", "Hư cấu được nói rõ", "Biểu tượng thiêng ở vị trí trang trọng"]},
+      {"title": "Xuyên tạc", "items": ["Đổi hoặc đảo ngược giá trị", "Người xem hiểu sai", "Hư cấu trình bày như thật", "Đồ thiêng thành đạo cụ"]}
+    ]
+  },
+  "bai-04-cau-truc-kich-ban.png": {
+    "type": "flow", "direction": "v",
+    "steps": [["Hook", "vài giây đầu gây tò mò"], ["Câu chuyện", "nhân vật, hành trình, khó khăn"], ["Giá trị", "nói ra hoặc để người xem tự cảm"], ["Kêu gọi", "một hành động cụ thể"]]
+  },
+
+  "bai-05-co-hoi-nguy-co.png": {
+    "type": "columns",
+    "columns": [
+      {"title": "Cơ hội", "items": ["Văn hóa địa phương tới khán giả toàn cầu", "Làng nghề có thêm kênh quảng bá"]},
+      {"title": "Nguy cơ", "items": ["Nội dung bị \"làm phẳng\" theo trào lưu", "Thuật toán ưu tiên giật gân", "Tin sai lan nhanh hơn tin đúng"]}
+    ]
+  },
+  "bai-05-xin-phep.png": {
+    "type": "flow", "direction": "v",
+    "steps": [["Giới thiệu", "nhóm, học phần, mục đích, đăng công khai"], ["Xin đồng ý", "bằng giấy hoặc quay lại lời đồng ý"], ["Quay", "đồng ý → quay; không đồng ý → không quay rõ mặt, làm mờ"]]
+  },
+  "bai-05-quy-trinh-sau-quay.png": {
+    "type": "flow", "direction": "v",
+    "steps": [["Dựng", "phụ đề, nguồn, ghi chú ảnh AI"], ["Tự kiểm", "Checklist văn hóa + minh chứng"], ["Giảng viên duyệt", ""], ["Đăng và theo dõi chỉ số", ""]]
+  },
+  "bai-05-moc-chi-so.png": {
+    "type": "timeline",
+    "events": [["Đăng video", "mốc 0"], ["Sau 24 giờ", "chụp thống kê"], ["Sau 3 ngày", "chụp thống kê"], ["Trước buổi 06", "chụp + ghi bình luận"]]
+  },
+
+  "bai-06-cau-truc-bao-cao.png": {
+    "type": "flow", "direction": "v",
+    "steps": [["Ý tưởng", "2.1"], ["Cơ sở văn hóa", "1.1, 1.2"], ["Quá trình", "2.2, 3.1"], ["Kết quả sau đăng", "2.3, 3.2"], ["Bài học", "2.3"]]
+  },
+  "bai-06-phan-hoi-binh-luan.png": {
+    "type": "pairs", "headers": ["Loại bình luận", "Cách phản hồi"],
+    "items": [["Khen", "Cảm ơn"], ["Hỏi thêm", "Trả lời, đưa nguồn"], ["Góp ý", "Kiểm tra, đính chính nếu sai"],
+              ["Trái chiều", "Không tranh cãi, không xóa"], ["Xúc phạm, kỳ thị", "Ẩn hoặc báo cáo"]]
+  }
+}

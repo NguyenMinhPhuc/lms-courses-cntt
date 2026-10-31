@@ -24,11 +24,7 @@ Sprint 4 · Chất lượng & Phát hành
 
 ## Slide 3: Kiến trúc triển khai
 **Nội dung chính**:
-```text
-Máy trong phòng ─HTTPS─▶ Reverse proxy ─▶ Next.js ─▶ API nhóm ─▶ SQL Server
-App di động ────────────────────────────────────────▶ API nhóm
-Trình duyệt quầy ─Socket.IO────────────────────────▶ API nhóm
-```
+![](images/bai-11-kien-truc-trien-khai.png)
 
 ---
 
@@ -38,6 +34,7 @@ Trình duyệt quầy ─Socket.IO───────────────�
 - npm ci → npm run build
 - Chép public và .next/static vào .next/standalone
 - Chạy: node .next/standalone/server.js (PORT, HOSTNAME)
+![](images/bai-11-standalone.png)
 
 ---
 
@@ -47,6 +44,7 @@ Trình duyệt quầy ─Socket.IO───────────────�
 - API_URL, SITE_URL, COOKIE_SECURE: đọc lúc chạy, chỉ server
 - PORT do bộ phận hỗ trợ cấp; HOSTNAME 0.0.0.0
 - Không commit giá trị bí mật
+![](images/bai-11-bien-moi-truong.png)
 
 ---
 
@@ -94,6 +92,7 @@ Trình duyệt quầy ─Socket.IO───────────────�
 - 3–4: Phân tích thiết kế thành phần, hiện thực (CLO1)
 - 5: Kiểm thử (CLO2); 6: Triển khai (CLO1)
 - 7: Kế hoạch và tiến độ (CLO4); cả báo cáo: CLO3
+![](images/bai-11-bao-cao-7-chuong.png)
 
 ---
 

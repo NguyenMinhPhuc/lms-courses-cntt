@@ -1,0 +1,1654 @@
+{
+  "bai-01-ipo.png": {
+    "type": "flow",
+    "steps": [
+      [
+        "Input",
+        "họ tên, năm sinh, lớp"
+      ],
+      [
+        "Process",
+        "tuổi = 2026 - năm sinh"
+      ],
+      [
+        "Output",
+        "thẻ hồ sơ sinh viên"
+      ]
+    ],
+    "direction": "v"
+  },
+  "bai-01-chay-python.png": {
+    "type": "flow",
+    "steps": [
+      [
+        "Viết mã",
+        "file ho_so.py trong VS Code"
+      ],
+      [
+        "Trình thông dịch",
+        "python ho_so.py"
+      ],
+      [
+        "Kết quả",
+        "hiện trong Terminal"
+      ]
+    ],
+    "direction": "v"
+  },
+  "bai-01-kieu-du-lieu.png": {
+    "type": "pairs",
+    "headers": [
+      "Kiểu",
+      "Ví dụ giá trị"
+    ],
+    "items": [
+      [
+        "int (số nguyên)",
+        "2007, -5, 0"
+      ],
+      [
+        "float (số thực)",
+        "8.5, 3.14"
+      ],
+      [
+        "str (chuỗi)",
+        "\"Nguyễn Văn An\""
+      ],
+      [
+        "bool (logic)",
+        "True, False"
+      ]
+    ]
+  },
+  "bai-01-input-str.png": {
+    "type": "flow",
+    "steps": [
+      [
+        "input()",
+        "người dùng gõ 2007"
+      ],
+      [
+        "Kết quả là str",
+        "\"2007\""
+      ],
+      [
+        "int(...)",
+        "đổi sang số 2007"
+      ],
+      [
+        "Tính toán",
+        "2026 - 2007 = 19"
+      ]
+    ],
+    "direction": "v"
+  },
+  "bai-02-uu-tien.png": {
+    "type": "pairs",
+    "headers": [
+      "Mức ưu tiên (cao → thấp)",
+      "Toán tử"
+    ],
+    "items": [
+      [
+        "1",
+        "( )"
+      ],
+      [
+        "2",
+        "**"
+      ],
+      [
+        "3",
+        "*   /   //   %"
+      ],
+      [
+        "4",
+        "+   -"
+      ],
+      [
+        "5",
+        "==  !=  <  >  <=  >="
+      ],
+      [
+        "6",
+        "not"
+      ],
+      [
+        "7",
+        "and"
+      ],
+      [
+        "8",
+        "or"
+      ]
+    ]
+  },
+  "bai-02-tinh-tung-buoc.png": {
+    "type": "flow",
+    "direction": "v",
+    "steps": [
+      [
+        "2 + 3 * 4 ** 2 // 5",
+        "biểu thức ban đầu"
+      ],
+      [
+        "2 + 3 * 16 // 5",
+        "** trước: 4 ** 2 = 16"
+      ],
+      [
+        "2 + 48 // 5",
+        "* và // cùng mức, tính trái sang phải: 3 * 16 = 48"
+      ],
+      [
+        "2 + 9",
+        "48 // 5 = 9"
+      ],
+      [
+        "11",
+        "kết quả"
+      ]
+    ]
+  },
+  "bai-02-diem-tb.png": {
+    "type": "flowchart",
+    "nodes": [
+      {
+        "id": "s",
+        "shape": "terminal",
+        "text": "Bắt đầu",
+        "pos": [
+          0,
+          0
+        ]
+      },
+      {
+        "id": "in",
+        "shape": "io",
+        "text": "Nhập qt, gk, ck",
+        "pos": [
+          0,
+          1
+        ]
+      },
+      {
+        "id": "p",
+        "shape": "process",
+        "text": "tb = qt*0.3 + gk*0.3 + ck*0.4",
+        "pos": [
+          0,
+          2
+        ],
+        "code": true
+      },
+      {
+        "id": "out",
+        "shape": "io",
+        "text": "In tb (2 chữ số thập phân)",
+        "pos": [
+          0,
+          3
+        ]
+      },
+      {
+        "id": "e",
+        "shape": "terminal",
+        "text": "Kết thúc",
+        "pos": [
+          0,
+          4
+        ]
+      }
+    ],
+    "edges": [
+      [
+        "s",
+        "in"
+      ],
+      [
+        "in",
+        "p"
+      ],
+      [
+        "p",
+        "out"
+      ],
+      [
+        "out",
+        "e"
+      ]
+    ]
+  },
+  "bai-03-ky-hieu.png": {
+    "type": "flowchart",
+    "nodes": [
+      {
+        "id": "a",
+        "shape": "terminal",
+        "text": "Bắt đầu / Kết thúc",
+        "pos": [
+          0,
+          0
+        ]
+      },
+      {
+        "id": "b",
+        "shape": "io",
+        "text": "Nhập / Xuất dữ liệu",
+        "pos": [
+          1,
+          0
+        ]
+      },
+      {
+        "id": "c",
+        "shape": "process",
+        "text": "Xử lý, tính toán",
+        "pos": [
+          2,
+          0
+        ]
+      },
+      {
+        "id": "d",
+        "shape": "decision",
+        "text": "Điều kiện?",
+        "pos": [
+          3,
+          0
+        ]
+      }
+    ],
+    "edges": []
+  },
+  "bai-03-dau-rot.png": {
+    "type": "flowchart",
+    "nodes": [
+      {
+        "id": "s",
+        "shape": "terminal",
+        "text": "Bắt đầu",
+        "pos": [
+          1,
+          0
+        ]
+      },
+      {
+        "id": "in",
+        "shape": "io",
+        "text": "Nhập diem",
+        "pos": [
+          1,
+          1
+        ]
+      },
+      {
+        "id": "d",
+        "shape": "decision",
+        "text": "diem >= 4.0?",
+        "pos": [
+          1,
+          2
+        ],
+        "code": true
+      },
+      {
+        "id": "y",
+        "shape": "io",
+        "text": "In \"Đậu\"",
+        "pos": [
+          2,
+          3
+        ]
+      },
+      {
+        "id": "n",
+        "shape": "io",
+        "text": "In \"Rớt\"",
+        "pos": [
+          0,
+          3
+        ]
+      },
+      {
+        "id": "e",
+        "shape": "terminal",
+        "text": "Kết thúc",
+        "pos": [
+          1,
+          4
+        ]
+      }
+    ],
+    "edges": [
+      [
+        "s",
+        "in"
+      ],
+      [
+        "in",
+        "d"
+      ],
+      [
+        "d",
+        "y",
+        "Đúng"
+      ],
+      [
+        "d",
+        "n",
+        "Sai"
+      ],
+      [
+        "y",
+        "e"
+      ],
+      [
+        "n",
+        "e"
+      ]
+    ]
+  },
+  "bai-03-xep-loai.png": {
+    "type": "flowchart",
+    "font_scale": 0.85,
+    "nodes": [
+      {
+        "id": "s",
+        "shape": "terminal",
+        "text": "Bắt đầu",
+        "pos": [
+          0,
+          0
+        ]
+      },
+      {
+        "id": "in",
+        "shape": "io",
+        "text": "Nhập diem",
+        "pos": [
+          0,
+          1
+        ]
+      },
+      {
+        "id": "d1",
+        "shape": "decision",
+        "text": "diem >= 9?",
+        "pos": [
+          0,
+          2
+        ],
+        "code": true
+      },
+      {
+        "id": "d2",
+        "shape": "decision",
+        "text": "diem >= 8?",
+        "pos": [
+          1,
+          2
+        ],
+        "code": true
+      },
+      {
+        "id": "d3",
+        "shape": "decision",
+        "text": "diem >= 6.5?",
+        "pos": [
+          2,
+          2
+        ],
+        "code": true
+      },
+      {
+        "id": "d4",
+        "shape": "decision",
+        "text": "diem >= 5?",
+        "pos": [
+          3,
+          2
+        ],
+        "code": true
+      },
+      {
+        "id": "o5",
+        "shape": "io",
+        "text": "Yếu",
+        "pos": [
+          4,
+          2
+        ]
+      },
+      {
+        "id": "o1",
+        "shape": "io",
+        "text": "Xuất sắc",
+        "pos": [
+          0,
+          3
+        ]
+      },
+      {
+        "id": "o2",
+        "shape": "io",
+        "text": "Giỏi",
+        "pos": [
+          1,
+          3
+        ]
+      },
+      {
+        "id": "o3",
+        "shape": "io",
+        "text": "Khá",
+        "pos": [
+          2,
+          3
+        ]
+      },
+      {
+        "id": "o4",
+        "shape": "io",
+        "text": "Trung bình",
+        "pos": [
+          3,
+          3
+        ]
+      },
+      {
+        "id": "e",
+        "shape": "terminal",
+        "text": "Kết thúc",
+        "pos": [
+          2,
+          4
+        ]
+      }
+    ],
+    "edges": [
+      [
+        "s",
+        "in"
+      ],
+      [
+        "in",
+        "d1"
+      ],
+      [
+        "d1",
+        "d2",
+        "Sai"
+      ],
+      [
+        "d2",
+        "d3",
+        "Sai"
+      ],
+      [
+        "d3",
+        "d4",
+        "Sai"
+      ],
+      [
+        "d4",
+        "o5",
+        "Sai"
+      ],
+      [
+        "d1",
+        "o1",
+        "Đúng"
+      ],
+      [
+        "d2",
+        "o2",
+        "Đúng"
+      ],
+      [
+        "d3",
+        "o3",
+        "Đúng"
+      ],
+      [
+        "d4",
+        "o4",
+        "Đúng"
+      ],
+      [
+        "o1",
+        "e",
+        "",
+        "down"
+      ],
+      [
+        "o2",
+        "e",
+        "",
+        "down"
+      ],
+      [
+        "o3",
+        "e"
+      ],
+      [
+        "o4",
+        "e",
+        "",
+        "down"
+      ],
+      [
+        "o5",
+        "e",
+        "",
+        "down"
+      ]
+    ]
+  },
+  "bai-03-atm.png": {
+    "type": "flowchart",
+    "font_scale": 0.85,
+    "nodes": [
+      {
+        "id": "s",
+        "shape": "terminal",
+        "text": "Bắt đầu",
+        "pos": [
+          0,
+          0
+        ]
+      },
+      {
+        "id": "pin",
+        "shape": "io",
+        "text": "Nhập PIN",
+        "pos": [
+          0,
+          1
+        ]
+      },
+      {
+        "id": "d1",
+        "shape": "decision",
+        "text": "PIN đúng?",
+        "pos": [
+          0,
+          2
+        ]
+      },
+      {
+        "id": "x1",
+        "shape": "io",
+        "text": "Sai mã PIN",
+        "pos": [
+          0,
+          3
+        ]
+      },
+      {
+        "id": "e2",
+        "shape": "terminal",
+        "text": "Kết thúc",
+        "pos": [
+          0,
+          4
+        ]
+      },
+      {
+        "id": "tien",
+        "shape": "io",
+        "text": "Nhập số tiền rút",
+        "pos": [
+          1,
+          2
+        ]
+      },
+      {
+        "id": "d2",
+        "shape": "decision",
+        "text": "Đủ số dư và bội số 50.000?",
+        "pos": [
+          2,
+          2
+        ]
+      },
+      {
+        "id": "ok",
+        "shape": "process",
+        "text": "so_du -= so_tien",
+        "pos": [
+          3,
+          2
+        ],
+        "code": true
+      },
+      {
+        "id": "x2",
+        "shape": "io",
+        "text": "Không rút được",
+        "pos": [
+          2,
+          3
+        ]
+      },
+      {
+        "id": "e",
+        "shape": "terminal",
+        "text": "Kết thúc",
+        "pos": [
+          2,
+          4
+        ]
+      }
+    ],
+    "edges": [
+      [
+        "s",
+        "pin"
+      ],
+      [
+        "pin",
+        "d1"
+      ],
+      [
+        "d1",
+        "x1",
+        "Sai"
+      ],
+      [
+        "x1",
+        "e2"
+      ],
+      [
+        "d1",
+        "tien",
+        "Đúng"
+      ],
+      [
+        "tien",
+        "d2"
+      ],
+      [
+        "d2",
+        "ok",
+        "Đúng"
+      ],
+      [
+        "d2",
+        "x2",
+        "Sai"
+      ],
+      [
+        "x2",
+        "e"
+      ],
+      [
+        "ok",
+        "e",
+        "",
+        "down"
+      ]
+    ]
+  },
+  "bai-04-for-cuu-chuong.png": {
+    "type": "flowchart",
+    "font_scale": 0.9,
+    "nodes": [
+      {
+        "id": "s",
+        "shape": "terminal",
+        "text": "Bắt đầu",
+        "pos": [
+          0,
+          0
+        ]
+      },
+      {
+        "id": "init",
+        "shape": "process",
+        "text": "i = 1",
+        "pos": [
+          0,
+          1
+        ],
+        "code": true
+      },
+      {
+        "id": "d",
+        "shape": "decision",
+        "text": "i <= 10?",
+        "pos": [
+          0,
+          2
+        ],
+        "code": true
+      },
+      {
+        "id": "out",
+        "shape": "io",
+        "text": "In 7 × i",
+        "pos": [
+          0,
+          3
+        ]
+      },
+      {
+        "id": "inc",
+        "shape": "process",
+        "text": "i = i + 1",
+        "pos": [
+          0,
+          4
+        ],
+        "code": true
+      },
+      {
+        "id": "e",
+        "shape": "terminal",
+        "text": "Kết thúc",
+        "pos": [
+          1,
+          2
+        ]
+      }
+    ],
+    "edges": [
+      [
+        "s",
+        "init"
+      ],
+      [
+        "init",
+        "d"
+      ],
+      [
+        "d",
+        "out",
+        "Đúng"
+      ],
+      [
+        "out",
+        "inc"
+      ],
+      [
+        "inc",
+        "d",
+        "",
+        "left"
+      ],
+      [
+        "d",
+        "e",
+        "Sai"
+      ]
+    ]
+  },
+  "bai-04-trace.png": {
+    "type": "pairs",
+    "headers": [
+      "Chu kỳ (i)",
+      "tong sau khi cộng"
+    ],
+    "items": [
+      [
+        "i = 1",
+        "0 + 1 = 1"
+      ],
+      [
+        "i = 2",
+        "1 + 2 = 3"
+      ],
+      [
+        "i = 3",
+        "3 + 3 = 6"
+      ],
+      [
+        "i = 4",
+        "6 + 4 = 10"
+      ],
+      [
+        "i = 5",
+        "10 + 5 = 15"
+      ]
+    ]
+  },
+  "bai-04-mau-tich-luy.png": {
+    "type": "columns",
+    "columns": [
+      {
+        "title": "Tính tổng",
+        "items": [
+          "tong = 0 trước vòng lặp",
+          "tong += x trong vòng lặp"
+        ]
+      },
+      {
+        "title": "Đếm",
+        "items": [
+          "dem = 0 trước vòng lặp",
+          "if điều kiện: dem += 1"
+        ]
+      },
+      {
+        "title": "Lớn nhất",
+        "items": [
+          "lon_nhat = phần tử đầu",
+          "if x > lon_nhat: cập nhật"
+        ]
+      }
+    ]
+  },
+  "bai-04-list.png": {
+    "type": "pairs",
+    "headers": [
+      "Thao tác với list",
+      "Ví dụ với diem = [7.5, 8.0, 9.0]"
+    ],
+    "items": [
+      [
+        "Tạo list rỗng",
+        "diem = []"
+      ],
+      [
+        "Thêm cuối",
+        "diem.append(6.5)"
+      ],
+      [
+        "Lấy phần tử",
+        "diem[0] → 7.5;  diem[-1] → 9.0"
+      ],
+      [
+        "Độ dài",
+        "len(diem) → 3"
+      ],
+      [
+        "Tổng, lớn, nhỏ",
+        "sum, max, min"
+      ]
+    ]
+  },
+  "bai-05-nhap-hop-le.png": {
+    "type": "flowchart",
+    "font_scale": 0.85,
+    "nodes": [
+      {
+        "id": "s",
+        "shape": "terminal",
+        "text": "Bắt đầu",
+        "pos": [
+          0,
+          0
+        ]
+      },
+      {
+        "id": "in",
+        "shape": "io",
+        "text": "Nhập diem",
+        "pos": [
+          0,
+          1
+        ]
+      },
+      {
+        "id": "d",
+        "shape": "decision",
+        "text": "diem ngoài 0–10?",
+        "pos": [
+          0,
+          2
+        ]
+      },
+      {
+        "id": "nl",
+        "shape": "io",
+        "text": "Báo lỗi, nhập lại diem",
+        "pos": [
+          0,
+          3
+        ]
+      },
+      {
+        "id": "ok",
+        "shape": "io",
+        "text": "Dùng diem hợp lệ",
+        "pos": [
+          1,
+          2
+        ]
+      },
+      {
+        "id": "e",
+        "shape": "terminal",
+        "text": "Kết thúc",
+        "pos": [
+          1,
+          3
+        ]
+      }
+    ],
+    "edges": [
+      [
+        "s",
+        "in"
+      ],
+      [
+        "in",
+        "d"
+      ],
+      [
+        "d",
+        "nl",
+        "Đúng"
+      ],
+      [
+        "nl",
+        "d",
+        "",
+        "left"
+      ],
+      [
+        "d",
+        "ok",
+        "Sai"
+      ],
+      [
+        "ok",
+        "e"
+      ]
+    ]
+  },
+  "bai-05-for-while.png": {
+    "type": "columns",
+    "columns": [
+      {
+        "title": "for",
+        "items": [
+          "Biết trước số lần lặp",
+          "Duyệt range, chuỗi, list",
+          "Ví dụ: in bảng cửu chương"
+        ]
+      },
+      {
+        "title": "while",
+        "items": [
+          "Lặp tới khi điều kiện sai",
+          "Chưa biết trước số lần",
+          "Ví dụ: nhập tới khi hợp lệ, menu"
+        ]
+      }
+    ],
+    "size": [
+      11,
+      4
+    ]
+  },
+  "bai-05-menu.png": {
+    "type": "flowchart",
+    "font_scale": 0.85,
+    "nodes": [
+      {
+        "id": "s",
+        "shape": "terminal",
+        "text": "Bắt đầu",
+        "pos": [
+          1,
+          0
+        ]
+      },
+      {
+        "id": "m",
+        "shape": "io",
+        "text": "In menu, nhập chon",
+        "pos": [
+          1,
+          1
+        ]
+      },
+      {
+        "id": "d0",
+        "shape": "decision",
+        "text": "chon == \"0\"?",
+        "pos": [
+          1,
+          2
+        ],
+        "code": true
+      },
+      {
+        "id": "e",
+        "shape": "terminal",
+        "text": "Tạm biệt, kết thúc",
+        "pos": [
+          2,
+          2
+        ]
+      },
+      {
+        "id": "d1",
+        "shape": "decision",
+        "text": "chon == \"1\"?",
+        "pos": [
+          1,
+          3
+        ],
+        "code": true
+      },
+      {
+        "id": "p1",
+        "shape": "process",
+        "text": "Nhập điểm, append",
+        "pos": [
+          2,
+          3
+        ]
+      },
+      {
+        "id": "d2",
+        "shape": "decision",
+        "text": "chon == \"2\"?",
+        "pos": [
+          1,
+          4
+        ],
+        "code": true
+      },
+      {
+        "id": "p2",
+        "shape": "io",
+        "text": "In thống kê",
+        "pos": [
+          2,
+          4
+        ]
+      },
+      {
+        "id": "x",
+        "shape": "io",
+        "text": "Lựa chọn không hợp lệ",
+        "pos": [
+          1,
+          5
+        ]
+      }
+    ],
+    "edges": [
+      [
+        "s",
+        "m"
+      ],
+      [
+        "m",
+        "d0"
+      ],
+      [
+        "d0",
+        "e",
+        "Đúng"
+      ],
+      [
+        "d0",
+        "d1",
+        "Sai"
+      ],
+      [
+        "d1",
+        "p1",
+        "Đúng"
+      ],
+      [
+        "d1",
+        "d2",
+        "Sai"
+      ],
+      [
+        "d2",
+        "p2",
+        "Đúng"
+      ],
+      [
+        "d2",
+        "x",
+        "Sai"
+      ],
+      [
+        "p1",
+        "m",
+        "",
+        "right"
+      ],
+      [
+        "p2",
+        "m",
+        "",
+        "right"
+      ],
+      [
+        "x",
+        "m",
+        "",
+        "left"
+      ]
+    ]
+  },
+  "bai-06-ba-loai-loi.png": {
+    "type": "columns",
+    "columns": [
+      {
+        "title": "Lỗi cú pháp",
+        "items": [
+          "SyntaxError, IndentationError",
+          "Chương trình không chạy",
+          "Ví dụ: thiếu dấu :"
+        ]
+      },
+      {
+        "title": "Lỗi thực thi",
+        "items": [
+          "ValueError, ZeroDivisionError…",
+          "Dừng giữa chừng, có Traceback",
+          "Ví dụ: int(\"mười\")"
+        ]
+      },
+      {
+        "title": "Lỗi logic",
+        "items": [
+          "Không báo lỗi",
+          "Kết quả sai",
+          "Ví dụ: 8 + 9 / 2"
+        ]
+      }
+    ],
+    "size": [
+      13,
+      4.5
+    ]
+  },
+  "bai-06-doc-traceback.png": {
+    "type": "flow",
+    "direction": "v",
+    "steps": [
+      [
+        "1. Đọc dòng cuối",
+        "loại lỗi: ValueError"
+      ],
+      [
+        "2. Đọc thông điệp",
+        "invalid literal for int()… 'mười'"
+      ],
+      [
+        "3. Tìm File và line",
+        "ho_so.py, line 2"
+      ],
+      [
+        "4. Mở đúng dòng đó",
+        "int(input(\"Năm sinh: \"))"
+      ],
+      [
+        "5. Sửa, chạy lại",
+        "nhập số, hoặc bắt lỗi bằng try"
+      ]
+    ]
+  },
+  "bai-06-try-except.png": {
+    "type": "flowchart",
+    "font_scale": 0.85,
+    "nodes": [
+      {
+        "id": "t",
+        "shape": "process",
+        "text": "try: chạy khối lệnh có thể lỗi",
+        "pos": [
+          1,
+          0
+        ]
+      },
+      {
+        "id": "d",
+        "shape": "decision",
+        "text": "Có lỗi?",
+        "pos": [
+          1,
+          1
+        ]
+      },
+      {
+        "id": "ex",
+        "shape": "process",
+        "text": "except ValueError: xử lý lỗi",
+        "pos": [
+          0,
+          2
+        ]
+      },
+      {
+        "id": "el",
+        "shape": "process",
+        "text": "else: chạy khi không lỗi",
+        "pos": [
+          2,
+          2
+        ]
+      },
+      {
+        "id": "f",
+        "shape": "process",
+        "text": "finally: luôn chạy",
+        "pos": [
+          1,
+          3
+        ]
+      }
+    ],
+    "edges": [
+      [
+        "t",
+        "d"
+      ],
+      [
+        "d",
+        "ex",
+        "Có"
+      ],
+      [
+        "d",
+        "el",
+        "Không"
+      ],
+      [
+        "ex",
+        "f",
+        "",
+        "down"
+      ],
+      [
+        "el",
+        "f",
+        "",
+        "down"
+      ]
+    ]
+  },
+  "bai-07-bai-lam.png": {
+    "type": "flow",
+    "steps": [
+      [
+        "Bảng IPO",
+        "đầu vào, xử lý, đầu ra"
+      ],
+      [
+        "Lưu đồ",
+        "phần xử lý chính"
+      ],
+      [
+        "Mã nguồn",
+        "chạy được, xử lý nhập sai"
+      ],
+      [
+        "Kiểm thử",
+        "≥ 3 bộ dữ liệu, có biên"
+      ],
+      [
+        "Nhật ký Prompt",
+        "trung thực, đầy đủ"
+      ]
+    ],
+    "direction": "h",
+    "size": [
+      15,
+      3.4
+    ]
+  },
+  "bai-08-phan-ra.png": {
+    "type": "tree",
+    "root": "Student Dashboard (main)",
+    "children": [
+      {
+        "name": "hien_menu()"
+      },
+      {
+        "name": "nhap_so()",
+        "children": [
+          "kiểm tra kiểu",
+          "kiểm tra khoảng"
+        ]
+      },
+      {
+        "name": "tinh_diem_tb()"
+      },
+      {
+        "name": "xep_loai()"
+      },
+      {
+        "name": "thong_ke()"
+      }
+    ],
+    "size": [
+      14,
+      5.5
+    ]
+  },
+  "bai-08-giai-phau-ham.png": {
+    "type": "pairs",
+    "headers": [
+      "Thành phần",
+      "Trong def tinh_diem_tb(qt, gk, ck=0):"
+    ],
+    "items": [
+      [
+        "Từ khóa def",
+        "bắt đầu định nghĩa hàm"
+      ],
+      [
+        "Tên hàm",
+        "tinh_diem_tb (động từ, snake_case)"
+      ],
+      [
+        "Tham số",
+        "qt, gk, ck; ck có giá trị mặc định 0"
+      ],
+      [
+        "Thân hàm",
+        "các lệnh thụt lề 4 dấu cách"
+      ],
+      [
+        "return",
+        "trả kết quả về nơi gọi hàm"
+      ]
+    ]
+  },
+  "bai-08-print-return.png": {
+    "type": "columns",
+    "columns": [
+      {
+        "title": "Hàm chỉ print",
+        "items": [
+          "In ra màn hình",
+          "Trả về None",
+          "Không dùng lại được kết quả"
+        ]
+      },
+      {
+        "title": "Hàm return",
+        "items": [
+          "Trả giá trị cho nơi gọi",
+          "Gán vào biến, so sánh, in tùy ý",
+          "Kiểm thử được"
+        ]
+      }
+    ],
+    "size": [
+      11,
+      4
+    ]
+  },
+  "bai-08-module.png": {
+    "type": "layers",
+    "layers": [
+      {
+        "name": "main.py",
+        "items": [
+          "menu, vòng lặp, gọi hàm"
+        ]
+      },
+      {
+        "name": "tinh_toan.py",
+        "items": [
+          "tinh_diem_tb, xep_loai, thong_ke"
+        ]
+      },
+      {
+        "name": "nhap_lieu.py",
+        "items": [
+          "nhap_so, nhap_chuoi"
+        ]
+      }
+    ],
+    "arrows": "down"
+  },
+  "bai-09-pham-vi.png": {
+    "type": "columns",
+    "columns": [
+      {
+        "title": "Biến cục bộ (local)",
+        "items": [
+          "Tạo trong hàm",
+          "Chỉ dùng được trong hàm đó",
+          "Mất khi hàm kết thúc"
+        ]
+      },
+      {
+        "title": "Biến toàn cục (global)",
+        "items": [
+          "Tạo ngoài mọi hàm",
+          "Hàm đọc được",
+          "Gán lại trong hàm cần global (nên tránh)"
+        ]
+      }
+    ],
+    "size": [
+      11,
+      4
+    ]
+  },
+  "bai-09-pep8.png": {
+    "type": "pairs",
+    "headers": [
+      "Quy tắc PEP 8",
+      "Ví dụ đúng"
+    ],
+    "items": [
+      [
+        "Tên biến, hàm: snake_case",
+        "diem_tb, tinh_diem_tb()"
+      ],
+      [
+        "Hằng số: CHỮ_HOA",
+        "NGUONG_DAT = 4.0"
+      ],
+      [
+        "Thụt lề 4 dấu cách",
+        "không dùng Tab trộn dấu cách"
+      ],
+      [
+        "Khoảng trắng quanh toán tử",
+        "tong = tong + d"
+      ],
+      [
+        "Dòng không quá 79 ký tự",
+        "ngắt dòng trong ngoặc"
+      ],
+      [
+        "2 dòng trống giữa các hàm",
+        "def a(): … (2 dòng) def b(): …"
+      ]
+    ]
+  },
+  "bai-09-refactor.png": {
+    "type": "flow",
+    "steps": [
+      [
+        "Chạy thử",
+        "ghi kết quả trước"
+      ],
+      [
+        "Sửa nhỏ một chỗ",
+        "đặt tên, hằng số…"
+      ],
+      [
+        "Chạy lại",
+        "kết quả phải giống hệt"
+      ],
+      [
+        "Ruff check",
+        "sửa cảnh báo"
+      ]
+    ],
+    "size": [
+      13,
+      3.4
+    ]
+  },
+  "bai-10-lich-trinh.png": {
+    "type": "timeline",
+    "events": [
+      [
+        "Buổi 10",
+        "đề tài, lưu đồ"
+      ],
+      [
+        "Ở nhà",
+        "mỗi người viết hàm"
+      ],
+      [
+        "Buổi 11",
+        "GitHub, README"
+      ],
+      [
+        "Buổi 12",
+        "Showcase, vấn đáp"
+      ]
+    ],
+    "size": [
+      11,
+      4
+    ]
+  },
+  "bai-10-phan-ra-mau.png": {
+    "type": "tree",
+    "root": "Quản lý chi tiêu",
+    "children": [
+      {
+        "name": "Thêm khoản chi",
+        "children": [
+          "nhập số tiền",
+          "chọn danh mục"
+        ]
+      },
+      {
+        "name": "Xem danh sách"
+      },
+      {
+        "name": "Thống kê",
+        "children": [
+          "tổng theo danh mục",
+          "khoản lớn nhất"
+        ]
+      },
+      {
+        "name": "Cảnh báo vượt ngân sách"
+      }
+    ],
+    "size": [
+      14,
+      5.5
+    ]
+  },
+  "bai-11-github.png": {
+    "type": "flow",
+    "steps": [
+      [
+        "Tạo repository",
+        "trên github.com"
+      ],
+      [
+        "Clone",
+        "GitHub Desktop"
+      ],
+      [
+        "Sửa code",
+        "trong VS Code"
+      ],
+      [
+        "Commit",
+        "thông điệp rõ ràng"
+      ],
+      [
+        "Push",
+        "đẩy lên GitHub"
+      ]
+    ],
+    "size": [
+      15,
+      3.2
+    ],
+    "direction": "h"
+  },
+  "bai-11-kiem-thu.png": {
+    "type": "pairs",
+    "headers": [
+      "Loại dữ liệu kiểm thử",
+      "Ví dụ với chức năng Thêm khoản chi"
+    ],
+    "items": [
+      [
+        "Bình thường",
+        "50000, danh mục Ăn uống"
+      ],
+      [
+        "Giá trị biên",
+        "1 đồng; đúng bằng ngân sách còn lại"
+      ],
+      [
+        "Nhập sai kiểu",
+        "\"năm mươi nghìn\", để trống"
+      ],
+      [
+        "Ngoài khoảng",
+        "-20000, 0"
+      ],
+      [
+        "Chưa có dữ liệu",
+        "chọn Thống kê khi danh sách rỗng"
+      ]
+    ]
+  },
+  "bai-12-showcase.png": {
+    "type": "flow",
+    "steps": [
+      [
+        "Demo",
+        "3 phút: chạy các chức năng chính"
+      ],
+      [
+        "Lưu đồ",
+        "2 phút: giải thích 1 chức năng"
+      ],
+      [
+        "Nhật ký Prompt",
+        "1 phút: AI giúp gì, nhóm tự làm gì"
+      ],
+      [
+        "Vấn đáp",
+        "3 phút: hỏi từng thành viên"
+      ]
+    ],
+    "size": [
+      14,
+      3.6
+    ]
+  },
+  "bai-12-hanh-trinh.png": {
+    "type": "timeline",
+    "events": [
+      [
+        "Buổi 01–03",
+        "IPO, biến, if-else"
+      ],
+      [
+        "Buổi 04–06",
+        "vòng lặp, list"
+      ],
+      [
+        "Buổi 08–09",
+        "hàm, module, PEP 8"
+      ],
+      [
+        "Buổi 10–12",
+        "Mini Project nhóm"
+      ]
+    ],
+    "size": [
+      11,
+      4
+    ]
+  }
+}

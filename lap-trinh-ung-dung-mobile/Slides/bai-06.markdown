@@ -30,6 +30,7 @@ JWT, SecureStore, bảo vệ route · Checkpoint Sprint 2
 - 4. App lưu token vào SecureStore
 - 5. Mỗi request: `Authorization: Bearer <accessToken>`
 - 6. Hết hạn → `POST /auth/refresh`
+![](images/bai-06-luong-jwt.png)
 
 ---
 
@@ -39,6 +40,7 @@ JWT, SecureStore, bảo vệ route · Checkpoint Sprint 2
 - JWT đã ký: server kiểm tra chữ ký, không cần tra CSDL mỗi request
 - Access token ngắn hạn → giảm thiệt hại khi bị lộ
 - Refresh token lưu (dạng băm) qua thủ tục để thu hồi khi đăng xuất
+![](images/bai-06-hai-token.png)
 
 ---
 
@@ -81,6 +83,8 @@ return { accessToken: await this.jwt.signAsync(payload, { expiresIn: '15m' }) };
 - `@UseGuards(AuthGuard)` cho API cần đăng nhập
 - RolesGuard: chỉ `staff` được đổi trạng thái đơn
 - Mã người dùng lấy từ token (`req.user.sub`), **không** lấy từ body
+![](images/bai-06-guard.png)
+
 **Ghi chú giảng viên**:
 - Mã AuthGuard đầy đủ theo mẫu tài liệu NestJS ở mục 2.3 của bài học.
 

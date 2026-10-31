@@ -1,0 +1,973 @@
+{
+  "bai-01-ba-huong.png": {
+    "type": "columns",
+    "columns": [
+      {
+        "title": "Native",
+        "items": [
+          "Kotlin, Swift",
+          "Hiệu năng tốt nhất",
+          "2 mã nguồn"
+        ]
+      },
+      {
+        "title": "Cross-platform",
+        "items": [
+          "React Native, Flutter",
+          "1 mã nguồn",
+          "Giao diện native"
+        ]
+      },
+      {
+        "title": "PWA",
+        "items": [
+          "Web app cài lên màn hình chính",
+          "Truy cập thiết bị hạn chế"
+        ]
+      }
+    ]
+  },
+  "bai-01-react-native.png": {
+    "type": "flow",
+    "direction": "v",
+    "steps": [
+      [
+        "Component JS/TS",
+        "<View>, <Text>, <Image>"
+      ],
+      [
+        "React Native",
+        "New Architecture: JSI, Fabric, TurboModules"
+      ],
+      [
+        "View native",
+        "TextView của Android, UILabel của iOS"
+      ]
+    ]
+  },
+  "bai-01-web-sang-rn.png": {
+    "type": "pairs",
+    "headers": [
+      "React web",
+      "React Native"
+    ],
+    "items": [
+      [
+        "<div>",
+        "<View>"
+      ],
+      [
+        "<p>, <span>",
+        "<Text>"
+      ],
+      [
+        "<img>",
+        "<Image> (cần kích thước)"
+      ],
+      [
+        "onClick",
+        "onPress trên <Pressable>"
+      ],
+      [
+        "File CSS",
+        "StyleSheet.create"
+      ]
+    ]
+  },
+  "bai-01-vibe-coding.png": {
+    "type": "flow",
+    "direction": "v",
+    "steps": [
+      [
+        "Cho AI ngữ cảnh",
+        "AGENTS.md, copilot-instructions.md"
+      ],
+      [
+        "Prompt cụ thể",
+        "màn hình, dữ liệu, tiêu chí"
+      ],
+      [
+        "Đọc, chạy thử, sửa",
+        ""
+      ],
+      [
+        "Ghi PROMPTS.md",
+        ""
+      ],
+      [
+        "Không hiểu thì không merge",
+        ""
+      ]
+    ]
+  },
+  "bai-01-phan-vai.png": {
+    "type": "hub",
+    "center": "Nhóm 4–5 SV",
+    "nodes": [
+      "Mobile UI",
+      "Mobile logic",
+      "Backend API",
+      "CSDL & stored procedure",
+      "Kiểm thử & phát hành"
+    ]
+  },
+  "bai-02-design-system.png": {
+    "type": "hub",
+    "center": "theme.ts",
+    "nodes": [
+      [
+        "Button",
+        "chính / phụ / vô hiệu"
+      ],
+      [
+        "Card",
+        "khung bo góc"
+      ],
+      [
+        "Input",
+        "nhãn + dòng lỗi"
+      ],
+      [
+        "Dark mode",
+        "useColorScheme()"
+      ]
+    ]
+  },
+  "bai-02-figma-ma.png": {
+    "type": "flow",
+    "direction": "v",
+    "steps": [
+      [
+        "Xuất ảnh màn hình Figma",
+        "kèm đặc tả"
+      ],
+      [
+        "Prompt có ràng buộc",
+        "dùng theme, component có sẵn"
+      ],
+      [
+        "Chạy thử, đặt cạnh thiết kế",
+        ""
+      ],
+      [
+        "Sửa chỗ lệch, tách component",
+        "ghi PROMPTS.md"
+      ]
+    ]
+  },
+  "bai-02-so-do-chuc-nang.png": {
+    "type": "tree",
+    "root": "LHU Food",
+    "children": [
+      {
+        "name": "Khách hàng",
+        "children": [
+          "Thực đơn",
+          "Giỏ hàng",
+          "Đặt hàng",
+          "Theo dõi đơn"
+        ]
+      },
+      {
+        "name": "Nhân viên",
+        "children": [
+          "Đơn mới",
+          "Cập nhật trạng thái",
+          "Quản lý món",
+          "Thống kê"
+        ]
+      },
+      {
+        "name": "Tài khoản"
+      }
+    ]
+  },
+  "bai-03-ba-kieu-dieu-huong.png": {
+    "type": "columns",
+    "columns": [
+      {
+        "title": "Stack",
+        "items": [
+          "Màn hình mới chồng lên",
+          "Back gỡ màn hình trên cùng",
+          "Danh sách → Chi tiết"
+        ]
+      },
+      {
+        "title": "Tab",
+        "items": [
+          "Thanh cố định ở cuối",
+          "Các khu vực chính",
+          "Trang chủ, Giỏ hàng…"
+        ]
+      },
+      {
+        "title": "Modal",
+        "items": [
+          "Trượt lên, tác vụ ngắn",
+          "Đóng xong về chỗ cũ",
+          "Xác nhận đặt hàng"
+        ]
+      }
+    ]
+  },
+  "bai-03-push-back-replace.png": {
+    "type": "pairs",
+    "headers": [
+      "Lệnh",
+      "Tác dụng trên stack"
+    ],
+    "items": [
+      [
+        "router.push()",
+        "Thêm màn hình lên trên"
+      ],
+      [
+        "router.back()",
+        "Gỡ màn hình trên cùng"
+      ],
+      [
+        "router.replace()",
+        "Thay màn hình hiện tại"
+      ]
+    ]
+  },
+  "bai-03-deep-link.png": {
+    "type": "flow",
+    "direction": "v",
+    "steps": [
+      [
+        "lhufood://product/12",
+        "scheme khai báo trong app.json"
+      ],
+      [
+        "Expo Router",
+        "khớp với product/[id].tsx"
+      ],
+      [
+        "Chi tiết món 12",
+        ""
+      ]
+    ]
+  },
+  "bai-03-luong-man-hinh.png": {
+    "type": "tree",
+    "root": "Thanh tab",
+    "children": [
+      {
+        "name": "Trang chủ",
+        "children": [
+          "Chi tiết món (stack)"
+        ]
+      },
+      {
+        "name": "Giỏ hàng",
+        "children": [
+          "Xác nhận (modal)"
+        ]
+      },
+      {
+        "name": "Đơn hàng"
+      },
+      {
+        "name": "Tài khoản"
+      }
+    ]
+  },
+  "bai-03-erd-so-bo.png": {
+    "type": "pairs",
+    "headers": [
+      "Thực thể",
+      "Quan hệ"
+    ],
+    "items": [
+      [
+        "Categories",
+        "1-n Products"
+      ],
+      [
+        "Users",
+        "1-n Orders"
+      ],
+      [
+        "Orders – Products",
+        "n-n qua OrderItems"
+      ]
+    ]
+  },
+  "bai-04-ba-loai-trang-thai.png": {
+    "type": "columns",
+    "columns": [
+      {
+        "title": "Cục bộ",
+        "items": [
+          "Một màn hình dùng",
+          "useState, useReducer",
+          "Số lượng đang chọn"
+        ]
+      },
+      {
+        "title": "Toàn cục",
+        "items": [
+          "Nhiều màn hình dùng",
+          "Zustand",
+          "Giỏ hàng"
+        ]
+      },
+      {
+        "title": "Từ server",
+        "items": [
+          "Bản gốc ở SQL Server",
+          "TanStack Query",
+          "Thực đơn"
+        ]
+      }
+    ]
+  },
+  "bai-04-scrollview-flatlist.png": {
+    "type": "columns",
+    "columns": [
+      {
+        "title": "ScrollView",
+        "items": [
+          "Vẽ tất cả phần tử ngay",
+          "Hợp với nội dung ngắn"
+        ]
+      },
+      {
+        "title": "FlatList",
+        "items": [
+          "Chỉ vẽ phần tử đang hiển thị",
+          "Mượt, ít bộ nhớ",
+          "Danh sách dài"
+        ]
+      }
+    ]
+  },
+  "bai-04-vibe-quy-tac.png": {
+    "type": "flow",
+    "direction": "v",
+    "steps": [
+      [
+        "Viết đặc tả bằng lời",
+        ""
+      ],
+      [
+        "Copilot sinh schema Zod",
+        "thông báo lỗi tiếng Việt"
+      ],
+      [
+        "Tự viết bảng trường hợp biên",
+        "thử từng dòng"
+      ],
+      [
+        "Sửa chỗ AI sai",
+        "ghi PROMPTS.md"
+      ]
+    ]
+  },
+  "bai-05-cac-lop-du-lieu.png": {
+    "type": "layers",
+    "arrows": "both",
+    "layers": [
+      {
+        "name": "App React Native",
+        "items": [
+          "HTTP + JSON"
+        ]
+      },
+      {
+        "name": "API NestJS",
+        "items": [
+          "Controller",
+          "Service",
+          "DatabaseService"
+        ]
+      },
+      {
+        "name": "SQL Server",
+        "items": [
+          "Stored procedure",
+          "Bảng"
+        ]
+      }
+    ],
+    "size": [
+      10,
+      5.5
+    ]
+  },
+  "bai-05-vibe-backend.png": {
+    "type": "flow",
+    "direction": "v",
+    "steps": [
+      [
+        "Đưa ERD cho Antigravity",
+        "sinh thủ tục và service"
+      ],
+      [
+        "Review từng thủ tục",
+        "tham số, SET NOCOUNT ON, kiểm tra tồn tại"
+      ],
+      [
+        "Tìm SELECT, INSERT trong backend",
+        "phải không còn"
+      ]
+    ]
+  },
+  "bai-05-dia-chi-api.png": {
+    "type": "pairs",
+    "headers": [
+      "Chạy app trên",
+      "Địa chỉ API"
+    ],
+    "items": [
+      [
+        "Điện thoại thật",
+        "IP LAN của máy chạy API"
+      ],
+      [
+        "Android emulator",
+        "10.0.2.2"
+      ],
+      [
+        "localhost trên điện thoại",
+        "là chính điện thoại"
+      ]
+    ]
+  },
+  "bai-05-bon-trang-thai.png": {
+    "type": "hub",
+    "center": "Màn hình dữ liệu",
+    "nodes": [
+      "Đang tải",
+      [
+        "Lỗi",
+        "có nút thử lại"
+      ],
+      "Rỗng",
+      "Có dữ liệu"
+    ]
+  },
+  "bai-06-luong-jwt.png": {
+    "type": "sequence",
+    "actors": [
+      "App",
+      "API NestJS",
+      "SQL Server"
+    ],
+    "size": [
+      10,
+      7
+    ],
+    "messages": [
+      [
+        "App",
+        "API NestJS",
+        "POST /auth/login"
+      ],
+      [
+        "API NestJS",
+        "SQL Server",
+        "sp_User_GetByEmail"
+      ],
+      [
+        "SQL Server",
+        "API NestJS",
+        "PasswordHash",
+        "return"
+      ],
+      [
+        "API NestJS",
+        "API NestJS",
+        "bcrypt.compare"
+      ],
+      [
+        "API NestJS",
+        "App",
+        "accessToken + refreshToken",
+        "return"
+      ],
+      [
+        "App",
+        "App",
+        "lưu vào SecureStore"
+      ],
+      [
+        "App",
+        "API NestJS",
+        "Bearer accessToken"
+      ],
+      [
+        "App",
+        "API NestJS",
+        "hết hạn → POST /auth/refresh"
+      ]
+    ]
+  },
+  "bai-06-hai-token.png": {
+    "type": "columns",
+    "columns": [
+      {
+        "title": "Access token",
+        "items": [
+          "~15 phút",
+          "Gửi kèm mỗi request",
+          "Lộ thì thiệt hại ít"
+        ]
+      },
+      {
+        "title": "Refresh token",
+        "items": [
+          "~7 ngày",
+          "Lưu dạng băm qua thủ tục",
+          "Thu hồi khi đăng xuất"
+        ]
+      }
+    ]
+  },
+  "bai-06-guard.png": {
+    "type": "flow",
+    "direction": "v",
+    "steps": [
+      [
+        "Request",
+        "Authorization: Bearer"
+      ],
+      [
+        "AuthGuard",
+        "verifyAsync, gán request.user"
+      ],
+      [
+        "RolesGuard",
+        "kiểm tra vai trò"
+      ],
+      [
+        "Controller",
+        "mã người dùng từ req.user.sub"
+      ]
+    ]
+  },
+  "bai-07-giao-dich.png": {
+    "type": "flow",
+    "title": "Một giao dịch đặt hàng",
+    "steps": [
+      "Tạo Orders",
+      "Tạo OrderItems",
+      "Trừ Stock"
+    ],
+    "branch": {
+      "from": [
+        0,
+        1,
+        2
+      ],
+      "to": "Một bước lỗi → ROLLBACK",
+      "label": "không có gì thay đổi"
+    }
+  },
+  "bai-07-optimistic.png": {
+    "type": "flow",
+    "direction": "v",
+    "steps": [
+      [
+        "Bấm ♥",
+        ""
+      ],
+      [
+        "onMutate",
+        "cập nhật cache, giao diện đổi ngay"
+      ],
+      [
+        "Gửi API ở nền",
+        ""
+      ],
+      [
+        "onError: hoàn tác",
+        "onSettled: tải lại"
+      ]
+    ]
+  },
+  "bai-08-xin-quyen.png": {
+    "type": "flow",
+    "direction": "v",
+    "steps": [
+      [
+        "Người dùng bấm chức năng",
+        "đúng lúc cần quyền"
+      ],
+      [
+        "Giải thích vì sao cần",
+        ""
+      ],
+      [
+        "Hệ thống hỏi quyền",
+        ""
+      ],
+      [
+        "Bị từ chối",
+        "app vẫn chạy, hướng dẫn mở Cài đặt"
+      ]
+    ]
+  },
+  "bai-08-tai-anh.png": {
+    "type": "sequence",
+    "actors": [
+      "App",
+      "API NestJS",
+      "SQL Server"
+    ],
+    "messages": [
+      [
+        "App",
+        "API NestJS",
+        "FormData (file)"
+      ],
+      [
+        "API NestJS",
+        "API NestJS",
+        "Multer: ≤ 2 MB, JPEG/PNG"
+      ],
+      [
+        "API NestJS",
+        "API NestJS",
+        "lưu file vào uploads/"
+      ],
+      [
+        "API NestJS",
+        "SQL Server",
+        "sp_User_UpdateAvatar (đường dẫn)"
+      ]
+    ]
+  },
+  "bai-08-expo-go-dev-build.png": {
+    "type": "columns",
+    "columns": [
+      {
+        "title": "Expo Go",
+        "items": [
+          "Thư viện trong Expo SDK",
+          "image-picker, location, maps…",
+          "Không cần build"
+        ]
+      },
+      {
+        "title": "Development build",
+        "items": [
+          "Thư viện native ngoài SDK",
+          "Push từ xa",
+          "Tốn một lượt build EAS"
+        ]
+      }
+    ]
+  },
+  "bai-09-polling-websocket.png": {
+    "type": "columns",
+    "columns": [
+      {
+        "title": "Polling",
+        "items": [
+          "App hỏi định kỳ",
+          "Chậm",
+          "Tốn pin, tải server"
+        ]
+      },
+      {
+        "title": "WebSocket",
+        "items": [
+          "Kết nối mở liên tục",
+          "Server chủ động gửi",
+          "Gần như tức thời"
+        ]
+      }
+    ]
+  },
+  "bai-09-khai-niem-socket.png": {
+    "type": "hub",
+    "center": "Socket.IO",
+    "nodes": [
+      [
+        "Sự kiện",
+        "order:status + JSON"
+      ],
+      [
+        "Room user:<mã>",
+        "từng người"
+      ],
+      [
+        "Room staff",
+        "nhân viên"
+      ],
+      [
+        "Handshake auth",
+        "gửi JWT khi kết nối"
+      ]
+    ]
+  },
+  "bai-09-tuan-tu.png": {
+    "type": "sequence",
+    "actors": [
+      "App nhân viên",
+      "API NestJS",
+      "SQL Server",
+      "App khách hàng"
+    ],
+    "size": [
+      10,
+      6.5
+    ],
+    "messages": [
+      [
+        "App nhân viên",
+        "API NestJS",
+        "PATCH /orders/12/status"
+      ],
+      [
+        "API NestJS",
+        "SQL Server",
+        "sp_Order_UpdateStatus"
+      ],
+      [
+        "SQL Server",
+        "API NestJS",
+        "userId",
+        "return"
+      ],
+      [
+        "API NestJS",
+        "SQL Server",
+        "sp_Notification_Create"
+      ],
+      [
+        "API NestJS",
+        "App khách hàng",
+        "order:status → room user:5"
+      ],
+      [
+        "App khách hàng",
+        "App khách hàng",
+        "hiện thông báo, làm mới đơn"
+      ]
+    ]
+  },
+  "bai-09-luu-truoc.png": {
+    "type": "flow",
+    "direction": "v",
+    "steps": [
+      [
+        "Đổi trạng thái đơn",
+        "sp_Order_UpdateStatus"
+      ],
+      [
+        "Lưu thông báo",
+        "sp_Notification_Create"
+      ],
+      [
+        "Gửi qua socket",
+        "toUser(...)"
+      ],
+      [
+        "Tắt app vẫn xem lại được",
+        ""
+      ]
+    ]
+  },
+  "bai-10-tang-kiem-thu.png": {
+    "type": "layers",
+    "arrows": "none",
+    "layers": [
+      [
+        "Kiểm thử thủ công",
+        "luồng chính trên điện thoại thật"
+      ],
+      [
+        "Kiểm thử thủ tục",
+        "script T-SQL, CSDL kiểm thử"
+      ],
+      [
+        "Component test",
+        "vẽ component, thao tác như người dùng"
+      ],
+      [
+        "Unit test",
+        "hàm, store"
+      ]
+    ]
+  },
+  "bai-10-xu-ly-loi.png": {
+    "type": "flow",
+    "direction": "v",
+    "steps": [
+      [
+        "Tái hiện",
+        "bước, dữ liệu, thiết bị, phiên bản"
+      ],
+      [
+        "Khoanh vùng",
+        "app, API, thủ tục hay dữ liệu?"
+      ],
+      [
+        "Test tái hiện lỗi (đỏ)",
+        "sửa → test xanh"
+      ],
+      [
+        "Ghi bug log",
+        ""
+      ]
+    ]
+  },
+  "bai-10-mutation.png": {
+    "type": "flow",
+    "direction": "v",
+    "steps": [
+      [
+        "Cố ý sửa sai logic",
+        "ví dụ đổi nhân thành cộng"
+      ],
+      [
+        "Chạy lại test",
+        ""
+      ],
+      [
+        "Vẫn xanh?",
+        "test vô giá trị → thêm expect"
+      ]
+    ]
+  },
+  "bai-11-trien-khai.png": {
+    "type": "layers",
+    "arrows": "both",
+    "layers": [
+      [
+        "Điện thoại (APK)",
+        "REST + Socket.IO"
+      ],
+      [
+        "API NestJS trên Windows Server Khoa",
+        ""
+      ],
+      [
+        "SQL Server",
+        "tài khoản chỉ có quyền EXECUTE"
+      ]
+    ]
+  },
+  "bai-11-script-csdl.png": {
+    "type": "flow",
+    "direction": "v",
+    "steps": [
+      "01-tables.sql",
+      "02-procedures.sql",
+      "… 08-notifications.sql",
+      "99-seed.sql"
+    ]
+  },
+  "bai-11-chay-backend.png": {
+    "type": "flow",
+    "direction": "v",
+    "steps": [
+      "npm ci",
+      "npm run build",
+      "node dist/main.js",
+      [
+        "Kiểm tra Swagger",
+        "từ một máy khác"
+      ]
+    ]
+  },
+  "bai-11-moi-truong.png": {
+    "type": "columns",
+    "columns": [
+      {
+        "title": "Phát triển",
+        "items": [
+          "Địa chỉ API → máy cá nhân",
+          "HTTP trong mạng LAN"
+        ]
+      },
+      {
+        "title": "Bản build",
+        "items": [
+          "Trỏ về server Khoa (eas.json)",
+          "Cho phép cleartext cho đồ án",
+          "Phát hành thật dùng HTTPS"
+        ]
+      }
+    ]
+  },
+  "bai-12-15-phut.png": {
+    "type": "timeline",
+    "size": [
+      10,
+      4.5
+    ],
+    "events": [
+      [
+        "1 phút",
+        "giới thiệu"
+      ],
+      [
+        "5 phút",
+        "demo trên điện thoại"
+      ],
+      [
+        "4 phút",
+        "thiết kế"
+      ],
+      [
+        "5 phút",
+        "hỏi đáp"
+      ]
+    ]
+  },
+  "bai-12-kich-ban-demo.png": {
+    "type": "flow",
+    "direction": "v",
+    "steps": [
+      "Cài APK, đăng nhập",
+      "Tìm món, giỏ hàng còn sau khi mở lại",
+      [
+        "Đặt món",
+        "đối chiếu trên SQL Server"
+      ],
+      "Chụp ảnh, chọn vị trí",
+      [
+        "Đổi trạng thái đơn",
+        "thông báo realtime"
+      ],
+      [
+        "Đặt món hết hàng",
+        "báo lỗi đúng"
+      ]
+    ],
+    "size": [
+      8,
+      8
+    ]
+  },
+  "bai-12-rubric.png": {
+    "type": "pairs",
+    "headers": [
+      "CLO",
+      "Điểm (đạt)"
+    ],
+    "items": [
+      [
+        "CLO1",
+        "3 (≥ 1,5)"
+      ],
+      [
+        "CLO2",
+        "2 (≥ 1)"
+      ],
+      [
+        "CLO3",
+        "2 (≥ 1)"
+      ],
+      [
+        "CLO4",
+        "3 (≥ 1,5)"
+      ]
+    ]
+  }
+}

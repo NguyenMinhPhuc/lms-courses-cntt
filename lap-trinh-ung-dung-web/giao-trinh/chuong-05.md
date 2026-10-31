@@ -158,38 +158,7 @@ const RULES: { prefix: string; roles: string[] }[] = [
 export async function proxy(req: NextRequest) {
   const rule = RULES.find((r) => req.nextUrl.pathname.startsWith(r.prefix));
   if (!rule) return NextResponse.next();
-
-  let access = req.cookies.get('access_token')?.value;
-  const refresh = req.cookies.get('refresh_token')?.value;
-  let res = NextResponse.next();
-
-  if (!access && refresh) {                                   // access hết hạn: làm mới (mục 5.5)
-    const r = await fetch(`${process.env.API_URL}/auth/refresh`, {
-      method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ refreshToken: refresh }),
-    });
-    if (r.ok) {
-      const t = await r.json();
-      access = t.accessToken;
-      req.cookies.set('access_token', t.accessToken);          // trang đang mở đọc được token mới
-      res = NextResponse.next({ request: req });
-      const opts = { httpOnly: true, secure: process.env.NODE_ENV === 'production', sameSite: 'lax' as const, path: '/' };
-      res.cookies.set('access_token', t.accessToken, { ...opts, maxAge: 14 * 60 });
-      res.cookies.set('refresh_token', t.refreshToken, { ...opts, maxAge: 7 * 24 * 3600 });
-    }
-  }
-
-  if (!access) {
-    const login = new URL('/login', req.url);
-    login.searchParams.set('next', req.nextUrl.pathname);
-    return NextResponse.redirect(login);
-  }
-  const { role } = decodeJwt(access) as { role: string };      // chỉ đọc, KHÔNG xác minh chữ ký
-  if (!rule.roles.includes(role)) return NextResponse.rewrite(new URL('/forbidden', req.url));
-  return res;
-}
-
-export const config = { matcher: ['/admin/:path*', '/checkout', '/orders/:path*', '/profile'] };
+// … (trích 15/47 dòng; mã đầy đủ ở Phụ lục A, mục A.2)
 ```
 
 Thứ tự trong `RULES` quan trọng: `/admin/orders` phải đứng trước `/admin` vì `find` lấy quy tắc khớp đầu tiên.

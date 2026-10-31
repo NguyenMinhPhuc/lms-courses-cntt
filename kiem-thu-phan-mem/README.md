@@ -1,8 +1,8 @@
 # Học phần: Kiểm thử và Đảm bảo chất lượng phần mềm (Software Testing)
 
-- **Mã học phần:** 222201
+- **Mã học phần:** 111117
 - **Khoa phụ trách:** Khoa Công nghệ Thông tin - Trường Đại học Lạc Hồng
-- **Số tín chỉ:** 3 TC — 60 tiết (15 tiết lý thuyết + 45 tiết thực hành)
+- **Số tín chỉ:** 3 TC — 45 tiết (15 tiết lý thuyết + 30 tiết thực hành)
 - **Giảng viên, lịch học:** theo thông báo của lớp trên Moodle
 - **Định dạng hiển thị LMS:** Accordion HTML 4 khối theo [template-lesson.md](../template-lesson.md)
 - **Đề cương:** [thong-tin-hoc-phan.html](thong-tin-hoc-phan.html) (xem web) | [thong-tin-hoc-phan.md](thong-tin-hoc-phan.md) (dán vào Moodle)

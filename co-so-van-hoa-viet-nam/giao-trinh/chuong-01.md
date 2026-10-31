@@ -23,7 +23,7 @@ Ngay với nghĩa rộng, thế giới cũng có hàng trăm định nghĩa văn
 | Tác giả | Ý chính | Góc nhìn |
 |---|---|---|
 | E. B. Tylor (1871) | Văn hóa là một tổng thể phức hợp gồm tri thức, tín ngưỡng, nghệ thuật, đạo đức, luật pháp, phong tục và mọi năng lực, thói quen con người có được với tư cách thành viên xã hội [2] | Liệt kê các thành phần; là định nghĩa khoa học đầu tiên ở phương Tây |
-| Hồ Chí Minh (1943) | Vì lẽ sinh tồn và mục đích cuộc sống, loài người sáng tạo ra ngôn ngữ, chữ viết, đạo đức, pháp luật, khoa học, tôn giáo, văn học, nghệ thuật, công cụ sinh hoạt; toàn bộ những sáng tạo và phát minh đó là văn hóa [3] | Nhấn mạnh nguồn gốc: văn hóa sinh ra từ nhu cầu sống |
+| Hồ Chí Minh (1943) | Vì lẽ sinh tồn và mục đích cuộc sống, loài người sáng tạo ra ngôn ngữ, chữ viết, đạo đức, pháp luật, khoa học, tôn giáo, văn học, nghệ thuật, công cụ sinh hoạt; toàn bộ những sáng tạo và phát minh đó là văn hóa [3, tr. 458] | Nhấn mạnh nguồn gốc: văn hóa sinh ra từ nhu cầu sống |
 | UNESCO (2001) | Văn hóa là tập hợp các đặc trưng về tinh thần, vật chất, tri thức và cảm xúc của một xã hội hay một nhóm người; ngoài văn học, nghệ thuật còn gồm lối sống, cách chung sống, hệ giá trị, truyền thống và đức tin [4] | Mở rộng sang lối sống và hệ giá trị; là cơ sở cho chính sách bảo vệ đa dạng văn hóa |
 | Trần Ngọc Thêm | Văn hóa là một hệ thống hữu cơ các giá trị vật chất và tinh thần do con người sáng tạo và tích lũy qua quá trình hoạt động thực tiễn, trong sự tương tác giữa con người với môi trường tự nhiên và xã hội [1, ch. I, §1.1] | Tiếp cận hệ thống; rút ra từ 4 đặc trưng cơ bản |
 

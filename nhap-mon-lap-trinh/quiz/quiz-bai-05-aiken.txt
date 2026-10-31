@@ -1,0 +1,83 @@
+Vòng lặp while kiểm tra điều kiện vào lúc nào?
+A. Chỉ một lần trước khi bắt đầu
+B. Trước mỗi chu kỳ lặp
+C. Sau khi kết thúc toàn bộ vòng lặp
+D. Chỉ khi gặp lệnh break
+ANSWER: B
+
+Trường hợp nào nên dùng while thay cho for?
+A. In bảng cửu chương từ 1 đến 10
+B. Duyệt từng ký tự của một chuỗi
+C. Hỏi lại người dùng cho tới khi nhập điểm hợp lệ
+D. Tính tổng các phần tử của một list
+ANSWER: C
+
+Đoạn code dem = 5, rồi while dem > 0: print(dem) (không có dòng giảm dem) sẽ chạy thế nào?
+A. In số 5 mãi mãi (vòng lặp vô hạn)
+B. Không in gì
+C. In số 5 một lần rồi dừng
+D. In 5 4 3 2 1 rồi dừng
+ANSWER: A
+
+Chương trình đang chạy vòng lặp vô hạn trong Terminal. Tổ hợp phím nào dừng chương trình?
+A. F5
+B. Ctrl + S
+C. Ctrl + Z rồi Enter trong mọi trường hợp
+D. Ctrl + C
+ANSWER: D
+
+Lệnh break trong vòng lặp có tác dụng gì?
+A. Bỏ qua chu kỳ hiện tại, sang chu kỳ tiếp theo
+B. Thoát khỏi vòng lặp ngay lập tức
+C. Dừng toàn bộ chương trình và báo lỗi
+D. Quay lại đầu chương trình
+ANSWER: B
+
+Lệnh continue trong vòng lặp có tác dụng gì?
+A. Thoát khỏi vòng lặp ngay lập tức
+B. Lặp lại chu kỳ hiện tại thêm một lần
+C. Tạm dừng chờ người dùng nhấn Enter
+D. Bỏ phần còn lại của chu kỳ hiện tại, sang chu kỳ tiếp theo
+ANSWER: D
+
+Sau đoạn code x = 10, rồi while x > 0: x -= 3, giá trị của x bằng bao nhiêu?
+A. 1
+B. 0
+C. -3
+D. -2
+ANSWER: D
+
+Lệnh random.randint(1, 100) có thể trả về số 100 không?
+A. Chỉ khi gọi lần đầu tiên
+B. Không, vì giống range thì số 100 bị loại
+C. Có, vì randint gồm cả hai đầu khoảng
+D. Không, kết quả luôn nhỏ hơn 100
+ANSWER: C
+
+Menu viết điều kiện if chon == 1 với chon = input("Chọn: "). Người dùng nhập 1 thì điều gì xảy ra?
+A. Vào đúng nhánh vì 1 bằng 1
+B. Không vào nhánh này vì chon là chuỗi "1", khác số 1
+C. Báo lỗi TypeError
+D. Chương trình tự đổi chon sang số
+ANSWER: B
+
+Với tong = 0, i = 0, rồi while i < 5: i += 1; if i == 3: continue; tong += i. Sau vòng lặp, tong bằng bao nhiêu?
+A. 12
+B. 15
+C. 3
+D. 10
+ANSWER: A
+
+Đoán một số bí mật từ 1 đến 100, sau mỗi lần được gợi ý "lớn hơn" hoặc "nhỏ hơn". Chiến lược nào luôn đoán đúng trong tối đa 7 lần?
+A. Luôn đoán số ở giữa khoảng còn lại
+B. Đoán ngẫu nhiên mỗi lần
+C. Đoán lần lượt 1, 2, 3, …
+D. Đoán các số chia hết cho 10 trước
+ANSWER: A
+
+Trong trò chơi đoán số, biến doan_dung = False được gán True ngay trước break. Biến này dùng để làm gì?
+A. Đếm số lần đoán
+B. Lưu số bí mật
+C. Ghi nhớ đã đoán đúng hay chưa để in thông báo sau vòng lặp
+D. Làm vòng lặp chạy nhanh hơn
+ANSWER: C

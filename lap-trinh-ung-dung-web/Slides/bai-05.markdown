@@ -24,11 +24,7 @@ Sprint 2 · Người dùng & Tương tác
 
 ## Slide 3: Luồng xác thực web
 **Nội dung chính**:
-```text
-Form ─▶ Server Action ─POST /auth/login─▶ API
-     ◀─ Set-Cookie: access_token, refresh_token (httpOnly)
-Request sau: cookie ─▶ Next.js ─Bearer token─▶ API
-```
+![](images/bai-05-luong-xac-thuc.png)
 
 ---
 
@@ -57,6 +53,7 @@ Request sau: cookie ─▶ Next.js ─Bearer token─▶ API
 - /admin/orders: staff, admin
 - /admin/products, /admin/users: chỉ admin
 **Hoạt động**: Nhóm lập ma trận cho toàn bộ route của web nhóm
+![](images/bai-05-ma-tran-quyen.png)
 
 ---
 
@@ -96,6 +93,7 @@ export const getCurrentUser = cache(async () => {
 - Token không đủ quyền → 403
 - Khách xem đơn của người khác → 404
 - Ba lớp, ba nhiệm vụ: trải nghiệm, trang, dữ liệu
+![](images/bai-05-ba-lop.png)
 
 ---
 
@@ -105,6 +103,7 @@ export const getCurrentUser = cache(async () => {
 - refresh_token: 7 ngày
 - Hết access → proxy gọi POST /auth/refresh, ghi cặp mới
 - Refresh thất bại → về /login
+![](images/bai-05-lam-moi-token.png)
 
 ---
 

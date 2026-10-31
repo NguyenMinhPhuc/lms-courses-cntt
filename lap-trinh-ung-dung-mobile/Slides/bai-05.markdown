@@ -16,14 +16,9 @@ Từ màn hình điện thoại tới một dòng trong SQL Server
 
 ## Slide 2: Dữ liệu đi qua những lớp nào?
 **Nội dung chính**:
-```text
-App React Native   --HTTP + JSON-->   API NestJS
-   Controller → Service → DatabaseService
-   --mssql: input(...) + execute('sp_...')-->
-SQL Server: Stored procedure → Bảng
-```
 - App không kết nối thẳng SQL Server
 - API không viết câu SQL; chỉ gọi thủ tục có tham số
+![](images/bai-05-cac-lop-du-lieu.png)
 
 ---
 
@@ -132,6 +127,8 @@ findAll(page = 1, categoryId?: number) {
 - Đưa ERD cho Antigravity sinh thủ tục và service
 - Review từng thủ tục: đủ tham số, `SET NOCOUNT ON`, kiểm tra tồn tại
 - Tìm chuỗi `SELECT`, `INSERT` trong mã backend → phải không còn
+![](images/bai-05-vibe-backend.png)
+
 **Ghi chú giảng viên**:
 - AI rất hay "tiện tay" viết câu SQL thẳng trong service; đây là lỗi bị trừ điểm CLO2.
 
@@ -144,6 +141,7 @@ findAll(page = 1, categoryId?: number) {
 - Android emulator: `10.0.2.2`
 - Tường lửa Windows có thể chặn cổng API
 - Không đặt bí mật vào biến `EXPO_PUBLIC_`
+![](images/bai-05-dia-chi-api.png)
 
 ---
 
@@ -167,6 +165,7 @@ const createOrder = useMutation({
 - `useInfiniteQuery` + `FlatList onEndReached` cho lịch sử đơn hàng
 - Luôn xử lý: **đang tải**, **lỗi** (có nút thử lại), **rỗng**, **có dữ liệu**
 **Hoạt động**: Lớp chỉ ra trạng thái nào còn thiếu trên màn hình mẫu
+![](images/bai-05-bon-trang-thai.png)
 
 ---
 

@@ -29,6 +29,7 @@ Sprint 4 · Chất lượng & Phát hành
 - Server Action: API giả, xử lý 400/409
 - Đầu-cuối (Playwright): luồng nghiệp vụ, Server Component async
 - Thủ công: âm báo, điện thoại, mất mạng
+![](images/bai-10-muc-kiem-thu.png)
 
 ---
 
@@ -38,6 +39,7 @@ Sprint 4 · Chất lượng & Phát hành
 - Mỗi tiêu chí có ít nhất một test
 - Phần trung tâm của báo cáo kiểm thử
 **Hoạt động**: Nhóm lập ma trận cho 5 story quan trọng nhất
+![](images/bai-10-truy-vet.png)
 
 ---
 
@@ -107,6 +109,7 @@ it('thêm cùng một món hai lần thì một dòng, số lượng 2', () => {
 - Đột biến: cố ý làm hỏng mã, chạy lại test
 - Bị bắt: test có giá trị; lọt: viết thêm test
 - Ghi bảng đột biến vào báo cáo
+![](images/bai-10-dot-bien.png)
 
 ---
 
@@ -116,6 +119,7 @@ it('thêm cùng một món hai lần thì một dòng, số lượng 2', () => {
 - INP ≤ 200 ms: ít JavaScript ở client
 - CLS ≤ 0,1: ảnh có kích thước, khung chờ đúng cỡ
 - Đo trên bản production, lấy trung vị 3 lần
+![](images/bai-10-web-vitals.png)
 
 ---
 

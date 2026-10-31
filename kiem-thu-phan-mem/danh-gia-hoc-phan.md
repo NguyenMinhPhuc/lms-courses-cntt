@@ -4,9 +4,9 @@
         <span style="font-size: 12px;">▼</span>
     </summary>
     <div style="padding: 15px; background-color: #fff; line-height: 1.6;">
-        <p><strong>ĐÁNH GIÁ HỌC PHẦN KIỂM THỬ VÀ ĐẢM BẢO CHẤT LƯỢNG PHẦN MỀM (222201)</strong></p>
+        <p><strong>ĐÁNH GIÁ HỌC PHẦN KIỂM THỬ VÀ ĐẢM BẢO CHẤT LƯỢNG PHẦN MỀM (111117)</strong></p>
         <p>Bạn sẽ được đánh giá qua các sản phẩm kiểm thử thật sự làm ra trong học kỳ, không chỉ qua bài thi. Mỗi sản phẩm cần chứng minh được một điều: từ yêu cầu, nhóm đi tới kết luận kiểm thử bằng một chuỗi có thể lần theo.</p>
-        <p><strong>Cơ cấu điểm học phần (3 tín chỉ, 60 tiết: 15 lý thuyết + 45 thực hành):</strong></p>
+        <p><strong>Cơ cấu điểm học phần (3 tín chỉ, 45 tiết: 15 lý thuyết + 30 thực hành):</strong></p>
         <table style="width: 100%; max-width: 760px; border-collapse: collapse; margin-bottom: 15px; font-size: 14px;">
             <tbody>
                 <tr style="background-color: #e7f1ff;"><td style="padding: 8px; border: 1px solid #b6d4fe;"><strong>Điểm quá trình</strong></td><td style="padding: 8px; border: 1px solid #b6d4fe;">Chuyên cần, tham gia hoạt động trên lớp, quiz từng bài</td><td style="padding: 8px; border: 1px solid #b6d4fe; text-align: center;"><strong>30%</strong></td></tr>
@@ -67,6 +67,23 @@
                 <li>Ít nhất 3 biên bản họp nhóm trong phụ lục.</li>
             </ul>
             <p style="margin-bottom: 0;">Chi tiết từng phần xem tại <strong>Bài 08 - Hướng dẫn thực hiện báo cáo cuối kỳ</strong>.</p>
+        </div>
+        <div style="max-width: 900px; padding: 14px; margin: 8px 0; background-color: #fff8f1; border: 1px solid #ffd6ad; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #fd7e14;">2.4. Điểm cộng truyền thông (+0.5 đến +1.0 vào Điểm Báo cáo kiểm thử cuối kỳ (nhóm))</h3>
+            <p style="margin: 0 0 8px 0;">Theo quy định của Bộ môn phục vụ <strong>Công tác Tuyển sinh 2027</strong>: nhóm đăng bài chia sẻ sản phẩm và trải nghiệm học tập trên Facebook, TikTok, LinkedIn hoặc YouTube Shorts được cộng điểm cho <strong>cả nhóm</strong> (điểm sau cộng không vượt quá 10).</p>
+            <p style="margin: 8px 0 4px 0; font-weight: bold;">Bài đăng hợp lệ phải đủ 4 tiêu chí:</p>
+            <ol style="margin: 0; padding-left: 22px; font-size: 14px;">
+                <li style="margin: 4px 0;"><strong>Công khai (Public)</strong> và giữ công khai ít nhất đến hết học kỳ.</li>
+                <li style="margin: 4px 0;"><strong>Ảnh/video thực tế các thành viên nhóm</strong> làm việc cùng nhau, kèm màn hình sản phẩm được kiểm thử, test case hoặc báo cáo lỗi. Không dùng ảnh mạng hoặc ảnh chụp màn hình thuần túy không có người thực hiện.</li>
+                <li style="margin: 4px 0;"><strong>Caption 50–150 từ</strong> chia sẻ cảm nhận chân thực về trải nghiệm học phần, ứng dụng AI trong kiểm thử (sinh test case, review, phân tích lỗi), sự hỗ trợ của giảng viên, nhà trường và niềm tự hào về sản phẩm nhóm tự làm.</li>
+                <li style="margin: 4px 0;"><strong>Đủ bộ hashtag:</strong> dùng chung <code style="background:#fff;border:1px solid #ffd6ad;border-radius:4px;padding:0 4px;">#DaiHocLacHong</code> <code style="background:#fff;border:1px solid #ffd6ad;border-radius:4px;padding:0 4px;">#CongNgheThongTin</code> <code style="background:#fff;border:1px solid #ffd6ad;border-radius:4px;padding:0 4px;">#LapTrinhVoiAI</code> <code style="background:#fff;border:1px solid #ffd6ad;border-radius:4px;padding:0 4px;">#VibeCoding</code> <code style="background:#fff;border:1px solid #ffd6ad;border-radius:4px;padding:0 4px;">#TuyenSinh2027</code>; riêng học phần <code style="background:#fff;border:1px solid #ffd6ad;border-radius:4px;padding:0 4px;">#KiemThuPhanMem</code> <code style="background:#fff;border:1px solid #ffd6ad;border-radius:4px;padding:0 4px;">#SoftwareTesting</code>.</li>
+            </ol>
+            <p style="margin: 10px 0 4px 0; font-weight: bold;">Mức cộng điểm:</p>
+            <ul style="margin: 0; padding-left: 22px; font-size: 14px;">
+                <li style="margin: 4px 0;"><strong>+0.5:</strong> đạt đủ 4 tiêu chí (ảnh rõ nét, nội dung phù hợp, đủ hashtag).</li>
+                <li style="margin: 4px 0;"><strong>+1.0:</strong> đầu tư sáng tạo cao: video ngắn sinh động, tương tác tốt (thích, chia sẻ, bình luận), cảm nhận truyền cảm hứng.</li>
+            </ul>
+            <p style="margin: 10px 0 0 0; font-size: 13px; color: #6c757d;">Nộp minh chứng: gắn link bài đăng vào Phụ lục của báo cáo cuối kỳ / nhật ký prompt, nộp cùng sản phẩm ở buổi 08 (báo cáo cuối kỳ). Giảng viên phổ biến quy định từ buổi 01 hoặc khi giao đề tài cuối kỳ; cuối học phần tổng hợp danh sách link đạt yêu cầu gửi Trưởng Bộ môn để lưu hồ sơ truyền thông. Bài đăng phải tuân thủ quy tắc xin phép, quyền hình ảnh và bản quyền của học phần.</p>
         </div>
     </div>
 </details>

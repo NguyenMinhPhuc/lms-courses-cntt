@@ -33,6 +33,8 @@ Từ React web đến ứng dụng Android, cùng quy trình vibe coding có ki�
 - **PWA**: web app cài lên màn hình chính; truy cập thiết bị hạn chế
 **Ví dụ**:
 - Ứng dụng đặt món cần camera, vị trí, thông báo: cross-platform đáp ứng đủ
+![](images/bai-01-ba-huong.png)
+
 **Ghi chú giảng viên**:
 - Nhấn mạnh: không có lựa chọn tốt nhất cho mọi trường hợp; học phần chọn React Native vì sinh viên đã biết React.
 
@@ -44,6 +46,8 @@ Từ React web đến ứng dụng Android, cùng quy trình vibe coding có ki�
 - React Native chuyển component thành **view native** của Android/iOS
 - `<Text>` trên Android là một TextView thật, không phải trang web
 - New Architecture (JSI, Fabric, TurboModules): gọi mã native trực tiếp, nhanh hơn
+![](images/bai-01-react-native.png)
+
 **Ghi chú giảng viên**:
 - Không đi sâu vào New Architecture; chỉ cần sinh viên hiểu "không phải web nhúng".
 
@@ -68,6 +72,8 @@ Từ React web đến ứng dụng Android, cùng quy trình vibe coding có ki�
 - `<img>` → `<Image>` (ảnh từ URL cần width, height)
 - `onClick` → `onPress` trên `<Pressable>`
 - File CSS → `StyleSheet.create`, thuộc tính camelCase, không kế thừa
+![](images/bai-01-web-sang-rn.png)
+
 **Ghi chú giảng viên**:
 - Hỏi: điều gì xảy ra nếu đặt chữ trực tiếp trong View? (báo lỗi)
 
@@ -107,6 +113,8 @@ Từ React web đến ứng dụng Android, cùng quy trình vibe coding có ki�
 - 3. Đọc và chạy thử, sửa chỗ sai
 - 4. Ghi prompt và nhận xét vào `PROMPTS.md`
 - 5. **Không hiểu thì không merge**
+![](images/bai-01-vibe-coding.png)
+
 **Ghi chú giảng viên**:
 - Quy tắc 5 là căn cứ cho phần bảo vệ kỹ thuật ở Demo Day.
 
@@ -143,6 +151,7 @@ Từ React web đến ứng dụng Android, cùng quy trình vibe coding có ki�
 - Mỗi người ít nhất một vai chính
 - Điểm CLO4 cuối kỳ chấm theo vai trò cá nhân: commit/PR và phần tự trình bày
 **Hoạt động**: Nhóm thống nhất bảng phân vai trước khi rời lớp
+![](images/bai-01-phan-vai.png)
 
 ---
 

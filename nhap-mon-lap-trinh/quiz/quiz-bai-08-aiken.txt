@@ -1,0 +1,83 @@
+Trong Python, từ khóa nào dùng để định nghĩa một hàm?
+A. function
+B. def
+C. func
+D. define
+ANSWER: B
+
+Một hàm không có lệnh return thì khi gọi sẽ trả về giá trị gì?
+A. None
+B. Chuỗi rỗng ""
+C. 0
+D. Báo lỗi
+ANSWER: A
+
+Với def tinh(a, b): return a + b, lời gọi tinh(2, 3) trả về gì?
+A. None
+B. 23
+C. 6
+D. 5
+ANSWER: D
+
+Trong dòng def tinh_diem_tb(qt, gk, ck):, các tên qt, gk, ck được gọi là gì?
+A. Đối số
+B. Tham số
+C. Hằng số
+D. Module
+ANSWER: B
+
+Với def f(a, b=2): return a * b, lời gọi f(5) trả về gì?
+A. 5
+B. 7
+C. Báo lỗi vì thiếu đối số b
+D. 10
+ANSWER: D
+
+Với def f(a, b=2): return a * b, lời gọi f(3, 4) trả về gì?
+A. 6
+B. 7
+C. 12
+D. 8
+ANSWER: C
+
+Hàm thong_ke trả về (thấp nhất, cao nhất, trung bình). Sau lệnh thap, cao, tb = thong_ke([6, 8, 7]), biến cao bằng bao nhiêu?
+A. (6, 8, 7.0)
+B. 6
+C. 7.0
+D. 8
+ANSWER: D
+
+Hàm tinh_diem_tb có 3 tham số nhưng được gọi tinh_diem_tb(8, 7). Kết quả là gì?
+A. Báo lỗi TypeError vì thiếu một đối số
+B. Tham số thứ ba tự nhận giá trị 0
+C. Báo lỗi ValueError
+D. Trả về None
+ANSWER: A
+
+Hàm in_xep_loai chỉ dùng print để in "Giỏi", không có return. Sau lệnh kq = in_xep_loai(8.5), biến kq bằng gì?
+A. "Giỏi"
+B. None
+C. True
+D. 8.5
+ANSWER: B
+
+Lợi ích chính khi gom đoạn "nhập số an toàn" đang bị chép 4 lần thành một hàm là gì?
+A. Chương trình luôn chạy nhanh gấp 4 lần
+B. Không cần dùng try – except nữa
+C. Viết một lần, gọi nhiều lần; sửa ở một chỗ là mọi nơi gọi hàm đều được sửa
+D. Không cần kiểm thử nữa
+ANSWER: C
+
+Trong main.py, dòng if __name__ == "__main__": main() có tác dụng gì?
+A. Chỉ gọi main() khi chạy trực tiếp file này, không gọi khi file khác import nó
+B. Bắt buộc phải có thì Python mới chạy được file
+C. Chuyển main.py thành thư viện có sẵn của Python
+D. Làm cho main() chạy hai lần
+ANSWER: A
+
+Lệnh from tinh_toan import xep_loai trong main.py báo ModuleNotFoundError. Nguyên nhân thường gặp nhất là gì?
+A. Hàm xep_loai không có return
+B. Python không cho import hàm tự viết
+C. File tinh_toan.py không nằm cùng thư mục với main.py hoặc đang chạy từ thư mục khác
+D. Thiếu docstring trong tinh_toan.py
+ANSWER: C
